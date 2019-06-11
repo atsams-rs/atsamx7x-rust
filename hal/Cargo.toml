@@ -1,0 +1,14 @@
+[package]
+name = "atsams-hal"
+version = "0.0.1"
+authors = ["Michal Fita <michal.fita@gmail.com>"]
+description = "HAL and Peripheral access API for ATSAMS20 microcontrollers"
+keywords = ["no-std", "arm", "cortex-m", "atsams", "embedded-hal"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/michalfita/atsams-rust"
+readme = "README.md"
+edition = "2018"
+
+[dependencies]
+cortex-m = "~0.6"
+embedded-hal = "~0.2"

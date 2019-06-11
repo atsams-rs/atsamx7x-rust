@@ -1,0 +1,2 @@
+svd filter=lfs diff=lfs merge=lfs -text
+svd/* filter=lfs diff=lfs merge=lfs -text
