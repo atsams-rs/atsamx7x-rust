@@ -1,4 +1,4 @@
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - ISI Configuration 1 Register"]
@@ -47,7 +47,7 @@ pub struct RegisterBlock {
     pub isi_dma_c_ctrl: ISI_DMA_C_CTRL,
     #[doc = "0x58 - DMA Codec Descriptor Address Register"]
     pub isi_dma_c_dscr: ISI_DMA_C_DSCR,
-    _reserved0: [u8; 136usize],
+    _reserved23: [u8; 136usize],
     #[doc = "0xe4 - Write Protection Mode Register"]
     pub isi_wpmr: ISI_WPMR,
     #[doc = "0xe8 - Write Protection Status Register"]
@@ -55,151 +55,151 @@ pub struct RegisterBlock {
 }
 #[doc = "ISI Configuration 1 Register"]
 pub struct ISI_CFG1 {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "ISI Configuration 1 Register"]
 pub mod isi_cfg1;
 #[doc = "ISI Configuration 2 Register"]
 pub struct ISI_CFG2 {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "ISI Configuration 2 Register"]
 pub mod isi_cfg2;
 #[doc = "ISI Preview Size Register"]
 pub struct ISI_PSIZE {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "ISI Preview Size Register"]
 pub mod isi_psize;
 #[doc = "ISI Preview Decimation Factor Register"]
 pub struct ISI_PDECF {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "ISI Preview Decimation Factor Register"]
 pub mod isi_pdecf;
 #[doc = "ISI Color Space Conversion YCrCb To RGB Set 0 Register"]
 pub struct ISI_Y2R_SET0 {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "ISI Color Space Conversion YCrCb To RGB Set 0 Register"]
 pub mod isi_y2r_set0;
 #[doc = "ISI Color Space Conversion YCrCb To RGB Set 1 Register"]
 pub struct ISI_Y2R_SET1 {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "ISI Color Space Conversion YCrCb To RGB Set 1 Register"]
 pub mod isi_y2r_set1;
 #[doc = "ISI Color Space Conversion RGB To YCrCb Set 0 Register"]
 pub struct ISI_R2Y_SET0 {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "ISI Color Space Conversion RGB To YCrCb Set 0 Register"]
 pub mod isi_r2y_set0;
 #[doc = "ISI Color Space Conversion RGB To YCrCb Set 1 Register"]
 pub struct ISI_R2Y_SET1 {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "ISI Color Space Conversion RGB To YCrCb Set 1 Register"]
 pub mod isi_r2y_set1;
 #[doc = "ISI Color Space Conversion RGB To YCrCb Set 2 Register"]
 pub struct ISI_R2Y_SET2 {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "ISI Color Space Conversion RGB To YCrCb Set 2 Register"]
 pub mod isi_r2y_set2;
 #[doc = "ISI Control Register"]
 pub struct ISI_CR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "ISI Control Register"]
 pub mod isi_cr;
 #[doc = "ISI Status Register"]
 pub struct ISI_SR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "ISI Status Register"]
 pub mod isi_sr;
 #[doc = "ISI Interrupt Enable Register"]
 pub struct ISI_IER {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "ISI Interrupt Enable Register"]
 pub mod isi_ier;
 #[doc = "ISI Interrupt Disable Register"]
 pub struct ISI_IDR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "ISI Interrupt Disable Register"]
 pub mod isi_idr;
 #[doc = "ISI Interrupt Mask Register"]
 pub struct ISI_IMR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "ISI Interrupt Mask Register"]
 pub mod isi_imr;
 #[doc = "DMA Channel Enable Register"]
 pub struct ISI_DMA_CHER {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "DMA Channel Enable Register"]
 pub mod isi_dma_cher;
 #[doc = "DMA Channel Disable Register"]
 pub struct ISI_DMA_CHDR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "DMA Channel Disable Register"]
 pub mod isi_dma_chdr;
 #[doc = "DMA Channel Status Register"]
 pub struct ISI_DMA_CHSR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "DMA Channel Status Register"]
 pub mod isi_dma_chsr;
 #[doc = "DMA Preview Base Address Register"]
 pub struct ISI_DMA_P_ADDR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "DMA Preview Base Address Register"]
 pub mod isi_dma_p_addr;
 #[doc = "DMA Preview Control Register"]
 pub struct ISI_DMA_P_CTRL {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "DMA Preview Control Register"]
 pub mod isi_dma_p_ctrl;
 #[doc = "DMA Preview Descriptor Address Register"]
 pub struct ISI_DMA_P_DSCR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "DMA Preview Descriptor Address Register"]
 pub mod isi_dma_p_dscr;
 #[doc = "DMA Codec Base Address Register"]
 pub struct ISI_DMA_C_ADDR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "DMA Codec Base Address Register"]
 pub mod isi_dma_c_addr;
 #[doc = "DMA Codec Control Register"]
 pub struct ISI_DMA_C_CTRL {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "DMA Codec Control Register"]
 pub mod isi_dma_c_ctrl;
 #[doc = "DMA Codec Descriptor Address Register"]
 pub struct ISI_DMA_C_DSCR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "DMA Codec Descriptor Address Register"]
 pub mod isi_dma_c_dscr;
 #[doc = "Write Protection Mode Register"]
 pub struct ISI_WPMR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Write Protection Mode Register"]
 pub mod isi_wpmr;
 #[doc = "Write Protection Status Register"]
 pub struct ISI_WPSR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Write Protection Status Register"]
 pub mod isi_wpsr;

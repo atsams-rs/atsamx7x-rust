@@ -1,358 +1,233 @@
-#[doc = r" Value read from the register"]
+#[doc = r"Value read from the register"]
 pub struct R {
     bits: u32,
 }
-#[doc = r" Value to write to the register"]
+#[doc = r"Value to write to the register"]
 pub struct W {
     bits: u32,
 }
 impl super::CCFG_SMCNFCS {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
+    #[doc = r"Modifies the contents of the register"]
+    #[inline(always)]
     pub fn modify<F>(&self, f: F)
     where
         for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
     {
         let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
+        self.register.set(f(&R { bits }, &mut W { bits }).bits);
     }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
+    #[doc = r"Reads the contents of the register"]
+    #[inline(always)]
     pub fn read(&self) -> R {
         R {
             bits: self.register.get(),
         }
     }
-    #[doc = r" Writes to the register"]
-    #[inline]
+    #[doc = r"Writes to the register"]
+    #[inline(always)]
     pub fn write<F>(&self, f: F)
     where
         F: FnOnce(&mut W) -> &mut W,
     {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+        self.register.set(
+            f(&mut W {
+                bits: Self::reset_value(),
+            })
+            .bits,
+        );
     }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
+    #[doc = r"Reset value of the register"]
+    #[inline(always)]
+    pub const fn reset_value() -> u32 {
+        0
+    }
+    #[doc = r"Writes the reset value to the register"]
+    #[inline(always)]
     pub fn reset(&self) {
-        self.write(|w| w)
+        self.register.set(Self::reset_value())
     }
 }
-#[doc = r" Value of the field"]
-pub struct SMC_NFCS0R {
-    bits: bool,
-}
-impl SMC_NFCS0R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SMC_NFCS1R {
-    bits: bool,
-}
-impl SMC_NFCS1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SMC_NFCS2R {
-    bits: bool,
-}
-impl SMC_NFCS2R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SMC_NFCS3R {
-    bits: bool,
-}
-impl SMC_NFCS3R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SDRAMENR {
-    bits: bool,
-}
-impl SDRAMENR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Proxy"]
+#[doc = r"Reader of the field"]
+pub type SMC_NFCS0_R = crate::FR<bool, bool>;
+#[doc = r"Proxy"]
 pub struct _SMC_NFCS0W<'a> {
     w: &'a mut W,
 }
 impl<'a> _SMC_NFCS0W<'a> {
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Reader of the field"]
+pub type SMC_NFCS1_R = crate::FR<bool, bool>;
+#[doc = r"Proxy"]
 pub struct _SMC_NFCS1W<'a> {
     w: &'a mut W,
 }
 impl<'a> _SMC_NFCS1W<'a> {
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Reader of the field"]
+pub type SMC_NFCS2_R = crate::FR<bool, bool>;
+#[doc = r"Proxy"]
 pub struct _SMC_NFCS2W<'a> {
     w: &'a mut W,
 }
 impl<'a> _SMC_NFCS2W<'a> {
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 2;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
         self.w
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Reader of the field"]
+pub type SMC_NFCS3_R = crate::FR<bool, bool>;
+#[doc = r"Proxy"]
 pub struct _SMC_NFCS3W<'a> {
     w: &'a mut W,
 }
 impl<'a> _SMC_NFCS3W<'a> {
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Reader of the field"]
+pub type SDRAMEN_R = crate::FR<bool, bool>;
+#[doc = r"Proxy"]
 pub struct _SDRAMENW<'a> {
     w: &'a mut W,
 }
 impl<'a> _SDRAMENW<'a> {
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 4;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
+    #[doc = r"Value of the register as raw bits"]
+    #[inline(always)]
     pub fn bits(&self) -> u32 {
         self.bits
     }
     #[doc = "Bit 0 - SMC NAND Flash Chip Select 0 Assignment"]
-    #[inline]
-    pub fn smc_nfcs0(&self) -> SMC_NFCS0R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SMC_NFCS0R { bits }
+    #[inline(always)]
+    pub fn smc_nfcs0(&self) -> SMC_NFCS0_R {
+        SMC_NFCS0_R::new((self.bits() & 0x01) != 0)
     }
     #[doc = "Bit 1 - SMC NAND Flash Chip Select 1 Assignment"]
-    #[inline]
-    pub fn smc_nfcs1(&self) -> SMC_NFCS1R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SMC_NFCS1R { bits }
+    #[inline(always)]
+    pub fn smc_nfcs1(&self) -> SMC_NFCS1_R {
+        SMC_NFCS1_R::new(((self.bits() >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - SMC NAND Flash Chip Select 2 Assignment"]
-    #[inline]
-    pub fn smc_nfcs2(&self) -> SMC_NFCS2R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SMC_NFCS2R { bits }
+    #[inline(always)]
+    pub fn smc_nfcs2(&self) -> SMC_NFCS2_R {
+        SMC_NFCS2_R::new(((self.bits() >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - SMC NAND Flash Chip Select 3 Assignment"]
-    #[inline]
-    pub fn smc_nfcs3(&self) -> SMC_NFCS3R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SMC_NFCS3R { bits }
+    #[inline(always)]
+    pub fn smc_nfcs3(&self) -> SMC_NFCS3_R {
+        SMC_NFCS3_R::new(((self.bits() >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - SDRAM Enable"]
-    #[inline]
-    pub fn sdramen(&self) -> SDRAMENR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SDRAMENR { bits }
+    #[inline(always)]
+    pub fn sdramen(&self) -> SDRAMEN_R {
+        SDRAMEN_R::new(((self.bits() >> 4) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
+    #[doc = r"Writes raw bits to the register"]
+    #[inline(always)]
     pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
         self.bits = bits;
         self
     }
     #[doc = "Bit 0 - SMC NAND Flash Chip Select 0 Assignment"]
-    #[inline]
+    #[inline(always)]
     pub fn smc_nfcs0(&mut self) -> _SMC_NFCS0W {
         _SMC_NFCS0W { w: self }
     }
     #[doc = "Bit 1 - SMC NAND Flash Chip Select 1 Assignment"]
-    #[inline]
+    #[inline(always)]
     pub fn smc_nfcs1(&mut self) -> _SMC_NFCS1W {
         _SMC_NFCS1W { w: self }
     }
     #[doc = "Bit 2 - SMC NAND Flash Chip Select 2 Assignment"]
-    #[inline]
+    #[inline(always)]
     pub fn smc_nfcs2(&mut self) -> _SMC_NFCS2W {
         _SMC_NFCS2W { w: self }
     }
     #[doc = "Bit 3 - SMC NAND Flash Chip Select 3 Assignment"]
-    #[inline]
+    #[inline(always)]
     pub fn smc_nfcs3(&mut self) -> _SMC_NFCS3W {
         _SMC_NFCS3W { w: self }
     }
     #[doc = "Bit 4 - SDRAM Enable"]
-    #[inline]
+    #[inline(always)]
     pub fn sdramen(&mut self) -> _SDRAMENW {
         _SDRAMENW { w: self }
     }

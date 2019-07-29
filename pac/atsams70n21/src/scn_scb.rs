@@ -1,4 +1,4 @@
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[repr(C)]
 pub struct RegisterBlock {
     _reserved0: [u8; 4usize],
@@ -9,13 +9,13 @@ pub struct RegisterBlock {
 }
 #[doc = "Interrupt Controller Type Register"]
 pub struct ICTR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Interrupt Controller Type Register"]
 pub mod ictr;
 #[doc = "Auxiliary Control Register"]
 pub struct ACTLR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Auxiliary Control Register"]
 pub mod actlr;

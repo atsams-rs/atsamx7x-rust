@@ -1,31 +1,41 @@
-#[doc = r" Value to write to the register"]
+#[doc = r"Value to write to the register"]
 pub struct W {
     bits: u32,
 }
 impl super::HSMCI_CMDR {
-    #[doc = r" Writes to the register"]
-    #[inline]
+    #[doc = r"Writes to the register"]
+    #[inline(always)]
     pub fn write<F>(&self, f: F)
     where
         F: FnOnce(&mut W) -> &mut W,
     {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+        self.register.set(
+            f(&mut W {
+                bits: Self::reset_value(),
+            })
+            .bits,
+        );
+    }
+    #[doc = r"Reset value of the register"]
+    #[inline(always)]
+    pub const fn reset_value() -> u32 {
+        0
+    }
+    #[doc = r"Writes the reset value to the register"]
+    #[inline(always)]
+    pub fn reset(&self) {
+        self.register.set(Self::reset_value())
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Proxy"]
 pub struct _CMDNBW<'a> {
     w: &'a mut W,
 }
 impl<'a> _CMDNBW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 63;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x3f) | ((value as u32) & 0x3f);
         self.w
     }
 }
@@ -44,7 +54,7 @@ pub enum RSPTYPW {
 impl RSPTYPW {
     #[allow(missing_docs)]
     #[doc(hidden)]
-    #[inline]
+    #[inline(always)]
     pub fn _bits(&self) -> u8 {
         match *self {
             RSPTYPW::NORESP => 0,
@@ -54,45 +64,42 @@ impl RSPTYPW {
         }
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Proxy"]
 pub struct _RSPTYPW<'a> {
     w: &'a mut W,
 }
 impl<'a> _RSPTYPW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
     pub fn variant(self, variant: RSPTYPW) -> &'a mut W {
         {
             self.bits(variant._bits())
         }
     }
     #[doc = "No response"]
-    #[inline]
+    #[inline(always)]
     pub fn noresp(self) -> &'a mut W {
         self.variant(RSPTYPW::NORESP)
     }
     #[doc = "48-bit response"]
-    #[inline]
+    #[inline(always)]
     pub fn _48_bit(self) -> &'a mut W {
         self.variant(RSPTYPW::_48_BIT)
     }
     #[doc = "136-bit response"]
-    #[inline]
+    #[inline(always)]
     pub fn _136_bit(self) -> &'a mut W {
         self.variant(RSPTYPW::_136_BIT)
     }
     #[doc = "R1b response type"]
-    #[inline]
+    #[inline(always)]
     pub fn r1b(self) -> &'a mut W {
         self.variant(RSPTYPW::R1B)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 6;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 6)) | (((value as u32) & 0x03) << 6);
         self.w
     }
 }
@@ -119,7 +126,7 @@ pub enum SPCMDW {
 impl SPCMDW {
     #[allow(missing_docs)]
     #[doc(hidden)]
-    #[inline]
+    #[inline(always)]
     pub fn _bits(&self) -> u8 {
         match *self {
             SPCMDW::STD => 0,
@@ -133,65 +140,62 @@ impl SPCMDW {
         }
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Proxy"]
 pub struct _SPCMDW<'a> {
     w: &'a mut W,
 }
 impl<'a> _SPCMDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
     pub fn variant(self, variant: SPCMDW) -> &'a mut W {
         {
             self.bits(variant._bits())
         }
     }
     #[doc = "Not a special CMD."]
-    #[inline]
+    #[inline(always)]
     pub fn std(self) -> &'a mut W {
         self.variant(SPCMDW::STD)
     }
     #[doc = "Initialization CMD: 74 clock cycles for initialization sequence."]
-    #[inline]
+    #[inline(always)]
     pub fn init(self) -> &'a mut W {
         self.variant(SPCMDW::INIT)
     }
     #[doc = "Synchronized CMD: Wait for the end of the current data block transfer before sending the pending command."]
-    #[inline]
+    #[inline(always)]
     pub fn sync(self) -> &'a mut W {
         self.variant(SPCMDW::SYNC)
     }
     #[doc = "CE-ATA Completion Signal disable Command. The host cancels the ability for the device to return a command completion signal on the command line."]
-    #[inline]
+    #[inline(always)]
     pub fn ce_ata(self) -> &'a mut W {
         self.variant(SPCMDW::CE_ATA)
     }
     #[doc = "Interrupt command: Corresponds to the Interrupt Mode (CMD40)."]
-    #[inline]
+    #[inline(always)]
     pub fn it_cmd(self) -> &'a mut W {
         self.variant(SPCMDW::IT_CMD)
     }
     #[doc = "Interrupt response: Corresponds to the Interrupt Mode (CMD40)."]
-    #[inline]
+    #[inline(always)]
     pub fn it_resp(self) -> &'a mut W {
         self.variant(SPCMDW::IT_RESP)
     }
     #[doc = "Boot Operation Request. Start a boot operation mode, the host processor can read boot data from the MMC device directly."]
-    #[inline]
+    #[inline(always)]
     pub fn bor(self) -> &'a mut W {
         self.variant(SPCMDW::BOR)
     }
     #[doc = "End Boot Operation. This command allows the host processor to terminate the boot operation mode."]
-    #[inline]
+    #[inline(always)]
     pub fn ebo(self) -> &'a mut W {
         self.variant(SPCMDW::EBO)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x07 << 8)) | (((value as u32) & 0x07) << 8);
         self.w
     }
 }
@@ -206,7 +210,7 @@ pub enum OPDCMDW {
 impl OPDCMDW {
     #[allow(missing_docs)]
     #[doc(hidden)]
-    #[inline]
+    #[inline(always)]
     pub fn _bits(&self) -> bool {
         match *self {
             OPDCMDW::PUSHPULL => false,
@@ -214,43 +218,42 @@ impl OPDCMDW {
         }
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Proxy"]
 pub struct _OPDCMDW<'a> {
     w: &'a mut W,
 }
 impl<'a> _OPDCMDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
     pub fn variant(self, variant: OPDCMDW) -> &'a mut W {
         {
             self.bit(variant._bits())
         }
     }
     #[doc = "Push pull command."]
-    #[inline]
+    #[inline(always)]
     pub fn pushpull(self) -> &'a mut W {
         self.variant(OPDCMDW::PUSHPULL)
     }
     #[doc = "Open drain command."]
-    #[inline]
+    #[inline(always)]
     pub fn opendrain(self) -> &'a mut W {
         self.variant(OPDCMDW::OPENDRAIN)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 11;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
         self.w
     }
 }
@@ -265,7 +268,7 @@ pub enum MAXLATW {
 impl MAXLATW {
     #[allow(missing_docs)]
     #[doc(hidden)]
-    #[inline]
+    #[inline(always)]
     pub fn _bits(&self) -> bool {
         match *self {
             MAXLATW::_5 => false,
@@ -273,43 +276,42 @@ impl MAXLATW {
         }
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Proxy"]
 pub struct _MAXLATW<'a> {
     w: &'a mut W,
 }
 impl<'a> _MAXLATW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
     pub fn variant(self, variant: MAXLATW) -> &'a mut W {
         {
             self.bit(variant._bits())
         }
     }
     #[doc = "5-cycle max latency."]
-    #[inline]
+    #[inline(always)]
     pub fn _5(self) -> &'a mut W {
         self.variant(MAXLATW::_5)
     }
     #[doc = "64-cycle max latency."]
-    #[inline]
+    #[inline(always)]
     pub fn _64(self) -> &'a mut W {
         self.variant(MAXLATW::_64)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 12;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
         self.w
     }
 }
@@ -326,7 +328,7 @@ pub enum TRCMDW {
 impl TRCMDW {
     #[allow(missing_docs)]
     #[doc(hidden)]
-    #[inline]
+    #[inline(always)]
     pub fn _bits(&self) -> u8 {
         match *self {
             TRCMDW::NO_DATA => 0,
@@ -335,38 +337,35 @@ impl TRCMDW {
         }
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Proxy"]
 pub struct _TRCMDW<'a> {
     w: &'a mut W,
 }
 impl<'a> _TRCMDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
     pub fn variant(self, variant: TRCMDW) -> &'a mut W {
         unsafe { self.bits(variant._bits()) }
     }
     #[doc = "No data transfer"]
-    #[inline]
+    #[inline(always)]
     pub fn no_data(self) -> &'a mut W {
         self.variant(TRCMDW::NO_DATA)
     }
     #[doc = "Start data transfer"]
-    #[inline]
+    #[inline(always)]
     pub fn start_data(self) -> &'a mut W {
         self.variant(TRCMDW::START_DATA)
     }
     #[doc = "Stop data transfer"]
-    #[inline]
+    #[inline(always)]
     pub fn stop_data(self) -> &'a mut W {
         self.variant(TRCMDW::STOP_DATA)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 16)) | (((value as u32) & 0x03) << 16);
         self.w
     }
 }
@@ -381,7 +380,7 @@ pub enum TRDIRW {
 impl TRDIRW {
     #[allow(missing_docs)]
     #[doc(hidden)]
-    #[inline]
+    #[inline(always)]
     pub fn _bits(&self) -> bool {
         match *self {
             TRDIRW::WRITE => false,
@@ -389,43 +388,42 @@ impl TRDIRW {
         }
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Proxy"]
 pub struct _TRDIRW<'a> {
     w: &'a mut W,
 }
 impl<'a> _TRDIRW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
     pub fn variant(self, variant: TRDIRW) -> &'a mut W {
         {
             self.bit(variant._bits())
         }
     }
     #[doc = "Write."]
-    #[inline]
+    #[inline(always)]
     pub fn write(self) -> &'a mut W {
         self.variant(TRDIRW::WRITE)
     }
     #[doc = "Read."]
-    #[inline]
+    #[inline(always)]
     pub fn read(self) -> &'a mut W {
         self.variant(TRDIRW::READ)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 18;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
         self.w
     }
 }
@@ -446,7 +444,7 @@ pub enum TRTYPW {
 impl TRTYPW {
     #[allow(missing_docs)]
     #[doc(hidden)]
-    #[inline]
+    #[inline(always)]
     pub fn _bits(&self) -> u8 {
         match *self {
             TRTYPW::SINGLE => 0,
@@ -457,48 +455,45 @@ impl TRTYPW {
         }
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Proxy"]
 pub struct _TRTYPW<'a> {
     w: &'a mut W,
 }
 impl<'a> _TRTYPW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
     pub fn variant(self, variant: TRTYPW) -> &'a mut W {
         unsafe { self.bits(variant._bits()) }
     }
     #[doc = "MMC/SD Card Single Block"]
-    #[inline]
+    #[inline(always)]
     pub fn single(self) -> &'a mut W {
         self.variant(TRTYPW::SINGLE)
     }
     #[doc = "MMC/SD Card Multiple Block"]
-    #[inline]
+    #[inline(always)]
     pub fn multiple(self) -> &'a mut W {
         self.variant(TRTYPW::MULTIPLE)
     }
     #[doc = "MMC Stream"]
-    #[inline]
+    #[inline(always)]
     pub fn stream(self) -> &'a mut W {
         self.variant(TRTYPW::STREAM)
     }
     #[doc = "SDIO Byte"]
-    #[inline]
+    #[inline(always)]
     pub fn byte(self) -> &'a mut W {
         self.variant(TRTYPW::BYTE)
     }
     #[doc = "SDIO Block"]
-    #[inline]
+    #[inline(always)]
     pub fn block(self) -> &'a mut W {
         self.variant(TRTYPW::BLOCK)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 19;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x07 << 19)) | (((value as u32) & 0x07) << 19);
         self.w
     }
 }
@@ -515,7 +510,7 @@ pub enum IOSPCMDW {
 impl IOSPCMDW {
     #[allow(missing_docs)]
     #[doc(hidden)]
-    #[inline]
+    #[inline(always)]
     pub fn _bits(&self) -> u8 {
         match *self {
             IOSPCMDW::STD => 0,
@@ -524,38 +519,35 @@ impl IOSPCMDW {
         }
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Proxy"]
 pub struct _IOSPCMDW<'a> {
     w: &'a mut W,
 }
 impl<'a> _IOSPCMDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
     pub fn variant(self, variant: IOSPCMDW) -> &'a mut W {
         unsafe { self.bits(variant._bits()) }
     }
     #[doc = "Not an SDIO Special Command"]
-    #[inline]
+    #[inline(always)]
     pub fn std(self) -> &'a mut W {
         self.variant(IOSPCMDW::STD)
     }
     #[doc = "SDIO Suspend Command"]
-    #[inline]
+    #[inline(always)]
     pub fn suspend(self) -> &'a mut W {
         self.variant(IOSPCMDW::SUSPEND)
     }
     #[doc = "SDIO Resume Command"]
-    #[inline]
+    #[inline(always)]
     pub fn resume(self) -> &'a mut W {
         self.variant(IOSPCMDW::RESUME)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 24;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 24)) | (((value as u32) & 0x03) << 24);
         self.w
     }
 }
@@ -570,7 +562,7 @@ pub enum ATACSW {
 impl ATACSW {
     #[allow(missing_docs)]
     #[doc(hidden)]
-    #[inline]
+    #[inline(always)]
     pub fn _bits(&self) -> bool {
         match *self {
             ATACSW::NORMAL => false,
@@ -578,133 +570,126 @@ impl ATACSW {
         }
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Proxy"]
 pub struct _ATACSW<'a> {
     w: &'a mut W,
 }
 impl<'a> _ATACSW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
     pub fn variant(self, variant: ATACSW) -> &'a mut W {
         {
             self.bit(variant._bits())
         }
     }
     #[doc = "Normal operation mode."]
-    #[inline]
+    #[inline(always)]
     pub fn normal(self) -> &'a mut W {
         self.variant(ATACSW::NORMAL)
     }
     #[doc = "This bit indicates that a completion signal is expected within a programmed amount of time (HSMCI_CSTOR)."]
-    #[inline]
+    #[inline(always)]
     pub fn completion(self) -> &'a mut W {
         self.variant(ATACSW::COMPLETION)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 26;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
         self.w
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Proxy"]
 pub struct _BOOT_ACKW<'a> {
     w: &'a mut W,
 }
 impl<'a> _BOOT_ACKW<'a> {
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 27;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
         self.w
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
+    #[doc = r"Writes raw bits to the register"]
+    #[inline(always)]
     pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
         self.bits = bits;
         self
     }
     #[doc = "Bits 0:5 - Command Number"]
-    #[inline]
+    #[inline(always)]
     pub fn cmdnb(&mut self) -> _CMDNBW {
         _CMDNBW { w: self }
     }
     #[doc = "Bits 6:7 - Response Type"]
-    #[inline]
+    #[inline(always)]
     pub fn rsptyp(&mut self) -> _RSPTYPW {
         _RSPTYPW { w: self }
     }
     #[doc = "Bits 8:10 - Special Command"]
-    #[inline]
+    #[inline(always)]
     pub fn spcmd(&mut self) -> _SPCMDW {
         _SPCMDW { w: self }
     }
     #[doc = "Bit 11 - Open Drain Command"]
-    #[inline]
+    #[inline(always)]
     pub fn opdcmd(&mut self) -> _OPDCMDW {
         _OPDCMDW { w: self }
     }
     #[doc = "Bit 12 - Max Latency for Command to Response"]
-    #[inline]
+    #[inline(always)]
     pub fn maxlat(&mut self) -> _MAXLATW {
         _MAXLATW { w: self }
     }
     #[doc = "Bits 16:17 - Transfer Command"]
-    #[inline]
+    #[inline(always)]
     pub fn trcmd(&mut self) -> _TRCMDW {
         _TRCMDW { w: self }
     }
     #[doc = "Bit 18 - Transfer Direction"]
-    #[inline]
+    #[inline(always)]
     pub fn trdir(&mut self) -> _TRDIRW {
         _TRDIRW { w: self }
     }
     #[doc = "Bits 19:21 - Transfer Type"]
-    #[inline]
+    #[inline(always)]
     pub fn trtyp(&mut self) -> _TRTYPW {
         _TRTYPW { w: self }
     }
     #[doc = "Bits 24:25 - SDIO Special Command"]
-    #[inline]
+    #[inline(always)]
     pub fn iospcmd(&mut self) -> _IOSPCMDW {
         _IOSPCMDW { w: self }
     }
     #[doc = "Bit 26 - ATA with Command Completion Signal"]
-    #[inline]
+    #[inline(always)]
     pub fn atacs(&mut self) -> _ATACSW {
         _ATACSW { w: self }
     }
     #[doc = "Bit 27 - Boot Operation Acknowledge"]
-    #[inline]
+    #[inline(always)]
     pub fn boot_ack(&mut self) -> _BOOT_ACKW {
         _BOOT_ACKW { w: self }
     }

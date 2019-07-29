@@ -1,826 +1,202 @@
-#[doc = r" Value read from the register"]
+#[doc = r"Value read from the register"]
 pub struct R {
     bits: u32,
 }
 impl super::USBHS_HSTIMR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
+    #[doc = r"Reads the contents of the register"]
+    #[inline(always)]
     pub fn read(&self) -> R {
         R {
             bits: self.register.get(),
         }
     }
 }
-#[doc = r" Value of the field"]
-pub struct DCONNIER {
-    bits: bool,
-}
-impl DCONNIER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DDISCIER {
-    bits: bool,
-}
-impl DDISCIER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RSTIER {
-    bits: bool,
-}
-impl RSTIER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RSMEDIER {
-    bits: bool,
-}
-impl RSMEDIER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RXRSMIER {
-    bits: bool,
-}
-impl RXRSMIER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct HSOFIER {
-    bits: bool,
-}
-impl HSOFIER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct HWUPIER {
-    bits: bool,
-}
-impl HWUPIER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PEP_0R {
-    bits: bool,
-}
-impl PEP_0R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PEP_1R {
-    bits: bool,
-}
-impl PEP_1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PEP_2R {
-    bits: bool,
-}
-impl PEP_2R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PEP_3R {
-    bits: bool,
-}
-impl PEP_3R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PEP_4R {
-    bits: bool,
-}
-impl PEP_4R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PEP_5R {
-    bits: bool,
-}
-impl PEP_5R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PEP_6R {
-    bits: bool,
-}
-impl PEP_6R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PEP_7R {
-    bits: bool,
-}
-impl PEP_7R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PEP_8R {
-    bits: bool,
-}
-impl PEP_8R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PEP_9R {
-    bits: bool,
-}
-impl PEP_9R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PEP_10R {
-    bits: bool,
-}
-impl PEP_10R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PEP_11R {
-    bits: bool,
-}
-impl PEP_11R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DMA_1R {
-    bits: bool,
-}
-impl DMA_1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DMA_2R {
-    bits: bool,
-}
-impl DMA_2R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DMA_3R {
-    bits: bool,
-}
-impl DMA_3R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DMA_4R {
-    bits: bool,
-}
-impl DMA_4R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DMA_5R {
-    bits: bool,
-}
-impl DMA_5R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DMA_6R {
-    bits: bool,
-}
-impl DMA_6R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DMA_7R {
-    bits: bool,
-}
-impl DMA_7R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
+#[doc = r"Reader of the field"]
+pub type DCONNIE_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type DDISCIE_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type RSTIE_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type RSMEDIE_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type RXRSMIE_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type HSOFIE_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type HWUPIE_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type PEP_0_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type PEP_1_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type PEP_2_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type PEP_3_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type PEP_4_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type PEP_5_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type PEP_6_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type PEP_7_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type PEP_8_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type PEP_9_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type PEP_10_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type PEP_11_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type DMA_1_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type DMA_2_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type DMA_3_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type DMA_4_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type DMA_5_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type DMA_6_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type DMA_7_R = crate::FR<bool, bool>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
+    #[doc = r"Value of the register as raw bits"]
+    #[inline(always)]
     pub fn bits(&self) -> u32 {
         self.bits
     }
     #[doc = "Bit 0 - Device Connection Interrupt Enable"]
-    #[inline]
-    pub fn dconnie(&self) -> DCONNIER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        DCONNIER { bits }
+    #[inline(always)]
+    pub fn dconnie(&self) -> DCONNIE_R {
+        DCONNIE_R::new((self.bits() & 0x01) != 0)
     }
     #[doc = "Bit 1 - Device Disconnection Interrupt Enable"]
-    #[inline]
-    pub fn ddiscie(&self) -> DDISCIER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        DDISCIER { bits }
+    #[inline(always)]
+    pub fn ddiscie(&self) -> DDISCIE_R {
+        DDISCIE_R::new(((self.bits() >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - USB Reset Sent Interrupt Enable"]
-    #[inline]
-    pub fn rstie(&self) -> RSTIER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RSTIER { bits }
+    #[inline(always)]
+    pub fn rstie(&self) -> RSTIE_R {
+        RSTIE_R::new(((self.bits() >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Downstream Resume Sent Interrupt Enable"]
-    #[inline]
-    pub fn rsmedie(&self) -> RSMEDIER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RSMEDIER { bits }
+    #[inline(always)]
+    pub fn rsmedie(&self) -> RSMEDIE_R {
+        RSMEDIE_R::new(((self.bits() >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Upstream Resume Received Interrupt Enable"]
-    #[inline]
-    pub fn rxrsmie(&self) -> RXRSMIER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RXRSMIER { bits }
+    #[inline(always)]
+    pub fn rxrsmie(&self) -> RXRSMIE_R {
+        RXRSMIE_R::new(((self.bits() >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Host Start of Frame Interrupt Enable"]
-    #[inline]
-    pub fn hsofie(&self) -> HSOFIER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        HSOFIER { bits }
+    #[inline(always)]
+    pub fn hsofie(&self) -> HSOFIE_R {
+        HSOFIE_R::new(((self.bits() >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Host Wake-Up Interrupt Enable"]
-    #[inline]
-    pub fn hwupie(&self) -> HWUPIER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        HWUPIER { bits }
+    #[inline(always)]
+    pub fn hwupie(&self) -> HWUPIE_R {
+        HWUPIE_R::new(((self.bits() >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 8 - Pipe 0 Interrupt Enable"]
-    #[inline]
-    pub fn pep_0(&self) -> PEP_0R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PEP_0R { bits }
+    #[inline(always)]
+    pub fn pep_0(&self) -> PEP_0_R {
+        PEP_0_R::new(((self.bits() >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Pipe 1 Interrupt Enable"]
-    #[inline]
-    pub fn pep_1(&self) -> PEP_1R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PEP_1R { bits }
+    #[inline(always)]
+    pub fn pep_1(&self) -> PEP_1_R {
+        PEP_1_R::new(((self.bits() >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Pipe 2 Interrupt Enable"]
-    #[inline]
-    pub fn pep_2(&self) -> PEP_2R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PEP_2R { bits }
+    #[inline(always)]
+    pub fn pep_2(&self) -> PEP_2_R {
+        PEP_2_R::new(((self.bits() >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Pipe 3 Interrupt Enable"]
-    #[inline]
-    pub fn pep_3(&self) -> PEP_3R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PEP_3R { bits }
+    #[inline(always)]
+    pub fn pep_3(&self) -> PEP_3_R {
+        PEP_3_R::new(((self.bits() >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - Pipe 4 Interrupt Enable"]
-    #[inline]
-    pub fn pep_4(&self) -> PEP_4R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PEP_4R { bits }
+    #[inline(always)]
+    pub fn pep_4(&self) -> PEP_4_R {
+        PEP_4_R::new(((self.bits() >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 13 - Pipe 5 Interrupt Enable"]
-    #[inline]
-    pub fn pep_5(&self) -> PEP_5R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 13;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PEP_5R { bits }
+    #[inline(always)]
+    pub fn pep_5(&self) -> PEP_5_R {
+        PEP_5_R::new(((self.bits() >> 13) & 0x01) != 0)
     }
     #[doc = "Bit 14 - Pipe 6 Interrupt Enable"]
-    #[inline]
-    pub fn pep_6(&self) -> PEP_6R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PEP_6R { bits }
+    #[inline(always)]
+    pub fn pep_6(&self) -> PEP_6_R {
+        PEP_6_R::new(((self.bits() >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 15 - Pipe 7 Interrupt Enable"]
-    #[inline]
-    pub fn pep_7(&self) -> PEP_7R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 15;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PEP_7R { bits }
+    #[inline(always)]
+    pub fn pep_7(&self) -> PEP_7_R {
+        PEP_7_R::new(((self.bits() >> 15) & 0x01) != 0)
     }
     #[doc = "Bit 16 - Pipe 8 Interrupt Enable"]
-    #[inline]
-    pub fn pep_8(&self) -> PEP_8R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PEP_8R { bits }
+    #[inline(always)]
+    pub fn pep_8(&self) -> PEP_8_R {
+        PEP_8_R::new(((self.bits() >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Pipe 9 Interrupt Enable"]
-    #[inline]
-    pub fn pep_9(&self) -> PEP_9R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PEP_9R { bits }
+    #[inline(always)]
+    pub fn pep_9(&self) -> PEP_9_R {
+        PEP_9_R::new(((self.bits() >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - Pipe 10 Interrupt Enable"]
-    #[inline]
-    pub fn pep_10(&self) -> PEP_10R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PEP_10R { bits }
+    #[inline(always)]
+    pub fn pep_10(&self) -> PEP_10_R {
+        PEP_10_R::new(((self.bits() >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 19 - Pipe 11 Interrupt Enable"]
-    #[inline]
-    pub fn pep_11(&self) -> PEP_11R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 19;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PEP_11R { bits }
+    #[inline(always)]
+    pub fn pep_11(&self) -> PEP_11_R {
+        PEP_11_R::new(((self.bits() >> 19) & 0x01) != 0)
     }
     #[doc = "Bit 25 - DMA Channel 1 Interrupt Enable"]
-    #[inline]
-    pub fn dma_1(&self) -> DMA_1R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 25;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        DMA_1R { bits }
+    #[inline(always)]
+    pub fn dma_1(&self) -> DMA_1_R {
+        DMA_1_R::new(((self.bits() >> 25) & 0x01) != 0)
     }
     #[doc = "Bit 26 - DMA Channel 2 Interrupt Enable"]
-    #[inline]
-    pub fn dma_2(&self) -> DMA_2R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 26;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        DMA_2R { bits }
+    #[inline(always)]
+    pub fn dma_2(&self) -> DMA_2_R {
+        DMA_2_R::new(((self.bits() >> 26) & 0x01) != 0)
     }
     #[doc = "Bit 27 - DMA Channel 3 Interrupt Enable"]
-    #[inline]
-    pub fn dma_3(&self) -> DMA_3R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 27;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        DMA_3R { bits }
+    #[inline(always)]
+    pub fn dma_3(&self) -> DMA_3_R {
+        DMA_3_R::new(((self.bits() >> 27) & 0x01) != 0)
     }
     #[doc = "Bit 28 - DMA Channel 4 Interrupt Enable"]
-    #[inline]
-    pub fn dma_4(&self) -> DMA_4R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 28;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        DMA_4R { bits }
+    #[inline(always)]
+    pub fn dma_4(&self) -> DMA_4_R {
+        DMA_4_R::new(((self.bits() >> 28) & 0x01) != 0)
     }
     #[doc = "Bit 29 - DMA Channel 5 Interrupt Enable"]
-    #[inline]
-    pub fn dma_5(&self) -> DMA_5R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 29;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        DMA_5R { bits }
+    #[inline(always)]
+    pub fn dma_5(&self) -> DMA_5_R {
+        DMA_5_R::new(((self.bits() >> 29) & 0x01) != 0)
     }
     #[doc = "Bit 30 - DMA Channel 6 Interrupt Enable"]
-    #[inline]
-    pub fn dma_6(&self) -> DMA_6R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 30;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        DMA_6R { bits }
+    #[inline(always)]
+    pub fn dma_6(&self) -> DMA_6_R {
+        DMA_6_R::new(((self.bits() >> 30) & 0x01) != 0)
     }
     #[doc = "Bit 31 - DMA Channel 7 Interrupt Enable"]
-    #[inline]
-    pub fn dma_7(&self) -> DMA_7R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 31;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        DMA_7R { bits }
+    #[inline(always)]
+    pub fn dma_7(&self) -> DMA_7_R {
+        DMA_7_R::new(((self.bits() >> 31) & 0x01) != 0)
     }
 }

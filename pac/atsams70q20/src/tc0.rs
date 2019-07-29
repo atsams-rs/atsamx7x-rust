@@ -1,15 +1,15 @@
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - Channel Control Register (channel = 0)"]
     pub tc_channel0: TC_CHANNEL,
-    _reserved0: [u8; 12usize],
+    _reserved1: [u8; 12usize],
     #[doc = "0x40 - Channel Control Register (channel = 0)"]
     pub tc_channel1: TC_CHANNEL,
-    _reserved1: [u8; 12usize],
+    _reserved2: [u8; 12usize],
     #[doc = "0x80 - Channel Control Register (channel = 0)"]
     pub tc_channel2: TC_CHANNEL,
-    _reserved2: [u8; 12usize],
+    _reserved3: [u8; 12usize],
     #[doc = "0xc0 - Block Control Register"]
     pub tc_bcr: TC_BCR,
     #[doc = "0xc4 - Block Mode Register"]
@@ -24,11 +24,11 @@ pub struct RegisterBlock {
     pub tc_qisr: TC_QISR,
     #[doc = "0xd8 - Fault Mode Register"]
     pub tc_fmr: TC_FMR,
-    _reserved3: [u8; 8usize],
+    _reserved10: [u8; 8usize],
     #[doc = "0xe4 - Write Protection Mode Register"]
     pub tc_wpmr: TC_WPMR,
 }
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[repr(C)]
 pub struct TC_CHANNEL {
     #[doc = "0x00 - Channel Control Register (channel = 0)"]
@@ -58,54 +58,54 @@ pub struct TC_CHANNEL {
     #[doc = "0x30 - Extended Mode Register (channel = 0)"]
     pub tc_emr: self::tc_channel::TC_EMR,
 }
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[doc = "Channel Control Register (channel = 0)"]
 pub mod tc_channel;
 #[doc = "Block Control Register"]
 pub struct TC_BCR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Block Control Register"]
 pub mod tc_bcr;
 #[doc = "Block Mode Register"]
 pub struct TC_BMR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Block Mode Register"]
 pub mod tc_bmr;
 #[doc = "QDEC Interrupt Enable Register"]
 pub struct TC_QIER {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "QDEC Interrupt Enable Register"]
 pub mod tc_qier;
 #[doc = "QDEC Interrupt Disable Register"]
 pub struct TC_QIDR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "QDEC Interrupt Disable Register"]
 pub mod tc_qidr;
 #[doc = "QDEC Interrupt Mask Register"]
 pub struct TC_QIMR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "QDEC Interrupt Mask Register"]
 pub mod tc_qimr;
 #[doc = "QDEC Interrupt Status Register"]
 pub struct TC_QISR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "QDEC Interrupt Status Register"]
 pub mod tc_qisr;
 #[doc = "Fault Mode Register"]
 pub struct TC_FMR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Fault Mode Register"]
 pub mod tc_fmr;
 #[doc = "Write Protection Mode Register"]
 pub struct TC_WPMR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Write Protection Mode Register"]
 pub mod tc_wpmr;

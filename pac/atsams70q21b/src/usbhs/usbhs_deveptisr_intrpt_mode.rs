@@ -1,184 +1,32 @@
-#[doc = r" Value read from the register"]
+#[doc = r"Value read from the register"]
 pub struct R {
     bits: u32,
 }
 impl super::USBHS_DEVEPTISR_INTRPT_MODE {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
+    #[doc = r"Reads the contents of the register"]
+    #[inline(always)]
     pub fn read(&self) -> R {
         R {
             bits: self.register.get(),
         }
     }
 }
-#[doc = r" Value of the field"]
-pub struct TXINIR {
-    bits: bool,
-}
-impl TXINIR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RXOUTIR {
-    bits: bool,
-}
-impl RXOUTIR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RXSTPIR {
-    bits: bool,
-}
-impl RXSTPIR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct NAKOUTIR {
-    bits: bool,
-}
-impl NAKOUTIR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct NAKINIR {
-    bits: bool,
-}
-impl NAKINIR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OVERFIR {
-    bits: bool,
-}
-impl OVERFIR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct STALLEDIR {
-    bits: bool,
-}
-impl STALLEDIR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SHORTPACKETR {
-    bits: bool,
-}
-impl SHORTPACKETR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
+#[doc = r"Reader of the field"]
+pub type TXINI_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type RXOUTI_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type RXSTPI_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type NAKOUTI_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type NAKINI_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type OVERFI_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type STALLEDI_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SHORTPACKET_R = crate::FR<bool, bool>;
 #[doc = "Possible values of the field `DTSEQ`"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DTSEQR {
@@ -191,10 +39,9 @@ pub enum DTSEQR {
     #[doc = "Reserved for high-bandwidth isochronous endpoint"]
     MDATA,
 }
-impl DTSEQR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
+impl crate::ToBits<u8> for DTSEQR {
+    #[inline(always)]
+    fn _bits(&self) -> u8 {
         match *self {
             DTSEQR::DATA0 => 0,
             DTSEQR::DATA1 => 1,
@@ -202,35 +49,27 @@ impl DTSEQR {
             DTSEQR::MDATA => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> DTSEQR {
-        match value {
-            0 => DTSEQR::DATA0,
-            1 => DTSEQR::DATA1,
-            2 => DTSEQR::DATA2,
-            3 => DTSEQR::MDATA,
-            _ => unreachable!(),
-        }
-    }
+}
+#[doc = r"Reader of the field"]
+pub type DTSEQ_R = crate::FR<u8, DTSEQR>;
+impl DTSEQ_R {
     #[doc = "Checks if the value of the field is `DATA0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_data0(&self) -> bool {
         *self == DTSEQR::DATA0
     }
     #[doc = "Checks if the value of the field is `DATA1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_data1(&self) -> bool {
         *self == DTSEQR::DATA1
     }
     #[doc = "Checks if the value of the field is `DATA2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_data2(&self) -> bool {
         *self == DTSEQR::DATA2
     }
     #[doc = "Checks if the value of the field is `MDATA`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_mdata(&self) -> bool {
         *self == DTSEQR::MDATA
     }
@@ -247,10 +86,9 @@ pub enum NBUSYBKR {
     #[doc = "3 busy banks"]
     _3_BUSY,
 }
-impl NBUSYBKR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
+impl crate::ToBits<u8> for NBUSYBKR {
+    #[inline(always)]
+    fn _bits(&self) -> u8 {
         match *self {
             NBUSYBKR::_0_BUSY => 0,
             NBUSYBKR::_1_BUSY => 1,
@@ -258,35 +96,27 @@ impl NBUSYBKR {
             NBUSYBKR::_3_BUSY => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> NBUSYBKR {
-        match value {
-            0 => NBUSYBKR::_0_BUSY,
-            1 => NBUSYBKR::_1_BUSY,
-            2 => NBUSYBKR::_2_BUSY,
-            3 => NBUSYBKR::_3_BUSY,
-            _ => unreachable!(),
-        }
-    }
+}
+#[doc = r"Reader of the field"]
+pub type NBUSYBK_R = crate::FR<u8, NBUSYBKR>;
+impl NBUSYBK_R {
     #[doc = "Checks if the value of the field is `_0_BUSY`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_0_busy(&self) -> bool {
         *self == NBUSYBKR::_0_BUSY
     }
     #[doc = "Checks if the value of the field is `_1_BUSY`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_1_busy(&self) -> bool {
         *self == NBUSYBKR::_1_BUSY
     }
     #[doc = "Checks if the value of the field is `_2_BUSY`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_2_busy(&self) -> bool {
         *self == NBUSYBKR::_2_BUSY
     }
     #[doc = "Checks if the value of the field is `_3_BUSY`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_3_busy(&self) -> bool {
         *self == NBUSYBKR::_3_BUSY
     }
@@ -300,272 +130,123 @@ pub enum CURRBKR {
     BANK1,
     #[doc = "Current bank is bank2"]
     BANK2,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl CURRBKR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
+impl crate::ToBits<u8> for CURRBKR {
+    #[inline(always)]
+    fn _bits(&self) -> u8 {
         match *self {
             CURRBKR::BANK0 => 0,
             CURRBKR::BANK1 => 1,
             CURRBKR::BANK2 => 2,
-            CURRBKR::_Reserved(bits) => bits,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> CURRBKR {
-        match value {
-            0 => CURRBKR::BANK0,
-            1 => CURRBKR::BANK1,
-            2 => CURRBKR::BANK2,
-            i => CURRBKR::_Reserved(i),
-        }
-    }
+}
+#[doc = r"Reader of the field"]
+pub type CURRBK_R = crate::FR<u8, CURRBKR>;
+impl CURRBK_R {
     #[doc = "Checks if the value of the field is `BANK0`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_bank0(&self) -> bool {
         *self == CURRBKR::BANK0
     }
     #[doc = "Checks if the value of the field is `BANK1`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_bank1(&self) -> bool {
         *self == CURRBKR::BANK1
     }
     #[doc = "Checks if the value of the field is `BANK2`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_bank2(&self) -> bool {
         *self == CURRBKR::BANK2
     }
 }
-#[doc = r" Value of the field"]
-pub struct RWALLR {
-    bits: bool,
-}
-impl RWALLR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CTRLDIRR {
-    bits: bool,
-}
-impl CTRLDIRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CFGOKR {
-    bits: bool,
-}
-impl CFGOKR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct BYCTR {
-    bits: u16,
-}
-impl BYCTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u16 {
-        self.bits
-    }
-}
+#[doc = r"Reader of the field"]
+pub type RWALL_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type CTRLDIR_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type CFGOK_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type BYCT_R = crate::FR<u16, u16>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
+    #[doc = r"Value of the register as raw bits"]
+    #[inline(always)]
     pub fn bits(&self) -> u32 {
         self.bits
     }
     #[doc = "Bit 0 - Transmitted IN Data Interrupt"]
-    #[inline]
-    pub fn txini(&self) -> TXINIR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        TXINIR { bits }
+    #[inline(always)]
+    pub fn txini(&self) -> TXINI_R {
+        TXINI_R::new((self.bits() & 0x01) != 0)
     }
     #[doc = "Bit 1 - Received OUT Data Interrupt"]
-    #[inline]
-    pub fn rxouti(&self) -> RXOUTIR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RXOUTIR { bits }
+    #[inline(always)]
+    pub fn rxouti(&self) -> RXOUTI_R {
+        RXOUTI_R::new(((self.bits() >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Received SETUP Interrupt"]
-    #[inline]
-    pub fn rxstpi(&self) -> RXSTPIR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RXSTPIR { bits }
+    #[inline(always)]
+    pub fn rxstpi(&self) -> RXSTPI_R {
+        RXSTPI_R::new(((self.bits() >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - NAKed OUT Interrupt"]
-    #[inline]
-    pub fn nakouti(&self) -> NAKOUTIR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        NAKOUTIR { bits }
+    #[inline(always)]
+    pub fn nakouti(&self) -> NAKOUTI_R {
+        NAKOUTI_R::new(((self.bits() >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - NAKed IN Interrupt"]
-    #[inline]
-    pub fn nakini(&self) -> NAKINIR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        NAKINIR { bits }
+    #[inline(always)]
+    pub fn nakini(&self) -> NAKINI_R {
+        NAKINI_R::new(((self.bits() >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Overflow Interrupt"]
-    #[inline]
-    pub fn overfi(&self) -> OVERFIR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVERFIR { bits }
+    #[inline(always)]
+    pub fn overfi(&self) -> OVERFI_R {
+        OVERFI_R::new(((self.bits() >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - STALLed Interrupt"]
-    #[inline]
-    pub fn stalledi(&self) -> STALLEDIR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        STALLEDIR { bits }
+    #[inline(always)]
+    pub fn stalledi(&self) -> STALLEDI_R {
+        STALLEDI_R::new(((self.bits() >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Short Packet Interrupt"]
-    #[inline]
-    pub fn shortpacket(&self) -> SHORTPACKETR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SHORTPACKETR { bits }
+    #[inline(always)]
+    pub fn shortpacket(&self) -> SHORTPACKET_R {
+        SHORTPACKET_R::new(((self.bits() >> 7) & 0x01) != 0)
     }
     #[doc = "Bits 8:9 - Data Toggle Sequence"]
-    #[inline]
-    pub fn dtseq(&self) -> DTSEQR {
-        DTSEQR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn dtseq(&self) -> DTSEQ_R {
+        DTSEQ_R::new(((self.bits() >> 8) & 0x03) as u8)
     }
     #[doc = "Bits 12:13 - Number of Busy Banks"]
-    #[inline]
-    pub fn nbusybk(&self) -> NBUSYBKR {
-        NBUSYBKR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn nbusybk(&self) -> NBUSYBK_R {
+        NBUSYBK_R::new(((self.bits() >> 12) & 0x03) as u8)
     }
     #[doc = "Bits 14:15 - Current Bank"]
-    #[inline]
-    pub fn currbk(&self) -> CURRBKR {
-        CURRBKR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn currbk(&self) -> CURRBK_R {
+        CURRBK_R::new(((self.bits() >> 14) & 0x03) as u8)
     }
     #[doc = "Bit 16 - Read/Write Allowed"]
-    #[inline]
-    pub fn rwall(&self) -> RWALLR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RWALLR { bits }
+    #[inline(always)]
+    pub fn rwall(&self) -> RWALL_R {
+        RWALL_R::new(((self.bits() >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Control Direction"]
-    #[inline]
-    pub fn ctrldir(&self) -> CTRLDIRR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CTRLDIRR { bits }
+    #[inline(always)]
+    pub fn ctrldir(&self) -> CTRLDIR_R {
+        CTRLDIR_R::new(((self.bits() >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - Configuration OK Status"]
-    #[inline]
-    pub fn cfgok(&self) -> CFGOKR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CFGOKR { bits }
+    #[inline(always)]
+    pub fn cfgok(&self) -> CFGOK_R {
+        CFGOK_R::new(((self.bits() >> 18) & 0x01) != 0)
     }
     #[doc = "Bits 20:30 - Byte Count"]
-    #[inline]
-    pub fn byct(&self) -> BYCTR {
-        let bits = {
-            const MASK: u16 = 2047;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) as u16
-        };
-        BYCTR { bits }
+    #[inline(always)]
+    pub fn byct(&self) -> BYCT_R {
+        BYCT_R::new(((self.bits() >> 20) & 0x07ff) as u16)
     }
 }

@@ -1,4 +1,4 @@
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - Control Register"]
@@ -28,73 +28,73 @@ pub struct RegisterBlock {
 }
 #[doc = "Control Register"]
 pub struct RTC_CR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Control Register"]
 pub mod rtc_cr;
 #[doc = "Mode Register"]
 pub struct RTC_MR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Mode Register"]
 pub mod rtc_mr;
 #[doc = "Time Register"]
 pub struct RTC_TIMR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Time Register"]
 pub mod rtc_timr;
 #[doc = "Calendar Register"]
 pub struct RTC_CALR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Calendar Register"]
 pub mod rtc_calr;
 #[doc = "Time Alarm Register"]
 pub struct RTC_TIMALR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Time Alarm Register"]
 pub mod rtc_timalr;
 #[doc = "Calendar Alarm Register"]
 pub struct RTC_CALALR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Calendar Alarm Register"]
 pub mod rtc_calalr;
 #[doc = "Status Register"]
 pub struct RTC_SR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Status Register"]
 pub mod rtc_sr;
 #[doc = "Status Clear Command Register"]
 pub struct RTC_SCCR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Status Clear Command Register"]
 pub mod rtc_sccr;
 #[doc = "Interrupt Enable Register"]
 pub struct RTC_IER {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Interrupt Enable Register"]
 pub mod rtc_ier;
 #[doc = "Interrupt Disable Register"]
 pub struct RTC_IDR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Interrupt Disable Register"]
 pub mod rtc_idr;
 #[doc = "Interrupt Mask Register"]
 pub struct RTC_IMR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Interrupt Mask Register"]
 pub mod rtc_imr;
 #[doc = "Valid Entry Register"]
 pub struct RTC_VER {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Valid Entry Register"]
 pub mod rtc_ver;

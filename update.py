@@ -34,7 +34,7 @@ for opt, arg in opts:
     elif opt in ("-f", "--force"):
         use_nightly_features = True
 
-subprocess.run(cargo_install_command(["--git", "https://github.com/rust-embedded/svd2rust.git", "--branch", "register-derived-from", "svd2rust"], nightly=use_nightly_features, force=cargo_force_install))
+subprocess.run(cargo_install_command(["svd2rust"], nightly=use_nightly_features, force=cargo_force_install))
 subprocess.run(cargo_install_command(["rustfmt-nightly"], nightly=use_nightly_features, force=cargo_force_install))
 subprocess.run(cargo_install_command(["form"], nightly=use_nightly_features, force=cargo_force_install))
 

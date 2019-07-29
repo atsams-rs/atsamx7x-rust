@@ -1,4 +1,4 @@
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[repr(C)]
 pub struct RegisterBlock {
     _reserved0: [u8; 16usize],
@@ -10,13 +10,13 @@ pub struct RegisterBlock {
 }
 #[doc = "OHCI Interrupt Configuration Register"]
 pub struct UTMI_OHCIICR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "OHCI Interrupt Configuration Register"]
 pub mod utmi_ohciicr;
 #[doc = "UTMI Clock Trimming Register"]
 pub struct UTMI_CKTRIM {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "UTMI Clock Trimming Register"]
 pub mod utmi_cktrim;

@@ -1,4 +1,4 @@
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - General Purpose Backup Register 0"]
@@ -6,7 +6,7 @@ pub struct RegisterBlock {
 }
 #[doc = "General Purpose Backup Register 0"]
 pub struct SYS_GPBR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "General Purpose Backup Register 0"]
 pub mod sys_gpbr;

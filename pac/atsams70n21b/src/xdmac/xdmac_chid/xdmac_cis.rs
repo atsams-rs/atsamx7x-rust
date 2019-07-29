@@ -1,237 +1,69 @@
-#[doc = r" Value read from the register"]
+#[doc = r"Value read from the register"]
 pub struct R {
     bits: u32,
 }
 impl super::XDMAC_CIS {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
+    #[doc = r"Reads the contents of the register"]
+    #[inline(always)]
     pub fn read(&self) -> R {
         R {
             bits: self.register.get(),
         }
     }
 }
-#[doc = r" Value of the field"]
-pub struct BISR {
-    bits: bool,
-}
-impl BISR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct LISR {
-    bits: bool,
-}
-impl LISR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct DISR {
-    bits: bool,
-}
-impl DISR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct FISR {
-    bits: bool,
-}
-impl FISR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct RBEISR {
-    bits: bool,
-}
-impl RBEISR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct WBEISR {
-    bits: bool,
-}
-impl WBEISR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct ROISR {
-    bits: bool,
-}
-impl ROISR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
+#[doc = r"Reader of the field"]
+pub type BIS_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type LIS_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type DIS_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type FIS_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type RBEIS_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type WBEIS_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type ROIS_R = crate::FR<bool, bool>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
+    #[doc = r"Value of the register as raw bits"]
+    #[inline(always)]
     pub fn bits(&self) -> u32 {
         self.bits
     }
     #[doc = "Bit 0 - End of Block Interrupt Status Bit"]
-    #[inline]
-    pub fn bis(&self) -> BISR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        BISR { bits }
+    #[inline(always)]
+    pub fn bis(&self) -> BIS_R {
+        BIS_R::new((self.bits() & 0x01) != 0)
     }
     #[doc = "Bit 1 - End of Linked List Interrupt Status Bit"]
-    #[inline]
-    pub fn lis(&self) -> LISR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        LISR { bits }
+    #[inline(always)]
+    pub fn lis(&self) -> LIS_R {
+        LIS_R::new(((self.bits() >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - End of Disable Interrupt Status Bit"]
-    #[inline]
-    pub fn dis(&self) -> DISR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        DISR { bits }
+    #[inline(always)]
+    pub fn dis(&self) -> DIS_R {
+        DIS_R::new(((self.bits() >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - End of Flush Interrupt Status Bit"]
-    #[inline]
-    pub fn fis(&self) -> FISR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        FISR { bits }
+    #[inline(always)]
+    pub fn fis(&self) -> FIS_R {
+        FIS_R::new(((self.bits() >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Read Bus Error Interrupt Status Bit"]
-    #[inline]
-    pub fn rbeis(&self) -> RBEISR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RBEISR { bits }
+    #[inline(always)]
+    pub fn rbeis(&self) -> RBEIS_R {
+        RBEIS_R::new(((self.bits() >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Write Bus Error Interrupt Status Bit"]
-    #[inline]
-    pub fn wbeis(&self) -> WBEISR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        WBEISR { bits }
+    #[inline(always)]
+    pub fn wbeis(&self) -> WBEIS_R {
+        WBEIS_R::new(((self.bits() >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Request Overflow Error Interrupt Status Bit"]
-    #[inline]
-    pub fn rois(&self) -> ROISR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        ROISR { bits }
+    #[inline(always)]
+    pub fn rois(&self) -> ROIS_R {
+        ROIS_R::new(((self.bits() >> 6) & 0x01) != 0)
     }
 }

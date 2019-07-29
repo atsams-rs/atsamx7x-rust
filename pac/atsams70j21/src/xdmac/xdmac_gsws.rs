@@ -1,764 +1,188 @@
-#[doc = r" Value read from the register"]
+#[doc = r"Value read from the register"]
 pub struct R {
     bits: u32,
 }
 impl super::XDMAC_GSWS {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
+    #[doc = r"Reads the contents of the register"]
+    #[inline(always)]
     pub fn read(&self) -> R {
         R {
             bits: self.register.get(),
         }
     }
 }
-#[doc = r" Value of the field"]
-pub struct SWRS0R {
-    bits: bool,
-}
-impl SWRS0R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS1R {
-    bits: bool,
-}
-impl SWRS1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS2R {
-    bits: bool,
-}
-impl SWRS2R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS3R {
-    bits: bool,
-}
-impl SWRS3R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS4R {
-    bits: bool,
-}
-impl SWRS4R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS5R {
-    bits: bool,
-}
-impl SWRS5R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS6R {
-    bits: bool,
-}
-impl SWRS6R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS7R {
-    bits: bool,
-}
-impl SWRS7R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS8R {
-    bits: bool,
-}
-impl SWRS8R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS9R {
-    bits: bool,
-}
-impl SWRS9R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS10R {
-    bits: bool,
-}
-impl SWRS10R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS11R {
-    bits: bool,
-}
-impl SWRS11R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS12R {
-    bits: bool,
-}
-impl SWRS12R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS13R {
-    bits: bool,
-}
-impl SWRS13R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS14R {
-    bits: bool,
-}
-impl SWRS14R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS15R {
-    bits: bool,
-}
-impl SWRS15R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS16R {
-    bits: bool,
-}
-impl SWRS16R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS17R {
-    bits: bool,
-}
-impl SWRS17R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS18R {
-    bits: bool,
-}
-impl SWRS18R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS19R {
-    bits: bool,
-}
-impl SWRS19R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS20R {
-    bits: bool,
-}
-impl SWRS20R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS21R {
-    bits: bool,
-}
-impl SWRS21R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS22R {
-    bits: bool,
-}
-impl SWRS22R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SWRS23R {
-    bits: bool,
-}
-impl SWRS23R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
+#[doc = r"Reader of the field"]
+pub type SWRS0_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS1_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS2_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS3_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS4_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS5_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS6_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS7_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS8_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS9_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS10_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS11_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS12_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS13_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS14_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS15_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS16_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS17_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS18_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS19_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS20_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS21_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS22_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SWRS23_R = crate::FR<bool, bool>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
+    #[doc = r"Value of the register as raw bits"]
+    #[inline(always)]
     pub fn bits(&self) -> u32 {
         self.bits
     }
     #[doc = "Bit 0 - XDMAC Channel 0 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs0(&self) -> SWRS0R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS0R { bits }
+    #[inline(always)]
+    pub fn swrs0(&self) -> SWRS0_R {
+        SWRS0_R::new((self.bits() & 0x01) != 0)
     }
     #[doc = "Bit 1 - XDMAC Channel 1 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs1(&self) -> SWRS1R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS1R { bits }
+    #[inline(always)]
+    pub fn swrs1(&self) -> SWRS1_R {
+        SWRS1_R::new(((self.bits() >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - XDMAC Channel 2 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs2(&self) -> SWRS2R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS2R { bits }
+    #[inline(always)]
+    pub fn swrs2(&self) -> SWRS2_R {
+        SWRS2_R::new(((self.bits() >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - XDMAC Channel 3 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs3(&self) -> SWRS3R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS3R { bits }
+    #[inline(always)]
+    pub fn swrs3(&self) -> SWRS3_R {
+        SWRS3_R::new(((self.bits() >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - XDMAC Channel 4 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs4(&self) -> SWRS4R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS4R { bits }
+    #[inline(always)]
+    pub fn swrs4(&self) -> SWRS4_R {
+        SWRS4_R::new(((self.bits() >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - XDMAC Channel 5 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs5(&self) -> SWRS5R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS5R { bits }
+    #[inline(always)]
+    pub fn swrs5(&self) -> SWRS5_R {
+        SWRS5_R::new(((self.bits() >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - XDMAC Channel 6 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs6(&self) -> SWRS6R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS6R { bits }
+    #[inline(always)]
+    pub fn swrs6(&self) -> SWRS6_R {
+        SWRS6_R::new(((self.bits() >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - XDMAC Channel 7 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs7(&self) -> SWRS7R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS7R { bits }
+    #[inline(always)]
+    pub fn swrs7(&self) -> SWRS7_R {
+        SWRS7_R::new(((self.bits() >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 8 - XDMAC Channel 8 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs8(&self) -> SWRS8R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS8R { bits }
+    #[inline(always)]
+    pub fn swrs8(&self) -> SWRS8_R {
+        SWRS8_R::new(((self.bits() >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - XDMAC Channel 9 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs9(&self) -> SWRS9R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS9R { bits }
+    #[inline(always)]
+    pub fn swrs9(&self) -> SWRS9_R {
+        SWRS9_R::new(((self.bits() >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - XDMAC Channel 10 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs10(&self) -> SWRS10R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS10R { bits }
+    #[inline(always)]
+    pub fn swrs10(&self) -> SWRS10_R {
+        SWRS10_R::new(((self.bits() >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - XDMAC Channel 11 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs11(&self) -> SWRS11R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS11R { bits }
+    #[inline(always)]
+    pub fn swrs11(&self) -> SWRS11_R {
+        SWRS11_R::new(((self.bits() >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - XDMAC Channel 12 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs12(&self) -> SWRS12R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 12;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS12R { bits }
+    #[inline(always)]
+    pub fn swrs12(&self) -> SWRS12_R {
+        SWRS12_R::new(((self.bits() >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 13 - XDMAC Channel 13 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs13(&self) -> SWRS13R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 13;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS13R { bits }
+    #[inline(always)]
+    pub fn swrs13(&self) -> SWRS13_R {
+        SWRS13_R::new(((self.bits() >> 13) & 0x01) != 0)
     }
     #[doc = "Bit 14 - XDMAC Channel 14 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs14(&self) -> SWRS14R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 14;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS14R { bits }
+    #[inline(always)]
+    pub fn swrs14(&self) -> SWRS14_R {
+        SWRS14_R::new(((self.bits() >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 15 - XDMAC Channel 15 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs15(&self) -> SWRS15R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 15;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS15R { bits }
+    #[inline(always)]
+    pub fn swrs15(&self) -> SWRS15_R {
+        SWRS15_R::new(((self.bits() >> 15) & 0x01) != 0)
     }
     #[doc = "Bit 16 - XDMAC Channel 16 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs16(&self) -> SWRS16R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS16R { bits }
+    #[inline(always)]
+    pub fn swrs16(&self) -> SWRS16_R {
+        SWRS16_R::new(((self.bits() >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - XDMAC Channel 17 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs17(&self) -> SWRS17R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS17R { bits }
+    #[inline(always)]
+    pub fn swrs17(&self) -> SWRS17_R {
+        SWRS17_R::new(((self.bits() >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - XDMAC Channel 18 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs18(&self) -> SWRS18R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 18;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS18R { bits }
+    #[inline(always)]
+    pub fn swrs18(&self) -> SWRS18_R {
+        SWRS18_R::new(((self.bits() >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 19 - XDMAC Channel 19 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs19(&self) -> SWRS19R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 19;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS19R { bits }
+    #[inline(always)]
+    pub fn swrs19(&self) -> SWRS19_R {
+        SWRS19_R::new(((self.bits() >> 19) & 0x01) != 0)
     }
     #[doc = "Bit 20 - XDMAC Channel 20 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs20(&self) -> SWRS20R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS20R { bits }
+    #[inline(always)]
+    pub fn swrs20(&self) -> SWRS20_R {
+        SWRS20_R::new(((self.bits() >> 20) & 0x01) != 0)
     }
     #[doc = "Bit 21 - XDMAC Channel 21 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs21(&self) -> SWRS21R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 21;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS21R { bits }
+    #[inline(always)]
+    pub fn swrs21(&self) -> SWRS21_R {
+        SWRS21_R::new(((self.bits() >> 21) & 0x01) != 0)
     }
     #[doc = "Bit 22 - XDMAC Channel 22 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs22(&self) -> SWRS22R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 22;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS22R { bits }
+    #[inline(always)]
+    pub fn swrs22(&self) -> SWRS22_R {
+        SWRS22_R::new(((self.bits() >> 22) & 0x01) != 0)
     }
     #[doc = "Bit 23 - XDMAC Channel 23 Software Request Status Bit"]
-    #[inline]
-    pub fn swrs23(&self) -> SWRS23R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 23;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SWRS23R { bits }
+    #[inline(always)]
+    pub fn swrs23(&self) -> SWRS23_R {
+        SWRS23_R::new(((self.bits() >> 23) & 0x01) != 0)
     }
 }

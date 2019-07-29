@@ -1,4 +1,4 @@
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - Configuration Register"]
@@ -7,7 +7,7 @@ pub struct RegisterBlock {
     pub icm_ctrl: ICM_CTRL,
     #[doc = "0x08 - Status Register"]
     pub icm_sr: ICM_SR,
-    _reserved0: [u8; 4usize],
+    _reserved3: [u8; 4usize],
     #[doc = "0x10 - Interrupt Enable Register"]
     pub icm_ier: ICM_IER,
     #[doc = "0x14 - Interrupt Disable Register"]
@@ -18,7 +18,7 @@ pub struct RegisterBlock {
     pub icm_isr: ICM_ISR,
     #[doc = "0x20 - Undefined Access Status Register"]
     pub icm_uasr: ICM_UASR,
-    _reserved1: [u8; 12usize],
+    _reserved8: [u8; 12usize],
     #[doc = "0x30 - Region Descriptor Area Start Address Register"]
     pub icm_dscr: ICM_DSCR,
     #[doc = "0x34 - Region Hash Area Start Address Register"]
@@ -28,67 +28,67 @@ pub struct RegisterBlock {
 }
 #[doc = "Configuration Register"]
 pub struct ICM_CFG {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Configuration Register"]
 pub mod icm_cfg;
 #[doc = "Control Register"]
 pub struct ICM_CTRL {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Control Register"]
 pub mod icm_ctrl;
 #[doc = "Status Register"]
 pub struct ICM_SR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Status Register"]
 pub mod icm_sr;
 #[doc = "Interrupt Enable Register"]
 pub struct ICM_IER {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Interrupt Enable Register"]
 pub mod icm_ier;
 #[doc = "Interrupt Disable Register"]
 pub struct ICM_IDR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Interrupt Disable Register"]
 pub mod icm_idr;
 #[doc = "Interrupt Mask Register"]
 pub struct ICM_IMR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Interrupt Mask Register"]
 pub mod icm_imr;
 #[doc = "Interrupt Status Register"]
 pub struct ICM_ISR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Interrupt Status Register"]
 pub mod icm_isr;
 #[doc = "Undefined Access Status Register"]
 pub struct ICM_UASR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Undefined Access Status Register"]
 pub mod icm_uasr;
 #[doc = "Region Descriptor Area Start Address Register"]
 pub struct ICM_DSCR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Region Descriptor Area Start Address Register"]
 pub mod icm_dscr;
 #[doc = "Region Hash Area Start Address Register"]
 pub struct ICM_HASH {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Region Hash Area Start Address Register"]
 pub mod icm_hash;
 #[doc = "User Initial Hash Value 0 Register 0"]
 pub struct ICM_UIHVAL {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "User Initial Hash Value 0 Register 0"]
 pub mod icm_uihval;

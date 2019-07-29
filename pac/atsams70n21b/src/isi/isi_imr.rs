@@ -1,299 +1,83 @@
-#[doc = r" Value read from the register"]
+#[doc = r"Value read from the register"]
 pub struct R {
     bits: u32,
 }
 impl super::ISI_IMR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
+    #[doc = r"Reads the contents of the register"]
+    #[inline(always)]
     pub fn read(&self) -> R {
         R {
             bits: self.register.get(),
         }
     }
 }
-#[doc = r" Value of the field"]
-pub struct DIS_DONER {
-    bits: bool,
-}
-impl DIS_DONER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct SRSTR {
-    bits: bool,
-}
-impl SRSTR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct VSYNCR {
-    bits: bool,
-}
-impl VSYNCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct PXFR_DONER {
-    bits: bool,
-}
-impl PXFR_DONER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CXFR_DONER {
-    bits: bool,
-}
-impl CXFR_DONER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct P_OVRR {
-    bits: bool,
-}
-impl P_OVRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct C_OVRR {
-    bits: bool,
-}
-impl C_OVRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CRC_ERRR {
-    bits: bool,
-}
-impl CRC_ERRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct FR_OVRR {
-    bits: bool,
-}
-impl FR_OVRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
+#[doc = r"Reader of the field"]
+pub type DIS_DONE_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type SRST_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type VSYNC_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type PXFR_DONE_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type CXFR_DONE_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type P_OVR_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type C_OVR_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type CRC_ERR_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type FR_OVR_R = crate::FR<bool, bool>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
+    #[doc = r"Value of the register as raw bits"]
+    #[inline(always)]
     pub fn bits(&self) -> u32 {
         self.bits
     }
     #[doc = "Bit 1 - Module Disable Operation Completed"]
-    #[inline]
-    pub fn dis_done(&self) -> DIS_DONER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        DIS_DONER { bits }
+    #[inline(always)]
+    pub fn dis_done(&self) -> DIS_DONE_R {
+        DIS_DONE_R::new(((self.bits() >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Software Reset Completed"]
-    #[inline]
-    pub fn srst(&self) -> SRSTR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        SRSTR { bits }
+    #[inline(always)]
+    pub fn srst(&self) -> SRST_R {
+        SRST_R::new(((self.bits() >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Vertical Synchronization"]
-    #[inline]
-    pub fn vsync(&self) -> VSYNCR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        VSYNCR { bits }
+    #[inline(always)]
+    pub fn vsync(&self) -> VSYNC_R {
+        VSYNC_R::new(((self.bits() >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 16 - Preview DMA Transfer Completed"]
-    #[inline]
-    pub fn pxfr_done(&self) -> PXFR_DONER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        PXFR_DONER { bits }
+    #[inline(always)]
+    pub fn pxfr_done(&self) -> PXFR_DONE_R {
+        PXFR_DONE_R::new(((self.bits() >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Codec DMA Transfer Completed"]
-    #[inline]
-    pub fn cxfr_done(&self) -> CXFR_DONER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 17;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CXFR_DONER { bits }
+    #[inline(always)]
+    pub fn cxfr_done(&self) -> CXFR_DONE_R {
+        CXFR_DONE_R::new(((self.bits() >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 24 - Preview FIFO Overflow"]
-    #[inline]
-    pub fn p_ovr(&self) -> P_OVRR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        P_OVRR { bits }
+    #[inline(always)]
+    pub fn p_ovr(&self) -> P_OVR_R {
+        P_OVR_R::new(((self.bits() >> 24) & 0x01) != 0)
     }
     #[doc = "Bit 25 - Codec FIFO Overflow"]
-    #[inline]
-    pub fn c_ovr(&self) -> C_OVRR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 25;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        C_OVRR { bits }
+    #[inline(always)]
+    pub fn c_ovr(&self) -> C_OVR_R {
+        C_OVR_R::new(((self.bits() >> 25) & 0x01) != 0)
     }
     #[doc = "Bit 26 - CRC Synchronization Error"]
-    #[inline]
-    pub fn crc_err(&self) -> CRC_ERRR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 26;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CRC_ERRR { bits }
+    #[inline(always)]
+    pub fn crc_err(&self) -> CRC_ERR_R {
+        CRC_ERR_R::new(((self.bits() >> 26) & 0x01) != 0)
     }
     #[doc = "Bit 27 - Frame Rate Overrun"]
-    #[inline]
-    pub fn fr_ovr(&self) -> FR_OVRR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 27;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        FR_OVRR { bits }
+    #[inline(always)]
+    pub fn fr_ovr(&self) -> FR_OVR_R {
+        FR_OVR_R::new(((self.bits() >> 27) & 0x01) != 0)
     }
 }

@@ -1,268 +1,76 @@
-#[doc = r" Value read from the register"]
+#[doc = r"Value read from the register"]
 pub struct R {
     bits: u32,
 }
 impl super::QSPI_SR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
+    #[doc = r"Reads the contents of the register"]
+    #[inline(always)]
     pub fn read(&self) -> R {
         R {
             bits: self.register.get(),
         }
     }
 }
-#[doc = r" Value of the field"]
-pub struct RDRFR {
-    bits: bool,
-}
-impl RDRFR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TDRER {
-    bits: bool,
-}
-impl TDRER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TXEMPTYR {
-    bits: bool,
-}
-impl TXEMPTYR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OVRESR {
-    bits: bool,
-}
-impl OVRESR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CSRR {
-    bits: bool,
-}
-impl CSRR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct CSSR {
-    bits: bool,
-}
-impl CSSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct INSTRER {
-    bits: bool,
-}
-impl INSTRER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct QSPIENSR {
-    bits: bool,
-}
-impl QSPIENSR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
+#[doc = r"Reader of the field"]
+pub type RDRF_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type TDRE_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type TXEMPTY_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type OVRES_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type CSR_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type CSS_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type INSTRE_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type QSPIENS_R = crate::FR<bool, bool>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
+    #[doc = r"Value of the register as raw bits"]
+    #[inline(always)]
     pub fn bits(&self) -> u32 {
         self.bits
     }
     #[doc = "Bit 0 - Receive Data Register Full (cleared by reading SPI_RDR)"]
-    #[inline]
-    pub fn rdrf(&self) -> RDRFR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        RDRFR { bits }
+    #[inline(always)]
+    pub fn rdrf(&self) -> RDRF_R {
+        RDRF_R::new((self.bits() & 0x01) != 0)
     }
     #[doc = "Bit 1 - Transmit Data Register Empty (cleared by writing SPI_TDR)"]
-    #[inline]
-    pub fn tdre(&self) -> TDRER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        TDRER { bits }
+    #[inline(always)]
+    pub fn tdre(&self) -> TDRE_R {
+        TDRE_R::new(((self.bits() >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Transmission Registers Empty (cleared by writing SPI_TDR)"]
-    #[inline]
-    pub fn txempty(&self) -> TXEMPTYR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        TXEMPTYR { bits }
+    #[inline(always)]
+    pub fn txempty(&self) -> TXEMPTY_R {
+        TXEMPTY_R::new(((self.bits() >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Overrun Error Status (cleared on read)"]
-    #[inline]
-    pub fn ovres(&self) -> OVRESR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVRESR { bits }
+    #[inline(always)]
+    pub fn ovres(&self) -> OVRES_R {
+        OVRES_R::new(((self.bits() >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 8 - Chip Select Rise (cleared on read)"]
-    #[inline]
-    pub fn csr(&self) -> CSRR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CSRR { bits }
+    #[inline(always)]
+    pub fn csr(&self) -> CSR_R {
+        CSR_R::new(((self.bits() >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Chip Select Status"]
-    #[inline]
-    pub fn css(&self) -> CSSR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        CSSR { bits }
+    #[inline(always)]
+    pub fn css(&self) -> CSS_R {
+        CSS_R::new(((self.bits() >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Instruction End Status (cleared on read)"]
-    #[inline]
-    pub fn instre(&self) -> INSTRER {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        INSTRER { bits }
+    #[inline(always)]
+    pub fn instre(&self) -> INSTRE_R {
+        INSTRE_R::new(((self.bits() >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 24 - QSPI Enable Status"]
-    #[inline]
-    pub fn qspiens(&self) -> QSPIENSR {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 24;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        QSPIENSR { bits }
+    #[inline(always)]
+    pub fn qspiens(&self) -> QSPIENS_R {
+        QSPIENS_R::new(((self.bits() >> 24) & 0x01) != 0)
     }
 }

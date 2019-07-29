@@ -1,4 +1,4 @@
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - Control Register"]
@@ -21,73 +21,73 @@ pub struct RegisterBlock {
     pub uart_brgr: UART_BRGR,
     #[doc = "0x24 - Comparison Register"]
     pub uart_cmpr: UART_CMPR,
-    _reserved0: [u8; 188usize],
+    _reserved10: [u8; 188usize],
     #[doc = "0xe4 - Write Protection Mode Register"]
     pub uart_wpmr: UART_WPMR,
 }
 #[doc = "Control Register"]
 pub struct UART_CR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Control Register"]
 pub mod uart_cr;
 #[doc = "Mode Register"]
 pub struct UART_MR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Mode Register"]
 pub mod uart_mr;
 #[doc = "Interrupt Enable Register"]
 pub struct UART_IER {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Interrupt Enable Register"]
 pub mod uart_ier;
 #[doc = "Interrupt Disable Register"]
 pub struct UART_IDR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Interrupt Disable Register"]
 pub mod uart_idr;
 #[doc = "Interrupt Mask Register"]
 pub struct UART_IMR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Interrupt Mask Register"]
 pub mod uart_imr;
 #[doc = "Status Register"]
 pub struct UART_SR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Status Register"]
 pub mod uart_sr;
 #[doc = "Receive Holding Register"]
 pub struct UART_RHR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Receive Holding Register"]
 pub mod uart_rhr;
 #[doc = "Transmit Holding Register"]
 pub struct UART_THR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Transmit Holding Register"]
 pub mod uart_thr;
 #[doc = "Baud Rate Generator Register"]
 pub struct UART_BRGR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Baud Rate Generator Register"]
 pub mod uart_brgr;
 #[doc = "Comparison Register"]
 pub struct UART_CMPR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Comparison Register"]
 pub mod uart_cmpr;
 #[doc = "Write Protection Mode Register"]
 pub struct UART_WPMR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Write Protection Mode Register"]
 pub mod uart_wpmr;

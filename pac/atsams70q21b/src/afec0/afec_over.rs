@@ -1,392 +1,104 @@
-#[doc = r" Value read from the register"]
+#[doc = r"Value read from the register"]
 pub struct R {
     bits: u32,
 }
 impl super::AFEC_OVER {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
+    #[doc = r"Reads the contents of the register"]
+    #[inline(always)]
     pub fn read(&self) -> R {
         R {
             bits: self.register.get(),
         }
     }
 }
-#[doc = r" Value of the field"]
-pub struct OVRE0R {
-    bits: bool,
-}
-impl OVRE0R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OVRE1R {
-    bits: bool,
-}
-impl OVRE1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OVRE2R {
-    bits: bool,
-}
-impl OVRE2R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OVRE3R {
-    bits: bool,
-}
-impl OVRE3R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OVRE4R {
-    bits: bool,
-}
-impl OVRE4R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OVRE5R {
-    bits: bool,
-}
-impl OVRE5R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OVRE6R {
-    bits: bool,
-}
-impl OVRE6R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OVRE7R {
-    bits: bool,
-}
-impl OVRE7R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OVRE8R {
-    bits: bool,
-}
-impl OVRE8R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OVRE9R {
-    bits: bool,
-}
-impl OVRE9R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OVRE10R {
-    bits: bool,
-}
-impl OVRE10R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct OVRE11R {
-    bits: bool,
-}
-impl OVRE11R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
+#[doc = r"Reader of the field"]
+pub type OVRE0_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type OVRE1_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type OVRE2_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type OVRE3_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type OVRE4_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type OVRE5_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type OVRE6_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type OVRE7_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type OVRE8_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type OVRE9_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type OVRE10_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type OVRE11_R = crate::FR<bool, bool>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
+    #[doc = r"Value of the register as raw bits"]
+    #[inline(always)]
     pub fn bits(&self) -> u32 {
         self.bits
     }
     #[doc = "Bit 0 - Overrun Error 0"]
-    #[inline]
-    pub fn ovre0(&self) -> OVRE0R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVRE0R { bits }
+    #[inline(always)]
+    pub fn ovre0(&self) -> OVRE0_R {
+        OVRE0_R::new((self.bits() & 0x01) != 0)
     }
     #[doc = "Bit 1 - Overrun Error 1"]
-    #[inline]
-    pub fn ovre1(&self) -> OVRE1R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVRE1R { bits }
+    #[inline(always)]
+    pub fn ovre1(&self) -> OVRE1_R {
+        OVRE1_R::new(((self.bits() >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Overrun Error 2"]
-    #[inline]
-    pub fn ovre2(&self) -> OVRE2R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 2;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVRE2R { bits }
+    #[inline(always)]
+    pub fn ovre2(&self) -> OVRE2_R {
+        OVRE2_R::new(((self.bits() >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Overrun Error 3"]
-    #[inline]
-    pub fn ovre3(&self) -> OVRE3R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVRE3R { bits }
+    #[inline(always)]
+    pub fn ovre3(&self) -> OVRE3_R {
+        OVRE3_R::new(((self.bits() >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Overrun Error 4"]
-    #[inline]
-    pub fn ovre4(&self) -> OVRE4R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVRE4R { bits }
+    #[inline(always)]
+    pub fn ovre4(&self) -> OVRE4_R {
+        OVRE4_R::new(((self.bits() >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Overrun Error 5"]
-    #[inline]
-    pub fn ovre5(&self) -> OVRE5R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVRE5R { bits }
+    #[inline(always)]
+    pub fn ovre5(&self) -> OVRE5_R {
+        OVRE5_R::new(((self.bits() >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Overrun Error 6"]
-    #[inline]
-    pub fn ovre6(&self) -> OVRE6R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 6;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVRE6R { bits }
+    #[inline(always)]
+    pub fn ovre6(&self) -> OVRE6_R {
+        OVRE6_R::new(((self.bits() >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Overrun Error 7"]
-    #[inline]
-    pub fn ovre7(&self) -> OVRE7R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 7;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVRE7R { bits }
+    #[inline(always)]
+    pub fn ovre7(&self) -> OVRE7_R {
+        OVRE7_R::new(((self.bits() >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 8 - Overrun Error 8"]
-    #[inline]
-    pub fn ovre8(&self) -> OVRE8R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVRE8R { bits }
+    #[inline(always)]
+    pub fn ovre8(&self) -> OVRE8_R {
+        OVRE8_R::new(((self.bits() >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Overrun Error 9"]
-    #[inline]
-    pub fn ovre9(&self) -> OVRE9R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 9;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVRE9R { bits }
+    #[inline(always)]
+    pub fn ovre9(&self) -> OVRE9_R {
+        OVRE9_R::new(((self.bits() >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Overrun Error 10"]
-    #[inline]
-    pub fn ovre10(&self) -> OVRE10R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 10;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVRE10R { bits }
+    #[inline(always)]
+    pub fn ovre10(&self) -> OVRE10_R {
+        OVRE10_R::new(((self.bits() >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Overrun Error 11"]
-    #[inline]
-    pub fn ovre11(&self) -> OVRE11R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 11;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        OVRE11R { bits }
+    #[inline(always)]
+    pub fn ovre11(&self) -> OVRE11_R {
+        OVRE11_R::new(((self.bits() >> 11) & 0x01) != 0)
     }
 }

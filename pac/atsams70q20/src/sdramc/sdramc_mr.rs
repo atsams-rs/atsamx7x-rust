@@ -1,45 +1,50 @@
-#[doc = r" Value read from the register"]
+#[doc = r"Value read from the register"]
 pub struct R {
     bits: u32,
 }
-#[doc = r" Value to write to the register"]
+#[doc = r"Value to write to the register"]
 pub struct W {
     bits: u32,
 }
 impl super::SDRAMC_MR {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
+    #[doc = r"Modifies the contents of the register"]
+    #[inline(always)]
     pub fn modify<F>(&self, f: F)
     where
         for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
     {
         let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
+        self.register.set(f(&R { bits }, &mut W { bits }).bits);
     }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
+    #[doc = r"Reads the contents of the register"]
+    #[inline(always)]
     pub fn read(&self) -> R {
         R {
             bits: self.register.get(),
         }
     }
-    #[doc = r" Writes to the register"]
-    #[inline]
+    #[doc = r"Writes to the register"]
+    #[inline(always)]
     pub fn write<F>(&self, f: F)
     where
         F: FnOnce(&mut W) -> &mut W,
     {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
+        self.register.set(
+            f(&mut W {
+                bits: Self::reset_value(),
+            })
+            .bits,
+        );
     }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
+    #[doc = r"Reset value of the register"]
+    #[inline(always)]
+    pub const fn reset_value() -> u32 {
+        0
+    }
+    #[doc = r"Writes the reset value to the register"]
+    #[inline(always)]
     pub fn reset(&self) {
-        self.write(|w| w)
+        self.register.set(Self::reset_value())
     }
 }
 #[doc = "Possible values of the field `MODE`"]
@@ -59,13 +64,10 @@ pub enum MODER {
     EXT_LOAD_MODEREG,
     #[doc = "Deep power-down mode. Enters deep power-down mode."]
     DEEP_POWERDOWN,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl MODER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
+impl crate::ToBits<u8> for MODER {
+    #[inline(always)]
+    fn _bits(&self) -> u8 {
         match *self {
             MODER::NORMAL => 0,
             MODER::NOP => 1,
@@ -74,56 +76,44 @@ impl MODER {
             MODER::AUTO_REFRESH => 4,
             MODER::EXT_LOAD_MODEREG => 5,
             MODER::DEEP_POWERDOWN => 6,
-            MODER::_Reserved(bits) => bits,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> MODER {
-        match value {
-            0 => MODER::NORMAL,
-            1 => MODER::NOP,
-            2 => MODER::ALLBANKS_PRECHARGE,
-            3 => MODER::LOAD_MODEREG,
-            4 => MODER::AUTO_REFRESH,
-            5 => MODER::EXT_LOAD_MODEREG,
-            6 => MODER::DEEP_POWERDOWN,
-            i => MODER::_Reserved(i),
-        }
-    }
+}
+#[doc = r"Reader of the field"]
+pub type MODE_R = crate::FR<u8, MODER>;
+impl MODE_R {
     #[doc = "Checks if the value of the field is `NORMAL`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_normal(&self) -> bool {
         *self == MODER::NORMAL
     }
     #[doc = "Checks if the value of the field is `NOP`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_nop(&self) -> bool {
         *self == MODER::NOP
     }
     #[doc = "Checks if the value of the field is `ALLBANKS_PRECHARGE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_allbanks_precharge(&self) -> bool {
         *self == MODER::ALLBANKS_PRECHARGE
     }
     #[doc = "Checks if the value of the field is `LOAD_MODEREG`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_load_modereg(&self) -> bool {
         *self == MODER::LOAD_MODEREG
     }
     #[doc = "Checks if the value of the field is `AUTO_REFRESH`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_auto_refresh(&self) -> bool {
         *self == MODER::AUTO_REFRESH
     }
     #[doc = "Checks if the value of the field is `EXT_LOAD_MODEREG`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_ext_load_modereg(&self) -> bool {
         *self == MODER::EXT_LOAD_MODEREG
     }
     #[doc = "Checks if the value of the field is `DEEP_POWERDOWN`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_deep_powerdown(&self) -> bool {
         *self == MODER::DEEP_POWERDOWN
     }
@@ -149,7 +139,7 @@ pub enum MODEW {
 impl MODEW {
     #[allow(missing_docs)]
     #[doc(hidden)]
-    #[inline]
+    #[inline(always)]
     pub fn _bits(&self) -> u8 {
         match *self {
             MODEW::NORMAL => 0,
@@ -162,91 +152,79 @@ impl MODEW {
         }
     }
 }
-#[doc = r" Proxy"]
+#[doc = r"Proxy"]
 pub struct _MODEW<'a> {
     w: &'a mut W,
 }
 impl<'a> _MODEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
     pub fn variant(self, variant: MODEW) -> &'a mut W {
         unsafe { self.bits(variant._bits()) }
     }
     #[doc = "Normal mode. Any access to the SDRAM is decoded normally. To activate this mode, command must be followed by a write to the SDRAM."]
-    #[inline]
+    #[inline(always)]
     pub fn normal(self) -> &'a mut W {
         self.variant(MODEW::NORMAL)
     }
     #[doc = "The SDRAMC issues a NOP command when the SDRAM device is accessed regardless of the cycle. To activate this mode, command must be followed by a write to the SDRAM."]
-    #[inline]
+    #[inline(always)]
     pub fn nop(self) -> &'a mut W {
         self.variant(MODEW::NOP)
     }
     #[doc = "The SDRAMC issues an 'All Banks Precharge' command when the SDRAM device is accessed regardless of the cycle. To activate this mode, command must be followed by a write to the SDRAM."]
-    #[inline]
+    #[inline(always)]
     pub fn allbanks_precharge(self) -> &'a mut W {
         self.variant(MODEW::ALLBANKS_PRECHARGE)
     }
     #[doc = "The SDRAMC issues a 'Load Mode Register' command when the SDRAM device is accessed regardless of the cycle. To activate this mode, command must be followed by a write to the SDRAM."]
-    #[inline]
+    #[inline(always)]
     pub fn load_modereg(self) -> &'a mut W {
         self.variant(MODEW::LOAD_MODEREG)
     }
     #[doc = "The SDRAMC issues an 'Auto-Refresh' Command when the SDRAM device is accessed regardless of the cycle. Previously, an 'All Banks Precharge' command must be issued. To activate this mode, command must be followed by a write to the SDRAM."]
-    #[inline]
+    #[inline(always)]
     pub fn auto_refresh(self) -> &'a mut W {
         self.variant(MODEW::AUTO_REFRESH)
     }
     #[doc = "The SDRAMC issues an 'Extended Load Mode Register' command when the SDRAM device is accessed regardless of the cycle. To activate this mode, the 'Extended Load Mode Register' command must be followed by a write to the SDRAM. The write in the SDRAM must be done in the appropriate bank; most low-power SDRAM devices use the bank 1."]
-    #[inline]
+    #[inline(always)]
     pub fn ext_load_modereg(self) -> &'a mut W {
         self.variant(MODEW::EXT_LOAD_MODEREG)
     }
     #[doc = "Deep power-down mode. Enters deep power-down mode."]
-    #[inline]
+    #[inline(always)]
     pub fn deep_powerdown(self) -> &'a mut W {
         self.variant(MODEW::DEEP_POWERDOWN)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x07) | ((value as u32) & 0x07);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
+    #[doc = r"Value of the register as raw bits"]
+    #[inline(always)]
     pub fn bits(&self) -> u32 {
         self.bits
     }
     #[doc = "Bits 0:2 - SDRAMC Command Mode"]
-    #[inline]
-    pub fn mode(&self) -> MODER {
-        MODER::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn mode(&self) -> MODE_R {
+        MODE_R::new((self.bits() & 0x07) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
+    #[doc = r"Writes raw bits to the register"]
+    #[inline(always)]
     pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
         self.bits = bits;
         self
     }
     #[doc = "Bits 0:2 - SDRAMC Command Mode"]
-    #[inline]
+    #[inline(always)]
     pub fn mode(&mut self) -> _MODEW {
         _MODEW { w: self }
     }

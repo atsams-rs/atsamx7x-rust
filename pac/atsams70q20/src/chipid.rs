@@ -1,4 +1,4 @@
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - Chip ID Register"]
@@ -8,13 +8,13 @@ pub struct RegisterBlock {
 }
 #[doc = "Chip ID Register"]
 pub struct CHIPID_CIDR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Chip ID Register"]
 pub mod chipid_cidr;
 #[doc = "Chip ID Extension Register"]
 pub struct CHIPID_EXID {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Chip ID Extension Register"]
 pub mod chipid_exid;

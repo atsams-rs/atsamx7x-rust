@@ -1,144 +1,48 @@
-#[doc = r" Value read from the register"]
+#[doc = r"Value read from the register"]
 pub struct R {
     bits: u32,
 }
 impl super::DACC_ISR {
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
+    #[doc = r"Reads the contents of the register"]
+    #[inline(always)]
     pub fn read(&self) -> R {
         R {
             bits: self.register.get(),
         }
     }
 }
-#[doc = r" Value of the field"]
-pub struct TXRDY0R {
-    bits: bool,
-}
-impl TXRDY0R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct TXRDY1R {
-    bits: bool,
-}
-impl TXRDY1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct EOC0R {
-    bits: bool,
-}
-impl EOC0R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
-#[doc = r" Value of the field"]
-pub struct EOC1R {
-    bits: bool,
-}
-impl EOC1R {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        self.bits
-    }
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-}
+#[doc = r"Reader of the field"]
+pub type TXRDY0_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type TXRDY1_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type EOC0_R = crate::FR<bool, bool>;
+#[doc = r"Reader of the field"]
+pub type EOC1_R = crate::FR<bool, bool>;
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
+    #[doc = r"Value of the register as raw bits"]
+    #[inline(always)]
     pub fn bits(&self) -> u32 {
         self.bits
     }
     #[doc = "Bit 0 - Transmit Ready Interrupt Flag of channel 0"]
-    #[inline]
-    pub fn txrdy0(&self) -> TXRDY0R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        TXRDY0R { bits }
+    #[inline(always)]
+    pub fn txrdy0(&self) -> TXRDY0_R {
+        TXRDY0_R::new((self.bits() & 0x01) != 0)
     }
     #[doc = "Bit 1 - Transmit Ready Interrupt Flag of channel 1"]
-    #[inline]
-    pub fn txrdy1(&self) -> TXRDY1R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        TXRDY1R { bits }
+    #[inline(always)]
+    pub fn txrdy1(&self) -> TXRDY1_R {
+        TXRDY1_R::new(((self.bits() >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 4 - End of Conversion Interrupt Flag of channel 0"]
-    #[inline]
-    pub fn eoc0(&self) -> EOC0R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 4;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        EOC0R { bits }
+    #[inline(always)]
+    pub fn eoc0(&self) -> EOC0_R {
+        EOC0_R::new(((self.bits() >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - End of Conversion Interrupt Flag of channel 1"]
-    #[inline]
-    pub fn eoc1(&self) -> EOC1R {
-        let bits = {
-            const MASK: bool = true;
-            const OFFSET: u8 = 5;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        };
-        EOC1R { bits }
+    #[inline(always)]
+    pub fn eoc1(&self) -> EOC1_R {
+        EOC1_R::new(((self.bits() >> 5) & 0x01) != 0)
     }
 }

@@ -1,4 +1,4 @@
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - Control Register"]
@@ -24,61 +24,61 @@ pub struct RegisterBlock {
 }
 #[doc = "Control Register"]
 pub struct I2SC_CR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Control Register"]
 pub mod i2sc_cr;
 #[doc = "Mode Register"]
 pub struct I2SC_MR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Mode Register"]
 pub mod i2sc_mr;
 #[doc = "Status Register"]
 pub struct I2SC_SR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Status Register"]
 pub mod i2sc_sr;
 #[doc = "Status Clear Register"]
 pub struct I2SC_SCR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Status Clear Register"]
 pub mod i2sc_scr;
 #[doc = "Status Set Register"]
 pub struct I2SC_SSR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Status Set Register"]
 pub mod i2sc_ssr;
 #[doc = "Interrupt Enable Register"]
 pub struct I2SC_IER {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Interrupt Enable Register"]
 pub mod i2sc_ier;
 #[doc = "Interrupt Disable Register"]
 pub struct I2SC_IDR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Interrupt Disable Register"]
 pub mod i2sc_idr;
 #[doc = "Interrupt Mask Register"]
 pub struct I2SC_IMR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Interrupt Mask Register"]
 pub mod i2sc_imr;
 #[doc = "Receiver Holding Register"]
 pub struct I2SC_RHR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Receiver Holding Register"]
 pub mod i2sc_rhr;
 #[doc = "Transmitter Holding Register"]
 pub struct I2SC_THR {
-    register: ::vcell::VolatileCell<u32>,
+    register: vcell::VolatileCell<u32>,
 }
 #[doc = "Transmitter Holding Register"]
 pub mod i2sc_thr;
