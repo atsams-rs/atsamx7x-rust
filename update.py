@@ -9,6 +9,14 @@ def generate_cargo(crate: str, location: pathlib.Path):
         cargotomlcontent = string.Template(template).substitute(crate=crate, mcu=crate.upper())
         cargotomlfile.write(cargotomlcontent)
 
+def generate_readme(crate: str, location: pathlib.Path):
+    template = ""
+    with open("README.md.template") as templatefile:
+        template = templatefile.read()
+    with open(location.joinpath("README.md"), "w") as cargotomlfile:
+        cargotomlcontent = string.Template(template).substitute(crate=crate, mcu=crate.upper())
+        cargotomlfile.write(cargotomlcontent)
+
 def throw_help_and_leave():
     print("%s [-f|--force]", file=sys.stderr)
     exit(2)
@@ -47,6 +55,7 @@ for svd_file in all_svd_files:
     shutil.rmtree(pac_path.joinpath("src"), ignore_errors=True)
     os.makedirs(pac_path.joinpath("src"))
     generate_cargo(pac_name, pac_path)
+    generate_readme(pac_name, pac_path)
     subprocess.run(["svd2rust"] + [n for n in "--nightly" if use_nightly_features] + ["-i", str(pathlib.Path(svd_file).absolute())], cwd=pac_path)
     subprocess.run(["form", "-i", "lib.rs", "-o", "src"], cwd=pac_path)
     os.remove(pac_path.joinpath("lib.rs"))

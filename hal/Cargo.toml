@@ -12,9 +12,6 @@ keywords = [
     "no-std",
     "arm",
     "cortex-m",
-    "atsams",
-    "atsamv",
-    "atsame",
     "embedded-hal",
     "hal"
 ]
