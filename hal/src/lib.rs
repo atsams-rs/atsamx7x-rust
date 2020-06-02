@@ -3,6 +3,7 @@
 extern crate embedded_hal as hal;
 extern crate nb;
 
+#[cfg(any(feature = "same70q21b"))] pub use atsame70q21b as target_device;
 #[cfg(any(feature = "sams70j19"))]  pub use atsams70j19  as target_device;
 #[cfg(any(feature = "sams70j19b"))] pub use atsams70j19b as target_device;
 #[cfg(any(feature = "sams70j20"))]  pub use atsams70j20  as target_device;

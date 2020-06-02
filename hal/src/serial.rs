@@ -1,6 +1,7 @@
 // Smaller part have 3x UART & 2x USART
 use crate::target_device::{ UART0, UART1, UART2, USART0, USART1 };
 #[cfg(any(
+    feature = "same70q21b",
     feature = "sams70n19b",
     feature = "sams70n20b",
     feature = "sams70n21b",
@@ -10,6 +11,7 @@ use crate::target_device::{ UART0, UART1, UART2, USART0, USART1 };
 ))] use crate::target_device::{ UART3, USART2 };
 
 #[cfg(any(
+    feature = "same70q21b",
     feature = "sams70n19b",
     feature = "sams70n20b",
     feature = "sams70n21b",
@@ -32,6 +34,7 @@ pub type Serial1 = Serial<UART1>;
 pub type Serial2 = Serial<UART2>;
 
 #[cfg(any(
+    feature = "same70q21b",
     feature = "sams70n19b",
     feature = "sams70n20b",
     feature = "sams70n21b",
@@ -42,6 +45,7 @@ pub type Serial2 = Serial<UART2>;
 pub type Serial3 = Serial<UART3>;
 
 #[cfg(any(
+    feature = "same70q21b",
     feature = "sams70n19b",
     feature = "sams70n20b",
     feature = "sams70n21b",
@@ -55,6 +59,7 @@ pub type Serial5 = Serial<USART0>;
 pub type Serial6 = Serial<USART1>;
 
 #[cfg(any(
+    feature = "same70q21b",
     feature = "sams70n19b",
     feature = "sams70n20b",
     feature = "sams70n21b",
@@ -99,7 +104,11 @@ impl hal::serial::Write<u8> for Serial<USART1> {
     }
 }
 
-#[cfg(any(feature = "sams70q20b", feature = "sams70q21b"))]
+#[cfg(any(
+    feature = "same70q21b",
+    feature = "sams70q20b",
+    feature = "sams70q21b",
+))]
 impl hal::serial::Write<u8> for Serial<UART3> {
     type Error = Error;
 
