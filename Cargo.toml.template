@@ -1,11 +1,11 @@
 [package]
 name = "${crate}"
-description = "Peripheral access API for ${mcu} microcontrollers (generated using svd2rust)"
-version = "0.0.1"
+description = "Peripheral access API for ${mcu} microcontrollers from Atmel/Microchip (generated using svd2rust)"
+version = "0.0.2"
 authors = ["Michal Fita <michal.fita@gmail.com>"]
-categories = ["embedded", "hardware-support", "pac", "microchip", "atmel", "no-std"]
+categories = ["no-std", "embedded", "hardware-support"]
 keywords = ["no-std", "arm", "cortex-m", "atsam", "pac"]
-license = "MIT OR Apache-2.0"
+license = "0BSD"
 repository = "https://github.com/michalfita/atsams70-rust"
 readme = "README.md"
 

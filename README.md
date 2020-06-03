@@ -23,7 +23,7 @@ This repository holds work in very early stage of development and doesn't provid
 
 ## License
 
-_To be added later, plan assumes following Rust's MIT+Apache 2.0 standards in this regard._
+[BSD Zero Clause License](https://choosealicense.com/licenses/0bsd/)
 
 ## Disclaimer
 

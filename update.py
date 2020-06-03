@@ -18,7 +18,7 @@ def generate_readme(crate: str, location: pathlib.Path):
         cargotomlfile.write(cargotomlcontent)
 
 def throw_help_and_leave():
-    print("%s [-f|--force]", file=sys.stderr)
+    print("%s [-f|--force] [-n|--nightly]" % sys.argv[0], file=sys.stderr)
     exit(2)
 
 def cargo_install_command(arguments, nightly = False, force = False):
@@ -32,18 +32,18 @@ cargo_force_install = False
 use_nightly_features = False
 try:
     opts, args = getopt.getopt(sys.argv[1:], "hfn", ["help", "force", "nightly"])
-except getopts.GetoptError:
+except getopt.GetoptError:
     throw_help_and_leave()
 for opt, arg in opts:
     if opt in ("-h", "--help"):
         throw_help_and_leave()
     elif opt in ("-f", "--force"):
         cargo_force_install = True
-    elif opt in ("-f", "--force"):
+    elif opt in ("-n", "--nightly"):
         use_nightly_features = True
 
 subprocess.run(cargo_install_command(["svd2rust"], nightly=use_nightly_features, force=cargo_force_install))
-subprocess.run(cargo_install_command(["rustfmt-nightly"], nightly=use_nightly_features, force=cargo_force_install))
+# subprocess.run(cargo_install_command(["rustfmt-nightly"], nightly=use_nightly_features, force=cargo_force_install))
 subprocess.run(cargo_install_command(["form"], nightly=use_nightly_features, force=cargo_force_install))
 
 all_svd_files = glob.glob("./svd/*.svd")

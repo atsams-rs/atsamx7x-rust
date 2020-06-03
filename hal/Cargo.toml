@@ -15,7 +15,7 @@ keywords = [
     "embedded-hal",
     "hal"
 ]
-license = "MIT OR Apache-2.0"
+license = "0BSD"
 repository = "https://github.com/michalfita/atsams-rust"
 readme = "README.md"
 edition = "2018"
