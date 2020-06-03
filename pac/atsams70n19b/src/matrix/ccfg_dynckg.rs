@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CCFG_DYNCKG {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register CCFG_DYNCKG"]
+pub type R = crate::R<u32, super::CCFG_DYNCKG>;
+#[doc = "Writer for register CCFG_DYNCKG"]
+pub type W = crate::W<u32, super::CCFG_DYNCKG>;
+#[doc = "Register CCFG_DYNCKG `reset()`'s with value 0"]
+impl crate::ResetValue for super::CCFG_DYNCKG {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type MATCKG_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _MATCKGW<'a> {
+#[doc = "Reader of field `MATCKG`"]
+pub type MATCKG_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `MATCKG`"]
+pub struct MATCKG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MATCKGW<'a> {
+impl<'a> MATCKG_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _MATCKGW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type BRIDCKG_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _BRIDCKGW<'a> {
+#[doc = "Reader of field `BRIDCKG`"]
+pub type BRIDCKG_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `BRIDCKG`"]
+pub struct BRIDCKG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BRIDCKGW<'a> {
+impl<'a> BRIDCKG_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _BRIDCKGW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type EFCCKG_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _EFCCKGW<'a> {
+#[doc = "Reader of field `EFCCKG`"]
+pub type EFCCKG_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `EFCCKG`"]
+pub struct EFCCKG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EFCCKGW<'a> {
+impl<'a> EFCCKG_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -120,47 +83,36 @@ impl<'a> _EFCCKGW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - MATRIX Dynamic Clock Gating"]
     #[inline(always)]
     pub fn matckg(&self) -> MATCKG_R {
-        MATCKG_R::new((self.bits() & 0x01) != 0)
+        MATCKG_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Bridge Dynamic Clock Gating Enable"]
     #[inline(always)]
     pub fn bridckg(&self) -> BRIDCKG_R {
-        BRIDCKG_R::new(((self.bits() >> 1) & 0x01) != 0)
+        BRIDCKG_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - EFC Dynamic Clock Gating Enable"]
     #[inline(always)]
     pub fn efcckg(&self) -> EFCCKG_R {
-        EFCCKG_R::new(((self.bits() >> 2) & 0x01) != 0)
+        EFCCKG_R::new(((self.bits >> 2) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - MATRIX Dynamic Clock Gating"]
     #[inline(always)]
-    pub fn matckg(&mut self) -> _MATCKGW {
-        _MATCKGW { w: self }
+    pub fn matckg(&mut self) -> MATCKG_W {
+        MATCKG_W { w: self }
     }
     #[doc = "Bit 1 - Bridge Dynamic Clock Gating Enable"]
     #[inline(always)]
-    pub fn bridckg(&mut self) -> _BRIDCKGW {
-        _BRIDCKGW { w: self }
+    pub fn bridckg(&mut self) -> BRIDCKG_W {
+        BRIDCKG_W { w: self }
     }
     #[doc = "Bit 2 - EFC Dynamic Clock Gating Enable"]
     #[inline(always)]
-    pub fn efcckg(&mut self) -> _EFCCKGW {
-        _EFCCKGW { w: self }
+    pub fn efcckg(&mut self) -> EFCCKG_W {
+        EFCCKG_W { w: self }
     }
 }

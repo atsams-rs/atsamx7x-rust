@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PMC_PCDR0 {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register PMC_PCDR0"]
+pub type W = crate::W<u32, super::PMC_PCDR0>;
+#[doc = "Register PMC_PCDR0 `reset()`'s with value 0"]
+impl crate::ResetValue for super::PMC_PCDR0 {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _PID7W<'a> {
+#[doc = "Write proxy for field `PID7`"]
+pub struct PID7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID7W<'a> {
+impl<'a> PID7_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _PID7W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID8W<'a> {
+#[doc = "Write proxy for field `PID8`"]
+pub struct PID8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID8W<'a> {
+impl<'a> PID8_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _PID8W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID10W<'a> {
+#[doc = "Write proxy for field `PID10`"]
+pub struct PID10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID10W<'a> {
+impl<'a> PID10_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _PID10W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID11W<'a> {
+#[doc = "Write proxy for field `PID11`"]
+pub struct PID11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID11W<'a> {
+impl<'a> PID11_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _PID11W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID13W<'a> {
+#[doc = "Write proxy for field `PID13`"]
+pub struct PID13_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID13W<'a> {
+impl<'a> PID13_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _PID13W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID14W<'a> {
+#[doc = "Write proxy for field `PID14`"]
+pub struct PID14_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID14W<'a> {
+impl<'a> PID14_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _PID14W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID16W<'a> {
+#[doc = "Write proxy for field `PID16`"]
+pub struct PID16_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID16W<'a> {
+impl<'a> PID16_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _PID16W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID19W<'a> {
+#[doc = "Write proxy for field `PID19`"]
+pub struct PID19_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID19W<'a> {
+impl<'a> PID19_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +184,11 @@ impl<'a> _PID19W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID20W<'a> {
+#[doc = "Write proxy for field `PID20`"]
+pub struct PID20_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID20W<'a> {
+impl<'a> PID20_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -225,11 +206,11 @@ impl<'a> _PID20W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID22W<'a> {
+#[doc = "Write proxy for field `PID22`"]
+pub struct PID22_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID22W<'a> {
+impl<'a> PID22_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -247,11 +228,11 @@ impl<'a> _PID22W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID23W<'a> {
+#[doc = "Write proxy for field `PID23`"]
+pub struct PID23_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID23W<'a> {
+impl<'a> PID23_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -269,11 +250,11 @@ impl<'a> _PID23W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID24W<'a> {
+#[doc = "Write proxy for field `PID24`"]
+pub struct PID24_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID24W<'a> {
+impl<'a> PID24_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -291,11 +272,11 @@ impl<'a> _PID24W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID25W<'a> {
+#[doc = "Write proxy for field `PID25`"]
+pub struct PID25_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID25W<'a> {
+impl<'a> PID25_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -313,11 +294,11 @@ impl<'a> _PID25W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID26W<'a> {
+#[doc = "Write proxy for field `PID26`"]
+pub struct PID26_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID26W<'a> {
+impl<'a> PID26_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -335,11 +316,11 @@ impl<'a> _PID26W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID27W<'a> {
+#[doc = "Write proxy for field `PID27`"]
+pub struct PID27_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID27W<'a> {
+impl<'a> PID27_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -357,11 +338,11 @@ impl<'a> _PID27W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID28W<'a> {
+#[doc = "Write proxy for field `PID28`"]
+pub struct PID28_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID28W<'a> {
+impl<'a> PID28_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -379,11 +360,11 @@ impl<'a> _PID28W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID29W<'a> {
+#[doc = "Write proxy for field `PID29`"]
+pub struct PID29_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID29W<'a> {
+impl<'a> PID29_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -401,11 +382,11 @@ impl<'a> _PID29W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID30W<'a> {
+#[doc = "Write proxy for field `PID30`"]
+pub struct PID30_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID30W<'a> {
+impl<'a> PID30_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -423,11 +404,11 @@ impl<'a> _PID30W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PID31W<'a> {
+#[doc = "Write proxy for field `PID31`"]
+pub struct PID31_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PID31W<'a> {
+impl<'a> PID31_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -446,105 +427,99 @@ impl<'a> _PID31W<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 7 - Peripheral Clock 7 Disable"]
     #[inline(always)]
-    pub fn pid7(&mut self) -> _PID7W {
-        _PID7W { w: self }
+    pub fn pid7(&mut self) -> PID7_W {
+        PID7_W { w: self }
     }
     #[doc = "Bit 8 - Peripheral Clock 8 Disable"]
     #[inline(always)]
-    pub fn pid8(&mut self) -> _PID8W {
-        _PID8W { w: self }
+    pub fn pid8(&mut self) -> PID8_W {
+        PID8_W { w: self }
     }
     #[doc = "Bit 10 - Peripheral Clock 10 Disable"]
     #[inline(always)]
-    pub fn pid10(&mut self) -> _PID10W {
-        _PID10W { w: self }
+    pub fn pid10(&mut self) -> PID10_W {
+        PID10_W { w: self }
     }
     #[doc = "Bit 11 - Peripheral Clock 11 Disable"]
     #[inline(always)]
-    pub fn pid11(&mut self) -> _PID11W {
-        _PID11W { w: self }
+    pub fn pid11(&mut self) -> PID11_W {
+        PID11_W { w: self }
     }
     #[doc = "Bit 13 - Peripheral Clock 13 Disable"]
     #[inline(always)]
-    pub fn pid13(&mut self) -> _PID13W {
-        _PID13W { w: self }
+    pub fn pid13(&mut self) -> PID13_W {
+        PID13_W { w: self }
     }
     #[doc = "Bit 14 - Peripheral Clock 14 Disable"]
     #[inline(always)]
-    pub fn pid14(&mut self) -> _PID14W {
-        _PID14W { w: self }
+    pub fn pid14(&mut self) -> PID14_W {
+        PID14_W { w: self }
     }
     #[doc = "Bit 16 - Peripheral Clock 16 Disable"]
     #[inline(always)]
-    pub fn pid16(&mut self) -> _PID16W {
-        _PID16W { w: self }
+    pub fn pid16(&mut self) -> PID16_W {
+        PID16_W { w: self }
     }
     #[doc = "Bit 19 - Peripheral Clock 19 Disable"]
     #[inline(always)]
-    pub fn pid19(&mut self) -> _PID19W {
-        _PID19W { w: self }
+    pub fn pid19(&mut self) -> PID19_W {
+        PID19_W { w: self }
     }
     #[doc = "Bit 20 - Peripheral Clock 20 Disable"]
     #[inline(always)]
-    pub fn pid20(&mut self) -> _PID20W {
-        _PID20W { w: self }
+    pub fn pid20(&mut self) -> PID20_W {
+        PID20_W { w: self }
     }
     #[doc = "Bit 22 - Peripheral Clock 22 Disable"]
     #[inline(always)]
-    pub fn pid22(&mut self) -> _PID22W {
-        _PID22W { w: self }
+    pub fn pid22(&mut self) -> PID22_W {
+        PID22_W { w: self }
     }
     #[doc = "Bit 23 - Peripheral Clock 23 Disable"]
     #[inline(always)]
-    pub fn pid23(&mut self) -> _PID23W {
-        _PID23W { w: self }
+    pub fn pid23(&mut self) -> PID23_W {
+        PID23_W { w: self }
     }
     #[doc = "Bit 24 - Peripheral Clock 24 Disable"]
     #[inline(always)]
-    pub fn pid24(&mut self) -> _PID24W {
-        _PID24W { w: self }
+    pub fn pid24(&mut self) -> PID24_W {
+        PID24_W { w: self }
     }
     #[doc = "Bit 25 - Peripheral Clock 25 Disable"]
     #[inline(always)]
-    pub fn pid25(&mut self) -> _PID25W {
-        _PID25W { w: self }
+    pub fn pid25(&mut self) -> PID25_W {
+        PID25_W { w: self }
     }
     #[doc = "Bit 26 - Peripheral Clock 26 Disable"]
     #[inline(always)]
-    pub fn pid26(&mut self) -> _PID26W {
-        _PID26W { w: self }
+    pub fn pid26(&mut self) -> PID26_W {
+        PID26_W { w: self }
     }
     #[doc = "Bit 27 - Peripheral Clock 27 Disable"]
     #[inline(always)]
-    pub fn pid27(&mut self) -> _PID27W {
-        _PID27W { w: self }
+    pub fn pid27(&mut self) -> PID27_W {
+        PID27_W { w: self }
     }
     #[doc = "Bit 28 - Peripheral Clock 28 Disable"]
     #[inline(always)]
-    pub fn pid28(&mut self) -> _PID28W {
-        _PID28W { w: self }
+    pub fn pid28(&mut self) -> PID28_W {
+        PID28_W { w: self }
     }
     #[doc = "Bit 29 - Peripheral Clock 29 Disable"]
     #[inline(always)]
-    pub fn pid29(&mut self) -> _PID29W {
-        _PID29W { w: self }
+    pub fn pid29(&mut self) -> PID29_W {
+        PID29_W { w: self }
     }
     #[doc = "Bit 30 - Peripheral Clock 30 Disable"]
     #[inline(always)]
-    pub fn pid30(&mut self) -> _PID30W {
-        _PID30W { w: self }
+    pub fn pid30(&mut self) -> PID30_W {
+        PID30_W { w: self }
     }
     #[doc = "Bit 31 - Peripheral Clock 31 Disable"]
     #[inline(always)]
-    pub fn pid31(&mut self) -> _PID31W {
-        _PID31W { w: self }
+    pub fn pid31(&mut self) -> PID31_W {
+        PID31_W { w: self }
     }
 }

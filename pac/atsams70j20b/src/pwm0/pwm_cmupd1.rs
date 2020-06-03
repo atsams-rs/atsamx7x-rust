@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_CMUPD1 {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register PWM_CMUPD1"]
+pub type W = crate::W<u32, super::PWM_CMUPD1>;
+#[doc = "Register PWM_CMUPD1 `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_CMUPD1 {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _CPOLUPW<'a> {
+#[doc = "Write proxy for field `CPOLUP`"]
+pub struct CPOLUP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CPOLUPW<'a> {
+impl<'a> CPOLUP_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _CPOLUPW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CPOLINVUPW<'a> {
+#[doc = "Write proxy for field `CPOLINVUP`"]
+pub struct CPOLINVUP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CPOLINVUPW<'a> {
+impl<'a> CPOLINVUP_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -72,20 +53,14 @@ impl<'a> _CPOLINVUPW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 9 - Channel Polarity Update"]
     #[inline(always)]
-    pub fn cpolup(&mut self) -> _CPOLUPW {
-        _CPOLUPW { w: self }
+    pub fn cpolup(&mut self) -> CPOLUP_W {
+        CPOLUP_W { w: self }
     }
     #[doc = "Bit 13 - Channel Polarity Inversion Update"]
     #[inline(always)]
-    pub fn cpolinvup(&mut self) -> _CPOLINVUPW {
-        _CPOLINVUPW { w: self }
+    pub fn cpolinvup(&mut self) -> CPOLINVUP_W {
+        CPOLINVUP_W { w: self }
     }
 }

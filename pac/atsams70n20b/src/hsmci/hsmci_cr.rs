@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::HSMCI_CR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register HSMCI_CR"]
+pub type W = crate::W<u32, super::HSMCI_CR>;
+#[doc = "Register HSMCI_CR `reset()`'s with value 0"]
+impl crate::ResetValue for super::HSMCI_CR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _MCIENW<'a> {
+#[doc = "Write proxy for field `MCIEN`"]
+pub struct MCIEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MCIENW<'a> {
+impl<'a> MCIEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _MCIENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _MCIDISW<'a> {
+#[doc = "Write proxy for field `MCIDIS`"]
+pub struct MCIDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MCIDISW<'a> {
+impl<'a> MCIDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _MCIDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PWSENW<'a> {
+#[doc = "Write proxy for field `PWSEN`"]
+pub struct PWSEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PWSENW<'a> {
+impl<'a> PWSEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _PWSENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PWSDISW<'a> {
+#[doc = "Write proxy for field `PWSDIS`"]
+pub struct PWSDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PWSDISW<'a> {
+impl<'a> PWSDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _PWSDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWRSTW<'a> {
+#[doc = "Write proxy for field `SWRST`"]
+pub struct SWRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWRSTW<'a> {
+impl<'a> SWRST_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -138,35 +119,29 @@ impl<'a> _SWRSTW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Multi-Media Interface Enable"]
     #[inline(always)]
-    pub fn mcien(&mut self) -> _MCIENW {
-        _MCIENW { w: self }
+    pub fn mcien(&mut self) -> MCIEN_W {
+        MCIEN_W { w: self }
     }
     #[doc = "Bit 1 - Multi-Media Interface Disable"]
     #[inline(always)]
-    pub fn mcidis(&mut self) -> _MCIDISW {
-        _MCIDISW { w: self }
+    pub fn mcidis(&mut self) -> MCIDIS_W {
+        MCIDIS_W { w: self }
     }
     #[doc = "Bit 2 - Power Save Mode Enable"]
     #[inline(always)]
-    pub fn pwsen(&mut self) -> _PWSENW {
-        _PWSENW { w: self }
+    pub fn pwsen(&mut self) -> PWSEN_W {
+        PWSEN_W { w: self }
     }
     #[doc = "Bit 3 - Power Save Mode Disable"]
     #[inline(always)]
-    pub fn pwsdis(&mut self) -> _PWSDISW {
-        _PWSDISW { w: self }
+    pub fn pwsdis(&mut self) -> PWSDIS_W {
+        PWSDIS_W { w: self }
     }
     #[doc = "Bit 7 - Software Reset"]
     #[inline(always)]
-    pub fn swrst(&mut self) -> _SWRSTW {
-        _SWRSTW { w: self }
+    pub fn swrst(&mut self) -> SWRST_W {
+        SWRST_W { w: self }
     }
 }

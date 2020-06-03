@@ -1,169 +1,112 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::HSMCI_DMA {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register HSMCI_DMA"]
+pub type R = crate::R<u32, super::HSMCI_DMA>;
+#[doc = "Writer for register HSMCI_DMA"]
+pub type W = crate::W<u32, super::HSMCI_DMA>;
+#[doc = "Register HSMCI_DMA `reset()`'s with value 0"]
+impl crate::ResetValue for super::HSMCI_DMA {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "DMA Channel Read and Write Chunk Size\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum CHKSIZE_A {
+    #[doc = "0: 1 data available"]
+    _1 = 0,
+    #[doc = "1: 2 data available"]
+    _2 = 1,
+    #[doc = "2: 4 data available"]
+    _4 = 2,
+    #[doc = "3: 8 data available"]
+    _8 = 3,
+    #[doc = "4: 16 data available"]
+    _16 = 4,
+}
+impl From<CHKSIZE_A> for u8 {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: CHKSIZE_A) -> Self {
+        variant as _
     }
 }
-#[doc = "Possible values of the field `CHKSIZE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CHKSIZER {
-    #[doc = "1 data available"]
-    _1,
-    #[doc = "2 data available"]
-    _2,
-    #[doc = "4 data available"]
-    _4,
-    #[doc = "8 data available"]
-    _8,
-    #[doc = "16 data available"]
-    _16,
-}
-impl crate::ToBits<u8> for CHKSIZER {
+#[doc = "Reader of field `CHKSIZE`"]
+pub type CHKSIZE_R = crate::R<u8, CHKSIZE_A>;
+impl CHKSIZE_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            CHKSIZER::_1 => 0,
-            CHKSIZER::_2 => 1,
-            CHKSIZER::_4 => 2,
-            CHKSIZER::_8 => 3,
-            CHKSIZER::_16 => 4,
+    pub fn variant(&self) -> crate::Variant<u8, CHKSIZE_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(CHKSIZE_A::_1),
+            1 => Val(CHKSIZE_A::_2),
+            2 => Val(CHKSIZE_A::_4),
+            3 => Val(CHKSIZE_A::_8),
+            4 => Val(CHKSIZE_A::_16),
+            i => Res(i),
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type CHKSIZE_R = crate::FR<u8, CHKSIZER>;
-impl CHKSIZE_R {
     #[doc = "Checks if the value of the field is `_1`"]
     #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == CHKSIZER::_1
+        *self == CHKSIZE_A::_1
     }
     #[doc = "Checks if the value of the field is `_2`"]
     #[inline(always)]
     pub fn is_2(&self) -> bool {
-        *self == CHKSIZER::_2
+        *self == CHKSIZE_A::_2
     }
     #[doc = "Checks if the value of the field is `_4`"]
     #[inline(always)]
     pub fn is_4(&self) -> bool {
-        *self == CHKSIZER::_4
+        *self == CHKSIZE_A::_4
     }
     #[doc = "Checks if the value of the field is `_8`"]
     #[inline(always)]
     pub fn is_8(&self) -> bool {
-        *self == CHKSIZER::_8
+        *self == CHKSIZE_A::_8
     }
     #[doc = "Checks if the value of the field is `_16`"]
     #[inline(always)]
     pub fn is_16(&self) -> bool {
-        *self == CHKSIZER::_16
+        *self == CHKSIZE_A::_16
     }
 }
-#[doc = "Values that can be written to the field `CHKSIZE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CHKSIZEW {
-    #[doc = "1 data available"]
-    _1,
-    #[doc = "2 data available"]
-    _2,
-    #[doc = "4 data available"]
-    _4,
-    #[doc = "8 data available"]
-    _8,
-    #[doc = "16 data available"]
-    _16,
-}
-impl CHKSIZEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CHKSIZEW::_1 => 0,
-            CHKSIZEW::_2 => 1,
-            CHKSIZEW::_4 => 2,
-            CHKSIZEW::_8 => 3,
-            CHKSIZEW::_16 => 4,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _CHKSIZEW<'a> {
+#[doc = "Write proxy for field `CHKSIZE`"]
+pub struct CHKSIZE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CHKSIZEW<'a> {
+impl<'a> CHKSIZE_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: CHKSIZEW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: CHKSIZE_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "1 data available"]
     #[inline(always)]
     pub fn _1(self) -> &'a mut W {
-        self.variant(CHKSIZEW::_1)
+        self.variant(CHKSIZE_A::_1)
     }
     #[doc = "2 data available"]
     #[inline(always)]
     pub fn _2(self) -> &'a mut W {
-        self.variant(CHKSIZEW::_2)
+        self.variant(CHKSIZE_A::_2)
     }
     #[doc = "4 data available"]
     #[inline(always)]
     pub fn _4(self) -> &'a mut W {
-        self.variant(CHKSIZEW::_4)
+        self.variant(CHKSIZE_A::_4)
     }
     #[doc = "8 data available"]
     #[inline(always)]
     pub fn _8(self) -> &'a mut W {
-        self.variant(CHKSIZEW::_8)
+        self.variant(CHKSIZE_A::_8)
     }
     #[doc = "16 data available"]
     #[inline(always)]
     pub fn _16(self) -> &'a mut W {
-        self.variant(CHKSIZEW::_16)
+        self.variant(CHKSIZE_A::_16)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -172,13 +115,13 @@ impl<'a> _CHKSIZEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DMAEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DMAENW<'a> {
+#[doc = "Reader of field `DMAEN`"]
+pub type DMAEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DMAEN`"]
+pub struct DMAEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DMAENW<'a> {
+impl<'a> DMAEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -197,37 +140,26 @@ impl<'a> _DMAENW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 4:6 - DMA Channel Read and Write Chunk Size"]
     #[inline(always)]
     pub fn chksize(&self) -> CHKSIZE_R {
-        CHKSIZE_R::new(((self.bits() >> 4) & 0x07) as u8)
+        CHKSIZE_R::new(((self.bits >> 4) & 0x07) as u8)
     }
     #[doc = "Bit 8 - DMA Hardware Handshaking Enable"]
     #[inline(always)]
     pub fn dmaen(&self) -> DMAEN_R {
-        DMAEN_R::new(((self.bits() >> 8) & 0x01) != 0)
+        DMAEN_R::new(((self.bits >> 8) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 4:6 - DMA Channel Read and Write Chunk Size"]
     #[inline(always)]
-    pub fn chksize(&mut self) -> _CHKSIZEW {
-        _CHKSIZEW { w: self }
+    pub fn chksize(&mut self) -> CHKSIZE_W {
+        CHKSIZE_W { w: self }
     }
     #[doc = "Bit 8 - DMA Hardware Handshaking Enable"]
     #[inline(always)]
-    pub fn dmaen(&mut self) -> _DMAENW {
-        _DMAENW { w: self }
+    pub fn dmaen(&mut self) -> DMAEN_W {
+        DMAEN_W { w: self }
     }
 }

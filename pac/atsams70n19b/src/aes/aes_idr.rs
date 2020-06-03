@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::AES_IDR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register AES_IDR"]
+pub type W = crate::W<u32, super::AES_IDR>;
+#[doc = "Register AES_IDR `reset()`'s with value 0"]
+impl crate::ResetValue for super::AES_IDR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _DATRDYW<'a> {
+#[doc = "Write proxy for field `DATRDY`"]
+pub struct DATRDY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DATRDYW<'a> {
+impl<'a> DATRDY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _DATRDYW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _URADW<'a> {
+#[doc = "Write proxy for field `URAD`"]
+pub struct URAD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _URADW<'a> {
+impl<'a> URAD_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _URADW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TAGRDYW<'a> {
+#[doc = "Write proxy for field `TAGRDY`"]
+pub struct TAGRDY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TAGRDYW<'a> {
+impl<'a> TAGRDY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -94,25 +75,19 @@ impl<'a> _TAGRDYW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Data Ready Interrupt Disable"]
     #[inline(always)]
-    pub fn datrdy(&mut self) -> _DATRDYW {
-        _DATRDYW { w: self }
+    pub fn datrdy(&mut self) -> DATRDY_W {
+        DATRDY_W { w: self }
     }
     #[doc = "Bit 8 - Unspecified Register Access Detection Interrupt Disable"]
     #[inline(always)]
-    pub fn urad(&mut self) -> _URADW {
-        _URADW { w: self }
+    pub fn urad(&mut self) -> URAD_W {
+        URAD_W { w: self }
     }
     #[doc = "Bit 16 - GCM Tag Ready Interrupt Disable"]
     #[inline(always)]
-    pub fn tagrdy(&mut self) -> _TAGRDYW {
-        _TAGRDYW { w: self }
+    pub fn tagrdy(&mut self) -> TAGRDY_W {
+        TAGRDY_W { w: self }
     }
 }

@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::USBHS_CTRL {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register USBHS_CTRL"]
+pub type R = crate::R<u32, super::USBHS_CTRL>;
+#[doc = "Writer for register USBHS_CTRL"]
+pub type W = crate::W<u32, super::USBHS_CTRL>;
+#[doc = "Register USBHS_CTRL `reset()`'s with value 0"]
+impl crate::ResetValue for super::USBHS_CTRL {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type RDERRE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _RDERREW<'a> {
+#[doc = "Reader of field `RDERRE`"]
+pub type RDERRE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RDERRE`"]
+pub struct RDERRE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RDERREW<'a> {
+impl<'a> RDERRE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _RDERREW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type VBUSHWC_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _VBUSHWCW<'a> {
+#[doc = "Reader of field `VBUSHWC`"]
+pub type VBUSHWC_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `VBUSHWC`"]
+pub struct VBUSHWC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _VBUSHWCW<'a> {
+impl<'a> VBUSHWC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _VBUSHWCW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FRZCLK_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FRZCLKW<'a> {
+#[doc = "Reader of field `FRZCLK`"]
+pub type FRZCLK_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FRZCLK`"]
+pub struct FRZCLK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FRZCLKW<'a> {
+impl<'a> FRZCLK_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -119,13 +82,13 @@ impl<'a> _FRZCLKW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type USBE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _USBEW<'a> {
+#[doc = "Reader of field `USBE`"]
+pub type USBE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `USBE`"]
+pub struct USBE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USBEW<'a> {
+impl<'a> USBE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -143,13 +106,13 @@ impl<'a> _USBEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type UID_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _UIDW<'a> {
+#[doc = "Reader of field `UID`"]
+pub type UID_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `UID`"]
+pub struct UID_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UIDW<'a> {
+impl<'a> UID_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -167,77 +130,63 @@ impl<'a> _UIDW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `UIMOD`"]
+#[doc = "USBHS Mode\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum UIMODR {
-    #[doc = "The module is in USB Host mode."]
-    HOST,
-    #[doc = "The module is in USB Device mode."]
-    DEVICE,
+pub enum UIMOD_A {
+    #[doc = "0: The module is in USB Host mode."]
+    HOST = 0,
+    #[doc = "1: The module is in USB Device mode."]
+    DEVICE = 1,
 }
-impl crate::ToBits<bool> for UIMODR {
+impl From<UIMOD_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            UIMODR::HOST => false,
-            UIMODR::DEVICE => true,
-        }
+    fn from(variant: UIMOD_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type UIMOD_R = crate::FR<bool, UIMODR>;
+#[doc = "Reader of field `UIMOD`"]
+pub type UIMOD_R = crate::R<bool, UIMOD_A>;
 impl UIMOD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> UIMOD_A {
+        match self.bits {
+            false => UIMOD_A::HOST,
+            true => UIMOD_A::DEVICE,
+        }
+    }
     #[doc = "Checks if the value of the field is `HOST`"]
     #[inline(always)]
     pub fn is_host(&self) -> bool {
-        *self == UIMODR::HOST
+        *self == UIMOD_A::HOST
     }
     #[doc = "Checks if the value of the field is `DEVICE`"]
     #[inline(always)]
     pub fn is_device(&self) -> bool {
-        *self == UIMODR::DEVICE
+        *self == UIMOD_A::DEVICE
     }
 }
-#[doc = "Values that can be written to the field `UIMOD`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum UIMODW {
-    #[doc = "The module is in USB Host mode."]
-    HOST,
-    #[doc = "The module is in USB Device mode."]
-    DEVICE,
-}
-impl UIMODW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            UIMODW::HOST => false,
-            UIMODW::DEVICE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _UIMODW<'a> {
+#[doc = "Write proxy for field `UIMOD`"]
+pub struct UIMOD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UIMODW<'a> {
+impl<'a> UIMOD_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: UIMODW) -> &'a mut W {
+    pub fn variant(self, variant: UIMOD_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The module is in USB Host mode."]
     #[inline(always)]
     pub fn host(self) -> &'a mut W {
-        self.variant(UIMODW::HOST)
+        self.variant(UIMOD_A::HOST)
     }
     #[doc = "The module is in USB Device mode."]
     #[inline(always)]
     pub fn device(self) -> &'a mut W {
-        self.variant(UIMODW::DEVICE)
+        self.variant(UIMOD_A::DEVICE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -257,77 +206,66 @@ impl<'a> _UIMODW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 4 - Remote Device Connection Error Interrupt Enable"]
     #[inline(always)]
     pub fn rderre(&self) -> RDERRE_R {
-        RDERRE_R::new(((self.bits() >> 4) & 0x01) != 0)
+        RDERRE_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 8 - VBUS Hardware Control"]
     #[inline(always)]
     pub fn vbushwc(&self) -> VBUSHWC_R {
-        VBUSHWC_R::new(((self.bits() >> 8) & 0x01) != 0)
+        VBUSHWC_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 14 - Freeze USB Clock"]
     #[inline(always)]
     pub fn frzclk(&self) -> FRZCLK_R {
-        FRZCLK_R::new(((self.bits() >> 14) & 0x01) != 0)
+        FRZCLK_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 15 - USBHS Enable"]
     #[inline(always)]
     pub fn usbe(&self) -> USBE_R {
-        USBE_R::new(((self.bits() >> 15) & 0x01) != 0)
+        USBE_R::new(((self.bits >> 15) & 0x01) != 0)
     }
     #[doc = "Bit 24 - UID Pin Enable"]
     #[inline(always)]
     pub fn uid(&self) -> UID_R {
-        UID_R::new(((self.bits() >> 24) & 0x01) != 0)
+        UID_R::new(((self.bits >> 24) & 0x01) != 0)
     }
     #[doc = "Bit 25 - USBHS Mode"]
     #[inline(always)]
     pub fn uimod(&self) -> UIMOD_R {
-        UIMOD_R::new(((self.bits() >> 25) & 0x01) != 0)
+        UIMOD_R::new(((self.bits >> 25) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 4 - Remote Device Connection Error Interrupt Enable"]
     #[inline(always)]
-    pub fn rderre(&mut self) -> _RDERREW {
-        _RDERREW { w: self }
+    pub fn rderre(&mut self) -> RDERRE_W {
+        RDERRE_W { w: self }
     }
     #[doc = "Bit 8 - VBUS Hardware Control"]
     #[inline(always)]
-    pub fn vbushwc(&mut self) -> _VBUSHWCW {
-        _VBUSHWCW { w: self }
+    pub fn vbushwc(&mut self) -> VBUSHWC_W {
+        VBUSHWC_W { w: self }
     }
     #[doc = "Bit 14 - Freeze USB Clock"]
     #[inline(always)]
-    pub fn frzclk(&mut self) -> _FRZCLKW {
-        _FRZCLKW { w: self }
+    pub fn frzclk(&mut self) -> FRZCLK_W {
+        FRZCLK_W { w: self }
     }
     #[doc = "Bit 15 - USBHS Enable"]
     #[inline(always)]
-    pub fn usbe(&mut self) -> _USBEW {
-        _USBEW { w: self }
+    pub fn usbe(&mut self) -> USBE_W {
+        USBE_W { w: self }
     }
     #[doc = "Bit 24 - UID Pin Enable"]
     #[inline(always)]
-    pub fn uid(&mut self) -> _UIDW {
-        _UIDW { w: self }
+    pub fn uid(&mut self) -> UID_W {
+        UID_W { w: self }
     }
     #[doc = "Bit 25 - USBHS Mode"]
     #[inline(always)]
-    pub fn uimod(&mut self) -> _UIMODW {
-        _UIMODW { w: self }
+    pub fn uimod(&mut self) -> UIMOD_W {
+        UIMOD_W { w: self }
     }
 }

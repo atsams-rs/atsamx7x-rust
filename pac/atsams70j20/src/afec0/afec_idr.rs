@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::AFEC_IDR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register AFEC_IDR"]
+pub type W = crate::W<u32, super::AFEC_IDR>;
+#[doc = "Register AFEC_IDR `reset()`'s with value 0"]
+impl crate::ResetValue for super::AFEC_IDR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _EOC0W<'a> {
+#[doc = "Write proxy for field `EOC0`"]
+pub struct EOC0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EOC0W<'a> {
+impl<'a> EOC0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _EOC0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EOC1W<'a> {
+#[doc = "Write proxy for field `EOC1`"]
+pub struct EOC1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EOC1W<'a> {
+impl<'a> EOC1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _EOC1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EOC2W<'a> {
+#[doc = "Write proxy for field `EOC2`"]
+pub struct EOC2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EOC2W<'a> {
+impl<'a> EOC2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _EOC2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EOC3W<'a> {
+#[doc = "Write proxy for field `EOC3`"]
+pub struct EOC3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EOC3W<'a> {
+impl<'a> EOC3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _EOC3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EOC4W<'a> {
+#[doc = "Write proxy for field `EOC4`"]
+pub struct EOC4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EOC4W<'a> {
+impl<'a> EOC4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _EOC4W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EOC5W<'a> {
+#[doc = "Write proxy for field `EOC5`"]
+pub struct EOC5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EOC5W<'a> {
+impl<'a> EOC5_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _EOC5W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EOC6W<'a> {
+#[doc = "Write proxy for field `EOC6`"]
+pub struct EOC6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EOC6W<'a> {
+impl<'a> EOC6_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _EOC6W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EOC7W<'a> {
+#[doc = "Write proxy for field `EOC7`"]
+pub struct EOC7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EOC7W<'a> {
+impl<'a> EOC7_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +184,11 @@ impl<'a> _EOC7W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EOC8W<'a> {
+#[doc = "Write proxy for field `EOC8`"]
+pub struct EOC8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EOC8W<'a> {
+impl<'a> EOC8_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -225,11 +206,11 @@ impl<'a> _EOC8W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EOC9W<'a> {
+#[doc = "Write proxy for field `EOC9`"]
+pub struct EOC9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EOC9W<'a> {
+impl<'a> EOC9_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -247,11 +228,11 @@ impl<'a> _EOC9W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EOC10W<'a> {
+#[doc = "Write proxy for field `EOC10`"]
+pub struct EOC10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EOC10W<'a> {
+impl<'a> EOC10_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -269,11 +250,11 @@ impl<'a> _EOC10W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EOC11W<'a> {
+#[doc = "Write proxy for field `EOC11`"]
+pub struct EOC11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EOC11W<'a> {
+impl<'a> EOC11_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -291,11 +272,11 @@ impl<'a> _EOC11W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _DRDYW<'a> {
+#[doc = "Write proxy for field `DRDY`"]
+pub struct DRDY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DRDYW<'a> {
+impl<'a> DRDY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -313,11 +294,11 @@ impl<'a> _DRDYW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _GOVREW<'a> {
+#[doc = "Write proxy for field `GOVRE`"]
+pub struct GOVRE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _GOVREW<'a> {
+impl<'a> GOVRE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -335,11 +316,11 @@ impl<'a> _GOVREW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _COMPEW<'a> {
+#[doc = "Write proxy for field `COMPE`"]
+pub struct COMPE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _COMPEW<'a> {
+impl<'a> COMPE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -357,11 +338,11 @@ impl<'a> _COMPEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TEMPCHGW<'a> {
+#[doc = "Write proxy for field `TEMPCHG`"]
+pub struct TEMPCHG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TEMPCHGW<'a> {
+impl<'a> TEMPCHG_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -380,90 +361,84 @@ impl<'a> _TEMPCHGW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - End of Conversion Interrupt Disable 0"]
     #[inline(always)]
-    pub fn eoc0(&mut self) -> _EOC0W {
-        _EOC0W { w: self }
+    pub fn eoc0(&mut self) -> EOC0_W {
+        EOC0_W { w: self }
     }
     #[doc = "Bit 1 - End of Conversion Interrupt Disable 1"]
     #[inline(always)]
-    pub fn eoc1(&mut self) -> _EOC1W {
-        _EOC1W { w: self }
+    pub fn eoc1(&mut self) -> EOC1_W {
+        EOC1_W { w: self }
     }
     #[doc = "Bit 2 - End of Conversion Interrupt Disable 2"]
     #[inline(always)]
-    pub fn eoc2(&mut self) -> _EOC2W {
-        _EOC2W { w: self }
+    pub fn eoc2(&mut self) -> EOC2_W {
+        EOC2_W { w: self }
     }
     #[doc = "Bit 3 - End of Conversion Interrupt Disable 3"]
     #[inline(always)]
-    pub fn eoc3(&mut self) -> _EOC3W {
-        _EOC3W { w: self }
+    pub fn eoc3(&mut self) -> EOC3_W {
+        EOC3_W { w: self }
     }
     #[doc = "Bit 4 - End of Conversion Interrupt Disable 4"]
     #[inline(always)]
-    pub fn eoc4(&mut self) -> _EOC4W {
-        _EOC4W { w: self }
+    pub fn eoc4(&mut self) -> EOC4_W {
+        EOC4_W { w: self }
     }
     #[doc = "Bit 5 - End of Conversion Interrupt Disable 5"]
     #[inline(always)]
-    pub fn eoc5(&mut self) -> _EOC5W {
-        _EOC5W { w: self }
+    pub fn eoc5(&mut self) -> EOC5_W {
+        EOC5_W { w: self }
     }
     #[doc = "Bit 6 - End of Conversion Interrupt Disable 6"]
     #[inline(always)]
-    pub fn eoc6(&mut self) -> _EOC6W {
-        _EOC6W { w: self }
+    pub fn eoc6(&mut self) -> EOC6_W {
+        EOC6_W { w: self }
     }
     #[doc = "Bit 7 - End of Conversion Interrupt Disable 7"]
     #[inline(always)]
-    pub fn eoc7(&mut self) -> _EOC7W {
-        _EOC7W { w: self }
+    pub fn eoc7(&mut self) -> EOC7_W {
+        EOC7_W { w: self }
     }
     #[doc = "Bit 8 - End of Conversion Interrupt Disable 8"]
     #[inline(always)]
-    pub fn eoc8(&mut self) -> _EOC8W {
-        _EOC8W { w: self }
+    pub fn eoc8(&mut self) -> EOC8_W {
+        EOC8_W { w: self }
     }
     #[doc = "Bit 9 - End of Conversion Interrupt Disable 9"]
     #[inline(always)]
-    pub fn eoc9(&mut self) -> _EOC9W {
-        _EOC9W { w: self }
+    pub fn eoc9(&mut self) -> EOC9_W {
+        EOC9_W { w: self }
     }
     #[doc = "Bit 10 - End of Conversion Interrupt Disable 10"]
     #[inline(always)]
-    pub fn eoc10(&mut self) -> _EOC10W {
-        _EOC10W { w: self }
+    pub fn eoc10(&mut self) -> EOC10_W {
+        EOC10_W { w: self }
     }
     #[doc = "Bit 11 - End of Conversion Interrupt Disable 11"]
     #[inline(always)]
-    pub fn eoc11(&mut self) -> _EOC11W {
-        _EOC11W { w: self }
+    pub fn eoc11(&mut self) -> EOC11_W {
+        EOC11_W { w: self }
     }
     #[doc = "Bit 24 - Data Ready Interrupt Disable"]
     #[inline(always)]
-    pub fn drdy(&mut self) -> _DRDYW {
-        _DRDYW { w: self }
+    pub fn drdy(&mut self) -> DRDY_W {
+        DRDY_W { w: self }
     }
     #[doc = "Bit 25 - General Overrun Error Interrupt Disable"]
     #[inline(always)]
-    pub fn govre(&mut self) -> _GOVREW {
-        _GOVREW { w: self }
+    pub fn govre(&mut self) -> GOVRE_W {
+        GOVRE_W { w: self }
     }
     #[doc = "Bit 26 - Comparison Event Interrupt Disable"]
     #[inline(always)]
-    pub fn compe(&mut self) -> _COMPEW {
-        _COMPEW { w: self }
+    pub fn compe(&mut self) -> COMPE_W {
+        COMPE_W { w: self }
     }
     #[doc = "Bit 30 - Temperature Change Interrupt Disable"]
     #[inline(always)]
-    pub fn tempchg(&mut self) -> _TEMPCHGW {
-        _TEMPCHGW { w: self }
+    pub fn tempchg(&mut self) -> TEMPCHG_W {
+        TEMPCHG_W { w: self }
     }
 }

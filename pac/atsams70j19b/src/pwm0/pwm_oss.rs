@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_OSS {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register PWM_OSS"]
+pub type W = crate::W<u32, super::PWM_OSS>;
+#[doc = "Register PWM_OSS `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_OSS {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _OSSH0W<'a> {
+#[doc = "Write proxy for field `OSSH0`"]
+pub struct OSSH0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSSH0W<'a> {
+impl<'a> OSSH0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _OSSH0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OSSH1W<'a> {
+#[doc = "Write proxy for field `OSSH1`"]
+pub struct OSSH1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSSH1W<'a> {
+impl<'a> OSSH1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _OSSH1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OSSH2W<'a> {
+#[doc = "Write proxy for field `OSSH2`"]
+pub struct OSSH2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSSH2W<'a> {
+impl<'a> OSSH2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _OSSH2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OSSH3W<'a> {
+#[doc = "Write proxy for field `OSSH3`"]
+pub struct OSSH3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSSH3W<'a> {
+impl<'a> OSSH3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _OSSH3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OSSL0W<'a> {
+#[doc = "Write proxy for field `OSSL0`"]
+pub struct OSSL0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSSL0W<'a> {
+impl<'a> OSSL0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _OSSL0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OSSL1W<'a> {
+#[doc = "Write proxy for field `OSSL1`"]
+pub struct OSSL1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSSL1W<'a> {
+impl<'a> OSSL1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _OSSL1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OSSL2W<'a> {
+#[doc = "Write proxy for field `OSSL2`"]
+pub struct OSSL2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSSL2W<'a> {
+impl<'a> OSSL2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _OSSL2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OSSL3W<'a> {
+#[doc = "Write proxy for field `OSSL3`"]
+pub struct OSSL3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSSL3W<'a> {
+impl<'a> OSSL3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -204,50 +185,44 @@ impl<'a> _OSSL3W<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Output Selection Set for PWMH output of the channel 0"]
     #[inline(always)]
-    pub fn ossh0(&mut self) -> _OSSH0W {
-        _OSSH0W { w: self }
+    pub fn ossh0(&mut self) -> OSSH0_W {
+        OSSH0_W { w: self }
     }
     #[doc = "Bit 1 - Output Selection Set for PWMH output of the channel 1"]
     #[inline(always)]
-    pub fn ossh1(&mut self) -> _OSSH1W {
-        _OSSH1W { w: self }
+    pub fn ossh1(&mut self) -> OSSH1_W {
+        OSSH1_W { w: self }
     }
     #[doc = "Bit 2 - Output Selection Set for PWMH output of the channel 2"]
     #[inline(always)]
-    pub fn ossh2(&mut self) -> _OSSH2W {
-        _OSSH2W { w: self }
+    pub fn ossh2(&mut self) -> OSSH2_W {
+        OSSH2_W { w: self }
     }
     #[doc = "Bit 3 - Output Selection Set for PWMH output of the channel 3"]
     #[inline(always)]
-    pub fn ossh3(&mut self) -> _OSSH3W {
-        _OSSH3W { w: self }
+    pub fn ossh3(&mut self) -> OSSH3_W {
+        OSSH3_W { w: self }
     }
     #[doc = "Bit 16 - Output Selection Set for PWML output of the channel 0"]
     #[inline(always)]
-    pub fn ossl0(&mut self) -> _OSSL0W {
-        _OSSL0W { w: self }
+    pub fn ossl0(&mut self) -> OSSL0_W {
+        OSSL0_W { w: self }
     }
     #[doc = "Bit 17 - Output Selection Set for PWML output of the channel 1"]
     #[inline(always)]
-    pub fn ossl1(&mut self) -> _OSSL1W {
-        _OSSL1W { w: self }
+    pub fn ossl1(&mut self) -> OSSL1_W {
+        OSSL1_W { w: self }
     }
     #[doc = "Bit 18 - Output Selection Set for PWML output of the channel 2"]
     #[inline(always)]
-    pub fn ossl2(&mut self) -> _OSSL2W {
-        _OSSL2W { w: self }
+    pub fn ossl2(&mut self) -> OSSL2_W {
+        OSSL2_W { w: self }
     }
     #[doc = "Bit 19 - Output Selection Set for PWML output of the channel 3"]
     #[inline(always)]
-    pub fn ossl3(&mut self) -> _OSSL3W {
-        _OSSL3W { w: self }
+    pub fn ossl3(&mut self) -> OSSL3_W {
+        OSSL3_W { w: self }
     }
 }

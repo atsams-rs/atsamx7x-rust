@@ -1,37 +1,19 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::USBHS_DEVEPTIDR_CTRL_MODE {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register USBHS_DEVEPTIDR_CTRL_MODE[%s]"]
+pub type W = crate::W<u32, super::USBHS_DEVEPTIDR_CTRL_MODE>;
+#[doc = "Register USBHS_DEVEPTIDR_CTRL_MODE[%s]
+`reset()`'s with value 0"]
+impl crate::ResetValue for super::USBHS_DEVEPTIDR_CTRL_MODE {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _TXINECW<'a> {
+#[doc = "Write proxy for field `TXINEC`"]
+pub struct TXINEC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXINECW<'a> {
+impl<'a> TXINEC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +31,11 @@ impl<'a> _TXINECW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RXOUTECW<'a> {
+#[doc = "Write proxy for field `RXOUTEC`"]
+pub struct RXOUTEC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXOUTECW<'a> {
+impl<'a> RXOUTEC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +53,11 @@ impl<'a> _RXOUTECW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RXSTPECW<'a> {
+#[doc = "Write proxy for field `RXSTPEC`"]
+pub struct RXSTPEC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXSTPECW<'a> {
+impl<'a> RXSTPEC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +75,11 @@ impl<'a> _RXSTPECW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _NAKOUTECW<'a> {
+#[doc = "Write proxy for field `NAKOUTEC`"]
+pub struct NAKOUTEC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NAKOUTECW<'a> {
+impl<'a> NAKOUTEC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +97,11 @@ impl<'a> _NAKOUTECW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _NAKINECW<'a> {
+#[doc = "Write proxy for field `NAKINEC`"]
+pub struct NAKINEC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NAKINECW<'a> {
+impl<'a> NAKINEC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +119,11 @@ impl<'a> _NAKINECW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OVERFECW<'a> {
+#[doc = "Write proxy for field `OVERFEC`"]
+pub struct OVERFEC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OVERFECW<'a> {
+impl<'a> OVERFEC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +141,11 @@ impl<'a> _OVERFECW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _STALLEDECW<'a> {
+#[doc = "Write proxy for field `STALLEDEC`"]
+pub struct STALLEDEC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _STALLEDECW<'a> {
+impl<'a> STALLEDEC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +163,11 @@ impl<'a> _STALLEDECW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SHORTPACKETECW<'a> {
+#[doc = "Write proxy for field `SHORTPACKETEC`"]
+pub struct SHORTPACKETEC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SHORTPACKETECW<'a> {
+impl<'a> SHORTPACKETEC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +185,11 @@ impl<'a> _SHORTPACKETECW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _NBUSYBKECW<'a> {
+#[doc = "Write proxy for field `NBUSYBKEC`"]
+pub struct NBUSYBKEC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NBUSYBKECW<'a> {
+impl<'a> NBUSYBKEC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -225,11 +207,11 @@ impl<'a> _NBUSYBKECW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _FIFOCONCW<'a> {
+#[doc = "Write proxy for field `FIFOCONC`"]
+pub struct FIFOCONC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FIFOCONCW<'a> {
+impl<'a> FIFOCONC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -247,11 +229,11 @@ impl<'a> _FIFOCONCW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EPDISHDMACW<'a> {
+#[doc = "Write proxy for field `EPDISHDMAC`"]
+pub struct EPDISHDMAC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EPDISHDMACW<'a> {
+impl<'a> EPDISHDMAC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -269,11 +251,11 @@ impl<'a> _EPDISHDMACW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _NYETDISCW<'a> {
+#[doc = "Write proxy for field `NYETDISC`"]
+pub struct NYETDISC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NYETDISCW<'a> {
+impl<'a> NYETDISC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -291,11 +273,11 @@ impl<'a> _NYETDISCW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _STALLRQCW<'a> {
+#[doc = "Write proxy for field `STALLRQC`"]
+pub struct STALLRQC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _STALLRQCW<'a> {
+impl<'a> STALLRQC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -314,75 +296,69 @@ impl<'a> _STALLRQCW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Transmitted IN Interrupt Clear"]
     #[inline(always)]
-    pub fn txinec(&mut self) -> _TXINECW {
-        _TXINECW { w: self }
+    pub fn txinec(&mut self) -> TXINEC_W {
+        TXINEC_W { w: self }
     }
     #[doc = "Bit 1 - Received OUT Data Interrupt Clear"]
     #[inline(always)]
-    pub fn rxoutec(&mut self) -> _RXOUTECW {
-        _RXOUTECW { w: self }
+    pub fn rxoutec(&mut self) -> RXOUTEC_W {
+        RXOUTEC_W { w: self }
     }
     #[doc = "Bit 2 - Received SETUP Interrupt Clear"]
     #[inline(always)]
-    pub fn rxstpec(&mut self) -> _RXSTPECW {
-        _RXSTPECW { w: self }
+    pub fn rxstpec(&mut self) -> RXSTPEC_W {
+        RXSTPEC_W { w: self }
     }
     #[doc = "Bit 3 - NAKed OUT Interrupt Clear"]
     #[inline(always)]
-    pub fn nakoutec(&mut self) -> _NAKOUTECW {
-        _NAKOUTECW { w: self }
+    pub fn nakoutec(&mut self) -> NAKOUTEC_W {
+        NAKOUTEC_W { w: self }
     }
     #[doc = "Bit 4 - NAKed IN Interrupt Clear"]
     #[inline(always)]
-    pub fn nakinec(&mut self) -> _NAKINECW {
-        _NAKINECW { w: self }
+    pub fn nakinec(&mut self) -> NAKINEC_W {
+        NAKINEC_W { w: self }
     }
     #[doc = "Bit 5 - Overflow Interrupt Clear"]
     #[inline(always)]
-    pub fn overfec(&mut self) -> _OVERFECW {
-        _OVERFECW { w: self }
+    pub fn overfec(&mut self) -> OVERFEC_W {
+        OVERFEC_W { w: self }
     }
     #[doc = "Bit 6 - STALLed Interrupt Clear"]
     #[inline(always)]
-    pub fn stalledec(&mut self) -> _STALLEDECW {
-        _STALLEDECW { w: self }
+    pub fn stalledec(&mut self) -> STALLEDEC_W {
+        STALLEDEC_W { w: self }
     }
     #[doc = "Bit 7 - Shortpacket Interrupt Clear"]
     #[inline(always)]
-    pub fn shortpacketec(&mut self) -> _SHORTPACKETECW {
-        _SHORTPACKETECW { w: self }
+    pub fn shortpacketec(&mut self) -> SHORTPACKETEC_W {
+        SHORTPACKETEC_W { w: self }
     }
     #[doc = "Bit 12 - Number of Busy Banks Interrupt Clear"]
     #[inline(always)]
-    pub fn nbusybkec(&mut self) -> _NBUSYBKECW {
-        _NBUSYBKECW { w: self }
+    pub fn nbusybkec(&mut self) -> NBUSYBKEC_W {
+        NBUSYBKEC_W { w: self }
     }
     #[doc = "Bit 14 - FIFO Control Clear"]
     #[inline(always)]
-    pub fn fifoconc(&mut self) -> _FIFOCONCW {
-        _FIFOCONCW { w: self }
+    pub fn fifoconc(&mut self) -> FIFOCONC_W {
+        FIFOCONC_W { w: self }
     }
     #[doc = "Bit 16 - Endpoint Interrupts Disable HDMA Request Clear"]
     #[inline(always)]
-    pub fn epdishdmac(&mut self) -> _EPDISHDMACW {
-        _EPDISHDMACW { w: self }
+    pub fn epdishdmac(&mut self) -> EPDISHDMAC_W {
+        EPDISHDMAC_W { w: self }
     }
     #[doc = "Bit 17 - NYET Token Disable Clear"]
     #[inline(always)]
-    pub fn nyetdisc(&mut self) -> _NYETDISCW {
-        _NYETDISCW { w: self }
+    pub fn nyetdisc(&mut self) -> NYETDISC_W {
+        NYETDISC_W { w: self }
     }
     #[doc = "Bit 19 - STALL Request Clear"]
     #[inline(always)]
-    pub fn stallrqc(&mut self) -> _STALLRQCW {
-        _STALLRQCW { w: self }
+    pub fn stallrqc(&mut self) -> STALLRQC_W {
+        STALLRQC_W { w: self }
     }
 }

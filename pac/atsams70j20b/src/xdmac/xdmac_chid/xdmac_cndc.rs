@@ -1,123 +1,72 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::XDMAC_CNDC {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register XDMAC_CNDC"]
+pub type R = crate::R<u32, super::XDMAC_CNDC>;
+#[doc = "Writer for register XDMAC_CNDC"]
+pub type W = crate::W<u32, super::XDMAC_CNDC>;
+#[doc = "Register XDMAC_CNDC `reset()`'s with value 0"]
+impl crate::ResetValue for super::XDMAC_CNDC {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "Channel x Next Descriptor Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum NDE_A {
+    #[doc = "0: Descriptor fetch is disabled."]
+    DSCR_FETCH_DIS = 0,
+    #[doc = "1: Descriptor fetch is enabled."]
+    DSCR_FETCH_EN = 1,
+}
+impl From<NDE_A> for bool {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: NDE_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = "Possible values of the field `NDE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NDER {
-    #[doc = "Descriptor fetch is disabled."]
-    DSCR_FETCH_DIS,
-    #[doc = "Descriptor fetch is enabled."]
-    DSCR_FETCH_EN,
-}
-impl crate::ToBits<bool> for NDER {
+#[doc = "Reader of field `NDE`"]
+pub type NDE_R = crate::R<bool, NDE_A>;
+impl NDE_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            NDER::DSCR_FETCH_DIS => false,
-            NDER::DSCR_FETCH_EN => true,
+    pub fn variant(&self) -> NDE_A {
+        match self.bits {
+            false => NDE_A::DSCR_FETCH_DIS,
+            true => NDE_A::DSCR_FETCH_EN,
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type NDE_R = crate::FR<bool, NDER>;
-impl NDE_R {
     #[doc = "Checks if the value of the field is `DSCR_FETCH_DIS`"]
     #[inline(always)]
     pub fn is_dscr_fetch_dis(&self) -> bool {
-        *self == NDER::DSCR_FETCH_DIS
+        *self == NDE_A::DSCR_FETCH_DIS
     }
     #[doc = "Checks if the value of the field is `DSCR_FETCH_EN`"]
     #[inline(always)]
     pub fn is_dscr_fetch_en(&self) -> bool {
-        *self == NDER::DSCR_FETCH_EN
+        *self == NDE_A::DSCR_FETCH_EN
     }
 }
-#[doc = "Values that can be written to the field `NDE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NDEW {
-    #[doc = "Descriptor fetch is disabled."]
-    DSCR_FETCH_DIS,
-    #[doc = "Descriptor fetch is enabled."]
-    DSCR_FETCH_EN,
-}
-impl NDEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            NDEW::DSCR_FETCH_DIS => false,
-            NDEW::DSCR_FETCH_EN => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _NDEW<'a> {
+#[doc = "Write proxy for field `NDE`"]
+pub struct NDE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NDEW<'a> {
+impl<'a> NDE_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: NDEW) -> &'a mut W {
+    pub fn variant(self, variant: NDE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Descriptor fetch is disabled."]
     #[inline(always)]
     pub fn dscr_fetch_dis(self) -> &'a mut W {
-        self.variant(NDEW::DSCR_FETCH_DIS)
+        self.variant(NDE_A::DSCR_FETCH_DIS)
     }
     #[doc = "Descriptor fetch is enabled."]
     #[inline(always)]
     pub fn dscr_fetch_en(self) -> &'a mut W {
-        self.variant(NDEW::DSCR_FETCH_EN)
+        self.variant(NDE_A::DSCR_FETCH_EN)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -136,77 +85,63 @@ impl<'a> _NDEW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `NDSUP`"]
+#[doc = "Channel x Next Descriptor Source Update\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NDSUPR {
-    #[doc = "Source parameters remain unchanged."]
-    SRC_PARAMS_UNCHANGED,
-    #[doc = "Source parameters are updated when the descriptor is retrieved."]
-    SRC_PARAMS_UPDATED,
+pub enum NDSUP_A {
+    #[doc = "0: Source parameters remain unchanged."]
+    SRC_PARAMS_UNCHANGED = 0,
+    #[doc = "1: Source parameters are updated when the descriptor is retrieved."]
+    SRC_PARAMS_UPDATED = 1,
 }
-impl crate::ToBits<bool> for NDSUPR {
+impl From<NDSUP_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            NDSUPR::SRC_PARAMS_UNCHANGED => false,
-            NDSUPR::SRC_PARAMS_UPDATED => true,
-        }
+    fn from(variant: NDSUP_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type NDSUP_R = crate::FR<bool, NDSUPR>;
+#[doc = "Reader of field `NDSUP`"]
+pub type NDSUP_R = crate::R<bool, NDSUP_A>;
 impl NDSUP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> NDSUP_A {
+        match self.bits {
+            false => NDSUP_A::SRC_PARAMS_UNCHANGED,
+            true => NDSUP_A::SRC_PARAMS_UPDATED,
+        }
+    }
     #[doc = "Checks if the value of the field is `SRC_PARAMS_UNCHANGED`"]
     #[inline(always)]
     pub fn is_src_params_unchanged(&self) -> bool {
-        *self == NDSUPR::SRC_PARAMS_UNCHANGED
+        *self == NDSUP_A::SRC_PARAMS_UNCHANGED
     }
     #[doc = "Checks if the value of the field is `SRC_PARAMS_UPDATED`"]
     #[inline(always)]
     pub fn is_src_params_updated(&self) -> bool {
-        *self == NDSUPR::SRC_PARAMS_UPDATED
+        *self == NDSUP_A::SRC_PARAMS_UPDATED
     }
 }
-#[doc = "Values that can be written to the field `NDSUP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NDSUPW {
-    #[doc = "Source parameters remain unchanged."]
-    SRC_PARAMS_UNCHANGED,
-    #[doc = "Source parameters are updated when the descriptor is retrieved."]
-    SRC_PARAMS_UPDATED,
-}
-impl NDSUPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            NDSUPW::SRC_PARAMS_UNCHANGED => false,
-            NDSUPW::SRC_PARAMS_UPDATED => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _NDSUPW<'a> {
+#[doc = "Write proxy for field `NDSUP`"]
+pub struct NDSUP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NDSUPW<'a> {
+impl<'a> NDSUP_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: NDSUPW) -> &'a mut W {
+    pub fn variant(self, variant: NDSUP_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Source parameters remain unchanged."]
     #[inline(always)]
     pub fn src_params_unchanged(self) -> &'a mut W {
-        self.variant(NDSUPW::SRC_PARAMS_UNCHANGED)
+        self.variant(NDSUP_A::SRC_PARAMS_UNCHANGED)
     }
     #[doc = "Source parameters are updated when the descriptor is retrieved."]
     #[inline(always)]
     pub fn src_params_updated(self) -> &'a mut W {
-        self.variant(NDSUPW::SRC_PARAMS_UPDATED)
+        self.variant(NDSUP_A::SRC_PARAMS_UPDATED)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -225,77 +160,63 @@ impl<'a> _NDSUPW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `NDDUP`"]
+#[doc = "Channel x Next Descriptor Destination Update\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NDDUPR {
-    #[doc = "Destination parameters remain unchanged."]
-    DST_PARAMS_UNCHANGED,
-    #[doc = "Destination parameters are updated when the descriptor is retrieved."]
-    DST_PARAMS_UPDATED,
+pub enum NDDUP_A {
+    #[doc = "0: Destination parameters remain unchanged."]
+    DST_PARAMS_UNCHANGED = 0,
+    #[doc = "1: Destination parameters are updated when the descriptor is retrieved."]
+    DST_PARAMS_UPDATED = 1,
 }
-impl crate::ToBits<bool> for NDDUPR {
+impl From<NDDUP_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            NDDUPR::DST_PARAMS_UNCHANGED => false,
-            NDDUPR::DST_PARAMS_UPDATED => true,
-        }
+    fn from(variant: NDDUP_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type NDDUP_R = crate::FR<bool, NDDUPR>;
+#[doc = "Reader of field `NDDUP`"]
+pub type NDDUP_R = crate::R<bool, NDDUP_A>;
 impl NDDUP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> NDDUP_A {
+        match self.bits {
+            false => NDDUP_A::DST_PARAMS_UNCHANGED,
+            true => NDDUP_A::DST_PARAMS_UPDATED,
+        }
+    }
     #[doc = "Checks if the value of the field is `DST_PARAMS_UNCHANGED`"]
     #[inline(always)]
     pub fn is_dst_params_unchanged(&self) -> bool {
-        *self == NDDUPR::DST_PARAMS_UNCHANGED
+        *self == NDDUP_A::DST_PARAMS_UNCHANGED
     }
     #[doc = "Checks if the value of the field is `DST_PARAMS_UPDATED`"]
     #[inline(always)]
     pub fn is_dst_params_updated(&self) -> bool {
-        *self == NDDUPR::DST_PARAMS_UPDATED
+        *self == NDDUP_A::DST_PARAMS_UPDATED
     }
 }
-#[doc = "Values that can be written to the field `NDDUP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NDDUPW {
-    #[doc = "Destination parameters remain unchanged."]
-    DST_PARAMS_UNCHANGED,
-    #[doc = "Destination parameters are updated when the descriptor is retrieved."]
-    DST_PARAMS_UPDATED,
-}
-impl NDDUPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            NDDUPW::DST_PARAMS_UNCHANGED => false,
-            NDDUPW::DST_PARAMS_UPDATED => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _NDDUPW<'a> {
+#[doc = "Write proxy for field `NDDUP`"]
+pub struct NDDUP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NDDUPW<'a> {
+impl<'a> NDDUP_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: NDDUPW) -> &'a mut W {
+    pub fn variant(self, variant: NDDUP_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Destination parameters remain unchanged."]
     #[inline(always)]
     pub fn dst_params_unchanged(self) -> &'a mut W {
-        self.variant(NDDUPW::DST_PARAMS_UNCHANGED)
+        self.variant(NDDUP_A::DST_PARAMS_UNCHANGED)
     }
     #[doc = "Destination parameters are updated when the descriptor is retrieved."]
     #[inline(always)]
     pub fn dst_params_updated(self) -> &'a mut W {
-        self.variant(NDDUPW::DST_PARAMS_UPDATED)
+        self.variant(NDDUP_A::DST_PARAMS_UPDATED)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -314,109 +235,91 @@ impl<'a> _NDDUPW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `NDVIEW`"]
+#[doc = "Channel x Next Descriptor View\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NDVIEWR {
-    #[doc = "Next Descriptor View 0"]
-    NDV0,
-    #[doc = "Next Descriptor View 1"]
-    NDV1,
-    #[doc = "Next Descriptor View 2"]
-    NDV2,
-    #[doc = "Next Descriptor View 3"]
-    NDV3,
+#[repr(u8)]
+pub enum NDVIEW_A {
+    #[doc = "0: Next Descriptor View 0"]
+    NDV0 = 0,
+    #[doc = "1: Next Descriptor View 1"]
+    NDV1 = 1,
+    #[doc = "2: Next Descriptor View 2"]
+    NDV2 = 2,
+    #[doc = "3: Next Descriptor View 3"]
+    NDV3 = 3,
 }
-impl crate::ToBits<u8> for NDVIEWR {
+impl From<NDVIEW_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            NDVIEWR::NDV0 => 0,
-            NDVIEWR::NDV1 => 1,
-            NDVIEWR::NDV2 => 2,
-            NDVIEWR::NDV3 => 3,
-        }
+    fn from(variant: NDVIEW_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type NDVIEW_R = crate::FR<u8, NDVIEWR>;
+#[doc = "Reader of field `NDVIEW`"]
+pub type NDVIEW_R = crate::R<u8, NDVIEW_A>;
 impl NDVIEW_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> NDVIEW_A {
+        match self.bits {
+            0 => NDVIEW_A::NDV0,
+            1 => NDVIEW_A::NDV1,
+            2 => NDVIEW_A::NDV2,
+            3 => NDVIEW_A::NDV3,
+            _ => unreachable!(),
+        }
+    }
     #[doc = "Checks if the value of the field is `NDV0`"]
     #[inline(always)]
     pub fn is_ndv0(&self) -> bool {
-        *self == NDVIEWR::NDV0
+        *self == NDVIEW_A::NDV0
     }
     #[doc = "Checks if the value of the field is `NDV1`"]
     #[inline(always)]
     pub fn is_ndv1(&self) -> bool {
-        *self == NDVIEWR::NDV1
+        *self == NDVIEW_A::NDV1
     }
     #[doc = "Checks if the value of the field is `NDV2`"]
     #[inline(always)]
     pub fn is_ndv2(&self) -> bool {
-        *self == NDVIEWR::NDV2
+        *self == NDVIEW_A::NDV2
     }
     #[doc = "Checks if the value of the field is `NDV3`"]
     #[inline(always)]
     pub fn is_ndv3(&self) -> bool {
-        *self == NDVIEWR::NDV3
+        *self == NDVIEW_A::NDV3
     }
 }
-#[doc = "Values that can be written to the field `NDVIEW`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NDVIEWW {
-    #[doc = "Next Descriptor View 0"]
-    NDV0,
-    #[doc = "Next Descriptor View 1"]
-    NDV1,
-    #[doc = "Next Descriptor View 2"]
-    NDV2,
-    #[doc = "Next Descriptor View 3"]
-    NDV3,
-}
-impl NDVIEWW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            NDVIEWW::NDV0 => 0,
-            NDVIEWW::NDV1 => 1,
-            NDVIEWW::NDV2 => 2,
-            NDVIEWW::NDV3 => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _NDVIEWW<'a> {
+#[doc = "Write proxy for field `NDVIEW`"]
+pub struct NDVIEW_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NDVIEWW<'a> {
+impl<'a> NDVIEW_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: NDVIEWW) -> &'a mut W {
+    pub fn variant(self, variant: NDVIEW_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Next Descriptor View 0"]
     #[inline(always)]
     pub fn ndv0(self) -> &'a mut W {
-        self.variant(NDVIEWW::NDV0)
+        self.variant(NDVIEW_A::NDV0)
     }
     #[doc = "Next Descriptor View 1"]
     #[inline(always)]
     pub fn ndv1(self) -> &'a mut W {
-        self.variant(NDVIEWW::NDV1)
+        self.variant(NDVIEW_A::NDV1)
     }
     #[doc = "Next Descriptor View 2"]
     #[inline(always)]
     pub fn ndv2(self) -> &'a mut W {
-        self.variant(NDVIEWW::NDV2)
+        self.variant(NDVIEW_A::NDV2)
     }
     #[doc = "Next Descriptor View 3"]
     #[inline(always)]
     pub fn ndv3(self) -> &'a mut W {
-        self.variant(NDVIEWW::NDV3)
+        self.variant(NDVIEW_A::NDV3)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -426,57 +329,46 @@ impl<'a> _NDVIEWW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Channel x Next Descriptor Enable"]
     #[inline(always)]
     pub fn nde(&self) -> NDE_R {
-        NDE_R::new((self.bits() & 0x01) != 0)
+        NDE_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Channel x Next Descriptor Source Update"]
     #[inline(always)]
     pub fn ndsup(&self) -> NDSUP_R {
-        NDSUP_R::new(((self.bits() >> 1) & 0x01) != 0)
+        NDSUP_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Channel x Next Descriptor Destination Update"]
     #[inline(always)]
     pub fn nddup(&self) -> NDDUP_R {
-        NDDUP_R::new(((self.bits() >> 2) & 0x01) != 0)
+        NDDUP_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bits 3:4 - Channel x Next Descriptor View"]
     #[inline(always)]
     pub fn ndview(&self) -> NDVIEW_R {
-        NDVIEW_R::new(((self.bits() >> 3) & 0x03) as u8)
+        NDVIEW_R::new(((self.bits >> 3) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Channel x Next Descriptor Enable"]
     #[inline(always)]
-    pub fn nde(&mut self) -> _NDEW {
-        _NDEW { w: self }
+    pub fn nde(&mut self) -> NDE_W {
+        NDE_W { w: self }
     }
     #[doc = "Bit 1 - Channel x Next Descriptor Source Update"]
     #[inline(always)]
-    pub fn ndsup(&mut self) -> _NDSUPW {
-        _NDSUPW { w: self }
+    pub fn ndsup(&mut self) -> NDSUP_W {
+        NDSUP_W { w: self }
     }
     #[doc = "Bit 2 - Channel x Next Descriptor Destination Update"]
     #[inline(always)]
-    pub fn nddup(&mut self) -> _NDDUPW {
-        _NDDUPW { w: self }
+    pub fn nddup(&mut self) -> NDDUP_W {
+        NDDUP_W { w: self }
     }
     #[doc = "Bits 3:4 - Channel x Next Descriptor View"]
     #[inline(always)]
-    pub fn ndview(&mut self) -> _NDVIEWW {
-        _NDVIEWW { w: self }
+    pub fn ndview(&mut self) -> NDVIEW_W {
+        NDVIEW_W { w: self }
     }
 }

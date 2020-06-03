@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SSC_CR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register SSC_CR"]
+pub type W = crate::W<u32, super::SSC_CR>;
+#[doc = "Register SSC_CR `reset()`'s with value 0"]
+impl crate::ResetValue for super::SSC_CR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _RXENW<'a> {
+#[doc = "Write proxy for field `RXEN`"]
+pub struct RXEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXENW<'a> {
+impl<'a> RXEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _RXENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RXDISW<'a> {
+#[doc = "Write proxy for field `RXDIS`"]
+pub struct RXDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXDISW<'a> {
+impl<'a> RXDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _RXDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TXENW<'a> {
+#[doc = "Write proxy for field `TXEN`"]
+pub struct TXEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXENW<'a> {
+impl<'a> TXEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _TXENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TXDISW<'a> {
+#[doc = "Write proxy for field `TXDIS`"]
+pub struct TXDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXDISW<'a> {
+impl<'a> TXDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _TXDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWRSTW<'a> {
+#[doc = "Write proxy for field `SWRST`"]
+pub struct SWRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWRSTW<'a> {
+impl<'a> SWRST_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -138,35 +119,29 @@ impl<'a> _SWRSTW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Receive Enable"]
     #[inline(always)]
-    pub fn rxen(&mut self) -> _RXENW {
-        _RXENW { w: self }
+    pub fn rxen(&mut self) -> RXEN_W {
+        RXEN_W { w: self }
     }
     #[doc = "Bit 1 - Receive Disable"]
     #[inline(always)]
-    pub fn rxdis(&mut self) -> _RXDISW {
-        _RXDISW { w: self }
+    pub fn rxdis(&mut self) -> RXDIS_W {
+        RXDIS_W { w: self }
     }
     #[doc = "Bit 8 - Transmit Enable"]
     #[inline(always)]
-    pub fn txen(&mut self) -> _TXENW {
-        _TXENW { w: self }
+    pub fn txen(&mut self) -> TXEN_W {
+        TXEN_W { w: self }
     }
     #[doc = "Bit 9 - Transmit Disable"]
     #[inline(always)]
-    pub fn txdis(&mut self) -> _TXDISW {
-        _TXDISW { w: self }
+    pub fn txdis(&mut self) -> TXDIS_W {
+        TXDIS_W { w: self }
     }
     #[doc = "Bit 15 - Software Reset"]
     #[inline(always)]
-    pub fn swrst(&mut self) -> _SWRSTW {
-        _SWRSTW { w: self }
+    pub fn swrst(&mut self) -> SWRST_W {
+        SWRST_W { w: self }
     }
 }

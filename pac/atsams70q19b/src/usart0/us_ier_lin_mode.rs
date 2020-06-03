@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::US_IER_LIN_MODE {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register US_IER_LIN_MODE"]
+pub type W = crate::W<u32, super::US_IER_LIN_MODE>;
+#[doc = "Register US_IER_LIN_MODE `reset()`'s with value 0"]
+impl crate::ResetValue for super::US_IER_LIN_MODE {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _RXRDYW<'a> {
+#[doc = "Write proxy for field `RXRDY`"]
+pub struct RXRDY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXRDYW<'a> {
+impl<'a> RXRDY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _RXRDYW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TXRDYW<'a> {
+#[doc = "Write proxy for field `TXRDY`"]
+pub struct TXRDY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXRDYW<'a> {
+impl<'a> TXRDY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _TXRDYW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OVREW<'a> {
+#[doc = "Write proxy for field `OVRE`"]
+pub struct OVRE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OVREW<'a> {
+impl<'a> OVRE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _OVREW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TXEMPTYW<'a> {
+#[doc = "Write proxy for field `TXEMPTY`"]
+pub struct TXEMPTY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXEMPTYW<'a> {
+impl<'a> TXEMPTY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _TXEMPTYW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LINBKW<'a> {
+#[doc = "Write proxy for field `LINBK`"]
+pub struct LINBK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINBKW<'a> {
+impl<'a> LINBK_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _LINBKW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LINIDW<'a> {
+#[doc = "Write proxy for field `LINID`"]
+pub struct LINID_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINIDW<'a> {
+impl<'a> LINID_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _LINIDW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LINTCW<'a> {
+#[doc = "Write proxy for field `LINTC`"]
+pub struct LINTC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINTCW<'a> {
+impl<'a> LINTC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _LINTCW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LINBEW<'a> {
+#[doc = "Write proxy for field `LINBE`"]
+pub struct LINBE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINBEW<'a> {
+impl<'a> LINBE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +184,11 @@ impl<'a> _LINBEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LINISFEW<'a> {
+#[doc = "Write proxy for field `LINISFE`"]
+pub struct LINISFE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINISFEW<'a> {
+impl<'a> LINISFE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -225,11 +206,11 @@ impl<'a> _LINISFEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LINIPEW<'a> {
+#[doc = "Write proxy for field `LINIPE`"]
+pub struct LINIPE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINIPEW<'a> {
+impl<'a> LINIPE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -247,11 +228,11 @@ impl<'a> _LINIPEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LINCEW<'a> {
+#[doc = "Write proxy for field `LINCE`"]
+pub struct LINCE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINCEW<'a> {
+impl<'a> LINCE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -269,11 +250,11 @@ impl<'a> _LINCEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LINSNREW<'a> {
+#[doc = "Write proxy for field `LINSNRE`"]
+pub struct LINSNRE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINSNREW<'a> {
+impl<'a> LINSNRE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -291,11 +272,11 @@ impl<'a> _LINSNREW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LINSTEW<'a> {
+#[doc = "Write proxy for field `LINSTE`"]
+pub struct LINSTE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINSTEW<'a> {
+impl<'a> LINSTE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -313,11 +294,11 @@ impl<'a> _LINSTEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LINHTEW<'a> {
+#[doc = "Write proxy for field `LINHTE`"]
+pub struct LINHTE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINHTEW<'a> {
+impl<'a> LINHTE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -336,80 +317,74 @@ impl<'a> _LINHTEW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - RXRDY Interrupt Enable"]
     #[inline(always)]
-    pub fn rxrdy(&mut self) -> _RXRDYW {
-        _RXRDYW { w: self }
+    pub fn rxrdy(&mut self) -> RXRDY_W {
+        RXRDY_W { w: self }
     }
     #[doc = "Bit 1 - TXRDY Interrupt Enable"]
     #[inline(always)]
-    pub fn txrdy(&mut self) -> _TXRDYW {
-        _TXRDYW { w: self }
+    pub fn txrdy(&mut self) -> TXRDY_W {
+        TXRDY_W { w: self }
     }
     #[doc = "Bit 5 - Overrun Error Interrupt Enable"]
     #[inline(always)]
-    pub fn ovre(&mut self) -> _OVREW {
-        _OVREW { w: self }
+    pub fn ovre(&mut self) -> OVRE_W {
+        OVRE_W { w: self }
     }
     #[doc = "Bit 9 - TXEMPTY Interrupt Enable"]
     #[inline(always)]
-    pub fn txempty(&mut self) -> _TXEMPTYW {
-        _TXEMPTYW { w: self }
+    pub fn txempty(&mut self) -> TXEMPTY_W {
+        TXEMPTY_W { w: self }
     }
     #[doc = "Bit 13 - LIN Break Sent or LIN Break Received Interrupt Enable"]
     #[inline(always)]
-    pub fn linbk(&mut self) -> _LINBKW {
-        _LINBKW { w: self }
+    pub fn linbk(&mut self) -> LINBK_W {
+        LINBK_W { w: self }
     }
     #[doc = "Bit 14 - LIN Identifier Sent or LIN Identifier Received Interrupt Enable"]
     #[inline(always)]
-    pub fn linid(&mut self) -> _LINIDW {
-        _LINIDW { w: self }
+    pub fn linid(&mut self) -> LINID_W {
+        LINID_W { w: self }
     }
     #[doc = "Bit 15 - LIN Transfer Completed Interrupt Enable"]
     #[inline(always)]
-    pub fn lintc(&mut self) -> _LINTCW {
-        _LINTCW { w: self }
+    pub fn lintc(&mut self) -> LINTC_W {
+        LINTC_W { w: self }
     }
     #[doc = "Bit 25 - LIN Bus Error Interrupt Enable"]
     #[inline(always)]
-    pub fn linbe(&mut self) -> _LINBEW {
-        _LINBEW { w: self }
+    pub fn linbe(&mut self) -> LINBE_W {
+        LINBE_W { w: self }
     }
     #[doc = "Bit 26 - LIN Inconsistent Synch Field Error Interrupt Enable"]
     #[inline(always)]
-    pub fn linisfe(&mut self) -> _LINISFEW {
-        _LINISFEW { w: self }
+    pub fn linisfe(&mut self) -> LINISFE_W {
+        LINISFE_W { w: self }
     }
     #[doc = "Bit 27 - LIN Identifier Parity Interrupt Enable"]
     #[inline(always)]
-    pub fn linipe(&mut self) -> _LINIPEW {
-        _LINIPEW { w: self }
+    pub fn linipe(&mut self) -> LINIPE_W {
+        LINIPE_W { w: self }
     }
     #[doc = "Bit 28 - LIN Checksum Error Interrupt Enable"]
     #[inline(always)]
-    pub fn lince(&mut self) -> _LINCEW {
-        _LINCEW { w: self }
+    pub fn lince(&mut self) -> LINCE_W {
+        LINCE_W { w: self }
     }
     #[doc = "Bit 29 - LIN Slave Not Responding Error Interrupt Enable"]
     #[inline(always)]
-    pub fn linsnre(&mut self) -> _LINSNREW {
-        _LINSNREW { w: self }
+    pub fn linsnre(&mut self) -> LINSNRE_W {
+        LINSNRE_W { w: self }
     }
     #[doc = "Bit 30 - LIN Synch Tolerance Error Interrupt Enable"]
     #[inline(always)]
-    pub fn linste(&mut self) -> _LINSTEW {
-        _LINSTEW { w: self }
+    pub fn linste(&mut self) -> LINSTE_W {
+        LINSTE_W { w: self }
     }
     #[doc = "Bit 31 - LIN Header Timeout Error Interrupt Enable"]
     #[inline(always)]
-    pub fn linhte(&mut self) -> _LINHTEW {
-        _LINHTEW { w: self }
+    pub fn linhte(&mut self) -> LINHTE_W {
+        LINHTE_W { w: self }
     }
 }

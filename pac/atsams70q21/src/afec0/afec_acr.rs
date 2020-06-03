@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::AFEC_ACR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register AFEC_ACR"]
+pub type R = crate::R<u32, super::AFEC_ACR>;
+#[doc = "Writer for register AFEC_ACR"]
+pub type W = crate::W<u32, super::AFEC_ACR>;
+#[doc = "Register AFEC_ACR `reset()`'s with value 0"]
+impl crate::ResetValue for super::AFEC_ACR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type PGA0EN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _PGA0ENW<'a> {
+#[doc = "Reader of field `PGA0EN`"]
+pub type PGA0EN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PGA0EN`"]
+pub struct PGA0EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PGA0ENW<'a> {
+impl<'a> PGA0EN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _PGA0ENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PGA1EN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _PGA1ENW<'a> {
+#[doc = "Reader of field `PGA1EN`"]
+pub type PGA1EN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PGA1EN`"]
+pub struct PGA1EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PGA1ENW<'a> {
+impl<'a> PGA1EN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _PGA1ENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type IBCTL_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _IBCTLW<'a> {
+#[doc = "Reader of field `IBCTL`"]
+pub type IBCTL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `IBCTL`"]
+pub struct IBCTL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IBCTLW<'a> {
+impl<'a> IBCTL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -110,47 +73,36 @@ impl<'a> _IBCTLW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 2 - PGA0 Enable"]
     #[inline(always)]
     pub fn pga0en(&self) -> PGA0EN_R {
-        PGA0EN_R::new(((self.bits() >> 2) & 0x01) != 0)
+        PGA0EN_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - PGA1 Enable"]
     #[inline(always)]
     pub fn pga1en(&self) -> PGA1EN_R {
-        PGA1EN_R::new(((self.bits() >> 3) & 0x01) != 0)
+        PGA1EN_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bits 8:9 - AFE Bias Current Control"]
     #[inline(always)]
     pub fn ibctl(&self) -> IBCTL_R {
-        IBCTL_R::new(((self.bits() >> 8) & 0x03) as u8)
+        IBCTL_R::new(((self.bits >> 8) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 2 - PGA0 Enable"]
     #[inline(always)]
-    pub fn pga0en(&mut self) -> _PGA0ENW {
-        _PGA0ENW { w: self }
+    pub fn pga0en(&mut self) -> PGA0EN_W {
+        PGA0EN_W { w: self }
     }
     #[doc = "Bit 3 - PGA1 Enable"]
     #[inline(always)]
-    pub fn pga1en(&mut self) -> _PGA1ENW {
-        _PGA1ENW { w: self }
+    pub fn pga1en(&mut self) -> PGA1EN_W {
+        PGA1EN_W { w: self }
     }
     #[doc = "Bits 8:9 - AFE Bias Current Control"]
     #[inline(always)]
-    pub fn ibctl(&mut self) -> _IBCTLW {
-        _IBCTLW { w: self }
+    pub fn ibctl(&mut self) -> IBCTL_W {
+        IBCTL_W { w: self }
     }
 }

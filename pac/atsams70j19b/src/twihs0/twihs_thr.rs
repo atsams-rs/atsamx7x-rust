@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TWIHS_THR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register TWIHS_THR"]
+pub type W = crate::W<u32, super::TWIHS_THR>;
+#[doc = "Register TWIHS_THR `reset()`'s with value 0"]
+impl crate::ResetValue for super::TWIHS_THR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _TXDATAW<'a> {
+#[doc = "Write proxy for field `TXDATA`"]
+pub struct TXDATA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXDATAW<'a> {
+impl<'a> TXDATA_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -40,15 +21,9 @@ impl<'a> _TXDATAW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:7 - Master or Slave Transmit Holding Data"]
     #[inline(always)]
-    pub fn txdata(&mut self) -> _TXDATAW {
-        _TXDATAW { w: self }
+    pub fn txdata(&mut self) -> TXDATA_W {
+        TXDATA_W { w: self }
     }
 }

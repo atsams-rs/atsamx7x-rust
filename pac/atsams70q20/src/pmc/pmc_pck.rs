@@ -1,169 +1,113 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PMC_PCK {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register PMC_PCK[%s]"]
+pub type R = crate::R<u32, super::PMC_PCK>;
+#[doc = "Writer for register PMC_PCK[%s]"]
+pub type W = crate::W<u32, super::PMC_PCK>;
+#[doc = "Register PMC_PCK[%s]
+`reset()`'s with value 0"]
+impl crate::ResetValue for super::PMC_PCK {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "Programmable Clock Source Selection\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum CSS_A {
+    #[doc = "0: SLCK is selected"]
+    SLOW_CLK = 0,
+    #[doc = "1: MAINCK is selected"]
+    MAIN_CLK = 1,
+    #[doc = "2: PLLACK is selected"]
+    PLLA_CLK = 2,
+    #[doc = "3: UPLLCKDIV is selected"]
+    UPLL_CLK = 3,
+    #[doc = "4: MCK is selected"]
+    MCK = 4,
+}
+impl From<CSS_A> for u8 {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: CSS_A) -> Self {
+        variant as _
     }
 }
-#[doc = "Possible values of the field `CSS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CSSR {
-    #[doc = "SLCK is selected"]
-    SLOW_CLK,
-    #[doc = "MAINCK is selected"]
-    MAIN_CLK,
-    #[doc = "PLLACK is selected"]
-    PLLA_CLK,
-    #[doc = "UPLLCKDIV is selected"]
-    UPLL_CLK,
-    #[doc = "MCK is selected"]
-    MCK,
-}
-impl crate::ToBits<u8> for CSSR {
+#[doc = "Reader of field `CSS`"]
+pub type CSS_R = crate::R<u8, CSS_A>;
+impl CSS_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            CSSR::SLOW_CLK => 0,
-            CSSR::MAIN_CLK => 1,
-            CSSR::PLLA_CLK => 2,
-            CSSR::UPLL_CLK => 3,
-            CSSR::MCK => 4,
+    pub fn variant(&self) -> crate::Variant<u8, CSS_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(CSS_A::SLOW_CLK),
+            1 => Val(CSS_A::MAIN_CLK),
+            2 => Val(CSS_A::PLLA_CLK),
+            3 => Val(CSS_A::UPLL_CLK),
+            4 => Val(CSS_A::MCK),
+            i => Res(i),
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type CSS_R = crate::FR<u8, CSSR>;
-impl CSS_R {
     #[doc = "Checks if the value of the field is `SLOW_CLK`"]
     #[inline(always)]
     pub fn is_slow_clk(&self) -> bool {
-        *self == CSSR::SLOW_CLK
+        *self == CSS_A::SLOW_CLK
     }
     #[doc = "Checks if the value of the field is `MAIN_CLK`"]
     #[inline(always)]
     pub fn is_main_clk(&self) -> bool {
-        *self == CSSR::MAIN_CLK
+        *self == CSS_A::MAIN_CLK
     }
     #[doc = "Checks if the value of the field is `PLLA_CLK`"]
     #[inline(always)]
     pub fn is_plla_clk(&self) -> bool {
-        *self == CSSR::PLLA_CLK
+        *self == CSS_A::PLLA_CLK
     }
     #[doc = "Checks if the value of the field is `UPLL_CLK`"]
     #[inline(always)]
     pub fn is_upll_clk(&self) -> bool {
-        *self == CSSR::UPLL_CLK
+        *self == CSS_A::UPLL_CLK
     }
     #[doc = "Checks if the value of the field is `MCK`"]
     #[inline(always)]
     pub fn is_mck(&self) -> bool {
-        *self == CSSR::MCK
+        *self == CSS_A::MCK
     }
 }
-#[doc = "Values that can be written to the field `CSS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CSSW {
-    #[doc = "SLCK is selected"]
-    SLOW_CLK,
-    #[doc = "MAINCK is selected"]
-    MAIN_CLK,
-    #[doc = "PLLACK is selected"]
-    PLLA_CLK,
-    #[doc = "UPLLCKDIV is selected"]
-    UPLL_CLK,
-    #[doc = "MCK is selected"]
-    MCK,
-}
-impl CSSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CSSW::SLOW_CLK => 0,
-            CSSW::MAIN_CLK => 1,
-            CSSW::PLLA_CLK => 2,
-            CSSW::UPLL_CLK => 3,
-            CSSW::MCK => 4,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _CSSW<'a> {
+#[doc = "Write proxy for field `CSS`"]
+pub struct CSS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CSSW<'a> {
+impl<'a> CSS_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: CSSW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: CSS_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "SLCK is selected"]
     #[inline(always)]
     pub fn slow_clk(self) -> &'a mut W {
-        self.variant(CSSW::SLOW_CLK)
+        self.variant(CSS_A::SLOW_CLK)
     }
     #[doc = "MAINCK is selected"]
     #[inline(always)]
     pub fn main_clk(self) -> &'a mut W {
-        self.variant(CSSW::MAIN_CLK)
+        self.variant(CSS_A::MAIN_CLK)
     }
     #[doc = "PLLACK is selected"]
     #[inline(always)]
     pub fn plla_clk(self) -> &'a mut W {
-        self.variant(CSSW::PLLA_CLK)
+        self.variant(CSS_A::PLLA_CLK)
     }
     #[doc = "UPLLCKDIV is selected"]
     #[inline(always)]
     pub fn upll_clk(self) -> &'a mut W {
-        self.variant(CSSW::UPLL_CLK)
+        self.variant(CSS_A::UPLL_CLK)
     }
     #[doc = "MCK is selected"]
     #[inline(always)]
     pub fn mck(self) -> &'a mut W {
-        self.variant(CSSW::MCK)
+        self.variant(CSS_A::MCK)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -172,13 +116,13 @@ impl<'a> _CSSW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PRES_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _PRESW<'a> {
+#[doc = "Reader of field `PRES`"]
+pub type PRES_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PRES`"]
+pub struct PRES_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PRESW<'a> {
+impl<'a> PRES_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -187,37 +131,26 @@ impl<'a> _PRESW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:2 - Programmable Clock Source Selection"]
     #[inline(always)]
     pub fn css(&self) -> CSS_R {
-        CSS_R::new((self.bits() & 0x07) as u8)
+        CSS_R::new((self.bits & 0x07) as u8)
     }
     #[doc = "Bits 4:11 - Programmable Clock Prescaler"]
     #[inline(always)]
     pub fn pres(&self) -> PRES_R {
-        PRES_R::new(((self.bits() >> 4) & 0xff) as u8)
+        PRES_R::new(((self.bits >> 4) & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:2 - Programmable Clock Source Selection"]
     #[inline(always)]
-    pub fn css(&mut self) -> _CSSW {
-        _CSSW { w: self }
+    pub fn css(&mut self) -> CSS_W {
+        CSS_W { w: self }
     }
     #[doc = "Bits 4:11 - Programmable Clock Prescaler"]
     #[inline(always)]
-    pub fn pres(&mut self) -> _PRESW {
-        _PRESW { w: self }
+    pub fn pres(&mut self) -> PRES_W {
+        PRES_W { w: self }
     }
 }

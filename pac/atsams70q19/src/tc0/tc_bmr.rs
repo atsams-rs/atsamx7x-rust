@@ -1,137 +1,86 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TC_BMR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register TC_BMR"]
+pub type R = crate::R<u32, super::TC_BMR>;
+#[doc = "Writer for register TC_BMR"]
+pub type W = crate::W<u32, super::TC_BMR>;
+#[doc = "Register TC_BMR `reset()`'s with value 0"]
+impl crate::ResetValue for super::TC_BMR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "External Clock Signal 0 Selection\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum TC0XC0S_A {
+    #[doc = "0: Signal connected to XC0: TCLK0"]
+    TCLK0 = 0,
+    #[doc = "2: Signal connected to XC0: TIOA1"]
+    TIOA1 = 2,
+    #[doc = "3: Signal connected to XC0: TIOA2"]
+    TIOA2 = 3,
+}
+impl From<TC0XC0S_A> for u8 {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: TC0XC0S_A) -> Self {
+        variant as _
     }
 }
-#[doc = "Possible values of the field `TC0XC0S`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TC0XC0SR {
-    #[doc = "Signal connected to XC0: TCLK0"]
-    TCLK0,
-    #[doc = "Signal connected to XC0: TIOA1"]
-    TIOA1,
-    #[doc = "Signal connected to XC0: TIOA2"]
-    TIOA2,
-}
-impl crate::ToBits<u8> for TC0XC0SR {
+#[doc = "Reader of field `TC0XC0S`"]
+pub type TC0XC0S_R = crate::R<u8, TC0XC0S_A>;
+impl TC0XC0S_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            TC0XC0SR::TCLK0 => 0,
-            TC0XC0SR::TIOA1 => 2,
-            TC0XC0SR::TIOA2 => 3,
+    pub fn variant(&self) -> crate::Variant<u8, TC0XC0S_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(TC0XC0S_A::TCLK0),
+            2 => Val(TC0XC0S_A::TIOA1),
+            3 => Val(TC0XC0S_A::TIOA2),
+            i => Res(i),
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type TC0XC0S_R = crate::FR<u8, TC0XC0SR>;
-impl TC0XC0S_R {
     #[doc = "Checks if the value of the field is `TCLK0`"]
     #[inline(always)]
     pub fn is_tclk0(&self) -> bool {
-        *self == TC0XC0SR::TCLK0
+        *self == TC0XC0S_A::TCLK0
     }
     #[doc = "Checks if the value of the field is `TIOA1`"]
     #[inline(always)]
     pub fn is_tioa1(&self) -> bool {
-        *self == TC0XC0SR::TIOA1
+        *self == TC0XC0S_A::TIOA1
     }
     #[doc = "Checks if the value of the field is `TIOA2`"]
     #[inline(always)]
     pub fn is_tioa2(&self) -> bool {
-        *self == TC0XC0SR::TIOA2
+        *self == TC0XC0S_A::TIOA2
     }
 }
-#[doc = "Values that can be written to the field `TC0XC0S`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TC0XC0SW {
-    #[doc = "Signal connected to XC0: TCLK0"]
-    TCLK0,
-    #[doc = "Signal connected to XC0: TIOA1"]
-    TIOA1,
-    #[doc = "Signal connected to XC0: TIOA2"]
-    TIOA2,
-}
-impl TC0XC0SW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TC0XC0SW::TCLK0 => 0,
-            TC0XC0SW::TIOA1 => 2,
-            TC0XC0SW::TIOA2 => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _TC0XC0SW<'a> {
+#[doc = "Write proxy for field `TC0XC0S`"]
+pub struct TC0XC0S_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TC0XC0SW<'a> {
+impl<'a> TC0XC0S_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: TC0XC0SW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: TC0XC0S_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Signal connected to XC0: TCLK0"]
     #[inline(always)]
     pub fn tclk0(self) -> &'a mut W {
-        self.variant(TC0XC0SW::TCLK0)
+        self.variant(TC0XC0S_A::TCLK0)
     }
     #[doc = "Signal connected to XC0: TIOA1"]
     #[inline(always)]
     pub fn tioa1(self) -> &'a mut W {
-        self.variant(TC0XC0SW::TIOA1)
+        self.variant(TC0XC0S_A::TIOA1)
     }
     #[doc = "Signal connected to XC0: TIOA2"]
     #[inline(always)]
     pub fn tioa2(self) -> &'a mut W {
-        self.variant(TC0XC0SW::TIOA2)
+        self.variant(TC0XC0S_A::TIOA2)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -140,91 +89,77 @@ impl<'a> _TC0XC0SW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `TC1XC1S`"]
+#[doc = "External Clock Signal 1 Selection\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TC1XC1SR {
-    #[doc = "Signal connected to XC1: TCLK1"]
-    TCLK1,
-    #[doc = "Signal connected to XC1: TIOA0"]
-    TIOA0,
-    #[doc = "Signal connected to XC1: TIOA2"]
-    TIOA2,
+#[repr(u8)]
+pub enum TC1XC1S_A {
+    #[doc = "0: Signal connected to XC1: TCLK1"]
+    TCLK1 = 0,
+    #[doc = "2: Signal connected to XC1: TIOA0"]
+    TIOA0 = 2,
+    #[doc = "3: Signal connected to XC1: TIOA2"]
+    TIOA2 = 3,
 }
-impl crate::ToBits<u8> for TC1XC1SR {
+impl From<TC1XC1S_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            TC1XC1SR::TCLK1 => 0,
-            TC1XC1SR::TIOA0 => 2,
-            TC1XC1SR::TIOA2 => 3,
-        }
+    fn from(variant: TC1XC1S_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type TC1XC1S_R = crate::FR<u8, TC1XC1SR>;
+#[doc = "Reader of field `TC1XC1S`"]
+pub type TC1XC1S_R = crate::R<u8, TC1XC1S_A>;
 impl TC1XC1S_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, TC1XC1S_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(TC1XC1S_A::TCLK1),
+            2 => Val(TC1XC1S_A::TIOA0),
+            3 => Val(TC1XC1S_A::TIOA2),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `TCLK1`"]
     #[inline(always)]
     pub fn is_tclk1(&self) -> bool {
-        *self == TC1XC1SR::TCLK1
+        *self == TC1XC1S_A::TCLK1
     }
     #[doc = "Checks if the value of the field is `TIOA0`"]
     #[inline(always)]
     pub fn is_tioa0(&self) -> bool {
-        *self == TC1XC1SR::TIOA0
+        *self == TC1XC1S_A::TIOA0
     }
     #[doc = "Checks if the value of the field is `TIOA2`"]
     #[inline(always)]
     pub fn is_tioa2(&self) -> bool {
-        *self == TC1XC1SR::TIOA2
+        *self == TC1XC1S_A::TIOA2
     }
 }
-#[doc = "Values that can be written to the field `TC1XC1S`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TC1XC1SW {
-    #[doc = "Signal connected to XC1: TCLK1"]
-    TCLK1,
-    #[doc = "Signal connected to XC1: TIOA0"]
-    TIOA0,
-    #[doc = "Signal connected to XC1: TIOA2"]
-    TIOA2,
-}
-impl TC1XC1SW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TC1XC1SW::TCLK1 => 0,
-            TC1XC1SW::TIOA0 => 2,
-            TC1XC1SW::TIOA2 => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _TC1XC1SW<'a> {
+#[doc = "Write proxy for field `TC1XC1S`"]
+pub struct TC1XC1S_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TC1XC1SW<'a> {
+impl<'a> TC1XC1S_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: TC1XC1SW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: TC1XC1S_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Signal connected to XC1: TCLK1"]
     #[inline(always)]
     pub fn tclk1(self) -> &'a mut W {
-        self.variant(TC1XC1SW::TCLK1)
+        self.variant(TC1XC1S_A::TCLK1)
     }
     #[doc = "Signal connected to XC1: TIOA0"]
     #[inline(always)]
     pub fn tioa0(self) -> &'a mut W {
-        self.variant(TC1XC1SW::TIOA0)
+        self.variant(TC1XC1S_A::TIOA0)
     }
     #[doc = "Signal connected to XC1: TIOA2"]
     #[inline(always)]
     pub fn tioa2(self) -> &'a mut W {
-        self.variant(TC1XC1SW::TIOA2)
+        self.variant(TC1XC1S_A::TIOA2)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -233,91 +168,77 @@ impl<'a> _TC1XC1SW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `TC2XC2S`"]
+#[doc = "External Clock Signal 2 Selection\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TC2XC2SR {
-    #[doc = "Signal connected to XC2: TCLK2"]
-    TCLK2,
-    #[doc = "Signal connected to XC2: TIOA0"]
-    TIOA0,
-    #[doc = "Signal connected to XC2: TIOA1"]
-    TIOA1,
+#[repr(u8)]
+pub enum TC2XC2S_A {
+    #[doc = "0: Signal connected to XC2: TCLK2"]
+    TCLK2 = 0,
+    #[doc = "2: Signal connected to XC2: TIOA0"]
+    TIOA0 = 2,
+    #[doc = "3: Signal connected to XC2: TIOA1"]
+    TIOA1 = 3,
 }
-impl crate::ToBits<u8> for TC2XC2SR {
+impl From<TC2XC2S_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            TC2XC2SR::TCLK2 => 0,
-            TC2XC2SR::TIOA0 => 2,
-            TC2XC2SR::TIOA1 => 3,
-        }
+    fn from(variant: TC2XC2S_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type TC2XC2S_R = crate::FR<u8, TC2XC2SR>;
+#[doc = "Reader of field `TC2XC2S`"]
+pub type TC2XC2S_R = crate::R<u8, TC2XC2S_A>;
 impl TC2XC2S_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, TC2XC2S_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(TC2XC2S_A::TCLK2),
+            2 => Val(TC2XC2S_A::TIOA0),
+            3 => Val(TC2XC2S_A::TIOA1),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `TCLK2`"]
     #[inline(always)]
     pub fn is_tclk2(&self) -> bool {
-        *self == TC2XC2SR::TCLK2
+        *self == TC2XC2S_A::TCLK2
     }
     #[doc = "Checks if the value of the field is `TIOA0`"]
     #[inline(always)]
     pub fn is_tioa0(&self) -> bool {
-        *self == TC2XC2SR::TIOA0
+        *self == TC2XC2S_A::TIOA0
     }
     #[doc = "Checks if the value of the field is `TIOA1`"]
     #[inline(always)]
     pub fn is_tioa1(&self) -> bool {
-        *self == TC2XC2SR::TIOA1
+        *self == TC2XC2S_A::TIOA1
     }
 }
-#[doc = "Values that can be written to the field `TC2XC2S`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TC2XC2SW {
-    #[doc = "Signal connected to XC2: TCLK2"]
-    TCLK2,
-    #[doc = "Signal connected to XC2: TIOA0"]
-    TIOA0,
-    #[doc = "Signal connected to XC2: TIOA1"]
-    TIOA1,
-}
-impl TC2XC2SW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TC2XC2SW::TCLK2 => 0,
-            TC2XC2SW::TIOA0 => 2,
-            TC2XC2SW::TIOA1 => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _TC2XC2SW<'a> {
+#[doc = "Write proxy for field `TC2XC2S`"]
+pub struct TC2XC2S_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TC2XC2SW<'a> {
+impl<'a> TC2XC2S_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: TC2XC2SW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: TC2XC2S_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Signal connected to XC2: TCLK2"]
     #[inline(always)]
     pub fn tclk2(self) -> &'a mut W {
-        self.variant(TC2XC2SW::TCLK2)
+        self.variant(TC2XC2S_A::TCLK2)
     }
     #[doc = "Signal connected to XC2: TIOA0"]
     #[inline(always)]
     pub fn tioa0(self) -> &'a mut W {
-        self.variant(TC2XC2SW::TIOA0)
+        self.variant(TC2XC2S_A::TIOA0)
     }
     #[doc = "Signal connected to XC2: TIOA1"]
     #[inline(always)]
     pub fn tioa1(self) -> &'a mut W {
-        self.variant(TC2XC2SW::TIOA1)
+        self.variant(TC2XC2S_A::TIOA1)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -326,13 +247,13 @@ impl<'a> _TC2XC2SW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type QDEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _QDENW<'a> {
+#[doc = "Reader of field `QDEN`"]
+pub type QDEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `QDEN`"]
+pub struct QDEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _QDENW<'a> {
+impl<'a> QDEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -350,13 +271,13 @@ impl<'a> _QDENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type POSEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _POSENW<'a> {
+#[doc = "Reader of field `POSEN`"]
+pub type POSEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `POSEN`"]
+pub struct POSEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _POSENW<'a> {
+impl<'a> POSEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -374,13 +295,13 @@ impl<'a> _POSENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type SPEEDEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _SPEEDENW<'a> {
+#[doc = "Reader of field `SPEEDEN`"]
+pub type SPEEDEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SPEEDEN`"]
+pub struct SPEEDEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPEEDENW<'a> {
+impl<'a> SPEEDEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -398,13 +319,13 @@ impl<'a> _SPEEDENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type QDTRANS_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _QDTRANSW<'a> {
+#[doc = "Reader of field `QDTRANS`"]
+pub type QDTRANS_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `QDTRANS`"]
+pub struct QDTRANS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _QDTRANSW<'a> {
+impl<'a> QDTRANS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -422,13 +343,13 @@ impl<'a> _QDTRANSW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type EDGPHA_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _EDGPHAW<'a> {
+#[doc = "Reader of field `EDGPHA`"]
+pub type EDGPHA_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `EDGPHA`"]
+pub struct EDGPHA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EDGPHAW<'a> {
+impl<'a> EDGPHA_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -446,13 +367,13 @@ impl<'a> _EDGPHAW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type INVA_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _INVAW<'a> {
+#[doc = "Reader of field `INVA`"]
+pub type INVA_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `INVA`"]
+pub struct INVA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _INVAW<'a> {
+impl<'a> INVA_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -470,13 +391,13 @@ impl<'a> _INVAW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type INVB_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _INVBW<'a> {
+#[doc = "Reader of field `INVB`"]
+pub type INVB_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `INVB`"]
+pub struct INVB_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _INVBW<'a> {
+impl<'a> INVB_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -494,13 +415,13 @@ impl<'a> _INVBW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type INVIDX_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _INVIDXW<'a> {
+#[doc = "Reader of field `INVIDX`"]
+pub type INVIDX_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `INVIDX`"]
+pub struct INVIDX_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _INVIDXW<'a> {
+impl<'a> INVIDX_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -518,13 +439,13 @@ impl<'a> _INVIDXW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type SWAP_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _SWAPW<'a> {
+#[doc = "Reader of field `SWAP`"]
+pub type SWAP_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SWAP`"]
+pub struct SWAP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWAPW<'a> {
+impl<'a> SWAP_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -542,13 +463,13 @@ impl<'a> _SWAPW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type IDXPHB_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _IDXPHBW<'a> {
+#[doc = "Reader of field `IDXPHB`"]
+pub type IDXPHB_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `IDXPHB`"]
+pub struct IDXPHB_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IDXPHBW<'a> {
+impl<'a> IDXPHB_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -566,13 +487,13 @@ impl<'a> _IDXPHBW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type MAXFILT_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _MAXFILTW<'a> {
+#[doc = "Reader of field `MAXFILT`"]
+pub type MAXFILT_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `MAXFILT`"]
+pub struct MAXFILT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MAXFILTW<'a> {
+impl<'a> MAXFILT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -581,157 +502,146 @@ impl<'a> _MAXFILTW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - External Clock Signal 0 Selection"]
     #[inline(always)]
     pub fn tc0xc0s(&self) -> TC0XC0S_R {
-        TC0XC0S_R::new((self.bits() & 0x03) as u8)
+        TC0XC0S_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bits 2:3 - External Clock Signal 1 Selection"]
     #[inline(always)]
     pub fn tc1xc1s(&self) -> TC1XC1S_R {
-        TC1XC1S_R::new(((self.bits() >> 2) & 0x03) as u8)
+        TC1XC1S_R::new(((self.bits >> 2) & 0x03) as u8)
     }
     #[doc = "Bits 4:5 - External Clock Signal 2 Selection"]
     #[inline(always)]
     pub fn tc2xc2s(&self) -> TC2XC2S_R {
-        TC2XC2S_R::new(((self.bits() >> 4) & 0x03) as u8)
+        TC2XC2S_R::new(((self.bits >> 4) & 0x03) as u8)
     }
     #[doc = "Bit 8 - Quadrature Decoder Enabled"]
     #[inline(always)]
     pub fn qden(&self) -> QDEN_R {
-        QDEN_R::new(((self.bits() >> 8) & 0x01) != 0)
+        QDEN_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Position Enabled"]
     #[inline(always)]
     pub fn posen(&self) -> POSEN_R {
-        POSEN_R::new(((self.bits() >> 9) & 0x01) != 0)
+        POSEN_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Speed Enabled"]
     #[inline(always)]
     pub fn speeden(&self) -> SPEEDEN_R {
-        SPEEDEN_R::new(((self.bits() >> 10) & 0x01) != 0)
+        SPEEDEN_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Quadrature Decoding Transparent"]
     #[inline(always)]
     pub fn qdtrans(&self) -> QDTRANS_R {
-        QDTRANS_R::new(((self.bits() >> 11) & 0x01) != 0)
+        QDTRANS_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - Edge on PHA Count Mode"]
     #[inline(always)]
     pub fn edgpha(&self) -> EDGPHA_R {
-        EDGPHA_R::new(((self.bits() >> 12) & 0x01) != 0)
+        EDGPHA_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 13 - Inverted PHA"]
     #[inline(always)]
     pub fn inva(&self) -> INVA_R {
-        INVA_R::new(((self.bits() >> 13) & 0x01) != 0)
+        INVA_R::new(((self.bits >> 13) & 0x01) != 0)
     }
     #[doc = "Bit 14 - Inverted PHB"]
     #[inline(always)]
     pub fn invb(&self) -> INVB_R {
-        INVB_R::new(((self.bits() >> 14) & 0x01) != 0)
+        INVB_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 15 - Inverted Index"]
     #[inline(always)]
     pub fn invidx(&self) -> INVIDX_R {
-        INVIDX_R::new(((self.bits() >> 15) & 0x01) != 0)
+        INVIDX_R::new(((self.bits >> 15) & 0x01) != 0)
     }
     #[doc = "Bit 16 - Swap PHA and PHB"]
     #[inline(always)]
     pub fn swap(&self) -> SWAP_R {
-        SWAP_R::new(((self.bits() >> 16) & 0x01) != 0)
+        SWAP_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Index Pin is PHB Pin"]
     #[inline(always)]
     pub fn idxphb(&self) -> IDXPHB_R {
-        IDXPHB_R::new(((self.bits() >> 17) & 0x01) != 0)
+        IDXPHB_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bits 20:25 - Maximum Filter"]
     #[inline(always)]
     pub fn maxfilt(&self) -> MAXFILT_R {
-        MAXFILT_R::new(((self.bits() >> 20) & 0x3f) as u8)
+        MAXFILT_R::new(((self.bits >> 20) & 0x3f) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - External Clock Signal 0 Selection"]
     #[inline(always)]
-    pub fn tc0xc0s(&mut self) -> _TC0XC0SW {
-        _TC0XC0SW { w: self }
+    pub fn tc0xc0s(&mut self) -> TC0XC0S_W {
+        TC0XC0S_W { w: self }
     }
     #[doc = "Bits 2:3 - External Clock Signal 1 Selection"]
     #[inline(always)]
-    pub fn tc1xc1s(&mut self) -> _TC1XC1SW {
-        _TC1XC1SW { w: self }
+    pub fn tc1xc1s(&mut self) -> TC1XC1S_W {
+        TC1XC1S_W { w: self }
     }
     #[doc = "Bits 4:5 - External Clock Signal 2 Selection"]
     #[inline(always)]
-    pub fn tc2xc2s(&mut self) -> _TC2XC2SW {
-        _TC2XC2SW { w: self }
+    pub fn tc2xc2s(&mut self) -> TC2XC2S_W {
+        TC2XC2S_W { w: self }
     }
     #[doc = "Bit 8 - Quadrature Decoder Enabled"]
     #[inline(always)]
-    pub fn qden(&mut self) -> _QDENW {
-        _QDENW { w: self }
+    pub fn qden(&mut self) -> QDEN_W {
+        QDEN_W { w: self }
     }
     #[doc = "Bit 9 - Position Enabled"]
     #[inline(always)]
-    pub fn posen(&mut self) -> _POSENW {
-        _POSENW { w: self }
+    pub fn posen(&mut self) -> POSEN_W {
+        POSEN_W { w: self }
     }
     #[doc = "Bit 10 - Speed Enabled"]
     #[inline(always)]
-    pub fn speeden(&mut self) -> _SPEEDENW {
-        _SPEEDENW { w: self }
+    pub fn speeden(&mut self) -> SPEEDEN_W {
+        SPEEDEN_W { w: self }
     }
     #[doc = "Bit 11 - Quadrature Decoding Transparent"]
     #[inline(always)]
-    pub fn qdtrans(&mut self) -> _QDTRANSW {
-        _QDTRANSW { w: self }
+    pub fn qdtrans(&mut self) -> QDTRANS_W {
+        QDTRANS_W { w: self }
     }
     #[doc = "Bit 12 - Edge on PHA Count Mode"]
     #[inline(always)]
-    pub fn edgpha(&mut self) -> _EDGPHAW {
-        _EDGPHAW { w: self }
+    pub fn edgpha(&mut self) -> EDGPHA_W {
+        EDGPHA_W { w: self }
     }
     #[doc = "Bit 13 - Inverted PHA"]
     #[inline(always)]
-    pub fn inva(&mut self) -> _INVAW {
-        _INVAW { w: self }
+    pub fn inva(&mut self) -> INVA_W {
+        INVA_W { w: self }
     }
     #[doc = "Bit 14 - Inverted PHB"]
     #[inline(always)]
-    pub fn invb(&mut self) -> _INVBW {
-        _INVBW { w: self }
+    pub fn invb(&mut self) -> INVB_W {
+        INVB_W { w: self }
     }
     #[doc = "Bit 15 - Inverted Index"]
     #[inline(always)]
-    pub fn invidx(&mut self) -> _INVIDXW {
-        _INVIDXW { w: self }
+    pub fn invidx(&mut self) -> INVIDX_W {
+        INVIDX_W { w: self }
     }
     #[doc = "Bit 16 - Swap PHA and PHB"]
     #[inline(always)]
-    pub fn swap(&mut self) -> _SWAPW {
-        _SWAPW { w: self }
+    pub fn swap(&mut self) -> SWAP_W {
+        SWAP_W { w: self }
     }
     #[doc = "Bit 17 - Index Pin is PHB Pin"]
     #[inline(always)]
-    pub fn idxphb(&mut self) -> _IDXPHBW {
-        _IDXPHBW { w: self }
+    pub fn idxphb(&mut self) -> IDXPHB_W {
+        IDXPHB_W { w: self }
     }
     #[doc = "Bits 20:25 - Maximum Filter"]
     #[inline(always)]
-    pub fn maxfilt(&mut self) -> _MAXFILTW {
-        _MAXFILTW { w: self }
+    pub fn maxfilt(&mut self) -> MAXFILT_W {
+        MAXFILT_W { w: self }
     }
 }

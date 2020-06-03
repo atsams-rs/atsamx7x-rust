@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::I2SC_SCR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register I2SC_SCR"]
+pub type W = crate::W<u32, super::I2SC_SCR>;
+#[doc = "Register I2SC_SCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::I2SC_SCR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _RXORW<'a> {
+#[doc = "Write proxy for field `RXOR`"]
+pub struct RXOR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXORW<'a> {
+impl<'a> RXOR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _RXORW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TXURW<'a> {
+#[doc = "Write proxy for field `TXUR`"]
+pub struct TXUR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXURW<'a> {
+impl<'a> TXUR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _TXURW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RXORCHW<'a> {
+#[doc = "Write proxy for field `RXORCH`"]
+pub struct RXORCH_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXORCHW<'a> {
+impl<'a> RXORCH_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -83,11 +64,11 @@ impl<'a> _RXORCHW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TXURCHW<'a> {
+#[doc = "Write proxy for field `TXURCH`"]
+pub struct TXURCH_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXURCHW<'a> {
+impl<'a> TXURCH_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -96,30 +77,24 @@ impl<'a> _TXURCHW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 2 - Receive Overrun Status Clear"]
     #[inline(always)]
-    pub fn rxor(&mut self) -> _RXORW {
-        _RXORW { w: self }
+    pub fn rxor(&mut self) -> RXOR_W {
+        RXOR_W { w: self }
     }
     #[doc = "Bit 6 - Transmit Underrun Status Clear"]
     #[inline(always)]
-    pub fn txur(&mut self) -> _TXURW {
-        _TXURW { w: self }
+    pub fn txur(&mut self) -> TXUR_W {
+        TXUR_W { w: self }
     }
     #[doc = "Bits 8:9 - Receive Overrun Per Channel Status Clear"]
     #[inline(always)]
-    pub fn rxorch(&mut self) -> _RXORCHW {
-        _RXORCHW { w: self }
+    pub fn rxorch(&mut self) -> RXORCH_W {
+        RXORCH_W { w: self }
     }
     #[doc = "Bits 20:21 - Transmit Underrun Per Channel Status Clear"]
     #[inline(always)]
-    pub fn txurch(&mut self) -> _TXURCHW {
-        _TXURCHW { w: self }
+    pub fn txurch(&mut self) -> TXURCH_W {
+        TXURCH_W { w: self }
     }
 }

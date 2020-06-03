@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_CMPVUPD {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register PWM_CMPVUPD"]
+pub type W = crate::W<u32, super::PWM_CMPVUPD>;
+#[doc = "Register PWM_CMPVUPD `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_CMPVUPD {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _CVUPDW<'a> {
+#[doc = "Write proxy for field `CVUPD`"]
+pub struct CVUPD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CVUPDW<'a> {
+impl<'a> CVUPD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u32) -> &'a mut W {
@@ -39,11 +20,11 @@ impl<'a> _CVUPDW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CVMUPDW<'a> {
+#[doc = "Write proxy for field `CVMUPD`"]
+pub struct CVMUPD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CVMUPDW<'a> {
+impl<'a> CVMUPD_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -62,20 +43,14 @@ impl<'a> _CVMUPDW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:23 - Comparison x Value Update"]
     #[inline(always)]
-    pub fn cvupd(&mut self) -> _CVUPDW {
-        _CVUPDW { w: self }
+    pub fn cvupd(&mut self) -> CVUPD_W {
+        CVUPD_W { w: self }
     }
     #[doc = "Bit 24 - Comparison x Value Mode Update"]
     #[inline(always)]
-    pub fn cvmupd(&mut self) -> _CVMUPDW {
-        _CVMUPDW { w: self }
+    pub fn cvmupd(&mut self) -> CVMUPD_W {
+        CVMUPD_W { w: self }
     }
 }

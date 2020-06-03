@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SDRAMC_CFR1 {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register SDRAMC_CFR1"]
+pub type R = crate::R<u32, super::SDRAMC_CFR1>;
+#[doc = "Writer for register SDRAMC_CFR1"]
+pub type W = crate::W<u32, super::SDRAMC_CFR1>;
+#[doc = "Register SDRAMC_CFR1 `reset()`'s with value 0"]
+impl crate::ResetValue for super::SDRAMC_CFR1 {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type TMRD_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _TMRDW<'a> {
+#[doc = "Reader of field `TMRD`"]
+pub type TMRD_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TMRD`"]
+pub struct TMRD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TMRDW<'a> {
+impl<'a> TMRD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -61,77 +24,63 @@ impl<'a> _TMRDW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `UNAL`"]
+#[doc = "Support Unaligned Access\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum UNALR {
-    #[doc = "Unaligned access is not supported."]
-    UNSUPPORTED,
-    #[doc = "Unaligned access is supported."]
-    SUPPORTED,
+pub enum UNAL_A {
+    #[doc = "0: Unaligned access is not supported."]
+    UNSUPPORTED = 0,
+    #[doc = "1: Unaligned access is supported."]
+    SUPPORTED = 1,
 }
-impl crate::ToBits<bool> for UNALR {
+impl From<UNAL_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            UNALR::UNSUPPORTED => false,
-            UNALR::SUPPORTED => true,
-        }
+    fn from(variant: UNAL_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type UNAL_R = crate::FR<bool, UNALR>;
+#[doc = "Reader of field `UNAL`"]
+pub type UNAL_R = crate::R<bool, UNAL_A>;
 impl UNAL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> UNAL_A {
+        match self.bits {
+            false => UNAL_A::UNSUPPORTED,
+            true => UNAL_A::SUPPORTED,
+        }
+    }
     #[doc = "Checks if the value of the field is `UNSUPPORTED`"]
     #[inline(always)]
     pub fn is_unsupported(&self) -> bool {
-        *self == UNALR::UNSUPPORTED
+        *self == UNAL_A::UNSUPPORTED
     }
     #[doc = "Checks if the value of the field is `SUPPORTED`"]
     #[inline(always)]
     pub fn is_supported(&self) -> bool {
-        *self == UNALR::SUPPORTED
+        *self == UNAL_A::SUPPORTED
     }
 }
-#[doc = "Values that can be written to the field `UNAL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum UNALW {
-    #[doc = "Unaligned access is not supported."]
-    UNSUPPORTED,
-    #[doc = "Unaligned access is supported."]
-    SUPPORTED,
-}
-impl UNALW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            UNALW::UNSUPPORTED => false,
-            UNALW::SUPPORTED => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _UNALW<'a> {
+#[doc = "Write proxy for field `UNAL`"]
+pub struct UNAL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UNALW<'a> {
+impl<'a> UNAL_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: UNALW) -> &'a mut W {
+    pub fn variant(self, variant: UNAL_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Unaligned access is not supported."]
     #[inline(always)]
     pub fn unsupported(self) -> &'a mut W {
-        self.variant(UNALW::UNSUPPORTED)
+        self.variant(UNAL_A::UNSUPPORTED)
     }
     #[doc = "Unaligned access is supported."]
     #[inline(always)]
     pub fn supported(self) -> &'a mut W {
-        self.variant(UNALW::SUPPORTED)
+        self.variant(UNAL_A::SUPPORTED)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -151,37 +100,26 @@ impl<'a> _UNALW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - Load Mode Register Command to Active or Refresh Command"]
     #[inline(always)]
     pub fn tmrd(&self) -> TMRD_R {
-        TMRD_R::new((self.bits() & 0x0f) as u8)
+        TMRD_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bit 8 - Support Unaligned Access"]
     #[inline(always)]
     pub fn unal(&self) -> UNAL_R {
-        UNAL_R::new(((self.bits() >> 8) & 0x01) != 0)
+        UNAL_R::new(((self.bits >> 8) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:3 - Load Mode Register Command to Active or Refresh Command"]
     #[inline(always)]
-    pub fn tmrd(&mut self) -> _TMRDW {
-        _TMRDW { w: self }
+    pub fn tmrd(&mut self) -> TMRD_W {
+        TMRD_W { w: self }
     }
     #[doc = "Bit 8 - Support Unaligned Access"]
     #[inline(always)]
-    pub fn unal(&mut self) -> _UNALW {
-        _UNALW { w: self }
+    pub fn unal(&mut self) -> UNAL_W {
+        UNAL_W { w: self }
     }
 }

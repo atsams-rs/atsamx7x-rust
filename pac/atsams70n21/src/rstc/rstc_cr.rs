@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::RSTC_CR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register RSTC_CR"]
+pub type W = crate::W<u32, super::RSTC_CR>;
+#[doc = "Register RSTC_CR `reset()`'s with value 0"]
+impl crate::ResetValue for super::RSTC_CR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _PROCRSTW<'a> {
+#[doc = "Write proxy for field `PROCRST`"]
+pub struct PROCRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PROCRSTW<'a> {
+impl<'a> PROCRST_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _PROCRSTW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EXTRSTW<'a> {
+#[doc = "Write proxy for field `EXTRST`"]
+pub struct EXTRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EXTRSTW<'a> {
+impl<'a> EXTRST_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,36 +52,33 @@ impl<'a> _EXTRSTW<'a> {
         self.w
     }
 }
-#[doc = "Values that can be written to the field `KEY`"]
+#[doc = "System Reset Key\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum KEYW {
-    #[doc = "Writing any other value in this field aborts the write operation."]
-    PASSWD,
+#[repr(u8)]
+pub enum KEY_AW {
+    #[doc = "165: Writing any other value in this field aborts the write operation."]
+    PASSWD = 165,
 }
-impl KEYW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
+impl From<KEY_AW> for u8 {
     #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            KEYW::PASSWD => 165,
-        }
+    fn from(variant: KEY_AW) -> Self {
+        variant as _
     }
 }
-#[doc = r"Proxy"]
-pub struct _KEYW<'a> {
+#[doc = "Write proxy for field `KEY`"]
+pub struct KEY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _KEYW<'a> {
+impl<'a> KEY_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: KEYW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: KEY_AW) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Writing any other value in this field aborts the write operation."]
     #[inline(always)]
     pub fn passwd(self) -> &'a mut W {
-        self.variant(KEYW::PASSWD)
+        self.variant(KEY_AW::PASSWD)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -110,25 +88,19 @@ impl<'a> _KEYW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Processor Reset"]
     #[inline(always)]
-    pub fn procrst(&mut self) -> _PROCRSTW {
-        _PROCRSTW { w: self }
+    pub fn procrst(&mut self) -> PROCRST_W {
+        PROCRST_W { w: self }
     }
     #[doc = "Bit 3 - External Reset"]
     #[inline(always)]
-    pub fn extrst(&mut self) -> _EXTRSTW {
-        _EXTRSTW { w: self }
+    pub fn extrst(&mut self) -> EXTRST_W {
+        EXTRST_W { w: self }
     }
     #[doc = "Bits 24:31 - System Reset Key"]
     #[inline(always)]
-    pub fn key(&mut self) -> _KEYW {
-        _KEYW { w: self }
+    pub fn key(&mut self) -> KEY_W {
+        KEY_W { w: self }
     }
 }

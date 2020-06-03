@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::XDMAC_GSWF {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register XDMAC_GSWF"]
+pub type W = crate::W<u32, super::XDMAC_GSWF>;
+#[doc = "Register XDMAC_GSWF `reset()`'s with value 0"]
+impl crate::ResetValue for super::XDMAC_GSWF {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _SWF0W<'a> {
+#[doc = "Write proxy for field `SWF0`"]
+pub struct SWF0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF0W<'a> {
+impl<'a> SWF0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _SWF0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF1W<'a> {
+#[doc = "Write proxy for field `SWF1`"]
+pub struct SWF1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF1W<'a> {
+impl<'a> SWF1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _SWF1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF2W<'a> {
+#[doc = "Write proxy for field `SWF2`"]
+pub struct SWF2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF2W<'a> {
+impl<'a> SWF2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _SWF2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF3W<'a> {
+#[doc = "Write proxy for field `SWF3`"]
+pub struct SWF3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF3W<'a> {
+impl<'a> SWF3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _SWF3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF4W<'a> {
+#[doc = "Write proxy for field `SWF4`"]
+pub struct SWF4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF4W<'a> {
+impl<'a> SWF4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _SWF4W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF5W<'a> {
+#[doc = "Write proxy for field `SWF5`"]
+pub struct SWF5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF5W<'a> {
+impl<'a> SWF5_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _SWF5W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF6W<'a> {
+#[doc = "Write proxy for field `SWF6`"]
+pub struct SWF6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF6W<'a> {
+impl<'a> SWF6_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _SWF6W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF7W<'a> {
+#[doc = "Write proxy for field `SWF7`"]
+pub struct SWF7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF7W<'a> {
+impl<'a> SWF7_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +184,11 @@ impl<'a> _SWF7W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF8W<'a> {
+#[doc = "Write proxy for field `SWF8`"]
+pub struct SWF8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF8W<'a> {
+impl<'a> SWF8_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -225,11 +206,11 @@ impl<'a> _SWF8W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF9W<'a> {
+#[doc = "Write proxy for field `SWF9`"]
+pub struct SWF9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF9W<'a> {
+impl<'a> SWF9_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -247,11 +228,11 @@ impl<'a> _SWF9W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF10W<'a> {
+#[doc = "Write proxy for field `SWF10`"]
+pub struct SWF10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF10W<'a> {
+impl<'a> SWF10_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -269,11 +250,11 @@ impl<'a> _SWF10W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF11W<'a> {
+#[doc = "Write proxy for field `SWF11`"]
+pub struct SWF11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF11W<'a> {
+impl<'a> SWF11_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -291,11 +272,11 @@ impl<'a> _SWF11W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF12W<'a> {
+#[doc = "Write proxy for field `SWF12`"]
+pub struct SWF12_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF12W<'a> {
+impl<'a> SWF12_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -313,11 +294,11 @@ impl<'a> _SWF12W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF13W<'a> {
+#[doc = "Write proxy for field `SWF13`"]
+pub struct SWF13_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF13W<'a> {
+impl<'a> SWF13_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -335,11 +316,11 @@ impl<'a> _SWF13W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF14W<'a> {
+#[doc = "Write proxy for field `SWF14`"]
+pub struct SWF14_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF14W<'a> {
+impl<'a> SWF14_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -357,11 +338,11 @@ impl<'a> _SWF14W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF15W<'a> {
+#[doc = "Write proxy for field `SWF15`"]
+pub struct SWF15_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF15W<'a> {
+impl<'a> SWF15_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -379,11 +360,11 @@ impl<'a> _SWF15W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF16W<'a> {
+#[doc = "Write proxy for field `SWF16`"]
+pub struct SWF16_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF16W<'a> {
+impl<'a> SWF16_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -401,11 +382,11 @@ impl<'a> _SWF16W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF17W<'a> {
+#[doc = "Write proxy for field `SWF17`"]
+pub struct SWF17_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF17W<'a> {
+impl<'a> SWF17_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -423,11 +404,11 @@ impl<'a> _SWF17W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF18W<'a> {
+#[doc = "Write proxy for field `SWF18`"]
+pub struct SWF18_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF18W<'a> {
+impl<'a> SWF18_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -445,11 +426,11 @@ impl<'a> _SWF18W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF19W<'a> {
+#[doc = "Write proxy for field `SWF19`"]
+pub struct SWF19_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF19W<'a> {
+impl<'a> SWF19_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -467,11 +448,11 @@ impl<'a> _SWF19W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF20W<'a> {
+#[doc = "Write proxy for field `SWF20`"]
+pub struct SWF20_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF20W<'a> {
+impl<'a> SWF20_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -489,11 +470,11 @@ impl<'a> _SWF20W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF21W<'a> {
+#[doc = "Write proxy for field `SWF21`"]
+pub struct SWF21_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF21W<'a> {
+impl<'a> SWF21_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -511,11 +492,11 @@ impl<'a> _SWF21W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF22W<'a> {
+#[doc = "Write proxy for field `SWF22`"]
+pub struct SWF22_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF22W<'a> {
+impl<'a> SWF22_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -533,11 +514,11 @@ impl<'a> _SWF22W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWF23W<'a> {
+#[doc = "Write proxy for field `SWF23`"]
+pub struct SWF23_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWF23W<'a> {
+impl<'a> SWF23_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -556,130 +537,124 @@ impl<'a> _SWF23W<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - XDMAC Channel 0 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf0(&mut self) -> _SWF0W {
-        _SWF0W { w: self }
+    pub fn swf0(&mut self) -> SWF0_W {
+        SWF0_W { w: self }
     }
     #[doc = "Bit 1 - XDMAC Channel 1 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf1(&mut self) -> _SWF1W {
-        _SWF1W { w: self }
+    pub fn swf1(&mut self) -> SWF1_W {
+        SWF1_W { w: self }
     }
     #[doc = "Bit 2 - XDMAC Channel 2 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf2(&mut self) -> _SWF2W {
-        _SWF2W { w: self }
+    pub fn swf2(&mut self) -> SWF2_W {
+        SWF2_W { w: self }
     }
     #[doc = "Bit 3 - XDMAC Channel 3 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf3(&mut self) -> _SWF3W {
-        _SWF3W { w: self }
+    pub fn swf3(&mut self) -> SWF3_W {
+        SWF3_W { w: self }
     }
     #[doc = "Bit 4 - XDMAC Channel 4 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf4(&mut self) -> _SWF4W {
-        _SWF4W { w: self }
+    pub fn swf4(&mut self) -> SWF4_W {
+        SWF4_W { w: self }
     }
     #[doc = "Bit 5 - XDMAC Channel 5 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf5(&mut self) -> _SWF5W {
-        _SWF5W { w: self }
+    pub fn swf5(&mut self) -> SWF5_W {
+        SWF5_W { w: self }
     }
     #[doc = "Bit 6 - XDMAC Channel 6 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf6(&mut self) -> _SWF6W {
-        _SWF6W { w: self }
+    pub fn swf6(&mut self) -> SWF6_W {
+        SWF6_W { w: self }
     }
     #[doc = "Bit 7 - XDMAC Channel 7 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf7(&mut self) -> _SWF7W {
-        _SWF7W { w: self }
+    pub fn swf7(&mut self) -> SWF7_W {
+        SWF7_W { w: self }
     }
     #[doc = "Bit 8 - XDMAC Channel 8 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf8(&mut self) -> _SWF8W {
-        _SWF8W { w: self }
+    pub fn swf8(&mut self) -> SWF8_W {
+        SWF8_W { w: self }
     }
     #[doc = "Bit 9 - XDMAC Channel 9 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf9(&mut self) -> _SWF9W {
-        _SWF9W { w: self }
+    pub fn swf9(&mut self) -> SWF9_W {
+        SWF9_W { w: self }
     }
     #[doc = "Bit 10 - XDMAC Channel 10 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf10(&mut self) -> _SWF10W {
-        _SWF10W { w: self }
+    pub fn swf10(&mut self) -> SWF10_W {
+        SWF10_W { w: self }
     }
     #[doc = "Bit 11 - XDMAC Channel 11 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf11(&mut self) -> _SWF11W {
-        _SWF11W { w: self }
+    pub fn swf11(&mut self) -> SWF11_W {
+        SWF11_W { w: self }
     }
     #[doc = "Bit 12 - XDMAC Channel 12 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf12(&mut self) -> _SWF12W {
-        _SWF12W { w: self }
+    pub fn swf12(&mut self) -> SWF12_W {
+        SWF12_W { w: self }
     }
     #[doc = "Bit 13 - XDMAC Channel 13 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf13(&mut self) -> _SWF13W {
-        _SWF13W { w: self }
+    pub fn swf13(&mut self) -> SWF13_W {
+        SWF13_W { w: self }
     }
     #[doc = "Bit 14 - XDMAC Channel 14 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf14(&mut self) -> _SWF14W {
-        _SWF14W { w: self }
+    pub fn swf14(&mut self) -> SWF14_W {
+        SWF14_W { w: self }
     }
     #[doc = "Bit 15 - XDMAC Channel 15 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf15(&mut self) -> _SWF15W {
-        _SWF15W { w: self }
+    pub fn swf15(&mut self) -> SWF15_W {
+        SWF15_W { w: self }
     }
     #[doc = "Bit 16 - XDMAC Channel 16 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf16(&mut self) -> _SWF16W {
-        _SWF16W { w: self }
+    pub fn swf16(&mut self) -> SWF16_W {
+        SWF16_W { w: self }
     }
     #[doc = "Bit 17 - XDMAC Channel 17 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf17(&mut self) -> _SWF17W {
-        _SWF17W { w: self }
+    pub fn swf17(&mut self) -> SWF17_W {
+        SWF17_W { w: self }
     }
     #[doc = "Bit 18 - XDMAC Channel 18 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf18(&mut self) -> _SWF18W {
-        _SWF18W { w: self }
+    pub fn swf18(&mut self) -> SWF18_W {
+        SWF18_W { w: self }
     }
     #[doc = "Bit 19 - XDMAC Channel 19 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf19(&mut self) -> _SWF19W {
-        _SWF19W { w: self }
+    pub fn swf19(&mut self) -> SWF19_W {
+        SWF19_W { w: self }
     }
     #[doc = "Bit 20 - XDMAC Channel 20 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf20(&mut self) -> _SWF20W {
-        _SWF20W { w: self }
+    pub fn swf20(&mut self) -> SWF20_W {
+        SWF20_W { w: self }
     }
     #[doc = "Bit 21 - XDMAC Channel 21 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf21(&mut self) -> _SWF21W {
-        _SWF21W { w: self }
+    pub fn swf21(&mut self) -> SWF21_W {
+        SWF21_W { w: self }
     }
     #[doc = "Bit 22 - XDMAC Channel 22 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf22(&mut self) -> _SWF22W {
-        _SWF22W { w: self }
+    pub fn swf22(&mut self) -> SWF22_W {
+        SWF22_W { w: self }
     }
     #[doc = "Bit 23 - XDMAC Channel 23 Software Flush Request Bit"]
     #[inline(always)]
-    pub fn swf23(&mut self) -> _SWF23W {
-        _SWF23W { w: self }
+    pub fn swf23(&mut self) -> SWF23_W {
+        SWF23_W { w: self }
     }
 }

@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PMC_OCR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register PMC_OCR"]
+pub type R = crate::R<u32, super::PMC_OCR>;
+#[doc = "Writer for register PMC_OCR"]
+pub type W = crate::W<u32, super::PMC_OCR>;
+#[doc = "Register PMC_OCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::PMC_OCR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type CAL4_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _CAL4W<'a> {
+#[doc = "Reader of field `CAL4`"]
+pub type CAL4_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `CAL4`"]
+pub struct CAL4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CAL4W<'a> {
+impl<'a> CAL4_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _CAL4W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type SEL4_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _SEL4W<'a> {
+#[doc = "Reader of field `SEL4`"]
+pub type SEL4_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SEL4`"]
+pub struct SEL4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SEL4W<'a> {
+impl<'a> SEL4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -85,13 +48,13 @@ impl<'a> _SEL4W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CAL8_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _CAL8W<'a> {
+#[doc = "Reader of field `CAL8`"]
+pub type CAL8_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `CAL8`"]
+pub struct CAL8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CAL8W<'a> {
+impl<'a> CAL8_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -99,13 +62,13 @@ impl<'a> _CAL8W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type SEL8_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _SEL8W<'a> {
+#[doc = "Reader of field `SEL8`"]
+pub type SEL8_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SEL8`"]
+pub struct SEL8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SEL8W<'a> {
+impl<'a> SEL8_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -123,13 +86,13 @@ impl<'a> _SEL8W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CAL12_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _CAL12W<'a> {
+#[doc = "Reader of field `CAL12`"]
+pub type CAL12_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `CAL12`"]
+pub struct CAL12_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CAL12W<'a> {
+impl<'a> CAL12_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -137,13 +100,13 @@ impl<'a> _CAL12W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type SEL12_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _SEL12W<'a> {
+#[doc = "Reader of field `SEL12`"]
+pub type SEL12_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SEL12`"]
+pub struct SEL12_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SEL12W<'a> {
+impl<'a> SEL12_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -162,77 +125,66 @@ impl<'a> _SEL12W<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:6 - Main RC Oscillator Calibration Bits for 4 MHz"]
     #[inline(always)]
     pub fn cal4(&self) -> CAL4_R {
-        CAL4_R::new((self.bits() & 0x7f) as u8)
+        CAL4_R::new((self.bits & 0x7f) as u8)
     }
     #[doc = "Bit 7 - Selection of Main RC Oscillator Calibration Bits for 4 MHz"]
     #[inline(always)]
     pub fn sel4(&self) -> SEL4_R {
-        SEL4_R::new(((self.bits() >> 7) & 0x01) != 0)
+        SEL4_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bits 8:14 - Main RC Oscillator Calibration Bits for 8 MHz"]
     #[inline(always)]
     pub fn cal8(&self) -> CAL8_R {
-        CAL8_R::new(((self.bits() >> 8) & 0x7f) as u8)
+        CAL8_R::new(((self.bits >> 8) & 0x7f) as u8)
     }
     #[doc = "Bit 15 - Selection of Main RC Oscillator Calibration Bits for 8 MHz"]
     #[inline(always)]
     pub fn sel8(&self) -> SEL8_R {
-        SEL8_R::new(((self.bits() >> 15) & 0x01) != 0)
+        SEL8_R::new(((self.bits >> 15) & 0x01) != 0)
     }
     #[doc = "Bits 16:22 - Main RC Oscillator Calibration Bits for 12 MHz"]
     #[inline(always)]
     pub fn cal12(&self) -> CAL12_R {
-        CAL12_R::new(((self.bits() >> 16) & 0x7f) as u8)
+        CAL12_R::new(((self.bits >> 16) & 0x7f) as u8)
     }
     #[doc = "Bit 23 - Selection of Main RC Oscillator Calibration Bits for 12 MHz"]
     #[inline(always)]
     pub fn sel12(&self) -> SEL12_R {
-        SEL12_R::new(((self.bits() >> 23) & 0x01) != 0)
+        SEL12_R::new(((self.bits >> 23) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:6 - Main RC Oscillator Calibration Bits for 4 MHz"]
     #[inline(always)]
-    pub fn cal4(&mut self) -> _CAL4W {
-        _CAL4W { w: self }
+    pub fn cal4(&mut self) -> CAL4_W {
+        CAL4_W { w: self }
     }
     #[doc = "Bit 7 - Selection of Main RC Oscillator Calibration Bits for 4 MHz"]
     #[inline(always)]
-    pub fn sel4(&mut self) -> _SEL4W {
-        _SEL4W { w: self }
+    pub fn sel4(&mut self) -> SEL4_W {
+        SEL4_W { w: self }
     }
     #[doc = "Bits 8:14 - Main RC Oscillator Calibration Bits for 8 MHz"]
     #[inline(always)]
-    pub fn cal8(&mut self) -> _CAL8W {
-        _CAL8W { w: self }
+    pub fn cal8(&mut self) -> CAL8_W {
+        CAL8_W { w: self }
     }
     #[doc = "Bit 15 - Selection of Main RC Oscillator Calibration Bits for 8 MHz"]
     #[inline(always)]
-    pub fn sel8(&mut self) -> _SEL8W {
-        _SEL8W { w: self }
+    pub fn sel8(&mut self) -> SEL8_W {
+        SEL8_W { w: self }
     }
     #[doc = "Bits 16:22 - Main RC Oscillator Calibration Bits for 12 MHz"]
     #[inline(always)]
-    pub fn cal12(&mut self) -> _CAL12W {
-        _CAL12W { w: self }
+    pub fn cal12(&mut self) -> CAL12_W {
+        CAL12_W { w: self }
     }
     #[doc = "Bit 23 - Selection of Main RC Oscillator Calibration Bits for 12 MHz"]
     #[inline(always)]
-    pub fn sel12(&mut self) -> _SEL12W {
-        _SEL12W { w: self }
+    pub fn sel12(&mut self) -> SEL12_W {
+        SEL12_W { w: self }
     }
 }

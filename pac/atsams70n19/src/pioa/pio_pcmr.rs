@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PIO_PCMR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register PIO_PCMR"]
+pub type R = crate::R<u32, super::PIO_PCMR>;
+#[doc = "Writer for register PIO_PCMR"]
+pub type W = crate::W<u32, super::PIO_PCMR>;
+#[doc = "Register PIO_PCMR `reset()`'s with value 0"]
+impl crate::ResetValue for super::PIO_PCMR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type PCEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _PCENW<'a> {
+#[doc = "Reader of field `PCEN`"]
+pub type PCEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PCEN`"]
+pub struct PCEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PCENW<'a> {
+impl<'a> PCEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,91 +34,77 @@ impl<'a> _PCENW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `DSIZE`"]
+#[doc = "Parallel Capture Mode Data Size\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DSIZER {
-    #[doc = "The reception data in the PIO_PCRHR is a byte (8-bit)"]
-    BYTE,
-    #[doc = "The reception data in the PIO_PCRHR is a half-word (16-bit)"]
-    HALFWORD,
-    #[doc = "The reception data in the PIO_PCRHR is a word (32-bit)"]
-    WORD,
+#[repr(u8)]
+pub enum DSIZE_A {
+    #[doc = "0: The reception data in the PIO_PCRHR is a byte (8-bit)"]
+    BYTE = 0,
+    #[doc = "1: The reception data in the PIO_PCRHR is a half-word (16-bit)"]
+    HALFWORD = 1,
+    #[doc = "2: The reception data in the PIO_PCRHR is a word (32-bit)"]
+    WORD = 2,
 }
-impl crate::ToBits<u8> for DSIZER {
+impl From<DSIZE_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            DSIZER::BYTE => 0,
-            DSIZER::HALFWORD => 1,
-            DSIZER::WORD => 2,
-        }
+    fn from(variant: DSIZE_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type DSIZE_R = crate::FR<u8, DSIZER>;
+#[doc = "Reader of field `DSIZE`"]
+pub type DSIZE_R = crate::R<u8, DSIZE_A>;
 impl DSIZE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, DSIZE_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(DSIZE_A::BYTE),
+            1 => Val(DSIZE_A::HALFWORD),
+            2 => Val(DSIZE_A::WORD),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `BYTE`"]
     #[inline(always)]
     pub fn is_byte(&self) -> bool {
-        *self == DSIZER::BYTE
+        *self == DSIZE_A::BYTE
     }
     #[doc = "Checks if the value of the field is `HALFWORD`"]
     #[inline(always)]
     pub fn is_halfword(&self) -> bool {
-        *self == DSIZER::HALFWORD
+        *self == DSIZE_A::HALFWORD
     }
     #[doc = "Checks if the value of the field is `WORD`"]
     #[inline(always)]
     pub fn is_word(&self) -> bool {
-        *self == DSIZER::WORD
+        *self == DSIZE_A::WORD
     }
 }
-#[doc = "Values that can be written to the field `DSIZE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DSIZEW {
-    #[doc = "The reception data in the PIO_PCRHR is a byte (8-bit)"]
-    BYTE,
-    #[doc = "The reception data in the PIO_PCRHR is a half-word (16-bit)"]
-    HALFWORD,
-    #[doc = "The reception data in the PIO_PCRHR is a word (32-bit)"]
-    WORD,
-}
-impl DSIZEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            DSIZEW::BYTE => 0,
-            DSIZEW::HALFWORD => 1,
-            DSIZEW::WORD => 2,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _DSIZEW<'a> {
+#[doc = "Write proxy for field `DSIZE`"]
+pub struct DSIZE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DSIZEW<'a> {
+impl<'a> DSIZE_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: DSIZEW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: DSIZE_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "The reception data in the PIO_PCRHR is a byte (8-bit)"]
     #[inline(always)]
     pub fn byte(self) -> &'a mut W {
-        self.variant(DSIZEW::BYTE)
+        self.variant(DSIZE_A::BYTE)
     }
     #[doc = "The reception data in the PIO_PCRHR is a half-word (16-bit)"]
     #[inline(always)]
     pub fn halfword(self) -> &'a mut W {
-        self.variant(DSIZEW::HALFWORD)
+        self.variant(DSIZE_A::HALFWORD)
     }
     #[doc = "The reception data in the PIO_PCRHR is a word (32-bit)"]
     #[inline(always)]
     pub fn word(self) -> &'a mut W {
-        self.variant(DSIZEW::WORD)
+        self.variant(DSIZE_A::WORD)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -164,13 +113,13 @@ impl<'a> _DSIZEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ALWYS_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ALWYSW<'a> {
+#[doc = "Reader of field `ALWYS`"]
+pub type ALWYS_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ALWYS`"]
+pub struct ALWYS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ALWYSW<'a> {
+impl<'a> ALWYS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -188,13 +137,13 @@ impl<'a> _ALWYSW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type HALFS_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _HALFSW<'a> {
+#[doc = "Reader of field `HALFS`"]
+pub type HALFS_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `HALFS`"]
+pub struct HALFS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HALFSW<'a> {
+impl<'a> HALFS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -212,13 +161,13 @@ impl<'a> _HALFSW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FRSTS_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FRSTSW<'a> {
+#[doc = "Reader of field `FRSTS`"]
+pub type FRSTS_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FRSTS`"]
+pub struct FRSTS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FRSTSW<'a> {
+impl<'a> FRSTS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -237,67 +186,56 @@ impl<'a> _FRSTSW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Parallel Capture Mode Enable"]
     #[inline(always)]
     pub fn pcen(&self) -> PCEN_R {
-        PCEN_R::new((self.bits() & 0x01) != 0)
+        PCEN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bits 4:5 - Parallel Capture Mode Data Size"]
     #[inline(always)]
     pub fn dsize(&self) -> DSIZE_R {
-        DSIZE_R::new(((self.bits() >> 4) & 0x03) as u8)
+        DSIZE_R::new(((self.bits >> 4) & 0x03) as u8)
     }
     #[doc = "Bit 9 - Parallel Capture Mode Always Sampling"]
     #[inline(always)]
     pub fn alwys(&self) -> ALWYS_R {
-        ALWYS_R::new(((self.bits() >> 9) & 0x01) != 0)
+        ALWYS_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Parallel Capture Mode Half Sampling"]
     #[inline(always)]
     pub fn halfs(&self) -> HALFS_R {
-        HALFS_R::new(((self.bits() >> 10) & 0x01) != 0)
+        HALFS_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Parallel Capture Mode First Sample"]
     #[inline(always)]
     pub fn frsts(&self) -> FRSTS_R {
-        FRSTS_R::new(((self.bits() >> 11) & 0x01) != 0)
+        FRSTS_R::new(((self.bits >> 11) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Parallel Capture Mode Enable"]
     #[inline(always)]
-    pub fn pcen(&mut self) -> _PCENW {
-        _PCENW { w: self }
+    pub fn pcen(&mut self) -> PCEN_W {
+        PCEN_W { w: self }
     }
     #[doc = "Bits 4:5 - Parallel Capture Mode Data Size"]
     #[inline(always)]
-    pub fn dsize(&mut self) -> _DSIZEW {
-        _DSIZEW { w: self }
+    pub fn dsize(&mut self) -> DSIZE_W {
+        DSIZE_W { w: self }
     }
     #[doc = "Bit 9 - Parallel Capture Mode Always Sampling"]
     #[inline(always)]
-    pub fn alwys(&mut self) -> _ALWYSW {
-        _ALWYSW { w: self }
+    pub fn alwys(&mut self) -> ALWYS_W {
+        ALWYS_W { w: self }
     }
     #[doc = "Bit 10 - Parallel Capture Mode Half Sampling"]
     #[inline(always)]
-    pub fn halfs(&mut self) -> _HALFSW {
-        _HALFSW { w: self }
+    pub fn halfs(&mut self) -> HALFS_W {
+        HALFS_W { w: self }
     }
     #[doc = "Bit 11 - Parallel Capture Mode First Sample"]
     #[inline(always)]
-    pub fn frsts(&mut self) -> _FRSTSW {
-        _FRSTSW { w: self }
+    pub fn frsts(&mut self) -> FRSTS_W {
+        FRSTS_W { w: self }
     }
 }

@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::HSMCI_IER {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register HSMCI_IER"]
+pub type W = crate::W<u32, super::HSMCI_IER>;
+#[doc = "Register HSMCI_IER `reset()`'s with value 0"]
+impl crate::ResetValue for super::HSMCI_IER {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _CMDRDYW<'a> {
+#[doc = "Write proxy for field `CMDRDY`"]
+pub struct CMDRDY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMDRDYW<'a> {
+impl<'a> CMDRDY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _CMDRDYW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RXRDYW<'a> {
+#[doc = "Write proxy for field `RXRDY`"]
+pub struct RXRDY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXRDYW<'a> {
+impl<'a> RXRDY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _RXRDYW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TXRDYW<'a> {
+#[doc = "Write proxy for field `TXRDY`"]
+pub struct TXRDY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXRDYW<'a> {
+impl<'a> TXRDY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _TXRDYW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _BLKEW<'a> {
+#[doc = "Write proxy for field `BLKE`"]
+pub struct BLKE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BLKEW<'a> {
+impl<'a> BLKE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _BLKEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _DTIPW<'a> {
+#[doc = "Write proxy for field `DTIP`"]
+pub struct DTIP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DTIPW<'a> {
+impl<'a> DTIP_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _DTIPW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _NOTBUSYW<'a> {
+#[doc = "Write proxy for field `NOTBUSY`"]
+pub struct NOTBUSY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NOTBUSYW<'a> {
+impl<'a> NOTBUSY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _NOTBUSYW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SDIOIRQAW<'a> {
+#[doc = "Write proxy for field `SDIOIRQA`"]
+pub struct SDIOIRQA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SDIOIRQAW<'a> {
+impl<'a> SDIOIRQA_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _SDIOIRQAW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SDIOWAITW<'a> {
+#[doc = "Write proxy for field `SDIOWAIT`"]
+pub struct SDIOWAIT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SDIOWAITW<'a> {
+impl<'a> SDIOWAIT_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +184,11 @@ impl<'a> _SDIOWAITW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CSRCVW<'a> {
+#[doc = "Write proxy for field `CSRCV`"]
+pub struct CSRCV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CSRCVW<'a> {
+impl<'a> CSRCV_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -225,11 +206,11 @@ impl<'a> _CSRCVW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RINDEW<'a> {
+#[doc = "Write proxy for field `RINDE`"]
+pub struct RINDE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RINDEW<'a> {
+impl<'a> RINDE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -247,11 +228,11 @@ impl<'a> _RINDEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RDIREW<'a> {
+#[doc = "Write proxy for field `RDIRE`"]
+pub struct RDIRE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RDIREW<'a> {
+impl<'a> RDIRE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -269,11 +250,11 @@ impl<'a> _RDIREW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RCRCEW<'a> {
+#[doc = "Write proxy for field `RCRCE`"]
+pub struct RCRCE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RCRCEW<'a> {
+impl<'a> RCRCE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -291,11 +272,11 @@ impl<'a> _RCRCEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RENDEW<'a> {
+#[doc = "Write proxy for field `RENDE`"]
+pub struct RENDE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RENDEW<'a> {
+impl<'a> RENDE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -313,11 +294,11 @@ impl<'a> _RENDEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RTOEW<'a> {
+#[doc = "Write proxy for field `RTOE`"]
+pub struct RTOE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RTOEW<'a> {
+impl<'a> RTOE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -335,11 +316,11 @@ impl<'a> _RTOEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _DCRCEW<'a> {
+#[doc = "Write proxy for field `DCRCE`"]
+pub struct DCRCE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DCRCEW<'a> {
+impl<'a> DCRCE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -357,11 +338,11 @@ impl<'a> _DCRCEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _DTOEW<'a> {
+#[doc = "Write proxy for field `DTOE`"]
+pub struct DTOE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DTOEW<'a> {
+impl<'a> DTOE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -379,11 +360,11 @@ impl<'a> _DTOEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CSTOEW<'a> {
+#[doc = "Write proxy for field `CSTOE`"]
+pub struct CSTOE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CSTOEW<'a> {
+impl<'a> CSTOE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -401,11 +382,11 @@ impl<'a> _CSTOEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _BLKOVREW<'a> {
+#[doc = "Write proxy for field `BLKOVRE`"]
+pub struct BLKOVRE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BLKOVREW<'a> {
+impl<'a> BLKOVRE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -423,11 +404,11 @@ impl<'a> _BLKOVREW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _FIFOEMPTYW<'a> {
+#[doc = "Write proxy for field `FIFOEMPTY`"]
+pub struct FIFOEMPTY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FIFOEMPTYW<'a> {
+impl<'a> FIFOEMPTY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -445,11 +426,11 @@ impl<'a> _FIFOEMPTYW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _XFRDONEW<'a> {
+#[doc = "Write proxy for field `XFRDONE`"]
+pub struct XFRDONE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _XFRDONEW<'a> {
+impl<'a> XFRDONE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -467,11 +448,11 @@ impl<'a> _XFRDONEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ACKRCVW<'a> {
+#[doc = "Write proxy for field `ACKRCV`"]
+pub struct ACKRCV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ACKRCVW<'a> {
+impl<'a> ACKRCV_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -489,11 +470,11 @@ impl<'a> _ACKRCVW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ACKRCVEW<'a> {
+#[doc = "Write proxy for field `ACKRCVE`"]
+pub struct ACKRCVE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ACKRCVEW<'a> {
+impl<'a> ACKRCVE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -511,11 +492,11 @@ impl<'a> _ACKRCVEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OVREW<'a> {
+#[doc = "Write proxy for field `OVRE`"]
+pub struct OVRE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OVREW<'a> {
+impl<'a> OVRE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -533,11 +514,11 @@ impl<'a> _OVREW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _UNREW<'a> {
+#[doc = "Write proxy for field `UNRE`"]
+pub struct UNRE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UNREW<'a> {
+impl<'a> UNRE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -556,130 +537,124 @@ impl<'a> _UNREW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Command Ready Interrupt Enable"]
     #[inline(always)]
-    pub fn cmdrdy(&mut self) -> _CMDRDYW {
-        _CMDRDYW { w: self }
+    pub fn cmdrdy(&mut self) -> CMDRDY_W {
+        CMDRDY_W { w: self }
     }
     #[doc = "Bit 1 - Receiver Ready Interrupt Enable"]
     #[inline(always)]
-    pub fn rxrdy(&mut self) -> _RXRDYW {
-        _RXRDYW { w: self }
+    pub fn rxrdy(&mut self) -> RXRDY_W {
+        RXRDY_W { w: self }
     }
     #[doc = "Bit 2 - Transmit Ready Interrupt Enable"]
     #[inline(always)]
-    pub fn txrdy(&mut self) -> _TXRDYW {
-        _TXRDYW { w: self }
+    pub fn txrdy(&mut self) -> TXRDY_W {
+        TXRDY_W { w: self }
     }
     #[doc = "Bit 3 - Data Block Ended Interrupt Enable"]
     #[inline(always)]
-    pub fn blke(&mut self) -> _BLKEW {
-        _BLKEW { w: self }
+    pub fn blke(&mut self) -> BLKE_W {
+        BLKE_W { w: self }
     }
     #[doc = "Bit 4 - Data Transfer in Progress Interrupt Enable"]
     #[inline(always)]
-    pub fn dtip(&mut self) -> _DTIPW {
-        _DTIPW { w: self }
+    pub fn dtip(&mut self) -> DTIP_W {
+        DTIP_W { w: self }
     }
     #[doc = "Bit 5 - Data Not Busy Interrupt Enable"]
     #[inline(always)]
-    pub fn notbusy(&mut self) -> _NOTBUSYW {
-        _NOTBUSYW { w: self }
+    pub fn notbusy(&mut self) -> NOTBUSY_W {
+        NOTBUSY_W { w: self }
     }
     #[doc = "Bit 8 - SDIO Interrupt for Slot A Interrupt Enable"]
     #[inline(always)]
-    pub fn sdioirqa(&mut self) -> _SDIOIRQAW {
-        _SDIOIRQAW { w: self }
+    pub fn sdioirqa(&mut self) -> SDIOIRQA_W {
+        SDIOIRQA_W { w: self }
     }
     #[doc = "Bit 12 - SDIO Read Wait Operation Status Interrupt Enable"]
     #[inline(always)]
-    pub fn sdiowait(&mut self) -> _SDIOWAITW {
-        _SDIOWAITW { w: self }
+    pub fn sdiowait(&mut self) -> SDIOWAIT_W {
+        SDIOWAIT_W { w: self }
     }
     #[doc = "Bit 13 - Completion Signal Received Interrupt Enable"]
     #[inline(always)]
-    pub fn csrcv(&mut self) -> _CSRCVW {
-        _CSRCVW { w: self }
+    pub fn csrcv(&mut self) -> CSRCV_W {
+        CSRCV_W { w: self }
     }
     #[doc = "Bit 16 - Response Index Error Interrupt Enable"]
     #[inline(always)]
-    pub fn rinde(&mut self) -> _RINDEW {
-        _RINDEW { w: self }
+    pub fn rinde(&mut self) -> RINDE_W {
+        RINDE_W { w: self }
     }
     #[doc = "Bit 17 - Response Direction Error Interrupt Enable"]
     #[inline(always)]
-    pub fn rdire(&mut self) -> _RDIREW {
-        _RDIREW { w: self }
+    pub fn rdire(&mut self) -> RDIRE_W {
+        RDIRE_W { w: self }
     }
     #[doc = "Bit 18 - Response CRC Error Interrupt Enable"]
     #[inline(always)]
-    pub fn rcrce(&mut self) -> _RCRCEW {
-        _RCRCEW { w: self }
+    pub fn rcrce(&mut self) -> RCRCE_W {
+        RCRCE_W { w: self }
     }
     #[doc = "Bit 19 - Response End Bit Error Interrupt Enable"]
     #[inline(always)]
-    pub fn rende(&mut self) -> _RENDEW {
-        _RENDEW { w: self }
+    pub fn rende(&mut self) -> RENDE_W {
+        RENDE_W { w: self }
     }
     #[doc = "Bit 20 - Response Time-out Error Interrupt Enable"]
     #[inline(always)]
-    pub fn rtoe(&mut self) -> _RTOEW {
-        _RTOEW { w: self }
+    pub fn rtoe(&mut self) -> RTOE_W {
+        RTOE_W { w: self }
     }
     #[doc = "Bit 21 - Data CRC Error Interrupt Enable"]
     #[inline(always)]
-    pub fn dcrce(&mut self) -> _DCRCEW {
-        _DCRCEW { w: self }
+    pub fn dcrce(&mut self) -> DCRCE_W {
+        DCRCE_W { w: self }
     }
     #[doc = "Bit 22 - Data Time-out Error Interrupt Enable"]
     #[inline(always)]
-    pub fn dtoe(&mut self) -> _DTOEW {
-        _DTOEW { w: self }
+    pub fn dtoe(&mut self) -> DTOE_W {
+        DTOE_W { w: self }
     }
     #[doc = "Bit 23 - Completion Signal Timeout Error Interrupt Enable"]
     #[inline(always)]
-    pub fn cstoe(&mut self) -> _CSTOEW {
-        _CSTOEW { w: self }
+    pub fn cstoe(&mut self) -> CSTOE_W {
+        CSTOE_W { w: self }
     }
     #[doc = "Bit 24 - DMA Block Overrun Error Interrupt Enable"]
     #[inline(always)]
-    pub fn blkovre(&mut self) -> _BLKOVREW {
-        _BLKOVREW { w: self }
+    pub fn blkovre(&mut self) -> BLKOVRE_W {
+        BLKOVRE_W { w: self }
     }
     #[doc = "Bit 26 - FIFO empty Interrupt enable"]
     #[inline(always)]
-    pub fn fifoempty(&mut self) -> _FIFOEMPTYW {
-        _FIFOEMPTYW { w: self }
+    pub fn fifoempty(&mut self) -> FIFOEMPTY_W {
+        FIFOEMPTY_W { w: self }
     }
     #[doc = "Bit 27 - Transfer Done Interrupt enable"]
     #[inline(always)]
-    pub fn xfrdone(&mut self) -> _XFRDONEW {
-        _XFRDONEW { w: self }
+    pub fn xfrdone(&mut self) -> XFRDONE_W {
+        XFRDONE_W { w: self }
     }
     #[doc = "Bit 28 - Boot Acknowledge Interrupt Enable"]
     #[inline(always)]
-    pub fn ackrcv(&mut self) -> _ACKRCVW {
-        _ACKRCVW { w: self }
+    pub fn ackrcv(&mut self) -> ACKRCV_W {
+        ACKRCV_W { w: self }
     }
     #[doc = "Bit 29 - Boot Acknowledge Error Interrupt Enable"]
     #[inline(always)]
-    pub fn ackrcve(&mut self) -> _ACKRCVEW {
-        _ACKRCVEW { w: self }
+    pub fn ackrcve(&mut self) -> ACKRCVE_W {
+        ACKRCVE_W { w: self }
     }
     #[doc = "Bit 30 - Overrun Interrupt Enable"]
     #[inline(always)]
-    pub fn ovre(&mut self) -> _OVREW {
-        _OVREW { w: self }
+    pub fn ovre(&mut self) -> OVRE_W {
+        OVRE_W { w: self }
     }
     #[doc = "Bit 31 - Underrun Interrupt Enable"]
     #[inline(always)]
-    pub fn unre(&mut self) -> _UNREW {
-        _UNREW { w: self }
+    pub fn unre(&mut self) -> UNRE_W {
+        UNRE_W { w: self }
     }
 }

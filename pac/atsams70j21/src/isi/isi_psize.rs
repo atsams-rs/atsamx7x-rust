@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::ISI_PSIZE {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register ISI_PSIZE"]
+pub type R = crate::R<u32, super::ISI_PSIZE>;
+#[doc = "Writer for register ISI_PSIZE"]
+pub type W = crate::W<u32, super::ISI_PSIZE>;
+#[doc = "Register ISI_PSIZE `reset()`'s with value 0"]
+impl crate::ResetValue for super::ISI_PSIZE {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type PREV_VSIZE_R = crate::FR<u16, u16>;
-#[doc = r"Proxy"]
-pub struct _PREV_VSIZEW<'a> {
+#[doc = "Reader of field `PREV_VSIZE`"]
+pub type PREV_VSIZE_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `PREV_VSIZE`"]
+pub struct PREV_VSIZE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PREV_VSIZEW<'a> {
+impl<'a> PREV_VSIZE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _PREV_VSIZEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PREV_HSIZE_R = crate::FR<u16, u16>;
-#[doc = r"Proxy"]
-pub struct _PREV_HSIZEW<'a> {
+#[doc = "Reader of field `PREV_HSIZE`"]
+pub type PREV_HSIZE_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `PREV_HSIZE`"]
+pub struct PREV_HSIZE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PREV_HSIZEW<'a> {
+impl<'a> PREV_HSIZE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
@@ -76,37 +39,26 @@ impl<'a> _PREV_HSIZEW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:9 - Vertical Size for the Preview Path"]
     #[inline(always)]
     pub fn prev_vsize(&self) -> PREV_VSIZE_R {
-        PREV_VSIZE_R::new((self.bits() & 0x03ff) as u16)
+        PREV_VSIZE_R::new((self.bits & 0x03ff) as u16)
     }
     #[doc = "Bits 16:25 - Horizontal Size for the Preview Path"]
     #[inline(always)]
     pub fn prev_hsize(&self) -> PREV_HSIZE_R {
-        PREV_HSIZE_R::new(((self.bits() >> 16) & 0x03ff) as u16)
+        PREV_HSIZE_R::new(((self.bits >> 16) & 0x03ff) as u16)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:9 - Vertical Size for the Preview Path"]
     #[inline(always)]
-    pub fn prev_vsize(&mut self) -> _PREV_VSIZEW {
-        _PREV_VSIZEW { w: self }
+    pub fn prev_vsize(&mut self) -> PREV_VSIZE_W {
+        PREV_VSIZE_W { w: self }
     }
     #[doc = "Bits 16:25 - Horizontal Size for the Preview Path"]
     #[inline(always)]
-    pub fn prev_hsize(&mut self) -> _PREV_HSIZEW {
-        _PREV_HSIZEW { w: self }
+    pub fn prev_hsize(&mut self) -> PREV_HSIZE_W {
+        PREV_HSIZE_W { w: self }
     }
 }

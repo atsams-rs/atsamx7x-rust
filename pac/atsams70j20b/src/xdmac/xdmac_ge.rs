@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::XDMAC_GE {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register XDMAC_GE"]
+pub type W = crate::W<u32, super::XDMAC_GE>;
+#[doc = "Register XDMAC_GE `reset()`'s with value 0"]
+impl crate::ResetValue for super::XDMAC_GE {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _EN0W<'a> {
+#[doc = "Write proxy for field `EN0`"]
+pub struct EN0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN0W<'a> {
+impl<'a> EN0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _EN0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN1W<'a> {
+#[doc = "Write proxy for field `EN1`"]
+pub struct EN1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN1W<'a> {
+impl<'a> EN1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _EN1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN2W<'a> {
+#[doc = "Write proxy for field `EN2`"]
+pub struct EN2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN2W<'a> {
+impl<'a> EN2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _EN2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN3W<'a> {
+#[doc = "Write proxy for field `EN3`"]
+pub struct EN3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN3W<'a> {
+impl<'a> EN3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _EN3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN4W<'a> {
+#[doc = "Write proxy for field `EN4`"]
+pub struct EN4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN4W<'a> {
+impl<'a> EN4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _EN4W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN5W<'a> {
+#[doc = "Write proxy for field `EN5`"]
+pub struct EN5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN5W<'a> {
+impl<'a> EN5_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _EN5W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN6W<'a> {
+#[doc = "Write proxy for field `EN6`"]
+pub struct EN6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN6W<'a> {
+impl<'a> EN6_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _EN6W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN7W<'a> {
+#[doc = "Write proxy for field `EN7`"]
+pub struct EN7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN7W<'a> {
+impl<'a> EN7_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +184,11 @@ impl<'a> _EN7W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN8W<'a> {
+#[doc = "Write proxy for field `EN8`"]
+pub struct EN8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN8W<'a> {
+impl<'a> EN8_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -225,11 +206,11 @@ impl<'a> _EN8W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN9W<'a> {
+#[doc = "Write proxy for field `EN9`"]
+pub struct EN9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN9W<'a> {
+impl<'a> EN9_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -247,11 +228,11 @@ impl<'a> _EN9W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN10W<'a> {
+#[doc = "Write proxy for field `EN10`"]
+pub struct EN10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN10W<'a> {
+impl<'a> EN10_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -269,11 +250,11 @@ impl<'a> _EN10W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN11W<'a> {
+#[doc = "Write proxy for field `EN11`"]
+pub struct EN11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN11W<'a> {
+impl<'a> EN11_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -291,11 +272,11 @@ impl<'a> _EN11W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN12W<'a> {
+#[doc = "Write proxy for field `EN12`"]
+pub struct EN12_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN12W<'a> {
+impl<'a> EN12_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -313,11 +294,11 @@ impl<'a> _EN12W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN13W<'a> {
+#[doc = "Write proxy for field `EN13`"]
+pub struct EN13_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN13W<'a> {
+impl<'a> EN13_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -335,11 +316,11 @@ impl<'a> _EN13W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN14W<'a> {
+#[doc = "Write proxy for field `EN14`"]
+pub struct EN14_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN14W<'a> {
+impl<'a> EN14_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -357,11 +338,11 @@ impl<'a> _EN14W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN15W<'a> {
+#[doc = "Write proxy for field `EN15`"]
+pub struct EN15_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN15W<'a> {
+impl<'a> EN15_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -379,11 +360,11 @@ impl<'a> _EN15W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN16W<'a> {
+#[doc = "Write proxy for field `EN16`"]
+pub struct EN16_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN16W<'a> {
+impl<'a> EN16_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -401,11 +382,11 @@ impl<'a> _EN16W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN17W<'a> {
+#[doc = "Write proxy for field `EN17`"]
+pub struct EN17_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN17W<'a> {
+impl<'a> EN17_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -423,11 +404,11 @@ impl<'a> _EN17W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN18W<'a> {
+#[doc = "Write proxy for field `EN18`"]
+pub struct EN18_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN18W<'a> {
+impl<'a> EN18_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -445,11 +426,11 @@ impl<'a> _EN18W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN19W<'a> {
+#[doc = "Write proxy for field `EN19`"]
+pub struct EN19_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN19W<'a> {
+impl<'a> EN19_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -467,11 +448,11 @@ impl<'a> _EN19W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN20W<'a> {
+#[doc = "Write proxy for field `EN20`"]
+pub struct EN20_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN20W<'a> {
+impl<'a> EN20_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -489,11 +470,11 @@ impl<'a> _EN20W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN21W<'a> {
+#[doc = "Write proxy for field `EN21`"]
+pub struct EN21_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN21W<'a> {
+impl<'a> EN21_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -511,11 +492,11 @@ impl<'a> _EN21W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN22W<'a> {
+#[doc = "Write proxy for field `EN22`"]
+pub struct EN22_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN22W<'a> {
+impl<'a> EN22_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -533,11 +514,11 @@ impl<'a> _EN22W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EN23W<'a> {
+#[doc = "Write proxy for field `EN23`"]
+pub struct EN23_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EN23W<'a> {
+impl<'a> EN23_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -556,130 +537,124 @@ impl<'a> _EN23W<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - XDMAC Channel 0 Enable Bit"]
     #[inline(always)]
-    pub fn en0(&mut self) -> _EN0W {
-        _EN0W { w: self }
+    pub fn en0(&mut self) -> EN0_W {
+        EN0_W { w: self }
     }
     #[doc = "Bit 1 - XDMAC Channel 1 Enable Bit"]
     #[inline(always)]
-    pub fn en1(&mut self) -> _EN1W {
-        _EN1W { w: self }
+    pub fn en1(&mut self) -> EN1_W {
+        EN1_W { w: self }
     }
     #[doc = "Bit 2 - XDMAC Channel 2 Enable Bit"]
     #[inline(always)]
-    pub fn en2(&mut self) -> _EN2W {
-        _EN2W { w: self }
+    pub fn en2(&mut self) -> EN2_W {
+        EN2_W { w: self }
     }
     #[doc = "Bit 3 - XDMAC Channel 3 Enable Bit"]
     #[inline(always)]
-    pub fn en3(&mut self) -> _EN3W {
-        _EN3W { w: self }
+    pub fn en3(&mut self) -> EN3_W {
+        EN3_W { w: self }
     }
     #[doc = "Bit 4 - XDMAC Channel 4 Enable Bit"]
     #[inline(always)]
-    pub fn en4(&mut self) -> _EN4W {
-        _EN4W { w: self }
+    pub fn en4(&mut self) -> EN4_W {
+        EN4_W { w: self }
     }
     #[doc = "Bit 5 - XDMAC Channel 5 Enable Bit"]
     #[inline(always)]
-    pub fn en5(&mut self) -> _EN5W {
-        _EN5W { w: self }
+    pub fn en5(&mut self) -> EN5_W {
+        EN5_W { w: self }
     }
     #[doc = "Bit 6 - XDMAC Channel 6 Enable Bit"]
     #[inline(always)]
-    pub fn en6(&mut self) -> _EN6W {
-        _EN6W { w: self }
+    pub fn en6(&mut self) -> EN6_W {
+        EN6_W { w: self }
     }
     #[doc = "Bit 7 - XDMAC Channel 7 Enable Bit"]
     #[inline(always)]
-    pub fn en7(&mut self) -> _EN7W {
-        _EN7W { w: self }
+    pub fn en7(&mut self) -> EN7_W {
+        EN7_W { w: self }
     }
     #[doc = "Bit 8 - XDMAC Channel 8 Enable Bit"]
     #[inline(always)]
-    pub fn en8(&mut self) -> _EN8W {
-        _EN8W { w: self }
+    pub fn en8(&mut self) -> EN8_W {
+        EN8_W { w: self }
     }
     #[doc = "Bit 9 - XDMAC Channel 9 Enable Bit"]
     #[inline(always)]
-    pub fn en9(&mut self) -> _EN9W {
-        _EN9W { w: self }
+    pub fn en9(&mut self) -> EN9_W {
+        EN9_W { w: self }
     }
     #[doc = "Bit 10 - XDMAC Channel 10 Enable Bit"]
     #[inline(always)]
-    pub fn en10(&mut self) -> _EN10W {
-        _EN10W { w: self }
+    pub fn en10(&mut self) -> EN10_W {
+        EN10_W { w: self }
     }
     #[doc = "Bit 11 - XDMAC Channel 11 Enable Bit"]
     #[inline(always)]
-    pub fn en11(&mut self) -> _EN11W {
-        _EN11W { w: self }
+    pub fn en11(&mut self) -> EN11_W {
+        EN11_W { w: self }
     }
     #[doc = "Bit 12 - XDMAC Channel 12 Enable Bit"]
     #[inline(always)]
-    pub fn en12(&mut self) -> _EN12W {
-        _EN12W { w: self }
+    pub fn en12(&mut self) -> EN12_W {
+        EN12_W { w: self }
     }
     #[doc = "Bit 13 - XDMAC Channel 13 Enable Bit"]
     #[inline(always)]
-    pub fn en13(&mut self) -> _EN13W {
-        _EN13W { w: self }
+    pub fn en13(&mut self) -> EN13_W {
+        EN13_W { w: self }
     }
     #[doc = "Bit 14 - XDMAC Channel 14 Enable Bit"]
     #[inline(always)]
-    pub fn en14(&mut self) -> _EN14W {
-        _EN14W { w: self }
+    pub fn en14(&mut self) -> EN14_W {
+        EN14_W { w: self }
     }
     #[doc = "Bit 15 - XDMAC Channel 15 Enable Bit"]
     #[inline(always)]
-    pub fn en15(&mut self) -> _EN15W {
-        _EN15W { w: self }
+    pub fn en15(&mut self) -> EN15_W {
+        EN15_W { w: self }
     }
     #[doc = "Bit 16 - XDMAC Channel 16 Enable Bit"]
     #[inline(always)]
-    pub fn en16(&mut self) -> _EN16W {
-        _EN16W { w: self }
+    pub fn en16(&mut self) -> EN16_W {
+        EN16_W { w: self }
     }
     #[doc = "Bit 17 - XDMAC Channel 17 Enable Bit"]
     #[inline(always)]
-    pub fn en17(&mut self) -> _EN17W {
-        _EN17W { w: self }
+    pub fn en17(&mut self) -> EN17_W {
+        EN17_W { w: self }
     }
     #[doc = "Bit 18 - XDMAC Channel 18 Enable Bit"]
     #[inline(always)]
-    pub fn en18(&mut self) -> _EN18W {
-        _EN18W { w: self }
+    pub fn en18(&mut self) -> EN18_W {
+        EN18_W { w: self }
     }
     #[doc = "Bit 19 - XDMAC Channel 19 Enable Bit"]
     #[inline(always)]
-    pub fn en19(&mut self) -> _EN19W {
-        _EN19W { w: self }
+    pub fn en19(&mut self) -> EN19_W {
+        EN19_W { w: self }
     }
     #[doc = "Bit 20 - XDMAC Channel 20 Enable Bit"]
     #[inline(always)]
-    pub fn en20(&mut self) -> _EN20W {
-        _EN20W { w: self }
+    pub fn en20(&mut self) -> EN20_W {
+        EN20_W { w: self }
     }
     #[doc = "Bit 21 - XDMAC Channel 21 Enable Bit"]
     #[inline(always)]
-    pub fn en21(&mut self) -> _EN21W {
-        _EN21W { w: self }
+    pub fn en21(&mut self) -> EN21_W {
+        EN21_W { w: self }
     }
     #[doc = "Bit 22 - XDMAC Channel 22 Enable Bit"]
     #[inline(always)]
-    pub fn en22(&mut self) -> _EN22W {
-        _EN22W { w: self }
+    pub fn en22(&mut self) -> EN22_W {
+        EN22_W { w: self }
     }
     #[doc = "Bit 23 - XDMAC Channel 23 Enable Bit"]
     #[inline(always)]
-    pub fn en23(&mut self) -> _EN23W {
-        _EN23W { w: self }
+    pub fn en23(&mut self) -> EN23_W {
+        EN23_W { w: self }
     }
 }

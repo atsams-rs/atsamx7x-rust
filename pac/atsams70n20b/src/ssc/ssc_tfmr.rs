@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SSC_TFMR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register SSC_TFMR"]
+pub type R = crate::R<u32, super::SSC_TFMR>;
+#[doc = "Writer for register SSC_TFMR"]
+pub type W = crate::W<u32, super::SSC_TFMR>;
+#[doc = "Register SSC_TFMR `reset()`'s with value 0"]
+impl crate::ResetValue for super::SSC_TFMR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type DATLEN_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _DATLENW<'a> {
+#[doc = "Reader of field `DATLEN`"]
+pub type DATLEN_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `DATLEN`"]
+pub struct DATLEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DATLENW<'a> {
+impl<'a> DATLEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _DATLENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DATDEF_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DATDEFW<'a> {
+#[doc = "Reader of field `DATDEF`"]
+pub type DATDEF_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DATDEF`"]
+pub struct DATDEF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DATDEFW<'a> {
+impl<'a> DATDEF_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -85,13 +48,13 @@ impl<'a> _DATDEFW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type MSBF_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _MSBFW<'a> {
+#[doc = "Reader of field `MSBF`"]
+pub type MSBF_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `MSBF`"]
+pub struct MSBF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MSBFW<'a> {
+impl<'a> MSBF_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -109,13 +72,13 @@ impl<'a> _MSBFW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DATNB_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _DATNBW<'a> {
+#[doc = "Reader of field `DATNB`"]
+pub type DATNB_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `DATNB`"]
+pub struct DATNB_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DATNBW<'a> {
+impl<'a> DATNB_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -123,13 +86,13 @@ impl<'a> _DATNBW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSLEN_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _FSLENW<'a> {
+#[doc = "Reader of field `FSLEN`"]
+pub type FSLEN_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FSLEN`"]
+pub struct FSLEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSLENW<'a> {
+impl<'a> FSLEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -137,139 +100,116 @@ impl<'a> _FSLENW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `FSOS`"]
+#[doc = "Transmit Frame Sync Output Selection\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FSOSR {
-    #[doc = "None, TF pin is an input"]
-    NONE,
-    #[doc = "Negative Pulse, TF pin is an output"]
-    NEGATIVE,
-    #[doc = "Positive Pulse, TF pin is an output"]
-    POSITIVE,
-    #[doc = "Driven Low during data transfer"]
-    LOW,
-    #[doc = "Driven High during data transfer"]
-    HIGH,
-    #[doc = "Toggling at each start of data transfer"]
-    TOGGLING,
+#[repr(u8)]
+pub enum FSOS_A {
+    #[doc = "0: None, TF pin is an input"]
+    NONE = 0,
+    #[doc = "1: Negative Pulse, TF pin is an output"]
+    NEGATIVE = 1,
+    #[doc = "2: Positive Pulse, TF pin is an output"]
+    POSITIVE = 2,
+    #[doc = "3: Driven Low during data transfer"]
+    LOW = 3,
+    #[doc = "4: Driven High during data transfer"]
+    HIGH = 4,
+    #[doc = "5: Toggling at each start of data transfer"]
+    TOGGLING = 5,
 }
-impl crate::ToBits<u8> for FSOSR {
+impl From<FSOS_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            FSOSR::NONE => 0,
-            FSOSR::NEGATIVE => 1,
-            FSOSR::POSITIVE => 2,
-            FSOSR::LOW => 3,
-            FSOSR::HIGH => 4,
-            FSOSR::TOGGLING => 5,
-        }
+    fn from(variant: FSOS_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSOS_R = crate::FR<u8, FSOSR>;
+#[doc = "Reader of field `FSOS`"]
+pub type FSOS_R = crate::R<u8, FSOS_A>;
 impl FSOS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, FSOS_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(FSOS_A::NONE),
+            1 => Val(FSOS_A::NEGATIVE),
+            2 => Val(FSOS_A::POSITIVE),
+            3 => Val(FSOS_A::LOW),
+            4 => Val(FSOS_A::HIGH),
+            5 => Val(FSOS_A::TOGGLING),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `NONE`"]
     #[inline(always)]
     pub fn is_none(&self) -> bool {
-        *self == FSOSR::NONE
+        *self == FSOS_A::NONE
     }
     #[doc = "Checks if the value of the field is `NEGATIVE`"]
     #[inline(always)]
     pub fn is_negative(&self) -> bool {
-        *self == FSOSR::NEGATIVE
+        *self == FSOS_A::NEGATIVE
     }
     #[doc = "Checks if the value of the field is `POSITIVE`"]
     #[inline(always)]
     pub fn is_positive(&self) -> bool {
-        *self == FSOSR::POSITIVE
+        *self == FSOS_A::POSITIVE
     }
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == FSOSR::LOW
+        *self == FSOS_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == FSOSR::HIGH
+        *self == FSOS_A::HIGH
     }
     #[doc = "Checks if the value of the field is `TOGGLING`"]
     #[inline(always)]
     pub fn is_toggling(&self) -> bool {
-        *self == FSOSR::TOGGLING
+        *self == FSOS_A::TOGGLING
     }
 }
-#[doc = "Values that can be written to the field `FSOS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FSOSW {
-    #[doc = "None, TF pin is an input"]
-    NONE,
-    #[doc = "Negative Pulse, TF pin is an output"]
-    NEGATIVE,
-    #[doc = "Positive Pulse, TF pin is an output"]
-    POSITIVE,
-    #[doc = "Driven Low during data transfer"]
-    LOW,
-    #[doc = "Driven High during data transfer"]
-    HIGH,
-    #[doc = "Toggling at each start of data transfer"]
-    TOGGLING,
-}
-impl FSOSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            FSOSW::NONE => 0,
-            FSOSW::NEGATIVE => 1,
-            FSOSW::POSITIVE => 2,
-            FSOSW::LOW => 3,
-            FSOSW::HIGH => 4,
-            FSOSW::TOGGLING => 5,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _FSOSW<'a> {
+#[doc = "Write proxy for field `FSOS`"]
+pub struct FSOS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSOSW<'a> {
+impl<'a> FSOS_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: FSOSW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: FSOS_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "None, TF pin is an input"]
     #[inline(always)]
     pub fn none(self) -> &'a mut W {
-        self.variant(FSOSW::NONE)
+        self.variant(FSOS_A::NONE)
     }
     #[doc = "Negative Pulse, TF pin is an output"]
     #[inline(always)]
     pub fn negative(self) -> &'a mut W {
-        self.variant(FSOSW::NEGATIVE)
+        self.variant(FSOS_A::NEGATIVE)
     }
     #[doc = "Positive Pulse, TF pin is an output"]
     #[inline(always)]
     pub fn positive(self) -> &'a mut W {
-        self.variant(FSOSW::POSITIVE)
+        self.variant(FSOS_A::POSITIVE)
     }
     #[doc = "Driven Low during data transfer"]
     #[inline(always)]
     pub fn low(self) -> &'a mut W {
-        self.variant(FSOSW::LOW)
+        self.variant(FSOS_A::LOW)
     }
     #[doc = "Driven High during data transfer"]
     #[inline(always)]
     pub fn high(self) -> &'a mut W {
-        self.variant(FSOSW::HIGH)
+        self.variant(FSOS_A::HIGH)
     }
     #[doc = "Toggling at each start of data transfer"]
     #[inline(always)]
     pub fn toggling(self) -> &'a mut W {
-        self.variant(FSOSW::TOGGLING)
+        self.variant(FSOS_A::TOGGLING)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -278,13 +218,13 @@ impl<'a> _FSOSW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSDEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSDENW<'a> {
+#[doc = "Reader of field `FSDEN`"]
+pub type FSDEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSDEN`"]
+pub struct FSDEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSDENW<'a> {
+impl<'a> FSDEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -302,77 +242,63 @@ impl<'a> _FSDENW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `FSEDGE`"]
+#[doc = "Frame Sync Edge Detection\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FSEDGER {
-    #[doc = "Positive Edge Detection"]
-    POSITIVE,
-    #[doc = "Negative Edge Detection"]
-    NEGATIVE,
+pub enum FSEDGE_A {
+    #[doc = "0: Positive Edge Detection"]
+    POSITIVE = 0,
+    #[doc = "1: Negative Edge Detection"]
+    NEGATIVE = 1,
 }
-impl crate::ToBits<bool> for FSEDGER {
+impl From<FSEDGE_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            FSEDGER::POSITIVE => false,
-            FSEDGER::NEGATIVE => true,
-        }
+    fn from(variant: FSEDGE_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSEDGE_R = crate::FR<bool, FSEDGER>;
+#[doc = "Reader of field `FSEDGE`"]
+pub type FSEDGE_R = crate::R<bool, FSEDGE_A>;
 impl FSEDGE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> FSEDGE_A {
+        match self.bits {
+            false => FSEDGE_A::POSITIVE,
+            true => FSEDGE_A::NEGATIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `POSITIVE`"]
     #[inline(always)]
     pub fn is_positive(&self) -> bool {
-        *self == FSEDGER::POSITIVE
+        *self == FSEDGE_A::POSITIVE
     }
     #[doc = "Checks if the value of the field is `NEGATIVE`"]
     #[inline(always)]
     pub fn is_negative(&self) -> bool {
-        *self == FSEDGER::NEGATIVE
+        *self == FSEDGE_A::NEGATIVE
     }
 }
-#[doc = "Values that can be written to the field `FSEDGE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FSEDGEW {
-    #[doc = "Positive Edge Detection"]
-    POSITIVE,
-    #[doc = "Negative Edge Detection"]
-    NEGATIVE,
-}
-impl FSEDGEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            FSEDGEW::POSITIVE => false,
-            FSEDGEW::NEGATIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _FSEDGEW<'a> {
+#[doc = "Write proxy for field `FSEDGE`"]
+pub struct FSEDGE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSEDGEW<'a> {
+impl<'a> FSEDGE_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: FSEDGEW) -> &'a mut W {
+    pub fn variant(self, variant: FSEDGE_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Positive Edge Detection"]
     #[inline(always)]
     pub fn positive(self) -> &'a mut W {
-        self.variant(FSEDGEW::POSITIVE)
+        self.variant(FSEDGE_A::POSITIVE)
     }
     #[doc = "Negative Edge Detection"]
     #[inline(always)]
     pub fn negative(self) -> &'a mut W {
-        self.variant(FSEDGEW::NEGATIVE)
+        self.variant(FSEDGE_A::NEGATIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -391,13 +317,13 @@ impl<'a> _FSEDGEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSLEN_EXT_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _FSLEN_EXTW<'a> {
+#[doc = "Reader of field `FSLEN_EXT`"]
+pub type FSLEN_EXT_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FSLEN_EXT`"]
+pub struct FSLEN_EXT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSLEN_EXTW<'a> {
+impl<'a> FSLEN_EXT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -406,107 +332,96 @@ impl<'a> _FSLEN_EXTW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:4 - Data Length"]
     #[inline(always)]
     pub fn datlen(&self) -> DATLEN_R {
-        DATLEN_R::new((self.bits() & 0x1f) as u8)
+        DATLEN_R::new((self.bits & 0x1f) as u8)
     }
     #[doc = "Bit 5 - Data Default Value"]
     #[inline(always)]
     pub fn datdef(&self) -> DATDEF_R {
-        DATDEF_R::new(((self.bits() >> 5) & 0x01) != 0)
+        DATDEF_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Most Significant Bit First"]
     #[inline(always)]
     pub fn msbf(&self) -> MSBF_R {
-        MSBF_R::new(((self.bits() >> 7) & 0x01) != 0)
+        MSBF_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bits 8:11 - Data Number per Frame"]
     #[inline(always)]
     pub fn datnb(&self) -> DATNB_R {
-        DATNB_R::new(((self.bits() >> 8) & 0x0f) as u8)
+        DATNB_R::new(((self.bits >> 8) & 0x0f) as u8)
     }
     #[doc = "Bits 16:19 - Transmit Frame Sync Length"]
     #[inline(always)]
     pub fn fslen(&self) -> FSLEN_R {
-        FSLEN_R::new(((self.bits() >> 16) & 0x0f) as u8)
+        FSLEN_R::new(((self.bits >> 16) & 0x0f) as u8)
     }
     #[doc = "Bits 20:22 - Transmit Frame Sync Output Selection"]
     #[inline(always)]
     pub fn fsos(&self) -> FSOS_R {
-        FSOS_R::new(((self.bits() >> 20) & 0x07) as u8)
+        FSOS_R::new(((self.bits >> 20) & 0x07) as u8)
     }
     #[doc = "Bit 23 - Frame Sync Data Enable"]
     #[inline(always)]
     pub fn fsden(&self) -> FSDEN_R {
-        FSDEN_R::new(((self.bits() >> 23) & 0x01) != 0)
+        FSDEN_R::new(((self.bits >> 23) & 0x01) != 0)
     }
     #[doc = "Bit 24 - Frame Sync Edge Detection"]
     #[inline(always)]
     pub fn fsedge(&self) -> FSEDGE_R {
-        FSEDGE_R::new(((self.bits() >> 24) & 0x01) != 0)
+        FSEDGE_R::new(((self.bits >> 24) & 0x01) != 0)
     }
     #[doc = "Bits 28:31 - FSLEN Field Extension"]
     #[inline(always)]
     pub fn fslen_ext(&self) -> FSLEN_EXT_R {
-        FSLEN_EXT_R::new(((self.bits() >> 28) & 0x0f) as u8)
+        FSLEN_EXT_R::new(((self.bits >> 28) & 0x0f) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:4 - Data Length"]
     #[inline(always)]
-    pub fn datlen(&mut self) -> _DATLENW {
-        _DATLENW { w: self }
+    pub fn datlen(&mut self) -> DATLEN_W {
+        DATLEN_W { w: self }
     }
     #[doc = "Bit 5 - Data Default Value"]
     #[inline(always)]
-    pub fn datdef(&mut self) -> _DATDEFW {
-        _DATDEFW { w: self }
+    pub fn datdef(&mut self) -> DATDEF_W {
+        DATDEF_W { w: self }
     }
     #[doc = "Bit 7 - Most Significant Bit First"]
     #[inline(always)]
-    pub fn msbf(&mut self) -> _MSBFW {
-        _MSBFW { w: self }
+    pub fn msbf(&mut self) -> MSBF_W {
+        MSBF_W { w: self }
     }
     #[doc = "Bits 8:11 - Data Number per Frame"]
     #[inline(always)]
-    pub fn datnb(&mut self) -> _DATNBW {
-        _DATNBW { w: self }
+    pub fn datnb(&mut self) -> DATNB_W {
+        DATNB_W { w: self }
     }
     #[doc = "Bits 16:19 - Transmit Frame Sync Length"]
     #[inline(always)]
-    pub fn fslen(&mut self) -> _FSLENW {
-        _FSLENW { w: self }
+    pub fn fslen(&mut self) -> FSLEN_W {
+        FSLEN_W { w: self }
     }
     #[doc = "Bits 20:22 - Transmit Frame Sync Output Selection"]
     #[inline(always)]
-    pub fn fsos(&mut self) -> _FSOSW {
-        _FSOSW { w: self }
+    pub fn fsos(&mut self) -> FSOS_W {
+        FSOS_W { w: self }
     }
     #[doc = "Bit 23 - Frame Sync Data Enable"]
     #[inline(always)]
-    pub fn fsden(&mut self) -> _FSDENW {
-        _FSDENW { w: self }
+    pub fn fsden(&mut self) -> FSDEN_W {
+        FSDEN_W { w: self }
     }
     #[doc = "Bit 24 - Frame Sync Edge Detection"]
     #[inline(always)]
-    pub fn fsedge(&mut self) -> _FSEDGEW {
-        _FSEDGEW { w: self }
+    pub fn fsedge(&mut self) -> FSEDGE_W {
+        FSEDGE_W { w: self }
     }
     #[doc = "Bits 28:31 - FSLEN Field Extension"]
     #[inline(always)]
-    pub fn fslen_ext(&mut self) -> _FSLEN_EXTW {
-        _FSLEN_EXTW { w: self }
+    pub fn fslen_ext(&mut self) -> FSLEN_EXT_W {
+        FSLEN_EXT_W { w: self }
     }
 }

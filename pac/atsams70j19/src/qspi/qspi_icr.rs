@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::QSPI_ICR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register QSPI_ICR"]
+pub type R = crate::R<u32, super::QSPI_ICR>;
+#[doc = "Writer for register QSPI_ICR"]
+pub type W = crate::W<u32, super::QSPI_ICR>;
+#[doc = "Register QSPI_ICR `reset()`'s with value 0"]
+impl crate::ResetValue for super::QSPI_ICR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type INST_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _INSTW<'a> {
+#[doc = "Reader of field `INST`"]
+pub type INST_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `INST`"]
+pub struct INST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _INSTW<'a> {
+impl<'a> INST_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _INSTW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type OPT_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _OPTW<'a> {
+#[doc = "Reader of field `OPT`"]
+pub type OPT_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `OPT`"]
+pub struct OPT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OPTW<'a> {
+impl<'a> OPT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -76,37 +39,26 @@ impl<'a> _OPTW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:7 - Instruction Code"]
     #[inline(always)]
     pub fn inst(&self) -> INST_R {
-        INST_R::new((self.bits() & 0xff) as u8)
+        INST_R::new((self.bits & 0xff) as u8)
     }
     #[doc = "Bits 16:23 - Option Code"]
     #[inline(always)]
     pub fn opt(&self) -> OPT_R {
-        OPT_R::new(((self.bits() >> 16) & 0xff) as u8)
+        OPT_R::new(((self.bits >> 16) & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:7 - Instruction Code"]
     #[inline(always)]
-    pub fn inst(&mut self) -> _INSTW {
-        _INSTW { w: self }
+    pub fn inst(&mut self) -> INST_W {
+        INST_W { w: self }
     }
     #[doc = "Bits 16:23 - Option Code"]
     #[inline(always)]
-    pub fn opt(&mut self) -> _OPTW {
-        _OPTW { w: self }
+    pub fn opt(&mut self) -> OPT_W {
+        OPT_W { w: self }
     }
 }

@@ -1,201 +1,138 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::QSPI_IFR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register QSPI_IFR"]
+pub type R = crate::R<u32, super::QSPI_IFR>;
+#[doc = "Writer for register QSPI_IFR"]
+pub type W = crate::W<u32, super::QSPI_IFR>;
+#[doc = "Register QSPI_IFR `reset()`'s with value 0"]
+impl crate::ResetValue for super::QSPI_IFR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "Width of Instruction Code, Address, Option Code and Data\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum WIDTH_A {
+    #[doc = "0: Instruction: Single-bit SPI / Address-Option: Single-bit SPI / Data: Single-bit SPI"]
+    SINGLE_BIT_SPI = 0,
+    #[doc = "1: Instruction: Single-bit SPI / Address-Option: Single-bit SPI / Data: Dual SPI"]
+    DUAL_OUTPUT = 1,
+    #[doc = "2: Instruction: Single-bit SPI / Address-Option: Single-bit SPI / Data: Quad SPI"]
+    QUAD_OUTPUT = 2,
+    #[doc = "3: Instruction: Single-bit SPI / Address-Option: Dual SPI / Data: Dual SPI"]
+    DUAL_IO = 3,
+    #[doc = "4: Instruction: Single-bit SPI / Address-Option: Quad SPI / Data: Quad SPI"]
+    QUAD_IO = 4,
+    #[doc = "5: Instruction: Dual SPI / Address-Option: Dual SPI / Data: Dual SPI"]
+    DUAL_CMD = 5,
+    #[doc = "6: Instruction: Quad SPI / Address-Option: Quad SPI / Data: Quad SPI"]
+    QUAD_CMD = 6,
+}
+impl From<WIDTH_A> for u8 {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: WIDTH_A) -> Self {
+        variant as _
     }
 }
-#[doc = "Possible values of the field `WIDTH`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WIDTHR {
-    #[doc = "Instruction: Single-bit SPI / Address-Option: Single-bit SPI / Data: Single-bit SPI"]
-    SINGLE_BIT_SPI,
-    #[doc = "Instruction: Single-bit SPI / Address-Option: Single-bit SPI / Data: Dual SPI"]
-    DUAL_OUTPUT,
-    #[doc = "Instruction: Single-bit SPI / Address-Option: Single-bit SPI / Data: Quad SPI"]
-    QUAD_OUTPUT,
-    #[doc = "Instruction: Single-bit SPI / Address-Option: Dual SPI / Data: Dual SPI"]
-    DUAL_IO,
-    #[doc = "Instruction: Single-bit SPI / Address-Option: Quad SPI / Data: Quad SPI"]
-    QUAD_IO,
-    #[doc = "Instruction: Dual SPI / Address-Option: Dual SPI / Data: Dual SPI"]
-    DUAL_CMD,
-    #[doc = "Instruction: Quad SPI / Address-Option: Quad SPI / Data: Quad SPI"]
-    QUAD_CMD,
-}
-impl crate::ToBits<u8> for WIDTHR {
+#[doc = "Reader of field `WIDTH`"]
+pub type WIDTH_R = crate::R<u8, WIDTH_A>;
+impl WIDTH_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            WIDTHR::SINGLE_BIT_SPI => 0,
-            WIDTHR::DUAL_OUTPUT => 1,
-            WIDTHR::QUAD_OUTPUT => 2,
-            WIDTHR::DUAL_IO => 3,
-            WIDTHR::QUAD_IO => 4,
-            WIDTHR::DUAL_CMD => 5,
-            WIDTHR::QUAD_CMD => 6,
+    pub fn variant(&self) -> crate::Variant<u8, WIDTH_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(WIDTH_A::SINGLE_BIT_SPI),
+            1 => Val(WIDTH_A::DUAL_OUTPUT),
+            2 => Val(WIDTH_A::QUAD_OUTPUT),
+            3 => Val(WIDTH_A::DUAL_IO),
+            4 => Val(WIDTH_A::QUAD_IO),
+            5 => Val(WIDTH_A::DUAL_CMD),
+            6 => Val(WIDTH_A::QUAD_CMD),
+            i => Res(i),
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type WIDTH_R = crate::FR<u8, WIDTHR>;
-impl WIDTH_R {
     #[doc = "Checks if the value of the field is `SINGLE_BIT_SPI`"]
     #[inline(always)]
     pub fn is_single_bit_spi(&self) -> bool {
-        *self == WIDTHR::SINGLE_BIT_SPI
+        *self == WIDTH_A::SINGLE_BIT_SPI
     }
     #[doc = "Checks if the value of the field is `DUAL_OUTPUT`"]
     #[inline(always)]
     pub fn is_dual_output(&self) -> bool {
-        *self == WIDTHR::DUAL_OUTPUT
+        *self == WIDTH_A::DUAL_OUTPUT
     }
     #[doc = "Checks if the value of the field is `QUAD_OUTPUT`"]
     #[inline(always)]
     pub fn is_quad_output(&self) -> bool {
-        *self == WIDTHR::QUAD_OUTPUT
+        *self == WIDTH_A::QUAD_OUTPUT
     }
     #[doc = "Checks if the value of the field is `DUAL_IO`"]
     #[inline(always)]
     pub fn is_dual_io(&self) -> bool {
-        *self == WIDTHR::DUAL_IO
+        *self == WIDTH_A::DUAL_IO
     }
     #[doc = "Checks if the value of the field is `QUAD_IO`"]
     #[inline(always)]
     pub fn is_quad_io(&self) -> bool {
-        *self == WIDTHR::QUAD_IO
+        *self == WIDTH_A::QUAD_IO
     }
     #[doc = "Checks if the value of the field is `DUAL_CMD`"]
     #[inline(always)]
     pub fn is_dual_cmd(&self) -> bool {
-        *self == WIDTHR::DUAL_CMD
+        *self == WIDTH_A::DUAL_CMD
     }
     #[doc = "Checks if the value of the field is `QUAD_CMD`"]
     #[inline(always)]
     pub fn is_quad_cmd(&self) -> bool {
-        *self == WIDTHR::QUAD_CMD
+        *self == WIDTH_A::QUAD_CMD
     }
 }
-#[doc = "Values that can be written to the field `WIDTH`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WIDTHW {
-    #[doc = "Instruction: Single-bit SPI / Address-Option: Single-bit SPI / Data: Single-bit SPI"]
-    SINGLE_BIT_SPI,
-    #[doc = "Instruction: Single-bit SPI / Address-Option: Single-bit SPI / Data: Dual SPI"]
-    DUAL_OUTPUT,
-    #[doc = "Instruction: Single-bit SPI / Address-Option: Single-bit SPI / Data: Quad SPI"]
-    QUAD_OUTPUT,
-    #[doc = "Instruction: Single-bit SPI / Address-Option: Dual SPI / Data: Dual SPI"]
-    DUAL_IO,
-    #[doc = "Instruction: Single-bit SPI / Address-Option: Quad SPI / Data: Quad SPI"]
-    QUAD_IO,
-    #[doc = "Instruction: Dual SPI / Address-Option: Dual SPI / Data: Dual SPI"]
-    DUAL_CMD,
-    #[doc = "Instruction: Quad SPI / Address-Option: Quad SPI / Data: Quad SPI"]
-    QUAD_CMD,
-}
-impl WIDTHW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            WIDTHW::SINGLE_BIT_SPI => 0,
-            WIDTHW::DUAL_OUTPUT => 1,
-            WIDTHW::QUAD_OUTPUT => 2,
-            WIDTHW::DUAL_IO => 3,
-            WIDTHW::QUAD_IO => 4,
-            WIDTHW::DUAL_CMD => 5,
-            WIDTHW::QUAD_CMD => 6,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _WIDTHW<'a> {
+#[doc = "Write proxy for field `WIDTH`"]
+pub struct WIDTH_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WIDTHW<'a> {
+impl<'a> WIDTH_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: WIDTHW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: WIDTH_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Instruction: Single-bit SPI / Address-Option: Single-bit SPI / Data: Single-bit SPI"]
     #[inline(always)]
     pub fn single_bit_spi(self) -> &'a mut W {
-        self.variant(WIDTHW::SINGLE_BIT_SPI)
+        self.variant(WIDTH_A::SINGLE_BIT_SPI)
     }
     #[doc = "Instruction: Single-bit SPI / Address-Option: Single-bit SPI / Data: Dual SPI"]
     #[inline(always)]
     pub fn dual_output(self) -> &'a mut W {
-        self.variant(WIDTHW::DUAL_OUTPUT)
+        self.variant(WIDTH_A::DUAL_OUTPUT)
     }
     #[doc = "Instruction: Single-bit SPI / Address-Option: Single-bit SPI / Data: Quad SPI"]
     #[inline(always)]
     pub fn quad_output(self) -> &'a mut W {
-        self.variant(WIDTHW::QUAD_OUTPUT)
+        self.variant(WIDTH_A::QUAD_OUTPUT)
     }
     #[doc = "Instruction: Single-bit SPI / Address-Option: Dual SPI / Data: Dual SPI"]
     #[inline(always)]
     pub fn dual_io(self) -> &'a mut W {
-        self.variant(WIDTHW::DUAL_IO)
+        self.variant(WIDTH_A::DUAL_IO)
     }
     #[doc = "Instruction: Single-bit SPI / Address-Option: Quad SPI / Data: Quad SPI"]
     #[inline(always)]
     pub fn quad_io(self) -> &'a mut W {
-        self.variant(WIDTHW::QUAD_IO)
+        self.variant(WIDTH_A::QUAD_IO)
     }
     #[doc = "Instruction: Dual SPI / Address-Option: Dual SPI / Data: Dual SPI"]
     #[inline(always)]
     pub fn dual_cmd(self) -> &'a mut W {
-        self.variant(WIDTHW::DUAL_CMD)
+        self.variant(WIDTH_A::DUAL_CMD)
     }
     #[doc = "Instruction: Quad SPI / Address-Option: Quad SPI / Data: Quad SPI"]
     #[inline(always)]
     pub fn quad_cmd(self) -> &'a mut W {
-        self.variant(WIDTHW::QUAD_CMD)
+        self.variant(WIDTH_A::QUAD_CMD)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -204,13 +141,13 @@ impl<'a> _WIDTHW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type INSTEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _INSTENW<'a> {
+#[doc = "Reader of field `INSTEN`"]
+pub type INSTEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `INSTEN`"]
+pub struct INSTEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _INSTENW<'a> {
+impl<'a> INSTEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -228,13 +165,13 @@ impl<'a> _INSTENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ADDREN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ADDRENW<'a> {
+#[doc = "Reader of field `ADDREN`"]
+pub type ADDREN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ADDREN`"]
+pub struct ADDREN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ADDRENW<'a> {
+impl<'a> ADDREN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -252,13 +189,13 @@ impl<'a> _ADDRENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type OPTEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _OPTENW<'a> {
+#[doc = "Reader of field `OPTEN`"]
+pub type OPTEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `OPTEN`"]
+pub struct OPTEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OPTENW<'a> {
+impl<'a> OPTEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -276,13 +213,13 @@ impl<'a> _OPTENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DATAEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DATAENW<'a> {
+#[doc = "Reader of field `DATAEN`"]
+pub type DATAEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DATAEN`"]
+pub struct DATAEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DATAENW<'a> {
+impl<'a> DATAEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -300,109 +237,91 @@ impl<'a> _DATAENW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `OPTL`"]
+#[doc = "Option Code Length\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum OPTLR {
-    #[doc = "The option code is 1 bit long."]
-    OPTION_1BIT,
-    #[doc = "The option code is 2 bits long."]
-    OPTION_2BIT,
-    #[doc = "The option code is 4 bits long."]
-    OPTION_4BIT,
-    #[doc = "The option code is 8 bits long."]
-    OPTION_8BIT,
+#[repr(u8)]
+pub enum OPTL_A {
+    #[doc = "0: The option code is 1 bit long."]
+    OPTION_1BIT = 0,
+    #[doc = "1: The option code is 2 bits long."]
+    OPTION_2BIT = 1,
+    #[doc = "2: The option code is 4 bits long."]
+    OPTION_4BIT = 2,
+    #[doc = "3: The option code is 8 bits long."]
+    OPTION_8BIT = 3,
 }
-impl crate::ToBits<u8> for OPTLR {
+impl From<OPTL_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            OPTLR::OPTION_1BIT => 0,
-            OPTLR::OPTION_2BIT => 1,
-            OPTLR::OPTION_4BIT => 2,
-            OPTLR::OPTION_8BIT => 3,
-        }
+    fn from(variant: OPTL_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type OPTL_R = crate::FR<u8, OPTLR>;
+#[doc = "Reader of field `OPTL`"]
+pub type OPTL_R = crate::R<u8, OPTL_A>;
 impl OPTL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> OPTL_A {
+        match self.bits {
+            0 => OPTL_A::OPTION_1BIT,
+            1 => OPTL_A::OPTION_2BIT,
+            2 => OPTL_A::OPTION_4BIT,
+            3 => OPTL_A::OPTION_8BIT,
+            _ => unreachable!(),
+        }
+    }
     #[doc = "Checks if the value of the field is `OPTION_1BIT`"]
     #[inline(always)]
     pub fn is_option_1bit(&self) -> bool {
-        *self == OPTLR::OPTION_1BIT
+        *self == OPTL_A::OPTION_1BIT
     }
     #[doc = "Checks if the value of the field is `OPTION_2BIT`"]
     #[inline(always)]
     pub fn is_option_2bit(&self) -> bool {
-        *self == OPTLR::OPTION_2BIT
+        *self == OPTL_A::OPTION_2BIT
     }
     #[doc = "Checks if the value of the field is `OPTION_4BIT`"]
     #[inline(always)]
     pub fn is_option_4bit(&self) -> bool {
-        *self == OPTLR::OPTION_4BIT
+        *self == OPTL_A::OPTION_4BIT
     }
     #[doc = "Checks if the value of the field is `OPTION_8BIT`"]
     #[inline(always)]
     pub fn is_option_8bit(&self) -> bool {
-        *self == OPTLR::OPTION_8BIT
+        *self == OPTL_A::OPTION_8BIT
     }
 }
-#[doc = "Values that can be written to the field `OPTL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum OPTLW {
-    #[doc = "The option code is 1 bit long."]
-    OPTION_1BIT,
-    #[doc = "The option code is 2 bits long."]
-    OPTION_2BIT,
-    #[doc = "The option code is 4 bits long."]
-    OPTION_4BIT,
-    #[doc = "The option code is 8 bits long."]
-    OPTION_8BIT,
-}
-impl OPTLW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            OPTLW::OPTION_1BIT => 0,
-            OPTLW::OPTION_2BIT => 1,
-            OPTLW::OPTION_4BIT => 2,
-            OPTLW::OPTION_8BIT => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _OPTLW<'a> {
+#[doc = "Write proxy for field `OPTL`"]
+pub struct OPTL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OPTLW<'a> {
+impl<'a> OPTL_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: OPTLW) -> &'a mut W {
+    pub fn variant(self, variant: OPTL_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "The option code is 1 bit long."]
     #[inline(always)]
     pub fn option_1bit(self) -> &'a mut W {
-        self.variant(OPTLW::OPTION_1BIT)
+        self.variant(OPTL_A::OPTION_1BIT)
     }
     #[doc = "The option code is 2 bits long."]
     #[inline(always)]
     pub fn option_2bit(self) -> &'a mut W {
-        self.variant(OPTLW::OPTION_2BIT)
+        self.variant(OPTL_A::OPTION_2BIT)
     }
     #[doc = "The option code is 4 bits long."]
     #[inline(always)]
     pub fn option_4bit(self) -> &'a mut W {
-        self.variant(OPTLW::OPTION_4BIT)
+        self.variant(OPTL_A::OPTION_4BIT)
     }
     #[doc = "The option code is 8 bits long."]
     #[inline(always)]
     pub fn option_8bit(self) -> &'a mut W {
-        self.variant(OPTLW::OPTION_8BIT)
+        self.variant(OPTL_A::OPTION_8BIT)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -411,77 +330,63 @@ impl<'a> _OPTLW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `ADDRL`"]
+#[doc = "Address Length\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ADDRLR {
-    #[doc = "The address is 24 bits long."]
-    _24_BIT,
-    #[doc = "The address is 32 bits long."]
-    _32_BIT,
+pub enum ADDRL_A {
+    #[doc = "0: The address is 24 bits long."]
+    _24_BIT = 0,
+    #[doc = "1: The address is 32 bits long."]
+    _32_BIT = 1,
 }
-impl crate::ToBits<bool> for ADDRLR {
+impl From<ADDRL_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            ADDRLR::_24_BIT => false,
-            ADDRLR::_32_BIT => true,
-        }
+    fn from(variant: ADDRL_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type ADDRL_R = crate::FR<bool, ADDRLR>;
+#[doc = "Reader of field `ADDRL`"]
+pub type ADDRL_R = crate::R<bool, ADDRL_A>;
 impl ADDRL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ADDRL_A {
+        match self.bits {
+            false => ADDRL_A::_24_BIT,
+            true => ADDRL_A::_32_BIT,
+        }
+    }
     #[doc = "Checks if the value of the field is `_24_BIT`"]
     #[inline(always)]
     pub fn is_24_bit(&self) -> bool {
-        *self == ADDRLR::_24_BIT
+        *self == ADDRL_A::_24_BIT
     }
     #[doc = "Checks if the value of the field is `_32_BIT`"]
     #[inline(always)]
     pub fn is_32_bit(&self) -> bool {
-        *self == ADDRLR::_32_BIT
+        *self == ADDRL_A::_32_BIT
     }
 }
-#[doc = "Values that can be written to the field `ADDRL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ADDRLW {
-    #[doc = "The address is 24 bits long."]
-    _24_BIT,
-    #[doc = "The address is 32 bits long."]
-    _32_BIT,
-}
-impl ADDRLW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ADDRLW::_24_BIT => false,
-            ADDRLW::_32_BIT => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _ADDRLW<'a> {
+#[doc = "Write proxy for field `ADDRL`"]
+pub struct ADDRL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ADDRLW<'a> {
+impl<'a> ADDRL_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: ADDRLW) -> &'a mut W {
+    pub fn variant(self, variant: ADDRL_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The address is 24 bits long."]
     #[inline(always)]
     pub fn _24_bit(self) -> &'a mut W {
-        self.variant(ADDRLW::_24_BIT)
+        self.variant(ADDRL_A::_24_BIT)
     }
     #[doc = "The address is 32 bits long."]
     #[inline(always)]
     pub fn _32_bit(self) -> &'a mut W {
-        self.variant(ADDRLW::_32_BIT)
+        self.variant(ADDRL_A::_32_BIT)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -500,109 +405,91 @@ impl<'a> _ADDRLW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `TFRTYP`"]
+#[doc = "Data Transfer Type\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TFRTYPR {
-    #[doc = "Read transfer from the serial memory.Scrambling is not performed.Read at random location (fetch) in the serial Flash memory is not possible."]
-    TRSFR_READ,
-    #[doc = "Read data transfer from the serial memory.If enabled, scrambling is performed.Read at random location (fetch) in the serial Flash memory is possible."]
-    TRSFR_READ_MEMORY,
-    #[doc = "Write transfer into the serial memory.Scrambling is not performed."]
-    TRSFR_WRITE,
-    #[doc = "Write data transfer into the serial memory.If enabled, scrambling is performed."]
-    TRSFR_WRITE_MEMORY,
+#[repr(u8)]
+pub enum TFRTYP_A {
+    #[doc = "0: Read transfer from the serial memory.Scrambling is not performed.Read at random location (fetch) in the serial Flash memory is not possible."]
+    TRSFR_READ = 0,
+    #[doc = "1: Read data transfer from the serial memory.If enabled, scrambling is performed.Read at random location (fetch) in the serial Flash memory is possible."]
+    TRSFR_READ_MEMORY = 1,
+    #[doc = "2: Write transfer into the serial memory.Scrambling is not performed."]
+    TRSFR_WRITE = 2,
+    #[doc = "3: Write data transfer into the serial memory.If enabled, scrambling is performed."]
+    TRSFR_WRITE_MEMORY = 3,
 }
-impl crate::ToBits<u8> for TFRTYPR {
+impl From<TFRTYP_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            TFRTYPR::TRSFR_READ => 0,
-            TFRTYPR::TRSFR_READ_MEMORY => 1,
-            TFRTYPR::TRSFR_WRITE => 2,
-            TFRTYPR::TRSFR_WRITE_MEMORY => 3,
-        }
+    fn from(variant: TFRTYP_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type TFRTYP_R = crate::FR<u8, TFRTYPR>;
+#[doc = "Reader of field `TFRTYP`"]
+pub type TFRTYP_R = crate::R<u8, TFRTYP_A>;
 impl TFRTYP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TFRTYP_A {
+        match self.bits {
+            0 => TFRTYP_A::TRSFR_READ,
+            1 => TFRTYP_A::TRSFR_READ_MEMORY,
+            2 => TFRTYP_A::TRSFR_WRITE,
+            3 => TFRTYP_A::TRSFR_WRITE_MEMORY,
+            _ => unreachable!(),
+        }
+    }
     #[doc = "Checks if the value of the field is `TRSFR_READ`"]
     #[inline(always)]
     pub fn is_trsfr_read(&self) -> bool {
-        *self == TFRTYPR::TRSFR_READ
+        *self == TFRTYP_A::TRSFR_READ
     }
     #[doc = "Checks if the value of the field is `TRSFR_READ_MEMORY`"]
     #[inline(always)]
     pub fn is_trsfr_read_memory(&self) -> bool {
-        *self == TFRTYPR::TRSFR_READ_MEMORY
+        *self == TFRTYP_A::TRSFR_READ_MEMORY
     }
     #[doc = "Checks if the value of the field is `TRSFR_WRITE`"]
     #[inline(always)]
     pub fn is_trsfr_write(&self) -> bool {
-        *self == TFRTYPR::TRSFR_WRITE
+        *self == TFRTYP_A::TRSFR_WRITE
     }
     #[doc = "Checks if the value of the field is `TRSFR_WRITE_MEMORY`"]
     #[inline(always)]
     pub fn is_trsfr_write_memory(&self) -> bool {
-        *self == TFRTYPR::TRSFR_WRITE_MEMORY
+        *self == TFRTYP_A::TRSFR_WRITE_MEMORY
     }
 }
-#[doc = "Values that can be written to the field `TFRTYP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TFRTYPW {
-    #[doc = "Read transfer from the serial memory.Scrambling is not performed.Read at random location (fetch) in the serial Flash memory is not possible."]
-    TRSFR_READ,
-    #[doc = "Read data transfer from the serial memory.If enabled, scrambling is performed.Read at random location (fetch) in the serial Flash memory is possible."]
-    TRSFR_READ_MEMORY,
-    #[doc = "Write transfer into the serial memory.Scrambling is not performed."]
-    TRSFR_WRITE,
-    #[doc = "Write data transfer into the serial memory.If enabled, scrambling is performed."]
-    TRSFR_WRITE_MEMORY,
-}
-impl TFRTYPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TFRTYPW::TRSFR_READ => 0,
-            TFRTYPW::TRSFR_READ_MEMORY => 1,
-            TFRTYPW::TRSFR_WRITE => 2,
-            TFRTYPW::TRSFR_WRITE_MEMORY => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _TFRTYPW<'a> {
+#[doc = "Write proxy for field `TFRTYP`"]
+pub struct TFRTYP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TFRTYPW<'a> {
+impl<'a> TFRTYP_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: TFRTYPW) -> &'a mut W {
+    pub fn variant(self, variant: TFRTYP_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Read transfer from the serial memory.Scrambling is not performed.Read at random location (fetch) in the serial Flash memory is not possible."]
     #[inline(always)]
     pub fn trsfr_read(self) -> &'a mut W {
-        self.variant(TFRTYPW::TRSFR_READ)
+        self.variant(TFRTYP_A::TRSFR_READ)
     }
     #[doc = "Read data transfer from the serial memory.If enabled, scrambling is performed.Read at random location (fetch) in the serial Flash memory is possible."]
     #[inline(always)]
     pub fn trsfr_read_memory(self) -> &'a mut W {
-        self.variant(TFRTYPW::TRSFR_READ_MEMORY)
+        self.variant(TFRTYP_A::TRSFR_READ_MEMORY)
     }
     #[doc = "Write transfer into the serial memory.Scrambling is not performed."]
     #[inline(always)]
     pub fn trsfr_write(self) -> &'a mut W {
-        self.variant(TFRTYPW::TRSFR_WRITE)
+        self.variant(TFRTYP_A::TRSFR_WRITE)
     }
     #[doc = "Write data transfer into the serial memory.If enabled, scrambling is performed."]
     #[inline(always)]
     pub fn trsfr_write_memory(self) -> &'a mut W {
-        self.variant(TFRTYPW::TRSFR_WRITE_MEMORY)
+        self.variant(TFRTYP_A::TRSFR_WRITE_MEMORY)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -611,77 +498,63 @@ impl<'a> _TFRTYPW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `CRM`"]
+#[doc = "Continuous Read Mode\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CRMR {
-    #[doc = "The Continuous Read mode is disabled."]
-    DISABLED,
-    #[doc = "The Continuous Read mode is enabled."]
-    ENABLED,
+pub enum CRM_A {
+    #[doc = "0: The Continuous Read mode is disabled."]
+    DISABLED = 0,
+    #[doc = "1: The Continuous Read mode is enabled."]
+    ENABLED = 1,
 }
-impl crate::ToBits<bool> for CRMR {
+impl From<CRM_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            CRMR::DISABLED => false,
-            CRMR::ENABLED => true,
-        }
+    fn from(variant: CRM_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type CRM_R = crate::FR<bool, CRMR>;
+#[doc = "Reader of field `CRM`"]
+pub type CRM_R = crate::R<bool, CRM_A>;
 impl CRM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CRM_A {
+        match self.bits {
+            false => CRM_A::DISABLED,
+            true => CRM_A::ENABLED,
+        }
+    }
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == CRMR::DISABLED
+        *self == CRM_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == CRMR::ENABLED
+        *self == CRM_A::ENABLED
     }
 }
-#[doc = "Values that can be written to the field `CRM`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CRMW {
-    #[doc = "The Continuous Read mode is disabled."]
-    DISABLED,
-    #[doc = "The Continuous Read mode is enabled."]
-    ENABLED,
-}
-impl CRMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CRMW::DISABLED => false,
-            CRMW::ENABLED => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _CRMW<'a> {
+#[doc = "Write proxy for field `CRM`"]
+pub struct CRM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CRMW<'a> {
+impl<'a> CRM_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: CRMW) -> &'a mut W {
+    pub fn variant(self, variant: CRM_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The Continuous Read mode is disabled."]
     #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(CRMW::DISABLED)
+        self.variant(CRM_A::DISABLED)
     }
     #[doc = "The Continuous Read mode is enabled."]
     #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(CRMW::ENABLED)
+        self.variant(CRM_A::ENABLED)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -700,13 +573,13 @@ impl<'a> _CRMW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type NBDUM_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _NBDUMW<'a> {
+#[doc = "Reader of field `NBDUM`"]
+pub type NBDUM_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `NBDUM`"]
+pub struct NBDUM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NBDUMW<'a> {
+impl<'a> NBDUM_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -715,117 +588,106 @@ impl<'a> _NBDUMW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:2 - Width of Instruction Code, Address, Option Code and Data"]
     #[inline(always)]
     pub fn width(&self) -> WIDTH_R {
-        WIDTH_R::new((self.bits() & 0x07) as u8)
+        WIDTH_R::new((self.bits & 0x07) as u8)
     }
     #[doc = "Bit 4 - Instruction Enable"]
     #[inline(always)]
     pub fn insten(&self) -> INSTEN_R {
-        INSTEN_R::new(((self.bits() >> 4) & 0x01) != 0)
+        INSTEN_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Address Enable"]
     #[inline(always)]
     pub fn addren(&self) -> ADDREN_R {
-        ADDREN_R::new(((self.bits() >> 5) & 0x01) != 0)
+        ADDREN_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Option Enable"]
     #[inline(always)]
     pub fn opten(&self) -> OPTEN_R {
-        OPTEN_R::new(((self.bits() >> 6) & 0x01) != 0)
+        OPTEN_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Data Enable"]
     #[inline(always)]
     pub fn dataen(&self) -> DATAEN_R {
-        DATAEN_R::new(((self.bits() >> 7) & 0x01) != 0)
+        DATAEN_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bits 8:9 - Option Code Length"]
     #[inline(always)]
     pub fn optl(&self) -> OPTL_R {
-        OPTL_R::new(((self.bits() >> 8) & 0x03) as u8)
+        OPTL_R::new(((self.bits >> 8) & 0x03) as u8)
     }
     #[doc = "Bit 10 - Address Length"]
     #[inline(always)]
     pub fn addrl(&self) -> ADDRL_R {
-        ADDRL_R::new(((self.bits() >> 10) & 0x01) != 0)
+        ADDRL_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bits 12:13 - Data Transfer Type"]
     #[inline(always)]
     pub fn tfrtyp(&self) -> TFRTYP_R {
-        TFRTYP_R::new(((self.bits() >> 12) & 0x03) as u8)
+        TFRTYP_R::new(((self.bits >> 12) & 0x03) as u8)
     }
     #[doc = "Bit 14 - Continuous Read Mode"]
     #[inline(always)]
     pub fn crm(&self) -> CRM_R {
-        CRM_R::new(((self.bits() >> 14) & 0x01) != 0)
+        CRM_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bits 16:20 - Number Of Dummy Cycles"]
     #[inline(always)]
     pub fn nbdum(&self) -> NBDUM_R {
-        NBDUM_R::new(((self.bits() >> 16) & 0x1f) as u8)
+        NBDUM_R::new(((self.bits >> 16) & 0x1f) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:2 - Width of Instruction Code, Address, Option Code and Data"]
     #[inline(always)]
-    pub fn width(&mut self) -> _WIDTHW {
-        _WIDTHW { w: self }
+    pub fn width(&mut self) -> WIDTH_W {
+        WIDTH_W { w: self }
     }
     #[doc = "Bit 4 - Instruction Enable"]
     #[inline(always)]
-    pub fn insten(&mut self) -> _INSTENW {
-        _INSTENW { w: self }
+    pub fn insten(&mut self) -> INSTEN_W {
+        INSTEN_W { w: self }
     }
     #[doc = "Bit 5 - Address Enable"]
     #[inline(always)]
-    pub fn addren(&mut self) -> _ADDRENW {
-        _ADDRENW { w: self }
+    pub fn addren(&mut self) -> ADDREN_W {
+        ADDREN_W { w: self }
     }
     #[doc = "Bit 6 - Option Enable"]
     #[inline(always)]
-    pub fn opten(&mut self) -> _OPTENW {
-        _OPTENW { w: self }
+    pub fn opten(&mut self) -> OPTEN_W {
+        OPTEN_W { w: self }
     }
     #[doc = "Bit 7 - Data Enable"]
     #[inline(always)]
-    pub fn dataen(&mut self) -> _DATAENW {
-        _DATAENW { w: self }
+    pub fn dataen(&mut self) -> DATAEN_W {
+        DATAEN_W { w: self }
     }
     #[doc = "Bits 8:9 - Option Code Length"]
     #[inline(always)]
-    pub fn optl(&mut self) -> _OPTLW {
-        _OPTLW { w: self }
+    pub fn optl(&mut self) -> OPTL_W {
+        OPTL_W { w: self }
     }
     #[doc = "Bit 10 - Address Length"]
     #[inline(always)]
-    pub fn addrl(&mut self) -> _ADDRLW {
-        _ADDRLW { w: self }
+    pub fn addrl(&mut self) -> ADDRL_W {
+        ADDRL_W { w: self }
     }
     #[doc = "Bits 12:13 - Data Transfer Type"]
     #[inline(always)]
-    pub fn tfrtyp(&mut self) -> _TFRTYPW {
-        _TFRTYPW { w: self }
+    pub fn tfrtyp(&mut self) -> TFRTYP_W {
+        TFRTYP_W { w: self }
     }
     #[doc = "Bit 14 - Continuous Read Mode"]
     #[inline(always)]
-    pub fn crm(&mut self) -> _CRMW {
-        _CRMW { w: self }
+    pub fn crm(&mut self) -> CRM_W {
+        CRM_W { w: self }
     }
     #[doc = "Bits 16:20 - Number Of Dummy Cycles"]
     #[inline(always)]
-    pub fn nbdum(&mut self) -> _NBDUMW {
-        _NBDUMW { w: self }
+    pub fn nbdum(&mut self) -> NBDUM_W {
+        NBDUM_W { w: self }
     }
 }

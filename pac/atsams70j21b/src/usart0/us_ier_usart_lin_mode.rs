@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::US_IER_USART_LIN_MODE {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register US_IER_USART_LIN_MODE"]
+pub type W = crate::W<u32, super::US_IER_USART_LIN_MODE>;
+#[doc = "Register US_IER_USART_LIN_MODE `reset()`'s with value 0"]
+impl crate::ResetValue for super::US_IER_USART_LIN_MODE {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _RXRDYW<'a> {
+#[doc = "Write proxy for field `RXRDY`"]
+pub struct RXRDY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXRDYW<'a> {
+impl<'a> RXRDY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _RXRDYW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TXRDYW<'a> {
+#[doc = "Write proxy for field `TXRDY`"]
+pub struct TXRDY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXRDYW<'a> {
+impl<'a> TXRDY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _TXRDYW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OVREW<'a> {
+#[doc = "Write proxy for field `OVRE`"]
+pub struct OVRE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OVREW<'a> {
+impl<'a> OVRE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _OVREW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _FRAMEW<'a> {
+#[doc = "Write proxy for field `FRAME`"]
+pub struct FRAME_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FRAMEW<'a> {
+impl<'a> FRAME_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _FRAMEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PAREW<'a> {
+#[doc = "Write proxy for field `PARE`"]
+pub struct PARE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PAREW<'a> {
+impl<'a> PARE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _PAREW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TIMEOUTW<'a> {
+#[doc = "Write proxy for field `TIMEOUT`"]
+pub struct TIMEOUT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIMEOUTW<'a> {
+impl<'a> TIMEOUT_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _TIMEOUTW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TXEMPTYW<'a> {
+#[doc = "Write proxy for field `TXEMPTY`"]
+pub struct TXEMPTY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXEMPTYW<'a> {
+impl<'a> TXEMPTY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -182,45 +163,39 @@ impl<'a> _TXEMPTYW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - RXRDY Interrupt Enable"]
     #[inline(always)]
-    pub fn rxrdy(&mut self) -> _RXRDYW {
-        _RXRDYW { w: self }
+    pub fn rxrdy(&mut self) -> RXRDY_W {
+        RXRDY_W { w: self }
     }
     #[doc = "Bit 1 - TXRDY Interrupt Enable"]
     #[inline(always)]
-    pub fn txrdy(&mut self) -> _TXRDYW {
-        _TXRDYW { w: self }
+    pub fn txrdy(&mut self) -> TXRDY_W {
+        TXRDY_W { w: self }
     }
     #[doc = "Bit 5 - Overrun Error Interrupt Enable"]
     #[inline(always)]
-    pub fn ovre(&mut self) -> _OVREW {
-        _OVREW { w: self }
+    pub fn ovre(&mut self) -> OVRE_W {
+        OVRE_W { w: self }
     }
     #[doc = "Bit 6 - Framing Error Interrupt Enable"]
     #[inline(always)]
-    pub fn frame(&mut self) -> _FRAMEW {
-        _FRAMEW { w: self }
+    pub fn frame(&mut self) -> FRAME_W {
+        FRAME_W { w: self }
     }
     #[doc = "Bit 7 - Parity Error Interrupt Enable"]
     #[inline(always)]
-    pub fn pare(&mut self) -> _PAREW {
-        _PAREW { w: self }
+    pub fn pare(&mut self) -> PARE_W {
+        PARE_W { w: self }
     }
     #[doc = "Bit 8 - Timeout Interrupt Enable"]
     #[inline(always)]
-    pub fn timeout(&mut self) -> _TIMEOUTW {
-        _TIMEOUTW { w: self }
+    pub fn timeout(&mut self) -> TIMEOUT_W {
+        TIMEOUT_W { w: self }
     }
     #[doc = "Bit 9 - TXEMPTY Interrupt Enable"]
     #[inline(always)]
-    pub fn txempty(&mut self) -> _TXEMPTYW {
-        _TXEMPTYW { w: self }
+    pub fn txempty(&mut self) -> TXEMPTY_W {
+        TXEMPTY_W { w: self }
     }
 }

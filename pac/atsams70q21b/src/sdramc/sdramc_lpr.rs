@@ -1,155 +1,100 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SDRAMC_LPR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register SDRAMC_LPR"]
+pub type R = crate::R<u32, super::SDRAMC_LPR>;
+#[doc = "Writer for register SDRAMC_LPR"]
+pub type W = crate::W<u32, super::SDRAMC_LPR>;
+#[doc = "Register SDRAMC_LPR `reset()`'s with value 0"]
+impl crate::ResetValue for super::SDRAMC_LPR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "Low-power Configuration Bits\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum LPCB_A {
+    #[doc = "0: The low-power feature is inhibited: no Power-down, Self-refresh or Deep Power-down command is issued to the SDRAM device."]
+    DISABLED = 0,
+    #[doc = "1: The SDRAMC issues a Self-refresh command to the SDRAM device, the SDCK clock is deactivated and the SDCKE signal is set low. The SDRAM device leaves the Self-refresh mode when accessed and enters it after the access."]
+    SELF_REFRESH = 1,
+    #[doc = "2: The SDRAMC issues a Power-down Command to the SDRAM device after each access, the SDCKE signal is set to low. The SDRAM device leaves the Power-down mode when accessed and enters it after the access."]
+    POWER_DOWN = 2,
+    #[doc = "3: The SDRAMC issues a Deep Power-down command to the SDRAM device. This mode is unique to low-power SDRAM."]
+    DEEP_POWER_DOWN = 3,
+}
+impl From<LPCB_A> for u8 {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: LPCB_A) -> Self {
+        variant as _
     }
 }
-#[doc = "Possible values of the field `LPCB`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LPCBR {
-    #[doc = "The low-power feature is inhibited: no Power-down, Self-refresh or Deep Power-down command is issued to the SDRAM device."]
-    DISABLED,
-    #[doc = "The SDRAMC issues a Self-refresh command to the SDRAM device, the SDCK clock is deactivated and the SDCKE signal is set low. The SDRAM device leaves the Self-refresh mode when accessed and enters it after the access."]
-    SELF_REFRESH,
-    #[doc = "The SDRAMC issues a Power-down Command to the SDRAM device after each access, the SDCKE signal is set to low. The SDRAM device leaves the Power-down mode when accessed and enters it after the access."]
-    POWER_DOWN,
-    #[doc = "The SDRAMC issues a Deep Power-down command to the SDRAM device. This mode is unique to low-power SDRAM."]
-    DEEP_POWER_DOWN,
-}
-impl crate::ToBits<u8> for LPCBR {
+#[doc = "Reader of field `LPCB`"]
+pub type LPCB_R = crate::R<u8, LPCB_A>;
+impl LPCB_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            LPCBR::DISABLED => 0,
-            LPCBR::SELF_REFRESH => 1,
-            LPCBR::POWER_DOWN => 2,
-            LPCBR::DEEP_POWER_DOWN => 3,
+    pub fn variant(&self) -> LPCB_A {
+        match self.bits {
+            0 => LPCB_A::DISABLED,
+            1 => LPCB_A::SELF_REFRESH,
+            2 => LPCB_A::POWER_DOWN,
+            3 => LPCB_A::DEEP_POWER_DOWN,
+            _ => unreachable!(),
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type LPCB_R = crate::FR<u8, LPCBR>;
-impl LPCB_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == LPCBR::DISABLED
+        *self == LPCB_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `SELF_REFRESH`"]
     #[inline(always)]
     pub fn is_self_refresh(&self) -> bool {
-        *self == LPCBR::SELF_REFRESH
+        *self == LPCB_A::SELF_REFRESH
     }
     #[doc = "Checks if the value of the field is `POWER_DOWN`"]
     #[inline(always)]
     pub fn is_power_down(&self) -> bool {
-        *self == LPCBR::POWER_DOWN
+        *self == LPCB_A::POWER_DOWN
     }
     #[doc = "Checks if the value of the field is `DEEP_POWER_DOWN`"]
     #[inline(always)]
     pub fn is_deep_power_down(&self) -> bool {
-        *self == LPCBR::DEEP_POWER_DOWN
+        *self == LPCB_A::DEEP_POWER_DOWN
     }
 }
-#[doc = "Values that can be written to the field `LPCB`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LPCBW {
-    #[doc = "The low-power feature is inhibited: no Power-down, Self-refresh or Deep Power-down command is issued to the SDRAM device."]
-    DISABLED,
-    #[doc = "The SDRAMC issues a Self-refresh command to the SDRAM device, the SDCK clock is deactivated and the SDCKE signal is set low. The SDRAM device leaves the Self-refresh mode when accessed and enters it after the access."]
-    SELF_REFRESH,
-    #[doc = "The SDRAMC issues a Power-down Command to the SDRAM device after each access, the SDCKE signal is set to low. The SDRAM device leaves the Power-down mode when accessed and enters it after the access."]
-    POWER_DOWN,
-    #[doc = "The SDRAMC issues a Deep Power-down command to the SDRAM device. This mode is unique to low-power SDRAM."]
-    DEEP_POWER_DOWN,
-}
-impl LPCBW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            LPCBW::DISABLED => 0,
-            LPCBW::SELF_REFRESH => 1,
-            LPCBW::POWER_DOWN => 2,
-            LPCBW::DEEP_POWER_DOWN => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LPCBW<'a> {
+#[doc = "Write proxy for field `LPCB`"]
+pub struct LPCB_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LPCBW<'a> {
+impl<'a> LPCB_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LPCBW) -> &'a mut W {
+    pub fn variant(self, variant: LPCB_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "The low-power feature is inhibited: no Power-down, Self-refresh or Deep Power-down command is issued to the SDRAM device."]
     #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(LPCBW::DISABLED)
+        self.variant(LPCB_A::DISABLED)
     }
     #[doc = "The SDRAMC issues a Self-refresh command to the SDRAM device, the SDCK clock is deactivated and the SDCKE signal is set low. The SDRAM device leaves the Self-refresh mode when accessed and enters it after the access."]
     #[inline(always)]
     pub fn self_refresh(self) -> &'a mut W {
-        self.variant(LPCBW::SELF_REFRESH)
+        self.variant(LPCB_A::SELF_REFRESH)
     }
     #[doc = "The SDRAMC issues a Power-down Command to the SDRAM device after each access, the SDCKE signal is set to low. The SDRAM device leaves the Power-down mode when accessed and enters it after the access."]
     #[inline(always)]
     pub fn power_down(self) -> &'a mut W {
-        self.variant(LPCBW::POWER_DOWN)
+        self.variant(LPCB_A::POWER_DOWN)
     }
     #[doc = "The SDRAMC issues a Deep Power-down command to the SDRAM device. This mode is unique to low-power SDRAM."]
     #[inline(always)]
     pub fn deep_power_down(self) -> &'a mut W {
-        self.variant(LPCBW::DEEP_POWER_DOWN)
+        self.variant(LPCB_A::DEEP_POWER_DOWN)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -158,13 +103,13 @@ impl<'a> _LPCBW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PASR_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _PASRW<'a> {
+#[doc = "Reader of field `PASR`"]
+pub type PASR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PASR`"]
+pub struct PASR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PASRW<'a> {
+impl<'a> PASR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -172,13 +117,13 @@ impl<'a> _PASRW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type TCSR_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _TCSRW<'a> {
+#[doc = "Reader of field `TCSR`"]
+pub type TCSR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TCSR`"]
+pub struct TCSR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TCSRW<'a> {
+impl<'a> TCSR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -186,13 +131,13 @@ impl<'a> _TCSRW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DS_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _DSW<'a> {
+#[doc = "Reader of field `DS`"]
+pub type DS_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `DS`"]
+pub struct DS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DSW<'a> {
+impl<'a> DS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -200,91 +145,77 @@ impl<'a> _DSW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `TIMEOUT`"]
+#[doc = "Time to Define When Low-power Mode Is Enabled\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TIMEOUTR {
-    #[doc = "The SDRAMC activates the SDRAM Low-power mode immediately after the end of the last transfer."]
-    LP_LAST_XFER,
-    #[doc = "The SDRAMC activates the SDRAM Low-power mode 64 clock cycles after the end of the last transfer."]
-    LP_LAST_XFER_64,
-    #[doc = "The SDRAMC activates the SDRAM Low-power mode 128 clock cycles after the end of the last transfer."]
-    LP_LAST_XFER_128,
+#[repr(u8)]
+pub enum TIMEOUT_A {
+    #[doc = "0: The SDRAMC activates the SDRAM Low-power mode immediately after the end of the last transfer."]
+    LP_LAST_XFER = 0,
+    #[doc = "1: The SDRAMC activates the SDRAM Low-power mode 64 clock cycles after the end of the last transfer."]
+    LP_LAST_XFER_64 = 1,
+    #[doc = "2: The SDRAMC activates the SDRAM Low-power mode 128 clock cycles after the end of the last transfer."]
+    LP_LAST_XFER_128 = 2,
 }
-impl crate::ToBits<u8> for TIMEOUTR {
+impl From<TIMEOUT_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            TIMEOUTR::LP_LAST_XFER => 0,
-            TIMEOUTR::LP_LAST_XFER_64 => 1,
-            TIMEOUTR::LP_LAST_XFER_128 => 2,
-        }
+    fn from(variant: TIMEOUT_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type TIMEOUT_R = crate::FR<u8, TIMEOUTR>;
+#[doc = "Reader of field `TIMEOUT`"]
+pub type TIMEOUT_R = crate::R<u8, TIMEOUT_A>;
 impl TIMEOUT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, TIMEOUT_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(TIMEOUT_A::LP_LAST_XFER),
+            1 => Val(TIMEOUT_A::LP_LAST_XFER_64),
+            2 => Val(TIMEOUT_A::LP_LAST_XFER_128),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `LP_LAST_XFER`"]
     #[inline(always)]
     pub fn is_lp_last_xfer(&self) -> bool {
-        *self == TIMEOUTR::LP_LAST_XFER
+        *self == TIMEOUT_A::LP_LAST_XFER
     }
     #[doc = "Checks if the value of the field is `LP_LAST_XFER_64`"]
     #[inline(always)]
     pub fn is_lp_last_xfer_64(&self) -> bool {
-        *self == TIMEOUTR::LP_LAST_XFER_64
+        *self == TIMEOUT_A::LP_LAST_XFER_64
     }
     #[doc = "Checks if the value of the field is `LP_LAST_XFER_128`"]
     #[inline(always)]
     pub fn is_lp_last_xfer_128(&self) -> bool {
-        *self == TIMEOUTR::LP_LAST_XFER_128
+        *self == TIMEOUT_A::LP_LAST_XFER_128
     }
 }
-#[doc = "Values that can be written to the field `TIMEOUT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TIMEOUTW {
-    #[doc = "The SDRAMC activates the SDRAM Low-power mode immediately after the end of the last transfer."]
-    LP_LAST_XFER,
-    #[doc = "The SDRAMC activates the SDRAM Low-power mode 64 clock cycles after the end of the last transfer."]
-    LP_LAST_XFER_64,
-    #[doc = "The SDRAMC activates the SDRAM Low-power mode 128 clock cycles after the end of the last transfer."]
-    LP_LAST_XFER_128,
-}
-impl TIMEOUTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TIMEOUTW::LP_LAST_XFER => 0,
-            TIMEOUTW::LP_LAST_XFER_64 => 1,
-            TIMEOUTW::LP_LAST_XFER_128 => 2,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _TIMEOUTW<'a> {
+#[doc = "Write proxy for field `TIMEOUT`"]
+pub struct TIMEOUT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIMEOUTW<'a> {
+impl<'a> TIMEOUT_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: TIMEOUTW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: TIMEOUT_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "The SDRAMC activates the SDRAM Low-power mode immediately after the end of the last transfer."]
     #[inline(always)]
     pub fn lp_last_xfer(self) -> &'a mut W {
-        self.variant(TIMEOUTW::LP_LAST_XFER)
+        self.variant(TIMEOUT_A::LP_LAST_XFER)
     }
     #[doc = "The SDRAMC activates the SDRAM Low-power mode 64 clock cycles after the end of the last transfer."]
     #[inline(always)]
     pub fn lp_last_xfer_64(self) -> &'a mut W {
-        self.variant(TIMEOUTW::LP_LAST_XFER_64)
+        self.variant(TIMEOUT_A::LP_LAST_XFER_64)
     }
     #[doc = "The SDRAMC activates the SDRAM Low-power mode 128 clock cycles after the end of the last transfer."]
     #[inline(always)]
     pub fn lp_last_xfer_128(self) -> &'a mut W {
-        self.variant(TIMEOUTW::LP_LAST_XFER_128)
+        self.variant(TIMEOUT_A::LP_LAST_XFER_128)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -294,67 +225,56 @@ impl<'a> _TIMEOUTW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - Low-power Configuration Bits"]
     #[inline(always)]
     pub fn lpcb(&self) -> LPCB_R {
-        LPCB_R::new((self.bits() & 0x03) as u8)
+        LPCB_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bits 4:6 - Partial Array Self-refresh (only for low-power SDRAM)"]
     #[inline(always)]
     pub fn pasr(&self) -> PASR_R {
-        PASR_R::new(((self.bits() >> 4) & 0x07) as u8)
+        PASR_R::new(((self.bits >> 4) & 0x07) as u8)
     }
     #[doc = "Bits 8:9 - Temperature Compensated Self-Refresh (only for low-power SDRAM)"]
     #[inline(always)]
     pub fn tcsr(&self) -> TCSR_R {
-        TCSR_R::new(((self.bits() >> 8) & 0x03) as u8)
+        TCSR_R::new(((self.bits >> 8) & 0x03) as u8)
     }
     #[doc = "Bits 10:11 - Drive Strength (only for low-power SDRAM)"]
     #[inline(always)]
     pub fn ds(&self) -> DS_R {
-        DS_R::new(((self.bits() >> 10) & 0x03) as u8)
+        DS_R::new(((self.bits >> 10) & 0x03) as u8)
     }
     #[doc = "Bits 12:13 - Time to Define When Low-power Mode Is Enabled"]
     #[inline(always)]
     pub fn timeout(&self) -> TIMEOUT_R {
-        TIMEOUT_R::new(((self.bits() >> 12) & 0x03) as u8)
+        TIMEOUT_R::new(((self.bits >> 12) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - Low-power Configuration Bits"]
     #[inline(always)]
-    pub fn lpcb(&mut self) -> _LPCBW {
-        _LPCBW { w: self }
+    pub fn lpcb(&mut self) -> LPCB_W {
+        LPCB_W { w: self }
     }
     #[doc = "Bits 4:6 - Partial Array Self-refresh (only for low-power SDRAM)"]
     #[inline(always)]
-    pub fn pasr(&mut self) -> _PASRW {
-        _PASRW { w: self }
+    pub fn pasr(&mut self) -> PASR_W {
+        PASR_W { w: self }
     }
     #[doc = "Bits 8:9 - Temperature Compensated Self-Refresh (only for low-power SDRAM)"]
     #[inline(always)]
-    pub fn tcsr(&mut self) -> _TCSRW {
-        _TCSRW { w: self }
+    pub fn tcsr(&mut self) -> TCSR_W {
+        TCSR_W { w: self }
     }
     #[doc = "Bits 10:11 - Drive Strength (only for low-power SDRAM)"]
     #[inline(always)]
-    pub fn ds(&mut self) -> _DSW {
-        _DSW { w: self }
+    pub fn ds(&mut self) -> DS_W {
+        DS_W { w: self }
     }
     #[doc = "Bits 12:13 - Time to Define When Low-power Mode Is Enabled"]
     #[inline(always)]
-    pub fn timeout(&mut self) -> _TIMEOUTW {
-        _TIMEOUTW { w: self }
+    pub fn timeout(&mut self) -> TIMEOUT_W {
+        TIMEOUT_W { w: self }
     }
 }

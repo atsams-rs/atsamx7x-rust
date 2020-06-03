@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::XDMAC_GIE {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register XDMAC_GIE"]
+pub type W = crate::W<u32, super::XDMAC_GIE>;
+#[doc = "Register XDMAC_GIE `reset()`'s with value 0"]
+impl crate::ResetValue for super::XDMAC_GIE {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _IE0W<'a> {
+#[doc = "Write proxy for field `IE0`"]
+pub struct IE0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE0W<'a> {
+impl<'a> IE0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _IE0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE1W<'a> {
+#[doc = "Write proxy for field `IE1`"]
+pub struct IE1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE1W<'a> {
+impl<'a> IE1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _IE1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE2W<'a> {
+#[doc = "Write proxy for field `IE2`"]
+pub struct IE2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE2W<'a> {
+impl<'a> IE2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _IE2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE3W<'a> {
+#[doc = "Write proxy for field `IE3`"]
+pub struct IE3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE3W<'a> {
+impl<'a> IE3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _IE3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE4W<'a> {
+#[doc = "Write proxy for field `IE4`"]
+pub struct IE4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE4W<'a> {
+impl<'a> IE4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _IE4W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE5W<'a> {
+#[doc = "Write proxy for field `IE5`"]
+pub struct IE5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE5W<'a> {
+impl<'a> IE5_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _IE5W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE6W<'a> {
+#[doc = "Write proxy for field `IE6`"]
+pub struct IE6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE6W<'a> {
+impl<'a> IE6_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _IE6W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE7W<'a> {
+#[doc = "Write proxy for field `IE7`"]
+pub struct IE7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE7W<'a> {
+impl<'a> IE7_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +184,11 @@ impl<'a> _IE7W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE8W<'a> {
+#[doc = "Write proxy for field `IE8`"]
+pub struct IE8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE8W<'a> {
+impl<'a> IE8_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -225,11 +206,11 @@ impl<'a> _IE8W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE9W<'a> {
+#[doc = "Write proxy for field `IE9`"]
+pub struct IE9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE9W<'a> {
+impl<'a> IE9_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -247,11 +228,11 @@ impl<'a> _IE9W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE10W<'a> {
+#[doc = "Write proxy for field `IE10`"]
+pub struct IE10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE10W<'a> {
+impl<'a> IE10_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -269,11 +250,11 @@ impl<'a> _IE10W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE11W<'a> {
+#[doc = "Write proxy for field `IE11`"]
+pub struct IE11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE11W<'a> {
+impl<'a> IE11_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -291,11 +272,11 @@ impl<'a> _IE11W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE12W<'a> {
+#[doc = "Write proxy for field `IE12`"]
+pub struct IE12_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE12W<'a> {
+impl<'a> IE12_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -313,11 +294,11 @@ impl<'a> _IE12W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE13W<'a> {
+#[doc = "Write proxy for field `IE13`"]
+pub struct IE13_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE13W<'a> {
+impl<'a> IE13_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -335,11 +316,11 @@ impl<'a> _IE13W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE14W<'a> {
+#[doc = "Write proxy for field `IE14`"]
+pub struct IE14_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE14W<'a> {
+impl<'a> IE14_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -357,11 +338,11 @@ impl<'a> _IE14W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE15W<'a> {
+#[doc = "Write proxy for field `IE15`"]
+pub struct IE15_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE15W<'a> {
+impl<'a> IE15_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -379,11 +360,11 @@ impl<'a> _IE15W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE16W<'a> {
+#[doc = "Write proxy for field `IE16`"]
+pub struct IE16_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE16W<'a> {
+impl<'a> IE16_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -401,11 +382,11 @@ impl<'a> _IE16W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE17W<'a> {
+#[doc = "Write proxy for field `IE17`"]
+pub struct IE17_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE17W<'a> {
+impl<'a> IE17_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -423,11 +404,11 @@ impl<'a> _IE17W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE18W<'a> {
+#[doc = "Write proxy for field `IE18`"]
+pub struct IE18_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE18W<'a> {
+impl<'a> IE18_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -445,11 +426,11 @@ impl<'a> _IE18W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE19W<'a> {
+#[doc = "Write proxy for field `IE19`"]
+pub struct IE19_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE19W<'a> {
+impl<'a> IE19_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -467,11 +448,11 @@ impl<'a> _IE19W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE20W<'a> {
+#[doc = "Write proxy for field `IE20`"]
+pub struct IE20_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE20W<'a> {
+impl<'a> IE20_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -489,11 +470,11 @@ impl<'a> _IE20W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE21W<'a> {
+#[doc = "Write proxy for field `IE21`"]
+pub struct IE21_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE21W<'a> {
+impl<'a> IE21_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -511,11 +492,11 @@ impl<'a> _IE21W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE22W<'a> {
+#[doc = "Write proxy for field `IE22`"]
+pub struct IE22_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE22W<'a> {
+impl<'a> IE22_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -533,11 +514,11 @@ impl<'a> _IE22W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _IE23W<'a> {
+#[doc = "Write proxy for field `IE23`"]
+pub struct IE23_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IE23W<'a> {
+impl<'a> IE23_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -556,130 +537,124 @@ impl<'a> _IE23W<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - XDMAC Channel 0 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie0(&mut self) -> _IE0W {
-        _IE0W { w: self }
+    pub fn ie0(&mut self) -> IE0_W {
+        IE0_W { w: self }
     }
     #[doc = "Bit 1 - XDMAC Channel 1 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie1(&mut self) -> _IE1W {
-        _IE1W { w: self }
+    pub fn ie1(&mut self) -> IE1_W {
+        IE1_W { w: self }
     }
     #[doc = "Bit 2 - XDMAC Channel 2 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie2(&mut self) -> _IE2W {
-        _IE2W { w: self }
+    pub fn ie2(&mut self) -> IE2_W {
+        IE2_W { w: self }
     }
     #[doc = "Bit 3 - XDMAC Channel 3 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie3(&mut self) -> _IE3W {
-        _IE3W { w: self }
+    pub fn ie3(&mut self) -> IE3_W {
+        IE3_W { w: self }
     }
     #[doc = "Bit 4 - XDMAC Channel 4 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie4(&mut self) -> _IE4W {
-        _IE4W { w: self }
+    pub fn ie4(&mut self) -> IE4_W {
+        IE4_W { w: self }
     }
     #[doc = "Bit 5 - XDMAC Channel 5 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie5(&mut self) -> _IE5W {
-        _IE5W { w: self }
+    pub fn ie5(&mut self) -> IE5_W {
+        IE5_W { w: self }
     }
     #[doc = "Bit 6 - XDMAC Channel 6 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie6(&mut self) -> _IE6W {
-        _IE6W { w: self }
+    pub fn ie6(&mut self) -> IE6_W {
+        IE6_W { w: self }
     }
     #[doc = "Bit 7 - XDMAC Channel 7 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie7(&mut self) -> _IE7W {
-        _IE7W { w: self }
+    pub fn ie7(&mut self) -> IE7_W {
+        IE7_W { w: self }
     }
     #[doc = "Bit 8 - XDMAC Channel 8 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie8(&mut self) -> _IE8W {
-        _IE8W { w: self }
+    pub fn ie8(&mut self) -> IE8_W {
+        IE8_W { w: self }
     }
     #[doc = "Bit 9 - XDMAC Channel 9 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie9(&mut self) -> _IE9W {
-        _IE9W { w: self }
+    pub fn ie9(&mut self) -> IE9_W {
+        IE9_W { w: self }
     }
     #[doc = "Bit 10 - XDMAC Channel 10 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie10(&mut self) -> _IE10W {
-        _IE10W { w: self }
+    pub fn ie10(&mut self) -> IE10_W {
+        IE10_W { w: self }
     }
     #[doc = "Bit 11 - XDMAC Channel 11 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie11(&mut self) -> _IE11W {
-        _IE11W { w: self }
+    pub fn ie11(&mut self) -> IE11_W {
+        IE11_W { w: self }
     }
     #[doc = "Bit 12 - XDMAC Channel 12 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie12(&mut self) -> _IE12W {
-        _IE12W { w: self }
+    pub fn ie12(&mut self) -> IE12_W {
+        IE12_W { w: self }
     }
     #[doc = "Bit 13 - XDMAC Channel 13 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie13(&mut self) -> _IE13W {
-        _IE13W { w: self }
+    pub fn ie13(&mut self) -> IE13_W {
+        IE13_W { w: self }
     }
     #[doc = "Bit 14 - XDMAC Channel 14 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie14(&mut self) -> _IE14W {
-        _IE14W { w: self }
+    pub fn ie14(&mut self) -> IE14_W {
+        IE14_W { w: self }
     }
     #[doc = "Bit 15 - XDMAC Channel 15 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie15(&mut self) -> _IE15W {
-        _IE15W { w: self }
+    pub fn ie15(&mut self) -> IE15_W {
+        IE15_W { w: self }
     }
     #[doc = "Bit 16 - XDMAC Channel 16 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie16(&mut self) -> _IE16W {
-        _IE16W { w: self }
+    pub fn ie16(&mut self) -> IE16_W {
+        IE16_W { w: self }
     }
     #[doc = "Bit 17 - XDMAC Channel 17 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie17(&mut self) -> _IE17W {
-        _IE17W { w: self }
+    pub fn ie17(&mut self) -> IE17_W {
+        IE17_W { w: self }
     }
     #[doc = "Bit 18 - XDMAC Channel 18 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie18(&mut self) -> _IE18W {
-        _IE18W { w: self }
+    pub fn ie18(&mut self) -> IE18_W {
+        IE18_W { w: self }
     }
     #[doc = "Bit 19 - XDMAC Channel 19 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie19(&mut self) -> _IE19W {
-        _IE19W { w: self }
+    pub fn ie19(&mut self) -> IE19_W {
+        IE19_W { w: self }
     }
     #[doc = "Bit 20 - XDMAC Channel 20 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie20(&mut self) -> _IE20W {
-        _IE20W { w: self }
+    pub fn ie20(&mut self) -> IE20_W {
+        IE20_W { w: self }
     }
     #[doc = "Bit 21 - XDMAC Channel 21 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie21(&mut self) -> _IE21W {
-        _IE21W { w: self }
+    pub fn ie21(&mut self) -> IE21_W {
+        IE21_W { w: self }
     }
     #[doc = "Bit 22 - XDMAC Channel 22 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie22(&mut self) -> _IE22W {
-        _IE22W { w: self }
+    pub fn ie22(&mut self) -> IE22_W {
+        IE22_W { w: self }
     }
     #[doc = "Bit 23 - XDMAC Channel 23 Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn ie23(&mut self) -> _IE23W {
-        _IE23W { w: self }
+    pub fn ie23(&mut self) -> IE23_W {
+        IE23_W { w: self }
     }
 }

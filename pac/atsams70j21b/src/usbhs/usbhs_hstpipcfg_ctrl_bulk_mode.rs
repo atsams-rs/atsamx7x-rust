@@ -1,59 +1,23 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::USBHS_HSTPIPCFG_CTRL_BULK_MODE {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register USBHS_HSTPIPCFG_CTRL_BULK_MODE[%s]"]
+pub type R = crate::R<u32, super::USBHS_HSTPIPCFG_CTRL_BULK_MODE>;
+#[doc = "Writer for register USBHS_HSTPIPCFG_CTRL_BULK_MODE[%s]"]
+pub type W = crate::W<u32, super::USBHS_HSTPIPCFG_CTRL_BULK_MODE>;
+#[doc = "Register USBHS_HSTPIPCFG_CTRL_BULK_MODE[%s]
+`reset()`'s with value 0"]
+impl crate::ResetValue for super::USBHS_HSTPIPCFG_CTRL_BULK_MODE {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type ALLOC_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ALLOCW<'a> {
+#[doc = "Reader of field `ALLOC`"]
+pub type ALLOC_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ALLOC`"]
+pub struct ALLOC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ALLOCW<'a> {
+impl<'a> ALLOC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,91 +35,77 @@ impl<'a> _ALLOCW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `PBK`"]
+#[doc = "Pipe Banks\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PBKR {
-    #[doc = "Single-bank pipe"]
-    _1_BANK,
-    #[doc = "Double-bank pipe"]
-    _2_BANK,
-    #[doc = "Triple-bank pipe"]
-    _3_BANK,
+#[repr(u8)]
+pub enum PBK_A {
+    #[doc = "0: Single-bank pipe"]
+    _1_BANK = 0,
+    #[doc = "1: Double-bank pipe"]
+    _2_BANK = 1,
+    #[doc = "2: Triple-bank pipe"]
+    _3_BANK = 2,
 }
-impl crate::ToBits<u8> for PBKR {
+impl From<PBK_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            PBKR::_1_BANK => 0,
-            PBKR::_2_BANK => 1,
-            PBKR::_3_BANK => 2,
-        }
+    fn from(variant: PBK_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type PBK_R = crate::FR<u8, PBKR>;
+#[doc = "Reader of field `PBK`"]
+pub type PBK_R = crate::R<u8, PBK_A>;
 impl PBK_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, PBK_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(PBK_A::_1_BANK),
+            1 => Val(PBK_A::_2_BANK),
+            2 => Val(PBK_A::_3_BANK),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `_1_BANK`"]
     #[inline(always)]
     pub fn is_1_bank(&self) -> bool {
-        *self == PBKR::_1_BANK
+        *self == PBK_A::_1_BANK
     }
     #[doc = "Checks if the value of the field is `_2_BANK`"]
     #[inline(always)]
     pub fn is_2_bank(&self) -> bool {
-        *self == PBKR::_2_BANK
+        *self == PBK_A::_2_BANK
     }
     #[doc = "Checks if the value of the field is `_3_BANK`"]
     #[inline(always)]
     pub fn is_3_bank(&self) -> bool {
-        *self == PBKR::_3_BANK
+        *self == PBK_A::_3_BANK
     }
 }
-#[doc = "Values that can be written to the field `PBK`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PBKW {
-    #[doc = "Single-bank pipe"]
-    _1_BANK,
-    #[doc = "Double-bank pipe"]
-    _2_BANK,
-    #[doc = "Triple-bank pipe"]
-    _3_BANK,
-}
-impl PBKW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PBKW::_1_BANK => 0,
-            PBKW::_2_BANK => 1,
-            PBKW::_3_BANK => 2,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _PBKW<'a> {
+#[doc = "Write proxy for field `PBK`"]
+pub struct PBK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PBKW<'a> {
+impl<'a> PBK_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: PBKW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: PBK_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Single-bank pipe"]
     #[inline(always)]
     pub fn _1_bank(self) -> &'a mut W {
-        self.variant(PBKW::_1_BANK)
+        self.variant(PBK_A::_1_BANK)
     }
     #[doc = "Double-bank pipe"]
     #[inline(always)]
     pub fn _2_bank(self) -> &'a mut W {
-        self.variant(PBKW::_2_BANK)
+        self.variant(PBK_A::_2_BANK)
     }
     #[doc = "Triple-bank pipe"]
     #[inline(always)]
     pub fn _3_bank(self) -> &'a mut W {
-        self.variant(PBKW::_3_BANK)
+        self.variant(PBK_A::_3_BANK)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -164,173 +114,143 @@ impl<'a> _PBKW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `PSIZE`"]
+#[doc = "Pipe Size\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PSIZER {
-    #[doc = "8 bytes"]
-    _8_BYTE,
-    #[doc = "16 bytes"]
-    _16_BYTE,
-    #[doc = "32 bytes"]
-    _32_BYTE,
-    #[doc = "64 bytes"]
-    _64_BYTE,
-    #[doc = "128 bytes"]
-    _128_BYTE,
-    #[doc = "256 bytes"]
-    _256_BYTE,
-    #[doc = "512 bytes"]
-    _512_BYTE,
-    #[doc = "1024 bytes"]
-    _1024_BYTE,
+#[repr(u8)]
+pub enum PSIZE_A {
+    #[doc = "0: 8 bytes"]
+    _8_BYTE = 0,
+    #[doc = "1: 16 bytes"]
+    _16_BYTE = 1,
+    #[doc = "2: 32 bytes"]
+    _32_BYTE = 2,
+    #[doc = "3: 64 bytes"]
+    _64_BYTE = 3,
+    #[doc = "4: 128 bytes"]
+    _128_BYTE = 4,
+    #[doc = "5: 256 bytes"]
+    _256_BYTE = 5,
+    #[doc = "6: 512 bytes"]
+    _512_BYTE = 6,
+    #[doc = "7: 1024 bytes"]
+    _1024_BYTE = 7,
 }
-impl crate::ToBits<u8> for PSIZER {
+impl From<PSIZE_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            PSIZER::_8_BYTE => 0,
-            PSIZER::_16_BYTE => 1,
-            PSIZER::_32_BYTE => 2,
-            PSIZER::_64_BYTE => 3,
-            PSIZER::_128_BYTE => 4,
-            PSIZER::_256_BYTE => 5,
-            PSIZER::_512_BYTE => 6,
-            PSIZER::_1024_BYTE => 7,
-        }
+    fn from(variant: PSIZE_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type PSIZE_R = crate::FR<u8, PSIZER>;
+#[doc = "Reader of field `PSIZE`"]
+pub type PSIZE_R = crate::R<u8, PSIZE_A>;
 impl PSIZE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PSIZE_A {
+        match self.bits {
+            0 => PSIZE_A::_8_BYTE,
+            1 => PSIZE_A::_16_BYTE,
+            2 => PSIZE_A::_32_BYTE,
+            3 => PSIZE_A::_64_BYTE,
+            4 => PSIZE_A::_128_BYTE,
+            5 => PSIZE_A::_256_BYTE,
+            6 => PSIZE_A::_512_BYTE,
+            7 => PSIZE_A::_1024_BYTE,
+            _ => unreachable!(),
+        }
+    }
     #[doc = "Checks if the value of the field is `_8_BYTE`"]
     #[inline(always)]
     pub fn is_8_byte(&self) -> bool {
-        *self == PSIZER::_8_BYTE
+        *self == PSIZE_A::_8_BYTE
     }
     #[doc = "Checks if the value of the field is `_16_BYTE`"]
     #[inline(always)]
     pub fn is_16_byte(&self) -> bool {
-        *self == PSIZER::_16_BYTE
+        *self == PSIZE_A::_16_BYTE
     }
     #[doc = "Checks if the value of the field is `_32_BYTE`"]
     #[inline(always)]
     pub fn is_32_byte(&self) -> bool {
-        *self == PSIZER::_32_BYTE
+        *self == PSIZE_A::_32_BYTE
     }
     #[doc = "Checks if the value of the field is `_64_BYTE`"]
     #[inline(always)]
     pub fn is_64_byte(&self) -> bool {
-        *self == PSIZER::_64_BYTE
+        *self == PSIZE_A::_64_BYTE
     }
     #[doc = "Checks if the value of the field is `_128_BYTE`"]
     #[inline(always)]
     pub fn is_128_byte(&self) -> bool {
-        *self == PSIZER::_128_BYTE
+        *self == PSIZE_A::_128_BYTE
     }
     #[doc = "Checks if the value of the field is `_256_BYTE`"]
     #[inline(always)]
     pub fn is_256_byte(&self) -> bool {
-        *self == PSIZER::_256_BYTE
+        *self == PSIZE_A::_256_BYTE
     }
     #[doc = "Checks if the value of the field is `_512_BYTE`"]
     #[inline(always)]
     pub fn is_512_byte(&self) -> bool {
-        *self == PSIZER::_512_BYTE
+        *self == PSIZE_A::_512_BYTE
     }
     #[doc = "Checks if the value of the field is `_1024_BYTE`"]
     #[inline(always)]
     pub fn is_1024_byte(&self) -> bool {
-        *self == PSIZER::_1024_BYTE
+        *self == PSIZE_A::_1024_BYTE
     }
 }
-#[doc = "Values that can be written to the field `PSIZE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PSIZEW {
-    #[doc = "8 bytes"]
-    _8_BYTE,
-    #[doc = "16 bytes"]
-    _16_BYTE,
-    #[doc = "32 bytes"]
-    _32_BYTE,
-    #[doc = "64 bytes"]
-    _64_BYTE,
-    #[doc = "128 bytes"]
-    _128_BYTE,
-    #[doc = "256 bytes"]
-    _256_BYTE,
-    #[doc = "512 bytes"]
-    _512_BYTE,
-    #[doc = "1024 bytes"]
-    _1024_BYTE,
-}
-impl PSIZEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PSIZEW::_8_BYTE => 0,
-            PSIZEW::_16_BYTE => 1,
-            PSIZEW::_32_BYTE => 2,
-            PSIZEW::_64_BYTE => 3,
-            PSIZEW::_128_BYTE => 4,
-            PSIZEW::_256_BYTE => 5,
-            PSIZEW::_512_BYTE => 6,
-            PSIZEW::_1024_BYTE => 7,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _PSIZEW<'a> {
+#[doc = "Write proxy for field `PSIZE`"]
+pub struct PSIZE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PSIZEW<'a> {
+impl<'a> PSIZE_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: PSIZEW) -> &'a mut W {
+    pub fn variant(self, variant: PSIZE_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "8 bytes"]
     #[inline(always)]
     pub fn _8_byte(self) -> &'a mut W {
-        self.variant(PSIZEW::_8_BYTE)
+        self.variant(PSIZE_A::_8_BYTE)
     }
     #[doc = "16 bytes"]
     #[inline(always)]
     pub fn _16_byte(self) -> &'a mut W {
-        self.variant(PSIZEW::_16_BYTE)
+        self.variant(PSIZE_A::_16_BYTE)
     }
     #[doc = "32 bytes"]
     #[inline(always)]
     pub fn _32_byte(self) -> &'a mut W {
-        self.variant(PSIZEW::_32_BYTE)
+        self.variant(PSIZE_A::_32_BYTE)
     }
     #[doc = "64 bytes"]
     #[inline(always)]
     pub fn _64_byte(self) -> &'a mut W {
-        self.variant(PSIZEW::_64_BYTE)
+        self.variant(PSIZE_A::_64_BYTE)
     }
     #[doc = "128 bytes"]
     #[inline(always)]
     pub fn _128_byte(self) -> &'a mut W {
-        self.variant(PSIZEW::_128_BYTE)
+        self.variant(PSIZE_A::_128_BYTE)
     }
     #[doc = "256 bytes"]
     #[inline(always)]
     pub fn _256_byte(self) -> &'a mut W {
-        self.variant(PSIZEW::_256_BYTE)
+        self.variant(PSIZE_A::_256_BYTE)
     }
     #[doc = "512 bytes"]
     #[inline(always)]
     pub fn _512_byte(self) -> &'a mut W {
-        self.variant(PSIZEW::_512_BYTE)
+        self.variant(PSIZE_A::_512_BYTE)
     }
     #[doc = "1024 bytes"]
     #[inline(always)]
     pub fn _1024_byte(self) -> &'a mut W {
-        self.variant(PSIZEW::_1024_BYTE)
+        self.variant(PSIZE_A::_1024_BYTE)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -339,91 +259,77 @@ impl<'a> _PSIZEW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `PTOKEN`"]
+#[doc = "Pipe Token\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PTOKENR {
-    #[doc = "SETUP"]
-    SETUP,
-    #[doc = "IN"]
-    IN,
-    #[doc = "OUT"]
-    OUT,
+#[repr(u8)]
+pub enum PTOKEN_A {
+    #[doc = "0: SETUP"]
+    SETUP = 0,
+    #[doc = "1: IN"]
+    IN = 1,
+    #[doc = "2: OUT"]
+    OUT = 2,
 }
-impl crate::ToBits<u8> for PTOKENR {
+impl From<PTOKEN_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            PTOKENR::SETUP => 0,
-            PTOKENR::IN => 1,
-            PTOKENR::OUT => 2,
-        }
+    fn from(variant: PTOKEN_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type PTOKEN_R = crate::FR<u8, PTOKENR>;
+#[doc = "Reader of field `PTOKEN`"]
+pub type PTOKEN_R = crate::R<u8, PTOKEN_A>;
 impl PTOKEN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, PTOKEN_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(PTOKEN_A::SETUP),
+            1 => Val(PTOKEN_A::IN),
+            2 => Val(PTOKEN_A::OUT),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `SETUP`"]
     #[inline(always)]
     pub fn is_setup(&self) -> bool {
-        *self == PTOKENR::SETUP
+        *self == PTOKEN_A::SETUP
     }
     #[doc = "Checks if the value of the field is `IN`"]
     #[inline(always)]
     pub fn is_in_(&self) -> bool {
-        *self == PTOKENR::IN
+        *self == PTOKEN_A::IN
     }
     #[doc = "Checks if the value of the field is `OUT`"]
     #[inline(always)]
     pub fn is_out(&self) -> bool {
-        *self == PTOKENR::OUT
+        *self == PTOKEN_A::OUT
     }
 }
-#[doc = "Values that can be written to the field `PTOKEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PTOKENW {
-    #[doc = "SETUP"]
-    SETUP,
-    #[doc = "IN"]
-    IN,
-    #[doc = "OUT"]
-    OUT,
-}
-impl PTOKENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PTOKENW::SETUP => 0,
-            PTOKENW::IN => 1,
-            PTOKENW::OUT => 2,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _PTOKENW<'a> {
+#[doc = "Write proxy for field `PTOKEN`"]
+pub struct PTOKEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PTOKENW<'a> {
+impl<'a> PTOKEN_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: PTOKENW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: PTOKEN_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "SETUP"]
     #[inline(always)]
     pub fn setup(self) -> &'a mut W {
-        self.variant(PTOKENW::SETUP)
+        self.variant(PTOKEN_A::SETUP)
     }
     #[doc = "IN"]
     #[inline(always)]
     pub fn in_(self) -> &'a mut W {
-        self.variant(PTOKENW::IN)
+        self.variant(PTOKEN_A::IN)
     }
     #[doc = "OUT"]
     #[inline(always)]
     pub fn out(self) -> &'a mut W {
-        self.variant(PTOKENW::OUT)
+        self.variant(PTOKEN_A::OUT)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -432,13 +338,13 @@ impl<'a> _PTOKENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type AUTOSW_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _AUTOSWW<'a> {
+#[doc = "Reader of field `AUTOSW`"]
+pub type AUTOSW_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `AUTOSW`"]
+pub struct AUTOSW_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _AUTOSWW<'a> {
+impl<'a> AUTOSW_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -456,109 +362,91 @@ impl<'a> _AUTOSWW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `PTYPE`"]
+#[doc = "Pipe Type\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PTYPER {
-    #[doc = "Control"]
-    CTRL,
-    #[doc = "Isochronous"]
-    ISO,
-    #[doc = "Bulk"]
-    BLK,
-    #[doc = "Interrupt"]
-    INTRPT,
+#[repr(u8)]
+pub enum PTYPE_A {
+    #[doc = "0: Control"]
+    CTRL = 0,
+    #[doc = "1: Isochronous"]
+    ISO = 1,
+    #[doc = "2: Bulk"]
+    BLK = 2,
+    #[doc = "3: Interrupt"]
+    INTRPT = 3,
 }
-impl crate::ToBits<u8> for PTYPER {
+impl From<PTYPE_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            PTYPER::CTRL => 0,
-            PTYPER::ISO => 1,
-            PTYPER::BLK => 2,
-            PTYPER::INTRPT => 3,
-        }
+    fn from(variant: PTYPE_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type PTYPE_R = crate::FR<u8, PTYPER>;
+#[doc = "Reader of field `PTYPE`"]
+pub type PTYPE_R = crate::R<u8, PTYPE_A>;
 impl PTYPE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PTYPE_A {
+        match self.bits {
+            0 => PTYPE_A::CTRL,
+            1 => PTYPE_A::ISO,
+            2 => PTYPE_A::BLK,
+            3 => PTYPE_A::INTRPT,
+            _ => unreachable!(),
+        }
+    }
     #[doc = "Checks if the value of the field is `CTRL`"]
     #[inline(always)]
     pub fn is_ctrl(&self) -> bool {
-        *self == PTYPER::CTRL
+        *self == PTYPE_A::CTRL
     }
     #[doc = "Checks if the value of the field is `ISO`"]
     #[inline(always)]
     pub fn is_iso(&self) -> bool {
-        *self == PTYPER::ISO
+        *self == PTYPE_A::ISO
     }
     #[doc = "Checks if the value of the field is `BLK`"]
     #[inline(always)]
     pub fn is_blk(&self) -> bool {
-        *self == PTYPER::BLK
+        *self == PTYPE_A::BLK
     }
     #[doc = "Checks if the value of the field is `INTRPT`"]
     #[inline(always)]
     pub fn is_intrpt(&self) -> bool {
-        *self == PTYPER::INTRPT
+        *self == PTYPE_A::INTRPT
     }
 }
-#[doc = "Values that can be written to the field `PTYPE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PTYPEW {
-    #[doc = "Control"]
-    CTRL,
-    #[doc = "Isochronous"]
-    ISO,
-    #[doc = "Bulk"]
-    BLK,
-    #[doc = "Interrupt"]
-    INTRPT,
-}
-impl PTYPEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PTYPEW::CTRL => 0,
-            PTYPEW::ISO => 1,
-            PTYPEW::BLK => 2,
-            PTYPEW::INTRPT => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _PTYPEW<'a> {
+#[doc = "Write proxy for field `PTYPE`"]
+pub struct PTYPE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PTYPEW<'a> {
+impl<'a> PTYPE_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: PTYPEW) -> &'a mut W {
+    pub fn variant(self, variant: PTYPE_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Control"]
     #[inline(always)]
     pub fn ctrl(self) -> &'a mut W {
-        self.variant(PTYPEW::CTRL)
+        self.variant(PTYPE_A::CTRL)
     }
     #[doc = "Isochronous"]
     #[inline(always)]
     pub fn iso(self) -> &'a mut W {
-        self.variant(PTYPEW::ISO)
+        self.variant(PTYPE_A::ISO)
     }
     #[doc = "Bulk"]
     #[inline(always)]
     pub fn blk(self) -> &'a mut W {
-        self.variant(PTYPEW::BLK)
+        self.variant(PTYPE_A::BLK)
     }
     #[doc = "Interrupt"]
     #[inline(always)]
     pub fn intrpt(self) -> &'a mut W {
-        self.variant(PTYPEW::INTRPT)
+        self.variant(PTYPE_A::INTRPT)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -567,13 +455,13 @@ impl<'a> _PTYPEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PEPNUM_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _PEPNUMW<'a> {
+#[doc = "Reader of field `PEPNUM`"]
+pub type PEPNUM_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PEPNUM`"]
+pub struct PEPNUM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PEPNUMW<'a> {
+impl<'a> PEPNUM_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -581,13 +469,13 @@ impl<'a> _PEPNUMW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PINGEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _PINGENW<'a> {
+#[doc = "Reader of field `PINGEN`"]
+pub type PINGEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PINGEN`"]
+pub struct PINGEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PINGENW<'a> {
+impl<'a> PINGEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -605,13 +493,13 @@ impl<'a> _PINGENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type BINTERVAL_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _BINTERVALW<'a> {
+#[doc = "Reader of field `BINTERVAL`"]
+pub type BINTERVAL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `BINTERVAL`"]
+pub struct BINTERVAL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BINTERVALW<'a> {
+impl<'a> BINTERVAL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -620,107 +508,96 @@ impl<'a> _BINTERVALW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 1 - Pipe Memory Allocate"]
     #[inline(always)]
     pub fn alloc(&self) -> ALLOC_R {
-        ALLOC_R::new(((self.bits() >> 1) & 0x01) != 0)
+        ALLOC_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bits 2:3 - Pipe Banks"]
     #[inline(always)]
     pub fn pbk(&self) -> PBK_R {
-        PBK_R::new(((self.bits() >> 2) & 0x03) as u8)
+        PBK_R::new(((self.bits >> 2) & 0x03) as u8)
     }
     #[doc = "Bits 4:6 - Pipe Size"]
     #[inline(always)]
     pub fn psize(&self) -> PSIZE_R {
-        PSIZE_R::new(((self.bits() >> 4) & 0x07) as u8)
+        PSIZE_R::new(((self.bits >> 4) & 0x07) as u8)
     }
     #[doc = "Bits 8:9 - Pipe Token"]
     #[inline(always)]
     pub fn ptoken(&self) -> PTOKEN_R {
-        PTOKEN_R::new(((self.bits() >> 8) & 0x03) as u8)
+        PTOKEN_R::new(((self.bits >> 8) & 0x03) as u8)
     }
     #[doc = "Bit 10 - Automatic Switch"]
     #[inline(always)]
     pub fn autosw(&self) -> AUTOSW_R {
-        AUTOSW_R::new(((self.bits() >> 10) & 0x01) != 0)
+        AUTOSW_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bits 12:13 - Pipe Type"]
     #[inline(always)]
     pub fn ptype(&self) -> PTYPE_R {
-        PTYPE_R::new(((self.bits() >> 12) & 0x03) as u8)
+        PTYPE_R::new(((self.bits >> 12) & 0x03) as u8)
     }
     #[doc = "Bits 16:19 - Pipe Endpoint Number"]
     #[inline(always)]
     pub fn pepnum(&self) -> PEPNUM_R {
-        PEPNUM_R::new(((self.bits() >> 16) & 0x0f) as u8)
+        PEPNUM_R::new(((self.bits >> 16) & 0x0f) as u8)
     }
     #[doc = "Bit 20 - Ping Enable"]
     #[inline(always)]
     pub fn pingen(&self) -> PINGEN_R {
-        PINGEN_R::new(((self.bits() >> 20) & 0x01) != 0)
+        PINGEN_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bits 24:31 - bInterval Parameter for the Bulk-Out/Ping Transaction"]
     #[inline(always)]
     pub fn binterval(&self) -> BINTERVAL_R {
-        BINTERVAL_R::new(((self.bits() >> 24) & 0xff) as u8)
+        BINTERVAL_R::new(((self.bits >> 24) & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 1 - Pipe Memory Allocate"]
     #[inline(always)]
-    pub fn alloc(&mut self) -> _ALLOCW {
-        _ALLOCW { w: self }
+    pub fn alloc(&mut self) -> ALLOC_W {
+        ALLOC_W { w: self }
     }
     #[doc = "Bits 2:3 - Pipe Banks"]
     #[inline(always)]
-    pub fn pbk(&mut self) -> _PBKW {
-        _PBKW { w: self }
+    pub fn pbk(&mut self) -> PBK_W {
+        PBK_W { w: self }
     }
     #[doc = "Bits 4:6 - Pipe Size"]
     #[inline(always)]
-    pub fn psize(&mut self) -> _PSIZEW {
-        _PSIZEW { w: self }
+    pub fn psize(&mut self) -> PSIZE_W {
+        PSIZE_W { w: self }
     }
     #[doc = "Bits 8:9 - Pipe Token"]
     #[inline(always)]
-    pub fn ptoken(&mut self) -> _PTOKENW {
-        _PTOKENW { w: self }
+    pub fn ptoken(&mut self) -> PTOKEN_W {
+        PTOKEN_W { w: self }
     }
     #[doc = "Bit 10 - Automatic Switch"]
     #[inline(always)]
-    pub fn autosw(&mut self) -> _AUTOSWW {
-        _AUTOSWW { w: self }
+    pub fn autosw(&mut self) -> AUTOSW_W {
+        AUTOSW_W { w: self }
     }
     #[doc = "Bits 12:13 - Pipe Type"]
     #[inline(always)]
-    pub fn ptype(&mut self) -> _PTYPEW {
-        _PTYPEW { w: self }
+    pub fn ptype(&mut self) -> PTYPE_W {
+        PTYPE_W { w: self }
     }
     #[doc = "Bits 16:19 - Pipe Endpoint Number"]
     #[inline(always)]
-    pub fn pepnum(&mut self) -> _PEPNUMW {
-        _PEPNUMW { w: self }
+    pub fn pepnum(&mut self) -> PEPNUM_W {
+        PEPNUM_W { w: self }
     }
     #[doc = "Bit 20 - Ping Enable"]
     #[inline(always)]
-    pub fn pingen(&mut self) -> _PINGENW {
-        _PINGENW { w: self }
+    pub fn pingen(&mut self) -> PINGEN_W {
+        PINGEN_W { w: self }
     }
     #[doc = "Bits 24:31 - bInterval Parameter for the Bulk-Out/Ping Transaction"]
     #[inline(always)]
-    pub fn binterval(&mut self) -> _BINTERVALW {
-        _BINTERVALW { w: self }
+    pub fn binterval(&mut self) -> BINTERVAL_W {
+        BINTERVAL_W { w: self }
     }
 }

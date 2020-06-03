@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::WDT_CR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register WDT_CR"]
+pub type W = crate::W<u32, super::WDT_CR>;
+#[doc = "Register WDT_CR `reset()`'s with value 0"]
+impl crate::ResetValue for super::WDT_CR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _WDRSTTW<'a> {
+#[doc = "Write proxy for field `WDRSTT`"]
+pub struct WDRSTT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WDRSTTW<'a> {
+impl<'a> WDRSTT_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,36 +30,33 @@ impl<'a> _WDRSTTW<'a> {
         self.w
     }
 }
-#[doc = "Values that can be written to the field `KEY`"]
+#[doc = "Password\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum KEYW {
-    #[doc = "Writing any other value in this field aborts the write operation."]
-    PASSWD,
+#[repr(u8)]
+pub enum KEY_AW {
+    #[doc = "165: Writing any other value in this field aborts the write operation."]
+    PASSWD = 165,
 }
-impl KEYW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
+impl From<KEY_AW> for u8 {
     #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            KEYW::PASSWD => 165,
-        }
+    fn from(variant: KEY_AW) -> Self {
+        variant as _
     }
 }
-#[doc = r"Proxy"]
-pub struct _KEYW<'a> {
+#[doc = "Write proxy for field `KEY`"]
+pub struct KEY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _KEYW<'a> {
+impl<'a> KEY_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: KEYW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: KEY_AW) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Writing any other value in this field aborts the write operation."]
     #[inline(always)]
     pub fn passwd(self) -> &'a mut W {
-        self.variant(KEYW::PASSWD)
+        self.variant(KEY_AW::PASSWD)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -88,20 +66,14 @@ impl<'a> _KEYW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Watchdog Restart"]
     #[inline(always)]
-    pub fn wdrstt(&mut self) -> _WDRSTTW {
-        _WDRSTTW { w: self }
+    pub fn wdrstt(&mut self) -> WDRSTT_W {
+        WDRSTT_W { w: self }
     }
     #[doc = "Bits 24:31 - Password"]
     #[inline(always)]
-    pub fn key(&mut self) -> _KEYW {
-        _KEYW { w: self }
+    pub fn key(&mut self) -> KEY_W {
+        KEY_W { w: self }
     }
 }

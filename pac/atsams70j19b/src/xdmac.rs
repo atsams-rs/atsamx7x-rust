@@ -143,105 +143,164 @@ pub struct XDMAC_CHID {
 #[doc = r"Register block"]
 #[doc = "Channel Interrupt Enable Register"]
 pub mod xdmac_chid;
-#[doc = "Global Type Register"]
-pub struct XDMAC_GTYPE {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Type Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gtype](xdmac_gtype) module"]
+pub type XDMAC_GTYPE = crate::Reg<u32, _XDMAC_GTYPE>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GTYPE;
+#[doc = "`read()` method returns [xdmac_gtype::R](xdmac_gtype::R) reader structure"]
+impl crate::Readable for XDMAC_GTYPE {}
 #[doc = "Global Type Register"]
 pub mod xdmac_gtype;
-#[doc = "Global Configuration Register"]
-pub struct XDMAC_GCFG {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Configuration Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gcfg](xdmac_gcfg) module"]
+pub type XDMAC_GCFG = crate::Reg<u32, _XDMAC_GCFG>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GCFG;
+#[doc = "`read()` method returns [xdmac_gcfg::R](xdmac_gcfg::R) reader structure"]
+impl crate::Readable for XDMAC_GCFG {}
+#[doc = "`write(|w| ..)` method takes [xdmac_gcfg::W](xdmac_gcfg::W) writer structure"]
+impl crate::Writable for XDMAC_GCFG {}
 #[doc = "Global Configuration Register"]
 pub mod xdmac_gcfg;
-#[doc = "Global Weighted Arbiter Configuration Register"]
-pub struct XDMAC_GWAC {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Weighted Arbiter Configuration Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gwac](xdmac_gwac) module"]
+pub type XDMAC_GWAC = crate::Reg<u32, _XDMAC_GWAC>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GWAC;
+#[doc = "`read()` method returns [xdmac_gwac::R](xdmac_gwac::R) reader structure"]
+impl crate::Readable for XDMAC_GWAC {}
+#[doc = "`write(|w| ..)` method takes [xdmac_gwac::W](xdmac_gwac::W) writer structure"]
+impl crate::Writable for XDMAC_GWAC {}
 #[doc = "Global Weighted Arbiter Configuration Register"]
 pub mod xdmac_gwac;
-#[doc = "Global Interrupt Enable Register"]
-pub struct XDMAC_GIE {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Interrupt Enable Register\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gie](xdmac_gie) module"]
+pub type XDMAC_GIE = crate::Reg<u32, _XDMAC_GIE>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GIE;
+#[doc = "`write(|w| ..)` method takes [xdmac_gie::W](xdmac_gie::W) writer structure"]
+impl crate::Writable for XDMAC_GIE {}
 #[doc = "Global Interrupt Enable Register"]
 pub mod xdmac_gie;
-#[doc = "Global Interrupt Disable Register"]
-pub struct XDMAC_GID {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Interrupt Disable Register\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gid](xdmac_gid) module"]
+pub type XDMAC_GID = crate::Reg<u32, _XDMAC_GID>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GID;
+#[doc = "`write(|w| ..)` method takes [xdmac_gid::W](xdmac_gid::W) writer structure"]
+impl crate::Writable for XDMAC_GID {}
 #[doc = "Global Interrupt Disable Register"]
 pub mod xdmac_gid;
-#[doc = "Global Interrupt Mask Register"]
-pub struct XDMAC_GIM {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Interrupt Mask Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gim](xdmac_gim) module"]
+pub type XDMAC_GIM = crate::Reg<u32, _XDMAC_GIM>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GIM;
+#[doc = "`read()` method returns [xdmac_gim::R](xdmac_gim::R) reader structure"]
+impl crate::Readable for XDMAC_GIM {}
 #[doc = "Global Interrupt Mask Register"]
 pub mod xdmac_gim;
-#[doc = "Global Interrupt Status Register"]
-pub struct XDMAC_GIS {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Interrupt Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gis](xdmac_gis) module"]
+pub type XDMAC_GIS = crate::Reg<u32, _XDMAC_GIS>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GIS;
+#[doc = "`read()` method returns [xdmac_gis::R](xdmac_gis::R) reader structure"]
+impl crate::Readable for XDMAC_GIS {}
 #[doc = "Global Interrupt Status Register"]
 pub mod xdmac_gis;
-#[doc = "Global Channel Enable Register"]
-pub struct XDMAC_GE {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Channel Enable Register\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_ge](xdmac_ge) module"]
+pub type XDMAC_GE = crate::Reg<u32, _XDMAC_GE>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GE;
+#[doc = "`write(|w| ..)` method takes [xdmac_ge::W](xdmac_ge::W) writer structure"]
+impl crate::Writable for XDMAC_GE {}
 #[doc = "Global Channel Enable Register"]
 pub mod xdmac_ge;
-#[doc = "Global Channel Disable Register"]
-pub struct XDMAC_GD {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Channel Disable Register\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gd](xdmac_gd) module"]
+pub type XDMAC_GD = crate::Reg<u32, _XDMAC_GD>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GD;
+#[doc = "`write(|w| ..)` method takes [xdmac_gd::W](xdmac_gd::W) writer structure"]
+impl crate::Writable for XDMAC_GD {}
 #[doc = "Global Channel Disable Register"]
 pub mod xdmac_gd;
-#[doc = "Global Channel Status Register"]
-pub struct XDMAC_GS {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Channel Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gs](xdmac_gs) module"]
+pub type XDMAC_GS = crate::Reg<u32, _XDMAC_GS>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GS;
+#[doc = "`read()` method returns [xdmac_gs::R](xdmac_gs::R) reader structure"]
+impl crate::Readable for XDMAC_GS {}
 #[doc = "Global Channel Status Register"]
 pub mod xdmac_gs;
-#[doc = "Global Channel Read Suspend Register"]
-pub struct XDMAC_GRS {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Channel Read Suspend Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_grs](xdmac_grs) module"]
+pub type XDMAC_GRS = crate::Reg<u32, _XDMAC_GRS>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GRS;
+#[doc = "`read()` method returns [xdmac_grs::R](xdmac_grs::R) reader structure"]
+impl crate::Readable for XDMAC_GRS {}
+#[doc = "`write(|w| ..)` method takes [xdmac_grs::W](xdmac_grs::W) writer structure"]
+impl crate::Writable for XDMAC_GRS {}
 #[doc = "Global Channel Read Suspend Register"]
 pub mod xdmac_grs;
-#[doc = "Global Channel Write Suspend Register"]
-pub struct XDMAC_GWS {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Channel Write Suspend Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gws](xdmac_gws) module"]
+pub type XDMAC_GWS = crate::Reg<u32, _XDMAC_GWS>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GWS;
+#[doc = "`read()` method returns [xdmac_gws::R](xdmac_gws::R) reader structure"]
+impl crate::Readable for XDMAC_GWS {}
+#[doc = "`write(|w| ..)` method takes [xdmac_gws::W](xdmac_gws::W) writer structure"]
+impl crate::Writable for XDMAC_GWS {}
 #[doc = "Global Channel Write Suspend Register"]
 pub mod xdmac_gws;
-#[doc = "Global Channel Read Write Suspend Register"]
-pub struct XDMAC_GRWS {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Channel Read Write Suspend Register\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_grws](xdmac_grws) module"]
+pub type XDMAC_GRWS = crate::Reg<u32, _XDMAC_GRWS>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GRWS;
+#[doc = "`write(|w| ..)` method takes [xdmac_grws::W](xdmac_grws::W) writer structure"]
+impl crate::Writable for XDMAC_GRWS {}
 #[doc = "Global Channel Read Write Suspend Register"]
 pub mod xdmac_grws;
-#[doc = "Global Channel Read Write Resume Register"]
-pub struct XDMAC_GRWR {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Channel Read Write Resume Register\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_grwr](xdmac_grwr) module"]
+pub type XDMAC_GRWR = crate::Reg<u32, _XDMAC_GRWR>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GRWR;
+#[doc = "`write(|w| ..)` method takes [xdmac_grwr::W](xdmac_grwr::W) writer structure"]
+impl crate::Writable for XDMAC_GRWR {}
 #[doc = "Global Channel Read Write Resume Register"]
 pub mod xdmac_grwr;
-#[doc = "Global Channel Software Request Register"]
-pub struct XDMAC_GSWR {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Channel Software Request Register\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gswr](xdmac_gswr) module"]
+pub type XDMAC_GSWR = crate::Reg<u32, _XDMAC_GSWR>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GSWR;
+#[doc = "`write(|w| ..)` method takes [xdmac_gswr::W](xdmac_gswr::W) writer structure"]
+impl crate::Writable for XDMAC_GSWR {}
 #[doc = "Global Channel Software Request Register"]
 pub mod xdmac_gswr;
-#[doc = "Global Channel Software Request Status Register"]
-pub struct XDMAC_GSWS {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Channel Software Request Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gsws](xdmac_gsws) module"]
+pub type XDMAC_GSWS = crate::Reg<u32, _XDMAC_GSWS>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GSWS;
+#[doc = "`read()` method returns [xdmac_gsws::R](xdmac_gsws::R) reader structure"]
+impl crate::Readable for XDMAC_GSWS {}
 #[doc = "Global Channel Software Request Status Register"]
 pub mod xdmac_gsws;
-#[doc = "Global Channel Software Flush Request Register"]
-pub struct XDMAC_GSWF {
-    register: vcell::VolatileCell<u32>,
-}
+#[doc = "Global Channel Software Flush Request Register\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gswf](xdmac_gswf) module"]
+pub type XDMAC_GSWF = crate::Reg<u32, _XDMAC_GSWF>;
+#[allow(missing_docs)]
+#[doc(hidden)]
+pub struct _XDMAC_GSWF;
+#[doc = "`write(|w| ..)` method takes [xdmac_gswf::W](xdmac_gswf::W) writer structure"]
+impl crate::Writable for XDMAC_GSWF {}
 #[doc = "Global Channel Software Flush Request Register"]
 pub mod xdmac_gswf;

@@ -1,37 +1,19 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::USBHS_HSTPIPICR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register USBHS_HSTPIPICR[%s]"]
+pub type W = crate::W<u32, super::USBHS_HSTPIPICR>;
+#[doc = "Register USBHS_HSTPIPICR[%s]
+`reset()`'s with value 0"]
+impl crate::ResetValue for super::USBHS_HSTPIPICR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _RXINICW<'a> {
+#[doc = "Write proxy for field `RXINIC`"]
+pub struct RXINIC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXINICW<'a> {
+impl<'a> RXINIC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +31,11 @@ impl<'a> _RXINICW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TXOUTICW<'a> {
+#[doc = "Write proxy for field `TXOUTIC`"]
+pub struct TXOUTIC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXOUTICW<'a> {
+impl<'a> TXOUTIC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +53,11 @@ impl<'a> _TXOUTICW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TXSTPICW<'a> {
+#[doc = "Write proxy for field `TXSTPIC`"]
+pub struct TXSTPIC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXSTPICW<'a> {
+impl<'a> TXSTPIC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +75,11 @@ impl<'a> _TXSTPICW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _NAKEDICW<'a> {
+#[doc = "Write proxy for field `NAKEDIC`"]
+pub struct NAKEDIC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NAKEDICW<'a> {
+impl<'a> NAKEDIC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +97,11 @@ impl<'a> _NAKEDICW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OVERFICW<'a> {
+#[doc = "Write proxy for field `OVERFIC`"]
+pub struct OVERFIC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OVERFICW<'a> {
+impl<'a> OVERFIC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +119,11 @@ impl<'a> _OVERFICW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RXSTALLDICW<'a> {
+#[doc = "Write proxy for field `RXSTALLDIC`"]
+pub struct RXSTALLDIC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXSTALLDICW<'a> {
+impl<'a> RXSTALLDIC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +141,11 @@ impl<'a> _RXSTALLDICW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SHORTPACKETICW<'a> {
+#[doc = "Write proxy for field `SHORTPACKETIC`"]
+pub struct SHORTPACKETIC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SHORTPACKETICW<'a> {
+impl<'a> SHORTPACKETIC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -182,45 +164,39 @@ impl<'a> _SHORTPACKETICW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Received IN Data Interrupt Clear"]
     #[inline(always)]
-    pub fn rxinic(&mut self) -> _RXINICW {
-        _RXINICW { w: self }
+    pub fn rxinic(&mut self) -> RXINIC_W {
+        RXINIC_W { w: self }
     }
     #[doc = "Bit 1 - Transmitted OUT Data Interrupt Clear"]
     #[inline(always)]
-    pub fn txoutic(&mut self) -> _TXOUTICW {
-        _TXOUTICW { w: self }
+    pub fn txoutic(&mut self) -> TXOUTIC_W {
+        TXOUTIC_W { w: self }
     }
     #[doc = "Bit 2 - Transmitted SETUP Interrupt Clear"]
     #[inline(always)]
-    pub fn txstpic(&mut self) -> _TXSTPICW {
-        _TXSTPICW { w: self }
+    pub fn txstpic(&mut self) -> TXSTPIC_W {
+        TXSTPIC_W { w: self }
     }
     #[doc = "Bit 4 - NAKed Interrupt Clear"]
     #[inline(always)]
-    pub fn nakedic(&mut self) -> _NAKEDICW {
-        _NAKEDICW { w: self }
+    pub fn nakedic(&mut self) -> NAKEDIC_W {
+        NAKEDIC_W { w: self }
     }
     #[doc = "Bit 5 - Overflow Interrupt Clear"]
     #[inline(always)]
-    pub fn overfic(&mut self) -> _OVERFICW {
-        _OVERFICW { w: self }
+    pub fn overfic(&mut self) -> OVERFIC_W {
+        OVERFIC_W { w: self }
     }
     #[doc = "Bit 6 - Received STALLed Interrupt Clear"]
     #[inline(always)]
-    pub fn rxstalldic(&mut self) -> _RXSTALLDICW {
-        _RXSTALLDICW { w: self }
+    pub fn rxstalldic(&mut self) -> RXSTALLDIC_W {
+        RXSTALLDIC_W { w: self }
     }
     #[doc = "Bit 7 - Short Packet Interrupt Clear"]
     #[inline(always)]
-    pub fn shortpacketic(&mut self) -> _SHORTPACKETICW {
-        _SHORTPACKETICW { w: self }
+    pub fn shortpacketic(&mut self) -> SHORTPACKETIC_W {
+        SHORTPACKETIC_W { w: self }
     }
 }

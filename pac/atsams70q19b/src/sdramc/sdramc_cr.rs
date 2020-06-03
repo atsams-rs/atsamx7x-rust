@@ -1,155 +1,100 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SDRAMC_CR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register SDRAMC_CR"]
+pub type R = crate::R<u32, super::SDRAMC_CR>;
+#[doc = "Writer for register SDRAMC_CR"]
+pub type W = crate::W<u32, super::SDRAMC_CR>;
+#[doc = "Register SDRAMC_CR `reset()`'s with value 0"]
+impl crate::ResetValue for super::SDRAMC_CR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "Number of Column Bits\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum NC_A {
+    #[doc = "0: 8 column bits"]
+    COL8 = 0,
+    #[doc = "1: 9 column bits"]
+    COL9 = 1,
+    #[doc = "2: 10 column bits"]
+    COL10 = 2,
+    #[doc = "3: 11 column bits"]
+    COL11 = 3,
+}
+impl From<NC_A> for u8 {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: NC_A) -> Self {
+        variant as _
     }
 }
-#[doc = "Possible values of the field `NC`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NCR {
-    #[doc = "8 column bits"]
-    COL8,
-    #[doc = "9 column bits"]
-    COL9,
-    #[doc = "10 column bits"]
-    COL10,
-    #[doc = "11 column bits"]
-    COL11,
-}
-impl crate::ToBits<u8> for NCR {
+#[doc = "Reader of field `NC`"]
+pub type NC_R = crate::R<u8, NC_A>;
+impl NC_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            NCR::COL8 => 0,
-            NCR::COL9 => 1,
-            NCR::COL10 => 2,
-            NCR::COL11 => 3,
+    pub fn variant(&self) -> NC_A {
+        match self.bits {
+            0 => NC_A::COL8,
+            1 => NC_A::COL9,
+            2 => NC_A::COL10,
+            3 => NC_A::COL11,
+            _ => unreachable!(),
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type NC_R = crate::FR<u8, NCR>;
-impl NC_R {
     #[doc = "Checks if the value of the field is `COL8`"]
     #[inline(always)]
     pub fn is_col8(&self) -> bool {
-        *self == NCR::COL8
+        *self == NC_A::COL8
     }
     #[doc = "Checks if the value of the field is `COL9`"]
     #[inline(always)]
     pub fn is_col9(&self) -> bool {
-        *self == NCR::COL9
+        *self == NC_A::COL9
     }
     #[doc = "Checks if the value of the field is `COL10`"]
     #[inline(always)]
     pub fn is_col10(&self) -> bool {
-        *self == NCR::COL10
+        *self == NC_A::COL10
     }
     #[doc = "Checks if the value of the field is `COL11`"]
     #[inline(always)]
     pub fn is_col11(&self) -> bool {
-        *self == NCR::COL11
+        *self == NC_A::COL11
     }
 }
-#[doc = "Values that can be written to the field `NC`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NCW {
-    #[doc = "8 column bits"]
-    COL8,
-    #[doc = "9 column bits"]
-    COL9,
-    #[doc = "10 column bits"]
-    COL10,
-    #[doc = "11 column bits"]
-    COL11,
-}
-impl NCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            NCW::COL8 => 0,
-            NCW::COL9 => 1,
-            NCW::COL10 => 2,
-            NCW::COL11 => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _NCW<'a> {
+#[doc = "Write proxy for field `NC`"]
+pub struct NC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NCW<'a> {
+impl<'a> NC_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: NCW) -> &'a mut W {
+    pub fn variant(self, variant: NC_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "8 column bits"]
     #[inline(always)]
     pub fn col8(self) -> &'a mut W {
-        self.variant(NCW::COL8)
+        self.variant(NC_A::COL8)
     }
     #[doc = "9 column bits"]
     #[inline(always)]
     pub fn col9(self) -> &'a mut W {
-        self.variant(NCW::COL9)
+        self.variant(NC_A::COL9)
     }
     #[doc = "10 column bits"]
     #[inline(always)]
     pub fn col10(self) -> &'a mut W {
-        self.variant(NCW::COL10)
+        self.variant(NC_A::COL10)
     }
     #[doc = "11 column bits"]
     #[inline(always)]
     pub fn col11(self) -> &'a mut W {
-        self.variant(NCW::COL11)
+        self.variant(NC_A::COL11)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -158,91 +103,77 @@ impl<'a> _NCW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `NR`"]
+#[doc = "Number of Row Bits\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NRR {
-    #[doc = "11 row bits"]
-    ROW11,
-    #[doc = "12 row bits"]
-    ROW12,
-    #[doc = "13 row bits"]
-    ROW13,
+#[repr(u8)]
+pub enum NR_A {
+    #[doc = "0: 11 row bits"]
+    ROW11 = 0,
+    #[doc = "1: 12 row bits"]
+    ROW12 = 1,
+    #[doc = "2: 13 row bits"]
+    ROW13 = 2,
 }
-impl crate::ToBits<u8> for NRR {
+impl From<NR_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            NRR::ROW11 => 0,
-            NRR::ROW12 => 1,
-            NRR::ROW13 => 2,
-        }
+    fn from(variant: NR_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type NR_R = crate::FR<u8, NRR>;
+#[doc = "Reader of field `NR`"]
+pub type NR_R = crate::R<u8, NR_A>;
 impl NR_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, NR_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(NR_A::ROW11),
+            1 => Val(NR_A::ROW12),
+            2 => Val(NR_A::ROW13),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `ROW11`"]
     #[inline(always)]
     pub fn is_row11(&self) -> bool {
-        *self == NRR::ROW11
+        *self == NR_A::ROW11
     }
     #[doc = "Checks if the value of the field is `ROW12`"]
     #[inline(always)]
     pub fn is_row12(&self) -> bool {
-        *self == NRR::ROW12
+        *self == NR_A::ROW12
     }
     #[doc = "Checks if the value of the field is `ROW13`"]
     #[inline(always)]
     pub fn is_row13(&self) -> bool {
-        *self == NRR::ROW13
+        *self == NR_A::ROW13
     }
 }
-#[doc = "Values that can be written to the field `NR`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NRW {
-    #[doc = "11 row bits"]
-    ROW11,
-    #[doc = "12 row bits"]
-    ROW12,
-    #[doc = "13 row bits"]
-    ROW13,
-}
-impl NRW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            NRW::ROW11 => 0,
-            NRW::ROW12 => 1,
-            NRW::ROW13 => 2,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _NRW<'a> {
+#[doc = "Write proxy for field `NR`"]
+pub struct NR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NRW<'a> {
+impl<'a> NR_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: NRW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: NR_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "11 row bits"]
     #[inline(always)]
     pub fn row11(self) -> &'a mut W {
-        self.variant(NRW::ROW11)
+        self.variant(NR_A::ROW11)
     }
     #[doc = "12 row bits"]
     #[inline(always)]
     pub fn row12(self) -> &'a mut W {
-        self.variant(NRW::ROW12)
+        self.variant(NR_A::ROW12)
     }
     #[doc = "13 row bits"]
     #[inline(always)]
     pub fn row13(self) -> &'a mut W {
-        self.variant(NRW::ROW13)
+        self.variant(NR_A::ROW13)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -251,77 +182,63 @@ impl<'a> _NRW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `NB`"]
+#[doc = "Number of Banks\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NBR {
-    #[doc = "2 banks"]
-    BANK2,
-    #[doc = "4 banks"]
-    BANK4,
+pub enum NB_A {
+    #[doc = "0: 2 banks"]
+    BANK2 = 0,
+    #[doc = "1: 4 banks"]
+    BANK4 = 1,
 }
-impl crate::ToBits<bool> for NBR {
+impl From<NB_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            NBR::BANK2 => false,
-            NBR::BANK4 => true,
-        }
+    fn from(variant: NB_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type NB_R = crate::FR<bool, NBR>;
+#[doc = "Reader of field `NB`"]
+pub type NB_R = crate::R<bool, NB_A>;
 impl NB_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> NB_A {
+        match self.bits {
+            false => NB_A::BANK2,
+            true => NB_A::BANK4,
+        }
+    }
     #[doc = "Checks if the value of the field is `BANK2`"]
     #[inline(always)]
     pub fn is_bank2(&self) -> bool {
-        *self == NBR::BANK2
+        *self == NB_A::BANK2
     }
     #[doc = "Checks if the value of the field is `BANK4`"]
     #[inline(always)]
     pub fn is_bank4(&self) -> bool {
-        *self == NBR::BANK4
+        *self == NB_A::BANK4
     }
 }
-#[doc = "Values that can be written to the field `NB`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NBW {
-    #[doc = "2 banks"]
-    BANK2,
-    #[doc = "4 banks"]
-    BANK4,
-}
-impl NBW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            NBW::BANK2 => false,
-            NBW::BANK4 => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _NBW<'a> {
+#[doc = "Write proxy for field `NB`"]
+pub struct NB_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NBW<'a> {
+impl<'a> NB_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: NBW) -> &'a mut W {
+    pub fn variant(self, variant: NB_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "2 banks"]
     #[inline(always)]
     pub fn bank2(self) -> &'a mut W {
-        self.variant(NBW::BANK2)
+        self.variant(NB_A::BANK2)
     }
     #[doc = "4 banks"]
     #[inline(always)]
     pub fn bank4(self) -> &'a mut W {
-        self.variant(NBW::BANK4)
+        self.variant(NB_A::BANK4)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -340,91 +257,77 @@ impl<'a> _NBW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `CAS`"]
+#[doc = "CAS Latency\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CASR {
-    #[doc = "1 cycle CAS latency"]
-    LATENCY1,
-    #[doc = "2 cycle CAS latency"]
-    LATENCY2,
-    #[doc = "3 cycle CAS latency"]
-    LATENCY3,
+#[repr(u8)]
+pub enum CAS_A {
+    #[doc = "1: 1 cycle CAS latency"]
+    LATENCY1 = 1,
+    #[doc = "2: 2 cycle CAS latency"]
+    LATENCY2 = 2,
+    #[doc = "3: 3 cycle CAS latency"]
+    LATENCY3 = 3,
 }
-impl crate::ToBits<u8> for CASR {
+impl From<CAS_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            CASR::LATENCY1 => 1,
-            CASR::LATENCY2 => 2,
-            CASR::LATENCY3 => 3,
-        }
+    fn from(variant: CAS_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type CAS_R = crate::FR<u8, CASR>;
+#[doc = "Reader of field `CAS`"]
+pub type CAS_R = crate::R<u8, CAS_A>;
 impl CAS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, CAS_A> {
+        use crate::Variant::*;
+        match self.bits {
+            1 => Val(CAS_A::LATENCY1),
+            2 => Val(CAS_A::LATENCY2),
+            3 => Val(CAS_A::LATENCY3),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `LATENCY1`"]
     #[inline(always)]
     pub fn is_latency1(&self) -> bool {
-        *self == CASR::LATENCY1
+        *self == CAS_A::LATENCY1
     }
     #[doc = "Checks if the value of the field is `LATENCY2`"]
     #[inline(always)]
     pub fn is_latency2(&self) -> bool {
-        *self == CASR::LATENCY2
+        *self == CAS_A::LATENCY2
     }
     #[doc = "Checks if the value of the field is `LATENCY3`"]
     #[inline(always)]
     pub fn is_latency3(&self) -> bool {
-        *self == CASR::LATENCY3
+        *self == CAS_A::LATENCY3
     }
 }
-#[doc = "Values that can be written to the field `CAS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CASW {
-    #[doc = "1 cycle CAS latency"]
-    LATENCY1,
-    #[doc = "2 cycle CAS latency"]
-    LATENCY2,
-    #[doc = "3 cycle CAS latency"]
-    LATENCY3,
-}
-impl CASW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CASW::LATENCY1 => 1,
-            CASW::LATENCY2 => 2,
-            CASW::LATENCY3 => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _CASW<'a> {
+#[doc = "Write proxy for field `CAS`"]
+pub struct CAS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CASW<'a> {
+impl<'a> CAS_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: CASW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: CAS_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "1 cycle CAS latency"]
     #[inline(always)]
     pub fn latency1(self) -> &'a mut W {
-        self.variant(CASW::LATENCY1)
+        self.variant(CAS_A::LATENCY1)
     }
     #[doc = "2 cycle CAS latency"]
     #[inline(always)]
     pub fn latency2(self) -> &'a mut W {
-        self.variant(CASW::LATENCY2)
+        self.variant(CAS_A::LATENCY2)
     }
     #[doc = "3 cycle CAS latency"]
     #[inline(always)]
     pub fn latency3(self) -> &'a mut W {
-        self.variant(CASW::LATENCY3)
+        self.variant(CAS_A::LATENCY3)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -433,13 +336,13 @@ impl<'a> _CASW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DBW_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DBWW<'a> {
+#[doc = "Reader of field `DBW`"]
+pub type DBW_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DBW`"]
+pub struct DBW_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DBWW<'a> {
+impl<'a> DBW_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -457,13 +360,13 @@ impl<'a> _DBWW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type TWR_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _TWRW<'a> {
+#[doc = "Reader of field `TWR`"]
+pub type TWR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TWR`"]
+pub struct TWR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TWRW<'a> {
+impl<'a> TWR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -471,13 +374,13 @@ impl<'a> _TWRW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type TRC_TRFC_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _TRC_TRFCW<'a> {
+#[doc = "Reader of field `TRC_TRFC`"]
+pub type TRC_TRFC_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TRC_TRFC`"]
+pub struct TRC_TRFC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TRC_TRFCW<'a> {
+impl<'a> TRC_TRFC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -485,13 +388,13 @@ impl<'a> _TRC_TRFCW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type TRP_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _TRPW<'a> {
+#[doc = "Reader of field `TRP`"]
+pub type TRP_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TRP`"]
+pub struct TRP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TRPW<'a> {
+impl<'a> TRP_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -499,13 +402,13 @@ impl<'a> _TRPW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type TRCD_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _TRCDW<'a> {
+#[doc = "Reader of field `TRCD`"]
+pub type TRCD_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TRCD`"]
+pub struct TRCD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TRCDW<'a> {
+impl<'a> TRCD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -513,13 +416,13 @@ impl<'a> _TRCDW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type TRAS_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _TRASW<'a> {
+#[doc = "Reader of field `TRAS`"]
+pub type TRAS_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TRAS`"]
+pub struct TRAS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TRASW<'a> {
+impl<'a> TRAS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -527,13 +430,13 @@ impl<'a> _TRASW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type TXSR_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _TXSRW<'a> {
+#[doc = "Reader of field `TXSR`"]
+pub type TXSR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TXSR`"]
+pub struct TXSR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXSRW<'a> {
+impl<'a> TXSR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -542,127 +445,116 @@ impl<'a> _TXSRW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - Number of Column Bits"]
     #[inline(always)]
     pub fn nc(&self) -> NC_R {
-        NC_R::new((self.bits() & 0x03) as u8)
+        NC_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bits 2:3 - Number of Row Bits"]
     #[inline(always)]
     pub fn nr(&self) -> NR_R {
-        NR_R::new(((self.bits() >> 2) & 0x03) as u8)
+        NR_R::new(((self.bits >> 2) & 0x03) as u8)
     }
     #[doc = "Bit 4 - Number of Banks"]
     #[inline(always)]
     pub fn nb(&self) -> NB_R {
-        NB_R::new(((self.bits() >> 4) & 0x01) != 0)
+        NB_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bits 5:6 - CAS Latency"]
     #[inline(always)]
     pub fn cas(&self) -> CAS_R {
-        CAS_R::new(((self.bits() >> 5) & 0x03) as u8)
+        CAS_R::new(((self.bits >> 5) & 0x03) as u8)
     }
     #[doc = "Bit 7 - Data Bus Width"]
     #[inline(always)]
     pub fn dbw(&self) -> DBW_R {
-        DBW_R::new(((self.bits() >> 7) & 0x01) != 0)
+        DBW_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bits 8:11 - Write Recovery Delay"]
     #[inline(always)]
     pub fn twr(&self) -> TWR_R {
-        TWR_R::new(((self.bits() >> 8) & 0x0f) as u8)
+        TWR_R::new(((self.bits >> 8) & 0x0f) as u8)
     }
     #[doc = "Bits 12:15 - Row Cycle Delay and Row Refresh Cycle"]
     #[inline(always)]
     pub fn trc_trfc(&self) -> TRC_TRFC_R {
-        TRC_TRFC_R::new(((self.bits() >> 12) & 0x0f) as u8)
+        TRC_TRFC_R::new(((self.bits >> 12) & 0x0f) as u8)
     }
     #[doc = "Bits 16:19 - Row Precharge Delay"]
     #[inline(always)]
     pub fn trp(&self) -> TRP_R {
-        TRP_R::new(((self.bits() >> 16) & 0x0f) as u8)
+        TRP_R::new(((self.bits >> 16) & 0x0f) as u8)
     }
     #[doc = "Bits 20:23 - Row to Column Delay"]
     #[inline(always)]
     pub fn trcd(&self) -> TRCD_R {
-        TRCD_R::new(((self.bits() >> 20) & 0x0f) as u8)
+        TRCD_R::new(((self.bits >> 20) & 0x0f) as u8)
     }
     #[doc = "Bits 24:27 - Active to Precharge Delay"]
     #[inline(always)]
     pub fn tras(&self) -> TRAS_R {
-        TRAS_R::new(((self.bits() >> 24) & 0x0f) as u8)
+        TRAS_R::new(((self.bits >> 24) & 0x0f) as u8)
     }
     #[doc = "Bits 28:31 - Exit Self-Refresh to Active Delay"]
     #[inline(always)]
     pub fn txsr(&self) -> TXSR_R {
-        TXSR_R::new(((self.bits() >> 28) & 0x0f) as u8)
+        TXSR_R::new(((self.bits >> 28) & 0x0f) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - Number of Column Bits"]
     #[inline(always)]
-    pub fn nc(&mut self) -> _NCW {
-        _NCW { w: self }
+    pub fn nc(&mut self) -> NC_W {
+        NC_W { w: self }
     }
     #[doc = "Bits 2:3 - Number of Row Bits"]
     #[inline(always)]
-    pub fn nr(&mut self) -> _NRW {
-        _NRW { w: self }
+    pub fn nr(&mut self) -> NR_W {
+        NR_W { w: self }
     }
     #[doc = "Bit 4 - Number of Banks"]
     #[inline(always)]
-    pub fn nb(&mut self) -> _NBW {
-        _NBW { w: self }
+    pub fn nb(&mut self) -> NB_W {
+        NB_W { w: self }
     }
     #[doc = "Bits 5:6 - CAS Latency"]
     #[inline(always)]
-    pub fn cas(&mut self) -> _CASW {
-        _CASW { w: self }
+    pub fn cas(&mut self) -> CAS_W {
+        CAS_W { w: self }
     }
     #[doc = "Bit 7 - Data Bus Width"]
     #[inline(always)]
-    pub fn dbw(&mut self) -> _DBWW {
-        _DBWW { w: self }
+    pub fn dbw(&mut self) -> DBW_W {
+        DBW_W { w: self }
     }
     #[doc = "Bits 8:11 - Write Recovery Delay"]
     #[inline(always)]
-    pub fn twr(&mut self) -> _TWRW {
-        _TWRW { w: self }
+    pub fn twr(&mut self) -> TWR_W {
+        TWR_W { w: self }
     }
     #[doc = "Bits 12:15 - Row Cycle Delay and Row Refresh Cycle"]
     #[inline(always)]
-    pub fn trc_trfc(&mut self) -> _TRC_TRFCW {
-        _TRC_TRFCW { w: self }
+    pub fn trc_trfc(&mut self) -> TRC_TRFC_W {
+        TRC_TRFC_W { w: self }
     }
     #[doc = "Bits 16:19 - Row Precharge Delay"]
     #[inline(always)]
-    pub fn trp(&mut self) -> _TRPW {
-        _TRPW { w: self }
+    pub fn trp(&mut self) -> TRP_W {
+        TRP_W { w: self }
     }
     #[doc = "Bits 20:23 - Row to Column Delay"]
     #[inline(always)]
-    pub fn trcd(&mut self) -> _TRCDW {
-        _TRCDW { w: self }
+    pub fn trcd(&mut self) -> TRCD_W {
+        TRCD_W { w: self }
     }
     #[doc = "Bits 24:27 - Active to Precharge Delay"]
     #[inline(always)]
-    pub fn tras(&mut self) -> _TRASW {
-        _TRASW { w: self }
+    pub fn tras(&mut self) -> TRAS_W {
+        TRAS_W { w: self }
     }
     #[doc = "Bits 28:31 - Exit Self-Refresh to Active Delay"]
     #[inline(always)]
-    pub fn txsr(&mut self) -> _TXSRW {
-        _TXSRW { w: self }
+    pub fn txsr(&mut self) -> TXSR_W {
+        TXSR_W { w: self }
     }
 }

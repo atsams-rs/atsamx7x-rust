@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::AFEC_CECR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register AFEC_CECR"]
+pub type R = crate::R<u32, super::AFEC_CECR>;
+#[doc = "Writer for register AFEC_CECR"]
+pub type W = crate::W<u32, super::AFEC_CECR>;
+#[doc = "Register AFEC_CECR `reset()`'s with value 0"]
+impl crate::ResetValue for super::AFEC_CECR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type ECORR0_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ECORR0W<'a> {
+#[doc = "Reader of field `ECORR0`"]
+pub type ECORR0_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ECORR0`"]
+pub struct ECORR0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ECORR0W<'a> {
+impl<'a> ECORR0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _ECORR0W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ECORR1_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ECORR1W<'a> {
+#[doc = "Reader of field `ECORR1`"]
+pub type ECORR1_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ECORR1`"]
+pub struct ECORR1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ECORR1W<'a> {
+impl<'a> ECORR1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _ECORR1W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ECORR2_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ECORR2W<'a> {
+#[doc = "Reader of field `ECORR2`"]
+pub type ECORR2_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ECORR2`"]
+pub struct ECORR2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ECORR2W<'a> {
+impl<'a> ECORR2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -119,13 +82,13 @@ impl<'a> _ECORR2W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ECORR3_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ECORR3W<'a> {
+#[doc = "Reader of field `ECORR3`"]
+pub type ECORR3_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ECORR3`"]
+pub struct ECORR3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ECORR3W<'a> {
+impl<'a> ECORR3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -143,13 +106,13 @@ impl<'a> _ECORR3W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ECORR4_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ECORR4W<'a> {
+#[doc = "Reader of field `ECORR4`"]
+pub type ECORR4_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ECORR4`"]
+pub struct ECORR4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ECORR4W<'a> {
+impl<'a> ECORR4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -167,13 +130,13 @@ impl<'a> _ECORR4W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ECORR5_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ECORR5W<'a> {
+#[doc = "Reader of field `ECORR5`"]
+pub type ECORR5_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ECORR5`"]
+pub struct ECORR5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ECORR5W<'a> {
+impl<'a> ECORR5_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -191,13 +154,13 @@ impl<'a> _ECORR5W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ECORR6_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ECORR6W<'a> {
+#[doc = "Reader of field `ECORR6`"]
+pub type ECORR6_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ECORR6`"]
+pub struct ECORR6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ECORR6W<'a> {
+impl<'a> ECORR6_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -215,13 +178,13 @@ impl<'a> _ECORR6W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ECORR7_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ECORR7W<'a> {
+#[doc = "Reader of field `ECORR7`"]
+pub type ECORR7_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ECORR7`"]
+pub struct ECORR7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ECORR7W<'a> {
+impl<'a> ECORR7_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -239,13 +202,13 @@ impl<'a> _ECORR7W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ECORR8_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ECORR8W<'a> {
+#[doc = "Reader of field `ECORR8`"]
+pub type ECORR8_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ECORR8`"]
+pub struct ECORR8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ECORR8W<'a> {
+impl<'a> ECORR8_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -263,13 +226,13 @@ impl<'a> _ECORR8W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ECORR9_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ECORR9W<'a> {
+#[doc = "Reader of field `ECORR9`"]
+pub type ECORR9_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ECORR9`"]
+pub struct ECORR9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ECORR9W<'a> {
+impl<'a> ECORR9_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -287,13 +250,13 @@ impl<'a> _ECORR9W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ECORR10_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ECORR10W<'a> {
+#[doc = "Reader of field `ECORR10`"]
+pub type ECORR10_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ECORR10`"]
+pub struct ECORR10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ECORR10W<'a> {
+impl<'a> ECORR10_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -311,13 +274,13 @@ impl<'a> _ECORR10W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ECORR11_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ECORR11W<'a> {
+#[doc = "Reader of field `ECORR11`"]
+pub type ECORR11_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ECORR11`"]
+pub struct ECORR11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ECORR11W<'a> {
+impl<'a> ECORR11_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -336,137 +299,126 @@ impl<'a> _ECORR11W<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Error Correction Enable for channel 0"]
     #[inline(always)]
     pub fn ecorr0(&self) -> ECORR0_R {
-        ECORR0_R::new((self.bits() & 0x01) != 0)
+        ECORR0_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Error Correction Enable for channel 1"]
     #[inline(always)]
     pub fn ecorr1(&self) -> ECORR1_R {
-        ECORR1_R::new(((self.bits() >> 1) & 0x01) != 0)
+        ECORR1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Error Correction Enable for channel 2"]
     #[inline(always)]
     pub fn ecorr2(&self) -> ECORR2_R {
-        ECORR2_R::new(((self.bits() >> 2) & 0x01) != 0)
+        ECORR2_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Error Correction Enable for channel 3"]
     #[inline(always)]
     pub fn ecorr3(&self) -> ECORR3_R {
-        ECORR3_R::new(((self.bits() >> 3) & 0x01) != 0)
+        ECORR3_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Error Correction Enable for channel 4"]
     #[inline(always)]
     pub fn ecorr4(&self) -> ECORR4_R {
-        ECORR4_R::new(((self.bits() >> 4) & 0x01) != 0)
+        ECORR4_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Error Correction Enable for channel 5"]
     #[inline(always)]
     pub fn ecorr5(&self) -> ECORR5_R {
-        ECORR5_R::new(((self.bits() >> 5) & 0x01) != 0)
+        ECORR5_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Error Correction Enable for channel 6"]
     #[inline(always)]
     pub fn ecorr6(&self) -> ECORR6_R {
-        ECORR6_R::new(((self.bits() >> 6) & 0x01) != 0)
+        ECORR6_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Error Correction Enable for channel 7"]
     #[inline(always)]
     pub fn ecorr7(&self) -> ECORR7_R {
-        ECORR7_R::new(((self.bits() >> 7) & 0x01) != 0)
+        ECORR7_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 8 - Error Correction Enable for channel 8"]
     #[inline(always)]
     pub fn ecorr8(&self) -> ECORR8_R {
-        ECORR8_R::new(((self.bits() >> 8) & 0x01) != 0)
+        ECORR8_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Error Correction Enable for channel 9"]
     #[inline(always)]
     pub fn ecorr9(&self) -> ECORR9_R {
-        ECORR9_R::new(((self.bits() >> 9) & 0x01) != 0)
+        ECORR9_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Error Correction Enable for channel 10"]
     #[inline(always)]
     pub fn ecorr10(&self) -> ECORR10_R {
-        ECORR10_R::new(((self.bits() >> 10) & 0x01) != 0)
+        ECORR10_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Error Correction Enable for channel 11"]
     #[inline(always)]
     pub fn ecorr11(&self) -> ECORR11_R {
-        ECORR11_R::new(((self.bits() >> 11) & 0x01) != 0)
+        ECORR11_R::new(((self.bits >> 11) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Error Correction Enable for channel 0"]
     #[inline(always)]
-    pub fn ecorr0(&mut self) -> _ECORR0W {
-        _ECORR0W { w: self }
+    pub fn ecorr0(&mut self) -> ECORR0_W {
+        ECORR0_W { w: self }
     }
     #[doc = "Bit 1 - Error Correction Enable for channel 1"]
     #[inline(always)]
-    pub fn ecorr1(&mut self) -> _ECORR1W {
-        _ECORR1W { w: self }
+    pub fn ecorr1(&mut self) -> ECORR1_W {
+        ECORR1_W { w: self }
     }
     #[doc = "Bit 2 - Error Correction Enable for channel 2"]
     #[inline(always)]
-    pub fn ecorr2(&mut self) -> _ECORR2W {
-        _ECORR2W { w: self }
+    pub fn ecorr2(&mut self) -> ECORR2_W {
+        ECORR2_W { w: self }
     }
     #[doc = "Bit 3 - Error Correction Enable for channel 3"]
     #[inline(always)]
-    pub fn ecorr3(&mut self) -> _ECORR3W {
-        _ECORR3W { w: self }
+    pub fn ecorr3(&mut self) -> ECORR3_W {
+        ECORR3_W { w: self }
     }
     #[doc = "Bit 4 - Error Correction Enable for channel 4"]
     #[inline(always)]
-    pub fn ecorr4(&mut self) -> _ECORR4W {
-        _ECORR4W { w: self }
+    pub fn ecorr4(&mut self) -> ECORR4_W {
+        ECORR4_W { w: self }
     }
     #[doc = "Bit 5 - Error Correction Enable for channel 5"]
     #[inline(always)]
-    pub fn ecorr5(&mut self) -> _ECORR5W {
-        _ECORR5W { w: self }
+    pub fn ecorr5(&mut self) -> ECORR5_W {
+        ECORR5_W { w: self }
     }
     #[doc = "Bit 6 - Error Correction Enable for channel 6"]
     #[inline(always)]
-    pub fn ecorr6(&mut self) -> _ECORR6W {
-        _ECORR6W { w: self }
+    pub fn ecorr6(&mut self) -> ECORR6_W {
+        ECORR6_W { w: self }
     }
     #[doc = "Bit 7 - Error Correction Enable for channel 7"]
     #[inline(always)]
-    pub fn ecorr7(&mut self) -> _ECORR7W {
-        _ECORR7W { w: self }
+    pub fn ecorr7(&mut self) -> ECORR7_W {
+        ECORR7_W { w: self }
     }
     #[doc = "Bit 8 - Error Correction Enable for channel 8"]
     #[inline(always)]
-    pub fn ecorr8(&mut self) -> _ECORR8W {
-        _ECORR8W { w: self }
+    pub fn ecorr8(&mut self) -> ECORR8_W {
+        ECORR8_W { w: self }
     }
     #[doc = "Bit 9 - Error Correction Enable for channel 9"]
     #[inline(always)]
-    pub fn ecorr9(&mut self) -> _ECORR9W {
-        _ECORR9W { w: self }
+    pub fn ecorr9(&mut self) -> ECORR9_W {
+        ECORR9_W { w: self }
     }
     #[doc = "Bit 10 - Error Correction Enable for channel 10"]
     #[inline(always)]
-    pub fn ecorr10(&mut self) -> _ECORR10W {
-        _ECORR10W { w: self }
+    pub fn ecorr10(&mut self) -> ECORR10_W {
+        ECORR10_W { w: self }
     }
     #[doc = "Bit 11 - Error Correction Enable for channel 11"]
     #[inline(always)]
-    pub fn ecorr11(&mut self) -> _ECORR11W {
-        _ECORR11W { w: self }
+    pub fn ecorr11(&mut self) -> ECORR11_W {
+        ECORR11_W { w: self }
     }
 }

@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::USBHS_DEVIFR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register USBHS_DEVIFR"]
+pub type W = crate::W<u32, super::USBHS_DEVIFR>;
+#[doc = "Register USBHS_DEVIFR `reset()`'s with value 0"]
+impl crate::ResetValue for super::USBHS_DEVIFR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _SUSPSW<'a> {
+#[doc = "Write proxy for field `SUSPS`"]
+pub struct SUSPS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SUSPSW<'a> {
+impl<'a> SUSPS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _SUSPSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _MSOFSW<'a> {
+#[doc = "Write proxy for field `MSOFS`"]
+pub struct MSOFS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MSOFSW<'a> {
+impl<'a> MSOFS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _MSOFSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SOFSW<'a> {
+#[doc = "Write proxy for field `SOFS`"]
+pub struct SOFS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SOFSW<'a> {
+impl<'a> SOFS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _SOFSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EORSTSW<'a> {
+#[doc = "Write proxy for field `EORSTS`"]
+pub struct EORSTS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EORSTSW<'a> {
+impl<'a> EORSTS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _EORSTSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _WAKEUPSW<'a> {
+#[doc = "Write proxy for field `WAKEUPS`"]
+pub struct WAKEUPS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WAKEUPSW<'a> {
+impl<'a> WAKEUPS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _WAKEUPSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EORSMSW<'a> {
+#[doc = "Write proxy for field `EORSMS`"]
+pub struct EORSMS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EORSMSW<'a> {
+impl<'a> EORSMS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _EORSMSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _UPRSMSW<'a> {
+#[doc = "Write proxy for field `UPRSMS`"]
+pub struct UPRSMS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UPRSMSW<'a> {
+impl<'a> UPRSMS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _UPRSMSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _DMA_1W<'a> {
+#[doc = "Write proxy for field `DMA_1`"]
+pub struct DMA_1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DMA_1W<'a> {
+impl<'a> DMA_1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +184,11 @@ impl<'a> _DMA_1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _DMA_2W<'a> {
+#[doc = "Write proxy for field `DMA_2`"]
+pub struct DMA_2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DMA_2W<'a> {
+impl<'a> DMA_2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -225,11 +206,11 @@ impl<'a> _DMA_2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _DMA_3W<'a> {
+#[doc = "Write proxy for field `DMA_3`"]
+pub struct DMA_3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DMA_3W<'a> {
+impl<'a> DMA_3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -247,11 +228,11 @@ impl<'a> _DMA_3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _DMA_4W<'a> {
+#[doc = "Write proxy for field `DMA_4`"]
+pub struct DMA_4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DMA_4W<'a> {
+impl<'a> DMA_4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -269,11 +250,11 @@ impl<'a> _DMA_4W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _DMA_5W<'a> {
+#[doc = "Write proxy for field `DMA_5`"]
+pub struct DMA_5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DMA_5W<'a> {
+impl<'a> DMA_5_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -291,11 +272,11 @@ impl<'a> _DMA_5W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _DMA_6W<'a> {
+#[doc = "Write proxy for field `DMA_6`"]
+pub struct DMA_6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DMA_6W<'a> {
+impl<'a> DMA_6_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -313,11 +294,11 @@ impl<'a> _DMA_6W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _DMA_7W<'a> {
+#[doc = "Write proxy for field `DMA_7`"]
+pub struct DMA_7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DMA_7W<'a> {
+impl<'a> DMA_7_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -336,80 +317,74 @@ impl<'a> _DMA_7W<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Suspend Interrupt Set"]
     #[inline(always)]
-    pub fn susps(&mut self) -> _SUSPSW {
-        _SUSPSW { w: self }
+    pub fn susps(&mut self) -> SUSPS_W {
+        SUSPS_W { w: self }
     }
     #[doc = "Bit 1 - Micro Start of Frame Interrupt Set"]
     #[inline(always)]
-    pub fn msofs(&mut self) -> _MSOFSW {
-        _MSOFSW { w: self }
+    pub fn msofs(&mut self) -> MSOFS_W {
+        MSOFS_W { w: self }
     }
     #[doc = "Bit 2 - Start of Frame Interrupt Set"]
     #[inline(always)]
-    pub fn sofs(&mut self) -> _SOFSW {
-        _SOFSW { w: self }
+    pub fn sofs(&mut self) -> SOFS_W {
+        SOFS_W { w: self }
     }
     #[doc = "Bit 3 - End of Reset Interrupt Set"]
     #[inline(always)]
-    pub fn eorsts(&mut self) -> _EORSTSW {
-        _EORSTSW { w: self }
+    pub fn eorsts(&mut self) -> EORSTS_W {
+        EORSTS_W { w: self }
     }
     #[doc = "Bit 4 - Wake-Up Interrupt Set"]
     #[inline(always)]
-    pub fn wakeups(&mut self) -> _WAKEUPSW {
-        _WAKEUPSW { w: self }
+    pub fn wakeups(&mut self) -> WAKEUPS_W {
+        WAKEUPS_W { w: self }
     }
     #[doc = "Bit 5 - End of Resume Interrupt Set"]
     #[inline(always)]
-    pub fn eorsms(&mut self) -> _EORSMSW {
-        _EORSMSW { w: self }
+    pub fn eorsms(&mut self) -> EORSMS_W {
+        EORSMS_W { w: self }
     }
     #[doc = "Bit 6 - Upstream Resume Interrupt Set"]
     #[inline(always)]
-    pub fn uprsms(&mut self) -> _UPRSMSW {
-        _UPRSMSW { w: self }
+    pub fn uprsms(&mut self) -> UPRSMS_W {
+        UPRSMS_W { w: self }
     }
     #[doc = "Bit 25 - DMA Channel 1 Interrupt Set"]
     #[inline(always)]
-    pub fn dma_1(&mut self) -> _DMA_1W {
-        _DMA_1W { w: self }
+    pub fn dma_1(&mut self) -> DMA_1_W {
+        DMA_1_W { w: self }
     }
     #[doc = "Bit 26 - DMA Channel 2 Interrupt Set"]
     #[inline(always)]
-    pub fn dma_2(&mut self) -> _DMA_2W {
-        _DMA_2W { w: self }
+    pub fn dma_2(&mut self) -> DMA_2_W {
+        DMA_2_W { w: self }
     }
     #[doc = "Bit 27 - DMA Channel 3 Interrupt Set"]
     #[inline(always)]
-    pub fn dma_3(&mut self) -> _DMA_3W {
-        _DMA_3W { w: self }
+    pub fn dma_3(&mut self) -> DMA_3_W {
+        DMA_3_W { w: self }
     }
     #[doc = "Bit 28 - DMA Channel 4 Interrupt Set"]
     #[inline(always)]
-    pub fn dma_4(&mut self) -> _DMA_4W {
-        _DMA_4W { w: self }
+    pub fn dma_4(&mut self) -> DMA_4_W {
+        DMA_4_W { w: self }
     }
     #[doc = "Bit 29 - DMA Channel 5 Interrupt Set"]
     #[inline(always)]
-    pub fn dma_5(&mut self) -> _DMA_5W {
-        _DMA_5W { w: self }
+    pub fn dma_5(&mut self) -> DMA_5_W {
+        DMA_5_W { w: self }
     }
     #[doc = "Bit 30 - DMA Channel 6 Interrupt Set"]
     #[inline(always)]
-    pub fn dma_6(&mut self) -> _DMA_6W {
-        _DMA_6W { w: self }
+    pub fn dma_6(&mut self) -> DMA_6_W {
+        DMA_6_W { w: self }
     }
     #[doc = "Bit 31 - DMA Channel 7 Interrupt Set"]
     #[inline(always)]
-    pub fn dma_7(&mut self) -> _DMA_7W {
-        _DMA_7W { w: self }
+    pub fn dma_7(&mut self) -> DMA_7_W {
+        DMA_7_W { w: self }
     }
 }

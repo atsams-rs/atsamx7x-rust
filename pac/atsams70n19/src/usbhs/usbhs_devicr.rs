@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::USBHS_DEVICR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register USBHS_DEVICR"]
+pub type W = crate::W<u32, super::USBHS_DEVICR>;
+#[doc = "Register USBHS_DEVICR `reset()`'s with value 0"]
+impl crate::ResetValue for super::USBHS_DEVICR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _SUSPCW<'a> {
+#[doc = "Write proxy for field `SUSPC`"]
+pub struct SUSPC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SUSPCW<'a> {
+impl<'a> SUSPC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _SUSPCW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _MSOFCW<'a> {
+#[doc = "Write proxy for field `MSOFC`"]
+pub struct MSOFC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MSOFCW<'a> {
+impl<'a> MSOFC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _MSOFCW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SOFCW<'a> {
+#[doc = "Write proxy for field `SOFC`"]
+pub struct SOFC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SOFCW<'a> {
+impl<'a> SOFC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _SOFCW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EORSTCW<'a> {
+#[doc = "Write proxy for field `EORSTC`"]
+pub struct EORSTC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EORSTCW<'a> {
+impl<'a> EORSTC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _EORSTCW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _WAKEUPCW<'a> {
+#[doc = "Write proxy for field `WAKEUPC`"]
+pub struct WAKEUPC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WAKEUPCW<'a> {
+impl<'a> WAKEUPC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _WAKEUPCW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _EORSMCW<'a> {
+#[doc = "Write proxy for field `EORSMC`"]
+pub struct EORSMC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EORSMCW<'a> {
+impl<'a> EORSMC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _EORSMCW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _UPRSMCW<'a> {
+#[doc = "Write proxy for field `UPRSMC`"]
+pub struct UPRSMC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UPRSMCW<'a> {
+impl<'a> UPRSMC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -182,45 +163,39 @@ impl<'a> _UPRSMCW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Suspend Interrupt Clear"]
     #[inline(always)]
-    pub fn suspc(&mut self) -> _SUSPCW {
-        _SUSPCW { w: self }
+    pub fn suspc(&mut self) -> SUSPC_W {
+        SUSPC_W { w: self }
     }
     #[doc = "Bit 1 - Micro Start of Frame Interrupt Clear"]
     #[inline(always)]
-    pub fn msofc(&mut self) -> _MSOFCW {
-        _MSOFCW { w: self }
+    pub fn msofc(&mut self) -> MSOFC_W {
+        MSOFC_W { w: self }
     }
     #[doc = "Bit 2 - Start of Frame Interrupt Clear"]
     #[inline(always)]
-    pub fn sofc(&mut self) -> _SOFCW {
-        _SOFCW { w: self }
+    pub fn sofc(&mut self) -> SOFC_W {
+        SOFC_W { w: self }
     }
     #[doc = "Bit 3 - End of Reset Interrupt Clear"]
     #[inline(always)]
-    pub fn eorstc(&mut self) -> _EORSTCW {
-        _EORSTCW { w: self }
+    pub fn eorstc(&mut self) -> EORSTC_W {
+        EORSTC_W { w: self }
     }
     #[doc = "Bit 4 - Wake-Up Interrupt Clear"]
     #[inline(always)]
-    pub fn wakeupc(&mut self) -> _WAKEUPCW {
-        _WAKEUPCW { w: self }
+    pub fn wakeupc(&mut self) -> WAKEUPC_W {
+        WAKEUPC_W { w: self }
     }
     #[doc = "Bit 5 - End of Resume Interrupt Clear"]
     #[inline(always)]
-    pub fn eorsmc(&mut self) -> _EORSMCW {
-        _EORSMCW { w: self }
+    pub fn eorsmc(&mut self) -> EORSMC_W {
+        EORSMC_W { w: self }
     }
     #[doc = "Bit 6 - Upstream Resume Interrupt Clear"]
     #[inline(always)]
-    pub fn uprsmc(&mut self) -> _UPRSMCW {
-        _UPRSMCW { w: self }
+    pub fn uprsmc(&mut self) -> UPRSMC_W {
+        UPRSMC_W { w: self }
     }
 }

@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TWIHS_SWMR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register TWIHS_SWMR"]
+pub type R = crate::R<u32, super::TWIHS_SWMR>;
+#[doc = "Writer for register TWIHS_SWMR"]
+pub type W = crate::W<u32, super::TWIHS_SWMR>;
+#[doc = "Register TWIHS_SWMR `reset()`'s with value 0"]
+impl crate::ResetValue for super::TWIHS_SWMR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type SADR1_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _SADR1W<'a> {
+#[doc = "Reader of field `SADR1`"]
+pub type SADR1_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `SADR1`"]
+pub struct SADR1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SADR1W<'a> {
+impl<'a> SADR1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _SADR1W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type SADR2_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _SADR2W<'a> {
+#[doc = "Reader of field `SADR2`"]
+pub type SADR2_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `SADR2`"]
+pub struct SADR2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SADR2W<'a> {
+impl<'a> SADR2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -75,13 +38,13 @@ impl<'a> _SADR2W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type SADR3_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _SADR3W<'a> {
+#[doc = "Reader of field `SADR3`"]
+pub type SADR3_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `SADR3`"]
+pub struct SADR3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SADR3W<'a> {
+impl<'a> SADR3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -89,13 +52,13 @@ impl<'a> _SADR3W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DATAM_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _DATAMW<'a> {
+#[doc = "Reader of field `DATAM`"]
+pub type DATAM_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `DATAM`"]
+pub struct DATAM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DATAMW<'a> {
+impl<'a> DATAM_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -104,57 +67,46 @@ impl<'a> _DATAMW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:6 - Slave Address 1"]
     #[inline(always)]
     pub fn sadr1(&self) -> SADR1_R {
-        SADR1_R::new((self.bits() & 0x7f) as u8)
+        SADR1_R::new((self.bits & 0x7f) as u8)
     }
     #[doc = "Bits 8:14 - Slave Address 2"]
     #[inline(always)]
     pub fn sadr2(&self) -> SADR2_R {
-        SADR2_R::new(((self.bits() >> 8) & 0x7f) as u8)
+        SADR2_R::new(((self.bits >> 8) & 0x7f) as u8)
     }
     #[doc = "Bits 16:22 - Slave Address 3"]
     #[inline(always)]
     pub fn sadr3(&self) -> SADR3_R {
-        SADR3_R::new(((self.bits() >> 16) & 0x7f) as u8)
+        SADR3_R::new(((self.bits >> 16) & 0x7f) as u8)
     }
     #[doc = "Bits 24:31 - Data Match"]
     #[inline(always)]
     pub fn datam(&self) -> DATAM_R {
-        DATAM_R::new(((self.bits() >> 24) & 0xff) as u8)
+        DATAM_R::new(((self.bits >> 24) & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:6 - Slave Address 1"]
     #[inline(always)]
-    pub fn sadr1(&mut self) -> _SADR1W {
-        _SADR1W { w: self }
+    pub fn sadr1(&mut self) -> SADR1_W {
+        SADR1_W { w: self }
     }
     #[doc = "Bits 8:14 - Slave Address 2"]
     #[inline(always)]
-    pub fn sadr2(&mut self) -> _SADR2W {
-        _SADR2W { w: self }
+    pub fn sadr2(&mut self) -> SADR2_W {
+        SADR2_W { w: self }
     }
     #[doc = "Bits 16:22 - Slave Address 3"]
     #[inline(always)]
-    pub fn sadr3(&mut self) -> _SADR3W {
-        _SADR3W { w: self }
+    pub fn sadr3(&mut self) -> SADR3_W {
+        SADR3_W { w: self }
     }
     #[doc = "Bits 24:31 - Data Match"]
     #[inline(always)]
-    pub fn datam(&mut self) -> _DATAMW {
-        _DATAMW { w: self }
+    pub fn datam(&mut self) -> DATAM_W {
+        DATAM_W { w: self }
     }
 }

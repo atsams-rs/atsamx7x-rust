@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::USBHS_HSTDMASTATUS {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register USBHS_HSTDMASTATUS"]
+pub type R = crate::R<u32, super::USBHS_HSTDMASTATUS>;
+#[doc = "Writer for register USBHS_HSTDMASTATUS"]
+pub type W = crate::W<u32, super::USBHS_HSTDMASTATUS>;
+#[doc = "Register USBHS_HSTDMASTATUS `reset()`'s with value 0"]
+impl crate::ResetValue for super::USBHS_HSTDMASTATUS {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type CHANN_ENB_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CHANN_ENBW<'a> {
+#[doc = "Reader of field `CHANN_ENB`"]
+pub type CHANN_ENB_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CHANN_ENB`"]
+pub struct CHANN_ENB_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CHANN_ENBW<'a> {
+impl<'a> CHANN_ENB_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _CHANN_ENBW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CHANN_ACT_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CHANN_ACTW<'a> {
+#[doc = "Reader of field `CHANN_ACT`"]
+pub type CHANN_ACT_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CHANN_ACT`"]
+pub struct CHANN_ACT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CHANN_ACTW<'a> {
+impl<'a> CHANN_ACT_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _CHANN_ACTW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type END_TR_ST_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _END_TR_STW<'a> {
+#[doc = "Reader of field `END_TR_ST`"]
+pub type END_TR_ST_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `END_TR_ST`"]
+pub struct END_TR_ST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _END_TR_STW<'a> {
+impl<'a> END_TR_ST_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -119,13 +82,13 @@ impl<'a> _END_TR_STW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type END_BF_ST_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _END_BF_STW<'a> {
+#[doc = "Reader of field `END_BF_ST`"]
+pub type END_BF_ST_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `END_BF_ST`"]
+pub struct END_BF_ST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _END_BF_STW<'a> {
+impl<'a> END_BF_ST_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -143,13 +106,13 @@ impl<'a> _END_BF_STW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DESC_LDST_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DESC_LDSTW<'a> {
+#[doc = "Reader of field `DESC_LDST`"]
+pub type DESC_LDST_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DESC_LDST`"]
+pub struct DESC_LDST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DESC_LDSTW<'a> {
+impl<'a> DESC_LDST_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -167,13 +130,13 @@ impl<'a> _DESC_LDSTW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type BUFF_COUNT_R = crate::FR<u16, u16>;
-#[doc = r"Proxy"]
-pub struct _BUFF_COUNTW<'a> {
+#[doc = "Reader of field `BUFF_COUNT`"]
+pub type BUFF_COUNT_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `BUFF_COUNT`"]
+pub struct BUFF_COUNT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BUFF_COUNTW<'a> {
+impl<'a> BUFF_COUNT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
@@ -182,77 +145,66 @@ impl<'a> _BUFF_COUNTW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Channel Enable Status"]
     #[inline(always)]
     pub fn chann_enb(&self) -> CHANN_ENB_R {
-        CHANN_ENB_R::new((self.bits() & 0x01) != 0)
+        CHANN_ENB_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Channel Active Status"]
     #[inline(always)]
     pub fn chann_act(&self) -> CHANN_ACT_R {
-        CHANN_ACT_R::new(((self.bits() >> 1) & 0x01) != 0)
+        CHANN_ACT_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 4 - End of Channel Transfer Status"]
     #[inline(always)]
     pub fn end_tr_st(&self) -> END_TR_ST_R {
-        END_TR_ST_R::new(((self.bits() >> 4) & 0x01) != 0)
+        END_TR_ST_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - End of Channel Buffer Status"]
     #[inline(always)]
     pub fn end_bf_st(&self) -> END_BF_ST_R {
-        END_BF_ST_R::new(((self.bits() >> 5) & 0x01) != 0)
+        END_BF_ST_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Descriptor Loaded Status"]
     #[inline(always)]
     pub fn desc_ldst(&self) -> DESC_LDST_R {
-        DESC_LDST_R::new(((self.bits() >> 6) & 0x01) != 0)
+        DESC_LDST_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bits 16:31 - Buffer Byte Count"]
     #[inline(always)]
     pub fn buff_count(&self) -> BUFF_COUNT_R {
-        BUFF_COUNT_R::new(((self.bits() >> 16) & 0xffff) as u16)
+        BUFF_COUNT_R::new(((self.bits >> 16) & 0xffff) as u16)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Channel Enable Status"]
     #[inline(always)]
-    pub fn chann_enb(&mut self) -> _CHANN_ENBW {
-        _CHANN_ENBW { w: self }
+    pub fn chann_enb(&mut self) -> CHANN_ENB_W {
+        CHANN_ENB_W { w: self }
     }
     #[doc = "Bit 1 - Channel Active Status"]
     #[inline(always)]
-    pub fn chann_act(&mut self) -> _CHANN_ACTW {
-        _CHANN_ACTW { w: self }
+    pub fn chann_act(&mut self) -> CHANN_ACT_W {
+        CHANN_ACT_W { w: self }
     }
     #[doc = "Bit 4 - End of Channel Transfer Status"]
     #[inline(always)]
-    pub fn end_tr_st(&mut self) -> _END_TR_STW {
-        _END_TR_STW { w: self }
+    pub fn end_tr_st(&mut self) -> END_TR_ST_W {
+        END_TR_ST_W { w: self }
     }
     #[doc = "Bit 5 - End of Channel Buffer Status"]
     #[inline(always)]
-    pub fn end_bf_st(&mut self) -> _END_BF_STW {
-        _END_BF_STW { w: self }
+    pub fn end_bf_st(&mut self) -> END_BF_ST_W {
+        END_BF_ST_W { w: self }
     }
     #[doc = "Bit 6 - Descriptor Loaded Status"]
     #[inline(always)]
-    pub fn desc_ldst(&mut self) -> _DESC_LDSTW {
-        _DESC_LDSTW { w: self }
+    pub fn desc_ldst(&mut self) -> DESC_LDST_W {
+        DESC_LDST_W { w: self }
     }
     #[doc = "Bits 16:31 - Buffer Byte Count"]
     #[inline(always)]
-    pub fn buff_count(&mut self) -> _BUFF_COUNTW {
-        _BUFF_COUNTW { w: self }
+    pub fn buff_count(&mut self) -> BUFF_COUNT_W {
+        BUFF_COUNT_W { w: self }
     }
 }

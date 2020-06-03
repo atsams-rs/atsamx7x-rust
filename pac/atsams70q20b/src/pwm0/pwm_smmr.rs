@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_SMMR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register PWM_SMMR"]
+pub type R = crate::R<u32, super::PWM_SMMR>;
+#[doc = "Writer for register PWM_SMMR"]
+pub type W = crate::W<u32, super::PWM_SMMR>;
+#[doc = "Register PWM_SMMR `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_SMMR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type GCEN0_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _GCEN0W<'a> {
+#[doc = "Reader of field `GCEN0`"]
+pub type GCEN0_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `GCEN0`"]
+pub struct GCEN0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _GCEN0W<'a> {
+impl<'a> GCEN0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _GCEN0W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type GCEN1_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _GCEN1W<'a> {
+#[doc = "Reader of field `GCEN1`"]
+pub type GCEN1_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `GCEN1`"]
+pub struct GCEN1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _GCEN1W<'a> {
+impl<'a> GCEN1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _GCEN1W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DOWN0_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DOWN0W<'a> {
+#[doc = "Reader of field `DOWN0`"]
+pub type DOWN0_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DOWN0`"]
+pub struct DOWN0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DOWN0W<'a> {
+impl<'a> DOWN0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -119,13 +82,13 @@ impl<'a> _DOWN0W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DOWN1_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DOWN1W<'a> {
+#[doc = "Reader of field `DOWN1`"]
+pub type DOWN1_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DOWN1`"]
+pub struct DOWN1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DOWN1W<'a> {
+impl<'a> DOWN1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -144,57 +107,46 @@ impl<'a> _DOWN1W<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Gray Count ENable"]
     #[inline(always)]
     pub fn gcen0(&self) -> GCEN0_R {
-        GCEN0_R::new((self.bits() & 0x01) != 0)
+        GCEN0_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Gray Count ENable"]
     #[inline(always)]
     pub fn gcen1(&self) -> GCEN1_R {
-        GCEN1_R::new(((self.bits() >> 1) & 0x01) != 0)
+        GCEN1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 16 - DOWN Count"]
     #[inline(always)]
     pub fn down0(&self) -> DOWN0_R {
-        DOWN0_R::new(((self.bits() >> 16) & 0x01) != 0)
+        DOWN0_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - DOWN Count"]
     #[inline(always)]
     pub fn down1(&self) -> DOWN1_R {
-        DOWN1_R::new(((self.bits() >> 17) & 0x01) != 0)
+        DOWN1_R::new(((self.bits >> 17) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Gray Count ENable"]
     #[inline(always)]
-    pub fn gcen0(&mut self) -> _GCEN0W {
-        _GCEN0W { w: self }
+    pub fn gcen0(&mut self) -> GCEN0_W {
+        GCEN0_W { w: self }
     }
     #[doc = "Bit 1 - Gray Count ENable"]
     #[inline(always)]
-    pub fn gcen1(&mut self) -> _GCEN1W {
-        _GCEN1W { w: self }
+    pub fn gcen1(&mut self) -> GCEN1_W {
+        GCEN1_W { w: self }
     }
     #[doc = "Bit 16 - DOWN Count"]
     #[inline(always)]
-    pub fn down0(&mut self) -> _DOWN0W {
-        _DOWN0W { w: self }
+    pub fn down0(&mut self) -> DOWN0_W {
+        DOWN0_W { w: self }
     }
     #[doc = "Bit 17 - DOWN Count"]
     #[inline(always)]
-    pub fn down1(&mut self) -> _DOWN1W {
-        _DOWN1W { w: self }
+    pub fn down1(&mut self) -> DOWN1_W {
+        DOWN1_W { w: self }
     }
 }

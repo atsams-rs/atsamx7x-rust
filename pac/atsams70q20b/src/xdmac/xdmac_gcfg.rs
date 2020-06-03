@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::XDMAC_GCFG {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register XDMAC_GCFG"]
+pub type R = crate::R<u32, super::XDMAC_GCFG>;
+#[doc = "Writer for register XDMAC_GCFG"]
+pub type W = crate::W<u32, super::XDMAC_GCFG>;
+#[doc = "Register XDMAC_GCFG `reset()`'s with value 0"]
+impl crate::ResetValue for super::XDMAC_GCFG {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type CGDISREG_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CGDISREGW<'a> {
+#[doc = "Reader of field `CGDISREG`"]
+pub type CGDISREG_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CGDISREG`"]
+pub struct CGDISREG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CGDISREGW<'a> {
+impl<'a> CGDISREG_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _CGDISREGW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CGDISPIPE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CGDISPIPEW<'a> {
+#[doc = "Reader of field `CGDISPIPE`"]
+pub type CGDISPIPE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CGDISPIPE`"]
+pub struct CGDISPIPE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CGDISPIPEW<'a> {
+impl<'a> CGDISPIPE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _CGDISPIPEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CGDISFIFO_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CGDISFIFOW<'a> {
+#[doc = "Reader of field `CGDISFIFO`"]
+pub type CGDISFIFO_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CGDISFIFO`"]
+pub struct CGDISFIFO_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CGDISFIFOW<'a> {
+impl<'a> CGDISFIFO_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -119,13 +82,13 @@ impl<'a> _CGDISFIFOW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CGDISIF_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CGDISIFW<'a> {
+#[doc = "Reader of field `CGDISIF`"]
+pub type CGDISIF_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CGDISIF`"]
+pub struct CGDISIF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CGDISIFW<'a> {
+impl<'a> CGDISIF_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -143,13 +106,13 @@ impl<'a> _CGDISIFW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type BXKBEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _BXKBENW<'a> {
+#[doc = "Reader of field `BXKBEN`"]
+pub type BXKBEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `BXKBEN`"]
+pub struct BXKBEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BXKBENW<'a> {
+impl<'a> BXKBEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -168,67 +131,56 @@ impl<'a> _BXKBENW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Configuration Registers Clock Gating Disable"]
     #[inline(always)]
     pub fn cgdisreg(&self) -> CGDISREG_R {
-        CGDISREG_R::new((self.bits() & 0x01) != 0)
+        CGDISREG_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Pipeline Clock Gating Disable"]
     #[inline(always)]
     pub fn cgdispipe(&self) -> CGDISPIPE_R {
-        CGDISPIPE_R::new(((self.bits() >> 1) & 0x01) != 0)
+        CGDISPIPE_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - FIFO Clock Gating Disable"]
     #[inline(always)]
     pub fn cgdisfifo(&self) -> CGDISFIFO_R {
-        CGDISFIFO_R::new(((self.bits() >> 2) & 0x01) != 0)
+        CGDISFIFO_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Bus Interface Clock Gating Disable"]
     #[inline(always)]
     pub fn cgdisif(&self) -> CGDISIF_R {
-        CGDISIF_R::new(((self.bits() >> 3) & 0x01) != 0)
+        CGDISIF_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 8 - Boundary X Kilobyte Enable"]
     #[inline(always)]
     pub fn bxkben(&self) -> BXKBEN_R {
-        BXKBEN_R::new(((self.bits() >> 8) & 0x01) != 0)
+        BXKBEN_R::new(((self.bits >> 8) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Configuration Registers Clock Gating Disable"]
     #[inline(always)]
-    pub fn cgdisreg(&mut self) -> _CGDISREGW {
-        _CGDISREGW { w: self }
+    pub fn cgdisreg(&mut self) -> CGDISREG_W {
+        CGDISREG_W { w: self }
     }
     #[doc = "Bit 1 - Pipeline Clock Gating Disable"]
     #[inline(always)]
-    pub fn cgdispipe(&mut self) -> _CGDISPIPEW {
-        _CGDISPIPEW { w: self }
+    pub fn cgdispipe(&mut self) -> CGDISPIPE_W {
+        CGDISPIPE_W { w: self }
     }
     #[doc = "Bit 2 - FIFO Clock Gating Disable"]
     #[inline(always)]
-    pub fn cgdisfifo(&mut self) -> _CGDISFIFOW {
-        _CGDISFIFOW { w: self }
+    pub fn cgdisfifo(&mut self) -> CGDISFIFO_W {
+        CGDISFIFO_W { w: self }
     }
     #[doc = "Bit 3 - Bus Interface Clock Gating Disable"]
     #[inline(always)]
-    pub fn cgdisif(&mut self) -> _CGDISIFW {
-        _CGDISIFW { w: self }
+    pub fn cgdisif(&mut self) -> CGDISIF_W {
+        CGDISIF_W { w: self }
     }
     #[doc = "Bit 8 - Boundary X Kilobyte Enable"]
     #[inline(always)]
-    pub fn bxkben(&mut self) -> _BXKBENW {
-        _BXKBENW { w: self }
+    pub fn bxkben(&mut self) -> BXKBEN_W {
+        BXKBEN_W { w: self }
     }
 }

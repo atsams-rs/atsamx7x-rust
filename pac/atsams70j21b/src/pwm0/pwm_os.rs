@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_OS {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register PWM_OS"]
+pub type R = crate::R<u32, super::PWM_OS>;
+#[doc = "Writer for register PWM_OS"]
+pub type W = crate::W<u32, super::PWM_OS>;
+#[doc = "Register PWM_OS `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_OS {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type OSH0_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _OSH0W<'a> {
+#[doc = "Reader of field `OSH0`"]
+pub type OSH0_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `OSH0`"]
+pub struct OSH0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSH0W<'a> {
+impl<'a> OSH0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _OSH0W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type OSH1_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _OSH1W<'a> {
+#[doc = "Reader of field `OSH1`"]
+pub type OSH1_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `OSH1`"]
+pub struct OSH1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSH1W<'a> {
+impl<'a> OSH1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _OSH1W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type OSH2_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _OSH2W<'a> {
+#[doc = "Reader of field `OSH2`"]
+pub type OSH2_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `OSH2`"]
+pub struct OSH2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSH2W<'a> {
+impl<'a> OSH2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -119,13 +82,13 @@ impl<'a> _OSH2W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type OSH3_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _OSH3W<'a> {
+#[doc = "Reader of field `OSH3`"]
+pub type OSH3_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `OSH3`"]
+pub struct OSH3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSH3W<'a> {
+impl<'a> OSH3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -143,13 +106,13 @@ impl<'a> _OSH3W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type OSL0_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _OSL0W<'a> {
+#[doc = "Reader of field `OSL0`"]
+pub type OSL0_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `OSL0`"]
+pub struct OSL0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSL0W<'a> {
+impl<'a> OSL0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -167,13 +130,13 @@ impl<'a> _OSL0W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type OSL1_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _OSL1W<'a> {
+#[doc = "Reader of field `OSL1`"]
+pub type OSL1_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `OSL1`"]
+pub struct OSL1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSL1W<'a> {
+impl<'a> OSL1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -191,13 +154,13 @@ impl<'a> _OSL1W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type OSL2_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _OSL2W<'a> {
+#[doc = "Reader of field `OSL2`"]
+pub type OSL2_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `OSL2`"]
+pub struct OSL2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSL2W<'a> {
+impl<'a> OSL2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -215,13 +178,13 @@ impl<'a> _OSL2W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type OSL3_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _OSL3W<'a> {
+#[doc = "Reader of field `OSL3`"]
+pub type OSL3_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `OSL3`"]
+pub struct OSL3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSL3W<'a> {
+impl<'a> OSL3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -240,97 +203,86 @@ impl<'a> _OSL3W<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Output Selection for PWMH output of the channel 0"]
     #[inline(always)]
     pub fn osh0(&self) -> OSH0_R {
-        OSH0_R::new((self.bits() & 0x01) != 0)
+        OSH0_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Output Selection for PWMH output of the channel 1"]
     #[inline(always)]
     pub fn osh1(&self) -> OSH1_R {
-        OSH1_R::new(((self.bits() >> 1) & 0x01) != 0)
+        OSH1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Output Selection for PWMH output of the channel 2"]
     #[inline(always)]
     pub fn osh2(&self) -> OSH2_R {
-        OSH2_R::new(((self.bits() >> 2) & 0x01) != 0)
+        OSH2_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Output Selection for PWMH output of the channel 3"]
     #[inline(always)]
     pub fn osh3(&self) -> OSH3_R {
-        OSH3_R::new(((self.bits() >> 3) & 0x01) != 0)
+        OSH3_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 16 - Output Selection for PWML output of the channel 0"]
     #[inline(always)]
     pub fn osl0(&self) -> OSL0_R {
-        OSL0_R::new(((self.bits() >> 16) & 0x01) != 0)
+        OSL0_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Output Selection for PWML output of the channel 1"]
     #[inline(always)]
     pub fn osl1(&self) -> OSL1_R {
-        OSL1_R::new(((self.bits() >> 17) & 0x01) != 0)
+        OSL1_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - Output Selection for PWML output of the channel 2"]
     #[inline(always)]
     pub fn osl2(&self) -> OSL2_R {
-        OSL2_R::new(((self.bits() >> 18) & 0x01) != 0)
+        OSL2_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 19 - Output Selection for PWML output of the channel 3"]
     #[inline(always)]
     pub fn osl3(&self) -> OSL3_R {
-        OSL3_R::new(((self.bits() >> 19) & 0x01) != 0)
+        OSL3_R::new(((self.bits >> 19) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Output Selection for PWMH output of the channel 0"]
     #[inline(always)]
-    pub fn osh0(&mut self) -> _OSH0W {
-        _OSH0W { w: self }
+    pub fn osh0(&mut self) -> OSH0_W {
+        OSH0_W { w: self }
     }
     #[doc = "Bit 1 - Output Selection for PWMH output of the channel 1"]
     #[inline(always)]
-    pub fn osh1(&mut self) -> _OSH1W {
-        _OSH1W { w: self }
+    pub fn osh1(&mut self) -> OSH1_W {
+        OSH1_W { w: self }
     }
     #[doc = "Bit 2 - Output Selection for PWMH output of the channel 2"]
     #[inline(always)]
-    pub fn osh2(&mut self) -> _OSH2W {
-        _OSH2W { w: self }
+    pub fn osh2(&mut self) -> OSH2_W {
+        OSH2_W { w: self }
     }
     #[doc = "Bit 3 - Output Selection for PWMH output of the channel 3"]
     #[inline(always)]
-    pub fn osh3(&mut self) -> _OSH3W {
-        _OSH3W { w: self }
+    pub fn osh3(&mut self) -> OSH3_W {
+        OSH3_W { w: self }
     }
     #[doc = "Bit 16 - Output Selection for PWML output of the channel 0"]
     #[inline(always)]
-    pub fn osl0(&mut self) -> _OSL0W {
-        _OSL0W { w: self }
+    pub fn osl0(&mut self) -> OSL0_W {
+        OSL0_W { w: self }
     }
     #[doc = "Bit 17 - Output Selection for PWML output of the channel 1"]
     #[inline(always)]
-    pub fn osl1(&mut self) -> _OSL1W {
-        _OSL1W { w: self }
+    pub fn osl1(&mut self) -> OSL1_W {
+        OSL1_W { w: self }
     }
     #[doc = "Bit 18 - Output Selection for PWML output of the channel 2"]
     #[inline(always)]
-    pub fn osl2(&mut self) -> _OSL2W {
-        _OSL2W { w: self }
+    pub fn osl2(&mut self) -> OSL2_W {
+        OSL2_W { w: self }
     }
     #[doc = "Bit 19 - Output Selection for PWML output of the channel 3"]
     #[inline(always)]
-    pub fn osl3(&mut self) -> _OSL3W {
-        _OSL3W { w: self }
+    pub fn osl3(&mut self) -> OSL3_W {
+        OSL3_W { w: self }
     }
 }

@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::RTC_CALR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register RTC_CALR"]
+pub type R = crate::R<u32, super::RTC_CALR>;
+#[doc = "Writer for register RTC_CALR"]
+pub type W = crate::W<u32, super::RTC_CALR>;
+#[doc = "Register RTC_CALR `reset()`'s with value 0"]
+impl crate::ResetValue for super::RTC_CALR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type CENT_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _CENTW<'a> {
+#[doc = "Reader of field `CENT`"]
+pub type CENT_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `CENT`"]
+pub struct CENT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CENTW<'a> {
+impl<'a> CENT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _CENTW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type YEAR_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _YEARW<'a> {
+#[doc = "Reader of field `YEAR`"]
+pub type YEAR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `YEAR`"]
+pub struct YEAR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _YEARW<'a> {
+impl<'a> YEAR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -75,13 +38,13 @@ impl<'a> _YEARW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type MONTH_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _MONTHW<'a> {
+#[doc = "Reader of field `MONTH`"]
+pub type MONTH_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `MONTH`"]
+pub struct MONTH_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MONTHW<'a> {
+impl<'a> MONTH_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -89,13 +52,13 @@ impl<'a> _MONTHW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DAY_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _DAYW<'a> {
+#[doc = "Reader of field `DAY`"]
+pub type DAY_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `DAY`"]
+pub struct DAY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DAYW<'a> {
+impl<'a> DAY_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -103,13 +66,13 @@ impl<'a> _DAYW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DATE_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _DATEW<'a> {
+#[doc = "Reader of field `DATE`"]
+pub type DATE_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `DATE`"]
+pub struct DATE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DATEW<'a> {
+impl<'a> DATE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -118,67 +81,56 @@ impl<'a> _DATEW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:6 - Current Century"]
     #[inline(always)]
     pub fn cent(&self) -> CENT_R {
-        CENT_R::new((self.bits() & 0x7f) as u8)
+        CENT_R::new((self.bits & 0x7f) as u8)
     }
     #[doc = "Bits 8:15 - Current Year"]
     #[inline(always)]
     pub fn year(&self) -> YEAR_R {
-        YEAR_R::new(((self.bits() >> 8) & 0xff) as u8)
+        YEAR_R::new(((self.bits >> 8) & 0xff) as u8)
     }
     #[doc = "Bits 16:20 - Current Month"]
     #[inline(always)]
     pub fn month(&self) -> MONTH_R {
-        MONTH_R::new(((self.bits() >> 16) & 0x1f) as u8)
+        MONTH_R::new(((self.bits >> 16) & 0x1f) as u8)
     }
     #[doc = "Bits 21:23 - Current Day in Current Week"]
     #[inline(always)]
     pub fn day(&self) -> DAY_R {
-        DAY_R::new(((self.bits() >> 21) & 0x07) as u8)
+        DAY_R::new(((self.bits >> 21) & 0x07) as u8)
     }
     #[doc = "Bits 24:29 - Current Day in Current Month"]
     #[inline(always)]
     pub fn date(&self) -> DATE_R {
-        DATE_R::new(((self.bits() >> 24) & 0x3f) as u8)
+        DATE_R::new(((self.bits >> 24) & 0x3f) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:6 - Current Century"]
     #[inline(always)]
-    pub fn cent(&mut self) -> _CENTW {
-        _CENTW { w: self }
+    pub fn cent(&mut self) -> CENT_W {
+        CENT_W { w: self }
     }
     #[doc = "Bits 8:15 - Current Year"]
     #[inline(always)]
-    pub fn year(&mut self) -> _YEARW {
-        _YEARW { w: self }
+    pub fn year(&mut self) -> YEAR_W {
+        YEAR_W { w: self }
     }
     #[doc = "Bits 16:20 - Current Month"]
     #[inline(always)]
-    pub fn month(&mut self) -> _MONTHW {
-        _MONTHW { w: self }
+    pub fn month(&mut self) -> MONTH_W {
+        MONTH_W { w: self }
     }
     #[doc = "Bits 21:23 - Current Day in Current Week"]
     #[inline(always)]
-    pub fn day(&mut self) -> _DAYW {
-        _DAYW { w: self }
+    pub fn day(&mut self) -> DAY_W {
+        DAY_W { w: self }
     }
     #[doc = "Bits 24:29 - Current Day in Current Month"]
     #[inline(always)]
-    pub fn date(&mut self) -> _DATEW {
-        _DATEW { w: self }
+    pub fn date(&mut self) -> DATE_W {
+        DATE_W { w: self }
     }
 }

@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::MATRIX_PRAS {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register MATRIX_PRAS"]
+pub type R = crate::R<u32, super::MATRIX_PRAS>;
+#[doc = "Writer for register MATRIX_PRAS"]
+pub type W = crate::W<u32, super::MATRIX_PRAS>;
+#[doc = "Register MATRIX_PRAS `reset()`'s with value 0"]
+impl crate::ResetValue for super::MATRIX_PRAS {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type M0PR_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _M0PRW<'a> {
+#[doc = "Reader of field `M0PR`"]
+pub type M0PR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `M0PR`"]
+pub struct M0PR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _M0PRW<'a> {
+impl<'a> M0PR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _M0PRW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type M1PR_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _M1PRW<'a> {
+#[doc = "Reader of field `M1PR`"]
+pub type M1PR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `M1PR`"]
+pub struct M1PR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _M1PRW<'a> {
+impl<'a> M1PR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -75,13 +38,13 @@ impl<'a> _M1PRW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type M2PR_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _M2PRW<'a> {
+#[doc = "Reader of field `M2PR`"]
+pub type M2PR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `M2PR`"]
+pub struct M2PR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _M2PRW<'a> {
+impl<'a> M2PR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -89,13 +52,13 @@ impl<'a> _M2PRW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type M3PR_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _M3PRW<'a> {
+#[doc = "Reader of field `M3PR`"]
+pub type M3PR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `M3PR`"]
+pub struct M3PR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _M3PRW<'a> {
+impl<'a> M3PR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -103,13 +66,13 @@ impl<'a> _M3PRW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type M4PR_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _M4PRW<'a> {
+#[doc = "Reader of field `M4PR`"]
+pub type M4PR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `M4PR`"]
+pub struct M4PR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _M4PRW<'a> {
+impl<'a> M4PR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -117,13 +80,13 @@ impl<'a> _M4PRW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type M5PR_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _M5PRW<'a> {
+#[doc = "Reader of field `M5PR`"]
+pub type M5PR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `M5PR`"]
+pub struct M5PR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _M5PRW<'a> {
+impl<'a> M5PR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -131,13 +94,13 @@ impl<'a> _M5PRW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type M6PR_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _M6PRW<'a> {
+#[doc = "Reader of field `M6PR`"]
+pub type M6PR_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `M6PR`"]
+pub struct M6PR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _M6PRW<'a> {
+impl<'a> M6PR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -146,87 +109,76 @@ impl<'a> _M6PRW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - Master 0 Priority"]
     #[inline(always)]
     pub fn m0pr(&self) -> M0PR_R {
-        M0PR_R::new((self.bits() & 0x03) as u8)
+        M0PR_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bits 4:5 - Master 1 Priority"]
     #[inline(always)]
     pub fn m1pr(&self) -> M1PR_R {
-        M1PR_R::new(((self.bits() >> 4) & 0x03) as u8)
+        M1PR_R::new(((self.bits >> 4) & 0x03) as u8)
     }
     #[doc = "Bits 8:9 - Master 2 Priority"]
     #[inline(always)]
     pub fn m2pr(&self) -> M2PR_R {
-        M2PR_R::new(((self.bits() >> 8) & 0x03) as u8)
+        M2PR_R::new(((self.bits >> 8) & 0x03) as u8)
     }
     #[doc = "Bits 12:13 - Master 3 Priority"]
     #[inline(always)]
     pub fn m3pr(&self) -> M3PR_R {
-        M3PR_R::new(((self.bits() >> 12) & 0x03) as u8)
+        M3PR_R::new(((self.bits >> 12) & 0x03) as u8)
     }
     #[doc = "Bits 16:17 - Master 4 Priority"]
     #[inline(always)]
     pub fn m4pr(&self) -> M4PR_R {
-        M4PR_R::new(((self.bits() >> 16) & 0x03) as u8)
+        M4PR_R::new(((self.bits >> 16) & 0x03) as u8)
     }
     #[doc = "Bits 20:21 - Master 5 Priority"]
     #[inline(always)]
     pub fn m5pr(&self) -> M5PR_R {
-        M5PR_R::new(((self.bits() >> 20) & 0x03) as u8)
+        M5PR_R::new(((self.bits >> 20) & 0x03) as u8)
     }
     #[doc = "Bits 24:25 - Master 6 Priority"]
     #[inline(always)]
     pub fn m6pr(&self) -> M6PR_R {
-        M6PR_R::new(((self.bits() >> 24) & 0x03) as u8)
+        M6PR_R::new(((self.bits >> 24) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - Master 0 Priority"]
     #[inline(always)]
-    pub fn m0pr(&mut self) -> _M0PRW {
-        _M0PRW { w: self }
+    pub fn m0pr(&mut self) -> M0PR_W {
+        M0PR_W { w: self }
     }
     #[doc = "Bits 4:5 - Master 1 Priority"]
     #[inline(always)]
-    pub fn m1pr(&mut self) -> _M1PRW {
-        _M1PRW { w: self }
+    pub fn m1pr(&mut self) -> M1PR_W {
+        M1PR_W { w: self }
     }
     #[doc = "Bits 8:9 - Master 2 Priority"]
     #[inline(always)]
-    pub fn m2pr(&mut self) -> _M2PRW {
-        _M2PRW { w: self }
+    pub fn m2pr(&mut self) -> M2PR_W {
+        M2PR_W { w: self }
     }
     #[doc = "Bits 12:13 - Master 3 Priority"]
     #[inline(always)]
-    pub fn m3pr(&mut self) -> _M3PRW {
-        _M3PRW { w: self }
+    pub fn m3pr(&mut self) -> M3PR_W {
+        M3PR_W { w: self }
     }
     #[doc = "Bits 16:17 - Master 4 Priority"]
     #[inline(always)]
-    pub fn m4pr(&mut self) -> _M4PRW {
-        _M4PRW { w: self }
+    pub fn m4pr(&mut self) -> M4PR_W {
+        M4PR_W { w: self }
     }
     #[doc = "Bits 20:21 - Master 5 Priority"]
     #[inline(always)]
-    pub fn m5pr(&mut self) -> _M5PRW {
-        _M5PRW { w: self }
+    pub fn m5pr(&mut self) -> M5PR_W {
+        M5PR_W { w: self }
     }
     #[doc = "Bits 24:25 - Master 6 Priority"]
     #[inline(always)]
-    pub fn m6pr(&mut self) -> _M6PRW {
-        _M6PRW { w: self }
+    pub fn m6pr(&mut self) -> M6PR_W {
+        M6PR_W { w: self }
     }
 }

@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PMC_IER {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register PMC_IER"]
+pub type W = crate::W<u32, super::PMC_IER>;
+#[doc = "Register PMC_IER `reset()`'s with value 0"]
+impl crate::ResetValue for super::PMC_IER {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _MOSCXTSW<'a> {
+#[doc = "Write proxy for field `MOSCXTS`"]
+pub struct MOSCXTS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MOSCXTSW<'a> {
+impl<'a> MOSCXTS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _MOSCXTSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LOCKAW<'a> {
+#[doc = "Write proxy for field `LOCKA`"]
+pub struct LOCKA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LOCKAW<'a> {
+impl<'a> LOCKA_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _LOCKAW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _MCKRDYW<'a> {
+#[doc = "Write proxy for field `MCKRDY`"]
+pub struct MCKRDY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MCKRDYW<'a> {
+impl<'a> MCKRDY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _MCKRDYW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LOCKUW<'a> {
+#[doc = "Write proxy for field `LOCKU`"]
+pub struct LOCKU_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LOCKUW<'a> {
+impl<'a> LOCKU_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _LOCKUW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PCKRDY0W<'a> {
+#[doc = "Write proxy for field `PCKRDY0`"]
+pub struct PCKRDY0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PCKRDY0W<'a> {
+impl<'a> PCKRDY0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _PCKRDY0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PCKRDY1W<'a> {
+#[doc = "Write proxy for field `PCKRDY1`"]
+pub struct PCKRDY1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PCKRDY1W<'a> {
+impl<'a> PCKRDY1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _PCKRDY1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PCKRDY2W<'a> {
+#[doc = "Write proxy for field `PCKRDY2`"]
+pub struct PCKRDY2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PCKRDY2W<'a> {
+impl<'a> PCKRDY2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _PCKRDY2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PCKRDY3W<'a> {
+#[doc = "Write proxy for field `PCKRDY3`"]
+pub struct PCKRDY3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PCKRDY3W<'a> {
+impl<'a> PCKRDY3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +184,11 @@ impl<'a> _PCKRDY3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PCKRDY4W<'a> {
+#[doc = "Write proxy for field `PCKRDY4`"]
+pub struct PCKRDY4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PCKRDY4W<'a> {
+impl<'a> PCKRDY4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -225,11 +206,11 @@ impl<'a> _PCKRDY4W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PCKRDY5W<'a> {
+#[doc = "Write proxy for field `PCKRDY5`"]
+pub struct PCKRDY5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PCKRDY5W<'a> {
+impl<'a> PCKRDY5_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -247,11 +228,11 @@ impl<'a> _PCKRDY5W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PCKRDY6W<'a> {
+#[doc = "Write proxy for field `PCKRDY6`"]
+pub struct PCKRDY6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PCKRDY6W<'a> {
+impl<'a> PCKRDY6_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -269,11 +250,11 @@ impl<'a> _PCKRDY6W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _MOSCSELSW<'a> {
+#[doc = "Write proxy for field `MOSCSELS`"]
+pub struct MOSCSELS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MOSCSELSW<'a> {
+impl<'a> MOSCSELS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -291,11 +272,11 @@ impl<'a> _MOSCSELSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _MOSCRCSW<'a> {
+#[doc = "Write proxy for field `MOSCRCS`"]
+pub struct MOSCRCS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MOSCRCSW<'a> {
+impl<'a> MOSCRCS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -313,11 +294,11 @@ impl<'a> _MOSCRCSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CFDEVW<'a> {
+#[doc = "Write proxy for field `CFDEV`"]
+pub struct CFDEV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CFDEVW<'a> {
+impl<'a> CFDEV_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -335,11 +316,11 @@ impl<'a> _CFDEVW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _XT32KERRW<'a> {
+#[doc = "Write proxy for field `XT32KERR`"]
+pub struct XT32KERR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _XT32KERRW<'a> {
+impl<'a> XT32KERR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -358,85 +339,79 @@ impl<'a> _XT32KERRW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Main Crystal Oscillator Status Interrupt Enable"]
     #[inline(always)]
-    pub fn moscxts(&mut self) -> _MOSCXTSW {
-        _MOSCXTSW { w: self }
+    pub fn moscxts(&mut self) -> MOSCXTS_W {
+        MOSCXTS_W { w: self }
     }
     #[doc = "Bit 1 - PLLA Lock Interrupt Enable"]
     #[inline(always)]
-    pub fn locka(&mut self) -> _LOCKAW {
-        _LOCKAW { w: self }
+    pub fn locka(&mut self) -> LOCKA_W {
+        LOCKA_W { w: self }
     }
     #[doc = "Bit 3 - Master Clock Ready Interrupt Enable"]
     #[inline(always)]
-    pub fn mckrdy(&mut self) -> _MCKRDYW {
-        _MCKRDYW { w: self }
+    pub fn mckrdy(&mut self) -> MCKRDY_W {
+        MCKRDY_W { w: self }
     }
     #[doc = "Bit 6 - UTMI PLL Lock Interrupt Enable"]
     #[inline(always)]
-    pub fn locku(&mut self) -> _LOCKUW {
-        _LOCKUW { w: self }
+    pub fn locku(&mut self) -> LOCKU_W {
+        LOCKU_W { w: self }
     }
     #[doc = "Bit 8 - Programmable Clock Ready 0 Interrupt Enable"]
     #[inline(always)]
-    pub fn pckrdy0(&mut self) -> _PCKRDY0W {
-        _PCKRDY0W { w: self }
+    pub fn pckrdy0(&mut self) -> PCKRDY0_W {
+        PCKRDY0_W { w: self }
     }
     #[doc = "Bit 9 - Programmable Clock Ready 1 Interrupt Enable"]
     #[inline(always)]
-    pub fn pckrdy1(&mut self) -> _PCKRDY1W {
-        _PCKRDY1W { w: self }
+    pub fn pckrdy1(&mut self) -> PCKRDY1_W {
+        PCKRDY1_W { w: self }
     }
     #[doc = "Bit 10 - Programmable Clock Ready 2 Interrupt Enable"]
     #[inline(always)]
-    pub fn pckrdy2(&mut self) -> _PCKRDY2W {
-        _PCKRDY2W { w: self }
+    pub fn pckrdy2(&mut self) -> PCKRDY2_W {
+        PCKRDY2_W { w: self }
     }
     #[doc = "Bit 11 - Programmable Clock Ready 3 Interrupt Enable"]
     #[inline(always)]
-    pub fn pckrdy3(&mut self) -> _PCKRDY3W {
-        _PCKRDY3W { w: self }
+    pub fn pckrdy3(&mut self) -> PCKRDY3_W {
+        PCKRDY3_W { w: self }
     }
     #[doc = "Bit 12 - Programmable Clock Ready 4 Interrupt Enable"]
     #[inline(always)]
-    pub fn pckrdy4(&mut self) -> _PCKRDY4W {
-        _PCKRDY4W { w: self }
+    pub fn pckrdy4(&mut self) -> PCKRDY4_W {
+        PCKRDY4_W { w: self }
     }
     #[doc = "Bit 13 - Programmable Clock Ready 5 Interrupt Enable"]
     #[inline(always)]
-    pub fn pckrdy5(&mut self) -> _PCKRDY5W {
-        _PCKRDY5W { w: self }
+    pub fn pckrdy5(&mut self) -> PCKRDY5_W {
+        PCKRDY5_W { w: self }
     }
     #[doc = "Bit 14 - Programmable Clock Ready 6 Interrupt Enable"]
     #[inline(always)]
-    pub fn pckrdy6(&mut self) -> _PCKRDY6W {
-        _PCKRDY6W { w: self }
+    pub fn pckrdy6(&mut self) -> PCKRDY6_W {
+        PCKRDY6_W { w: self }
     }
     #[doc = "Bit 16 - Main Clock Source Oscillator Selection Status Interrupt Enable"]
     #[inline(always)]
-    pub fn moscsels(&mut self) -> _MOSCSELSW {
-        _MOSCSELSW { w: self }
+    pub fn moscsels(&mut self) -> MOSCSELS_W {
+        MOSCSELS_W { w: self }
     }
     #[doc = "Bit 17 - Main RC Oscillator Status Interrupt Enable"]
     #[inline(always)]
-    pub fn moscrcs(&mut self) -> _MOSCRCSW {
-        _MOSCRCSW { w: self }
+    pub fn moscrcs(&mut self) -> MOSCRCS_W {
+        MOSCRCS_W { w: self }
     }
     #[doc = "Bit 18 - Clock Failure Detector Event Interrupt Enable"]
     #[inline(always)]
-    pub fn cfdev(&mut self) -> _CFDEVW {
-        _CFDEVW { w: self }
+    pub fn cfdev(&mut self) -> CFDEV_W {
+        CFDEV_W { w: self }
     }
     #[doc = "Bit 21 - 32.768 kHz Crystal Oscillator Error Interrupt Enable"]
     #[inline(always)]
-    pub fn xt32kerr(&mut self) -> _XT32KERRW {
-        _XT32KERRW { w: self }
+    pub fn xt32kerr(&mut self) -> XT32KERR_W {
+        XT32KERR_W { w: self }
     }
 }

@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SPI_CR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register SPI_CR"]
+pub type W = crate::W<u32, super::SPI_CR>;
+#[doc = "Register SPI_CR `reset()`'s with value 0"]
+impl crate::ResetValue for super::SPI_CR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _SPIENW<'a> {
+#[doc = "Write proxy for field `SPIEN`"]
+pub struct SPIEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPIENW<'a> {
+impl<'a> SPIEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _SPIENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SPIDISW<'a> {
+#[doc = "Write proxy for field `SPIDIS`"]
+pub struct SPIDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPIDISW<'a> {
+impl<'a> SPIDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _SPIDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWRSTW<'a> {
+#[doc = "Write proxy for field `SWRST`"]
+pub struct SWRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWRSTW<'a> {
+impl<'a> SWRST_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _SWRSTW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _REQCLRW<'a> {
+#[doc = "Write proxy for field `REQCLR`"]
+pub struct REQCLR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _REQCLRW<'a> {
+impl<'a> REQCLR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _REQCLRW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LASTXFERW<'a> {
+#[doc = "Write proxy for field `LASTXFER`"]
+pub struct LASTXFER_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LASTXFERW<'a> {
+impl<'a> LASTXFER_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -138,35 +119,29 @@ impl<'a> _LASTXFERW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - SPI Enable"]
     #[inline(always)]
-    pub fn spien(&mut self) -> _SPIENW {
-        _SPIENW { w: self }
+    pub fn spien(&mut self) -> SPIEN_W {
+        SPIEN_W { w: self }
     }
     #[doc = "Bit 1 - SPI Disable"]
     #[inline(always)]
-    pub fn spidis(&mut self) -> _SPIDISW {
-        _SPIDISW { w: self }
+    pub fn spidis(&mut self) -> SPIDIS_W {
+        SPIDIS_W { w: self }
     }
     #[doc = "Bit 7 - SPI Software Reset"]
     #[inline(always)]
-    pub fn swrst(&mut self) -> _SWRSTW {
-        _SWRSTW { w: self }
+    pub fn swrst(&mut self) -> SWRST_W {
+        SWRST_W { w: self }
     }
     #[doc = "Bit 12 - Request to Clear the Comparison Trigger"]
     #[inline(always)]
-    pub fn reqclr(&mut self) -> _REQCLRW {
-        _REQCLRW { w: self }
+    pub fn reqclr(&mut self) -> REQCLR_W {
+        REQCLR_W { w: self }
     }
     #[doc = "Bit 24 - Last Transfer"]
     #[inline(always)]
-    pub fn lastxfer(&mut self) -> _LASTXFERW {
-        _LASTXFERW { w: self }
+    pub fn lastxfer(&mut self) -> LASTXFER_W {
+        LASTXFER_W { w: self }
     }
 }

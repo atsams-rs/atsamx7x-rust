@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::RTC_IDR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register RTC_IDR"]
+pub type W = crate::W<u32, super::RTC_IDR>;
+#[doc = "Register RTC_IDR `reset()`'s with value 0"]
+impl crate::ResetValue for super::RTC_IDR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _ACKDISW<'a> {
+#[doc = "Write proxy for field `ACKDIS`"]
+pub struct ACKDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ACKDISW<'a> {
+impl<'a> ACKDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _ACKDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ALRDISW<'a> {
+#[doc = "Write proxy for field `ALRDIS`"]
+pub struct ALRDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ALRDISW<'a> {
+impl<'a> ALRDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _ALRDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SECDISW<'a> {
+#[doc = "Write proxy for field `SECDIS`"]
+pub struct SECDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SECDISW<'a> {
+impl<'a> SECDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _SECDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TIMDISW<'a> {
+#[doc = "Write proxy for field `TIMDIS`"]
+pub struct TIMDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIMDISW<'a> {
+impl<'a> TIMDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _TIMDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CALDISW<'a> {
+#[doc = "Write proxy for field `CALDIS`"]
+pub struct CALDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CALDISW<'a> {
+impl<'a> CALDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _CALDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TDERRDISW<'a> {
+#[doc = "Write proxy for field `TDERRDIS`"]
+pub struct TDERRDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TDERRDISW<'a> {
+impl<'a> TDERRDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -160,40 +141,34 @@ impl<'a> _TDERRDISW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Acknowledge Update Interrupt Disable"]
     #[inline(always)]
-    pub fn ackdis(&mut self) -> _ACKDISW {
-        _ACKDISW { w: self }
+    pub fn ackdis(&mut self) -> ACKDIS_W {
+        ACKDIS_W { w: self }
     }
     #[doc = "Bit 1 - Alarm Interrupt Disable"]
     #[inline(always)]
-    pub fn alrdis(&mut self) -> _ALRDISW {
-        _ALRDISW { w: self }
+    pub fn alrdis(&mut self) -> ALRDIS_W {
+        ALRDIS_W { w: self }
     }
     #[doc = "Bit 2 - Second Event Interrupt Disable"]
     #[inline(always)]
-    pub fn secdis(&mut self) -> _SECDISW {
-        _SECDISW { w: self }
+    pub fn secdis(&mut self) -> SECDIS_W {
+        SECDIS_W { w: self }
     }
     #[doc = "Bit 3 - Time Event Interrupt Disable"]
     #[inline(always)]
-    pub fn timdis(&mut self) -> _TIMDISW {
-        _TIMDISW { w: self }
+    pub fn timdis(&mut self) -> TIMDIS_W {
+        TIMDIS_W { w: self }
     }
     #[doc = "Bit 4 - Calendar Event Interrupt Disable"]
     #[inline(always)]
-    pub fn caldis(&mut self) -> _CALDISW {
-        _CALDISW { w: self }
+    pub fn caldis(&mut self) -> CALDIS_W {
+        CALDIS_W { w: self }
     }
     #[doc = "Bit 5 - Time and/or Date Error Interrupt Disable"]
     #[inline(always)]
-    pub fn tderrdis(&mut self) -> _TDERRDISW {
-        _TDERRDISW { w: self }
+    pub fn tderrdis(&mut self) -> TDERRDIS_W {
+        TDERRDIS_W { w: self }
     }
 }

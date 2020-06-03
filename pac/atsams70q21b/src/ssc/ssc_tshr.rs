@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SSC_TSHR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register SSC_TSHR"]
+pub type R = crate::R<u32, super::SSC_TSHR>;
+#[doc = "Writer for register SSC_TSHR"]
+pub type W = crate::W<u32, super::SSC_TSHR>;
+#[doc = "Register SSC_TSHR `reset()`'s with value 0"]
+impl crate::ResetValue for super::SSC_TSHR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type TSDAT_R = crate::FR<u16, u16>;
-#[doc = r"Proxy"]
-pub struct _TSDATW<'a> {
+#[doc = "Reader of field `TSDAT`"]
+pub type TSDAT_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `TSDAT`"]
+pub struct TSDAT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TSDATW<'a> {
+impl<'a> TSDAT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
@@ -62,27 +25,16 @@ impl<'a> _TSDATW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:15 - Transmit Synchronization Data"]
     #[inline(always)]
     pub fn tsdat(&self) -> TSDAT_R {
-        TSDAT_R::new((self.bits() & 0xffff) as u16)
+        TSDAT_R::new((self.bits & 0xffff) as u16)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:15 - Transmit Synchronization Data"]
     #[inline(always)]
-    pub fn tsdat(&mut self) -> _TSDATW {
-        _TSDATW { w: self }
+    pub fn tsdat(&mut self) -> TSDAT_W {
+        TSDAT_W { w: self }
     }
 }

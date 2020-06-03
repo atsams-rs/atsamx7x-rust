@@ -1,123 +1,72 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PIO_DRIVER {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register PIO_DRIVER"]
+pub type R = crate::R<u32, super::PIO_DRIVER>;
+#[doc = "Writer for register PIO_DRIVER"]
+pub type W = crate::W<u32, super::PIO_DRIVER>;
+#[doc = "Register PIO_DRIVER `reset()`'s with value 0"]
+impl crate::ResetValue for super::PIO_DRIVER {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "Drive of PIO Line 0\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum LINE0_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
+}
+impl From<LINE0_A> for bool {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: LINE0_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = "Possible values of the field `LINE0`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE0R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl crate::ToBits<bool> for LINE0R {
+#[doc = "Reader of field `LINE0`"]
+pub type LINE0_R = crate::R<bool, LINE0_A>;
+impl LINE0_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE0R::LOW_DRIVE => false,
-            LINE0R::HIGH_DRIVE => true,
+    pub fn variant(&self) -> LINE0_A {
+        match self.bits {
+            false => LINE0_A::LOW_DRIVE,
+            true => LINE0_A::HIGH_DRIVE,
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type LINE0_R = crate::FR<bool, LINE0R>;
-impl LINE0_R {
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE0R::LOW_DRIVE
+        *self == LINE0_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE0R::HIGH_DRIVE
+        *self == LINE0_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE0`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE0W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE0W::LOW_DRIVE => false,
-            LINE0W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE0W<'a> {
+#[doc = "Write proxy for field `LINE0`"]
+pub struct LINE0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE0W<'a> {
+impl<'a> LINE0_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE0W) -> &'a mut W {
+    pub fn variant(self, variant: LINE0_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE0W::LOW_DRIVE)
+        self.variant(LINE0_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE0W::HIGH_DRIVE)
+        self.variant(LINE0_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -136,77 +85,63 @@ impl<'a> _LINE0W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE1`"]
+#[doc = "Drive of PIO Line 1\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE1R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE1_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE1R {
+impl From<LINE1_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE1R::LOW_DRIVE => false,
-            LINE1R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE1_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE1_R = crate::FR<bool, LINE1R>;
+#[doc = "Reader of field `LINE1`"]
+pub type LINE1_R = crate::R<bool, LINE1_A>;
 impl LINE1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE1_A {
+        match self.bits {
+            false => LINE1_A::LOW_DRIVE,
+            true => LINE1_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE1R::LOW_DRIVE
+        *self == LINE1_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE1R::HIGH_DRIVE
+        *self == LINE1_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE1W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE1W::LOW_DRIVE => false,
-            LINE1W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE1W<'a> {
+#[doc = "Write proxy for field `LINE1`"]
+pub struct LINE1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE1W<'a> {
+impl<'a> LINE1_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE1W) -> &'a mut W {
+    pub fn variant(self, variant: LINE1_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE1W::LOW_DRIVE)
+        self.variant(LINE1_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE1W::HIGH_DRIVE)
+        self.variant(LINE1_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -225,77 +160,63 @@ impl<'a> _LINE1W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE2`"]
+#[doc = "Drive of PIO Line 2\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE2R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE2_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE2R {
+impl From<LINE2_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE2R::LOW_DRIVE => false,
-            LINE2R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE2_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE2_R = crate::FR<bool, LINE2R>;
+#[doc = "Reader of field `LINE2`"]
+pub type LINE2_R = crate::R<bool, LINE2_A>;
 impl LINE2_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE2_A {
+        match self.bits {
+            false => LINE2_A::LOW_DRIVE,
+            true => LINE2_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE2R::LOW_DRIVE
+        *self == LINE2_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE2R::HIGH_DRIVE
+        *self == LINE2_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE2`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE2W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE2W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE2W::LOW_DRIVE => false,
-            LINE2W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE2W<'a> {
+#[doc = "Write proxy for field `LINE2`"]
+pub struct LINE2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE2W<'a> {
+impl<'a> LINE2_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE2W) -> &'a mut W {
+    pub fn variant(self, variant: LINE2_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE2W::LOW_DRIVE)
+        self.variant(LINE2_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE2W::HIGH_DRIVE)
+        self.variant(LINE2_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -314,77 +235,63 @@ impl<'a> _LINE2W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE3`"]
+#[doc = "Drive of PIO Line 3\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE3R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE3_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE3R {
+impl From<LINE3_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE3R::LOW_DRIVE => false,
-            LINE3R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE3_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE3_R = crate::FR<bool, LINE3R>;
+#[doc = "Reader of field `LINE3`"]
+pub type LINE3_R = crate::R<bool, LINE3_A>;
 impl LINE3_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE3_A {
+        match self.bits {
+            false => LINE3_A::LOW_DRIVE,
+            true => LINE3_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE3R::LOW_DRIVE
+        *self == LINE3_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE3R::HIGH_DRIVE
+        *self == LINE3_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE3`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE3W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE3W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE3W::LOW_DRIVE => false,
-            LINE3W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE3W<'a> {
+#[doc = "Write proxy for field `LINE3`"]
+pub struct LINE3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE3W<'a> {
+impl<'a> LINE3_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE3W) -> &'a mut W {
+    pub fn variant(self, variant: LINE3_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE3W::LOW_DRIVE)
+        self.variant(LINE3_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE3W::HIGH_DRIVE)
+        self.variant(LINE3_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -403,77 +310,63 @@ impl<'a> _LINE3W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE4`"]
+#[doc = "Drive of PIO Line 4\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE4R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE4_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE4R {
+impl From<LINE4_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE4R::LOW_DRIVE => false,
-            LINE4R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE4_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE4_R = crate::FR<bool, LINE4R>;
+#[doc = "Reader of field `LINE4`"]
+pub type LINE4_R = crate::R<bool, LINE4_A>;
 impl LINE4_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE4_A {
+        match self.bits {
+            false => LINE4_A::LOW_DRIVE,
+            true => LINE4_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE4R::LOW_DRIVE
+        *self == LINE4_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE4R::HIGH_DRIVE
+        *self == LINE4_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE4`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE4W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE4W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE4W::LOW_DRIVE => false,
-            LINE4W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE4W<'a> {
+#[doc = "Write proxy for field `LINE4`"]
+pub struct LINE4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE4W<'a> {
+impl<'a> LINE4_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE4W) -> &'a mut W {
+    pub fn variant(self, variant: LINE4_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE4W::LOW_DRIVE)
+        self.variant(LINE4_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE4W::HIGH_DRIVE)
+        self.variant(LINE4_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -492,77 +385,63 @@ impl<'a> _LINE4W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE5`"]
+#[doc = "Drive of PIO Line 5\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE5R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE5_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE5R {
+impl From<LINE5_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE5R::LOW_DRIVE => false,
-            LINE5R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE5_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE5_R = crate::FR<bool, LINE5R>;
+#[doc = "Reader of field `LINE5`"]
+pub type LINE5_R = crate::R<bool, LINE5_A>;
 impl LINE5_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE5_A {
+        match self.bits {
+            false => LINE5_A::LOW_DRIVE,
+            true => LINE5_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE5R::LOW_DRIVE
+        *self == LINE5_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE5R::HIGH_DRIVE
+        *self == LINE5_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE5`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE5W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE5W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE5W::LOW_DRIVE => false,
-            LINE5W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE5W<'a> {
+#[doc = "Write proxy for field `LINE5`"]
+pub struct LINE5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE5W<'a> {
+impl<'a> LINE5_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE5W) -> &'a mut W {
+    pub fn variant(self, variant: LINE5_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE5W::LOW_DRIVE)
+        self.variant(LINE5_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE5W::HIGH_DRIVE)
+        self.variant(LINE5_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -581,77 +460,63 @@ impl<'a> _LINE5W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE6`"]
+#[doc = "Drive of PIO Line 6\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE6R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE6_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE6R {
+impl From<LINE6_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE6R::LOW_DRIVE => false,
-            LINE6R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE6_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE6_R = crate::FR<bool, LINE6R>;
+#[doc = "Reader of field `LINE6`"]
+pub type LINE6_R = crate::R<bool, LINE6_A>;
 impl LINE6_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE6_A {
+        match self.bits {
+            false => LINE6_A::LOW_DRIVE,
+            true => LINE6_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE6R::LOW_DRIVE
+        *self == LINE6_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE6R::HIGH_DRIVE
+        *self == LINE6_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE6`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE6W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE6W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE6W::LOW_DRIVE => false,
-            LINE6W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE6W<'a> {
+#[doc = "Write proxy for field `LINE6`"]
+pub struct LINE6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE6W<'a> {
+impl<'a> LINE6_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE6W) -> &'a mut W {
+    pub fn variant(self, variant: LINE6_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE6W::LOW_DRIVE)
+        self.variant(LINE6_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE6W::HIGH_DRIVE)
+        self.variant(LINE6_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -670,77 +535,63 @@ impl<'a> _LINE6W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE7`"]
+#[doc = "Drive of PIO Line 7\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE7R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE7_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE7R {
+impl From<LINE7_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE7R::LOW_DRIVE => false,
-            LINE7R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE7_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE7_R = crate::FR<bool, LINE7R>;
+#[doc = "Reader of field `LINE7`"]
+pub type LINE7_R = crate::R<bool, LINE7_A>;
 impl LINE7_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE7_A {
+        match self.bits {
+            false => LINE7_A::LOW_DRIVE,
+            true => LINE7_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE7R::LOW_DRIVE
+        *self == LINE7_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE7R::HIGH_DRIVE
+        *self == LINE7_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE7`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE7W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE7W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE7W::LOW_DRIVE => false,
-            LINE7W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE7W<'a> {
+#[doc = "Write proxy for field `LINE7`"]
+pub struct LINE7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE7W<'a> {
+impl<'a> LINE7_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE7W) -> &'a mut W {
+    pub fn variant(self, variant: LINE7_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE7W::LOW_DRIVE)
+        self.variant(LINE7_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE7W::HIGH_DRIVE)
+        self.variant(LINE7_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -759,77 +610,63 @@ impl<'a> _LINE7W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE8`"]
+#[doc = "Drive of PIO Line 8\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE8R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE8_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE8R {
+impl From<LINE8_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE8R::LOW_DRIVE => false,
-            LINE8R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE8_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE8_R = crate::FR<bool, LINE8R>;
+#[doc = "Reader of field `LINE8`"]
+pub type LINE8_R = crate::R<bool, LINE8_A>;
 impl LINE8_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE8_A {
+        match self.bits {
+            false => LINE8_A::LOW_DRIVE,
+            true => LINE8_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE8R::LOW_DRIVE
+        *self == LINE8_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE8R::HIGH_DRIVE
+        *self == LINE8_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE8`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE8W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE8W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE8W::LOW_DRIVE => false,
-            LINE8W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE8W<'a> {
+#[doc = "Write proxy for field `LINE8`"]
+pub struct LINE8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE8W<'a> {
+impl<'a> LINE8_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE8W) -> &'a mut W {
+    pub fn variant(self, variant: LINE8_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE8W::LOW_DRIVE)
+        self.variant(LINE8_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE8W::HIGH_DRIVE)
+        self.variant(LINE8_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -848,77 +685,63 @@ impl<'a> _LINE8W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE9`"]
+#[doc = "Drive of PIO Line 9\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE9R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE9_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE9R {
+impl From<LINE9_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE9R::LOW_DRIVE => false,
-            LINE9R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE9_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE9_R = crate::FR<bool, LINE9R>;
+#[doc = "Reader of field `LINE9`"]
+pub type LINE9_R = crate::R<bool, LINE9_A>;
 impl LINE9_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE9_A {
+        match self.bits {
+            false => LINE9_A::LOW_DRIVE,
+            true => LINE9_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE9R::LOW_DRIVE
+        *self == LINE9_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE9R::HIGH_DRIVE
+        *self == LINE9_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE9`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE9W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE9W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE9W::LOW_DRIVE => false,
-            LINE9W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE9W<'a> {
+#[doc = "Write proxy for field `LINE9`"]
+pub struct LINE9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE9W<'a> {
+impl<'a> LINE9_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE9W) -> &'a mut W {
+    pub fn variant(self, variant: LINE9_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE9W::LOW_DRIVE)
+        self.variant(LINE9_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE9W::HIGH_DRIVE)
+        self.variant(LINE9_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -937,77 +760,63 @@ impl<'a> _LINE9W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE10`"]
+#[doc = "Drive of PIO Line 10\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE10R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE10_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE10R {
+impl From<LINE10_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE10R::LOW_DRIVE => false,
-            LINE10R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE10_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE10_R = crate::FR<bool, LINE10R>;
+#[doc = "Reader of field `LINE10`"]
+pub type LINE10_R = crate::R<bool, LINE10_A>;
 impl LINE10_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE10_A {
+        match self.bits {
+            false => LINE10_A::LOW_DRIVE,
+            true => LINE10_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE10R::LOW_DRIVE
+        *self == LINE10_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE10R::HIGH_DRIVE
+        *self == LINE10_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE10`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE10W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE10W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE10W::LOW_DRIVE => false,
-            LINE10W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE10W<'a> {
+#[doc = "Write proxy for field `LINE10`"]
+pub struct LINE10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE10W<'a> {
+impl<'a> LINE10_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE10W) -> &'a mut W {
+    pub fn variant(self, variant: LINE10_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE10W::LOW_DRIVE)
+        self.variant(LINE10_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE10W::HIGH_DRIVE)
+        self.variant(LINE10_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -1026,77 +835,63 @@ impl<'a> _LINE10W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE11`"]
+#[doc = "Drive of PIO Line 11\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE11R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE11_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE11R {
+impl From<LINE11_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE11R::LOW_DRIVE => false,
-            LINE11R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE11_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE11_R = crate::FR<bool, LINE11R>;
+#[doc = "Reader of field `LINE11`"]
+pub type LINE11_R = crate::R<bool, LINE11_A>;
 impl LINE11_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE11_A {
+        match self.bits {
+            false => LINE11_A::LOW_DRIVE,
+            true => LINE11_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE11R::LOW_DRIVE
+        *self == LINE11_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE11R::HIGH_DRIVE
+        *self == LINE11_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE11`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE11W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE11W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE11W::LOW_DRIVE => false,
-            LINE11W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE11W<'a> {
+#[doc = "Write proxy for field `LINE11`"]
+pub struct LINE11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE11W<'a> {
+impl<'a> LINE11_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE11W) -> &'a mut W {
+    pub fn variant(self, variant: LINE11_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE11W::LOW_DRIVE)
+        self.variant(LINE11_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE11W::HIGH_DRIVE)
+        self.variant(LINE11_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -1115,77 +910,63 @@ impl<'a> _LINE11W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE12`"]
+#[doc = "Drive of PIO Line 12\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE12R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE12_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE12R {
+impl From<LINE12_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE12R::LOW_DRIVE => false,
-            LINE12R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE12_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE12_R = crate::FR<bool, LINE12R>;
+#[doc = "Reader of field `LINE12`"]
+pub type LINE12_R = crate::R<bool, LINE12_A>;
 impl LINE12_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE12_A {
+        match self.bits {
+            false => LINE12_A::LOW_DRIVE,
+            true => LINE12_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE12R::LOW_DRIVE
+        *self == LINE12_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE12R::HIGH_DRIVE
+        *self == LINE12_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE12`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE12W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE12W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE12W::LOW_DRIVE => false,
-            LINE12W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE12W<'a> {
+#[doc = "Write proxy for field `LINE12`"]
+pub struct LINE12_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE12W<'a> {
+impl<'a> LINE12_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE12W) -> &'a mut W {
+    pub fn variant(self, variant: LINE12_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE12W::LOW_DRIVE)
+        self.variant(LINE12_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE12W::HIGH_DRIVE)
+        self.variant(LINE12_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -1204,77 +985,63 @@ impl<'a> _LINE12W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE13`"]
+#[doc = "Drive of PIO Line 13\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE13R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE13_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE13R {
+impl From<LINE13_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE13R::LOW_DRIVE => false,
-            LINE13R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE13_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE13_R = crate::FR<bool, LINE13R>;
+#[doc = "Reader of field `LINE13`"]
+pub type LINE13_R = crate::R<bool, LINE13_A>;
 impl LINE13_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE13_A {
+        match self.bits {
+            false => LINE13_A::LOW_DRIVE,
+            true => LINE13_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE13R::LOW_DRIVE
+        *self == LINE13_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE13R::HIGH_DRIVE
+        *self == LINE13_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE13`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE13W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE13W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE13W::LOW_DRIVE => false,
-            LINE13W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE13W<'a> {
+#[doc = "Write proxy for field `LINE13`"]
+pub struct LINE13_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE13W<'a> {
+impl<'a> LINE13_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE13W) -> &'a mut W {
+    pub fn variant(self, variant: LINE13_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE13W::LOW_DRIVE)
+        self.variant(LINE13_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE13W::HIGH_DRIVE)
+        self.variant(LINE13_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -1293,77 +1060,63 @@ impl<'a> _LINE13W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE14`"]
+#[doc = "Drive of PIO Line 14\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE14R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE14_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE14R {
+impl From<LINE14_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE14R::LOW_DRIVE => false,
-            LINE14R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE14_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE14_R = crate::FR<bool, LINE14R>;
+#[doc = "Reader of field `LINE14`"]
+pub type LINE14_R = crate::R<bool, LINE14_A>;
 impl LINE14_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE14_A {
+        match self.bits {
+            false => LINE14_A::LOW_DRIVE,
+            true => LINE14_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE14R::LOW_DRIVE
+        *self == LINE14_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE14R::HIGH_DRIVE
+        *self == LINE14_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE14`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE14W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE14W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE14W::LOW_DRIVE => false,
-            LINE14W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE14W<'a> {
+#[doc = "Write proxy for field `LINE14`"]
+pub struct LINE14_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE14W<'a> {
+impl<'a> LINE14_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE14W) -> &'a mut W {
+    pub fn variant(self, variant: LINE14_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE14W::LOW_DRIVE)
+        self.variant(LINE14_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE14W::HIGH_DRIVE)
+        self.variant(LINE14_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -1382,77 +1135,63 @@ impl<'a> _LINE14W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE15`"]
+#[doc = "Drive of PIO Line 15\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE15R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE15_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE15R {
+impl From<LINE15_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE15R::LOW_DRIVE => false,
-            LINE15R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE15_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE15_R = crate::FR<bool, LINE15R>;
+#[doc = "Reader of field `LINE15`"]
+pub type LINE15_R = crate::R<bool, LINE15_A>;
 impl LINE15_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE15_A {
+        match self.bits {
+            false => LINE15_A::LOW_DRIVE,
+            true => LINE15_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE15R::LOW_DRIVE
+        *self == LINE15_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE15R::HIGH_DRIVE
+        *self == LINE15_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE15`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE15W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE15W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE15W::LOW_DRIVE => false,
-            LINE15W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE15W<'a> {
+#[doc = "Write proxy for field `LINE15`"]
+pub struct LINE15_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE15W<'a> {
+impl<'a> LINE15_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE15W) -> &'a mut W {
+    pub fn variant(self, variant: LINE15_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE15W::LOW_DRIVE)
+        self.variant(LINE15_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE15W::HIGH_DRIVE)
+        self.variant(LINE15_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -1471,77 +1210,63 @@ impl<'a> _LINE15W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE16`"]
+#[doc = "Drive of PIO Line 16\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE16R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE16_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE16R {
+impl From<LINE16_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE16R::LOW_DRIVE => false,
-            LINE16R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE16_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE16_R = crate::FR<bool, LINE16R>;
+#[doc = "Reader of field `LINE16`"]
+pub type LINE16_R = crate::R<bool, LINE16_A>;
 impl LINE16_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE16_A {
+        match self.bits {
+            false => LINE16_A::LOW_DRIVE,
+            true => LINE16_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE16R::LOW_DRIVE
+        *self == LINE16_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE16R::HIGH_DRIVE
+        *self == LINE16_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE16`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE16W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE16W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE16W::LOW_DRIVE => false,
-            LINE16W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE16W<'a> {
+#[doc = "Write proxy for field `LINE16`"]
+pub struct LINE16_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE16W<'a> {
+impl<'a> LINE16_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE16W) -> &'a mut W {
+    pub fn variant(self, variant: LINE16_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE16W::LOW_DRIVE)
+        self.variant(LINE16_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE16W::HIGH_DRIVE)
+        self.variant(LINE16_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -1560,77 +1285,63 @@ impl<'a> _LINE16W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE17`"]
+#[doc = "Drive of PIO Line 17\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE17R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE17_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE17R {
+impl From<LINE17_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE17R::LOW_DRIVE => false,
-            LINE17R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE17_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE17_R = crate::FR<bool, LINE17R>;
+#[doc = "Reader of field `LINE17`"]
+pub type LINE17_R = crate::R<bool, LINE17_A>;
 impl LINE17_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE17_A {
+        match self.bits {
+            false => LINE17_A::LOW_DRIVE,
+            true => LINE17_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE17R::LOW_DRIVE
+        *self == LINE17_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE17R::HIGH_DRIVE
+        *self == LINE17_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE17`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE17W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE17W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE17W::LOW_DRIVE => false,
-            LINE17W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE17W<'a> {
+#[doc = "Write proxy for field `LINE17`"]
+pub struct LINE17_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE17W<'a> {
+impl<'a> LINE17_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE17W) -> &'a mut W {
+    pub fn variant(self, variant: LINE17_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE17W::LOW_DRIVE)
+        self.variant(LINE17_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE17W::HIGH_DRIVE)
+        self.variant(LINE17_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -1649,77 +1360,63 @@ impl<'a> _LINE17W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE18`"]
+#[doc = "Drive of PIO Line 18\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE18R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE18_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE18R {
+impl From<LINE18_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE18R::LOW_DRIVE => false,
-            LINE18R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE18_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE18_R = crate::FR<bool, LINE18R>;
+#[doc = "Reader of field `LINE18`"]
+pub type LINE18_R = crate::R<bool, LINE18_A>;
 impl LINE18_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE18_A {
+        match self.bits {
+            false => LINE18_A::LOW_DRIVE,
+            true => LINE18_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE18R::LOW_DRIVE
+        *self == LINE18_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE18R::HIGH_DRIVE
+        *self == LINE18_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE18`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE18W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE18W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE18W::LOW_DRIVE => false,
-            LINE18W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE18W<'a> {
+#[doc = "Write proxy for field `LINE18`"]
+pub struct LINE18_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE18W<'a> {
+impl<'a> LINE18_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE18W) -> &'a mut W {
+    pub fn variant(self, variant: LINE18_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE18W::LOW_DRIVE)
+        self.variant(LINE18_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE18W::HIGH_DRIVE)
+        self.variant(LINE18_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -1738,77 +1435,63 @@ impl<'a> _LINE18W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE19`"]
+#[doc = "Drive of PIO Line 19\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE19R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE19_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE19R {
+impl From<LINE19_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE19R::LOW_DRIVE => false,
-            LINE19R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE19_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE19_R = crate::FR<bool, LINE19R>;
+#[doc = "Reader of field `LINE19`"]
+pub type LINE19_R = crate::R<bool, LINE19_A>;
 impl LINE19_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE19_A {
+        match self.bits {
+            false => LINE19_A::LOW_DRIVE,
+            true => LINE19_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE19R::LOW_DRIVE
+        *self == LINE19_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE19R::HIGH_DRIVE
+        *self == LINE19_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE19`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE19W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE19W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE19W::LOW_DRIVE => false,
-            LINE19W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE19W<'a> {
+#[doc = "Write proxy for field `LINE19`"]
+pub struct LINE19_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE19W<'a> {
+impl<'a> LINE19_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE19W) -> &'a mut W {
+    pub fn variant(self, variant: LINE19_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE19W::LOW_DRIVE)
+        self.variant(LINE19_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE19W::HIGH_DRIVE)
+        self.variant(LINE19_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -1827,77 +1510,63 @@ impl<'a> _LINE19W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE20`"]
+#[doc = "Drive of PIO Line 20\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE20R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE20_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE20R {
+impl From<LINE20_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE20R::LOW_DRIVE => false,
-            LINE20R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE20_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE20_R = crate::FR<bool, LINE20R>;
+#[doc = "Reader of field `LINE20`"]
+pub type LINE20_R = crate::R<bool, LINE20_A>;
 impl LINE20_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE20_A {
+        match self.bits {
+            false => LINE20_A::LOW_DRIVE,
+            true => LINE20_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE20R::LOW_DRIVE
+        *self == LINE20_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE20R::HIGH_DRIVE
+        *self == LINE20_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE20`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE20W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE20W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE20W::LOW_DRIVE => false,
-            LINE20W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE20W<'a> {
+#[doc = "Write proxy for field `LINE20`"]
+pub struct LINE20_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE20W<'a> {
+impl<'a> LINE20_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE20W) -> &'a mut W {
+    pub fn variant(self, variant: LINE20_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE20W::LOW_DRIVE)
+        self.variant(LINE20_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE20W::HIGH_DRIVE)
+        self.variant(LINE20_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -1916,77 +1585,63 @@ impl<'a> _LINE20W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE21`"]
+#[doc = "Drive of PIO Line 21\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE21R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE21_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE21R {
+impl From<LINE21_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE21R::LOW_DRIVE => false,
-            LINE21R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE21_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE21_R = crate::FR<bool, LINE21R>;
+#[doc = "Reader of field `LINE21`"]
+pub type LINE21_R = crate::R<bool, LINE21_A>;
 impl LINE21_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE21_A {
+        match self.bits {
+            false => LINE21_A::LOW_DRIVE,
+            true => LINE21_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE21R::LOW_DRIVE
+        *self == LINE21_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE21R::HIGH_DRIVE
+        *self == LINE21_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE21`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE21W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE21W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE21W::LOW_DRIVE => false,
-            LINE21W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE21W<'a> {
+#[doc = "Write proxy for field `LINE21`"]
+pub struct LINE21_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE21W<'a> {
+impl<'a> LINE21_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE21W) -> &'a mut W {
+    pub fn variant(self, variant: LINE21_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE21W::LOW_DRIVE)
+        self.variant(LINE21_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE21W::HIGH_DRIVE)
+        self.variant(LINE21_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -2005,77 +1660,63 @@ impl<'a> _LINE21W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE22`"]
+#[doc = "Drive of PIO Line 22\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE22R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE22_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE22R {
+impl From<LINE22_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE22R::LOW_DRIVE => false,
-            LINE22R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE22_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE22_R = crate::FR<bool, LINE22R>;
+#[doc = "Reader of field `LINE22`"]
+pub type LINE22_R = crate::R<bool, LINE22_A>;
 impl LINE22_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE22_A {
+        match self.bits {
+            false => LINE22_A::LOW_DRIVE,
+            true => LINE22_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE22R::LOW_DRIVE
+        *self == LINE22_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE22R::HIGH_DRIVE
+        *self == LINE22_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE22`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE22W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE22W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE22W::LOW_DRIVE => false,
-            LINE22W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE22W<'a> {
+#[doc = "Write proxy for field `LINE22`"]
+pub struct LINE22_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE22W<'a> {
+impl<'a> LINE22_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE22W) -> &'a mut W {
+    pub fn variant(self, variant: LINE22_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE22W::LOW_DRIVE)
+        self.variant(LINE22_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE22W::HIGH_DRIVE)
+        self.variant(LINE22_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -2094,77 +1735,63 @@ impl<'a> _LINE22W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE23`"]
+#[doc = "Drive of PIO Line 23\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE23R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE23_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE23R {
+impl From<LINE23_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE23R::LOW_DRIVE => false,
-            LINE23R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE23_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE23_R = crate::FR<bool, LINE23R>;
+#[doc = "Reader of field `LINE23`"]
+pub type LINE23_R = crate::R<bool, LINE23_A>;
 impl LINE23_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE23_A {
+        match self.bits {
+            false => LINE23_A::LOW_DRIVE,
+            true => LINE23_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE23R::LOW_DRIVE
+        *self == LINE23_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE23R::HIGH_DRIVE
+        *self == LINE23_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE23`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE23W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE23W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE23W::LOW_DRIVE => false,
-            LINE23W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE23W<'a> {
+#[doc = "Write proxy for field `LINE23`"]
+pub struct LINE23_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE23W<'a> {
+impl<'a> LINE23_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE23W) -> &'a mut W {
+    pub fn variant(self, variant: LINE23_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE23W::LOW_DRIVE)
+        self.variant(LINE23_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE23W::HIGH_DRIVE)
+        self.variant(LINE23_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -2183,77 +1810,63 @@ impl<'a> _LINE23W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE24`"]
+#[doc = "Drive of PIO Line 24\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE24R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE24_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE24R {
+impl From<LINE24_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE24R::LOW_DRIVE => false,
-            LINE24R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE24_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE24_R = crate::FR<bool, LINE24R>;
+#[doc = "Reader of field `LINE24`"]
+pub type LINE24_R = crate::R<bool, LINE24_A>;
 impl LINE24_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE24_A {
+        match self.bits {
+            false => LINE24_A::LOW_DRIVE,
+            true => LINE24_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE24R::LOW_DRIVE
+        *self == LINE24_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE24R::HIGH_DRIVE
+        *self == LINE24_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE24`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE24W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE24W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE24W::LOW_DRIVE => false,
-            LINE24W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE24W<'a> {
+#[doc = "Write proxy for field `LINE24`"]
+pub struct LINE24_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE24W<'a> {
+impl<'a> LINE24_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE24W) -> &'a mut W {
+    pub fn variant(self, variant: LINE24_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE24W::LOW_DRIVE)
+        self.variant(LINE24_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE24W::HIGH_DRIVE)
+        self.variant(LINE24_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -2272,77 +1885,63 @@ impl<'a> _LINE24W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE25`"]
+#[doc = "Drive of PIO Line 25\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE25R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE25_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE25R {
+impl From<LINE25_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE25R::LOW_DRIVE => false,
-            LINE25R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE25_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE25_R = crate::FR<bool, LINE25R>;
+#[doc = "Reader of field `LINE25`"]
+pub type LINE25_R = crate::R<bool, LINE25_A>;
 impl LINE25_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE25_A {
+        match self.bits {
+            false => LINE25_A::LOW_DRIVE,
+            true => LINE25_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE25R::LOW_DRIVE
+        *self == LINE25_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE25R::HIGH_DRIVE
+        *self == LINE25_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE25`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE25W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE25W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE25W::LOW_DRIVE => false,
-            LINE25W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE25W<'a> {
+#[doc = "Write proxy for field `LINE25`"]
+pub struct LINE25_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE25W<'a> {
+impl<'a> LINE25_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE25W) -> &'a mut W {
+    pub fn variant(self, variant: LINE25_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE25W::LOW_DRIVE)
+        self.variant(LINE25_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE25W::HIGH_DRIVE)
+        self.variant(LINE25_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -2361,77 +1960,63 @@ impl<'a> _LINE25W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE26`"]
+#[doc = "Drive of PIO Line 26\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE26R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE26_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE26R {
+impl From<LINE26_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE26R::LOW_DRIVE => false,
-            LINE26R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE26_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE26_R = crate::FR<bool, LINE26R>;
+#[doc = "Reader of field `LINE26`"]
+pub type LINE26_R = crate::R<bool, LINE26_A>;
 impl LINE26_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE26_A {
+        match self.bits {
+            false => LINE26_A::LOW_DRIVE,
+            true => LINE26_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE26R::LOW_DRIVE
+        *self == LINE26_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE26R::HIGH_DRIVE
+        *self == LINE26_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE26`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE26W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE26W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE26W::LOW_DRIVE => false,
-            LINE26W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE26W<'a> {
+#[doc = "Write proxy for field `LINE26`"]
+pub struct LINE26_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE26W<'a> {
+impl<'a> LINE26_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE26W) -> &'a mut W {
+    pub fn variant(self, variant: LINE26_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE26W::LOW_DRIVE)
+        self.variant(LINE26_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE26W::HIGH_DRIVE)
+        self.variant(LINE26_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -2450,77 +2035,63 @@ impl<'a> _LINE26W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE27`"]
+#[doc = "Drive of PIO Line 27\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE27R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE27_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE27R {
+impl From<LINE27_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE27R::LOW_DRIVE => false,
-            LINE27R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE27_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE27_R = crate::FR<bool, LINE27R>;
+#[doc = "Reader of field `LINE27`"]
+pub type LINE27_R = crate::R<bool, LINE27_A>;
 impl LINE27_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE27_A {
+        match self.bits {
+            false => LINE27_A::LOW_DRIVE,
+            true => LINE27_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE27R::LOW_DRIVE
+        *self == LINE27_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE27R::HIGH_DRIVE
+        *self == LINE27_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE27`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE27W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE27W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE27W::LOW_DRIVE => false,
-            LINE27W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE27W<'a> {
+#[doc = "Write proxy for field `LINE27`"]
+pub struct LINE27_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE27W<'a> {
+impl<'a> LINE27_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE27W) -> &'a mut W {
+    pub fn variant(self, variant: LINE27_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE27W::LOW_DRIVE)
+        self.variant(LINE27_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE27W::HIGH_DRIVE)
+        self.variant(LINE27_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -2539,77 +2110,63 @@ impl<'a> _LINE27W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE28`"]
+#[doc = "Drive of PIO Line 28\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE28R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE28_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE28R {
+impl From<LINE28_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE28R::LOW_DRIVE => false,
-            LINE28R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE28_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE28_R = crate::FR<bool, LINE28R>;
+#[doc = "Reader of field `LINE28`"]
+pub type LINE28_R = crate::R<bool, LINE28_A>;
 impl LINE28_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE28_A {
+        match self.bits {
+            false => LINE28_A::LOW_DRIVE,
+            true => LINE28_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE28R::LOW_DRIVE
+        *self == LINE28_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE28R::HIGH_DRIVE
+        *self == LINE28_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE28`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE28W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE28W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE28W::LOW_DRIVE => false,
-            LINE28W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE28W<'a> {
+#[doc = "Write proxy for field `LINE28`"]
+pub struct LINE28_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE28W<'a> {
+impl<'a> LINE28_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE28W) -> &'a mut W {
+    pub fn variant(self, variant: LINE28_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE28W::LOW_DRIVE)
+        self.variant(LINE28_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE28W::HIGH_DRIVE)
+        self.variant(LINE28_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -2628,77 +2185,63 @@ impl<'a> _LINE28W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE29`"]
+#[doc = "Drive of PIO Line 29\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE29R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE29_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE29R {
+impl From<LINE29_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE29R::LOW_DRIVE => false,
-            LINE29R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE29_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE29_R = crate::FR<bool, LINE29R>;
+#[doc = "Reader of field `LINE29`"]
+pub type LINE29_R = crate::R<bool, LINE29_A>;
 impl LINE29_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE29_A {
+        match self.bits {
+            false => LINE29_A::LOW_DRIVE,
+            true => LINE29_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE29R::LOW_DRIVE
+        *self == LINE29_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE29R::HIGH_DRIVE
+        *self == LINE29_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE29`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE29W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE29W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE29W::LOW_DRIVE => false,
-            LINE29W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE29W<'a> {
+#[doc = "Write proxy for field `LINE29`"]
+pub struct LINE29_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE29W<'a> {
+impl<'a> LINE29_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE29W) -> &'a mut W {
+    pub fn variant(self, variant: LINE29_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE29W::LOW_DRIVE)
+        self.variant(LINE29_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE29W::HIGH_DRIVE)
+        self.variant(LINE29_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -2717,77 +2260,63 @@ impl<'a> _LINE29W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE30`"]
+#[doc = "Drive of PIO Line 30\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE30R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE30_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE30R {
+impl From<LINE30_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE30R::LOW_DRIVE => false,
-            LINE30R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE30_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE30_R = crate::FR<bool, LINE30R>;
+#[doc = "Reader of field `LINE30`"]
+pub type LINE30_R = crate::R<bool, LINE30_A>;
 impl LINE30_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE30_A {
+        match self.bits {
+            false => LINE30_A::LOW_DRIVE,
+            true => LINE30_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE30R::LOW_DRIVE
+        *self == LINE30_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE30R::HIGH_DRIVE
+        *self == LINE30_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE30`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE30W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE30W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE30W::LOW_DRIVE => false,
-            LINE30W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE30W<'a> {
+#[doc = "Write proxy for field `LINE30`"]
+pub struct LINE30_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE30W<'a> {
+impl<'a> LINE30_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE30W) -> &'a mut W {
+    pub fn variant(self, variant: LINE30_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE30W::LOW_DRIVE)
+        self.variant(LINE30_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE30W::HIGH_DRIVE)
+        self.variant(LINE30_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -2806,77 +2335,63 @@ impl<'a> _LINE30W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `LINE31`"]
+#[doc = "Drive of PIO Line 31\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE31R {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
+pub enum LINE31_A {
+    #[doc = "0: Lowest drive"]
+    LOW_DRIVE = 0,
+    #[doc = "1: Highest drive"]
+    HIGH_DRIVE = 1,
 }
-impl crate::ToBits<bool> for LINE31R {
+impl From<LINE31_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            LINE31R::LOW_DRIVE => false,
-            LINE31R::HIGH_DRIVE => true,
-        }
+    fn from(variant: LINE31_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type LINE31_R = crate::FR<bool, LINE31R>;
+#[doc = "Reader of field `LINE31`"]
+pub type LINE31_R = crate::R<bool, LINE31_A>;
 impl LINE31_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> LINE31_A {
+        match self.bits {
+            false => LINE31_A::LOW_DRIVE,
+            true => LINE31_A::HIGH_DRIVE,
+        }
+    }
     #[doc = "Checks if the value of the field is `LOW_DRIVE`"]
     #[inline(always)]
     pub fn is_low_drive(&self) -> bool {
-        *self == LINE31R::LOW_DRIVE
+        *self == LINE31_A::LOW_DRIVE
     }
     #[doc = "Checks if the value of the field is `HIGH_DRIVE`"]
     #[inline(always)]
     pub fn is_high_drive(&self) -> bool {
-        *self == LINE31R::HIGH_DRIVE
+        *self == LINE31_A::HIGH_DRIVE
     }
 }
-#[doc = "Values that can be written to the field `LINE31`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum LINE31W {
-    #[doc = "Lowest drive"]
-    LOW_DRIVE,
-    #[doc = "Highest drive"]
-    HIGH_DRIVE,
-}
-impl LINE31W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            LINE31W::LOW_DRIVE => false,
-            LINE31W::HIGH_DRIVE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _LINE31W<'a> {
+#[doc = "Write proxy for field `LINE31`"]
+pub struct LINE31_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LINE31W<'a> {
+impl<'a> LINE31_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: LINE31W) -> &'a mut W {
+    pub fn variant(self, variant: LINE31_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Lowest drive"]
     #[inline(always)]
     pub fn low_drive(self) -> &'a mut W {
-        self.variant(LINE31W::LOW_DRIVE)
+        self.variant(LINE31_A::LOW_DRIVE)
     }
     #[doc = "Highest drive"]
     #[inline(always)]
     pub fn high_drive(self) -> &'a mut W {
-        self.variant(LINE31W::HIGH_DRIVE)
+        self.variant(LINE31_A::HIGH_DRIVE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -2896,337 +2411,326 @@ impl<'a> _LINE31W<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Drive of PIO Line 0"]
     #[inline(always)]
     pub fn line0(&self) -> LINE0_R {
-        LINE0_R::new((self.bits() & 0x01) != 0)
+        LINE0_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Drive of PIO Line 1"]
     #[inline(always)]
     pub fn line1(&self) -> LINE1_R {
-        LINE1_R::new(((self.bits() >> 1) & 0x01) != 0)
+        LINE1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Drive of PIO Line 2"]
     #[inline(always)]
     pub fn line2(&self) -> LINE2_R {
-        LINE2_R::new(((self.bits() >> 2) & 0x01) != 0)
+        LINE2_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Drive of PIO Line 3"]
     #[inline(always)]
     pub fn line3(&self) -> LINE3_R {
-        LINE3_R::new(((self.bits() >> 3) & 0x01) != 0)
+        LINE3_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Drive of PIO Line 4"]
     #[inline(always)]
     pub fn line4(&self) -> LINE4_R {
-        LINE4_R::new(((self.bits() >> 4) & 0x01) != 0)
+        LINE4_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Drive of PIO Line 5"]
     #[inline(always)]
     pub fn line5(&self) -> LINE5_R {
-        LINE5_R::new(((self.bits() >> 5) & 0x01) != 0)
+        LINE5_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Drive of PIO Line 6"]
     #[inline(always)]
     pub fn line6(&self) -> LINE6_R {
-        LINE6_R::new(((self.bits() >> 6) & 0x01) != 0)
+        LINE6_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Drive of PIO Line 7"]
     #[inline(always)]
     pub fn line7(&self) -> LINE7_R {
-        LINE7_R::new(((self.bits() >> 7) & 0x01) != 0)
+        LINE7_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 8 - Drive of PIO Line 8"]
     #[inline(always)]
     pub fn line8(&self) -> LINE8_R {
-        LINE8_R::new(((self.bits() >> 8) & 0x01) != 0)
+        LINE8_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Drive of PIO Line 9"]
     #[inline(always)]
     pub fn line9(&self) -> LINE9_R {
-        LINE9_R::new(((self.bits() >> 9) & 0x01) != 0)
+        LINE9_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Drive of PIO Line 10"]
     #[inline(always)]
     pub fn line10(&self) -> LINE10_R {
-        LINE10_R::new(((self.bits() >> 10) & 0x01) != 0)
+        LINE10_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Drive of PIO Line 11"]
     #[inline(always)]
     pub fn line11(&self) -> LINE11_R {
-        LINE11_R::new(((self.bits() >> 11) & 0x01) != 0)
+        LINE11_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - Drive of PIO Line 12"]
     #[inline(always)]
     pub fn line12(&self) -> LINE12_R {
-        LINE12_R::new(((self.bits() >> 12) & 0x01) != 0)
+        LINE12_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 13 - Drive of PIO Line 13"]
     #[inline(always)]
     pub fn line13(&self) -> LINE13_R {
-        LINE13_R::new(((self.bits() >> 13) & 0x01) != 0)
+        LINE13_R::new(((self.bits >> 13) & 0x01) != 0)
     }
     #[doc = "Bit 14 - Drive of PIO Line 14"]
     #[inline(always)]
     pub fn line14(&self) -> LINE14_R {
-        LINE14_R::new(((self.bits() >> 14) & 0x01) != 0)
+        LINE14_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 15 - Drive of PIO Line 15"]
     #[inline(always)]
     pub fn line15(&self) -> LINE15_R {
-        LINE15_R::new(((self.bits() >> 15) & 0x01) != 0)
+        LINE15_R::new(((self.bits >> 15) & 0x01) != 0)
     }
     #[doc = "Bit 16 - Drive of PIO Line 16"]
     #[inline(always)]
     pub fn line16(&self) -> LINE16_R {
-        LINE16_R::new(((self.bits() >> 16) & 0x01) != 0)
+        LINE16_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Drive of PIO Line 17"]
     #[inline(always)]
     pub fn line17(&self) -> LINE17_R {
-        LINE17_R::new(((self.bits() >> 17) & 0x01) != 0)
+        LINE17_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - Drive of PIO Line 18"]
     #[inline(always)]
     pub fn line18(&self) -> LINE18_R {
-        LINE18_R::new(((self.bits() >> 18) & 0x01) != 0)
+        LINE18_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 19 - Drive of PIO Line 19"]
     #[inline(always)]
     pub fn line19(&self) -> LINE19_R {
-        LINE19_R::new(((self.bits() >> 19) & 0x01) != 0)
+        LINE19_R::new(((self.bits >> 19) & 0x01) != 0)
     }
     #[doc = "Bit 20 - Drive of PIO Line 20"]
     #[inline(always)]
     pub fn line20(&self) -> LINE20_R {
-        LINE20_R::new(((self.bits() >> 20) & 0x01) != 0)
+        LINE20_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bit 21 - Drive of PIO Line 21"]
     #[inline(always)]
     pub fn line21(&self) -> LINE21_R {
-        LINE21_R::new(((self.bits() >> 21) & 0x01) != 0)
+        LINE21_R::new(((self.bits >> 21) & 0x01) != 0)
     }
     #[doc = "Bit 22 - Drive of PIO Line 22"]
     #[inline(always)]
     pub fn line22(&self) -> LINE22_R {
-        LINE22_R::new(((self.bits() >> 22) & 0x01) != 0)
+        LINE22_R::new(((self.bits >> 22) & 0x01) != 0)
     }
     #[doc = "Bit 23 - Drive of PIO Line 23"]
     #[inline(always)]
     pub fn line23(&self) -> LINE23_R {
-        LINE23_R::new(((self.bits() >> 23) & 0x01) != 0)
+        LINE23_R::new(((self.bits >> 23) & 0x01) != 0)
     }
     #[doc = "Bit 24 - Drive of PIO Line 24"]
     #[inline(always)]
     pub fn line24(&self) -> LINE24_R {
-        LINE24_R::new(((self.bits() >> 24) & 0x01) != 0)
+        LINE24_R::new(((self.bits >> 24) & 0x01) != 0)
     }
     #[doc = "Bit 25 - Drive of PIO Line 25"]
     #[inline(always)]
     pub fn line25(&self) -> LINE25_R {
-        LINE25_R::new(((self.bits() >> 25) & 0x01) != 0)
+        LINE25_R::new(((self.bits >> 25) & 0x01) != 0)
     }
     #[doc = "Bit 26 - Drive of PIO Line 26"]
     #[inline(always)]
     pub fn line26(&self) -> LINE26_R {
-        LINE26_R::new(((self.bits() >> 26) & 0x01) != 0)
+        LINE26_R::new(((self.bits >> 26) & 0x01) != 0)
     }
     #[doc = "Bit 27 - Drive of PIO Line 27"]
     #[inline(always)]
     pub fn line27(&self) -> LINE27_R {
-        LINE27_R::new(((self.bits() >> 27) & 0x01) != 0)
+        LINE27_R::new(((self.bits >> 27) & 0x01) != 0)
     }
     #[doc = "Bit 28 - Drive of PIO Line 28"]
     #[inline(always)]
     pub fn line28(&self) -> LINE28_R {
-        LINE28_R::new(((self.bits() >> 28) & 0x01) != 0)
+        LINE28_R::new(((self.bits >> 28) & 0x01) != 0)
     }
     #[doc = "Bit 29 - Drive of PIO Line 29"]
     #[inline(always)]
     pub fn line29(&self) -> LINE29_R {
-        LINE29_R::new(((self.bits() >> 29) & 0x01) != 0)
+        LINE29_R::new(((self.bits >> 29) & 0x01) != 0)
     }
     #[doc = "Bit 30 - Drive of PIO Line 30"]
     #[inline(always)]
     pub fn line30(&self) -> LINE30_R {
-        LINE30_R::new(((self.bits() >> 30) & 0x01) != 0)
+        LINE30_R::new(((self.bits >> 30) & 0x01) != 0)
     }
     #[doc = "Bit 31 - Drive of PIO Line 31"]
     #[inline(always)]
     pub fn line31(&self) -> LINE31_R {
-        LINE31_R::new(((self.bits() >> 31) & 0x01) != 0)
+        LINE31_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Drive of PIO Line 0"]
     #[inline(always)]
-    pub fn line0(&mut self) -> _LINE0W {
-        _LINE0W { w: self }
+    pub fn line0(&mut self) -> LINE0_W {
+        LINE0_W { w: self }
     }
     #[doc = "Bit 1 - Drive of PIO Line 1"]
     #[inline(always)]
-    pub fn line1(&mut self) -> _LINE1W {
-        _LINE1W { w: self }
+    pub fn line1(&mut self) -> LINE1_W {
+        LINE1_W { w: self }
     }
     #[doc = "Bit 2 - Drive of PIO Line 2"]
     #[inline(always)]
-    pub fn line2(&mut self) -> _LINE2W {
-        _LINE2W { w: self }
+    pub fn line2(&mut self) -> LINE2_W {
+        LINE2_W { w: self }
     }
     #[doc = "Bit 3 - Drive of PIO Line 3"]
     #[inline(always)]
-    pub fn line3(&mut self) -> _LINE3W {
-        _LINE3W { w: self }
+    pub fn line3(&mut self) -> LINE3_W {
+        LINE3_W { w: self }
     }
     #[doc = "Bit 4 - Drive of PIO Line 4"]
     #[inline(always)]
-    pub fn line4(&mut self) -> _LINE4W {
-        _LINE4W { w: self }
+    pub fn line4(&mut self) -> LINE4_W {
+        LINE4_W { w: self }
     }
     #[doc = "Bit 5 - Drive of PIO Line 5"]
     #[inline(always)]
-    pub fn line5(&mut self) -> _LINE5W {
-        _LINE5W { w: self }
+    pub fn line5(&mut self) -> LINE5_W {
+        LINE5_W { w: self }
     }
     #[doc = "Bit 6 - Drive of PIO Line 6"]
     #[inline(always)]
-    pub fn line6(&mut self) -> _LINE6W {
-        _LINE6W { w: self }
+    pub fn line6(&mut self) -> LINE6_W {
+        LINE6_W { w: self }
     }
     #[doc = "Bit 7 - Drive of PIO Line 7"]
     #[inline(always)]
-    pub fn line7(&mut self) -> _LINE7W {
-        _LINE7W { w: self }
+    pub fn line7(&mut self) -> LINE7_W {
+        LINE7_W { w: self }
     }
     #[doc = "Bit 8 - Drive of PIO Line 8"]
     #[inline(always)]
-    pub fn line8(&mut self) -> _LINE8W {
-        _LINE8W { w: self }
+    pub fn line8(&mut self) -> LINE8_W {
+        LINE8_W { w: self }
     }
     #[doc = "Bit 9 - Drive of PIO Line 9"]
     #[inline(always)]
-    pub fn line9(&mut self) -> _LINE9W {
-        _LINE9W { w: self }
+    pub fn line9(&mut self) -> LINE9_W {
+        LINE9_W { w: self }
     }
     #[doc = "Bit 10 - Drive of PIO Line 10"]
     #[inline(always)]
-    pub fn line10(&mut self) -> _LINE10W {
-        _LINE10W { w: self }
+    pub fn line10(&mut self) -> LINE10_W {
+        LINE10_W { w: self }
     }
     #[doc = "Bit 11 - Drive of PIO Line 11"]
     #[inline(always)]
-    pub fn line11(&mut self) -> _LINE11W {
-        _LINE11W { w: self }
+    pub fn line11(&mut self) -> LINE11_W {
+        LINE11_W { w: self }
     }
     #[doc = "Bit 12 - Drive of PIO Line 12"]
     #[inline(always)]
-    pub fn line12(&mut self) -> _LINE12W {
-        _LINE12W { w: self }
+    pub fn line12(&mut self) -> LINE12_W {
+        LINE12_W { w: self }
     }
     #[doc = "Bit 13 - Drive of PIO Line 13"]
     #[inline(always)]
-    pub fn line13(&mut self) -> _LINE13W {
-        _LINE13W { w: self }
+    pub fn line13(&mut self) -> LINE13_W {
+        LINE13_W { w: self }
     }
     #[doc = "Bit 14 - Drive of PIO Line 14"]
     #[inline(always)]
-    pub fn line14(&mut self) -> _LINE14W {
-        _LINE14W { w: self }
+    pub fn line14(&mut self) -> LINE14_W {
+        LINE14_W { w: self }
     }
     #[doc = "Bit 15 - Drive of PIO Line 15"]
     #[inline(always)]
-    pub fn line15(&mut self) -> _LINE15W {
-        _LINE15W { w: self }
+    pub fn line15(&mut self) -> LINE15_W {
+        LINE15_W { w: self }
     }
     #[doc = "Bit 16 - Drive of PIO Line 16"]
     #[inline(always)]
-    pub fn line16(&mut self) -> _LINE16W {
-        _LINE16W { w: self }
+    pub fn line16(&mut self) -> LINE16_W {
+        LINE16_W { w: self }
     }
     #[doc = "Bit 17 - Drive of PIO Line 17"]
     #[inline(always)]
-    pub fn line17(&mut self) -> _LINE17W {
-        _LINE17W { w: self }
+    pub fn line17(&mut self) -> LINE17_W {
+        LINE17_W { w: self }
     }
     #[doc = "Bit 18 - Drive of PIO Line 18"]
     #[inline(always)]
-    pub fn line18(&mut self) -> _LINE18W {
-        _LINE18W { w: self }
+    pub fn line18(&mut self) -> LINE18_W {
+        LINE18_W { w: self }
     }
     #[doc = "Bit 19 - Drive of PIO Line 19"]
     #[inline(always)]
-    pub fn line19(&mut self) -> _LINE19W {
-        _LINE19W { w: self }
+    pub fn line19(&mut self) -> LINE19_W {
+        LINE19_W { w: self }
     }
     #[doc = "Bit 20 - Drive of PIO Line 20"]
     #[inline(always)]
-    pub fn line20(&mut self) -> _LINE20W {
-        _LINE20W { w: self }
+    pub fn line20(&mut self) -> LINE20_W {
+        LINE20_W { w: self }
     }
     #[doc = "Bit 21 - Drive of PIO Line 21"]
     #[inline(always)]
-    pub fn line21(&mut self) -> _LINE21W {
-        _LINE21W { w: self }
+    pub fn line21(&mut self) -> LINE21_W {
+        LINE21_W { w: self }
     }
     #[doc = "Bit 22 - Drive of PIO Line 22"]
     #[inline(always)]
-    pub fn line22(&mut self) -> _LINE22W {
-        _LINE22W { w: self }
+    pub fn line22(&mut self) -> LINE22_W {
+        LINE22_W { w: self }
     }
     #[doc = "Bit 23 - Drive of PIO Line 23"]
     #[inline(always)]
-    pub fn line23(&mut self) -> _LINE23W {
-        _LINE23W { w: self }
+    pub fn line23(&mut self) -> LINE23_W {
+        LINE23_W { w: self }
     }
     #[doc = "Bit 24 - Drive of PIO Line 24"]
     #[inline(always)]
-    pub fn line24(&mut self) -> _LINE24W {
-        _LINE24W { w: self }
+    pub fn line24(&mut self) -> LINE24_W {
+        LINE24_W { w: self }
     }
     #[doc = "Bit 25 - Drive of PIO Line 25"]
     #[inline(always)]
-    pub fn line25(&mut self) -> _LINE25W {
-        _LINE25W { w: self }
+    pub fn line25(&mut self) -> LINE25_W {
+        LINE25_W { w: self }
     }
     #[doc = "Bit 26 - Drive of PIO Line 26"]
     #[inline(always)]
-    pub fn line26(&mut self) -> _LINE26W {
-        _LINE26W { w: self }
+    pub fn line26(&mut self) -> LINE26_W {
+        LINE26_W { w: self }
     }
     #[doc = "Bit 27 - Drive of PIO Line 27"]
     #[inline(always)]
-    pub fn line27(&mut self) -> _LINE27W {
-        _LINE27W { w: self }
+    pub fn line27(&mut self) -> LINE27_W {
+        LINE27_W { w: self }
     }
     #[doc = "Bit 28 - Drive of PIO Line 28"]
     #[inline(always)]
-    pub fn line28(&mut self) -> _LINE28W {
-        _LINE28W { w: self }
+    pub fn line28(&mut self) -> LINE28_W {
+        LINE28_W { w: self }
     }
     #[doc = "Bit 29 - Drive of PIO Line 29"]
     #[inline(always)]
-    pub fn line29(&mut self) -> _LINE29W {
-        _LINE29W { w: self }
+    pub fn line29(&mut self) -> LINE29_W {
+        LINE29_W { w: self }
     }
     #[doc = "Bit 30 - Drive of PIO Line 30"]
     #[inline(always)]
-    pub fn line30(&mut self) -> _LINE30W {
-        _LINE30W { w: self }
+    pub fn line30(&mut self) -> LINE30_W {
+        LINE30_W { w: self }
     }
     #[doc = "Bit 31 - Drive of PIO Line 31"]
     #[inline(always)]
-    pub fn line31(&mut self) -> _LINE31W {
-        _LINE31W { w: self }
+    pub fn line31(&mut self) -> LINE31_W {
+        LINE31_W { w: self }
     }
 }

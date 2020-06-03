@@ -1,222 +1,180 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::EEFC_FCR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register EEFC_FCR"]
+pub type W = crate::W<u32, super::EEFC_FCR>;
+#[doc = "Register EEFC_FCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::EEFC_FCR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = "Values that can be written to the field `FCMD`"]
+#[doc = "Flash Command\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FCMDW {
-    #[doc = "Get Flash descriptor"]
-    GETD,
-    #[doc = "Write page"]
-    WP,
-    #[doc = "Write page and lock"]
-    WPL,
-    #[doc = "Erase page and write page"]
-    EWP,
-    #[doc = "Erase page and write page then lock"]
-    EWPL,
-    #[doc = "Erase all"]
-    EA,
-    #[doc = "Erase pages"]
-    EPA,
-    #[doc = "Set lock bit"]
-    SLB,
-    #[doc = "Clear lock bit"]
-    CLB,
-    #[doc = "Get lock bit"]
-    GLB,
-    #[doc = "Set GPNVM bit"]
-    SGPB,
-    #[doc = "Clear GPNVM bit"]
-    CGPB,
-    #[doc = "Get GPNVM bit"]
-    GGPB,
-    #[doc = "Start read unique identifier"]
-    STUI,
-    #[doc = "Stop read unique identifier"]
-    SPUI,
-    #[doc = "Get CALIB bit"]
-    GCALB,
-    #[doc = "Erase sector"]
-    ES,
-    #[doc = "Write user signature"]
-    WUS,
-    #[doc = "Erase user signature"]
-    EUS,
-    #[doc = "Start read user signature"]
-    STUS,
-    #[doc = "Stop read user signature"]
-    SPUS,
+#[repr(u8)]
+pub enum FCMD_AW {
+    #[doc = "0: Get Flash descriptor"]
+    GETD = 0,
+    #[doc = "1: Write page"]
+    WP = 1,
+    #[doc = "2: Write page and lock"]
+    WPL = 2,
+    #[doc = "3: Erase page and write page"]
+    EWP = 3,
+    #[doc = "4: Erase page and write page then lock"]
+    EWPL = 4,
+    #[doc = "5: Erase all"]
+    EA = 5,
+    #[doc = "7: Erase pages"]
+    EPA = 7,
+    #[doc = "8: Set lock bit"]
+    SLB = 8,
+    #[doc = "9: Clear lock bit"]
+    CLB = 9,
+    #[doc = "10: Get lock bit"]
+    GLB = 10,
+    #[doc = "11: Set GPNVM bit"]
+    SGPB = 11,
+    #[doc = "12: Clear GPNVM bit"]
+    CGPB = 12,
+    #[doc = "13: Get GPNVM bit"]
+    GGPB = 13,
+    #[doc = "14: Start read unique identifier"]
+    STUI = 14,
+    #[doc = "15: Stop read unique identifier"]
+    SPUI = 15,
+    #[doc = "16: Get CALIB bit"]
+    GCALB = 16,
+    #[doc = "17: Erase sector"]
+    ES = 17,
+    #[doc = "18: Write user signature"]
+    WUS = 18,
+    #[doc = "19: Erase user signature"]
+    EUS = 19,
+    #[doc = "20: Start read user signature"]
+    STUS = 20,
+    #[doc = "21: Stop read user signature"]
+    SPUS = 21,
 }
-impl FCMDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
+impl From<FCMD_AW> for u8 {
     #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            FCMDW::GETD => 0,
-            FCMDW::WP => 1,
-            FCMDW::WPL => 2,
-            FCMDW::EWP => 3,
-            FCMDW::EWPL => 4,
-            FCMDW::EA => 5,
-            FCMDW::EPA => 7,
-            FCMDW::SLB => 8,
-            FCMDW::CLB => 9,
-            FCMDW::GLB => 10,
-            FCMDW::SGPB => 11,
-            FCMDW::CGPB => 12,
-            FCMDW::GGPB => 13,
-            FCMDW::STUI => 14,
-            FCMDW::SPUI => 15,
-            FCMDW::GCALB => 16,
-            FCMDW::ES => 17,
-            FCMDW::WUS => 18,
-            FCMDW::EUS => 19,
-            FCMDW::STUS => 20,
-            FCMDW::SPUS => 21,
-        }
+    fn from(variant: FCMD_AW) -> Self {
+        variant as _
     }
 }
-#[doc = r"Proxy"]
-pub struct _FCMDW<'a> {
+#[doc = "Write proxy for field `FCMD`"]
+pub struct FCMD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FCMDW<'a> {
+impl<'a> FCMD_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: FCMDW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: FCMD_AW) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Get Flash descriptor"]
     #[inline(always)]
     pub fn getd(self) -> &'a mut W {
-        self.variant(FCMDW::GETD)
+        self.variant(FCMD_AW::GETD)
     }
     #[doc = "Write page"]
     #[inline(always)]
     pub fn wp(self) -> &'a mut W {
-        self.variant(FCMDW::WP)
+        self.variant(FCMD_AW::WP)
     }
     #[doc = "Write page and lock"]
     #[inline(always)]
     pub fn wpl(self) -> &'a mut W {
-        self.variant(FCMDW::WPL)
+        self.variant(FCMD_AW::WPL)
     }
     #[doc = "Erase page and write page"]
     #[inline(always)]
     pub fn ewp(self) -> &'a mut W {
-        self.variant(FCMDW::EWP)
+        self.variant(FCMD_AW::EWP)
     }
     #[doc = "Erase page and write page then lock"]
     #[inline(always)]
     pub fn ewpl(self) -> &'a mut W {
-        self.variant(FCMDW::EWPL)
+        self.variant(FCMD_AW::EWPL)
     }
     #[doc = "Erase all"]
     #[inline(always)]
     pub fn ea(self) -> &'a mut W {
-        self.variant(FCMDW::EA)
+        self.variant(FCMD_AW::EA)
     }
     #[doc = "Erase pages"]
     #[inline(always)]
     pub fn epa(self) -> &'a mut W {
-        self.variant(FCMDW::EPA)
+        self.variant(FCMD_AW::EPA)
     }
     #[doc = "Set lock bit"]
     #[inline(always)]
     pub fn slb(self) -> &'a mut W {
-        self.variant(FCMDW::SLB)
+        self.variant(FCMD_AW::SLB)
     }
     #[doc = "Clear lock bit"]
     #[inline(always)]
     pub fn clb(self) -> &'a mut W {
-        self.variant(FCMDW::CLB)
+        self.variant(FCMD_AW::CLB)
     }
     #[doc = "Get lock bit"]
     #[inline(always)]
     pub fn glb(self) -> &'a mut W {
-        self.variant(FCMDW::GLB)
+        self.variant(FCMD_AW::GLB)
     }
     #[doc = "Set GPNVM bit"]
     #[inline(always)]
     pub fn sgpb(self) -> &'a mut W {
-        self.variant(FCMDW::SGPB)
+        self.variant(FCMD_AW::SGPB)
     }
     #[doc = "Clear GPNVM bit"]
     #[inline(always)]
     pub fn cgpb(self) -> &'a mut W {
-        self.variant(FCMDW::CGPB)
+        self.variant(FCMD_AW::CGPB)
     }
     #[doc = "Get GPNVM bit"]
     #[inline(always)]
     pub fn ggpb(self) -> &'a mut W {
-        self.variant(FCMDW::GGPB)
+        self.variant(FCMD_AW::GGPB)
     }
     #[doc = "Start read unique identifier"]
     #[inline(always)]
     pub fn stui(self) -> &'a mut W {
-        self.variant(FCMDW::STUI)
+        self.variant(FCMD_AW::STUI)
     }
     #[doc = "Stop read unique identifier"]
     #[inline(always)]
     pub fn spui(self) -> &'a mut W {
-        self.variant(FCMDW::SPUI)
+        self.variant(FCMD_AW::SPUI)
     }
     #[doc = "Get CALIB bit"]
     #[inline(always)]
     pub fn gcalb(self) -> &'a mut W {
-        self.variant(FCMDW::GCALB)
+        self.variant(FCMD_AW::GCALB)
     }
     #[doc = "Erase sector"]
     #[inline(always)]
     pub fn es(self) -> &'a mut W {
-        self.variant(FCMDW::ES)
+        self.variant(FCMD_AW::ES)
     }
     #[doc = "Write user signature"]
     #[inline(always)]
     pub fn wus(self) -> &'a mut W {
-        self.variant(FCMDW::WUS)
+        self.variant(FCMD_AW::WUS)
     }
     #[doc = "Erase user signature"]
     #[inline(always)]
     pub fn eus(self) -> &'a mut W {
-        self.variant(FCMDW::EUS)
+        self.variant(FCMD_AW::EUS)
     }
     #[doc = "Start read user signature"]
     #[inline(always)]
     pub fn stus(self) -> &'a mut W {
-        self.variant(FCMDW::STUS)
+        self.variant(FCMD_AW::STUS)
     }
     #[doc = "Stop read user signature"]
     #[inline(always)]
     pub fn spus(self) -> &'a mut W {
-        self.variant(FCMDW::SPUS)
+        self.variant(FCMD_AW::SPUS)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -225,11 +183,11 @@ impl<'a> _FCMDW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _FARGW<'a> {
+#[doc = "Write proxy for field `FARG`"]
+pub struct FARG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FARGW<'a> {
+impl<'a> FARG_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
@@ -237,36 +195,33 @@ impl<'a> _FARGW<'a> {
         self.w
     }
 }
-#[doc = "Values that can be written to the field `FKEY`"]
+#[doc = "Flash Writing Protection Key\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FKEYW {
-    #[doc = "The 0x5A value enables the command defined by the bits of the register. If the field is written with a different value, the write is not performed and no action is started."]
-    PASSWD,
+#[repr(u8)]
+pub enum FKEY_AW {
+    #[doc = "90: The 0x5A value enables the command defined by the bits of the register. If the field is written with a different value, the write is not performed and no action is started."]
+    PASSWD = 90,
 }
-impl FKEYW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
+impl From<FKEY_AW> for u8 {
     #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            FKEYW::PASSWD => 90,
-        }
+    fn from(variant: FKEY_AW) -> Self {
+        variant as _
     }
 }
-#[doc = r"Proxy"]
-pub struct _FKEYW<'a> {
+#[doc = "Write proxy for field `FKEY`"]
+pub struct FKEY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FKEYW<'a> {
+impl<'a> FKEY_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: FKEYW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: FKEY_AW) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "The 0x5A value enables the command defined by the bits of the register. If the field is written with a different value, the write is not performed and no action is started."]
     #[inline(always)]
     pub fn passwd(self) -> &'a mut W {
-        self.variant(FKEYW::PASSWD)
+        self.variant(FKEY_AW::PASSWD)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -276,25 +231,19 @@ impl<'a> _FKEYW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:7 - Flash Command"]
     #[inline(always)]
-    pub fn fcmd(&mut self) -> _FCMDW {
-        _FCMDW { w: self }
+    pub fn fcmd(&mut self) -> FCMD_W {
+        FCMD_W { w: self }
     }
     #[doc = "Bits 8:23 - Flash Command Argument"]
     #[inline(always)]
-    pub fn farg(&mut self) -> _FARGW {
-        _FARGW { w: self }
+    pub fn farg(&mut self) -> FARG_W {
+        FARG_W { w: self }
     }
     #[doc = "Bits 24:31 - Flash Writing Protection Key"]
     #[inline(always)]
-    pub fn fkey(&mut self) -> _FKEYW {
-        _FKEYW { w: self }
+    pub fn fkey(&mut self) -> FKEY_W {
+        FKEY_W { w: self }
     }
 }

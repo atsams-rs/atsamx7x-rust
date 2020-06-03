@@ -1,37 +1,19 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::USBHS_DEVEPTIFR_CTRL_MODE {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register USBHS_DEVEPTIFR_CTRL_MODE[%s]"]
+pub type W = crate::W<u32, super::USBHS_DEVEPTIFR_CTRL_MODE>;
+#[doc = "Register USBHS_DEVEPTIFR_CTRL_MODE[%s]
+`reset()`'s with value 0"]
+impl crate::ResetValue for super::USBHS_DEVEPTIFR_CTRL_MODE {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _TXINISW<'a> {
+#[doc = "Write proxy for field `TXINIS`"]
+pub struct TXINIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXINISW<'a> {
+impl<'a> TXINIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +31,11 @@ impl<'a> _TXINISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RXOUTISW<'a> {
+#[doc = "Write proxy for field `RXOUTIS`"]
+pub struct RXOUTIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXOUTISW<'a> {
+impl<'a> RXOUTIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +53,11 @@ impl<'a> _RXOUTISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RXSTPISW<'a> {
+#[doc = "Write proxy for field `RXSTPIS`"]
+pub struct RXSTPIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXSTPISW<'a> {
+impl<'a> RXSTPIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +75,11 @@ impl<'a> _RXSTPISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _NAKOUTISW<'a> {
+#[doc = "Write proxy for field `NAKOUTIS`"]
+pub struct NAKOUTIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NAKOUTISW<'a> {
+impl<'a> NAKOUTIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +97,11 @@ impl<'a> _NAKOUTISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _NAKINISW<'a> {
+#[doc = "Write proxy for field `NAKINIS`"]
+pub struct NAKINIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NAKINISW<'a> {
+impl<'a> NAKINIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +119,11 @@ impl<'a> _NAKINISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OVERFISW<'a> {
+#[doc = "Write proxy for field `OVERFIS`"]
+pub struct OVERFIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OVERFISW<'a> {
+impl<'a> OVERFIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +141,11 @@ impl<'a> _OVERFISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _STALLEDISW<'a> {
+#[doc = "Write proxy for field `STALLEDIS`"]
+pub struct STALLEDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _STALLEDISW<'a> {
+impl<'a> STALLEDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +163,11 @@ impl<'a> _STALLEDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SHORTPACKETSW<'a> {
+#[doc = "Write proxy for field `SHORTPACKETS`"]
+pub struct SHORTPACKETS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SHORTPACKETSW<'a> {
+impl<'a> SHORTPACKETS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +185,11 @@ impl<'a> _SHORTPACKETSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _NBUSYBKSW<'a> {
+#[doc = "Write proxy for field `NBUSYBKS`"]
+pub struct NBUSYBKS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NBUSYBKSW<'a> {
+impl<'a> NBUSYBKS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -226,55 +208,49 @@ impl<'a> _NBUSYBKSW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Transmitted IN Data Interrupt Set"]
     #[inline(always)]
-    pub fn txinis(&mut self) -> _TXINISW {
-        _TXINISW { w: self }
+    pub fn txinis(&mut self) -> TXINIS_W {
+        TXINIS_W { w: self }
     }
     #[doc = "Bit 1 - Received OUT Data Interrupt Set"]
     #[inline(always)]
-    pub fn rxoutis(&mut self) -> _RXOUTISW {
-        _RXOUTISW { w: self }
+    pub fn rxoutis(&mut self) -> RXOUTIS_W {
+        RXOUTIS_W { w: self }
     }
     #[doc = "Bit 2 - Received SETUP Interrupt Set"]
     #[inline(always)]
-    pub fn rxstpis(&mut self) -> _RXSTPISW {
-        _RXSTPISW { w: self }
+    pub fn rxstpis(&mut self) -> RXSTPIS_W {
+        RXSTPIS_W { w: self }
     }
     #[doc = "Bit 3 - NAKed OUT Interrupt Set"]
     #[inline(always)]
-    pub fn nakoutis(&mut self) -> _NAKOUTISW {
-        _NAKOUTISW { w: self }
+    pub fn nakoutis(&mut self) -> NAKOUTIS_W {
+        NAKOUTIS_W { w: self }
     }
     #[doc = "Bit 4 - NAKed IN Interrupt Set"]
     #[inline(always)]
-    pub fn nakinis(&mut self) -> _NAKINISW {
-        _NAKINISW { w: self }
+    pub fn nakinis(&mut self) -> NAKINIS_W {
+        NAKINIS_W { w: self }
     }
     #[doc = "Bit 5 - Overflow Interrupt Set"]
     #[inline(always)]
-    pub fn overfis(&mut self) -> _OVERFISW {
-        _OVERFISW { w: self }
+    pub fn overfis(&mut self) -> OVERFIS_W {
+        OVERFIS_W { w: self }
     }
     #[doc = "Bit 6 - STALLed Interrupt Set"]
     #[inline(always)]
-    pub fn stalledis(&mut self) -> _STALLEDISW {
-        _STALLEDISW { w: self }
+    pub fn stalledis(&mut self) -> STALLEDIS_W {
+        STALLEDIS_W { w: self }
     }
     #[doc = "Bit 7 - Short Packet Interrupt Set"]
     #[inline(always)]
-    pub fn shortpackets(&mut self) -> _SHORTPACKETSW {
-        _SHORTPACKETSW { w: self }
+    pub fn shortpackets(&mut self) -> SHORTPACKETS_W {
+        SHORTPACKETS_W { w: self }
     }
     #[doc = "Bit 12 - Number of Busy Banks Interrupt Set"]
     #[inline(always)]
-    pub fn nbusybks(&mut self) -> _NBUSYBKSW {
-        _NBUSYBKSW { w: self }
+    pub fn nbusybks(&mut self) -> NBUSYBKS_W {
+        NBUSYBKS_W { w: self }
     }
 }

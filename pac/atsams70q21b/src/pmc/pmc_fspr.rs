@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PMC_FSPR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register PMC_FSPR"]
+pub type R = crate::R<u32, super::PMC_FSPR>;
+#[doc = "Writer for register PMC_FSPR"]
+pub type W = crate::W<u32, super::PMC_FSPR>;
+#[doc = "Register PMC_FSPR `reset()`'s with value 0"]
+impl crate::ResetValue for super::PMC_FSPR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP0_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP0W<'a> {
+#[doc = "Reader of field `FSTP0`"]
+pub type FSTP0_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP0`"]
+pub struct FSTP0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP0W<'a> {
+impl<'a> FSTP0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _FSTP0W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP1_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP1W<'a> {
+#[doc = "Reader of field `FSTP1`"]
+pub type FSTP1_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP1`"]
+pub struct FSTP1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP1W<'a> {
+impl<'a> FSTP1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _FSTP1W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP2_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP2W<'a> {
+#[doc = "Reader of field `FSTP2`"]
+pub type FSTP2_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP2`"]
+pub struct FSTP2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP2W<'a> {
+impl<'a> FSTP2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -119,13 +82,13 @@ impl<'a> _FSTP2W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP3_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP3W<'a> {
+#[doc = "Reader of field `FSTP3`"]
+pub type FSTP3_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP3`"]
+pub struct FSTP3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP3W<'a> {
+impl<'a> FSTP3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -143,13 +106,13 @@ impl<'a> _FSTP3W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP4_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP4W<'a> {
+#[doc = "Reader of field `FSTP4`"]
+pub type FSTP4_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP4`"]
+pub struct FSTP4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP4W<'a> {
+impl<'a> FSTP4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -167,13 +130,13 @@ impl<'a> _FSTP4W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP5_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP5W<'a> {
+#[doc = "Reader of field `FSTP5`"]
+pub type FSTP5_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP5`"]
+pub struct FSTP5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP5W<'a> {
+impl<'a> FSTP5_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -191,13 +154,13 @@ impl<'a> _FSTP5W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP6_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP6W<'a> {
+#[doc = "Reader of field `FSTP6`"]
+pub type FSTP6_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP6`"]
+pub struct FSTP6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP6W<'a> {
+impl<'a> FSTP6_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -215,13 +178,13 @@ impl<'a> _FSTP6W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP7_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP7W<'a> {
+#[doc = "Reader of field `FSTP7`"]
+pub type FSTP7_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP7`"]
+pub struct FSTP7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP7W<'a> {
+impl<'a> FSTP7_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -239,13 +202,13 @@ impl<'a> _FSTP7W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP8_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP8W<'a> {
+#[doc = "Reader of field `FSTP8`"]
+pub type FSTP8_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP8`"]
+pub struct FSTP8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP8W<'a> {
+impl<'a> FSTP8_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -263,13 +226,13 @@ impl<'a> _FSTP8W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP9_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP9W<'a> {
+#[doc = "Reader of field `FSTP9`"]
+pub type FSTP9_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP9`"]
+pub struct FSTP9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP9W<'a> {
+impl<'a> FSTP9_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -287,13 +250,13 @@ impl<'a> _FSTP9W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP10_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP10W<'a> {
+#[doc = "Reader of field `FSTP10`"]
+pub type FSTP10_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP10`"]
+pub struct FSTP10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP10W<'a> {
+impl<'a> FSTP10_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -311,13 +274,13 @@ impl<'a> _FSTP10W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP11_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP11W<'a> {
+#[doc = "Reader of field `FSTP11`"]
+pub type FSTP11_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP11`"]
+pub struct FSTP11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP11W<'a> {
+impl<'a> FSTP11_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -335,13 +298,13 @@ impl<'a> _FSTP11W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP12_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP12W<'a> {
+#[doc = "Reader of field `FSTP12`"]
+pub type FSTP12_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP12`"]
+pub struct FSTP12_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP12W<'a> {
+impl<'a> FSTP12_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -359,13 +322,13 @@ impl<'a> _FSTP12W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP13_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP13W<'a> {
+#[doc = "Reader of field `FSTP13`"]
+pub type FSTP13_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP13`"]
+pub struct FSTP13_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP13W<'a> {
+impl<'a> FSTP13_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -383,13 +346,13 @@ impl<'a> _FSTP13W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP14_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP14W<'a> {
+#[doc = "Reader of field `FSTP14`"]
+pub type FSTP14_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP14`"]
+pub struct FSTP14_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP14W<'a> {
+impl<'a> FSTP14_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -407,13 +370,13 @@ impl<'a> _FSTP14W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FSTP15_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FSTP15W<'a> {
+#[doc = "Reader of field `FSTP15`"]
+pub type FSTP15_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FSTP15`"]
+pub struct FSTP15_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FSTP15W<'a> {
+impl<'a> FSTP15_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -432,177 +395,166 @@ impl<'a> _FSTP15W<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Fast Startup Input Polarity 0"]
     #[inline(always)]
     pub fn fstp0(&self) -> FSTP0_R {
-        FSTP0_R::new((self.bits() & 0x01) != 0)
+        FSTP0_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Fast Startup Input Polarity 1"]
     #[inline(always)]
     pub fn fstp1(&self) -> FSTP1_R {
-        FSTP1_R::new(((self.bits() >> 1) & 0x01) != 0)
+        FSTP1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Fast Startup Input Polarity 2"]
     #[inline(always)]
     pub fn fstp2(&self) -> FSTP2_R {
-        FSTP2_R::new(((self.bits() >> 2) & 0x01) != 0)
+        FSTP2_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Fast Startup Input Polarity 3"]
     #[inline(always)]
     pub fn fstp3(&self) -> FSTP3_R {
-        FSTP3_R::new(((self.bits() >> 3) & 0x01) != 0)
+        FSTP3_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Fast Startup Input Polarity 4"]
     #[inline(always)]
     pub fn fstp4(&self) -> FSTP4_R {
-        FSTP4_R::new(((self.bits() >> 4) & 0x01) != 0)
+        FSTP4_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Fast Startup Input Polarity 5"]
     #[inline(always)]
     pub fn fstp5(&self) -> FSTP5_R {
-        FSTP5_R::new(((self.bits() >> 5) & 0x01) != 0)
+        FSTP5_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Fast Startup Input Polarity 6"]
     #[inline(always)]
     pub fn fstp6(&self) -> FSTP6_R {
-        FSTP6_R::new(((self.bits() >> 6) & 0x01) != 0)
+        FSTP6_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Fast Startup Input Polarity 7"]
     #[inline(always)]
     pub fn fstp7(&self) -> FSTP7_R {
-        FSTP7_R::new(((self.bits() >> 7) & 0x01) != 0)
+        FSTP7_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bit 8 - Fast Startup Input Polarity 8"]
     #[inline(always)]
     pub fn fstp8(&self) -> FSTP8_R {
-        FSTP8_R::new(((self.bits() >> 8) & 0x01) != 0)
+        FSTP8_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Fast Startup Input Polarity 9"]
     #[inline(always)]
     pub fn fstp9(&self) -> FSTP9_R {
-        FSTP9_R::new(((self.bits() >> 9) & 0x01) != 0)
+        FSTP9_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Fast Startup Input Polarity 10"]
     #[inline(always)]
     pub fn fstp10(&self) -> FSTP10_R {
-        FSTP10_R::new(((self.bits() >> 10) & 0x01) != 0)
+        FSTP10_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Fast Startup Input Polarity 11"]
     #[inline(always)]
     pub fn fstp11(&self) -> FSTP11_R {
-        FSTP11_R::new(((self.bits() >> 11) & 0x01) != 0)
+        FSTP11_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - Fast Startup Input Polarity 12"]
     #[inline(always)]
     pub fn fstp12(&self) -> FSTP12_R {
-        FSTP12_R::new(((self.bits() >> 12) & 0x01) != 0)
+        FSTP12_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 13 - Fast Startup Input Polarity 13"]
     #[inline(always)]
     pub fn fstp13(&self) -> FSTP13_R {
-        FSTP13_R::new(((self.bits() >> 13) & 0x01) != 0)
+        FSTP13_R::new(((self.bits >> 13) & 0x01) != 0)
     }
     #[doc = "Bit 14 - Fast Startup Input Polarity 14"]
     #[inline(always)]
     pub fn fstp14(&self) -> FSTP14_R {
-        FSTP14_R::new(((self.bits() >> 14) & 0x01) != 0)
+        FSTP14_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 15 - Fast Startup Input Polarity 15"]
     #[inline(always)]
     pub fn fstp15(&self) -> FSTP15_R {
-        FSTP15_R::new(((self.bits() >> 15) & 0x01) != 0)
+        FSTP15_R::new(((self.bits >> 15) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Fast Startup Input Polarity 0"]
     #[inline(always)]
-    pub fn fstp0(&mut self) -> _FSTP0W {
-        _FSTP0W { w: self }
+    pub fn fstp0(&mut self) -> FSTP0_W {
+        FSTP0_W { w: self }
     }
     #[doc = "Bit 1 - Fast Startup Input Polarity 1"]
     #[inline(always)]
-    pub fn fstp1(&mut self) -> _FSTP1W {
-        _FSTP1W { w: self }
+    pub fn fstp1(&mut self) -> FSTP1_W {
+        FSTP1_W { w: self }
     }
     #[doc = "Bit 2 - Fast Startup Input Polarity 2"]
     #[inline(always)]
-    pub fn fstp2(&mut self) -> _FSTP2W {
-        _FSTP2W { w: self }
+    pub fn fstp2(&mut self) -> FSTP2_W {
+        FSTP2_W { w: self }
     }
     #[doc = "Bit 3 - Fast Startup Input Polarity 3"]
     #[inline(always)]
-    pub fn fstp3(&mut self) -> _FSTP3W {
-        _FSTP3W { w: self }
+    pub fn fstp3(&mut self) -> FSTP3_W {
+        FSTP3_W { w: self }
     }
     #[doc = "Bit 4 - Fast Startup Input Polarity 4"]
     #[inline(always)]
-    pub fn fstp4(&mut self) -> _FSTP4W {
-        _FSTP4W { w: self }
+    pub fn fstp4(&mut self) -> FSTP4_W {
+        FSTP4_W { w: self }
     }
     #[doc = "Bit 5 - Fast Startup Input Polarity 5"]
     #[inline(always)]
-    pub fn fstp5(&mut self) -> _FSTP5W {
-        _FSTP5W { w: self }
+    pub fn fstp5(&mut self) -> FSTP5_W {
+        FSTP5_W { w: self }
     }
     #[doc = "Bit 6 - Fast Startup Input Polarity 6"]
     #[inline(always)]
-    pub fn fstp6(&mut self) -> _FSTP6W {
-        _FSTP6W { w: self }
+    pub fn fstp6(&mut self) -> FSTP6_W {
+        FSTP6_W { w: self }
     }
     #[doc = "Bit 7 - Fast Startup Input Polarity 7"]
     #[inline(always)]
-    pub fn fstp7(&mut self) -> _FSTP7W {
-        _FSTP7W { w: self }
+    pub fn fstp7(&mut self) -> FSTP7_W {
+        FSTP7_W { w: self }
     }
     #[doc = "Bit 8 - Fast Startup Input Polarity 8"]
     #[inline(always)]
-    pub fn fstp8(&mut self) -> _FSTP8W {
-        _FSTP8W { w: self }
+    pub fn fstp8(&mut self) -> FSTP8_W {
+        FSTP8_W { w: self }
     }
     #[doc = "Bit 9 - Fast Startup Input Polarity 9"]
     #[inline(always)]
-    pub fn fstp9(&mut self) -> _FSTP9W {
-        _FSTP9W { w: self }
+    pub fn fstp9(&mut self) -> FSTP9_W {
+        FSTP9_W { w: self }
     }
     #[doc = "Bit 10 - Fast Startup Input Polarity 10"]
     #[inline(always)]
-    pub fn fstp10(&mut self) -> _FSTP10W {
-        _FSTP10W { w: self }
+    pub fn fstp10(&mut self) -> FSTP10_W {
+        FSTP10_W { w: self }
     }
     #[doc = "Bit 11 - Fast Startup Input Polarity 11"]
     #[inline(always)]
-    pub fn fstp11(&mut self) -> _FSTP11W {
-        _FSTP11W { w: self }
+    pub fn fstp11(&mut self) -> FSTP11_W {
+        FSTP11_W { w: self }
     }
     #[doc = "Bit 12 - Fast Startup Input Polarity 12"]
     #[inline(always)]
-    pub fn fstp12(&mut self) -> _FSTP12W {
-        _FSTP12W { w: self }
+    pub fn fstp12(&mut self) -> FSTP12_W {
+        FSTP12_W { w: self }
     }
     #[doc = "Bit 13 - Fast Startup Input Polarity 13"]
     #[inline(always)]
-    pub fn fstp13(&mut self) -> _FSTP13W {
-        _FSTP13W { w: self }
+    pub fn fstp13(&mut self) -> FSTP13_W {
+        FSTP13_W { w: self }
     }
     #[doc = "Bit 14 - Fast Startup Input Polarity 14"]
     #[inline(always)]
-    pub fn fstp14(&mut self) -> _FSTP14W {
-        _FSTP14W { w: self }
+    pub fn fstp14(&mut self) -> FSTP14_W {
+        FSTP14_W { w: self }
     }
     #[doc = "Bit 15 - Fast Startup Input Polarity 15"]
     #[inline(always)]
-    pub fn fstp15(&mut self) -> _FSTP15W {
-        _FSTP15W { w: self }
+    pub fn fstp15(&mut self) -> FSTP15_W {
+        FSTP15_W { w: self }
     }
 }

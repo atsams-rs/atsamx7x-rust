@@ -1,59 +1,23 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::USBHS_HSTPIPERR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register USBHS_HSTPIPERR[%s]"]
+pub type R = crate::R<u32, super::USBHS_HSTPIPERR>;
+#[doc = "Writer for register USBHS_HSTPIPERR[%s]"]
+pub type W = crate::W<u32, super::USBHS_HSTPIPERR>;
+#[doc = "Register USBHS_HSTPIPERR[%s]
+`reset()`'s with value 0"]
+impl crate::ResetValue for super::USBHS_HSTPIPERR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type DATATGL_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DATATGLW<'a> {
+#[doc = "Reader of field `DATATGL`"]
+pub type DATATGL_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DATATGL`"]
+pub struct DATATGL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DATATGLW<'a> {
+impl<'a> DATATGL_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +35,13 @@ impl<'a> _DATATGLW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DATAPID_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DATAPIDW<'a> {
+#[doc = "Reader of field `DATAPID`"]
+pub type DATAPID_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DATAPID`"]
+pub struct DATAPID_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DATAPIDW<'a> {
+impl<'a> DATAPID_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +59,13 @@ impl<'a> _DATAPIDW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PID_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _PIDW<'a> {
+#[doc = "Reader of field `PID`"]
+pub type PID_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PID`"]
+pub struct PID_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PIDW<'a> {
+impl<'a> PID_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -119,13 +83,13 @@ impl<'a> _PIDW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type TIMEOUT_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _TIMEOUTW<'a> {
+#[doc = "Reader of field `TIMEOUT`"]
+pub type TIMEOUT_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `TIMEOUT`"]
+pub struct TIMEOUT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIMEOUTW<'a> {
+impl<'a> TIMEOUT_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -143,13 +107,13 @@ impl<'a> _TIMEOUTW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CRC16_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CRC16W<'a> {
+#[doc = "Reader of field `CRC16`"]
+pub type CRC16_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CRC16`"]
+pub struct CRC16_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CRC16W<'a> {
+impl<'a> CRC16_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -167,13 +131,13 @@ impl<'a> _CRC16W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type COUNTER_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _COUNTERW<'a> {
+#[doc = "Reader of field `COUNTER`"]
+pub type COUNTER_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `COUNTER`"]
+pub struct COUNTER_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _COUNTERW<'a> {
+impl<'a> COUNTER_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -182,77 +146,66 @@ impl<'a> _COUNTERW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Data Toggle Error"]
     #[inline(always)]
     pub fn datatgl(&self) -> DATATGL_R {
-        DATATGL_R::new((self.bits() & 0x01) != 0)
+        DATATGL_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Data PID Error"]
     #[inline(always)]
     pub fn datapid(&self) -> DATAPID_R {
-        DATAPID_R::new(((self.bits() >> 1) & 0x01) != 0)
+        DATAPID_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Data PID Error"]
     #[inline(always)]
     pub fn pid(&self) -> PID_R {
-        PID_R::new(((self.bits() >> 2) & 0x01) != 0)
+        PID_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Time-Out Error"]
     #[inline(always)]
     pub fn timeout(&self) -> TIMEOUT_R {
-        TIMEOUT_R::new(((self.bits() >> 3) & 0x01) != 0)
+        TIMEOUT_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - CRC16 Error"]
     #[inline(always)]
     pub fn crc16(&self) -> CRC16_R {
-        CRC16_R::new(((self.bits() >> 4) & 0x01) != 0)
+        CRC16_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bits 5:6 - Error Counter"]
     #[inline(always)]
     pub fn counter(&self) -> COUNTER_R {
-        COUNTER_R::new(((self.bits() >> 5) & 0x03) as u8)
+        COUNTER_R::new(((self.bits >> 5) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Data Toggle Error"]
     #[inline(always)]
-    pub fn datatgl(&mut self) -> _DATATGLW {
-        _DATATGLW { w: self }
+    pub fn datatgl(&mut self) -> DATATGL_W {
+        DATATGL_W { w: self }
     }
     #[doc = "Bit 1 - Data PID Error"]
     #[inline(always)]
-    pub fn datapid(&mut self) -> _DATAPIDW {
-        _DATAPIDW { w: self }
+    pub fn datapid(&mut self) -> DATAPID_W {
+        DATAPID_W { w: self }
     }
     #[doc = "Bit 2 - Data PID Error"]
     #[inline(always)]
-    pub fn pid(&mut self) -> _PIDW {
-        _PIDW { w: self }
+    pub fn pid(&mut self) -> PID_W {
+        PID_W { w: self }
     }
     #[doc = "Bit 3 - Time-Out Error"]
     #[inline(always)]
-    pub fn timeout(&mut self) -> _TIMEOUTW {
-        _TIMEOUTW { w: self }
+    pub fn timeout(&mut self) -> TIMEOUT_W {
+        TIMEOUT_W { w: self }
     }
     #[doc = "Bit 4 - CRC16 Error"]
     #[inline(always)]
-    pub fn crc16(&mut self) -> _CRC16W {
-        _CRC16W { w: self }
+    pub fn crc16(&mut self) -> CRC16_W {
+        CRC16_W { w: self }
     }
     #[doc = "Bits 5:6 - Error Counter"]
     #[inline(always)]
-    pub fn counter(&mut self) -> _COUNTERW {
-        _COUNTERW { w: self }
+    pub fn counter(&mut self) -> COUNTER_W {
+        COUNTER_W { w: self }
     }
 }

@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::EEFC_FMR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register EEFC_FMR"]
+pub type R = crate::R<u32, super::EEFC_FMR>;
+#[doc = "Writer for register EEFC_FMR"]
+pub type W = crate::W<u32, super::EEFC_FMR>;
+#[doc = "Register EEFC_FMR `reset()`'s with value 0"]
+impl crate::ResetValue for super::EEFC_FMR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type FRDY_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FRDYW<'a> {
+#[doc = "Reader of field `FRDY`"]
+pub type FRDY_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FRDY`"]
+pub struct FRDY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FRDYW<'a> {
+impl<'a> FRDY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _FRDYW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FWS_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _FWSW<'a> {
+#[doc = "Reader of field `FWS`"]
+pub type FWS_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FWS`"]
+pub struct FWS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FWSW<'a> {
+impl<'a> FWS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -85,13 +48,13 @@ impl<'a> _FWSW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type SCOD_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _SCODW<'a> {
+#[doc = "Reader of field `SCOD`"]
+pub type SCOD_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SCOD`"]
+pub struct SCOD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SCODW<'a> {
+impl<'a> SCOD_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -109,13 +72,13 @@ impl<'a> _SCODW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CLOE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CLOEW<'a> {
+#[doc = "Reader of field `CLOE`"]
+pub type CLOE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CLOE`"]
+pub struct CLOE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CLOEW<'a> {
+impl<'a> CLOE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -134,57 +97,46 @@ impl<'a> _CLOEW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Flash Ready Interrupt Enable"]
     #[inline(always)]
     pub fn frdy(&self) -> FRDY_R {
-        FRDY_R::new((self.bits() & 0x01) != 0)
+        FRDY_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bits 8:11 - Flash Wait State"]
     #[inline(always)]
     pub fn fws(&self) -> FWS_R {
-        FWS_R::new(((self.bits() >> 8) & 0x0f) as u8)
+        FWS_R::new(((self.bits >> 8) & 0x0f) as u8)
     }
     #[doc = "Bit 16 - Sequential Code Optimization Disable"]
     #[inline(always)]
     pub fn scod(&self) -> SCOD_R {
-        SCOD_R::new(((self.bits() >> 16) & 0x01) != 0)
+        SCOD_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 26 - Code Loop Optimization Enable"]
     #[inline(always)]
     pub fn cloe(&self) -> CLOE_R {
-        CLOE_R::new(((self.bits() >> 26) & 0x01) != 0)
+        CLOE_R::new(((self.bits >> 26) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Flash Ready Interrupt Enable"]
     #[inline(always)]
-    pub fn frdy(&mut self) -> _FRDYW {
-        _FRDYW { w: self }
+    pub fn frdy(&mut self) -> FRDY_W {
+        FRDY_W { w: self }
     }
     #[doc = "Bits 8:11 - Flash Wait State"]
     #[inline(always)]
-    pub fn fws(&mut self) -> _FWSW {
-        _FWSW { w: self }
+    pub fn fws(&mut self) -> FWS_W {
+        FWS_W { w: self }
     }
     #[doc = "Bit 16 - Sequential Code Optimization Disable"]
     #[inline(always)]
-    pub fn scod(&mut self) -> _SCODW {
-        _SCODW { w: self }
+    pub fn scod(&mut self) -> SCOD_W {
+        SCOD_W { w: self }
     }
     #[doc = "Bit 26 - Code Loop Optimization Enable"]
     #[inline(always)]
-    pub fn cloe(&mut self) -> _CLOEW {
-        _CLOEW { w: self }
+    pub fn cloe(&mut self) -> CLOE_W {
+        CLOE_W { w: self }
     }
 }

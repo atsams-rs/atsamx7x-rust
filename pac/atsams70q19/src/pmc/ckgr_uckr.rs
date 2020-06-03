@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CKGR_UCKR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register CKGR_UCKR"]
+pub type R = crate::R<u32, super::CKGR_UCKR>;
+#[doc = "Writer for register CKGR_UCKR"]
+pub type W = crate::W<u32, super::CKGR_UCKR>;
+#[doc = "Register CKGR_UCKR `reset()`'s with value 0"]
+impl crate::ResetValue for super::CKGR_UCKR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type UPLLEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _UPLLENW<'a> {
+#[doc = "Reader of field `UPLLEN`"]
+pub type UPLLEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `UPLLEN`"]
+pub struct UPLLEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UPLLENW<'a> {
+impl<'a> UPLLEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _UPLLENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type UPLLCOUNT_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _UPLLCOUNTW<'a> {
+#[doc = "Reader of field `UPLLCOUNT`"]
+pub type UPLLCOUNT_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `UPLLCOUNT`"]
+pub struct UPLLCOUNT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UPLLCOUNTW<'a> {
+impl<'a> UPLLCOUNT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -86,37 +49,26 @@ impl<'a> _UPLLCOUNTW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 16 - UTMI PLL Enable"]
     #[inline(always)]
     pub fn upllen(&self) -> UPLLEN_R {
-        UPLLEN_R::new(((self.bits() >> 16) & 0x01) != 0)
+        UPLLEN_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bits 20:23 - UTMI PLL Start-up Time"]
     #[inline(always)]
     pub fn upllcount(&self) -> UPLLCOUNT_R {
-        UPLLCOUNT_R::new(((self.bits() >> 20) & 0x0f) as u8)
+        UPLLCOUNT_R::new(((self.bits >> 20) & 0x0f) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 16 - UTMI PLL Enable"]
     #[inline(always)]
-    pub fn upllen(&mut self) -> _UPLLENW {
-        _UPLLENW { w: self }
+    pub fn upllen(&mut self) -> UPLLEN_W {
+        UPLLEN_W { w: self }
     }
     #[doc = "Bits 20:23 - UTMI PLL Start-up Time"]
     #[inline(always)]
-    pub fn upllcount(&mut self) -> _UPLLCOUNTW {
-        _UPLLCOUNTW { w: self }
+    pub fn upllcount(&mut self) -> UPLLCOUNT_W {
+        UPLLCOUNT_W { w: self }
     }
 }

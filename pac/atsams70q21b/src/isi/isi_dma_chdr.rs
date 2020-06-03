@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::ISI_DMA_CHDR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register ISI_DMA_CHDR"]
+pub type W = crate::W<u32, super::ISI_DMA_CHDR>;
+#[doc = "Register ISI_DMA_CHDR `reset()`'s with value 0"]
+impl crate::ResetValue for super::ISI_DMA_CHDR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _P_CH_DISW<'a> {
+#[doc = "Write proxy for field `P_CH_DIS`"]
+pub struct P_CH_DIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _P_CH_DISW<'a> {
+impl<'a> P_CH_DIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _P_CH_DISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _C_CH_DISW<'a> {
+#[doc = "Write proxy for field `C_CH_DIS`"]
+pub struct C_CH_DIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _C_CH_DISW<'a> {
+impl<'a> C_CH_DIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -72,20 +53,14 @@ impl<'a> _C_CH_DISW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Preview Channel Disable Request"]
     #[inline(always)]
-    pub fn p_ch_dis(&mut self) -> _P_CH_DISW {
-        _P_CH_DISW { w: self }
+    pub fn p_ch_dis(&mut self) -> P_CH_DIS_W {
+        P_CH_DIS_W { w: self }
     }
     #[doc = "Bit 1 - Codec Channel Disable Request"]
     #[inline(always)]
-    pub fn c_ch_dis(&mut self) -> _C_CH_DISW {
-        _C_CH_DISW { w: self }
+    pub fn c_ch_dis(&mut self) -> C_CH_DIS_W {
+        C_CH_DIS_W { w: self }
     }
 }

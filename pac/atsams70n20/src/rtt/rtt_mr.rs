@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::RTT_MR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register RTT_MR"]
+pub type R = crate::R<u32, super::RTT_MR>;
+#[doc = "Writer for register RTT_MR"]
+pub type W = crate::W<u32, super::RTT_MR>;
+#[doc = "Register RTT_MR `reset()`'s with value 0"]
+impl crate::ResetValue for super::RTT_MR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type RTPRES_R = crate::FR<u16, u16>;
-#[doc = r"Proxy"]
-pub struct _RTPRESW<'a> {
+#[doc = "Reader of field `RTPRES`"]
+pub type RTPRES_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `RTPRES`"]
+pub struct RTPRES_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RTPRESW<'a> {
+impl<'a> RTPRES_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _RTPRESW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ALMIEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ALMIENW<'a> {
+#[doc = "Reader of field `ALMIEN`"]
+pub type ALMIEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ALMIEN`"]
+pub struct ALMIEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ALMIENW<'a> {
+impl<'a> ALMIEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -85,13 +48,13 @@ impl<'a> _ALMIENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type RTTINCIEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _RTTINCIENW<'a> {
+#[doc = "Reader of field `RTTINCIEN`"]
+pub type RTTINCIEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RTTINCIEN`"]
+pub struct RTTINCIEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RTTINCIENW<'a> {
+impl<'a> RTTINCIEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -109,13 +72,13 @@ impl<'a> _RTTINCIENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type RTTRST_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _RTTRSTW<'a> {
+#[doc = "Reader of field `RTTRST`"]
+pub type RTTRST_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RTTRST`"]
+pub struct RTTRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RTTRSTW<'a> {
+impl<'a> RTTRST_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -133,13 +96,13 @@ impl<'a> _RTTRSTW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type RTTDIS_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _RTTDISW<'a> {
+#[doc = "Reader of field `RTTDIS`"]
+pub type RTTDIS_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RTTDIS`"]
+pub struct RTTDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RTTDISW<'a> {
+impl<'a> RTTDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -157,13 +120,13 @@ impl<'a> _RTTDISW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type RTC1HZ_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _RTC1HZW<'a> {
+#[doc = "Reader of field `RTC1HZ`"]
+pub type RTC1HZ_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RTC1HZ`"]
+pub struct RTC1HZ_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RTC1HZW<'a> {
+impl<'a> RTC1HZ_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -182,77 +145,66 @@ impl<'a> _RTC1HZW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:15 - Real-time Timer Prescaler Value"]
     #[inline(always)]
     pub fn rtpres(&self) -> RTPRES_R {
-        RTPRES_R::new((self.bits() & 0xffff) as u16)
+        RTPRES_R::new((self.bits & 0xffff) as u16)
     }
     #[doc = "Bit 16 - Alarm Interrupt Enable"]
     #[inline(always)]
     pub fn almien(&self) -> ALMIEN_R {
-        ALMIEN_R::new(((self.bits() >> 16) & 0x01) != 0)
+        ALMIEN_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - Real-time Timer Increment Interrupt Enable"]
     #[inline(always)]
     pub fn rttincien(&self) -> RTTINCIEN_R {
-        RTTINCIEN_R::new(((self.bits() >> 17) & 0x01) != 0)
+        RTTINCIEN_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - Real-time Timer Restart"]
     #[inline(always)]
     pub fn rttrst(&self) -> RTTRST_R {
-        RTTRST_R::new(((self.bits() >> 18) & 0x01) != 0)
+        RTTRST_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 20 - Real-time Timer Disable"]
     #[inline(always)]
     pub fn rttdis(&self) -> RTTDIS_R {
-        RTTDIS_R::new(((self.bits() >> 20) & 0x01) != 0)
+        RTTDIS_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bit 24 - Real-Time Clock 1Hz Clock Selection"]
     #[inline(always)]
     pub fn rtc1hz(&self) -> RTC1HZ_R {
-        RTC1HZ_R::new(((self.bits() >> 24) & 0x01) != 0)
+        RTC1HZ_R::new(((self.bits >> 24) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:15 - Real-time Timer Prescaler Value"]
     #[inline(always)]
-    pub fn rtpres(&mut self) -> _RTPRESW {
-        _RTPRESW { w: self }
+    pub fn rtpres(&mut self) -> RTPRES_W {
+        RTPRES_W { w: self }
     }
     #[doc = "Bit 16 - Alarm Interrupt Enable"]
     #[inline(always)]
-    pub fn almien(&mut self) -> _ALMIENW {
-        _ALMIENW { w: self }
+    pub fn almien(&mut self) -> ALMIEN_W {
+        ALMIEN_W { w: self }
     }
     #[doc = "Bit 17 - Real-time Timer Increment Interrupt Enable"]
     #[inline(always)]
-    pub fn rttincien(&mut self) -> _RTTINCIENW {
-        _RTTINCIENW { w: self }
+    pub fn rttincien(&mut self) -> RTTINCIEN_W {
+        RTTINCIEN_W { w: self }
     }
     #[doc = "Bit 18 - Real-time Timer Restart"]
     #[inline(always)]
-    pub fn rttrst(&mut self) -> _RTTRSTW {
-        _RTTRSTW { w: self }
+    pub fn rttrst(&mut self) -> RTTRST_W {
+        RTTRST_W { w: self }
     }
     #[doc = "Bit 20 - Real-time Timer Disable"]
     #[inline(always)]
-    pub fn rttdis(&mut self) -> _RTTDISW {
-        _RTTDISW { w: self }
+    pub fn rttdis(&mut self) -> RTTDIS_W {
+        RTTDIS_W { w: self }
     }
     #[doc = "Bit 24 - Real-Time Clock 1Hz Clock Selection"]
     #[inline(always)]
-    pub fn rtc1hz(&mut self) -> _RTC1HZW {
-        _RTC1HZW { w: self }
+    pub fn rtc1hz(&mut self) -> RTC1HZ_W {
+        RTC1HZ_W { w: self }
     }
 }

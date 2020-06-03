@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::ISI_DMA_CHER {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register ISI_DMA_CHER"]
+pub type W = crate::W<u32, super::ISI_DMA_CHER>;
+#[doc = "Register ISI_DMA_CHER `reset()`'s with value 0"]
+impl crate::ResetValue for super::ISI_DMA_CHER {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _P_CH_ENW<'a> {
+#[doc = "Write proxy for field `P_CH_EN`"]
+pub struct P_CH_EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _P_CH_ENW<'a> {
+impl<'a> P_CH_EN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _P_CH_ENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _C_CH_ENW<'a> {
+#[doc = "Write proxy for field `C_CH_EN`"]
+pub struct C_CH_EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _C_CH_ENW<'a> {
+impl<'a> C_CH_EN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -72,20 +53,14 @@ impl<'a> _C_CH_ENW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Preview Channel Enable"]
     #[inline(always)]
-    pub fn p_ch_en(&mut self) -> _P_CH_ENW {
-        _P_CH_ENW { w: self }
+    pub fn p_ch_en(&mut self) -> P_CH_EN_W {
+        P_CH_EN_W { w: self }
     }
     #[doc = "Bit 1 - Codec Channel Enable"]
     #[inline(always)]
-    pub fn c_ch_en(&mut self) -> _C_CH_ENW {
-        _C_CH_ENW { w: self }
+    pub fn c_ch_en(&mut self) -> C_CH_EN_W {
+        C_CH_EN_W { w: self }
     }
 }

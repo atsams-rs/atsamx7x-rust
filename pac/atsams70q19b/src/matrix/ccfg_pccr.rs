@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CCFG_PCCR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register CCFG_PCCR"]
+pub type R = crate::R<u32, super::CCFG_PCCR>;
+#[doc = "Writer for register CCFG_PCCR"]
+pub type W = crate::W<u32, super::CCFG_PCCR>;
+#[doc = "Register CCFG_PCCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::CCFG_PCCR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type TC0CC_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _TC0CCW<'a> {
+#[doc = "Reader of field `TC0CC`"]
+pub type TC0CC_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `TC0CC`"]
+pub struct TC0CC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TC0CCW<'a> {
+impl<'a> TC0CC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _TC0CCW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type I2SC0CC_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _I2SC0CCW<'a> {
+#[doc = "Reader of field `I2SC0CC`"]
+pub type I2SC0CC_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `I2SC0CC`"]
+pub struct I2SC0CC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _I2SC0CCW<'a> {
+impl<'a> I2SC0CC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _I2SC0CCW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type I2SC1CC_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _I2SC1CCW<'a> {
+#[doc = "Reader of field `I2SC1CC`"]
+pub type I2SC1CC_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `I2SC1CC`"]
+pub struct I2SC1CC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _I2SC1CCW<'a> {
+impl<'a> I2SC1CC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -120,47 +83,36 @@ impl<'a> _I2SC1CCW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 20 - TC0 Clock Configuration"]
     #[inline(always)]
     pub fn tc0cc(&self) -> TC0CC_R {
-        TC0CC_R::new(((self.bits() >> 20) & 0x01) != 0)
+        TC0CC_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bit 21 - I2SC0 Clock Configuration"]
     #[inline(always)]
     pub fn i2sc0cc(&self) -> I2SC0CC_R {
-        I2SC0CC_R::new(((self.bits() >> 21) & 0x01) != 0)
+        I2SC0CC_R::new(((self.bits >> 21) & 0x01) != 0)
     }
     #[doc = "Bit 22 - I2SC1 Clock Configuration"]
     #[inline(always)]
     pub fn i2sc1cc(&self) -> I2SC1CC_R {
-        I2SC1CC_R::new(((self.bits() >> 22) & 0x01) != 0)
+        I2SC1CC_R::new(((self.bits >> 22) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 20 - TC0 Clock Configuration"]
     #[inline(always)]
-    pub fn tc0cc(&mut self) -> _TC0CCW {
-        _TC0CCW { w: self }
+    pub fn tc0cc(&mut self) -> TC0CC_W {
+        TC0CC_W { w: self }
     }
     #[doc = "Bit 21 - I2SC0 Clock Configuration"]
     #[inline(always)]
-    pub fn i2sc0cc(&mut self) -> _I2SC0CCW {
-        _I2SC0CCW { w: self }
+    pub fn i2sc0cc(&mut self) -> I2SC0CC_W {
+        I2SC0CC_W { w: self }
     }
     #[doc = "Bit 22 - I2SC1 Clock Configuration"]
     #[inline(always)]
-    pub fn i2sc1cc(&mut self) -> _I2SC1CCW {
-        _I2SC1CCW { w: self }
+    pub fn i2sc1cc(&mut self) -> I2SC1CC_W {
+        I2SC1CC_W { w: self }
     }
 }

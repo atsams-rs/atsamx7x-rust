@@ -1,123 +1,72 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::QSPI_SMR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register QSPI_SMR"]
+pub type R = crate::R<u32, super::QSPI_SMR>;
+#[doc = "Writer for register QSPI_SMR"]
+pub type W = crate::W<u32, super::QSPI_SMR>;
+#[doc = "Register QSPI_SMR `reset()`'s with value 0"]
+impl crate::ResetValue for super::QSPI_SMR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "Scrambling/Unscrambling Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SCREN_A {
+    #[doc = "0: The scrambling/unscrambling is disabled."]
+    DISABLED = 0,
+    #[doc = "1: The scrambling/unscrambling is enabled."]
+    ENABLED = 1,
+}
+impl From<SCREN_A> for bool {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: SCREN_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = "Possible values of the field `SCREN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SCRENR {
-    #[doc = "The scrambling/unscrambling is disabled."]
-    DISABLED,
-    #[doc = "The scrambling/unscrambling is enabled."]
-    ENABLED,
-}
-impl crate::ToBits<bool> for SCRENR {
+#[doc = "Reader of field `SCREN`"]
+pub type SCREN_R = crate::R<bool, SCREN_A>;
+impl SCREN_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            SCRENR::DISABLED => false,
-            SCRENR::ENABLED => true,
+    pub fn variant(&self) -> SCREN_A {
+        match self.bits {
+            false => SCREN_A::DISABLED,
+            true => SCREN_A::ENABLED,
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type SCREN_R = crate::FR<bool, SCRENR>;
-impl SCREN_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == SCRENR::DISABLED
+        *self == SCREN_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == SCRENR::ENABLED
+        *self == SCREN_A::ENABLED
     }
 }
-#[doc = "Values that can be written to the field `SCREN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SCRENW {
-    #[doc = "The scrambling/unscrambling is disabled."]
-    DISABLED,
-    #[doc = "The scrambling/unscrambling is enabled."]
-    ENABLED,
-}
-impl SCRENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SCRENW::DISABLED => false,
-            SCRENW::ENABLED => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _SCRENW<'a> {
+#[doc = "Write proxy for field `SCREN`"]
+pub struct SCREN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SCRENW<'a> {
+impl<'a> SCREN_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: SCRENW) -> &'a mut W {
+    pub fn variant(self, variant: SCREN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "The scrambling/unscrambling is disabled."]
     #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(SCRENW::DISABLED)
+        self.variant(SCREN_A::DISABLED)
     }
     #[doc = "The scrambling/unscrambling is enabled."]
     #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(SCRENW::ENABLED)
+        self.variant(SCREN_A::ENABLED)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -136,13 +85,13 @@ impl<'a> _SCRENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type RVDIS_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _RVDISW<'a> {
+#[doc = "Reader of field `RVDIS`"]
+pub type RVDIS_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RVDIS`"]
+pub struct RVDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RVDISW<'a> {
+impl<'a> RVDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -161,37 +110,26 @@ impl<'a> _RVDISW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Scrambling/Unscrambling Enable"]
     #[inline(always)]
     pub fn scren(&self) -> SCREN_R {
-        SCREN_R::new((self.bits() & 0x01) != 0)
+        SCREN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Scrambling/Unscrambling Random Value Disable"]
     #[inline(always)]
     pub fn rvdis(&self) -> RVDIS_R {
-        RVDIS_R::new(((self.bits() >> 1) & 0x01) != 0)
+        RVDIS_R::new(((self.bits >> 1) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Scrambling/Unscrambling Enable"]
     #[inline(always)]
-    pub fn scren(&mut self) -> _SCRENW {
-        _SCRENW { w: self }
+    pub fn scren(&mut self) -> SCREN_W {
+        SCREN_W { w: self }
     }
     #[doc = "Bit 1 - Scrambling/Unscrambling Random Value Disable"]
     #[inline(always)]
-    pub fn rvdis(&mut self) -> _RVDISW {
-        _RVDISW { w: self }
+    pub fn rvdis(&mut self) -> RVDIS_W {
+        RVDIS_W { w: self }
     }
 }

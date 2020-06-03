@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::USBHS_HSTFNUM {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register USBHS_HSTFNUM"]
+pub type R = crate::R<u32, super::USBHS_HSTFNUM>;
+#[doc = "Writer for register USBHS_HSTFNUM"]
+pub type W = crate::W<u32, super::USBHS_HSTFNUM>;
+#[doc = "Register USBHS_HSTFNUM `reset()`'s with value 0"]
+impl crate::ResetValue for super::USBHS_HSTFNUM {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type MFNUM_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _MFNUMW<'a> {
+#[doc = "Reader of field `MFNUM`"]
+pub type MFNUM_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `MFNUM`"]
+pub struct MFNUM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MFNUMW<'a> {
+impl<'a> MFNUM_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _MFNUMW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FNUM_R = crate::FR<u16, u16>;
-#[doc = r"Proxy"]
-pub struct _FNUMW<'a> {
+#[doc = "Reader of field `FNUM`"]
+pub type FNUM_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `FNUM`"]
+pub struct FNUM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FNUMW<'a> {
+impl<'a> FNUM_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
@@ -75,13 +38,13 @@ impl<'a> _FNUMW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FLENHIGH_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _FLENHIGHW<'a> {
+#[doc = "Reader of field `FLENHIGH`"]
+pub type FLENHIGH_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FLENHIGH`"]
+pub struct FLENHIGH_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FLENHIGHW<'a> {
+impl<'a> FLENHIGH_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -90,47 +53,36 @@ impl<'a> _FLENHIGHW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:2 - Micro Frame Number"]
     #[inline(always)]
     pub fn mfnum(&self) -> MFNUM_R {
-        MFNUM_R::new((self.bits() & 0x07) as u8)
+        MFNUM_R::new((self.bits & 0x07) as u8)
     }
     #[doc = "Bits 3:13 - Frame Number"]
     #[inline(always)]
     pub fn fnum(&self) -> FNUM_R {
-        FNUM_R::new(((self.bits() >> 3) & 0x07ff) as u16)
+        FNUM_R::new(((self.bits >> 3) & 0x07ff) as u16)
     }
     #[doc = "Bits 16:23 - Frame Length"]
     #[inline(always)]
     pub fn flenhigh(&self) -> FLENHIGH_R {
-        FLENHIGH_R::new(((self.bits() >> 16) & 0xff) as u8)
+        FLENHIGH_R::new(((self.bits >> 16) & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:2 - Micro Frame Number"]
     #[inline(always)]
-    pub fn mfnum(&mut self) -> _MFNUMW {
-        _MFNUMW { w: self }
+    pub fn mfnum(&mut self) -> MFNUM_W {
+        MFNUM_W { w: self }
     }
     #[doc = "Bits 3:13 - Frame Number"]
     #[inline(always)]
-    pub fn fnum(&mut self) -> _FNUMW {
-        _FNUMW { w: self }
+    pub fn fnum(&mut self) -> FNUM_W {
+        FNUM_W { w: self }
     }
     #[doc = "Bits 16:23 - Frame Length"]
     #[inline(always)]
-    pub fn flenhigh(&mut self) -> _FLENHIGHW {
-        _FLENHIGHW { w: self }
+    pub fn flenhigh(&mut self) -> FLENHIGH_W {
+        FLENHIGH_W { w: self }
     }
 }

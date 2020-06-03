@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TC_IDR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register TC_IDR"]
+pub type W = crate::W<u32, super::TC_IDR>;
+#[doc = "Register TC_IDR `reset()`'s with value 0"]
+impl crate::ResetValue for super::TC_IDR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _COVFSW<'a> {
+#[doc = "Write proxy for field `COVFS`"]
+pub struct COVFS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _COVFSW<'a> {
+impl<'a> COVFS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _COVFSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LOVRSW<'a> {
+#[doc = "Write proxy for field `LOVRS`"]
+pub struct LOVRS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LOVRSW<'a> {
+impl<'a> LOVRS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _LOVRSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CPASW<'a> {
+#[doc = "Write proxy for field `CPAS`"]
+pub struct CPAS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CPASW<'a> {
+impl<'a> CPAS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _CPASW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CPBSW<'a> {
+#[doc = "Write proxy for field `CPBS`"]
+pub struct CPBS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CPBSW<'a> {
+impl<'a> CPBS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _CPBSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CPCSW<'a> {
+#[doc = "Write proxy for field `CPCS`"]
+pub struct CPCS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CPCSW<'a> {
+impl<'a> CPCS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _CPCSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LDRASW<'a> {
+#[doc = "Write proxy for field `LDRAS`"]
+pub struct LDRAS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LDRASW<'a> {
+impl<'a> LDRAS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _LDRASW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LDRBSW<'a> {
+#[doc = "Write proxy for field `LDRBS`"]
+pub struct LDRBS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LDRBSW<'a> {
+impl<'a> LDRBS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _LDRBSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ETRGSW<'a> {
+#[doc = "Write proxy for field `ETRGS`"]
+pub struct ETRGS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ETRGSW<'a> {
+impl<'a> ETRGS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -204,50 +185,44 @@ impl<'a> _ETRGSW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Counter Overflow"]
     #[inline(always)]
-    pub fn covfs(&mut self) -> _COVFSW {
-        _COVFSW { w: self }
+    pub fn covfs(&mut self) -> COVFS_W {
+        COVFS_W { w: self }
     }
     #[doc = "Bit 1 - Load Overrun"]
     #[inline(always)]
-    pub fn lovrs(&mut self) -> _LOVRSW {
-        _LOVRSW { w: self }
+    pub fn lovrs(&mut self) -> LOVRS_W {
+        LOVRS_W { w: self }
     }
     #[doc = "Bit 2 - RA Compare"]
     #[inline(always)]
-    pub fn cpas(&mut self) -> _CPASW {
-        _CPASW { w: self }
+    pub fn cpas(&mut self) -> CPAS_W {
+        CPAS_W { w: self }
     }
     #[doc = "Bit 3 - RB Compare"]
     #[inline(always)]
-    pub fn cpbs(&mut self) -> _CPBSW {
-        _CPBSW { w: self }
+    pub fn cpbs(&mut self) -> CPBS_W {
+        CPBS_W { w: self }
     }
     #[doc = "Bit 4 - RC Compare"]
     #[inline(always)]
-    pub fn cpcs(&mut self) -> _CPCSW {
-        _CPCSW { w: self }
+    pub fn cpcs(&mut self) -> CPCS_W {
+        CPCS_W { w: self }
     }
     #[doc = "Bit 5 - RA Loading"]
     #[inline(always)]
-    pub fn ldras(&mut self) -> _LDRASW {
-        _LDRASW { w: self }
+    pub fn ldras(&mut self) -> LDRAS_W {
+        LDRAS_W { w: self }
     }
     #[doc = "Bit 6 - RB Loading"]
     #[inline(always)]
-    pub fn ldrbs(&mut self) -> _LDRBSW {
-        _LDRBSW { w: self }
+    pub fn ldrbs(&mut self) -> LDRBS_W {
+        LDRBS_W { w: self }
     }
     #[doc = "Bit 7 - External Trigger"]
     #[inline(always)]
-    pub fn etrgs(&mut self) -> _ETRGSW {
-        _ETRGSW { w: self }
+    pub fn etrgs(&mut self) -> ETRGS_W {
+        ETRGS_W { w: self }
     }
 }

@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PMC_SCER {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register PMC_SCER"]
+pub type W = crate::W<u32, super::PMC_SCER>;
+#[doc = "Register PMC_SCER `reset()`'s with value 0"]
+impl crate::ResetValue for super::PMC_SCER {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _USBCLKW<'a> {
+#[doc = "Write proxy for field `USBCLK`"]
+pub struct USBCLK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USBCLKW<'a> {
+impl<'a> USBCLK_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _USBCLKW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PCK0W<'a> {
+#[doc = "Write proxy for field `PCK0`"]
+pub struct PCK0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PCK0W<'a> {
+impl<'a> PCK0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _PCK0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PCK1W<'a> {
+#[doc = "Write proxy for field `PCK1`"]
+pub struct PCK1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PCK1W<'a> {
+impl<'a> PCK1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _PCK1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PCK2W<'a> {
+#[doc = "Write proxy for field `PCK2`"]
+pub struct PCK2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PCK2W<'a> {
+impl<'a> PCK2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _PCK2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PCK3W<'a> {
+#[doc = "Write proxy for field `PCK3`"]
+pub struct PCK3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PCK3W<'a> {
+impl<'a> PCK3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _PCK3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PCK4W<'a> {
+#[doc = "Write proxy for field `PCK4`"]
+pub struct PCK4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PCK4W<'a> {
+impl<'a> PCK4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _PCK4W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PCK5W<'a> {
+#[doc = "Write proxy for field `PCK5`"]
+pub struct PCK5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PCK5W<'a> {
+impl<'a> PCK5_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _PCK5W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PCK6W<'a> {
+#[doc = "Write proxy for field `PCK6`"]
+pub struct PCK6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PCK6W<'a> {
+impl<'a> PCK6_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -204,50 +185,44 @@ impl<'a> _PCK6W<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 5 - Enable USB FS Clock"]
     #[inline(always)]
-    pub fn usbclk(&mut self) -> _USBCLKW {
-        _USBCLKW { w: self }
+    pub fn usbclk(&mut self) -> USBCLK_W {
+        USBCLK_W { w: self }
     }
     #[doc = "Bit 8 - Programmable Clock 0 Output Enable"]
     #[inline(always)]
-    pub fn pck0(&mut self) -> _PCK0W {
-        _PCK0W { w: self }
+    pub fn pck0(&mut self) -> PCK0_W {
+        PCK0_W { w: self }
     }
     #[doc = "Bit 9 - Programmable Clock 1 Output Enable"]
     #[inline(always)]
-    pub fn pck1(&mut self) -> _PCK1W {
-        _PCK1W { w: self }
+    pub fn pck1(&mut self) -> PCK1_W {
+        PCK1_W { w: self }
     }
     #[doc = "Bit 10 - Programmable Clock 2 Output Enable"]
     #[inline(always)]
-    pub fn pck2(&mut self) -> _PCK2W {
-        _PCK2W { w: self }
+    pub fn pck2(&mut self) -> PCK2_W {
+        PCK2_W { w: self }
     }
     #[doc = "Bit 11 - Programmable Clock 3 Output Enable"]
     #[inline(always)]
-    pub fn pck3(&mut self) -> _PCK3W {
-        _PCK3W { w: self }
+    pub fn pck3(&mut self) -> PCK3_W {
+        PCK3_W { w: self }
     }
     #[doc = "Bit 12 - Programmable Clock 4 Output Enable"]
     #[inline(always)]
-    pub fn pck4(&mut self) -> _PCK4W {
-        _PCK4W { w: self }
+    pub fn pck4(&mut self) -> PCK4_W {
+        PCK4_W { w: self }
     }
     #[doc = "Bit 13 - Programmable Clock 5 Output Enable"]
     #[inline(always)]
-    pub fn pck5(&mut self) -> _PCK5W {
-        _PCK5W { w: self }
+    pub fn pck5(&mut self) -> PCK5_W {
+        PCK5_W { w: self }
     }
     #[doc = "Bit 14 - Programmable Clock 6 Output Enable"]
     #[inline(always)]
-    pub fn pck6(&mut self) -> _PCK6W {
-        _PCK6W { w: self }
+    pub fn pck6(&mut self) -> PCK6_W {
+        PCK6_W { w: self }
     }
 }

@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::ISI_R2Y_SET2 {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register ISI_R2Y_SET2"]
+pub type R = crate::R<u32, super::ISI_R2Y_SET2>;
+#[doc = "Writer for register ISI_R2Y_SET2"]
+pub type W = crate::W<u32, super::ISI_R2Y_SET2>;
+#[doc = "Register ISI_R2Y_SET2 `reset()`'s with value 0"]
+impl crate::ResetValue for super::ISI_R2Y_SET2 {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type C6_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _C6W<'a> {
+#[doc = "Reader of field `C6`"]
+pub type C6_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `C6`"]
+pub struct C6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _C6W<'a> {
+impl<'a> C6_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _C6W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type C7_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _C7W<'a> {
+#[doc = "Reader of field `C7`"]
+pub type C7_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `C7`"]
+pub struct C7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _C7W<'a> {
+impl<'a> C7_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -75,13 +38,13 @@ impl<'a> _C7W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type C8_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _C8W<'a> {
+#[doc = "Reader of field `C8`"]
+pub type C8_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `C8`"]
+pub struct C8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _C8W<'a> {
+impl<'a> C8_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -89,13 +52,13 @@ impl<'a> _C8W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type BOFF_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _BOFFW<'a> {
+#[doc = "Reader of field `Boff`"]
+pub type BOFF_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `Boff`"]
+pub struct BOFF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BOFFW<'a> {
+impl<'a> BOFF_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -114,57 +77,46 @@ impl<'a> _BOFFW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:6 - Color Space Conversion Matrix Coefficient C6"]
     #[inline(always)]
     pub fn c6(&self) -> C6_R {
-        C6_R::new((self.bits() & 0x7f) as u8)
+        C6_R::new((self.bits & 0x7f) as u8)
     }
     #[doc = "Bits 8:14 - Color Space Conversion Matrix Coefficient C7"]
     #[inline(always)]
     pub fn c7(&self) -> C7_R {
-        C7_R::new(((self.bits() >> 8) & 0x7f) as u8)
+        C7_R::new(((self.bits >> 8) & 0x7f) as u8)
     }
     #[doc = "Bits 16:22 - Color Space Conversion Matrix Coefficient C8"]
     #[inline(always)]
     pub fn c8(&self) -> C8_R {
-        C8_R::new(((self.bits() >> 16) & 0x7f) as u8)
+        C8_R::new(((self.bits >> 16) & 0x7f) as u8)
     }
     #[doc = "Bit 24 - Color Space Conversion Blue Component Offset"]
     #[inline(always)]
     pub fn boff(&self) -> BOFF_R {
-        BOFF_R::new(((self.bits() >> 24) & 0x01) != 0)
+        BOFF_R::new(((self.bits >> 24) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:6 - Color Space Conversion Matrix Coefficient C6"]
     #[inline(always)]
-    pub fn c6(&mut self) -> _C6W {
-        _C6W { w: self }
+    pub fn c6(&mut self) -> C6_W {
+        C6_W { w: self }
     }
     #[doc = "Bits 8:14 - Color Space Conversion Matrix Coefficient C7"]
     #[inline(always)]
-    pub fn c7(&mut self) -> _C7W {
-        _C7W { w: self }
+    pub fn c7(&mut self) -> C7_W {
+        C7_W { w: self }
     }
     #[doc = "Bits 16:22 - Color Space Conversion Matrix Coefficient C8"]
     #[inline(always)]
-    pub fn c8(&mut self) -> _C8W {
-        _C8W { w: self }
+    pub fn c8(&mut self) -> C8_W {
+        C8_W { w: self }
     }
     #[doc = "Bit 24 - Color Space Conversion Blue Component Offset"]
     #[inline(always)]
-    pub fn boff(&mut self) -> _BOFFW {
-        _BOFFW { w: self }
+    pub fn boff(&mut self) -> BOFF_W {
+        BOFF_W { w: self }
     }
 }

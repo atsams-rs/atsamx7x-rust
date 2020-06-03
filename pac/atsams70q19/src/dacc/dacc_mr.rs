@@ -1,123 +1,72 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::DACC_MR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register DACC_MR"]
+pub type R = crate::R<u32, super::DACC_MR>;
+#[doc = "Writer for register DACC_MR"]
+pub type W = crate::W<u32, super::DACC_MR>;
+#[doc = "Register DACC_MR `reset()`'s with value 0"]
+impl crate::ResetValue for super::DACC_MR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "Max Speed Mode for Channel 0\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum MAXS0_A {
+    #[doc = "0: External trigger mode or Free-running mode enabled. (See TRGENx.DACC_TRIGR.)"]
+    TRIG_EVENT = 0,
+    #[doc = "1: Max speed mode enabled."]
+    MAXIMUM = 1,
+}
+impl From<MAXS0_A> for bool {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: MAXS0_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = "Possible values of the field `MAXS0`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MAXS0R {
-    #[doc = "External trigger mode or Free-running mode enabled. (See TRGENx.DACC_TRIGR.)"]
-    TRIG_EVENT,
-    #[doc = "Max speed mode enabled."]
-    MAXIMUM,
-}
-impl crate::ToBits<bool> for MAXS0R {
+#[doc = "Reader of field `MAXS0`"]
+pub type MAXS0_R = crate::R<bool, MAXS0_A>;
+impl MAXS0_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            MAXS0R::TRIG_EVENT => false,
-            MAXS0R::MAXIMUM => true,
+    pub fn variant(&self) -> MAXS0_A {
+        match self.bits {
+            false => MAXS0_A::TRIG_EVENT,
+            true => MAXS0_A::MAXIMUM,
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type MAXS0_R = crate::FR<bool, MAXS0R>;
-impl MAXS0_R {
     #[doc = "Checks if the value of the field is `TRIG_EVENT`"]
     #[inline(always)]
     pub fn is_trig_event(&self) -> bool {
-        *self == MAXS0R::TRIG_EVENT
+        *self == MAXS0_A::TRIG_EVENT
     }
     #[doc = "Checks if the value of the field is `MAXIMUM`"]
     #[inline(always)]
     pub fn is_maximum(&self) -> bool {
-        *self == MAXS0R::MAXIMUM
+        *self == MAXS0_A::MAXIMUM
     }
 }
-#[doc = "Values that can be written to the field `MAXS0`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MAXS0W {
-    #[doc = "External trigger mode or Free-running mode enabled. (See TRGENx.DACC_TRIGR.)"]
-    TRIG_EVENT,
-    #[doc = "Max speed mode enabled."]
-    MAXIMUM,
-}
-impl MAXS0W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MAXS0W::TRIG_EVENT => false,
-            MAXS0W::MAXIMUM => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _MAXS0W<'a> {
+#[doc = "Write proxy for field `MAXS0`"]
+pub struct MAXS0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MAXS0W<'a> {
+impl<'a> MAXS0_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: MAXS0W) -> &'a mut W {
+    pub fn variant(self, variant: MAXS0_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "External trigger mode or Free-running mode enabled. (See TRGENx.DACC_TRIGR.)"]
     #[inline(always)]
     pub fn trig_event(self) -> &'a mut W {
-        self.variant(MAXS0W::TRIG_EVENT)
+        self.variant(MAXS0_A::TRIG_EVENT)
     }
     #[doc = "Max speed mode enabled."]
     #[inline(always)]
     pub fn maximum(self) -> &'a mut W {
-        self.variant(MAXS0W::MAXIMUM)
+        self.variant(MAXS0_A::MAXIMUM)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -136,77 +85,63 @@ impl<'a> _MAXS0W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `MAXS1`"]
+#[doc = "Max Speed Mode for Channel 1\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MAXS1R {
-    #[doc = "External trigger mode or Free-running mode enabled. (See TRGENx.DACC_TRIGR.)"]
-    TRIG_EVENT,
-    #[doc = "Max speed mode enabled."]
-    MAXIMUM,
+pub enum MAXS1_A {
+    #[doc = "0: External trigger mode or Free-running mode enabled. (See TRGENx.DACC_TRIGR.)"]
+    TRIG_EVENT = 0,
+    #[doc = "1: Max speed mode enabled."]
+    MAXIMUM = 1,
 }
-impl crate::ToBits<bool> for MAXS1R {
+impl From<MAXS1_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            MAXS1R::TRIG_EVENT => false,
-            MAXS1R::MAXIMUM => true,
-        }
+    fn from(variant: MAXS1_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type MAXS1_R = crate::FR<bool, MAXS1R>;
+#[doc = "Reader of field `MAXS1`"]
+pub type MAXS1_R = crate::R<bool, MAXS1_A>;
 impl MAXS1_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MAXS1_A {
+        match self.bits {
+            false => MAXS1_A::TRIG_EVENT,
+            true => MAXS1_A::MAXIMUM,
+        }
+    }
     #[doc = "Checks if the value of the field is `TRIG_EVENT`"]
     #[inline(always)]
     pub fn is_trig_event(&self) -> bool {
-        *self == MAXS1R::TRIG_EVENT
+        *self == MAXS1_A::TRIG_EVENT
     }
     #[doc = "Checks if the value of the field is `MAXIMUM`"]
     #[inline(always)]
     pub fn is_maximum(&self) -> bool {
-        *self == MAXS1R::MAXIMUM
+        *self == MAXS1_A::MAXIMUM
     }
 }
-#[doc = "Values that can be written to the field `MAXS1`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MAXS1W {
-    #[doc = "External trigger mode or Free-running mode enabled. (See TRGENx.DACC_TRIGR.)"]
-    TRIG_EVENT,
-    #[doc = "Max speed mode enabled."]
-    MAXIMUM,
-}
-impl MAXS1W {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MAXS1W::TRIG_EVENT => false,
-            MAXS1W::MAXIMUM => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _MAXS1W<'a> {
+#[doc = "Write proxy for field `MAXS1`"]
+pub struct MAXS1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MAXS1W<'a> {
+impl<'a> MAXS1_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: MAXS1W) -> &'a mut W {
+    pub fn variant(self, variant: MAXS1_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "External trigger mode or Free-running mode enabled. (See TRGENx.DACC_TRIGR.)"]
     #[inline(always)]
     pub fn trig_event(self) -> &'a mut W {
-        self.variant(MAXS1W::TRIG_EVENT)
+        self.variant(MAXS1_A::TRIG_EVENT)
     }
     #[doc = "Max speed mode enabled."]
     #[inline(always)]
     pub fn maximum(self) -> &'a mut W {
-        self.variant(MAXS1W::MAXIMUM)
+        self.variant(MAXS1_A::MAXIMUM)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -225,77 +160,63 @@ impl<'a> _MAXS1W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `WORD`"]
+#[doc = "Word Transfer Mode\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WORDR {
-    #[doc = "One data to convert is written to the FIFO per access to DACC."]
-    DISABLED,
-    #[doc = "Two data to convert are written to the FIFO per access to DACC (reduces the number of requests to DMA and the number of system bus accesses)."]
-    ENABLED,
+pub enum WORD_A {
+    #[doc = "0: One data to convert is written to the FIFO per access to DACC."]
+    DISABLED = 0,
+    #[doc = "1: Two data to convert are written to the FIFO per access to DACC (reduces the number of requests to DMA and the number of system bus accesses)."]
+    ENABLED = 1,
 }
-impl crate::ToBits<bool> for WORDR {
+impl From<WORD_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            WORDR::DISABLED => false,
-            WORDR::ENABLED => true,
-        }
+    fn from(variant: WORD_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type WORD_R = crate::FR<bool, WORDR>;
+#[doc = "Reader of field `WORD`"]
+pub type WORD_R = crate::R<bool, WORD_A>;
 impl WORD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> WORD_A {
+        match self.bits {
+            false => WORD_A::DISABLED,
+            true => WORD_A::ENABLED,
+        }
+    }
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == WORDR::DISABLED
+        *self == WORD_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == WORDR::ENABLED
+        *self == WORD_A::ENABLED
     }
 }
-#[doc = "Values that can be written to the field `WORD`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WORDW {
-    #[doc = "One data to convert is written to the FIFO per access to DACC."]
-    DISABLED,
-    #[doc = "Two data to convert are written to the FIFO per access to DACC (reduces the number of requests to DMA and the number of system bus accesses)."]
-    ENABLED,
-}
-impl WORDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            WORDW::DISABLED => false,
-            WORDW::ENABLED => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _WORDW<'a> {
+#[doc = "Write proxy for field `WORD`"]
+pub struct WORD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WORDW<'a> {
+impl<'a> WORD_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: WORDW) -> &'a mut W {
+    pub fn variant(self, variant: WORD_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "One data to convert is written to the FIFO per access to DACC."]
     #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(WORDW::DISABLED)
+        self.variant(WORD_A::DISABLED)
     }
     #[doc = "Two data to convert are written to the FIFO per access to DACC (reduces the number of requests to DMA and the number of system bus accesses)."]
     #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(WORDW::ENABLED)
+        self.variant(WORD_A::ENABLED)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -314,13 +235,13 @@ impl<'a> _WORDW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ZERO_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ZEROW<'a> {
+#[doc = "Reader of field `ZERO`"]
+pub type ZERO_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ZERO`"]
+pub struct ZERO_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ZEROW<'a> {
+impl<'a> ZERO_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -338,77 +259,63 @@ impl<'a> _ZEROW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `DIFF`"]
+#[doc = "Differential Mode\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DIFFR {
-    #[doc = "DAC0 and DAC1 are single-ended outputs."]
-    DISABLED,
-    #[doc = "DACP and DACN are differential outputs. The differential level is configured by the channel 0 value."]
-    ENABLED,
+pub enum DIFF_A {
+    #[doc = "0: DAC0 and DAC1 are single-ended outputs."]
+    DISABLED = 0,
+    #[doc = "1: DACP and DACN are differential outputs. The differential level is configured by the channel 0 value."]
+    ENABLED = 1,
 }
-impl crate::ToBits<bool> for DIFFR {
+impl From<DIFF_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            DIFFR::DISABLED => false,
-            DIFFR::ENABLED => true,
-        }
+    fn from(variant: DIFF_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type DIFF_R = crate::FR<bool, DIFFR>;
+#[doc = "Reader of field `DIFF`"]
+pub type DIFF_R = crate::R<bool, DIFF_A>;
 impl DIFF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DIFF_A {
+        match self.bits {
+            false => DIFF_A::DISABLED,
+            true => DIFF_A::ENABLED,
+        }
+    }
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == DIFFR::DISABLED
+        *self == DIFF_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == DIFFR::ENABLED
+        *self == DIFF_A::ENABLED
     }
 }
-#[doc = "Values that can be written to the field `DIFF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DIFFW {
-    #[doc = "DAC0 and DAC1 are single-ended outputs."]
-    DISABLED,
-    #[doc = "DACP and DACN are differential outputs. The differential level is configured by the channel 0 value."]
-    ENABLED,
-}
-impl DIFFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DIFFW::DISABLED => false,
-            DIFFW::ENABLED => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _DIFFW<'a> {
+#[doc = "Write proxy for field `DIFF`"]
+pub struct DIFF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DIFFW<'a> {
+impl<'a> DIFF_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: DIFFW) -> &'a mut W {
+    pub fn variant(self, variant: DIFF_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "DAC0 and DAC1 are single-ended outputs."]
     #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(DIFFW::DISABLED)
+        self.variant(DIFF_A::DISABLED)
     }
     #[doc = "DACP and DACN are differential outputs. The differential level is configured by the channel 0 value."]
     #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(DIFFW::ENABLED)
+        self.variant(DIFF_A::ENABLED)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -427,13 +334,13 @@ impl<'a> _DIFFW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PRESCALER_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _PRESCALERW<'a> {
+#[doc = "Reader of field `PRESCALER`"]
+pub type PRESCALER_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PRESCALER`"]
+pub struct PRESCALER_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PRESCALERW<'a> {
+impl<'a> PRESCALER_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -442,77 +349,66 @@ impl<'a> _PRESCALERW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Max Speed Mode for Channel 0"]
     #[inline(always)]
     pub fn maxs0(&self) -> MAXS0_R {
-        MAXS0_R::new((self.bits() & 0x01) != 0)
+        MAXS0_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Max Speed Mode for Channel 1"]
     #[inline(always)]
     pub fn maxs1(&self) -> MAXS1_R {
-        MAXS1_R::new(((self.bits() >> 1) & 0x01) != 0)
+        MAXS1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Word Transfer Mode"]
     #[inline(always)]
     pub fn word(&self) -> WORD_R {
-        WORD_R::new(((self.bits() >> 4) & 0x01) != 0)
+        WORD_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Must always be written to 0."]
     #[inline(always)]
     pub fn zero(&self) -> ZERO_R {
-        ZERO_R::new(((self.bits() >> 5) & 0x01) != 0)
+        ZERO_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 23 - Differential Mode"]
     #[inline(always)]
     pub fn diff(&self) -> DIFF_R {
-        DIFF_R::new(((self.bits() >> 23) & 0x01) != 0)
+        DIFF_R::new(((self.bits >> 23) & 0x01) != 0)
     }
     #[doc = "Bits 24:27 - Peripheral Clock to DAC Clock Ratio"]
     #[inline(always)]
     pub fn prescaler(&self) -> PRESCALER_R {
-        PRESCALER_R::new(((self.bits() >> 24) & 0x0f) as u8)
+        PRESCALER_R::new(((self.bits >> 24) & 0x0f) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Max Speed Mode for Channel 0"]
     #[inline(always)]
-    pub fn maxs0(&mut self) -> _MAXS0W {
-        _MAXS0W { w: self }
+    pub fn maxs0(&mut self) -> MAXS0_W {
+        MAXS0_W { w: self }
     }
     #[doc = "Bit 1 - Max Speed Mode for Channel 1"]
     #[inline(always)]
-    pub fn maxs1(&mut self) -> _MAXS1W {
-        _MAXS1W { w: self }
+    pub fn maxs1(&mut self) -> MAXS1_W {
+        MAXS1_W { w: self }
     }
     #[doc = "Bit 4 - Word Transfer Mode"]
     #[inline(always)]
-    pub fn word(&mut self) -> _WORDW {
-        _WORDW { w: self }
+    pub fn word(&mut self) -> WORD_W {
+        WORD_W { w: self }
     }
     #[doc = "Bit 5 - Must always be written to 0."]
     #[inline(always)]
-    pub fn zero(&mut self) -> _ZEROW {
-        _ZEROW { w: self }
+    pub fn zero(&mut self) -> ZERO_W {
+        ZERO_W { w: self }
     }
     #[doc = "Bit 23 - Differential Mode"]
     #[inline(always)]
-    pub fn diff(&mut self) -> _DIFFW {
-        _DIFFW { w: self }
+    pub fn diff(&mut self) -> DIFF_W {
+        DIFF_W { w: self }
     }
     #[doc = "Bits 24:27 - Peripheral Clock to DAC Clock Ratio"]
     #[inline(always)]
-    pub fn prescaler(&mut self) -> _PRESCALERW {
-        _PRESCALERW { w: self }
+    pub fn prescaler(&mut self) -> PRESCALER_W {
+        PRESCALER_W { w: self }
     }
 }

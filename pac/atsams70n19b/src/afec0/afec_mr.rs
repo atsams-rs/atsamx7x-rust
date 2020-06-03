@@ -1,123 +1,72 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::AFEC_MR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register AFEC_MR"]
+pub type R = crate::R<u32, super::AFEC_MR>;
+#[doc = "Writer for register AFEC_MR"]
+pub type W = crate::W<u32, super::AFEC_MR>;
+#[doc = "Register AFEC_MR `reset()`'s with value 0"]
+impl crate::ResetValue for super::AFEC_MR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "Trigger Enable\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum TRGEN_A {
+    #[doc = "0: Hardware triggers are disabled. Starting a conversion is only possible by software."]
+    DIS = 0,
+    #[doc = "1: Hardware trigger selected by TRGSEL field is enabled."]
+    EN = 1,
+}
+impl From<TRGEN_A> for bool {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: TRGEN_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = "Possible values of the field `TRGEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TRGENR {
-    #[doc = "Hardware triggers are disabled. Starting a conversion is only possible by software."]
-    DIS,
-    #[doc = "Hardware trigger selected by TRGSEL field is enabled."]
-    EN,
-}
-impl crate::ToBits<bool> for TRGENR {
+#[doc = "Reader of field `TRGEN`"]
+pub type TRGEN_R = crate::R<bool, TRGEN_A>;
+impl TRGEN_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            TRGENR::DIS => false,
-            TRGENR::EN => true,
+    pub fn variant(&self) -> TRGEN_A {
+        match self.bits {
+            false => TRGEN_A::DIS,
+            true => TRGEN_A::EN,
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type TRGEN_R = crate::FR<bool, TRGENR>;
-impl TRGEN_R {
     #[doc = "Checks if the value of the field is `DIS`"]
     #[inline(always)]
     pub fn is_dis(&self) -> bool {
-        *self == TRGENR::DIS
+        *self == TRGEN_A::DIS
     }
     #[doc = "Checks if the value of the field is `EN`"]
     #[inline(always)]
     pub fn is_en(&self) -> bool {
-        *self == TRGENR::EN
+        *self == TRGEN_A::EN
     }
 }
-#[doc = "Values that can be written to the field `TRGEN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TRGENW {
-    #[doc = "Hardware triggers are disabled. Starting a conversion is only possible by software."]
-    DIS,
-    #[doc = "Hardware trigger selected by TRGSEL field is enabled."]
-    EN,
-}
-impl TRGENW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TRGENW::DIS => false,
-            TRGENW::EN => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _TRGENW<'a> {
+#[doc = "Write proxy for field `TRGEN`"]
+pub struct TRGEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TRGENW<'a> {
+impl<'a> TRGEN_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: TRGENW) -> &'a mut W {
+    pub fn variant(self, variant: TRGEN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Hardware triggers are disabled. Starting a conversion is only possible by software."]
     #[inline(always)]
     pub fn dis(self) -> &'a mut W {
-        self.variant(TRGENW::DIS)
+        self.variant(TRGEN_A::DIS)
     }
     #[doc = "Hardware trigger selected by TRGSEL field is enabled."]
     #[inline(always)]
     pub fn en(self) -> &'a mut W {
-        self.variant(TRGENW::EN)
+        self.variant(TRGEN_A::EN)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -136,155 +85,129 @@ impl<'a> _TRGENW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `TRGSEL`"]
+#[doc = "Trigger Selection\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TRGSELR {
-    #[doc = "AFE0_ADTRG for AFEC0 / AFE1_ADTRG for AFEC1"]
-    AFEC_TRIG0,
-    #[doc = "TIOA Output of the Timer Counter Channel 0 for AFEC0/TIOA Output of the Timer Counter Channel 3 for AFEC1"]
-    AFEC_TRIG1,
-    #[doc = "TIOA Output of the Timer Counter Channel 1 for AFEC0/TIOA Output of the Timer Counter Channel 4 for AFEC1"]
-    AFEC_TRIG2,
-    #[doc = "TIOA Output of the Timer Counter Channel 2 for AFEC0/TIOA Output of the Timer Counter Channel 5 for AFEC1"]
-    AFEC_TRIG3,
-    #[doc = "PWM0 event line 0 for AFEC0 / PWM1 event line 0 for AFEC1"]
-    AFEC_TRIG4,
-    #[doc = "PWM0 event line 1 for AFEC0 / PWM1 event line 1 for AFEC1"]
-    AFEC_TRIG5,
-    #[doc = "Analog Comparator"]
-    AFEC_TRIG6,
+#[repr(u8)]
+pub enum TRGSEL_A {
+    #[doc = "0: AFE0_ADTRG for AFEC0 / AFE1_ADTRG for AFEC1"]
+    AFEC_TRIG0 = 0,
+    #[doc = "1: TIOA Output of the Timer Counter Channel 0 for AFEC0/TIOA Output of the Timer Counter Channel 3 for AFEC1"]
+    AFEC_TRIG1 = 1,
+    #[doc = "2: TIOA Output of the Timer Counter Channel 1 for AFEC0/TIOA Output of the Timer Counter Channel 4 for AFEC1"]
+    AFEC_TRIG2 = 2,
+    #[doc = "3: TIOA Output of the Timer Counter Channel 2 for AFEC0/TIOA Output of the Timer Counter Channel 5 for AFEC1"]
+    AFEC_TRIG3 = 3,
+    #[doc = "4: PWM0 event line 0 for AFEC0 / PWM1 event line 0 for AFEC1"]
+    AFEC_TRIG4 = 4,
+    #[doc = "5: PWM0 event line 1 for AFEC0 / PWM1 event line 1 for AFEC1"]
+    AFEC_TRIG5 = 5,
+    #[doc = "6: Analog Comparator"]
+    AFEC_TRIG6 = 6,
 }
-impl crate::ToBits<u8> for TRGSELR {
+impl From<TRGSEL_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            TRGSELR::AFEC_TRIG0 => 0,
-            TRGSELR::AFEC_TRIG1 => 1,
-            TRGSELR::AFEC_TRIG2 => 2,
-            TRGSELR::AFEC_TRIG3 => 3,
-            TRGSELR::AFEC_TRIG4 => 4,
-            TRGSELR::AFEC_TRIG5 => 5,
-            TRGSELR::AFEC_TRIG6 => 6,
-        }
+    fn from(variant: TRGSEL_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type TRGSEL_R = crate::FR<u8, TRGSELR>;
+#[doc = "Reader of field `TRGSEL`"]
+pub type TRGSEL_R = crate::R<u8, TRGSEL_A>;
 impl TRGSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, TRGSEL_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(TRGSEL_A::AFEC_TRIG0),
+            1 => Val(TRGSEL_A::AFEC_TRIG1),
+            2 => Val(TRGSEL_A::AFEC_TRIG2),
+            3 => Val(TRGSEL_A::AFEC_TRIG3),
+            4 => Val(TRGSEL_A::AFEC_TRIG4),
+            5 => Val(TRGSEL_A::AFEC_TRIG5),
+            6 => Val(TRGSEL_A::AFEC_TRIG6),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `AFEC_TRIG0`"]
     #[inline(always)]
     pub fn is_afec_trig0(&self) -> bool {
-        *self == TRGSELR::AFEC_TRIG0
+        *self == TRGSEL_A::AFEC_TRIG0
     }
     #[doc = "Checks if the value of the field is `AFEC_TRIG1`"]
     #[inline(always)]
     pub fn is_afec_trig1(&self) -> bool {
-        *self == TRGSELR::AFEC_TRIG1
+        *self == TRGSEL_A::AFEC_TRIG1
     }
     #[doc = "Checks if the value of the field is `AFEC_TRIG2`"]
     #[inline(always)]
     pub fn is_afec_trig2(&self) -> bool {
-        *self == TRGSELR::AFEC_TRIG2
+        *self == TRGSEL_A::AFEC_TRIG2
     }
     #[doc = "Checks if the value of the field is `AFEC_TRIG3`"]
     #[inline(always)]
     pub fn is_afec_trig3(&self) -> bool {
-        *self == TRGSELR::AFEC_TRIG3
+        *self == TRGSEL_A::AFEC_TRIG3
     }
     #[doc = "Checks if the value of the field is `AFEC_TRIG4`"]
     #[inline(always)]
     pub fn is_afec_trig4(&self) -> bool {
-        *self == TRGSELR::AFEC_TRIG4
+        *self == TRGSEL_A::AFEC_TRIG4
     }
     #[doc = "Checks if the value of the field is `AFEC_TRIG5`"]
     #[inline(always)]
     pub fn is_afec_trig5(&self) -> bool {
-        *self == TRGSELR::AFEC_TRIG5
+        *self == TRGSEL_A::AFEC_TRIG5
     }
     #[doc = "Checks if the value of the field is `AFEC_TRIG6`"]
     #[inline(always)]
     pub fn is_afec_trig6(&self) -> bool {
-        *self == TRGSELR::AFEC_TRIG6
+        *self == TRGSEL_A::AFEC_TRIG6
     }
 }
-#[doc = "Values that can be written to the field `TRGSEL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TRGSELW {
-    #[doc = "AFE0_ADTRG for AFEC0 / AFE1_ADTRG for AFEC1"]
-    AFEC_TRIG0,
-    #[doc = "TIOA Output of the Timer Counter Channel 0 for AFEC0/TIOA Output of the Timer Counter Channel 3 for AFEC1"]
-    AFEC_TRIG1,
-    #[doc = "TIOA Output of the Timer Counter Channel 1 for AFEC0/TIOA Output of the Timer Counter Channel 4 for AFEC1"]
-    AFEC_TRIG2,
-    #[doc = "TIOA Output of the Timer Counter Channel 2 for AFEC0/TIOA Output of the Timer Counter Channel 5 for AFEC1"]
-    AFEC_TRIG3,
-    #[doc = "PWM0 event line 0 for AFEC0 / PWM1 event line 0 for AFEC1"]
-    AFEC_TRIG4,
-    #[doc = "PWM0 event line 1 for AFEC0 / PWM1 event line 1 for AFEC1"]
-    AFEC_TRIG5,
-    #[doc = "Analog Comparator"]
-    AFEC_TRIG6,
-}
-impl TRGSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TRGSELW::AFEC_TRIG0 => 0,
-            TRGSELW::AFEC_TRIG1 => 1,
-            TRGSELW::AFEC_TRIG2 => 2,
-            TRGSELW::AFEC_TRIG3 => 3,
-            TRGSELW::AFEC_TRIG4 => 4,
-            TRGSELW::AFEC_TRIG5 => 5,
-            TRGSELW::AFEC_TRIG6 => 6,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _TRGSELW<'a> {
+#[doc = "Write proxy for field `TRGSEL`"]
+pub struct TRGSEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TRGSELW<'a> {
+impl<'a> TRGSEL_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: TRGSELW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: TRGSEL_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "AFE0_ADTRG for AFEC0 / AFE1_ADTRG for AFEC1"]
     #[inline(always)]
     pub fn afec_trig0(self) -> &'a mut W {
-        self.variant(TRGSELW::AFEC_TRIG0)
+        self.variant(TRGSEL_A::AFEC_TRIG0)
     }
     #[doc = "TIOA Output of the Timer Counter Channel 0 for AFEC0/TIOA Output of the Timer Counter Channel 3 for AFEC1"]
     #[inline(always)]
     pub fn afec_trig1(self) -> &'a mut W {
-        self.variant(TRGSELW::AFEC_TRIG1)
+        self.variant(TRGSEL_A::AFEC_TRIG1)
     }
     #[doc = "TIOA Output of the Timer Counter Channel 1 for AFEC0/TIOA Output of the Timer Counter Channel 4 for AFEC1"]
     #[inline(always)]
     pub fn afec_trig2(self) -> &'a mut W {
-        self.variant(TRGSELW::AFEC_TRIG2)
+        self.variant(TRGSEL_A::AFEC_TRIG2)
     }
     #[doc = "TIOA Output of the Timer Counter Channel 2 for AFEC0/TIOA Output of the Timer Counter Channel 5 for AFEC1"]
     #[inline(always)]
     pub fn afec_trig3(self) -> &'a mut W {
-        self.variant(TRGSELW::AFEC_TRIG3)
+        self.variant(TRGSEL_A::AFEC_TRIG3)
     }
     #[doc = "PWM0 event line 0 for AFEC0 / PWM1 event line 0 for AFEC1"]
     #[inline(always)]
     pub fn afec_trig4(self) -> &'a mut W {
-        self.variant(TRGSELW::AFEC_TRIG4)
+        self.variant(TRGSEL_A::AFEC_TRIG4)
     }
     #[doc = "PWM0 event line 1 for AFEC0 / PWM1 event line 1 for AFEC1"]
     #[inline(always)]
     pub fn afec_trig5(self) -> &'a mut W {
-        self.variant(TRGSELW::AFEC_TRIG5)
+        self.variant(TRGSEL_A::AFEC_TRIG5)
     }
     #[doc = "Analog Comparator"]
     #[inline(always)]
     pub fn afec_trig6(self) -> &'a mut W {
-        self.variant(TRGSELW::AFEC_TRIG6)
+        self.variant(TRGSEL_A::AFEC_TRIG6)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -293,77 +216,63 @@ impl<'a> _TRGSELW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `SLEEP`"]
+#[doc = "Sleep Mode\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SLEEPR {
-    #[doc = "Normal mode: The AFE and reference voltage circuitry are kept ON between conversions."]
-    NORMAL,
-    #[doc = "Sleep mode: The AFE and reference voltage circuitry are OFF between conversions."]
-    SLEEP,
+pub enum SLEEP_A {
+    #[doc = "0: Normal mode: The AFE and reference voltage circuitry are kept ON between conversions."]
+    NORMAL = 0,
+    #[doc = "1: Sleep mode: The AFE and reference voltage circuitry are OFF between conversions."]
+    SLEEP = 1,
 }
-impl crate::ToBits<bool> for SLEEPR {
+impl From<SLEEP_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            SLEEPR::NORMAL => false,
-            SLEEPR::SLEEP => true,
-        }
+    fn from(variant: SLEEP_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type SLEEP_R = crate::FR<bool, SLEEPR>;
+#[doc = "Reader of field `SLEEP`"]
+pub type SLEEP_R = crate::R<bool, SLEEP_A>;
 impl SLEEP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SLEEP_A {
+        match self.bits {
+            false => SLEEP_A::NORMAL,
+            true => SLEEP_A::SLEEP,
+        }
+    }
     #[doc = "Checks if the value of the field is `NORMAL`"]
     #[inline(always)]
     pub fn is_normal(&self) -> bool {
-        *self == SLEEPR::NORMAL
+        *self == SLEEP_A::NORMAL
     }
     #[doc = "Checks if the value of the field is `SLEEP`"]
     #[inline(always)]
     pub fn is_sleep(&self) -> bool {
-        *self == SLEEPR::SLEEP
+        *self == SLEEP_A::SLEEP
     }
 }
-#[doc = "Values that can be written to the field `SLEEP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SLEEPW {
-    #[doc = "Normal mode: The AFE and reference voltage circuitry are kept ON between conversions."]
-    NORMAL,
-    #[doc = "Sleep mode: The AFE and reference voltage circuitry are OFF between conversions."]
-    SLEEP,
-}
-impl SLEEPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SLEEPW::NORMAL => false,
-            SLEEPW::SLEEP => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _SLEEPW<'a> {
+#[doc = "Write proxy for field `SLEEP`"]
+pub struct SLEEP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SLEEPW<'a> {
+impl<'a> SLEEP_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: SLEEPW) -> &'a mut W {
+    pub fn variant(self, variant: SLEEP_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Normal mode: The AFE and reference voltage circuitry are kept ON between conversions."]
     #[inline(always)]
     pub fn normal(self) -> &'a mut W {
-        self.variant(SLEEPW::NORMAL)
+        self.variant(SLEEP_A::NORMAL)
     }
     #[doc = "Sleep mode: The AFE and reference voltage circuitry are OFF between conversions."]
     #[inline(always)]
     pub fn sleep(self) -> &'a mut W {
-        self.variant(SLEEPW::SLEEP)
+        self.variant(SLEEP_A::SLEEP)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -382,77 +291,63 @@ impl<'a> _SLEEPW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `FWUP`"]
+#[doc = "Fast Wake-up\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FWUPR {
-    #[doc = "Normal Sleep mode: The sleep mode is defined by the SLEEP bit."]
-    OFF,
-    #[doc = "Fast wake-up Sleep mode: The voltage reference is ON between conversions and AFE is OFF."]
-    ON,
+pub enum FWUP_A {
+    #[doc = "0: Normal Sleep mode: The sleep mode is defined by the SLEEP bit."]
+    OFF = 0,
+    #[doc = "1: Fast wake-up Sleep mode: The voltage reference is ON between conversions and AFE is OFF."]
+    ON = 1,
 }
-impl crate::ToBits<bool> for FWUPR {
+impl From<FWUP_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            FWUPR::OFF => false,
-            FWUPR::ON => true,
-        }
+    fn from(variant: FWUP_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type FWUP_R = crate::FR<bool, FWUPR>;
+#[doc = "Reader of field `FWUP`"]
+pub type FWUP_R = crate::R<bool, FWUP_A>;
 impl FWUP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> FWUP_A {
+        match self.bits {
+            false => FWUP_A::OFF,
+            true => FWUP_A::ON,
+        }
+    }
     #[doc = "Checks if the value of the field is `OFF`"]
     #[inline(always)]
     pub fn is_off(&self) -> bool {
-        *self == FWUPR::OFF
+        *self == FWUP_A::OFF
     }
     #[doc = "Checks if the value of the field is `ON`"]
     #[inline(always)]
     pub fn is_on(&self) -> bool {
-        *self == FWUPR::ON
+        *self == FWUP_A::ON
     }
 }
-#[doc = "Values that can be written to the field `FWUP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FWUPW {
-    #[doc = "Normal Sleep mode: The sleep mode is defined by the SLEEP bit."]
-    OFF,
-    #[doc = "Fast wake-up Sleep mode: The voltage reference is ON between conversions and AFE is OFF."]
-    ON,
-}
-impl FWUPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            FWUPW::OFF => false,
-            FWUPW::ON => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _FWUPW<'a> {
+#[doc = "Write proxy for field `FWUP`"]
+pub struct FWUP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FWUPW<'a> {
+impl<'a> FWUP_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: FWUPW) -> &'a mut W {
+    pub fn variant(self, variant: FWUP_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Normal Sleep mode: The sleep mode is defined by the SLEEP bit."]
     #[inline(always)]
     pub fn off(self) -> &'a mut W {
-        self.variant(FWUPW::OFF)
+        self.variant(FWUP_A::OFF)
     }
     #[doc = "Fast wake-up Sleep mode: The voltage reference is ON between conversions and AFE is OFF."]
     #[inline(always)]
     pub fn on(self) -> &'a mut W {
-        self.variant(FWUPW::ON)
+        self.variant(FWUP_A::ON)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -471,77 +366,63 @@ impl<'a> _FWUPW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `FREERUN`"]
+#[doc = "Free Run Mode\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FREERUNR {
-    #[doc = "Normal mode"]
-    OFF,
-    #[doc = "Free Run mode: Never wait for any trigger."]
-    ON,
+pub enum FREERUN_A {
+    #[doc = "0: Normal mode"]
+    OFF = 0,
+    #[doc = "1: Free Run mode: Never wait for any trigger."]
+    ON = 1,
 }
-impl crate::ToBits<bool> for FREERUNR {
+impl From<FREERUN_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            FREERUNR::OFF => false,
-            FREERUNR::ON => true,
-        }
+    fn from(variant: FREERUN_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type FREERUN_R = crate::FR<bool, FREERUNR>;
+#[doc = "Reader of field `FREERUN`"]
+pub type FREERUN_R = crate::R<bool, FREERUN_A>;
 impl FREERUN_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> FREERUN_A {
+        match self.bits {
+            false => FREERUN_A::OFF,
+            true => FREERUN_A::ON,
+        }
+    }
     #[doc = "Checks if the value of the field is `OFF`"]
     #[inline(always)]
     pub fn is_off(&self) -> bool {
-        *self == FREERUNR::OFF
+        *self == FREERUN_A::OFF
     }
     #[doc = "Checks if the value of the field is `ON`"]
     #[inline(always)]
     pub fn is_on(&self) -> bool {
-        *self == FREERUNR::ON
+        *self == FREERUN_A::ON
     }
 }
-#[doc = "Values that can be written to the field `FREERUN`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum FREERUNW {
-    #[doc = "Normal mode"]
-    OFF,
-    #[doc = "Free Run mode: Never wait for any trigger."]
-    ON,
-}
-impl FREERUNW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            FREERUNW::OFF => false,
-            FREERUNW::ON => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _FREERUNW<'a> {
+#[doc = "Write proxy for field `FREERUN`"]
+pub struct FREERUN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FREERUNW<'a> {
+impl<'a> FREERUN_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: FREERUNW) -> &'a mut W {
+    pub fn variant(self, variant: FREERUN_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Normal mode"]
     #[inline(always)]
     pub fn off(self) -> &'a mut W {
-        self.variant(FREERUNW::OFF)
+        self.variant(FREERUN_A::OFF)
     }
     #[doc = "Free Run mode: Never wait for any trigger."]
     #[inline(always)]
     pub fn on(self) -> &'a mut W {
-        self.variant(FREERUNW::ON)
+        self.variant(FREERUN_A::ON)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -560,13 +441,13 @@ impl<'a> _FREERUNW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PRESCAL_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _PRESCALW<'a> {
+#[doc = "Reader of field `PRESCAL`"]
+pub type PRESCAL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PRESCAL`"]
+pub struct PRESCAL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PRESCALW<'a> {
+impl<'a> PRESCAL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -574,301 +455,247 @@ impl<'a> _PRESCALW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `STARTUP`"]
+#[doc = "Start-up Time\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum STARTUPR {
-    #[doc = "0 periods of AFE clock"]
-    SUT0,
-    #[doc = "8 periods of AFE clock"]
-    SUT8,
-    #[doc = "16 periods of AFE clock"]
-    SUT16,
-    #[doc = "24 periods of AFE clock"]
-    SUT24,
-    #[doc = "64 periods of AFE clock"]
-    SUT64,
-    #[doc = "80 periods of AFE clock"]
-    SUT80,
-    #[doc = "96 periods of AFE clock"]
-    SUT96,
-    #[doc = "112 periods of AFE clock"]
-    SUT112,
-    #[doc = "512 periods of AFE clock"]
-    SUT512,
-    #[doc = "576 periods of AFE clock"]
-    SUT576,
-    #[doc = "640 periods of AFE clock"]
-    SUT640,
-    #[doc = "704 periods of AFE clock"]
-    SUT704,
-    #[doc = "768 periods of AFE clock"]
-    SUT768,
-    #[doc = "832 periods of AFE clock"]
-    SUT832,
-    #[doc = "896 periods of AFE clock"]
-    SUT896,
-    #[doc = "960 periods of AFE clock"]
-    SUT960,
+#[repr(u8)]
+pub enum STARTUP_A {
+    #[doc = "0: 0 periods of AFE clock"]
+    SUT0 = 0,
+    #[doc = "1: 8 periods of AFE clock"]
+    SUT8 = 1,
+    #[doc = "2: 16 periods of AFE clock"]
+    SUT16 = 2,
+    #[doc = "3: 24 periods of AFE clock"]
+    SUT24 = 3,
+    #[doc = "4: 64 periods of AFE clock"]
+    SUT64 = 4,
+    #[doc = "5: 80 periods of AFE clock"]
+    SUT80 = 5,
+    #[doc = "6: 96 periods of AFE clock"]
+    SUT96 = 6,
+    #[doc = "7: 112 periods of AFE clock"]
+    SUT112 = 7,
+    #[doc = "8: 512 periods of AFE clock"]
+    SUT512 = 8,
+    #[doc = "9: 576 periods of AFE clock"]
+    SUT576 = 9,
+    #[doc = "10: 640 periods of AFE clock"]
+    SUT640 = 10,
+    #[doc = "11: 704 periods of AFE clock"]
+    SUT704 = 11,
+    #[doc = "12: 768 periods of AFE clock"]
+    SUT768 = 12,
+    #[doc = "13: 832 periods of AFE clock"]
+    SUT832 = 13,
+    #[doc = "14: 896 periods of AFE clock"]
+    SUT896 = 14,
+    #[doc = "15: 960 periods of AFE clock"]
+    SUT960 = 15,
 }
-impl crate::ToBits<u8> for STARTUPR {
+impl From<STARTUP_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            STARTUPR::SUT0 => 0,
-            STARTUPR::SUT8 => 1,
-            STARTUPR::SUT16 => 2,
-            STARTUPR::SUT24 => 3,
-            STARTUPR::SUT64 => 4,
-            STARTUPR::SUT80 => 5,
-            STARTUPR::SUT96 => 6,
-            STARTUPR::SUT112 => 7,
-            STARTUPR::SUT512 => 8,
-            STARTUPR::SUT576 => 9,
-            STARTUPR::SUT640 => 10,
-            STARTUPR::SUT704 => 11,
-            STARTUPR::SUT768 => 12,
-            STARTUPR::SUT832 => 13,
-            STARTUPR::SUT896 => 14,
-            STARTUPR::SUT960 => 15,
-        }
+    fn from(variant: STARTUP_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type STARTUP_R = crate::FR<u8, STARTUPR>;
+#[doc = "Reader of field `STARTUP`"]
+pub type STARTUP_R = crate::R<u8, STARTUP_A>;
 impl STARTUP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> STARTUP_A {
+        match self.bits {
+            0 => STARTUP_A::SUT0,
+            1 => STARTUP_A::SUT8,
+            2 => STARTUP_A::SUT16,
+            3 => STARTUP_A::SUT24,
+            4 => STARTUP_A::SUT64,
+            5 => STARTUP_A::SUT80,
+            6 => STARTUP_A::SUT96,
+            7 => STARTUP_A::SUT112,
+            8 => STARTUP_A::SUT512,
+            9 => STARTUP_A::SUT576,
+            10 => STARTUP_A::SUT640,
+            11 => STARTUP_A::SUT704,
+            12 => STARTUP_A::SUT768,
+            13 => STARTUP_A::SUT832,
+            14 => STARTUP_A::SUT896,
+            15 => STARTUP_A::SUT960,
+            _ => unreachable!(),
+        }
+    }
     #[doc = "Checks if the value of the field is `SUT0`"]
     #[inline(always)]
     pub fn is_sut0(&self) -> bool {
-        *self == STARTUPR::SUT0
+        *self == STARTUP_A::SUT0
     }
     #[doc = "Checks if the value of the field is `SUT8`"]
     #[inline(always)]
     pub fn is_sut8(&self) -> bool {
-        *self == STARTUPR::SUT8
+        *self == STARTUP_A::SUT8
     }
     #[doc = "Checks if the value of the field is `SUT16`"]
     #[inline(always)]
     pub fn is_sut16(&self) -> bool {
-        *self == STARTUPR::SUT16
+        *self == STARTUP_A::SUT16
     }
     #[doc = "Checks if the value of the field is `SUT24`"]
     #[inline(always)]
     pub fn is_sut24(&self) -> bool {
-        *self == STARTUPR::SUT24
+        *self == STARTUP_A::SUT24
     }
     #[doc = "Checks if the value of the field is `SUT64`"]
     #[inline(always)]
     pub fn is_sut64(&self) -> bool {
-        *self == STARTUPR::SUT64
+        *self == STARTUP_A::SUT64
     }
     #[doc = "Checks if the value of the field is `SUT80`"]
     #[inline(always)]
     pub fn is_sut80(&self) -> bool {
-        *self == STARTUPR::SUT80
+        *self == STARTUP_A::SUT80
     }
     #[doc = "Checks if the value of the field is `SUT96`"]
     #[inline(always)]
     pub fn is_sut96(&self) -> bool {
-        *self == STARTUPR::SUT96
+        *self == STARTUP_A::SUT96
     }
     #[doc = "Checks if the value of the field is `SUT112`"]
     #[inline(always)]
     pub fn is_sut112(&self) -> bool {
-        *self == STARTUPR::SUT112
+        *self == STARTUP_A::SUT112
     }
     #[doc = "Checks if the value of the field is `SUT512`"]
     #[inline(always)]
     pub fn is_sut512(&self) -> bool {
-        *self == STARTUPR::SUT512
+        *self == STARTUP_A::SUT512
     }
     #[doc = "Checks if the value of the field is `SUT576`"]
     #[inline(always)]
     pub fn is_sut576(&self) -> bool {
-        *self == STARTUPR::SUT576
+        *self == STARTUP_A::SUT576
     }
     #[doc = "Checks if the value of the field is `SUT640`"]
     #[inline(always)]
     pub fn is_sut640(&self) -> bool {
-        *self == STARTUPR::SUT640
+        *self == STARTUP_A::SUT640
     }
     #[doc = "Checks if the value of the field is `SUT704`"]
     #[inline(always)]
     pub fn is_sut704(&self) -> bool {
-        *self == STARTUPR::SUT704
+        *self == STARTUP_A::SUT704
     }
     #[doc = "Checks if the value of the field is `SUT768`"]
     #[inline(always)]
     pub fn is_sut768(&self) -> bool {
-        *self == STARTUPR::SUT768
+        *self == STARTUP_A::SUT768
     }
     #[doc = "Checks if the value of the field is `SUT832`"]
     #[inline(always)]
     pub fn is_sut832(&self) -> bool {
-        *self == STARTUPR::SUT832
+        *self == STARTUP_A::SUT832
     }
     #[doc = "Checks if the value of the field is `SUT896`"]
     #[inline(always)]
     pub fn is_sut896(&self) -> bool {
-        *self == STARTUPR::SUT896
+        *self == STARTUP_A::SUT896
     }
     #[doc = "Checks if the value of the field is `SUT960`"]
     #[inline(always)]
     pub fn is_sut960(&self) -> bool {
-        *self == STARTUPR::SUT960
+        *self == STARTUP_A::SUT960
     }
 }
-#[doc = "Values that can be written to the field `STARTUP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum STARTUPW {
-    #[doc = "0 periods of AFE clock"]
-    SUT0,
-    #[doc = "8 periods of AFE clock"]
-    SUT8,
-    #[doc = "16 periods of AFE clock"]
-    SUT16,
-    #[doc = "24 periods of AFE clock"]
-    SUT24,
-    #[doc = "64 periods of AFE clock"]
-    SUT64,
-    #[doc = "80 periods of AFE clock"]
-    SUT80,
-    #[doc = "96 periods of AFE clock"]
-    SUT96,
-    #[doc = "112 periods of AFE clock"]
-    SUT112,
-    #[doc = "512 periods of AFE clock"]
-    SUT512,
-    #[doc = "576 periods of AFE clock"]
-    SUT576,
-    #[doc = "640 periods of AFE clock"]
-    SUT640,
-    #[doc = "704 periods of AFE clock"]
-    SUT704,
-    #[doc = "768 periods of AFE clock"]
-    SUT768,
-    #[doc = "832 periods of AFE clock"]
-    SUT832,
-    #[doc = "896 periods of AFE clock"]
-    SUT896,
-    #[doc = "960 periods of AFE clock"]
-    SUT960,
-}
-impl STARTUPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            STARTUPW::SUT0 => 0,
-            STARTUPW::SUT8 => 1,
-            STARTUPW::SUT16 => 2,
-            STARTUPW::SUT24 => 3,
-            STARTUPW::SUT64 => 4,
-            STARTUPW::SUT80 => 5,
-            STARTUPW::SUT96 => 6,
-            STARTUPW::SUT112 => 7,
-            STARTUPW::SUT512 => 8,
-            STARTUPW::SUT576 => 9,
-            STARTUPW::SUT640 => 10,
-            STARTUPW::SUT704 => 11,
-            STARTUPW::SUT768 => 12,
-            STARTUPW::SUT832 => 13,
-            STARTUPW::SUT896 => 14,
-            STARTUPW::SUT960 => 15,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _STARTUPW<'a> {
+#[doc = "Write proxy for field `STARTUP`"]
+pub struct STARTUP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _STARTUPW<'a> {
+impl<'a> STARTUP_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: STARTUPW) -> &'a mut W {
+    pub fn variant(self, variant: STARTUP_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "0 periods of AFE clock"]
     #[inline(always)]
     pub fn sut0(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT0)
+        self.variant(STARTUP_A::SUT0)
     }
     #[doc = "8 periods of AFE clock"]
     #[inline(always)]
     pub fn sut8(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT8)
+        self.variant(STARTUP_A::SUT8)
     }
     #[doc = "16 periods of AFE clock"]
     #[inline(always)]
     pub fn sut16(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT16)
+        self.variant(STARTUP_A::SUT16)
     }
     #[doc = "24 periods of AFE clock"]
     #[inline(always)]
     pub fn sut24(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT24)
+        self.variant(STARTUP_A::SUT24)
     }
     #[doc = "64 periods of AFE clock"]
     #[inline(always)]
     pub fn sut64(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT64)
+        self.variant(STARTUP_A::SUT64)
     }
     #[doc = "80 periods of AFE clock"]
     #[inline(always)]
     pub fn sut80(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT80)
+        self.variant(STARTUP_A::SUT80)
     }
     #[doc = "96 periods of AFE clock"]
     #[inline(always)]
     pub fn sut96(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT96)
+        self.variant(STARTUP_A::SUT96)
     }
     #[doc = "112 periods of AFE clock"]
     #[inline(always)]
     pub fn sut112(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT112)
+        self.variant(STARTUP_A::SUT112)
     }
     #[doc = "512 periods of AFE clock"]
     #[inline(always)]
     pub fn sut512(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT512)
+        self.variant(STARTUP_A::SUT512)
     }
     #[doc = "576 periods of AFE clock"]
     #[inline(always)]
     pub fn sut576(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT576)
+        self.variant(STARTUP_A::SUT576)
     }
     #[doc = "640 periods of AFE clock"]
     #[inline(always)]
     pub fn sut640(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT640)
+        self.variant(STARTUP_A::SUT640)
     }
     #[doc = "704 periods of AFE clock"]
     #[inline(always)]
     pub fn sut704(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT704)
+        self.variant(STARTUP_A::SUT704)
     }
     #[doc = "768 periods of AFE clock"]
     #[inline(always)]
     pub fn sut768(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT768)
+        self.variant(STARTUP_A::SUT768)
     }
     #[doc = "832 periods of AFE clock"]
     #[inline(always)]
     pub fn sut832(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT832)
+        self.variant(STARTUP_A::SUT832)
     }
     #[doc = "896 periods of AFE clock"]
     #[inline(always)]
     pub fn sut896(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT896)
+        self.variant(STARTUP_A::SUT896)
     }
     #[doc = "960 periods of AFE clock"]
     #[inline(always)]
     pub fn sut960(self) -> &'a mut W {
-        self.variant(STARTUPW::SUT960)
+        self.variant(STARTUP_A::SUT960)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -877,13 +704,13 @@ impl<'a> _STARTUPW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ONE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ONEW<'a> {
+#[doc = "Reader of field `ONE`"]
+pub type ONE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ONE`"]
+pub struct ONE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ONEW<'a> {
+impl<'a> ONE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -901,13 +728,13 @@ impl<'a> _ONEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type TRACKTIM_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _TRACKTIMW<'a> {
+#[doc = "Reader of field `TRACKTIM`"]
+pub type TRACKTIM_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TRACKTIM`"]
+pub struct TRACKTIM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TRACKTIMW<'a> {
+impl<'a> TRACKTIM_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -915,13 +742,13 @@ impl<'a> _TRACKTIMW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type TRANSFER_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _TRANSFERW<'a> {
+#[doc = "Reader of field `TRANSFER`"]
+pub type TRANSFER_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TRANSFER`"]
+pub struct TRANSFER_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TRANSFERW<'a> {
+impl<'a> TRANSFER_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -929,77 +756,63 @@ impl<'a> _TRANSFERW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `USEQ`"]
+#[doc = "User Sequence Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum USEQR {
-    #[doc = "Normal mode: The controller converts channels in a simple numeric order."]
-    NUM_ORDER,
-    #[doc = "User Sequence mode: The sequence respects what is defined in AFEC_SEQ1R and AFEC_SEQ1R."]
-    REG_ORDER,
+pub enum USEQ_A {
+    #[doc = "0: Normal mode: The controller converts channels in a simple numeric order."]
+    NUM_ORDER = 0,
+    #[doc = "1: User Sequence mode: The sequence respects what is defined in AFEC_SEQ1R and AFEC_SEQ1R."]
+    REG_ORDER = 1,
 }
-impl crate::ToBits<bool> for USEQR {
+impl From<USEQ_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            USEQR::NUM_ORDER => false,
-            USEQR::REG_ORDER => true,
-        }
+    fn from(variant: USEQ_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type USEQ_R = crate::FR<bool, USEQR>;
+#[doc = "Reader of field `USEQ`"]
+pub type USEQ_R = crate::R<bool, USEQ_A>;
 impl USEQ_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> USEQ_A {
+        match self.bits {
+            false => USEQ_A::NUM_ORDER,
+            true => USEQ_A::REG_ORDER,
+        }
+    }
     #[doc = "Checks if the value of the field is `NUM_ORDER`"]
     #[inline(always)]
     pub fn is_num_order(&self) -> bool {
-        *self == USEQR::NUM_ORDER
+        *self == USEQ_A::NUM_ORDER
     }
     #[doc = "Checks if the value of the field is `REG_ORDER`"]
     #[inline(always)]
     pub fn is_reg_order(&self) -> bool {
-        *self == USEQR::REG_ORDER
+        *self == USEQ_A::REG_ORDER
     }
 }
-#[doc = "Values that can be written to the field `USEQ`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum USEQW {
-    #[doc = "Normal mode: The controller converts channels in a simple numeric order."]
-    NUM_ORDER,
-    #[doc = "User Sequence mode: The sequence respects what is defined in AFEC_SEQ1R and AFEC_SEQ1R."]
-    REG_ORDER,
-}
-impl USEQW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            USEQW::NUM_ORDER => false,
-            USEQW::REG_ORDER => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _USEQW<'a> {
+#[doc = "Write proxy for field `USEQ`"]
+pub struct USEQ_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USEQW<'a> {
+impl<'a> USEQ_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: USEQW) -> &'a mut W {
+    pub fn variant(self, variant: USEQ_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Normal mode: The controller converts channels in a simple numeric order."]
     #[inline(always)]
     pub fn num_order(self) -> &'a mut W {
-        self.variant(USEQW::NUM_ORDER)
+        self.variant(USEQ_A::NUM_ORDER)
     }
     #[doc = "User Sequence mode: The sequence respects what is defined in AFEC_SEQ1R and AFEC_SEQ1R."]
     #[inline(always)]
     pub fn reg_order(self) -> &'a mut W {
-        self.variant(USEQW::REG_ORDER)
+        self.variant(USEQ_A::REG_ORDER)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -1019,127 +832,116 @@ impl<'a> _USEQW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Trigger Enable"]
     #[inline(always)]
     pub fn trgen(&self) -> TRGEN_R {
-        TRGEN_R::new((self.bits() & 0x01) != 0)
+        TRGEN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bits 1:3 - Trigger Selection"]
     #[inline(always)]
     pub fn trgsel(&self) -> TRGSEL_R {
-        TRGSEL_R::new(((self.bits() >> 1) & 0x07) as u8)
+        TRGSEL_R::new(((self.bits >> 1) & 0x07) as u8)
     }
     #[doc = "Bit 5 - Sleep Mode"]
     #[inline(always)]
     pub fn sleep(&self) -> SLEEP_R {
-        SLEEP_R::new(((self.bits() >> 5) & 0x01) != 0)
+        SLEEP_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Fast Wake-up"]
     #[inline(always)]
     pub fn fwup(&self) -> FWUP_R {
-        FWUP_R::new(((self.bits() >> 6) & 0x01) != 0)
+        FWUP_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Free Run Mode"]
     #[inline(always)]
     pub fn freerun(&self) -> FREERUN_R {
-        FREERUN_R::new(((self.bits() >> 7) & 0x01) != 0)
+        FREERUN_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bits 8:15 - Prescaler Rate Selection"]
     #[inline(always)]
     pub fn prescal(&self) -> PRESCAL_R {
-        PRESCAL_R::new(((self.bits() >> 8) & 0xff) as u8)
+        PRESCAL_R::new(((self.bits >> 8) & 0xff) as u8)
     }
     #[doc = "Bits 16:19 - Start-up Time"]
     #[inline(always)]
     pub fn startup(&self) -> STARTUP_R {
-        STARTUP_R::new(((self.bits() >> 16) & 0x0f) as u8)
+        STARTUP_R::new(((self.bits >> 16) & 0x0f) as u8)
     }
     #[doc = "Bit 23 - One"]
     #[inline(always)]
     pub fn one(&self) -> ONE_R {
-        ONE_R::new(((self.bits() >> 23) & 0x01) != 0)
+        ONE_R::new(((self.bits >> 23) & 0x01) != 0)
     }
     #[doc = "Bits 24:27 - Tracking Time"]
     #[inline(always)]
     pub fn tracktim(&self) -> TRACKTIM_R {
-        TRACKTIM_R::new(((self.bits() >> 24) & 0x0f) as u8)
+        TRACKTIM_R::new(((self.bits >> 24) & 0x0f) as u8)
     }
     #[doc = "Bits 28:29 - Transfer Period"]
     #[inline(always)]
     pub fn transfer(&self) -> TRANSFER_R {
-        TRANSFER_R::new(((self.bits() >> 28) & 0x03) as u8)
+        TRANSFER_R::new(((self.bits >> 28) & 0x03) as u8)
     }
     #[doc = "Bit 31 - User Sequence Enable"]
     #[inline(always)]
     pub fn useq(&self) -> USEQ_R {
-        USEQ_R::new(((self.bits() >> 31) & 0x01) != 0)
+        USEQ_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Trigger Enable"]
     #[inline(always)]
-    pub fn trgen(&mut self) -> _TRGENW {
-        _TRGENW { w: self }
+    pub fn trgen(&mut self) -> TRGEN_W {
+        TRGEN_W { w: self }
     }
     #[doc = "Bits 1:3 - Trigger Selection"]
     #[inline(always)]
-    pub fn trgsel(&mut self) -> _TRGSELW {
-        _TRGSELW { w: self }
+    pub fn trgsel(&mut self) -> TRGSEL_W {
+        TRGSEL_W { w: self }
     }
     #[doc = "Bit 5 - Sleep Mode"]
     #[inline(always)]
-    pub fn sleep(&mut self) -> _SLEEPW {
-        _SLEEPW { w: self }
+    pub fn sleep(&mut self) -> SLEEP_W {
+        SLEEP_W { w: self }
     }
     #[doc = "Bit 6 - Fast Wake-up"]
     #[inline(always)]
-    pub fn fwup(&mut self) -> _FWUPW {
-        _FWUPW { w: self }
+    pub fn fwup(&mut self) -> FWUP_W {
+        FWUP_W { w: self }
     }
     #[doc = "Bit 7 - Free Run Mode"]
     #[inline(always)]
-    pub fn freerun(&mut self) -> _FREERUNW {
-        _FREERUNW { w: self }
+    pub fn freerun(&mut self) -> FREERUN_W {
+        FREERUN_W { w: self }
     }
     #[doc = "Bits 8:15 - Prescaler Rate Selection"]
     #[inline(always)]
-    pub fn prescal(&mut self) -> _PRESCALW {
-        _PRESCALW { w: self }
+    pub fn prescal(&mut self) -> PRESCAL_W {
+        PRESCAL_W { w: self }
     }
     #[doc = "Bits 16:19 - Start-up Time"]
     #[inline(always)]
-    pub fn startup(&mut self) -> _STARTUPW {
-        _STARTUPW { w: self }
+    pub fn startup(&mut self) -> STARTUP_W {
+        STARTUP_W { w: self }
     }
     #[doc = "Bit 23 - One"]
     #[inline(always)]
-    pub fn one(&mut self) -> _ONEW {
-        _ONEW { w: self }
+    pub fn one(&mut self) -> ONE_W {
+        ONE_W { w: self }
     }
     #[doc = "Bits 24:27 - Tracking Time"]
     #[inline(always)]
-    pub fn tracktim(&mut self) -> _TRACKTIMW {
-        _TRACKTIMW { w: self }
+    pub fn tracktim(&mut self) -> TRACKTIM_W {
+        TRACKTIM_W { w: self }
     }
     #[doc = "Bits 28:29 - Transfer Period"]
     #[inline(always)]
-    pub fn transfer(&mut self) -> _TRANSFERW {
-        _TRANSFERW { w: self }
+    pub fn transfer(&mut self) -> TRANSFER_W {
+        TRANSFER_W { w: self }
     }
     #[doc = "Bit 31 - User Sequence Enable"]
     #[inline(always)]
-    pub fn useq(&mut self) -> _USEQW {
-        _USEQW { w: self }
+    pub fn useq(&mut self) -> USEQ_W {
+        USEQ_W { w: self }
     }
 }

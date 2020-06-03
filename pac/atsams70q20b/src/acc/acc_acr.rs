@@ -1,123 +1,72 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::ACC_ACR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register ACC_ACR"]
+pub type R = crate::R<u32, super::ACC_ACR>;
+#[doc = "Writer for register ACC_ACR"]
+pub type W = crate::W<u32, super::ACC_ACR>;
+#[doc = "Register ACC_ACR `reset()`'s with value 0"]
+impl crate::ResetValue for super::ACC_ACR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "Current Selection\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ISEL_A {
+    #[doc = "0: Low-power option."]
+    LOPW = 0,
+    #[doc = "1: High-speed option."]
+    HISP = 1,
+}
+impl From<ISEL_A> for bool {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: ISEL_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = "Possible values of the field `ISEL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ISELR {
-    #[doc = "Low-power option."]
-    LOPW,
-    #[doc = "High-speed option."]
-    HISP,
-}
-impl crate::ToBits<bool> for ISELR {
+#[doc = "Reader of field `ISEL`"]
+pub type ISEL_R = crate::R<bool, ISEL_A>;
+impl ISEL_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            ISELR::LOPW => false,
-            ISELR::HISP => true,
+    pub fn variant(&self) -> ISEL_A {
+        match self.bits {
+            false => ISEL_A::LOPW,
+            true => ISEL_A::HISP,
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type ISEL_R = crate::FR<bool, ISELR>;
-impl ISEL_R {
     #[doc = "Checks if the value of the field is `LOPW`"]
     #[inline(always)]
     pub fn is_lopw(&self) -> bool {
-        *self == ISELR::LOPW
+        *self == ISEL_A::LOPW
     }
     #[doc = "Checks if the value of the field is `HISP`"]
     #[inline(always)]
     pub fn is_hisp(&self) -> bool {
-        *self == ISELR::HISP
+        *self == ISEL_A::HISP
     }
 }
-#[doc = "Values that can be written to the field `ISEL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ISELW {
-    #[doc = "Low-power option."]
-    LOPW,
-    #[doc = "High-speed option."]
-    HISP,
-}
-impl ISELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ISELW::LOPW => false,
-            ISELW::HISP => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _ISELW<'a> {
+#[doc = "Write proxy for field `ISEL`"]
+pub struct ISEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ISELW<'a> {
+impl<'a> ISEL_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: ISELW) -> &'a mut W {
+    pub fn variant(self, variant: ISEL_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Low-power option."]
     #[inline(always)]
     pub fn lopw(self) -> &'a mut W {
-        self.variant(ISELW::LOPW)
+        self.variant(ISEL_A::LOPW)
     }
     #[doc = "High-speed option."]
     #[inline(always)]
     pub fn hisp(self) -> &'a mut W {
-        self.variant(ISELW::HISP)
+        self.variant(ISEL_A::HISP)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -136,13 +85,13 @@ impl<'a> _ISELW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type HYST_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _HYSTW<'a> {
+#[doc = "Reader of field `HYST`"]
+pub type HYST_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `HYST`"]
+pub struct HYST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HYSTW<'a> {
+impl<'a> HYST_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -151,37 +100,26 @@ impl<'a> _HYSTW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Current Selection"]
     #[inline(always)]
     pub fn isel(&self) -> ISEL_R {
-        ISEL_R::new((self.bits() & 0x01) != 0)
+        ISEL_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bits 1:2 - Hysteresis Selection"]
     #[inline(always)]
     pub fn hyst(&self) -> HYST_R {
-        HYST_R::new(((self.bits() >> 1) & 0x03) as u8)
+        HYST_R::new(((self.bits >> 1) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Current Selection"]
     #[inline(always)]
-    pub fn isel(&mut self) -> _ISELW {
-        _ISELW { w: self }
+    pub fn isel(&mut self) -> ISEL_W {
+        ISEL_W { w: self }
     }
     #[doc = "Bits 1:2 - Hysteresis Selection"]
     #[inline(always)]
-    pub fn hyst(&mut self) -> _HYSTW {
-        _HYSTW { w: self }
+    pub fn hyst(&mut self) -> HYST_W {
+        HYST_W { w: self }
     }
 }

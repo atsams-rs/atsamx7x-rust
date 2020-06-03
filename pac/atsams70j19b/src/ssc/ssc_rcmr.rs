@@ -1,137 +1,86 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SSC_RCMR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register SSC_RCMR"]
+pub type R = crate::R<u32, super::SSC_RCMR>;
+#[doc = "Writer for register SSC_RCMR"]
+pub type W = crate::W<u32, super::SSC_RCMR>;
+#[doc = "Register SSC_RCMR `reset()`'s with value 0"]
+impl crate::ResetValue for super::SSC_RCMR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "Receive Clock Selection\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum CKS_A {
+    #[doc = "0: Divided Clock"]
+    MCK = 0,
+    #[doc = "1: TK Clock signal"]
+    TK = 1,
+    #[doc = "2: RK pin"]
+    RK = 2,
+}
+impl From<CKS_A> for u8 {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: CKS_A) -> Self {
+        variant as _
     }
 }
-#[doc = "Possible values of the field `CKS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CKSR {
-    #[doc = "Divided Clock"]
-    MCK,
-    #[doc = "TK Clock signal"]
-    TK,
-    #[doc = "RK pin"]
-    RK,
-}
-impl crate::ToBits<u8> for CKSR {
+#[doc = "Reader of field `CKS`"]
+pub type CKS_R = crate::R<u8, CKS_A>;
+impl CKS_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            CKSR::MCK => 0,
-            CKSR::TK => 1,
-            CKSR::RK => 2,
+    pub fn variant(&self) -> crate::Variant<u8, CKS_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(CKS_A::MCK),
+            1 => Val(CKS_A::TK),
+            2 => Val(CKS_A::RK),
+            i => Res(i),
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type CKS_R = crate::FR<u8, CKSR>;
-impl CKS_R {
     #[doc = "Checks if the value of the field is `MCK`"]
     #[inline(always)]
     pub fn is_mck(&self) -> bool {
-        *self == CKSR::MCK
+        *self == CKS_A::MCK
     }
     #[doc = "Checks if the value of the field is `TK`"]
     #[inline(always)]
     pub fn is_tk(&self) -> bool {
-        *self == CKSR::TK
+        *self == CKS_A::TK
     }
     #[doc = "Checks if the value of the field is `RK`"]
     #[inline(always)]
     pub fn is_rk(&self) -> bool {
-        *self == CKSR::RK
+        *self == CKS_A::RK
     }
 }
-#[doc = "Values that can be written to the field `CKS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CKSW {
-    #[doc = "Divided Clock"]
-    MCK,
-    #[doc = "TK Clock signal"]
-    TK,
-    #[doc = "RK pin"]
-    RK,
-}
-impl CKSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CKSW::MCK => 0,
-            CKSW::TK => 1,
-            CKSW::RK => 2,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _CKSW<'a> {
+#[doc = "Write proxy for field `CKS`"]
+pub struct CKS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CKSW<'a> {
+impl<'a> CKS_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: CKSW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: CKS_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Divided Clock"]
     #[inline(always)]
     pub fn mck(self) -> &'a mut W {
-        self.variant(CKSW::MCK)
+        self.variant(CKS_A::MCK)
     }
     #[doc = "TK Clock signal"]
     #[inline(always)]
     pub fn tk(self) -> &'a mut W {
-        self.variant(CKSW::TK)
+        self.variant(CKS_A::TK)
     }
     #[doc = "RK pin"]
     #[inline(always)]
     pub fn rk(self) -> &'a mut W {
-        self.variant(CKSW::RK)
+        self.variant(CKS_A::RK)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -140,91 +89,77 @@ impl<'a> _CKSW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `CKO`"]
+#[doc = "Receive Clock Output Mode Selection\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CKOR {
-    #[doc = "None, RK pin is an input"]
-    NONE,
-    #[doc = "Continuous Receive Clock, RK pin is an output"]
-    CONTINUOUS,
-    #[doc = "Receive Clock only during data transfers, RK pin is an output"]
-    TRANSFER,
+#[repr(u8)]
+pub enum CKO_A {
+    #[doc = "0: None, RK pin is an input"]
+    NONE = 0,
+    #[doc = "1: Continuous Receive Clock, RK pin is an output"]
+    CONTINUOUS = 1,
+    #[doc = "2: Receive Clock only during data transfers, RK pin is an output"]
+    TRANSFER = 2,
 }
-impl crate::ToBits<u8> for CKOR {
+impl From<CKO_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            CKOR::NONE => 0,
-            CKOR::CONTINUOUS => 1,
-            CKOR::TRANSFER => 2,
-        }
+    fn from(variant: CKO_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type CKO_R = crate::FR<u8, CKOR>;
+#[doc = "Reader of field `CKO`"]
+pub type CKO_R = crate::R<u8, CKO_A>;
 impl CKO_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, CKO_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(CKO_A::NONE),
+            1 => Val(CKO_A::CONTINUOUS),
+            2 => Val(CKO_A::TRANSFER),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `NONE`"]
     #[inline(always)]
     pub fn is_none(&self) -> bool {
-        *self == CKOR::NONE
+        *self == CKO_A::NONE
     }
     #[doc = "Checks if the value of the field is `CONTINUOUS`"]
     #[inline(always)]
     pub fn is_continuous(&self) -> bool {
-        *self == CKOR::CONTINUOUS
+        *self == CKO_A::CONTINUOUS
     }
     #[doc = "Checks if the value of the field is `TRANSFER`"]
     #[inline(always)]
     pub fn is_transfer(&self) -> bool {
-        *self == CKOR::TRANSFER
+        *self == CKO_A::TRANSFER
     }
 }
-#[doc = "Values that can be written to the field `CKO`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CKOW {
-    #[doc = "None, RK pin is an input"]
-    NONE,
-    #[doc = "Continuous Receive Clock, RK pin is an output"]
-    CONTINUOUS,
-    #[doc = "Receive Clock only during data transfers, RK pin is an output"]
-    TRANSFER,
-}
-impl CKOW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CKOW::NONE => 0,
-            CKOW::CONTINUOUS => 1,
-            CKOW::TRANSFER => 2,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _CKOW<'a> {
+#[doc = "Write proxy for field `CKO`"]
+pub struct CKO_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CKOW<'a> {
+impl<'a> CKO_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: CKOW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: CKO_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "None, RK pin is an input"]
     #[inline(always)]
     pub fn none(self) -> &'a mut W {
-        self.variant(CKOW::NONE)
+        self.variant(CKO_A::NONE)
     }
     #[doc = "Continuous Receive Clock, RK pin is an output"]
     #[inline(always)]
     pub fn continuous(self) -> &'a mut W {
-        self.variant(CKOW::CONTINUOUS)
+        self.variant(CKO_A::CONTINUOUS)
     }
     #[doc = "Receive Clock only during data transfers, RK pin is an output"]
     #[inline(always)]
     pub fn transfer(self) -> &'a mut W {
-        self.variant(CKOW::TRANSFER)
+        self.variant(CKO_A::TRANSFER)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -233,13 +168,13 @@ impl<'a> _CKOW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CKI_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CKIW<'a> {
+#[doc = "Reader of field `CKI`"]
+pub type CKI_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CKI`"]
+pub struct CKI_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CKIW<'a> {
+impl<'a> CKI_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -257,91 +192,77 @@ impl<'a> _CKIW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `CKG`"]
+#[doc = "Receive Clock Gating Selection\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CKGR {
-    #[doc = "None"]
-    CONTINUOUS,
-    #[doc = "Receive Clock enabled only if RF Low"]
-    EN_RF_LOW,
-    #[doc = "Receive Clock enabled only if RF High"]
-    EN_RF_HIGH,
+#[repr(u8)]
+pub enum CKG_A {
+    #[doc = "0: None"]
+    CONTINUOUS = 0,
+    #[doc = "1: Receive Clock enabled only if RF Low"]
+    EN_RF_LOW = 1,
+    #[doc = "2: Receive Clock enabled only if RF High"]
+    EN_RF_HIGH = 2,
 }
-impl crate::ToBits<u8> for CKGR {
+impl From<CKG_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            CKGR::CONTINUOUS => 0,
-            CKGR::EN_RF_LOW => 1,
-            CKGR::EN_RF_HIGH => 2,
-        }
+    fn from(variant: CKG_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type CKG_R = crate::FR<u8, CKGR>;
+#[doc = "Reader of field `CKG`"]
+pub type CKG_R = crate::R<u8, CKG_A>;
 impl CKG_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, CKG_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(CKG_A::CONTINUOUS),
+            1 => Val(CKG_A::EN_RF_LOW),
+            2 => Val(CKG_A::EN_RF_HIGH),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `CONTINUOUS`"]
     #[inline(always)]
     pub fn is_continuous(&self) -> bool {
-        *self == CKGR::CONTINUOUS
+        *self == CKG_A::CONTINUOUS
     }
     #[doc = "Checks if the value of the field is `EN_RF_LOW`"]
     #[inline(always)]
     pub fn is_en_rf_low(&self) -> bool {
-        *self == CKGR::EN_RF_LOW
+        *self == CKG_A::EN_RF_LOW
     }
     #[doc = "Checks if the value of the field is `EN_RF_HIGH`"]
     #[inline(always)]
     pub fn is_en_rf_high(&self) -> bool {
-        *self == CKGR::EN_RF_HIGH
+        *self == CKG_A::EN_RF_HIGH
     }
 }
-#[doc = "Values that can be written to the field `CKG`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CKGW {
-    #[doc = "None"]
-    CONTINUOUS,
-    #[doc = "Receive Clock enabled only if RF Low"]
-    EN_RF_LOW,
-    #[doc = "Receive Clock enabled only if RF High"]
-    EN_RF_HIGH,
-}
-impl CKGW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CKGW::CONTINUOUS => 0,
-            CKGW::EN_RF_LOW => 1,
-            CKGW::EN_RF_HIGH => 2,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _CKGW<'a> {
+#[doc = "Write proxy for field `CKG`"]
+pub struct CKG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CKGW<'a> {
+impl<'a> CKG_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: CKGW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: CKG_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "None"]
     #[inline(always)]
     pub fn continuous(self) -> &'a mut W {
-        self.variant(CKGW::CONTINUOUS)
+        self.variant(CKG_A::CONTINUOUS)
     }
     #[doc = "Receive Clock enabled only if RF Low"]
     #[inline(always)]
     pub fn en_rf_low(self) -> &'a mut W {
-        self.variant(CKGW::EN_RF_LOW)
+        self.variant(CKG_A::EN_RF_LOW)
     }
     #[doc = "Receive Clock enabled only if RF High"]
     #[inline(always)]
     pub fn en_rf_high(self) -> &'a mut W {
-        self.variant(CKGW::EN_RF_HIGH)
+        self.variant(CKG_A::EN_RF_HIGH)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -350,187 +271,155 @@ impl<'a> _CKGW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `START`"]
+#[doc = "Receive Start Selection\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum STARTR {
-    #[doc = "Continuous, as soon as the receiver is enabled, and immediately after the end of transfer of the previous data."]
-    CONTINUOUS,
-    #[doc = "Transmit start"]
-    TRANSMIT,
-    #[doc = "Detection of a low level on RF signal"]
-    RF_LOW,
-    #[doc = "Detection of a high level on RF signal"]
-    RF_HIGH,
-    #[doc = "Detection of a falling edge on RF signal"]
-    RF_FALLING,
-    #[doc = "Detection of a rising edge on RF signal"]
-    RF_RISING,
-    #[doc = "Detection of any level change on RF signal"]
-    RF_LEVEL,
-    #[doc = "Detection of any edge on RF signal"]
-    RF_EDGE,
-    #[doc = "Compare 0"]
-    CMP_0,
+#[repr(u8)]
+pub enum START_A {
+    #[doc = "0: Continuous, as soon as the receiver is enabled, and immediately after the end of transfer of the previous data."]
+    CONTINUOUS = 0,
+    #[doc = "1: Transmit start"]
+    TRANSMIT = 1,
+    #[doc = "2: Detection of a low level on RF signal"]
+    RF_LOW = 2,
+    #[doc = "3: Detection of a high level on RF signal"]
+    RF_HIGH = 3,
+    #[doc = "4: Detection of a falling edge on RF signal"]
+    RF_FALLING = 4,
+    #[doc = "5: Detection of a rising edge on RF signal"]
+    RF_RISING = 5,
+    #[doc = "6: Detection of any level change on RF signal"]
+    RF_LEVEL = 6,
+    #[doc = "7: Detection of any edge on RF signal"]
+    RF_EDGE = 7,
+    #[doc = "8: Compare 0"]
+    CMP_0 = 8,
 }
-impl crate::ToBits<u8> for STARTR {
+impl From<START_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            STARTR::CONTINUOUS => 0,
-            STARTR::TRANSMIT => 1,
-            STARTR::RF_LOW => 2,
-            STARTR::RF_HIGH => 3,
-            STARTR::RF_FALLING => 4,
-            STARTR::RF_RISING => 5,
-            STARTR::RF_LEVEL => 6,
-            STARTR::RF_EDGE => 7,
-            STARTR::CMP_0 => 8,
-        }
+    fn from(variant: START_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type START_R = crate::FR<u8, STARTR>;
+#[doc = "Reader of field `START`"]
+pub type START_R = crate::R<u8, START_A>;
 impl START_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, START_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(START_A::CONTINUOUS),
+            1 => Val(START_A::TRANSMIT),
+            2 => Val(START_A::RF_LOW),
+            3 => Val(START_A::RF_HIGH),
+            4 => Val(START_A::RF_FALLING),
+            5 => Val(START_A::RF_RISING),
+            6 => Val(START_A::RF_LEVEL),
+            7 => Val(START_A::RF_EDGE),
+            8 => Val(START_A::CMP_0),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `CONTINUOUS`"]
     #[inline(always)]
     pub fn is_continuous(&self) -> bool {
-        *self == STARTR::CONTINUOUS
+        *self == START_A::CONTINUOUS
     }
     #[doc = "Checks if the value of the field is `TRANSMIT`"]
     #[inline(always)]
     pub fn is_transmit(&self) -> bool {
-        *self == STARTR::TRANSMIT
+        *self == START_A::TRANSMIT
     }
     #[doc = "Checks if the value of the field is `RF_LOW`"]
     #[inline(always)]
     pub fn is_rf_low(&self) -> bool {
-        *self == STARTR::RF_LOW
+        *self == START_A::RF_LOW
     }
     #[doc = "Checks if the value of the field is `RF_HIGH`"]
     #[inline(always)]
     pub fn is_rf_high(&self) -> bool {
-        *self == STARTR::RF_HIGH
+        *self == START_A::RF_HIGH
     }
     #[doc = "Checks if the value of the field is `RF_FALLING`"]
     #[inline(always)]
     pub fn is_rf_falling(&self) -> bool {
-        *self == STARTR::RF_FALLING
+        *self == START_A::RF_FALLING
     }
     #[doc = "Checks if the value of the field is `RF_RISING`"]
     #[inline(always)]
     pub fn is_rf_rising(&self) -> bool {
-        *self == STARTR::RF_RISING
+        *self == START_A::RF_RISING
     }
     #[doc = "Checks if the value of the field is `RF_LEVEL`"]
     #[inline(always)]
     pub fn is_rf_level(&self) -> bool {
-        *self == STARTR::RF_LEVEL
+        *self == START_A::RF_LEVEL
     }
     #[doc = "Checks if the value of the field is `RF_EDGE`"]
     #[inline(always)]
     pub fn is_rf_edge(&self) -> bool {
-        *self == STARTR::RF_EDGE
+        *self == START_A::RF_EDGE
     }
     #[doc = "Checks if the value of the field is `CMP_0`"]
     #[inline(always)]
     pub fn is_cmp_0(&self) -> bool {
-        *self == STARTR::CMP_0
+        *self == START_A::CMP_0
     }
 }
-#[doc = "Values that can be written to the field `START`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum STARTW {
-    #[doc = "Continuous, as soon as the receiver is enabled, and immediately after the end of transfer of the previous data."]
-    CONTINUOUS,
-    #[doc = "Transmit start"]
-    TRANSMIT,
-    #[doc = "Detection of a low level on RF signal"]
-    RF_LOW,
-    #[doc = "Detection of a high level on RF signal"]
-    RF_HIGH,
-    #[doc = "Detection of a falling edge on RF signal"]
-    RF_FALLING,
-    #[doc = "Detection of a rising edge on RF signal"]
-    RF_RISING,
-    #[doc = "Detection of any level change on RF signal"]
-    RF_LEVEL,
-    #[doc = "Detection of any edge on RF signal"]
-    RF_EDGE,
-    #[doc = "Compare 0"]
-    CMP_0,
-}
-impl STARTW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            STARTW::CONTINUOUS => 0,
-            STARTW::TRANSMIT => 1,
-            STARTW::RF_LOW => 2,
-            STARTW::RF_HIGH => 3,
-            STARTW::RF_FALLING => 4,
-            STARTW::RF_RISING => 5,
-            STARTW::RF_LEVEL => 6,
-            STARTW::RF_EDGE => 7,
-            STARTW::CMP_0 => 8,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _STARTW<'a> {
+#[doc = "Write proxy for field `START`"]
+pub struct START_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _STARTW<'a> {
+impl<'a> START_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: STARTW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: START_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Continuous, as soon as the receiver is enabled, and immediately after the end of transfer of the previous data."]
     #[inline(always)]
     pub fn continuous(self) -> &'a mut W {
-        self.variant(STARTW::CONTINUOUS)
+        self.variant(START_A::CONTINUOUS)
     }
     #[doc = "Transmit start"]
     #[inline(always)]
     pub fn transmit(self) -> &'a mut W {
-        self.variant(STARTW::TRANSMIT)
+        self.variant(START_A::TRANSMIT)
     }
     #[doc = "Detection of a low level on RF signal"]
     #[inline(always)]
     pub fn rf_low(self) -> &'a mut W {
-        self.variant(STARTW::RF_LOW)
+        self.variant(START_A::RF_LOW)
     }
     #[doc = "Detection of a high level on RF signal"]
     #[inline(always)]
     pub fn rf_high(self) -> &'a mut W {
-        self.variant(STARTW::RF_HIGH)
+        self.variant(START_A::RF_HIGH)
     }
     #[doc = "Detection of a falling edge on RF signal"]
     #[inline(always)]
     pub fn rf_falling(self) -> &'a mut W {
-        self.variant(STARTW::RF_FALLING)
+        self.variant(START_A::RF_FALLING)
     }
     #[doc = "Detection of a rising edge on RF signal"]
     #[inline(always)]
     pub fn rf_rising(self) -> &'a mut W {
-        self.variant(STARTW::RF_RISING)
+        self.variant(START_A::RF_RISING)
     }
     #[doc = "Detection of any level change on RF signal"]
     #[inline(always)]
     pub fn rf_level(self) -> &'a mut W {
-        self.variant(STARTW::RF_LEVEL)
+        self.variant(START_A::RF_LEVEL)
     }
     #[doc = "Detection of any edge on RF signal"]
     #[inline(always)]
     pub fn rf_edge(self) -> &'a mut W {
-        self.variant(STARTW::RF_EDGE)
+        self.variant(START_A::RF_EDGE)
     }
     #[doc = "Compare 0"]
     #[inline(always)]
     pub fn cmp_0(self) -> &'a mut W {
-        self.variant(STARTW::CMP_0)
+        self.variant(START_A::CMP_0)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -539,13 +428,13 @@ impl<'a> _STARTW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type STOP_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _STOPW<'a> {
+#[doc = "Reader of field `STOP`"]
+pub type STOP_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `STOP`"]
+pub struct STOP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _STOPW<'a> {
+impl<'a> STOP_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -563,13 +452,13 @@ impl<'a> _STOPW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type STTDLY_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _STTDLYW<'a> {
+#[doc = "Reader of field `STTDLY`"]
+pub type STTDLY_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `STTDLY`"]
+pub struct STTDLY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _STTDLYW<'a> {
+impl<'a> STTDLY_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -577,13 +466,13 @@ impl<'a> _STTDLYW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PERIOD_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _PERIODW<'a> {
+#[doc = "Reader of field `PERIOD`"]
+pub type PERIOD_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PERIOD`"]
+pub struct PERIOD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PERIODW<'a> {
+impl<'a> PERIOD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -592,97 +481,86 @@ impl<'a> _PERIODW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - Receive Clock Selection"]
     #[inline(always)]
     pub fn cks(&self) -> CKS_R {
-        CKS_R::new((self.bits() & 0x03) as u8)
+        CKS_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bits 2:4 - Receive Clock Output Mode Selection"]
     #[inline(always)]
     pub fn cko(&self) -> CKO_R {
-        CKO_R::new(((self.bits() >> 2) & 0x07) as u8)
+        CKO_R::new(((self.bits >> 2) & 0x07) as u8)
     }
     #[doc = "Bit 5 - Receive Clock Inversion"]
     #[inline(always)]
     pub fn cki(&self) -> CKI_R {
-        CKI_R::new(((self.bits() >> 5) & 0x01) != 0)
+        CKI_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bits 6:7 - Receive Clock Gating Selection"]
     #[inline(always)]
     pub fn ckg(&self) -> CKG_R {
-        CKG_R::new(((self.bits() >> 6) & 0x03) as u8)
+        CKG_R::new(((self.bits >> 6) & 0x03) as u8)
     }
     #[doc = "Bits 8:11 - Receive Start Selection"]
     #[inline(always)]
     pub fn start(&self) -> START_R {
-        START_R::new(((self.bits() >> 8) & 0x0f) as u8)
+        START_R::new(((self.bits >> 8) & 0x0f) as u8)
     }
     #[doc = "Bit 12 - Receive Stop Selection"]
     #[inline(always)]
     pub fn stop(&self) -> STOP_R {
-        STOP_R::new(((self.bits() >> 12) & 0x01) != 0)
+        STOP_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bits 16:23 - Receive Start Delay"]
     #[inline(always)]
     pub fn sttdly(&self) -> STTDLY_R {
-        STTDLY_R::new(((self.bits() >> 16) & 0xff) as u8)
+        STTDLY_R::new(((self.bits >> 16) & 0xff) as u8)
     }
     #[doc = "Bits 24:31 - Receive Period Divider Selection"]
     #[inline(always)]
     pub fn period(&self) -> PERIOD_R {
-        PERIOD_R::new(((self.bits() >> 24) & 0xff) as u8)
+        PERIOD_R::new(((self.bits >> 24) & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - Receive Clock Selection"]
     #[inline(always)]
-    pub fn cks(&mut self) -> _CKSW {
-        _CKSW { w: self }
+    pub fn cks(&mut self) -> CKS_W {
+        CKS_W { w: self }
     }
     #[doc = "Bits 2:4 - Receive Clock Output Mode Selection"]
     #[inline(always)]
-    pub fn cko(&mut self) -> _CKOW {
-        _CKOW { w: self }
+    pub fn cko(&mut self) -> CKO_W {
+        CKO_W { w: self }
     }
     #[doc = "Bit 5 - Receive Clock Inversion"]
     #[inline(always)]
-    pub fn cki(&mut self) -> _CKIW {
-        _CKIW { w: self }
+    pub fn cki(&mut self) -> CKI_W {
+        CKI_W { w: self }
     }
     #[doc = "Bits 6:7 - Receive Clock Gating Selection"]
     #[inline(always)]
-    pub fn ckg(&mut self) -> _CKGW {
-        _CKGW { w: self }
+    pub fn ckg(&mut self) -> CKG_W {
+        CKG_W { w: self }
     }
     #[doc = "Bits 8:11 - Receive Start Selection"]
     #[inline(always)]
-    pub fn start(&mut self) -> _STARTW {
-        _STARTW { w: self }
+    pub fn start(&mut self) -> START_W {
+        START_W { w: self }
     }
     #[doc = "Bit 12 - Receive Stop Selection"]
     #[inline(always)]
-    pub fn stop(&mut self) -> _STOPW {
-        _STOPW { w: self }
+    pub fn stop(&mut self) -> STOP_W {
+        STOP_W { w: self }
     }
     #[doc = "Bits 16:23 - Receive Start Delay"]
     #[inline(always)]
-    pub fn sttdly(&mut self) -> _STTDLYW {
-        _STTDLYW { w: self }
+    pub fn sttdly(&mut self) -> STTDLY_W {
+        STTDLY_W { w: self }
     }
     #[doc = "Bits 24:31 - Receive Period Divider Selection"]
     #[inline(always)]
-    pub fn period(&mut self) -> _PERIODW {
-        _PERIODW { w: self }
+    pub fn period(&mut self) -> PERIOD_W {
+        PERIOD_W { w: self }
     }
 }

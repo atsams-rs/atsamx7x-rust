@@ -1,37 +1,19 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::AES_IDATAR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register AES_IDATAR[%s]"]
+pub type W = crate::W<u32, super::AES_IDATAR>;
+#[doc = "Register AES_IDATAR[%s]
+`reset()`'s with value 0"]
+impl crate::ResetValue for super::AES_IDATAR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _IDATAW<'a> {
+#[doc = "Write proxy for field `IDATA`"]
+pub struct IDATA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IDATAW<'a> {
+impl<'a> IDATA_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u32) -> &'a mut W {
@@ -40,15 +22,9 @@ impl<'a> _IDATAW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:31 - Input Data Word"]
     #[inline(always)]
-    pub fn idata(&mut self) -> _IDATAW {
-        _IDATAW { w: self }
+    pub fn idata(&mut self) -> IDATA_W {
+        IDATA_W { w: self }
     }
 }

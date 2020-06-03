@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SMC_MODE {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register SMC_MODE"]
+pub type R = crate::R<u32, super::SMC_MODE>;
+#[doc = "Writer for register SMC_MODE"]
+pub type W = crate::W<u32, super::SMC_MODE>;
+#[doc = "Register SMC_MODE `reset()`'s with value 0"]
+impl crate::ResetValue for super::SMC_MODE {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type READ_MODE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _READ_MODEW<'a> {
+#[doc = "Reader of field `READ_MODE`"]
+pub type READ_MODE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `READ_MODE`"]
+pub struct READ_MODE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _READ_MODEW<'a> {
+impl<'a> READ_MODE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _READ_MODEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type WRITE_MODE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _WRITE_MODEW<'a> {
+#[doc = "Reader of field `WRITE_MODE`"]
+pub type WRITE_MODE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `WRITE_MODE`"]
+pub struct WRITE_MODE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WRITE_MODEW<'a> {
+impl<'a> WRITE_MODE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,91 +58,77 @@ impl<'a> _WRITE_MODEW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `EXNW_MODE`"]
+#[doc = "NWAIT Mode\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum EXNW_MODER {
-    #[doc = "Disabled"]
-    DISABLED,
-    #[doc = "Frozen Mode"]
-    FROZEN,
-    #[doc = "Ready Mode"]
-    READY,
+#[repr(u8)]
+pub enum EXNW_MODE_A {
+    #[doc = "0: Disabled"]
+    DISABLED = 0,
+    #[doc = "2: Frozen Mode"]
+    FROZEN = 2,
+    #[doc = "3: Ready Mode"]
+    READY = 3,
 }
-impl crate::ToBits<u8> for EXNW_MODER {
+impl From<EXNW_MODE_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            EXNW_MODER::DISABLED => 0,
-            EXNW_MODER::FROZEN => 2,
-            EXNW_MODER::READY => 3,
-        }
+    fn from(variant: EXNW_MODE_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type EXNW_MODE_R = crate::FR<u8, EXNW_MODER>;
+#[doc = "Reader of field `EXNW_MODE`"]
+pub type EXNW_MODE_R = crate::R<u8, EXNW_MODE_A>;
 impl EXNW_MODE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, EXNW_MODE_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(EXNW_MODE_A::DISABLED),
+            2 => Val(EXNW_MODE_A::FROZEN),
+            3 => Val(EXNW_MODE_A::READY),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == EXNW_MODER::DISABLED
+        *self == EXNW_MODE_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `FROZEN`"]
     #[inline(always)]
     pub fn is_frozen(&self) -> bool {
-        *self == EXNW_MODER::FROZEN
+        *self == EXNW_MODE_A::FROZEN
     }
     #[doc = "Checks if the value of the field is `READY`"]
     #[inline(always)]
     pub fn is_ready(&self) -> bool {
-        *self == EXNW_MODER::READY
+        *self == EXNW_MODE_A::READY
     }
 }
-#[doc = "Values that can be written to the field `EXNW_MODE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum EXNW_MODEW {
-    #[doc = "Disabled"]
-    DISABLED,
-    #[doc = "Frozen Mode"]
-    FROZEN,
-    #[doc = "Ready Mode"]
-    READY,
-}
-impl EXNW_MODEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            EXNW_MODEW::DISABLED => 0,
-            EXNW_MODEW::FROZEN => 2,
-            EXNW_MODEW::READY => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _EXNW_MODEW<'a> {
+#[doc = "Write proxy for field `EXNW_MODE`"]
+pub struct EXNW_MODE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EXNW_MODEW<'a> {
+impl<'a> EXNW_MODE_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: EXNW_MODEW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: EXNW_MODE_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Disabled"]
     #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(EXNW_MODEW::DISABLED)
+        self.variant(EXNW_MODE_A::DISABLED)
     }
     #[doc = "Frozen Mode"]
     #[inline(always)]
     pub fn frozen(self) -> &'a mut W {
-        self.variant(EXNW_MODEW::FROZEN)
+        self.variant(EXNW_MODE_A::FROZEN)
     }
     #[doc = "Ready Mode"]
     #[inline(always)]
     pub fn ready(self) -> &'a mut W {
-        self.variant(EXNW_MODEW::READY)
+        self.variant(EXNW_MODE_A::READY)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -188,77 +137,63 @@ impl<'a> _EXNW_MODEW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `BAT`"]
+#[doc = "Byte Access Type\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BATR {
-    #[doc = "Byte select access type:- Write operation is controlled using NCS, NWE, NBS0, NBS1.- Read operation is controlled using NCS, NRD, NBS0, NBS1."]
-    BYTE_SELECT,
-    #[doc = "Byte write access type:- Write operation is controlled using NCS, NWR0, NWR1.- Read operation is controlled using NCS and NRD."]
-    BYTE_WRITE,
+pub enum BAT_A {
+    #[doc = "0: Byte select access type:- Write operation is controlled using NCS, NWE, NBS0, NBS1.- Read operation is controlled using NCS, NRD, NBS0, NBS1."]
+    BYTE_SELECT = 0,
+    #[doc = "1: Byte write access type:- Write operation is controlled using NCS, NWR0, NWR1.- Read operation is controlled using NCS and NRD."]
+    BYTE_WRITE = 1,
 }
-impl crate::ToBits<bool> for BATR {
+impl From<BAT_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            BATR::BYTE_SELECT => false,
-            BATR::BYTE_WRITE => true,
-        }
+    fn from(variant: BAT_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type BAT_R = crate::FR<bool, BATR>;
+#[doc = "Reader of field `BAT`"]
+pub type BAT_R = crate::R<bool, BAT_A>;
 impl BAT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BAT_A {
+        match self.bits {
+            false => BAT_A::BYTE_SELECT,
+            true => BAT_A::BYTE_WRITE,
+        }
+    }
     #[doc = "Checks if the value of the field is `BYTE_SELECT`"]
     #[inline(always)]
     pub fn is_byte_select(&self) -> bool {
-        *self == BATR::BYTE_SELECT
+        *self == BAT_A::BYTE_SELECT
     }
     #[doc = "Checks if the value of the field is `BYTE_WRITE`"]
     #[inline(always)]
     pub fn is_byte_write(&self) -> bool {
-        *self == BATR::BYTE_WRITE
+        *self == BAT_A::BYTE_WRITE
     }
 }
-#[doc = "Values that can be written to the field `BAT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BATW {
-    #[doc = "Byte select access type:- Write operation is controlled using NCS, NWE, NBS0, NBS1.- Read operation is controlled using NCS, NRD, NBS0, NBS1."]
-    BYTE_SELECT,
-    #[doc = "Byte write access type:- Write operation is controlled using NCS, NWR0, NWR1.- Read operation is controlled using NCS and NRD."]
-    BYTE_WRITE,
-}
-impl BATW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BATW::BYTE_SELECT => false,
-            BATW::BYTE_WRITE => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _BATW<'a> {
+#[doc = "Write proxy for field `BAT`"]
+pub struct BAT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BATW<'a> {
+impl<'a> BAT_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: BATW) -> &'a mut W {
+    pub fn variant(self, variant: BAT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Byte select access type:- Write operation is controlled using NCS, NWE, NBS0, NBS1.- Read operation is controlled using NCS, NRD, NBS0, NBS1."]
     #[inline(always)]
     pub fn byte_select(self) -> &'a mut W {
-        self.variant(BATW::BYTE_SELECT)
+        self.variant(BAT_A::BYTE_SELECT)
     }
     #[doc = "Byte write access type:- Write operation is controlled using NCS, NWR0, NWR1.- Read operation is controlled using NCS and NRD."]
     #[inline(always)]
     pub fn byte_write(self) -> &'a mut W {
-        self.variant(BATW::BYTE_WRITE)
+        self.variant(BAT_A::BYTE_WRITE)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -277,77 +212,63 @@ impl<'a> _BATW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `DBW`"]
+#[doc = "Data Bus Width\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DBWR {
-    #[doc = "8-bit Data Bus"]
-    _8_BIT,
-    #[doc = "16-bit Data Bus"]
-    _16_BIT,
+pub enum DBW_A {
+    #[doc = "0: 8-bit Data Bus"]
+    _8_BIT = 0,
+    #[doc = "1: 16-bit Data Bus"]
+    _16_BIT = 1,
 }
-impl crate::ToBits<bool> for DBWR {
+impl From<DBW_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            DBWR::_8_BIT => false,
-            DBWR::_16_BIT => true,
-        }
+    fn from(variant: DBW_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type DBW_R = crate::FR<bool, DBWR>;
+#[doc = "Reader of field `DBW`"]
+pub type DBW_R = crate::R<bool, DBW_A>;
 impl DBW_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> DBW_A {
+        match self.bits {
+            false => DBW_A::_8_BIT,
+            true => DBW_A::_16_BIT,
+        }
+    }
     #[doc = "Checks if the value of the field is `_8_BIT`"]
     #[inline(always)]
     pub fn is_8_bit(&self) -> bool {
-        *self == DBWR::_8_BIT
+        *self == DBW_A::_8_BIT
     }
     #[doc = "Checks if the value of the field is `_16_BIT`"]
     #[inline(always)]
     pub fn is_16_bit(&self) -> bool {
-        *self == DBWR::_16_BIT
+        *self == DBW_A::_16_BIT
     }
 }
-#[doc = "Values that can be written to the field `DBW`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DBWW {
-    #[doc = "8-bit Data Bus"]
-    _8_BIT,
-    #[doc = "16-bit Data Bus"]
-    _16_BIT,
-}
-impl DBWW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            DBWW::_8_BIT => false,
-            DBWW::_16_BIT => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _DBWW<'a> {
+#[doc = "Write proxy for field `DBW`"]
+pub struct DBW_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DBWW<'a> {
+impl<'a> DBW_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: DBWW) -> &'a mut W {
+    pub fn variant(self, variant: DBW_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "8-bit Data Bus"]
     #[inline(always)]
     pub fn _8_bit(self) -> &'a mut W {
-        self.variant(DBWW::_8_BIT)
+        self.variant(DBW_A::_8_BIT)
     }
     #[doc = "16-bit Data Bus"]
     #[inline(always)]
     pub fn _16_bit(self) -> &'a mut W {
-        self.variant(DBWW::_16_BIT)
+        self.variant(DBW_A::_16_BIT)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -366,13 +287,13 @@ impl<'a> _DBWW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type TDF_CYCLES_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _TDF_CYCLESW<'a> {
+#[doc = "Reader of field `TDF_CYCLES`"]
+pub type TDF_CYCLES_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TDF_CYCLES`"]
+pub struct TDF_CYCLES_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TDF_CYCLESW<'a> {
+impl<'a> TDF_CYCLES_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -380,13 +301,13 @@ impl<'a> _TDF_CYCLESW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type TDF_MODE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _TDF_MODEW<'a> {
+#[doc = "Reader of field `TDF_MODE`"]
+pub type TDF_MODE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `TDF_MODE`"]
+pub struct TDF_MODE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TDF_MODEW<'a> {
+impl<'a> TDF_MODE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -404,13 +325,13 @@ impl<'a> _TDF_MODEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PMEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _PMENW<'a> {
+#[doc = "Reader of field `PMEN`"]
+pub type PMEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PMEN`"]
+pub struct PMEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PMENW<'a> {
+impl<'a> PMEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -428,109 +349,91 @@ impl<'a> _PMENW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `PS`"]
+#[doc = "Page Size\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PSR {
-    #[doc = "4-byte page"]
-    _4_BYTE,
-    #[doc = "8-byte page"]
-    _8_BYTE,
-    #[doc = "16-byte page"]
-    _16_BYTE,
-    #[doc = "32-byte page"]
-    _32_BYTE,
+#[repr(u8)]
+pub enum PS_A {
+    #[doc = "0: 4-byte page"]
+    _4_BYTE = 0,
+    #[doc = "1: 8-byte page"]
+    _8_BYTE = 1,
+    #[doc = "2: 16-byte page"]
+    _16_BYTE = 2,
+    #[doc = "3: 32-byte page"]
+    _32_BYTE = 3,
 }
-impl crate::ToBits<u8> for PSR {
+impl From<PS_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            PSR::_4_BYTE => 0,
-            PSR::_8_BYTE => 1,
-            PSR::_16_BYTE => 2,
-            PSR::_32_BYTE => 3,
-        }
+    fn from(variant: PS_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type PS_R = crate::FR<u8, PSR>;
+#[doc = "Reader of field `PS`"]
+pub type PS_R = crate::R<u8, PS_A>;
 impl PS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PS_A {
+        match self.bits {
+            0 => PS_A::_4_BYTE,
+            1 => PS_A::_8_BYTE,
+            2 => PS_A::_16_BYTE,
+            3 => PS_A::_32_BYTE,
+            _ => unreachable!(),
+        }
+    }
     #[doc = "Checks if the value of the field is `_4_BYTE`"]
     #[inline(always)]
     pub fn is_4_byte(&self) -> bool {
-        *self == PSR::_4_BYTE
+        *self == PS_A::_4_BYTE
     }
     #[doc = "Checks if the value of the field is `_8_BYTE`"]
     #[inline(always)]
     pub fn is_8_byte(&self) -> bool {
-        *self == PSR::_8_BYTE
+        *self == PS_A::_8_BYTE
     }
     #[doc = "Checks if the value of the field is `_16_BYTE`"]
     #[inline(always)]
     pub fn is_16_byte(&self) -> bool {
-        *self == PSR::_16_BYTE
+        *self == PS_A::_16_BYTE
     }
     #[doc = "Checks if the value of the field is `_32_BYTE`"]
     #[inline(always)]
     pub fn is_32_byte(&self) -> bool {
-        *self == PSR::_32_BYTE
+        *self == PS_A::_32_BYTE
     }
 }
-#[doc = "Values that can be written to the field `PS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PSW {
-    #[doc = "4-byte page"]
-    _4_BYTE,
-    #[doc = "8-byte page"]
-    _8_BYTE,
-    #[doc = "16-byte page"]
-    _16_BYTE,
-    #[doc = "32-byte page"]
-    _32_BYTE,
-}
-impl PSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PSW::_4_BYTE => 0,
-            PSW::_8_BYTE => 1,
-            PSW::_16_BYTE => 2,
-            PSW::_32_BYTE => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _PSW<'a> {
+#[doc = "Write proxy for field `PS`"]
+pub struct PS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PSW<'a> {
+impl<'a> PS_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: PSW) -> &'a mut W {
+    pub fn variant(self, variant: PS_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "4-byte page"]
     #[inline(always)]
     pub fn _4_byte(self) -> &'a mut W {
-        self.variant(PSW::_4_BYTE)
+        self.variant(PS_A::_4_BYTE)
     }
     #[doc = "8-byte page"]
     #[inline(always)]
     pub fn _8_byte(self) -> &'a mut W {
-        self.variant(PSW::_8_BYTE)
+        self.variant(PS_A::_8_BYTE)
     }
     #[doc = "16-byte page"]
     #[inline(always)]
     pub fn _16_byte(self) -> &'a mut W {
-        self.variant(PSW::_16_BYTE)
+        self.variant(PS_A::_16_BYTE)
     }
     #[doc = "32-byte page"]
     #[inline(always)]
     pub fn _32_byte(self) -> &'a mut W {
-        self.variant(PSW::_32_BYTE)
+        self.variant(PS_A::_32_BYTE)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -540,107 +443,96 @@ impl<'a> _PSW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Read Mode"]
     #[inline(always)]
     pub fn read_mode(&self) -> READ_MODE_R {
-        READ_MODE_R::new((self.bits() & 0x01) != 0)
+        READ_MODE_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Write Mode"]
     #[inline(always)]
     pub fn write_mode(&self) -> WRITE_MODE_R {
-        WRITE_MODE_R::new(((self.bits() >> 1) & 0x01) != 0)
+        WRITE_MODE_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bits 4:5 - NWAIT Mode"]
     #[inline(always)]
     pub fn exnw_mode(&self) -> EXNW_MODE_R {
-        EXNW_MODE_R::new(((self.bits() >> 4) & 0x03) as u8)
+        EXNW_MODE_R::new(((self.bits >> 4) & 0x03) as u8)
     }
     #[doc = "Bit 8 - Byte Access Type"]
     #[inline(always)]
     pub fn bat(&self) -> BAT_R {
-        BAT_R::new(((self.bits() >> 8) & 0x01) != 0)
+        BAT_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 12 - Data Bus Width"]
     #[inline(always)]
     pub fn dbw(&self) -> DBW_R {
-        DBW_R::new(((self.bits() >> 12) & 0x01) != 0)
+        DBW_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bits 16:19 - Data Float Time"]
     #[inline(always)]
     pub fn tdf_cycles(&self) -> TDF_CYCLES_R {
-        TDF_CYCLES_R::new(((self.bits() >> 16) & 0x0f) as u8)
+        TDF_CYCLES_R::new(((self.bits >> 16) & 0x0f) as u8)
     }
     #[doc = "Bit 20 - TDF Optimization"]
     #[inline(always)]
     pub fn tdf_mode(&self) -> TDF_MODE_R {
-        TDF_MODE_R::new(((self.bits() >> 20) & 0x01) != 0)
+        TDF_MODE_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bit 24 - Page Mode Enabled"]
     #[inline(always)]
     pub fn pmen(&self) -> PMEN_R {
-        PMEN_R::new(((self.bits() >> 24) & 0x01) != 0)
+        PMEN_R::new(((self.bits >> 24) & 0x01) != 0)
     }
     #[doc = "Bits 28:29 - Page Size"]
     #[inline(always)]
     pub fn ps(&self) -> PS_R {
-        PS_R::new(((self.bits() >> 28) & 0x03) as u8)
+        PS_R::new(((self.bits >> 28) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Read Mode"]
     #[inline(always)]
-    pub fn read_mode(&mut self) -> _READ_MODEW {
-        _READ_MODEW { w: self }
+    pub fn read_mode(&mut self) -> READ_MODE_W {
+        READ_MODE_W { w: self }
     }
     #[doc = "Bit 1 - Write Mode"]
     #[inline(always)]
-    pub fn write_mode(&mut self) -> _WRITE_MODEW {
-        _WRITE_MODEW { w: self }
+    pub fn write_mode(&mut self) -> WRITE_MODE_W {
+        WRITE_MODE_W { w: self }
     }
     #[doc = "Bits 4:5 - NWAIT Mode"]
     #[inline(always)]
-    pub fn exnw_mode(&mut self) -> _EXNW_MODEW {
-        _EXNW_MODEW { w: self }
+    pub fn exnw_mode(&mut self) -> EXNW_MODE_W {
+        EXNW_MODE_W { w: self }
     }
     #[doc = "Bit 8 - Byte Access Type"]
     #[inline(always)]
-    pub fn bat(&mut self) -> _BATW {
-        _BATW { w: self }
+    pub fn bat(&mut self) -> BAT_W {
+        BAT_W { w: self }
     }
     #[doc = "Bit 12 - Data Bus Width"]
     #[inline(always)]
-    pub fn dbw(&mut self) -> _DBWW {
-        _DBWW { w: self }
+    pub fn dbw(&mut self) -> DBW_W {
+        DBW_W { w: self }
     }
     #[doc = "Bits 16:19 - Data Float Time"]
     #[inline(always)]
-    pub fn tdf_cycles(&mut self) -> _TDF_CYCLESW {
-        _TDF_CYCLESW { w: self }
+    pub fn tdf_cycles(&mut self) -> TDF_CYCLES_W {
+        TDF_CYCLES_W { w: self }
     }
     #[doc = "Bit 20 - TDF Optimization"]
     #[inline(always)]
-    pub fn tdf_mode(&mut self) -> _TDF_MODEW {
-        _TDF_MODEW { w: self }
+    pub fn tdf_mode(&mut self) -> TDF_MODE_W {
+        TDF_MODE_W { w: self }
     }
     #[doc = "Bit 24 - Page Mode Enabled"]
     #[inline(always)]
-    pub fn pmen(&mut self) -> _PMENW {
-        _PMENW { w: self }
+    pub fn pmen(&mut self) -> PMEN_W {
+        PMEN_W { w: self }
     }
     #[doc = "Bits 28:29 - Page Size"]
     #[inline(always)]
-    pub fn ps(&mut self) -> _PSW {
-        _PSW { w: self }
+    pub fn ps(&mut self) -> PS_W {
+        PS_W { w: self }
     }
 }

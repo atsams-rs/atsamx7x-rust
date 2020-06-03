@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_CMPV {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register PWM_CMPV"]
+pub type R = crate::R<u32, super::PWM_CMPV>;
+#[doc = "Writer for register PWM_CMPV"]
+pub type W = crate::W<u32, super::PWM_CMPV>;
+#[doc = "Register PWM_CMPV `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_CMPV {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type CV_R = crate::FR<u32, u32>;
-#[doc = r"Proxy"]
-pub struct _CVW<'a> {
+#[doc = "Reader of field `CV`"]
+pub type CV_R = crate::R<u32, u32>;
+#[doc = "Write proxy for field `CV`"]
+pub struct CV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CVW<'a> {
+impl<'a> CV_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u32) -> &'a mut W {
@@ -61,77 +24,63 @@ impl<'a> _CVW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `CVM`"]
+#[doc = "Comparison x Value Mode\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CVMR {
-    #[doc = "Compare when counter is incrementing"]
-    COMPARE_AT_INCREMENT,
-    #[doc = "Compare when counter is decrementing"]
-    COMPARE_AT_DECREMENT,
+pub enum CVM_A {
+    #[doc = "0: Compare when counter is incrementing"]
+    COMPARE_AT_INCREMENT = 0,
+    #[doc = "1: Compare when counter is decrementing"]
+    COMPARE_AT_DECREMENT = 1,
 }
-impl crate::ToBits<bool> for CVMR {
+impl From<CVM_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            CVMR::COMPARE_AT_INCREMENT => false,
-            CVMR::COMPARE_AT_DECREMENT => true,
-        }
+    fn from(variant: CVM_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type CVM_R = crate::FR<bool, CVMR>;
+#[doc = "Reader of field `CVM`"]
+pub type CVM_R = crate::R<bool, CVM_A>;
 impl CVM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CVM_A {
+        match self.bits {
+            false => CVM_A::COMPARE_AT_INCREMENT,
+            true => CVM_A::COMPARE_AT_DECREMENT,
+        }
+    }
     #[doc = "Checks if the value of the field is `COMPARE_AT_INCREMENT`"]
     #[inline(always)]
     pub fn is_compare_at_increment(&self) -> bool {
-        *self == CVMR::COMPARE_AT_INCREMENT
+        *self == CVM_A::COMPARE_AT_INCREMENT
     }
     #[doc = "Checks if the value of the field is `COMPARE_AT_DECREMENT`"]
     #[inline(always)]
     pub fn is_compare_at_decrement(&self) -> bool {
-        *self == CVMR::COMPARE_AT_DECREMENT
+        *self == CVM_A::COMPARE_AT_DECREMENT
     }
 }
-#[doc = "Values that can be written to the field `CVM`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CVMW {
-    #[doc = "Compare when counter is incrementing"]
-    COMPARE_AT_INCREMENT,
-    #[doc = "Compare when counter is decrementing"]
-    COMPARE_AT_DECREMENT,
-}
-impl CVMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CVMW::COMPARE_AT_INCREMENT => false,
-            CVMW::COMPARE_AT_DECREMENT => true,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _CVMW<'a> {
+#[doc = "Write proxy for field `CVM`"]
+pub struct CVM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CVMW<'a> {
+impl<'a> CVM_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: CVMW) -> &'a mut W {
+    pub fn variant(self, variant: CVM_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Compare when counter is incrementing"]
     #[inline(always)]
     pub fn compare_at_increment(self) -> &'a mut W {
-        self.variant(CVMW::COMPARE_AT_INCREMENT)
+        self.variant(CVM_A::COMPARE_AT_INCREMENT)
     }
     #[doc = "Compare when counter is decrementing"]
     #[inline(always)]
     pub fn compare_at_decrement(self) -> &'a mut W {
-        self.variant(CVMW::COMPARE_AT_DECREMENT)
+        self.variant(CVM_A::COMPARE_AT_DECREMENT)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -151,37 +100,26 @@ impl<'a> _CVMW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:23 - Comparison x Value"]
     #[inline(always)]
     pub fn cv(&self) -> CV_R {
-        CV_R::new((self.bits() & 0x00ff_ffff) as u32)
+        CV_R::new((self.bits & 0x00ff_ffff) as u32)
     }
     #[doc = "Bit 24 - Comparison x Value Mode"]
     #[inline(always)]
     pub fn cvm(&self) -> CVM_R {
-        CVM_R::new(((self.bits() >> 24) & 0x01) != 0)
+        CVM_R::new(((self.bits >> 24) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:23 - Comparison x Value"]
     #[inline(always)]
-    pub fn cv(&mut self) -> _CVW {
-        _CVW { w: self }
+    pub fn cv(&mut self) -> CV_W {
+        CV_W { w: self }
     }
     #[doc = "Bit 24 - Comparison x Value Mode"]
     #[inline(always)]
-    pub fn cvm(&mut self) -> _CVMW {
-        _CVMW { w: self }
+    pub fn cvm(&mut self) -> CVM_W {
+        CVM_W { w: self }
     }
 }

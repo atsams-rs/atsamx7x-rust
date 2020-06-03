@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TWIHS_CR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register TWIHS_CR"]
+pub type W = crate::W<u32, super::TWIHS_CR>;
+#[doc = "Register TWIHS_CR `reset()`'s with value 0"]
+impl crate::ResetValue for super::TWIHS_CR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _STARTW<'a> {
+#[doc = "Write proxy for field `START`"]
+pub struct START_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _STARTW<'a> {
+impl<'a> START_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _STARTW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _STOPW<'a> {
+#[doc = "Write proxy for field `STOP`"]
+pub struct STOP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _STOPW<'a> {
+impl<'a> STOP_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _STOPW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _MSENW<'a> {
+#[doc = "Write proxy for field `MSEN`"]
+pub struct MSEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MSENW<'a> {
+impl<'a> MSEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _MSENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _MSDISW<'a> {
+#[doc = "Write proxy for field `MSDIS`"]
+pub struct MSDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MSDISW<'a> {
+impl<'a> MSDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _MSDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SVENW<'a> {
+#[doc = "Write proxy for field `SVEN`"]
+pub struct SVEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SVENW<'a> {
+impl<'a> SVEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _SVENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SVDISW<'a> {
+#[doc = "Write proxy for field `SVDIS`"]
+pub struct SVDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SVDISW<'a> {
+impl<'a> SVDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _SVDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _QUICKW<'a> {
+#[doc = "Write proxy for field `QUICK`"]
+pub struct QUICK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _QUICKW<'a> {
+impl<'a> QUICK_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _QUICKW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWRSTW<'a> {
+#[doc = "Write proxy for field `SWRST`"]
+pub struct SWRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWRSTW<'a> {
+impl<'a> SWRST_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +184,11 @@ impl<'a> _SWRSTW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _HSENW<'a> {
+#[doc = "Write proxy for field `HSEN`"]
+pub struct HSEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HSENW<'a> {
+impl<'a> HSEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -225,11 +206,11 @@ impl<'a> _HSENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _HSDISW<'a> {
+#[doc = "Write proxy for field `HSDIS`"]
+pub struct HSDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HSDISW<'a> {
+impl<'a> HSDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -247,11 +228,11 @@ impl<'a> _HSDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SMBENW<'a> {
+#[doc = "Write proxy for field `SMBEN`"]
+pub struct SMBEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SMBENW<'a> {
+impl<'a> SMBEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -269,11 +250,11 @@ impl<'a> _SMBENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SMBDISW<'a> {
+#[doc = "Write proxy for field `SMBDIS`"]
+pub struct SMBDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SMBDISW<'a> {
+impl<'a> SMBDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -291,11 +272,11 @@ impl<'a> _SMBDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PECENW<'a> {
+#[doc = "Write proxy for field `PECEN`"]
+pub struct PECEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PECENW<'a> {
+impl<'a> PECEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -313,11 +294,11 @@ impl<'a> _PECENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PECDISW<'a> {
+#[doc = "Write proxy for field `PECDIS`"]
+pub struct PECDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PECDISW<'a> {
+impl<'a> PECDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -335,11 +316,11 @@ impl<'a> _PECDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PECRQW<'a> {
+#[doc = "Write proxy for field `PECRQ`"]
+pub struct PECRQ_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PECRQW<'a> {
+impl<'a> PECRQ_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -357,11 +338,11 @@ impl<'a> _PECRQW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CLEARW<'a> {
+#[doc = "Write proxy for field `CLEAR`"]
+pub struct CLEAR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CLEARW<'a> {
+impl<'a> CLEAR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -379,11 +360,11 @@ impl<'a> _CLEARW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ACMENW<'a> {
+#[doc = "Write proxy for field `ACMEN`"]
+pub struct ACMEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ACMENW<'a> {
+impl<'a> ACMEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -401,11 +382,11 @@ impl<'a> _ACMENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ACMDISW<'a> {
+#[doc = "Write proxy for field `ACMDIS`"]
+pub struct ACMDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ACMDISW<'a> {
+impl<'a> ACMDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -423,11 +404,11 @@ impl<'a> _ACMDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _THRCLRW<'a> {
+#[doc = "Write proxy for field `THRCLR`"]
+pub struct THRCLR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _THRCLRW<'a> {
+impl<'a> THRCLR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -445,11 +426,11 @@ impl<'a> _THRCLRW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LOCKCLRW<'a> {
+#[doc = "Write proxy for field `LOCKCLR`"]
+pub struct LOCKCLR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LOCKCLRW<'a> {
+impl<'a> LOCKCLR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -467,11 +448,11 @@ impl<'a> _LOCKCLRW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _FIFOENW<'a> {
+#[doc = "Write proxy for field `FIFOEN`"]
+pub struct FIFOEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FIFOENW<'a> {
+impl<'a> FIFOEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -489,11 +470,11 @@ impl<'a> _FIFOENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _FIFODISW<'a> {
+#[doc = "Write proxy for field `FIFODIS`"]
+pub struct FIFODIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FIFODISW<'a> {
+impl<'a> FIFODIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -512,120 +493,114 @@ impl<'a> _FIFODISW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Send a START Condition"]
     #[inline(always)]
-    pub fn start(&mut self) -> _STARTW {
-        _STARTW { w: self }
+    pub fn start(&mut self) -> START_W {
+        START_W { w: self }
     }
     #[doc = "Bit 1 - Send a STOP Condition"]
     #[inline(always)]
-    pub fn stop(&mut self) -> _STOPW {
-        _STOPW { w: self }
+    pub fn stop(&mut self) -> STOP_W {
+        STOP_W { w: self }
     }
     #[doc = "Bit 2 - TWIHS Master Mode Enabled"]
     #[inline(always)]
-    pub fn msen(&mut self) -> _MSENW {
-        _MSENW { w: self }
+    pub fn msen(&mut self) -> MSEN_W {
+        MSEN_W { w: self }
     }
     #[doc = "Bit 3 - TWIHS Master Mode Disabled"]
     #[inline(always)]
-    pub fn msdis(&mut self) -> _MSDISW {
-        _MSDISW { w: self }
+    pub fn msdis(&mut self) -> MSDIS_W {
+        MSDIS_W { w: self }
     }
     #[doc = "Bit 4 - TWIHS Slave Mode Enabled"]
     #[inline(always)]
-    pub fn sven(&mut self) -> _SVENW {
-        _SVENW { w: self }
+    pub fn sven(&mut self) -> SVEN_W {
+        SVEN_W { w: self }
     }
     #[doc = "Bit 5 - TWIHS Slave Mode Disabled"]
     #[inline(always)]
-    pub fn svdis(&mut self) -> _SVDISW {
-        _SVDISW { w: self }
+    pub fn svdis(&mut self) -> SVDIS_W {
+        SVDIS_W { w: self }
     }
     #[doc = "Bit 6 - SMBus Quick Command"]
     #[inline(always)]
-    pub fn quick(&mut self) -> _QUICKW {
-        _QUICKW { w: self }
+    pub fn quick(&mut self) -> QUICK_W {
+        QUICK_W { w: self }
     }
     #[doc = "Bit 7 - Software Reset"]
     #[inline(always)]
-    pub fn swrst(&mut self) -> _SWRSTW {
-        _SWRSTW { w: self }
+    pub fn swrst(&mut self) -> SWRST_W {
+        SWRST_W { w: self }
     }
     #[doc = "Bit 8 - TWIHS High-Speed Mode Enabled"]
     #[inline(always)]
-    pub fn hsen(&mut self) -> _HSENW {
-        _HSENW { w: self }
+    pub fn hsen(&mut self) -> HSEN_W {
+        HSEN_W { w: self }
     }
     #[doc = "Bit 9 - TWIHS High-Speed Mode Disabled"]
     #[inline(always)]
-    pub fn hsdis(&mut self) -> _HSDISW {
-        _HSDISW { w: self }
+    pub fn hsdis(&mut self) -> HSDIS_W {
+        HSDIS_W { w: self }
     }
     #[doc = "Bit 10 - SMBus Mode Enabled"]
     #[inline(always)]
-    pub fn smben(&mut self) -> _SMBENW {
-        _SMBENW { w: self }
+    pub fn smben(&mut self) -> SMBEN_W {
+        SMBEN_W { w: self }
     }
     #[doc = "Bit 11 - SMBus Mode Disabled"]
     #[inline(always)]
-    pub fn smbdis(&mut self) -> _SMBDISW {
-        _SMBDISW { w: self }
+    pub fn smbdis(&mut self) -> SMBDIS_W {
+        SMBDIS_W { w: self }
     }
     #[doc = "Bit 12 - Packet Error Checking Enable"]
     #[inline(always)]
-    pub fn pecen(&mut self) -> _PECENW {
-        _PECENW { w: self }
+    pub fn pecen(&mut self) -> PECEN_W {
+        PECEN_W { w: self }
     }
     #[doc = "Bit 13 - Packet Error Checking Disable"]
     #[inline(always)]
-    pub fn pecdis(&mut self) -> _PECDISW {
-        _PECDISW { w: self }
+    pub fn pecdis(&mut self) -> PECDIS_W {
+        PECDIS_W { w: self }
     }
     #[doc = "Bit 14 - PEC Request"]
     #[inline(always)]
-    pub fn pecrq(&mut self) -> _PECRQW {
-        _PECRQW { w: self }
+    pub fn pecrq(&mut self) -> PECRQ_W {
+        PECRQ_W { w: self }
     }
     #[doc = "Bit 15 - Bus CLEAR Command"]
     #[inline(always)]
-    pub fn clear(&mut self) -> _CLEARW {
-        _CLEARW { w: self }
+    pub fn clear(&mut self) -> CLEAR_W {
+        CLEAR_W { w: self }
     }
     #[doc = "Bit 16 - Alternative Command Mode Enable"]
     #[inline(always)]
-    pub fn acmen(&mut self) -> _ACMENW {
-        _ACMENW { w: self }
+    pub fn acmen(&mut self) -> ACMEN_W {
+        ACMEN_W { w: self }
     }
     #[doc = "Bit 17 - Alternative Command Mode Disable"]
     #[inline(always)]
-    pub fn acmdis(&mut self) -> _ACMDISW {
-        _ACMDISW { w: self }
+    pub fn acmdis(&mut self) -> ACMDIS_W {
+        ACMDIS_W { w: self }
     }
     #[doc = "Bit 24 - Transmit Holding Register Clear"]
     #[inline(always)]
-    pub fn thrclr(&mut self) -> _THRCLRW {
-        _THRCLRW { w: self }
+    pub fn thrclr(&mut self) -> THRCLR_W {
+        THRCLR_W { w: self }
     }
     #[doc = "Bit 26 - Lock Clear"]
     #[inline(always)]
-    pub fn lockclr(&mut self) -> _LOCKCLRW {
-        _LOCKCLRW { w: self }
+    pub fn lockclr(&mut self) -> LOCKCLR_W {
+        LOCKCLR_W { w: self }
     }
     #[doc = "Bit 28 - FIFO Enable"]
     #[inline(always)]
-    pub fn fifoen(&mut self) -> _FIFOENW {
-        _FIFOENW { w: self }
+    pub fn fifoen(&mut self) -> FIFOEN_W {
+        FIFOEN_W { w: self }
     }
     #[doc = "Bit 29 - FIFO Disable"]
     #[inline(always)]
-    pub fn fifodis(&mut self) -> _FIFODISW {
-        _FIFODISW { w: self }
+    pub fn fifodis(&mut self) -> FIFODIS_W {
+        FIFODIS_W { w: self }
     }
 }

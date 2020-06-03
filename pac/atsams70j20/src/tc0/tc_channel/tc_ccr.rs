@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TC_CCR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register TC_CCR"]
+pub type W = crate::W<u32, super::TC_CCR>;
+#[doc = "Register TC_CCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::TC_CCR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _CLKENW<'a> {
+#[doc = "Write proxy for field `CLKEN`"]
+pub struct CLKEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CLKENW<'a> {
+impl<'a> CLKEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _CLKENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CLKDISW<'a> {
+#[doc = "Write proxy for field `CLKDIS`"]
+pub struct CLKDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CLKDISW<'a> {
+impl<'a> CLKDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _CLKDISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWTRGW<'a> {
+#[doc = "Write proxy for field `SWTRG`"]
+pub struct SWTRG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWTRGW<'a> {
+impl<'a> SWTRG_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -94,25 +75,19 @@ impl<'a> _SWTRGW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Counter Clock Enable Command"]
     #[inline(always)]
-    pub fn clken(&mut self) -> _CLKENW {
-        _CLKENW { w: self }
+    pub fn clken(&mut self) -> CLKEN_W {
+        CLKEN_W { w: self }
     }
     #[doc = "Bit 1 - Counter Clock Disable Command"]
     #[inline(always)]
-    pub fn clkdis(&mut self) -> _CLKDISW {
-        _CLKDISW { w: self }
+    pub fn clkdis(&mut self) -> CLKDIS_W {
+        CLKDIS_W { w: self }
     }
     #[doc = "Bit 2 - Software Trigger Command"]
     #[inline(always)]
-    pub fn swtrg(&mut self) -> _SWTRGW {
-        _SWTRGW { w: self }
+    pub fn swtrg(&mut self) -> SWTRG_W {
+        SWTRG_W { w: self }
     }
 }

@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SDRAMC_OCMS {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register SDRAMC_OCMS"]
+pub type R = crate::R<u32, super::SDRAMC_OCMS>;
+#[doc = "Writer for register SDRAMC_OCMS"]
+pub type W = crate::W<u32, super::SDRAMC_OCMS>;
+#[doc = "Register SDRAMC_OCMS `reset()`'s with value 0"]
+impl crate::ResetValue for super::SDRAMC_OCMS {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type SDR_SE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _SDR_SEW<'a> {
+#[doc = "Reader of field `SDR_SE`"]
+pub type SDR_SE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SDR_SE`"]
+pub struct SDR_SE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SDR_SEW<'a> {
+impl<'a> SDR_SE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -72,27 +35,16 @@ impl<'a> _SDR_SEW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - SDRAM Memory Controller Scrambling Enable"]
     #[inline(always)]
     pub fn sdr_se(&self) -> SDR_SE_R {
-        SDR_SE_R::new((self.bits() & 0x01) != 0)
+        SDR_SE_R::new((self.bits & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - SDRAM Memory Controller Scrambling Enable"]
     #[inline(always)]
-    pub fn sdr_se(&mut self) -> _SDR_SEW {
-        _SDR_SEW { w: self }
+    pub fn sdr_se(&mut self) -> SDR_SE_W {
+        SDR_SE_W { w: self }
     }
 }

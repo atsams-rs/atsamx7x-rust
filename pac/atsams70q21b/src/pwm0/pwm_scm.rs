@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_SCM {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register PWM_SCM"]
+pub type R = crate::R<u32, super::PWM_SCM>;
+#[doc = "Writer for register PWM_SCM"]
+pub type W = crate::W<u32, super::PWM_SCM>;
+#[doc = "Register PWM_SCM `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_SCM {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type SYNC0_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _SYNC0W<'a> {
+#[doc = "Reader of field `SYNC0`"]
+pub type SYNC0_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SYNC0`"]
+pub struct SYNC0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SYNC0W<'a> {
+impl<'a> SYNC0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _SYNC0W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type SYNC1_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _SYNC1W<'a> {
+#[doc = "Reader of field `SYNC1`"]
+pub type SYNC1_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SYNC1`"]
+pub struct SYNC1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SYNC1W<'a> {
+impl<'a> SYNC1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _SYNC1W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type SYNC2_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _SYNC2W<'a> {
+#[doc = "Reader of field `SYNC2`"]
+pub type SYNC2_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SYNC2`"]
+pub struct SYNC2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SYNC2W<'a> {
+impl<'a> SYNC2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -119,13 +82,13 @@ impl<'a> _SYNC2W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type SYNC3_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _SYNC3W<'a> {
+#[doc = "Reader of field `SYNC3`"]
+pub type SYNC3_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SYNC3`"]
+pub struct SYNC3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SYNC3W<'a> {
+impl<'a> SYNC3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -143,91 +106,77 @@ impl<'a> _SYNC3W<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `UPDM`"]
+#[doc = "Synchronous Channels Update Mode\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum UPDMR {
-    #[doc = "Manual write of double buffer registers and manual update of synchronous channels"]
-    MODE0,
-    #[doc = "Manual write of double buffer registers and automatic update of synchronous channels"]
-    MODE1,
-    #[doc = "Automatic write of duty-cycle update registers by the DMA Controller and automatic update of synchronous channels"]
-    MODE2,
+#[repr(u8)]
+pub enum UPDM_A {
+    #[doc = "0: Manual write of double buffer registers and manual update of synchronous channels"]
+    MODE0 = 0,
+    #[doc = "1: Manual write of double buffer registers and automatic update of synchronous channels"]
+    MODE1 = 1,
+    #[doc = "2: Automatic write of duty-cycle update registers by the DMA Controller and automatic update of synchronous channels"]
+    MODE2 = 2,
 }
-impl crate::ToBits<u8> for UPDMR {
+impl From<UPDM_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            UPDMR::MODE0 => 0,
-            UPDMR::MODE1 => 1,
-            UPDMR::MODE2 => 2,
-        }
+    fn from(variant: UPDM_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type UPDM_R = crate::FR<u8, UPDMR>;
+#[doc = "Reader of field `UPDM`"]
+pub type UPDM_R = crate::R<u8, UPDM_A>;
 impl UPDM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, UPDM_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(UPDM_A::MODE0),
+            1 => Val(UPDM_A::MODE1),
+            2 => Val(UPDM_A::MODE2),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `MODE0`"]
     #[inline(always)]
     pub fn is_mode0(&self) -> bool {
-        *self == UPDMR::MODE0
+        *self == UPDM_A::MODE0
     }
     #[doc = "Checks if the value of the field is `MODE1`"]
     #[inline(always)]
     pub fn is_mode1(&self) -> bool {
-        *self == UPDMR::MODE1
+        *self == UPDM_A::MODE1
     }
     #[doc = "Checks if the value of the field is `MODE2`"]
     #[inline(always)]
     pub fn is_mode2(&self) -> bool {
-        *self == UPDMR::MODE2
+        *self == UPDM_A::MODE2
     }
 }
-#[doc = "Values that can be written to the field `UPDM`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum UPDMW {
-    #[doc = "Manual write of double buffer registers and manual update of synchronous channels"]
-    MODE0,
-    #[doc = "Manual write of double buffer registers and automatic update of synchronous channels"]
-    MODE1,
-    #[doc = "Automatic write of duty-cycle update registers by the DMA Controller and automatic update of synchronous channels"]
-    MODE2,
-}
-impl UPDMW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            UPDMW::MODE0 => 0,
-            UPDMW::MODE1 => 1,
-            UPDMW::MODE2 => 2,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _UPDMW<'a> {
+#[doc = "Write proxy for field `UPDM`"]
+pub struct UPDM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UPDMW<'a> {
+impl<'a> UPDM_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: UPDMW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: UPDM_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Manual write of double buffer registers and manual update of synchronous channels"]
     #[inline(always)]
     pub fn mode0(self) -> &'a mut W {
-        self.variant(UPDMW::MODE0)
+        self.variant(UPDM_A::MODE0)
     }
     #[doc = "Manual write of double buffer registers and automatic update of synchronous channels"]
     #[inline(always)]
     pub fn mode1(self) -> &'a mut W {
-        self.variant(UPDMW::MODE1)
+        self.variant(UPDM_A::MODE1)
     }
     #[doc = "Automatic write of duty-cycle update registers by the DMA Controller and automatic update of synchronous channels"]
     #[inline(always)]
     pub fn mode2(self) -> &'a mut W {
-        self.variant(UPDMW::MODE2)
+        self.variant(UPDM_A::MODE2)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -236,13 +185,13 @@ impl<'a> _UPDMW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PTRM_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _PTRMW<'a> {
+#[doc = "Reader of field `PTRM`"]
+pub type PTRM_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PTRM`"]
+pub struct PTRM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PTRMW<'a> {
+impl<'a> PTRM_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -260,13 +209,13 @@ impl<'a> _PTRMW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PTRCS_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _PTRCSW<'a> {
+#[doc = "Reader of field `PTRCS`"]
+pub type PTRCS_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PTRCS`"]
+pub struct PTRCS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PTRCSW<'a> {
+impl<'a> PTRCS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -275,87 +224,76 @@ impl<'a> _PTRCSW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Synchronous Channel 0"]
     #[inline(always)]
     pub fn sync0(&self) -> SYNC0_R {
-        SYNC0_R::new((self.bits() & 0x01) != 0)
+        SYNC0_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Synchronous Channel 1"]
     #[inline(always)]
     pub fn sync1(&self) -> SYNC1_R {
-        SYNC1_R::new(((self.bits() >> 1) & 0x01) != 0)
+        SYNC1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Synchronous Channel 2"]
     #[inline(always)]
     pub fn sync2(&self) -> SYNC2_R {
-        SYNC2_R::new(((self.bits() >> 2) & 0x01) != 0)
+        SYNC2_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Synchronous Channel 3"]
     #[inline(always)]
     pub fn sync3(&self) -> SYNC3_R {
-        SYNC3_R::new(((self.bits() >> 3) & 0x01) != 0)
+        SYNC3_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bits 16:17 - Synchronous Channels Update Mode"]
     #[inline(always)]
     pub fn updm(&self) -> UPDM_R {
-        UPDM_R::new(((self.bits() >> 16) & 0x03) as u8)
+        UPDM_R::new(((self.bits >> 16) & 0x03) as u8)
     }
     #[doc = "Bit 20 - DMA Controller Transfer Request Mode"]
     #[inline(always)]
     pub fn ptrm(&self) -> PTRM_R {
-        PTRM_R::new(((self.bits() >> 20) & 0x01) != 0)
+        PTRM_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bits 21:23 - DMA Controller Transfer Request Comparison Selection"]
     #[inline(always)]
     pub fn ptrcs(&self) -> PTRCS_R {
-        PTRCS_R::new(((self.bits() >> 21) & 0x07) as u8)
+        PTRCS_R::new(((self.bits >> 21) & 0x07) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Synchronous Channel 0"]
     #[inline(always)]
-    pub fn sync0(&mut self) -> _SYNC0W {
-        _SYNC0W { w: self }
+    pub fn sync0(&mut self) -> SYNC0_W {
+        SYNC0_W { w: self }
     }
     #[doc = "Bit 1 - Synchronous Channel 1"]
     #[inline(always)]
-    pub fn sync1(&mut self) -> _SYNC1W {
-        _SYNC1W { w: self }
+    pub fn sync1(&mut self) -> SYNC1_W {
+        SYNC1_W { w: self }
     }
     #[doc = "Bit 2 - Synchronous Channel 2"]
     #[inline(always)]
-    pub fn sync2(&mut self) -> _SYNC2W {
-        _SYNC2W { w: self }
+    pub fn sync2(&mut self) -> SYNC2_W {
+        SYNC2_W { w: self }
     }
     #[doc = "Bit 3 - Synchronous Channel 3"]
     #[inline(always)]
-    pub fn sync3(&mut self) -> _SYNC3W {
-        _SYNC3W { w: self }
+    pub fn sync3(&mut self) -> SYNC3_W {
+        SYNC3_W { w: self }
     }
     #[doc = "Bits 16:17 - Synchronous Channels Update Mode"]
     #[inline(always)]
-    pub fn updm(&mut self) -> _UPDMW {
-        _UPDMW { w: self }
+    pub fn updm(&mut self) -> UPDM_W {
+        UPDM_W { w: self }
     }
     #[doc = "Bit 20 - DMA Controller Transfer Request Mode"]
     #[inline(always)]
-    pub fn ptrm(&mut self) -> _PTRMW {
-        _PTRMW { w: self }
+    pub fn ptrm(&mut self) -> PTRM_W {
+        PTRM_W { w: self }
     }
     #[doc = "Bits 21:23 - DMA Controller Transfer Request Comparison Selection"]
     #[inline(always)]
-    pub fn ptrcs(&mut self) -> _PTRCSW {
-        _PTRCSW { w: self }
+    pub fn ptrcs(&mut self) -> PTRCS_W {
+        PTRCS_W { w: self }
     }
 }

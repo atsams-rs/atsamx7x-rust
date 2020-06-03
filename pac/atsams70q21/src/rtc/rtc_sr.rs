@@ -1,236 +1,250 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::RTC_SR {
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = "Possible values of the field `ACKUPD`"]
+#[doc = "Reader of register RTC_SR"]
+pub type R = crate::R<u32, super::RTC_SR>;
+#[doc = "Acknowledge for Update\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ACKUPDR {
-    #[doc = "Time and calendar registers cannot be updated."]
-    FREERUN,
-    #[doc = "Time and calendar registers can be updated."]
-    UPDATE,
+pub enum ACKUPD_A {
+    #[doc = "0: Time and calendar registers cannot be updated."]
+    FREERUN = 0,
+    #[doc = "1: Time and calendar registers can be updated."]
+    UPDATE = 1,
 }
-impl crate::ToBits<bool> for ACKUPDR {
+impl From<ACKUPD_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            ACKUPDR::FREERUN => false,
-            ACKUPDR::UPDATE => true,
-        }
+    fn from(variant: ACKUPD_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Reader of the field"]
-pub type ACKUPD_R = crate::FR<bool, ACKUPDR>;
+#[doc = "Reader of field `ACKUPD`"]
+pub type ACKUPD_R = crate::R<bool, ACKUPD_A>;
 impl ACKUPD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ACKUPD_A {
+        match self.bits {
+            false => ACKUPD_A::FREERUN,
+            true => ACKUPD_A::UPDATE,
+        }
+    }
     #[doc = "Checks if the value of the field is `FREERUN`"]
     #[inline(always)]
     pub fn is_freerun(&self) -> bool {
-        *self == ACKUPDR::FREERUN
+        *self == ACKUPD_A::FREERUN
     }
     #[doc = "Checks if the value of the field is `UPDATE`"]
     #[inline(always)]
     pub fn is_update(&self) -> bool {
-        *self == ACKUPDR::UPDATE
+        *self == ACKUPD_A::UPDATE
     }
 }
-#[doc = "Possible values of the field `ALARM`"]
+#[doc = "Alarm Flag\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ALARMR {
-    #[doc = "No alarm matching condition occurred."]
-    NO_ALARMEVENT,
-    #[doc = "An alarm matching condition has occurred."]
-    ALARMEVENT,
+pub enum ALARM_A {
+    #[doc = "0: No alarm matching condition occurred."]
+    NO_ALARMEVENT = 0,
+    #[doc = "1: An alarm matching condition has occurred."]
+    ALARMEVENT = 1,
 }
-impl crate::ToBits<bool> for ALARMR {
+impl From<ALARM_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            ALARMR::NO_ALARMEVENT => false,
-            ALARMR::ALARMEVENT => true,
+    fn from(variant: ALARM_A) -> Self {
+        variant as u8 != 0
+    }
+}
+#[doc = "Reader of field `ALARM`"]
+pub type ALARM_R = crate::R<bool, ALARM_A>;
+impl ALARM_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ALARM_A {
+        match self.bits {
+            false => ALARM_A::NO_ALARMEVENT,
+            true => ALARM_A::ALARMEVENT,
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type ALARM_R = crate::FR<bool, ALARMR>;
-impl ALARM_R {
     #[doc = "Checks if the value of the field is `NO_ALARMEVENT`"]
     #[inline(always)]
     pub fn is_no_alarmevent(&self) -> bool {
-        *self == ALARMR::NO_ALARMEVENT
+        *self == ALARM_A::NO_ALARMEVENT
     }
     #[doc = "Checks if the value of the field is `ALARMEVENT`"]
     #[inline(always)]
     pub fn is_alarmevent(&self) -> bool {
-        *self == ALARMR::ALARMEVENT
+        *self == ALARM_A::ALARMEVENT
     }
 }
-#[doc = "Possible values of the field `SEC`"]
+#[doc = "Second Event\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SECR {
-    #[doc = "No second event has occurred since the last clear."]
-    NO_SECEVENT,
-    #[doc = "At least one second event has occurred since the last clear."]
-    SECEVENT,
+pub enum SEC_A {
+    #[doc = "0: No second event has occurred since the last clear."]
+    NO_SECEVENT = 0,
+    #[doc = "1: At least one second event has occurred since the last clear."]
+    SECEVENT = 1,
 }
-impl crate::ToBits<bool> for SECR {
+impl From<SEC_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            SECR::NO_SECEVENT => false,
-            SECR::SECEVENT => true,
+    fn from(variant: SEC_A) -> Self {
+        variant as u8 != 0
+    }
+}
+#[doc = "Reader of field `SEC`"]
+pub type SEC_R = crate::R<bool, SEC_A>;
+impl SEC_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SEC_A {
+        match self.bits {
+            false => SEC_A::NO_SECEVENT,
+            true => SEC_A::SECEVENT,
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type SEC_R = crate::FR<bool, SECR>;
-impl SEC_R {
     #[doc = "Checks if the value of the field is `NO_SECEVENT`"]
     #[inline(always)]
     pub fn is_no_secevent(&self) -> bool {
-        *self == SECR::NO_SECEVENT
+        *self == SEC_A::NO_SECEVENT
     }
     #[doc = "Checks if the value of the field is `SECEVENT`"]
     #[inline(always)]
     pub fn is_secevent(&self) -> bool {
-        *self == SECR::SECEVENT
+        *self == SEC_A::SECEVENT
     }
 }
-#[doc = "Possible values of the field `TIMEV`"]
+#[doc = "Time Event\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TIMEVR {
-    #[doc = "No time event has occurred since the last clear."]
-    NO_TIMEVENT,
-    #[doc = "At least one time event has occurred since the last clear."]
-    TIMEVENT,
+pub enum TIMEV_A {
+    #[doc = "0: No time event has occurred since the last clear."]
+    NO_TIMEVENT = 0,
+    #[doc = "1: At least one time event has occurred since the last clear."]
+    TIMEVENT = 1,
 }
-impl crate::ToBits<bool> for TIMEVR {
+impl From<TIMEV_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            TIMEVR::NO_TIMEVENT => false,
-            TIMEVR::TIMEVENT => true,
+    fn from(variant: TIMEV_A) -> Self {
+        variant as u8 != 0
+    }
+}
+#[doc = "Reader of field `TIMEV`"]
+pub type TIMEV_R = crate::R<bool, TIMEV_A>;
+impl TIMEV_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TIMEV_A {
+        match self.bits {
+            false => TIMEV_A::NO_TIMEVENT,
+            true => TIMEV_A::TIMEVENT,
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type TIMEV_R = crate::FR<bool, TIMEVR>;
-impl TIMEV_R {
     #[doc = "Checks if the value of the field is `NO_TIMEVENT`"]
     #[inline(always)]
     pub fn is_no_timevent(&self) -> bool {
-        *self == TIMEVR::NO_TIMEVENT
+        *self == TIMEV_A::NO_TIMEVENT
     }
     #[doc = "Checks if the value of the field is `TIMEVENT`"]
     #[inline(always)]
     pub fn is_timevent(&self) -> bool {
-        *self == TIMEVR::TIMEVENT
+        *self == TIMEV_A::TIMEVENT
     }
 }
-#[doc = "Possible values of the field `CALEV`"]
+#[doc = "Calendar Event\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CALEVR {
-    #[doc = "No calendar event has occurred since the last clear."]
-    NO_CALEVENT,
-    #[doc = "At least one calendar event has occurred since the last clear."]
-    CALEVENT,
+pub enum CALEV_A {
+    #[doc = "0: No calendar event has occurred since the last clear."]
+    NO_CALEVENT = 0,
+    #[doc = "1: At least one calendar event has occurred since the last clear."]
+    CALEVENT = 1,
 }
-impl crate::ToBits<bool> for CALEVR {
+impl From<CALEV_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            CALEVR::NO_CALEVENT => false,
-            CALEVR::CALEVENT => true,
+    fn from(variant: CALEV_A) -> Self {
+        variant as u8 != 0
+    }
+}
+#[doc = "Reader of field `CALEV`"]
+pub type CALEV_R = crate::R<bool, CALEV_A>;
+impl CALEV_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CALEV_A {
+        match self.bits {
+            false => CALEV_A::NO_CALEVENT,
+            true => CALEV_A::CALEVENT,
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type CALEV_R = crate::FR<bool, CALEVR>;
-impl CALEV_R {
     #[doc = "Checks if the value of the field is `NO_CALEVENT`"]
     #[inline(always)]
     pub fn is_no_calevent(&self) -> bool {
-        *self == CALEVR::NO_CALEVENT
+        *self == CALEV_A::NO_CALEVENT
     }
     #[doc = "Checks if the value of the field is `CALEVENT`"]
     #[inline(always)]
     pub fn is_calevent(&self) -> bool {
-        *self == CALEVR::CALEVENT
+        *self == CALEV_A::CALEVENT
     }
 }
-#[doc = "Possible values of the field `TDERR`"]
+#[doc = "Time and/or Date Free Running Error\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TDERRR {
-    #[doc = "The internal free running counters are carrying valid values since the last read of the Status Register (RTC_SR)."]
-    CORRECT,
-    #[doc = "The internal free running counters have been corrupted (invalid date or time, non-BCD values) since the last read and/or they are still invalid."]
-    ERR_TIMEDATE,
+pub enum TDERR_A {
+    #[doc = "0: The internal free running counters are carrying valid values since the last read of the Status Register (RTC_SR)."]
+    CORRECT = 0,
+    #[doc = "1: The internal free running counters have been corrupted (invalid date or time, non-BCD values) since the last read and/or they are still invalid."]
+    ERR_TIMEDATE = 1,
 }
-impl crate::ToBits<bool> for TDERRR {
+impl From<TDERR_A> for bool {
     #[inline(always)]
-    fn _bits(&self) -> bool {
-        match *self {
-            TDERRR::CORRECT => false,
-            TDERRR::ERR_TIMEDATE => true,
+    fn from(variant: TDERR_A) -> Self {
+        variant as u8 != 0
+    }
+}
+#[doc = "Reader of field `TDERR`"]
+pub type TDERR_R = crate::R<bool, TDERR_A>;
+impl TDERR_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TDERR_A {
+        match self.bits {
+            false => TDERR_A::CORRECT,
+            true => TDERR_A::ERR_TIMEDATE,
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type TDERR_R = crate::FR<bool, TDERRR>;
-impl TDERR_R {
     #[doc = "Checks if the value of the field is `CORRECT`"]
     #[inline(always)]
     pub fn is_correct(&self) -> bool {
-        *self == TDERRR::CORRECT
+        *self == TDERR_A::CORRECT
     }
     #[doc = "Checks if the value of the field is `ERR_TIMEDATE`"]
     #[inline(always)]
     pub fn is_err_timedate(&self) -> bool {
-        *self == TDERRR::ERR_TIMEDATE
+        *self == TDERR_A::ERR_TIMEDATE
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Acknowledge for Update"]
     #[inline(always)]
     pub fn ackupd(&self) -> ACKUPD_R {
-        ACKUPD_R::new((self.bits() & 0x01) != 0)
+        ACKUPD_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Alarm Flag"]
     #[inline(always)]
     pub fn alarm(&self) -> ALARM_R {
-        ALARM_R::new(((self.bits() >> 1) & 0x01) != 0)
+        ALARM_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Second Event"]
     #[inline(always)]
     pub fn sec(&self) -> SEC_R {
-        SEC_R::new(((self.bits() >> 2) & 0x01) != 0)
+        SEC_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Time Event"]
     #[inline(always)]
     pub fn timev(&self) -> TIMEV_R {
-        TIMEV_R::new(((self.bits() >> 3) & 0x01) != 0)
+        TIMEV_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Calendar Event"]
     #[inline(always)]
     pub fn calev(&self) -> CALEV_R {
-        CALEV_R::new(((self.bits() >> 4) & 0x01) != 0)
+        CALEV_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Time and/or Date Free Running Error"]
     #[inline(always)]
     pub fn tderr(&self) -> TDERR_R {
-        TDERR_R::new(((self.bits() >> 5) & 0x01) != 0)
+        TDERR_R::new(((self.bits >> 5) & 0x01) != 0)
     }
 }

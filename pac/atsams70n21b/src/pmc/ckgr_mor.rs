@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CKGR_MOR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register CKGR_MOR"]
+pub type R = crate::R<u32, super::CKGR_MOR>;
+#[doc = "Writer for register CKGR_MOR"]
+pub type W = crate::W<u32, super::CKGR_MOR>;
+#[doc = "Register CKGR_MOR `reset()`'s with value 0"]
+impl crate::ResetValue for super::CKGR_MOR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type MOSCXTEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _MOSCXTENW<'a> {
+#[doc = "Reader of field `MOSCXTEN`"]
+pub type MOSCXTEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `MOSCXTEN`"]
+pub struct MOSCXTEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MOSCXTENW<'a> {
+impl<'a> MOSCXTEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _MOSCXTENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type MOSCXTBY_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _MOSCXTBYW<'a> {
+#[doc = "Reader of field `MOSCXTBY`"]
+pub type MOSCXTBY_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `MOSCXTBY`"]
+pub struct MOSCXTBY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MOSCXTBYW<'a> {
+impl<'a> MOSCXTBY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _MOSCXTBYW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type WAITMODE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _WAITMODEW<'a> {
+#[doc = "Reader of field `WAITMODE`"]
+pub type WAITMODE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `WAITMODE`"]
+pub struct WAITMODE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WAITMODEW<'a> {
+impl<'a> WAITMODE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -119,13 +82,13 @@ impl<'a> _WAITMODEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type MOSCRCEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _MOSCRCENW<'a> {
+#[doc = "Reader of field `MOSCRCEN`"]
+pub type MOSCRCEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `MOSCRCEN`"]
+pub struct MOSCRCEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MOSCRCENW<'a> {
+impl<'a> MOSCRCEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -143,91 +106,77 @@ impl<'a> _MOSCRCENW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `MOSCRCF`"]
+#[doc = "Main RC Oscillator Frequency Selection\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MOSCRCFR {
-    #[doc = "The RC oscillator frequency is at 4 MHz"]
-    _4_MHZ,
-    #[doc = "The RC oscillator frequency is at 8 MHz"]
-    _8_MHZ,
-    #[doc = "The RC oscillator frequency is at 12 MHz"]
-    _12_MHZ,
+#[repr(u8)]
+pub enum MOSCRCF_A {
+    #[doc = "0: The RC oscillator frequency is at 4 MHz"]
+    _4_MHZ = 0,
+    #[doc = "1: The RC oscillator frequency is at 8 MHz"]
+    _8_MHZ = 1,
+    #[doc = "2: The RC oscillator frequency is at 12 MHz"]
+    _12_MHZ = 2,
 }
-impl crate::ToBits<u8> for MOSCRCFR {
+impl From<MOSCRCF_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            MOSCRCFR::_4_MHZ => 0,
-            MOSCRCFR::_8_MHZ => 1,
-            MOSCRCFR::_12_MHZ => 2,
-        }
+    fn from(variant: MOSCRCF_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type MOSCRCF_R = crate::FR<u8, MOSCRCFR>;
+#[doc = "Reader of field `MOSCRCF`"]
+pub type MOSCRCF_R = crate::R<u8, MOSCRCF_A>;
 impl MOSCRCF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, MOSCRCF_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(MOSCRCF_A::_4_MHZ),
+            1 => Val(MOSCRCF_A::_8_MHZ),
+            2 => Val(MOSCRCF_A::_12_MHZ),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `_4_MHZ`"]
     #[inline(always)]
     pub fn is_4_mhz(&self) -> bool {
-        *self == MOSCRCFR::_4_MHZ
+        *self == MOSCRCF_A::_4_MHZ
     }
     #[doc = "Checks if the value of the field is `_8_MHZ`"]
     #[inline(always)]
     pub fn is_8_mhz(&self) -> bool {
-        *self == MOSCRCFR::_8_MHZ
+        *self == MOSCRCF_A::_8_MHZ
     }
     #[doc = "Checks if the value of the field is `_12_MHZ`"]
     #[inline(always)]
     pub fn is_12_mhz(&self) -> bool {
-        *self == MOSCRCFR::_12_MHZ
+        *self == MOSCRCF_A::_12_MHZ
     }
 }
-#[doc = "Values that can be written to the field `MOSCRCF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MOSCRCFW {
-    #[doc = "The RC oscillator frequency is at 4 MHz"]
-    _4_MHZ,
-    #[doc = "The RC oscillator frequency is at 8 MHz"]
-    _8_MHZ,
-    #[doc = "The RC oscillator frequency is at 12 MHz"]
-    _12_MHZ,
-}
-impl MOSCRCFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            MOSCRCFW::_4_MHZ => 0,
-            MOSCRCFW::_8_MHZ => 1,
-            MOSCRCFW::_12_MHZ => 2,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _MOSCRCFW<'a> {
+#[doc = "Write proxy for field `MOSCRCF`"]
+pub struct MOSCRCF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MOSCRCFW<'a> {
+impl<'a> MOSCRCF_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: MOSCRCFW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: MOSCRCF_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "The RC oscillator frequency is at 4 MHz"]
     #[inline(always)]
     pub fn _4_mhz(self) -> &'a mut W {
-        self.variant(MOSCRCFW::_4_MHZ)
+        self.variant(MOSCRCF_A::_4_MHZ)
     }
     #[doc = "The RC oscillator frequency is at 8 MHz"]
     #[inline(always)]
     pub fn _8_mhz(self) -> &'a mut W {
-        self.variant(MOSCRCFW::_8_MHZ)
+        self.variant(MOSCRCF_A::_8_MHZ)
     }
     #[doc = "The RC oscillator frequency is at 12 MHz"]
     #[inline(always)]
     pub fn _12_mhz(self) -> &'a mut W {
-        self.variant(MOSCRCFW::_12_MHZ)
+        self.variant(MOSCRCF_A::_12_MHZ)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -236,13 +185,13 @@ impl<'a> _MOSCRCFW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type MOSCXTST_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _MOSCXTSTW<'a> {
+#[doc = "Reader of field `MOSCXTST`"]
+pub type MOSCXTST_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `MOSCXTST`"]
+pub struct MOSCXTST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MOSCXTSTW<'a> {
+impl<'a> MOSCXTST_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -250,59 +199,51 @@ impl<'a> _MOSCXTSTW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `KEY`"]
+#[doc = "Write Access Password\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum KEYR {
-    #[doc = "Writing any other value in this field aborts the write operation.Always reads as 0."]
-    PASSWD,
+#[repr(u8)]
+pub enum KEY_A {
+    #[doc = "55: Writing any other value in this field aborts the write operation.Always reads as 0."]
+    PASSWD = 55,
 }
-impl crate::ToBits<u8> for KEYR {
+impl From<KEY_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            KEYR::PASSWD => 55,
-        }
+    fn from(variant: KEY_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type KEY_R = crate::FR<u8, KEYR>;
+#[doc = "Reader of field `KEY`"]
+pub type KEY_R = crate::R<u8, KEY_A>;
 impl KEY_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, KEY_A> {
+        use crate::Variant::*;
+        match self.bits {
+            55 => Val(KEY_A::PASSWD),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `PASSWD`"]
     #[inline(always)]
     pub fn is_passwd(&self) -> bool {
-        *self == KEYR::PASSWD
+        *self == KEY_A::PASSWD
     }
 }
-#[doc = "Values that can be written to the field `KEY`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum KEYW {
-    #[doc = "Writing any other value in this field aborts the write operation.Always reads as 0."]
-    PASSWD,
-}
-impl KEYW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            KEYW::PASSWD => 55,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _KEYW<'a> {
+#[doc = "Write proxy for field `KEY`"]
+pub struct KEY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _KEYW<'a> {
+impl<'a> KEY_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: KEYW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: KEY_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Writing any other value in this field aborts the write operation.Always reads as 0."]
     #[inline(always)]
     pub fn passwd(self) -> &'a mut W {
-        self.variant(KEYW::PASSWD)
+        self.variant(KEY_A::PASSWD)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -311,13 +252,13 @@ impl<'a> _KEYW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type MOSCSEL_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _MOSCSELW<'a> {
+#[doc = "Reader of field `MOSCSEL`"]
+pub type MOSCSEL_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `MOSCSEL`"]
+pub struct MOSCSEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MOSCSELW<'a> {
+impl<'a> MOSCSEL_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -335,13 +276,13 @@ impl<'a> _MOSCSELW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CFDEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CFDENW<'a> {
+#[doc = "Reader of field `CFDEN`"]
+pub type CFDEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CFDEN`"]
+pub struct CFDEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CFDENW<'a> {
+impl<'a> CFDEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -359,13 +300,13 @@ impl<'a> _CFDENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type XT32KFME_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _XT32KFMEW<'a> {
+#[doc = "Reader of field `XT32KFME`"]
+pub type XT32KFME_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `XT32KFME`"]
+pub struct XT32KFME_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _XT32KFMEW<'a> {
+impl<'a> XT32KFME_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -384,117 +325,106 @@ impl<'a> _XT32KFMEW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Main Crystal Oscillator Enable"]
     #[inline(always)]
     pub fn moscxten(&self) -> MOSCXTEN_R {
-        MOSCXTEN_R::new((self.bits() & 0x01) != 0)
+        MOSCXTEN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Main Crystal Oscillator Bypass"]
     #[inline(always)]
     pub fn moscxtby(&self) -> MOSCXTBY_R {
-        MOSCXTBY_R::new(((self.bits() >> 1) & 0x01) != 0)
+        MOSCXTBY_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Wait Mode Command (Write-only)"]
     #[inline(always)]
     pub fn waitmode(&self) -> WAITMODE_R {
-        WAITMODE_R::new(((self.bits() >> 2) & 0x01) != 0)
+        WAITMODE_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Main RC Oscillator Enable"]
     #[inline(always)]
     pub fn moscrcen(&self) -> MOSCRCEN_R {
-        MOSCRCEN_R::new(((self.bits() >> 3) & 0x01) != 0)
+        MOSCRCEN_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bits 4:6 - Main RC Oscillator Frequency Selection"]
     #[inline(always)]
     pub fn moscrcf(&self) -> MOSCRCF_R {
-        MOSCRCF_R::new(((self.bits() >> 4) & 0x07) as u8)
+        MOSCRCF_R::new(((self.bits >> 4) & 0x07) as u8)
     }
     #[doc = "Bits 8:15 - Main Crystal Oscillator Startup Time"]
     #[inline(always)]
     pub fn moscxtst(&self) -> MOSCXTST_R {
-        MOSCXTST_R::new(((self.bits() >> 8) & 0xff) as u8)
+        MOSCXTST_R::new(((self.bits >> 8) & 0xff) as u8)
     }
     #[doc = "Bits 16:23 - Write Access Password"]
     #[inline(always)]
     pub fn key(&self) -> KEY_R {
-        KEY_R::new(((self.bits() >> 16) & 0xff) as u8)
+        KEY_R::new(((self.bits >> 16) & 0xff) as u8)
     }
     #[doc = "Bit 24 - Main Clock Oscillator Selection"]
     #[inline(always)]
     pub fn moscsel(&self) -> MOSCSEL_R {
-        MOSCSEL_R::new(((self.bits() >> 24) & 0x01) != 0)
+        MOSCSEL_R::new(((self.bits >> 24) & 0x01) != 0)
     }
     #[doc = "Bit 25 - Clock Failure Detector Enable"]
     #[inline(always)]
     pub fn cfden(&self) -> CFDEN_R {
-        CFDEN_R::new(((self.bits() >> 25) & 0x01) != 0)
+        CFDEN_R::new(((self.bits >> 25) & 0x01) != 0)
     }
     #[doc = "Bit 26 - 32.768 kHz Crystal Oscillator Frequency Monitoring Enable"]
     #[inline(always)]
     pub fn xt32kfme(&self) -> XT32KFME_R {
-        XT32KFME_R::new(((self.bits() >> 26) & 0x01) != 0)
+        XT32KFME_R::new(((self.bits >> 26) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Main Crystal Oscillator Enable"]
     #[inline(always)]
-    pub fn moscxten(&mut self) -> _MOSCXTENW {
-        _MOSCXTENW { w: self }
+    pub fn moscxten(&mut self) -> MOSCXTEN_W {
+        MOSCXTEN_W { w: self }
     }
     #[doc = "Bit 1 - Main Crystal Oscillator Bypass"]
     #[inline(always)]
-    pub fn moscxtby(&mut self) -> _MOSCXTBYW {
-        _MOSCXTBYW { w: self }
+    pub fn moscxtby(&mut self) -> MOSCXTBY_W {
+        MOSCXTBY_W { w: self }
     }
     #[doc = "Bit 2 - Wait Mode Command (Write-only)"]
     #[inline(always)]
-    pub fn waitmode(&mut self) -> _WAITMODEW {
-        _WAITMODEW { w: self }
+    pub fn waitmode(&mut self) -> WAITMODE_W {
+        WAITMODE_W { w: self }
     }
     #[doc = "Bit 3 - Main RC Oscillator Enable"]
     #[inline(always)]
-    pub fn moscrcen(&mut self) -> _MOSCRCENW {
-        _MOSCRCENW { w: self }
+    pub fn moscrcen(&mut self) -> MOSCRCEN_W {
+        MOSCRCEN_W { w: self }
     }
     #[doc = "Bits 4:6 - Main RC Oscillator Frequency Selection"]
     #[inline(always)]
-    pub fn moscrcf(&mut self) -> _MOSCRCFW {
-        _MOSCRCFW { w: self }
+    pub fn moscrcf(&mut self) -> MOSCRCF_W {
+        MOSCRCF_W { w: self }
     }
     #[doc = "Bits 8:15 - Main Crystal Oscillator Startup Time"]
     #[inline(always)]
-    pub fn moscxtst(&mut self) -> _MOSCXTSTW {
-        _MOSCXTSTW { w: self }
+    pub fn moscxtst(&mut self) -> MOSCXTST_W {
+        MOSCXTST_W { w: self }
     }
     #[doc = "Bits 16:23 - Write Access Password"]
     #[inline(always)]
-    pub fn key(&mut self) -> _KEYW {
-        _KEYW { w: self }
+    pub fn key(&mut self) -> KEY_W {
+        KEY_W { w: self }
     }
     #[doc = "Bit 24 - Main Clock Oscillator Selection"]
     #[inline(always)]
-    pub fn moscsel(&mut self) -> _MOSCSELW {
-        _MOSCSELW { w: self }
+    pub fn moscsel(&mut self) -> MOSCSEL_W {
+        MOSCSEL_W { w: self }
     }
     #[doc = "Bit 25 - Clock Failure Detector Enable"]
     #[inline(always)]
-    pub fn cfden(&mut self) -> _CFDENW {
-        _CFDENW { w: self }
+    pub fn cfden(&mut self) -> CFDEN_W {
+        CFDEN_W { w: self }
     }
     #[doc = "Bit 26 - 32.768 kHz Crystal Oscillator Frequency Monitoring Enable"]
     #[inline(always)]
-    pub fn xt32kfme(&mut self) -> _XT32KFMEW {
-        _XT32KFMEW { w: self }
+    pub fn xt32kfme(&mut self) -> XT32KFME_W {
+        XT32KFME_W { w: self }
     }
 }

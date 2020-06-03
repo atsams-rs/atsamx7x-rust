@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::ISI_IER {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register ISI_IER"]
+pub type W = crate::W<u32, super::ISI_IER>;
+#[doc = "Register ISI_IER `reset()`'s with value 0"]
+impl crate::ResetValue for super::ISI_IER {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _DIS_DONEW<'a> {
+#[doc = "Write proxy for field `DIS_DONE`"]
+pub struct DIS_DONE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DIS_DONEW<'a> {
+impl<'a> DIS_DONE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _DIS_DONEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SRSTW<'a> {
+#[doc = "Write proxy for field `SRST`"]
+pub struct SRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SRSTW<'a> {
+impl<'a> SRST_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _SRSTW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _VSYNCW<'a> {
+#[doc = "Write proxy for field `VSYNC`"]
+pub struct VSYNC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _VSYNCW<'a> {
+impl<'a> VSYNC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _VSYNCW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _PXFR_DONEW<'a> {
+#[doc = "Write proxy for field `PXFR_DONE`"]
+pub struct PXFR_DONE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PXFR_DONEW<'a> {
+impl<'a> PXFR_DONE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _PXFR_DONEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CXFR_DONEW<'a> {
+#[doc = "Write proxy for field `CXFR_DONE`"]
+pub struct CXFR_DONE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CXFR_DONEW<'a> {
+impl<'a> CXFR_DONE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _CXFR_DONEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _P_OVRW<'a> {
+#[doc = "Write proxy for field `P_OVR`"]
+pub struct P_OVR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _P_OVRW<'a> {
+impl<'a> P_OVR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _P_OVRW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _C_OVRW<'a> {
+#[doc = "Write proxy for field `C_OVR`"]
+pub struct C_OVR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _C_OVRW<'a> {
+impl<'a> C_OVR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _C_OVRW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CRC_ERRW<'a> {
+#[doc = "Write proxy for field `CRC_ERR`"]
+pub struct CRC_ERR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CRC_ERRW<'a> {
+impl<'a> CRC_ERR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +184,11 @@ impl<'a> _CRC_ERRW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _FR_OVRW<'a> {
+#[doc = "Write proxy for field `FR_OVR`"]
+pub struct FR_OVR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FR_OVRW<'a> {
+impl<'a> FR_OVR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -226,55 +207,49 @@ impl<'a> _FR_OVRW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 1 - Disable Done Interrupt Enable"]
     #[inline(always)]
-    pub fn dis_done(&mut self) -> _DIS_DONEW {
-        _DIS_DONEW { w: self }
+    pub fn dis_done(&mut self) -> DIS_DONE_W {
+        DIS_DONE_W { w: self }
     }
     #[doc = "Bit 2 - Software Reset Interrupt Enable"]
     #[inline(always)]
-    pub fn srst(&mut self) -> _SRSTW {
-        _SRSTW { w: self }
+    pub fn srst(&mut self) -> SRST_W {
+        SRST_W { w: self }
     }
     #[doc = "Bit 10 - Vertical Synchronization Interrupt Enable"]
     #[inline(always)]
-    pub fn vsync(&mut self) -> _VSYNCW {
-        _VSYNCW { w: self }
+    pub fn vsync(&mut self) -> VSYNC_W {
+        VSYNC_W { w: self }
     }
     #[doc = "Bit 16 - Preview DMA Transfer Done Interrupt Enable"]
     #[inline(always)]
-    pub fn pxfr_done(&mut self) -> _PXFR_DONEW {
-        _PXFR_DONEW { w: self }
+    pub fn pxfr_done(&mut self) -> PXFR_DONE_W {
+        PXFR_DONE_W { w: self }
     }
     #[doc = "Bit 17 - Codec DMA Transfer Done Interrupt Enable"]
     #[inline(always)]
-    pub fn cxfr_done(&mut self) -> _CXFR_DONEW {
-        _CXFR_DONEW { w: self }
+    pub fn cxfr_done(&mut self) -> CXFR_DONE_W {
+        CXFR_DONE_W { w: self }
     }
     #[doc = "Bit 24 - Preview Datapath Overflow Interrupt Enable"]
     #[inline(always)]
-    pub fn p_ovr(&mut self) -> _P_OVRW {
-        _P_OVRW { w: self }
+    pub fn p_ovr(&mut self) -> P_OVR_W {
+        P_OVR_W { w: self }
     }
     #[doc = "Bit 25 - Codec Datapath Overflow Interrupt Enable"]
     #[inline(always)]
-    pub fn c_ovr(&mut self) -> _C_OVRW {
-        _C_OVRW { w: self }
+    pub fn c_ovr(&mut self) -> C_OVR_W {
+        C_OVR_W { w: self }
     }
     #[doc = "Bit 26 - Embedded Synchronization CRC Error Interrupt Enable"]
     #[inline(always)]
-    pub fn crc_err(&mut self) -> _CRC_ERRW {
-        _CRC_ERRW { w: self }
+    pub fn crc_err(&mut self) -> CRC_ERR_W {
+        CRC_ERR_W { w: self }
     }
     #[doc = "Bit 27 - Frame Rate Overflow Interrupt Enable"]
     #[inline(always)]
-    pub fn fr_ovr(&mut self) -> _FR_OVRW {
-        _FR_OVRW { w: self }
+    pub fn fr_ovr(&mut self) -> FR_OVR_W {
+        FR_OVR_W { w: self }
     }
 }

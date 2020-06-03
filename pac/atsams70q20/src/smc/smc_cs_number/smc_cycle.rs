@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SMC_CYCLE {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register SMC_CYCLE"]
+pub type R = crate::R<u32, super::SMC_CYCLE>;
+#[doc = "Writer for register SMC_CYCLE"]
+pub type W = crate::W<u32, super::SMC_CYCLE>;
+#[doc = "Register SMC_CYCLE `reset()`'s with value 0"]
+impl crate::ResetValue for super::SMC_CYCLE {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type NWE_CYCLE_R = crate::FR<u16, u16>;
-#[doc = r"Proxy"]
-pub struct _NWE_CYCLEW<'a> {
+#[doc = "Reader of field `NWE_CYCLE`"]
+pub type NWE_CYCLE_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `NWE_CYCLE`"]
+pub struct NWE_CYCLE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NWE_CYCLEW<'a> {
+impl<'a> NWE_CYCLE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _NWE_CYCLEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type NRD_CYCLE_R = crate::FR<u16, u16>;
-#[doc = r"Proxy"]
-pub struct _NRD_CYCLEW<'a> {
+#[doc = "Reader of field `NRD_CYCLE`"]
+pub type NRD_CYCLE_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `NRD_CYCLE`"]
+pub struct NRD_CYCLE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NRD_CYCLEW<'a> {
+impl<'a> NRD_CYCLE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
@@ -76,37 +39,26 @@ impl<'a> _NRD_CYCLEW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:8 - Total Write Cycle Length"]
     #[inline(always)]
     pub fn nwe_cycle(&self) -> NWE_CYCLE_R {
-        NWE_CYCLE_R::new((self.bits() & 0x01ff) as u16)
+        NWE_CYCLE_R::new((self.bits & 0x01ff) as u16)
     }
     #[doc = "Bits 16:24 - Total Read Cycle Length"]
     #[inline(always)]
     pub fn nrd_cycle(&self) -> NRD_CYCLE_R {
-        NRD_CYCLE_R::new(((self.bits() >> 16) & 0x01ff) as u16)
+        NRD_CYCLE_R::new(((self.bits >> 16) & 0x01ff) as u16)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:8 - Total Write Cycle Length"]
     #[inline(always)]
-    pub fn nwe_cycle(&mut self) -> _NWE_CYCLEW {
-        _NWE_CYCLEW { w: self }
+    pub fn nwe_cycle(&mut self) -> NWE_CYCLE_W {
+        NWE_CYCLE_W { w: self }
     }
     #[doc = "Bits 16:24 - Total Read Cycle Length"]
     #[inline(always)]
-    pub fn nrd_cycle(&mut self) -> _NRD_CYCLEW {
-        _NRD_CYCLEW { w: self }
+    pub fn nrd_cycle(&mut self) -> NRD_CYCLE_W {
+        NRD_CYCLE_W { w: self }
     }
 }

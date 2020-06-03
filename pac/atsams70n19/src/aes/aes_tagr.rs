@@ -1,27 +1,11 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::AES_TAGR {
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r"Reader of the field"]
-pub type TAG_R = crate::FR<u32, u32>;
+#[doc = "Reader of register AES_TAGR[%s]"]
+pub type R = crate::R<u32, super::AES_TAGR>;
+#[doc = "Reader of field `TAG`"]
+pub type TAG_R = crate::R<u32, u32>;
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:31 - GCM Authentication Tag x"]
     #[inline(always)]
     pub fn tag(&self) -> TAG_R {
-        TAG_R::new((self.bits() & 0xffff_ffff) as u32)
+        TAG_R::new((self.bits & 0xffff_ffff) as u32)
     }
 }

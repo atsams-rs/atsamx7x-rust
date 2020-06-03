@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_FMR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register PWM_FMR"]
+pub type R = crate::R<u32, super::PWM_FMR>;
+#[doc = "Writer for register PWM_FMR"]
+pub type W = crate::W<u32, super::PWM_FMR>;
+#[doc = "Register PWM_FMR `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_FMR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type FPOL_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _FPOLW<'a> {
+#[doc = "Reader of field `FPOL`"]
+pub type FPOL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FPOL`"]
+pub struct FPOL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FPOLW<'a> {
+impl<'a> FPOL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _FPOLW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FMOD_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _FMODW<'a> {
+#[doc = "Reader of field `FMOD`"]
+pub type FMOD_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FMOD`"]
+pub struct FMOD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FMODW<'a> {
+impl<'a> FMOD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -75,13 +38,13 @@ impl<'a> _FMODW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FFIL_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _FFILW<'a> {
+#[doc = "Reader of field `FFIL`"]
+pub type FFIL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FFIL`"]
+pub struct FFIL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FFILW<'a> {
+impl<'a> FFIL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -90,47 +53,36 @@ impl<'a> _FFILW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:7 - Fault Polarity"]
     #[inline(always)]
     pub fn fpol(&self) -> FPOL_R {
-        FPOL_R::new((self.bits() & 0xff) as u8)
+        FPOL_R::new((self.bits & 0xff) as u8)
     }
     #[doc = "Bits 8:15 - Fault Activation Mode"]
     #[inline(always)]
     pub fn fmod(&self) -> FMOD_R {
-        FMOD_R::new(((self.bits() >> 8) & 0xff) as u8)
+        FMOD_R::new(((self.bits >> 8) & 0xff) as u8)
     }
     #[doc = "Bits 16:23 - Fault Filtering"]
     #[inline(always)]
     pub fn ffil(&self) -> FFIL_R {
-        FFIL_R::new(((self.bits() >> 16) & 0xff) as u8)
+        FFIL_R::new(((self.bits >> 16) & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:7 - Fault Polarity"]
     #[inline(always)]
-    pub fn fpol(&mut self) -> _FPOLW {
-        _FPOLW { w: self }
+    pub fn fpol(&mut self) -> FPOL_W {
+        FPOL_W { w: self }
     }
     #[doc = "Bits 8:15 - Fault Activation Mode"]
     #[inline(always)]
-    pub fn fmod(&mut self) -> _FMODW {
-        _FMODW { w: self }
+    pub fn fmod(&mut self) -> FMOD_W {
+        FMOD_W { w: self }
     }
     #[doc = "Bits 16:23 - Fault Filtering"]
     #[inline(always)]
-    pub fn ffil(&mut self) -> _FFILW {
-        _FFILW { w: self }
+    pub fn ffil(&mut self) -> FFIL_W {
+        FFIL_W { w: self }
     }
 }

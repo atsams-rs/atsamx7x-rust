@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::HSMCI_CMDR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register HSMCI_CMDR"]
+pub type W = crate::W<u32, super::HSMCI_CMDR>;
+#[doc = "Register HSMCI_CMDR `reset()`'s with value 0"]
+impl crate::ResetValue for super::HSMCI_CMDR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _CMDNBW<'a> {
+#[doc = "Write proxy for field `CMDNB`"]
+pub struct CMDNB_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMDNBW<'a> {
+impl<'a> CMDNB_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -39,62 +20,56 @@ impl<'a> _CMDNBW<'a> {
         self.w
     }
 }
-#[doc = "Values that can be written to the field `RSPTYP`"]
+#[doc = "Response Type\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RSPTYPW {
-    #[doc = "No response"]
-    NORESP,
-    #[doc = "48-bit response"]
-    _48_BIT,
-    #[doc = "136-bit response"]
-    _136_BIT,
-    #[doc = "R1b response type"]
-    R1B,
+#[repr(u8)]
+pub enum RSPTYP_AW {
+    #[doc = "0: No response"]
+    NORESP = 0,
+    #[doc = "1: 48-bit response"]
+    _48_BIT = 1,
+    #[doc = "2: 136-bit response"]
+    _136_BIT = 2,
+    #[doc = "3: R1b response type"]
+    R1B = 3,
 }
-impl RSPTYPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
+impl From<RSPTYP_AW> for u8 {
     #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            RSPTYPW::NORESP => 0,
-            RSPTYPW::_48_BIT => 1,
-            RSPTYPW::_136_BIT => 2,
-            RSPTYPW::R1B => 3,
-        }
+    fn from(variant: RSPTYP_AW) -> Self {
+        variant as _
     }
 }
-#[doc = r"Proxy"]
-pub struct _RSPTYPW<'a> {
+#[doc = "Write proxy for field `RSPTYP`"]
+pub struct RSPTYP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RSPTYPW<'a> {
+impl<'a> RSPTYP_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: RSPTYPW) -> &'a mut W {
+    pub fn variant(self, variant: RSPTYP_AW) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "No response"]
     #[inline(always)]
     pub fn noresp(self) -> &'a mut W {
-        self.variant(RSPTYPW::NORESP)
+        self.variant(RSPTYP_AW::NORESP)
     }
     #[doc = "48-bit response"]
     #[inline(always)]
     pub fn _48_bit(self) -> &'a mut W {
-        self.variant(RSPTYPW::_48_BIT)
+        self.variant(RSPTYP_AW::_48_BIT)
     }
     #[doc = "136-bit response"]
     #[inline(always)]
     pub fn _136_bit(self) -> &'a mut W {
-        self.variant(RSPTYPW::_136_BIT)
+        self.variant(RSPTYP_AW::_136_BIT)
     }
     #[doc = "R1b response type"]
     #[inline(always)]
     pub fn r1b(self) -> &'a mut W {
-        self.variant(RSPTYPW::R1B)
+        self.variant(RSPTYP_AW::R1B)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -103,94 +78,84 @@ impl<'a> _RSPTYPW<'a> {
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SPCMD`"]
+#[doc = "Special Command\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SPCMDW {
-    #[doc = "Not a special CMD."]
-    STD,
-    #[doc = "Initialization CMD: 74 clock cycles for initialization sequence."]
-    INIT,
-    #[doc = "Synchronized CMD: Wait for the end of the current data block transfer before sending the pending command."]
-    SYNC,
-    #[doc = "CE-ATA Completion Signal disable Command. The host cancels the ability for the device to return a command completion signal on the command line."]
-    CE_ATA,
-    #[doc = "Interrupt command: Corresponds to the Interrupt Mode (CMD40)."]
-    IT_CMD,
-    #[doc = "Interrupt response: Corresponds to the Interrupt Mode (CMD40)."]
-    IT_RESP,
-    #[doc = "Boot Operation Request. Start a boot operation mode, the host processor can read boot data from the MMC device directly."]
-    BOR,
-    #[doc = "End Boot Operation. This command allows the host processor to terminate the boot operation mode."]
-    EBO,
+#[repr(u8)]
+pub enum SPCMD_AW {
+    #[doc = "0: Not a special CMD."]
+    STD = 0,
+    #[doc = "1: Initialization CMD: 74 clock cycles for initialization sequence."]
+    INIT = 1,
+    #[doc = "2: Synchronized CMD: Wait for the end of the current data block transfer before sending the pending command."]
+    SYNC = 2,
+    #[doc = "3: CE-ATA Completion Signal disable Command. The host cancels the ability for the device to return a command completion signal on the command line."]
+    CE_ATA = 3,
+    #[doc = "4: Interrupt command: Corresponds to the Interrupt Mode (CMD40)."]
+    IT_CMD = 4,
+    #[doc = "5: Interrupt response: Corresponds to the Interrupt Mode (CMD40)."]
+    IT_RESP = 5,
+    #[doc = "6: Boot Operation Request. Start a boot operation mode, the host processor can read boot data from the MMC device directly."]
+    BOR = 6,
+    #[doc = "7: End Boot Operation. This command allows the host processor to terminate the boot operation mode."]
+    EBO = 7,
 }
-impl SPCMDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
+impl From<SPCMD_AW> for u8 {
     #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            SPCMDW::STD => 0,
-            SPCMDW::INIT => 1,
-            SPCMDW::SYNC => 2,
-            SPCMDW::CE_ATA => 3,
-            SPCMDW::IT_CMD => 4,
-            SPCMDW::IT_RESP => 5,
-            SPCMDW::BOR => 6,
-            SPCMDW::EBO => 7,
-        }
+    fn from(variant: SPCMD_AW) -> Self {
+        variant as _
     }
 }
-#[doc = r"Proxy"]
-pub struct _SPCMDW<'a> {
+#[doc = "Write proxy for field `SPCMD`"]
+pub struct SPCMD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPCMDW<'a> {
+impl<'a> SPCMD_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: SPCMDW) -> &'a mut W {
+    pub fn variant(self, variant: SPCMD_AW) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Not a special CMD."]
     #[inline(always)]
     pub fn std(self) -> &'a mut W {
-        self.variant(SPCMDW::STD)
+        self.variant(SPCMD_AW::STD)
     }
     #[doc = "Initialization CMD: 74 clock cycles for initialization sequence."]
     #[inline(always)]
     pub fn init(self) -> &'a mut W {
-        self.variant(SPCMDW::INIT)
+        self.variant(SPCMD_AW::INIT)
     }
     #[doc = "Synchronized CMD: Wait for the end of the current data block transfer before sending the pending command."]
     #[inline(always)]
     pub fn sync(self) -> &'a mut W {
-        self.variant(SPCMDW::SYNC)
+        self.variant(SPCMD_AW::SYNC)
     }
     #[doc = "CE-ATA Completion Signal disable Command. The host cancels the ability for the device to return a command completion signal on the command line."]
     #[inline(always)]
     pub fn ce_ata(self) -> &'a mut W {
-        self.variant(SPCMDW::CE_ATA)
+        self.variant(SPCMD_AW::CE_ATA)
     }
     #[doc = "Interrupt command: Corresponds to the Interrupt Mode (CMD40)."]
     #[inline(always)]
     pub fn it_cmd(self) -> &'a mut W {
-        self.variant(SPCMDW::IT_CMD)
+        self.variant(SPCMD_AW::IT_CMD)
     }
     #[doc = "Interrupt response: Corresponds to the Interrupt Mode (CMD40)."]
     #[inline(always)]
     pub fn it_resp(self) -> &'a mut W {
-        self.variant(SPCMDW::IT_RESP)
+        self.variant(SPCMD_AW::IT_RESP)
     }
     #[doc = "Boot Operation Request. Start a boot operation mode, the host processor can read boot data from the MMC device directly."]
     #[inline(always)]
     pub fn bor(self) -> &'a mut W {
-        self.variant(SPCMDW::BOR)
+        self.variant(SPCMD_AW::BOR)
     }
     #[doc = "End Boot Operation. This command allows the host processor to terminate the boot operation mode."]
     #[inline(always)]
     pub fn ebo(self) -> &'a mut W {
-        self.variant(SPCMDW::EBO)
+        self.variant(SPCMD_AW::EBO)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -199,46 +164,41 @@ impl<'a> _SPCMDW<'a> {
         self.w
     }
 }
-#[doc = "Values that can be written to the field `OPDCMD`"]
+#[doc = "Open Drain Command\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum OPDCMDW {
-    #[doc = "Push pull command."]
-    PUSHPULL,
-    #[doc = "Open drain command."]
-    OPENDRAIN,
+pub enum OPDCMD_AW {
+    #[doc = "0: Push pull command."]
+    PUSHPULL = 0,
+    #[doc = "1: Open drain command."]
+    OPENDRAIN = 1,
 }
-impl OPDCMDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
+impl From<OPDCMD_AW> for bool {
     #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            OPDCMDW::PUSHPULL => false,
-            OPDCMDW::OPENDRAIN => true,
-        }
+    fn from(variant: OPDCMD_AW) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Proxy"]
-pub struct _OPDCMDW<'a> {
+#[doc = "Write proxy for field `OPDCMD`"]
+pub struct OPDCMD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OPDCMDW<'a> {
+impl<'a> OPDCMD_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: OPDCMDW) -> &'a mut W {
+    pub fn variant(self, variant: OPDCMD_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Push pull command."]
     #[inline(always)]
     pub fn pushpull(self) -> &'a mut W {
-        self.variant(OPDCMDW::PUSHPULL)
+        self.variant(OPDCMD_AW::PUSHPULL)
     }
     #[doc = "Open drain command."]
     #[inline(always)]
     pub fn opendrain(self) -> &'a mut W {
-        self.variant(OPDCMDW::OPENDRAIN)
+        self.variant(OPDCMD_AW::OPENDRAIN)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -257,46 +217,41 @@ impl<'a> _OPDCMDW<'a> {
         self.w
     }
 }
-#[doc = "Values that can be written to the field `MAXLAT`"]
+#[doc = "Max Latency for Command to Response\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MAXLATW {
-    #[doc = "5-cycle max latency."]
-    _5,
-    #[doc = "64-cycle max latency."]
-    _64,
+pub enum MAXLAT_AW {
+    #[doc = "0: 5-cycle max latency."]
+    _5 = 0,
+    #[doc = "1: 64-cycle max latency."]
+    _64 = 1,
 }
-impl MAXLATW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
+impl From<MAXLAT_AW> for bool {
     #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            MAXLATW::_5 => false,
-            MAXLATW::_64 => true,
-        }
+    fn from(variant: MAXLAT_AW) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Proxy"]
-pub struct _MAXLATW<'a> {
+#[doc = "Write proxy for field `MAXLAT`"]
+pub struct MAXLAT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MAXLATW<'a> {
+impl<'a> MAXLAT_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: MAXLATW) -> &'a mut W {
+    pub fn variant(self, variant: MAXLAT_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "5-cycle max latency."]
     #[inline(always)]
     pub fn _5(self) -> &'a mut W {
-        self.variant(MAXLATW::_5)
+        self.variant(MAXLAT_AW::_5)
     }
     #[doc = "64-cycle max latency."]
     #[inline(always)]
     pub fn _64(self) -> &'a mut W {
-        self.variant(MAXLATW::_64)
+        self.variant(MAXLAT_AW::_64)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -315,52 +270,47 @@ impl<'a> _MAXLATW<'a> {
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TRCMD`"]
+#[doc = "Transfer Command\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TRCMDW {
-    #[doc = "No data transfer"]
-    NO_DATA,
-    #[doc = "Start data transfer"]
-    START_DATA,
-    #[doc = "Stop data transfer"]
-    STOP_DATA,
+#[repr(u8)]
+pub enum TRCMD_AW {
+    #[doc = "0: No data transfer"]
+    NO_DATA = 0,
+    #[doc = "1: Start data transfer"]
+    START_DATA = 1,
+    #[doc = "2: Stop data transfer"]
+    STOP_DATA = 2,
 }
-impl TRCMDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
+impl From<TRCMD_AW> for u8 {
     #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TRCMDW::NO_DATA => 0,
-            TRCMDW::START_DATA => 1,
-            TRCMDW::STOP_DATA => 2,
-        }
+    fn from(variant: TRCMD_AW) -> Self {
+        variant as _
     }
 }
-#[doc = r"Proxy"]
-pub struct _TRCMDW<'a> {
+#[doc = "Write proxy for field `TRCMD`"]
+pub struct TRCMD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TRCMDW<'a> {
+impl<'a> TRCMD_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: TRCMDW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: TRCMD_AW) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "No data transfer"]
     #[inline(always)]
     pub fn no_data(self) -> &'a mut W {
-        self.variant(TRCMDW::NO_DATA)
+        self.variant(TRCMD_AW::NO_DATA)
     }
     #[doc = "Start data transfer"]
     #[inline(always)]
     pub fn start_data(self) -> &'a mut W {
-        self.variant(TRCMDW::START_DATA)
+        self.variant(TRCMD_AW::START_DATA)
     }
     #[doc = "Stop data transfer"]
     #[inline(always)]
     pub fn stop_data(self) -> &'a mut W {
-        self.variant(TRCMDW::STOP_DATA)
+        self.variant(TRCMD_AW::STOP_DATA)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -369,46 +319,41 @@ impl<'a> _TRCMDW<'a> {
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TRDIR`"]
+#[doc = "Transfer Direction\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TRDIRW {
-    #[doc = "Write."]
-    WRITE,
-    #[doc = "Read."]
-    READ,
+pub enum TRDIR_AW {
+    #[doc = "0: Write."]
+    WRITE = 0,
+    #[doc = "1: Read."]
+    READ = 1,
 }
-impl TRDIRW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
+impl From<TRDIR_AW> for bool {
     #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            TRDIRW::WRITE => false,
-            TRDIRW::READ => true,
-        }
+    fn from(variant: TRDIR_AW) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Proxy"]
-pub struct _TRDIRW<'a> {
+#[doc = "Write proxy for field `TRDIR`"]
+pub struct TRDIR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TRDIRW<'a> {
+impl<'a> TRDIR_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: TRDIRW) -> &'a mut W {
+    pub fn variant(self, variant: TRDIR_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Write."]
     #[inline(always)]
     pub fn write(self) -> &'a mut W {
-        self.variant(TRDIRW::WRITE)
+        self.variant(TRDIR_AW::WRITE)
     }
     #[doc = "Read."]
     #[inline(always)]
     pub fn read(self) -> &'a mut W {
-        self.variant(TRDIRW::READ)
+        self.variant(TRDIR_AW::READ)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -427,68 +372,61 @@ impl<'a> _TRDIRW<'a> {
         self.w
     }
 }
-#[doc = "Values that can be written to the field `TRTYP`"]
+#[doc = "Transfer Type\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TRTYPW {
-    #[doc = "MMC/SD Card Single Block"]
-    SINGLE,
-    #[doc = "MMC/SD Card Multiple Block"]
-    MULTIPLE,
-    #[doc = "MMC Stream"]
-    STREAM,
-    #[doc = "SDIO Byte"]
-    BYTE,
-    #[doc = "SDIO Block"]
-    BLOCK,
+#[repr(u8)]
+pub enum TRTYP_AW {
+    #[doc = "0: MMC/SD Card Single Block"]
+    SINGLE = 0,
+    #[doc = "1: MMC/SD Card Multiple Block"]
+    MULTIPLE = 1,
+    #[doc = "2: MMC Stream"]
+    STREAM = 2,
+    #[doc = "4: SDIO Byte"]
+    BYTE = 4,
+    #[doc = "5: SDIO Block"]
+    BLOCK = 5,
 }
-impl TRTYPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
+impl From<TRTYP_AW> for u8 {
     #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TRTYPW::SINGLE => 0,
-            TRTYPW::MULTIPLE => 1,
-            TRTYPW::STREAM => 2,
-            TRTYPW::BYTE => 4,
-            TRTYPW::BLOCK => 5,
-        }
+    fn from(variant: TRTYP_AW) -> Self {
+        variant as _
     }
 }
-#[doc = r"Proxy"]
-pub struct _TRTYPW<'a> {
+#[doc = "Write proxy for field `TRTYP`"]
+pub struct TRTYP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TRTYPW<'a> {
+impl<'a> TRTYP_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: TRTYPW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: TRTYP_AW) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "MMC/SD Card Single Block"]
     #[inline(always)]
     pub fn single(self) -> &'a mut W {
-        self.variant(TRTYPW::SINGLE)
+        self.variant(TRTYP_AW::SINGLE)
     }
     #[doc = "MMC/SD Card Multiple Block"]
     #[inline(always)]
     pub fn multiple(self) -> &'a mut W {
-        self.variant(TRTYPW::MULTIPLE)
+        self.variant(TRTYP_AW::MULTIPLE)
     }
     #[doc = "MMC Stream"]
     #[inline(always)]
     pub fn stream(self) -> &'a mut W {
-        self.variant(TRTYPW::STREAM)
+        self.variant(TRTYP_AW::STREAM)
     }
     #[doc = "SDIO Byte"]
     #[inline(always)]
     pub fn byte(self) -> &'a mut W {
-        self.variant(TRTYPW::BYTE)
+        self.variant(TRTYP_AW::BYTE)
     }
     #[doc = "SDIO Block"]
     #[inline(always)]
     pub fn block(self) -> &'a mut W {
-        self.variant(TRTYPW::BLOCK)
+        self.variant(TRTYP_AW::BLOCK)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -497,52 +435,47 @@ impl<'a> _TRTYPW<'a> {
         self.w
     }
 }
-#[doc = "Values that can be written to the field `IOSPCMD`"]
+#[doc = "SDIO Special Command\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum IOSPCMDW {
-    #[doc = "Not an SDIO Special Command"]
-    STD,
-    #[doc = "SDIO Suspend Command"]
-    SUSPEND,
-    #[doc = "SDIO Resume Command"]
-    RESUME,
+#[repr(u8)]
+pub enum IOSPCMD_AW {
+    #[doc = "0: Not an SDIO Special Command"]
+    STD = 0,
+    #[doc = "1: SDIO Suspend Command"]
+    SUSPEND = 1,
+    #[doc = "2: SDIO Resume Command"]
+    RESUME = 2,
 }
-impl IOSPCMDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
+impl From<IOSPCMD_AW> for u8 {
     #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            IOSPCMDW::STD => 0,
-            IOSPCMDW::SUSPEND => 1,
-            IOSPCMDW::RESUME => 2,
-        }
+    fn from(variant: IOSPCMD_AW) -> Self {
+        variant as _
     }
 }
-#[doc = r"Proxy"]
-pub struct _IOSPCMDW<'a> {
+#[doc = "Write proxy for field `IOSPCMD`"]
+pub struct IOSPCMD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IOSPCMDW<'a> {
+impl<'a> IOSPCMD_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: IOSPCMDW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: IOSPCMD_AW) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Not an SDIO Special Command"]
     #[inline(always)]
     pub fn std(self) -> &'a mut W {
-        self.variant(IOSPCMDW::STD)
+        self.variant(IOSPCMD_AW::STD)
     }
     #[doc = "SDIO Suspend Command"]
     #[inline(always)]
     pub fn suspend(self) -> &'a mut W {
-        self.variant(IOSPCMDW::SUSPEND)
+        self.variant(IOSPCMD_AW::SUSPEND)
     }
     #[doc = "SDIO Resume Command"]
     #[inline(always)]
     pub fn resume(self) -> &'a mut W {
-        self.variant(IOSPCMDW::RESUME)
+        self.variant(IOSPCMD_AW::RESUME)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -551,46 +484,41 @@ impl<'a> _IOSPCMDW<'a> {
         self.w
     }
 }
-#[doc = "Values that can be written to the field `ATACS`"]
+#[doc = "ATA with Command Completion Signal\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum ATACSW {
-    #[doc = "Normal operation mode."]
-    NORMAL,
-    #[doc = "This bit indicates that a completion signal is expected within a programmed amount of time (HSMCI_CSTOR)."]
-    COMPLETION,
+pub enum ATACS_AW {
+    #[doc = "0: Normal operation mode."]
+    NORMAL = 0,
+    #[doc = "1: This bit indicates that a completion signal is expected within a programmed amount of time (HSMCI_CSTOR)."]
+    COMPLETION = 1,
 }
-impl ATACSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
+impl From<ATACS_AW> for bool {
     #[inline(always)]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            ATACSW::NORMAL => false,
-            ATACSW::COMPLETION => true,
-        }
+    fn from(variant: ATACS_AW) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = r"Proxy"]
-pub struct _ATACSW<'a> {
+#[doc = "Write proxy for field `ATACS`"]
+pub struct ATACS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ATACSW<'a> {
+impl<'a> ATACS_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: ATACSW) -> &'a mut W {
+    pub fn variant(self, variant: ATACS_AW) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Normal operation mode."]
     #[inline(always)]
     pub fn normal(self) -> &'a mut W {
-        self.variant(ATACSW::NORMAL)
+        self.variant(ATACS_AW::NORMAL)
     }
     #[doc = "This bit indicates that a completion signal is expected within a programmed amount of time (HSMCI_CSTOR)."]
     #[inline(always)]
     pub fn completion(self) -> &'a mut W {
-        self.variant(ATACSW::COMPLETION)
+        self.variant(ATACS_AW::COMPLETION)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -609,11 +537,11 @@ impl<'a> _ATACSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _BOOT_ACKW<'a> {
+#[doc = "Write proxy for field `BOOT_ACK`"]
+pub struct BOOT_ACK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BOOT_ACKW<'a> {
+impl<'a> BOOT_ACK_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -632,65 +560,59 @@ impl<'a> _BOOT_ACKW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:5 - Command Number"]
     #[inline(always)]
-    pub fn cmdnb(&mut self) -> _CMDNBW {
-        _CMDNBW { w: self }
+    pub fn cmdnb(&mut self) -> CMDNB_W {
+        CMDNB_W { w: self }
     }
     #[doc = "Bits 6:7 - Response Type"]
     #[inline(always)]
-    pub fn rsptyp(&mut self) -> _RSPTYPW {
-        _RSPTYPW { w: self }
+    pub fn rsptyp(&mut self) -> RSPTYP_W {
+        RSPTYP_W { w: self }
     }
     #[doc = "Bits 8:10 - Special Command"]
     #[inline(always)]
-    pub fn spcmd(&mut self) -> _SPCMDW {
-        _SPCMDW { w: self }
+    pub fn spcmd(&mut self) -> SPCMD_W {
+        SPCMD_W { w: self }
     }
     #[doc = "Bit 11 - Open Drain Command"]
     #[inline(always)]
-    pub fn opdcmd(&mut self) -> _OPDCMDW {
-        _OPDCMDW { w: self }
+    pub fn opdcmd(&mut self) -> OPDCMD_W {
+        OPDCMD_W { w: self }
     }
     #[doc = "Bit 12 - Max Latency for Command to Response"]
     #[inline(always)]
-    pub fn maxlat(&mut self) -> _MAXLATW {
-        _MAXLATW { w: self }
+    pub fn maxlat(&mut self) -> MAXLAT_W {
+        MAXLAT_W { w: self }
     }
     #[doc = "Bits 16:17 - Transfer Command"]
     #[inline(always)]
-    pub fn trcmd(&mut self) -> _TRCMDW {
-        _TRCMDW { w: self }
+    pub fn trcmd(&mut self) -> TRCMD_W {
+        TRCMD_W { w: self }
     }
     #[doc = "Bit 18 - Transfer Direction"]
     #[inline(always)]
-    pub fn trdir(&mut self) -> _TRDIRW {
-        _TRDIRW { w: self }
+    pub fn trdir(&mut self) -> TRDIR_W {
+        TRDIR_W { w: self }
     }
     #[doc = "Bits 19:21 - Transfer Type"]
     #[inline(always)]
-    pub fn trtyp(&mut self) -> _TRTYPW {
-        _TRTYPW { w: self }
+    pub fn trtyp(&mut self) -> TRTYP_W {
+        TRTYP_W { w: self }
     }
     #[doc = "Bits 24:25 - SDIO Special Command"]
     #[inline(always)]
-    pub fn iospcmd(&mut self) -> _IOSPCMDW {
-        _IOSPCMDW { w: self }
+    pub fn iospcmd(&mut self) -> IOSPCMD_W {
+        IOSPCMD_W { w: self }
     }
     #[doc = "Bit 26 - ATA with Command Completion Signal"]
     #[inline(always)]
-    pub fn atacs(&mut self) -> _ATACSW {
-        _ATACSW { w: self }
+    pub fn atacs(&mut self) -> ATACS_W {
+        ATACS_W { w: self }
     }
     #[doc = "Bit 27 - Boot Operation Acknowledge"]
     #[inline(always)]
-    pub fn boot_ack(&mut self) -> _BOOT_ACKW {
-        _BOOT_ACKW { w: self }
+    pub fn boot_ack(&mut self) -> BOOT_ACK_W {
+        BOOT_ACK_W { w: self }
     }
 }

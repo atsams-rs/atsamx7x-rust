@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_IER2 {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register PWM_IER2"]
+pub type W = crate::W<u32, super::PWM_IER2>;
+#[doc = "Register PWM_IER2 `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_IER2 {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _WRDYW<'a> {
+#[doc = "Write proxy for field `WRDY`"]
+pub struct WRDY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WRDYW<'a> {
+impl<'a> WRDY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _WRDYW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _UNREW<'a> {
+#[doc = "Write proxy for field `UNRE`"]
+pub struct UNRE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UNREW<'a> {
+impl<'a> UNRE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _UNREW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPM0W<'a> {
+#[doc = "Write proxy for field `CMPM0`"]
+pub struct CMPM0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPM0W<'a> {
+impl<'a> CMPM0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _CMPM0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPM1W<'a> {
+#[doc = "Write proxy for field `CMPM1`"]
+pub struct CMPM1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPM1W<'a> {
+impl<'a> CMPM1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _CMPM1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPM2W<'a> {
+#[doc = "Write proxy for field `CMPM2`"]
+pub struct CMPM2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPM2W<'a> {
+impl<'a> CMPM2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _CMPM2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPM3W<'a> {
+#[doc = "Write proxy for field `CMPM3`"]
+pub struct CMPM3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPM3W<'a> {
+impl<'a> CMPM3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _CMPM3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPM4W<'a> {
+#[doc = "Write proxy for field `CMPM4`"]
+pub struct CMPM4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPM4W<'a> {
+impl<'a> CMPM4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _CMPM4W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPM5W<'a> {
+#[doc = "Write proxy for field `CMPM5`"]
+pub struct CMPM5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPM5W<'a> {
+impl<'a> CMPM5_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +184,11 @@ impl<'a> _CMPM5W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPM6W<'a> {
+#[doc = "Write proxy for field `CMPM6`"]
+pub struct CMPM6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPM6W<'a> {
+impl<'a> CMPM6_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -225,11 +206,11 @@ impl<'a> _CMPM6W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPM7W<'a> {
+#[doc = "Write proxy for field `CMPM7`"]
+pub struct CMPM7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPM7W<'a> {
+impl<'a> CMPM7_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -247,11 +228,11 @@ impl<'a> _CMPM7W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPU0W<'a> {
+#[doc = "Write proxy for field `CMPU0`"]
+pub struct CMPU0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPU0W<'a> {
+impl<'a> CMPU0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -269,11 +250,11 @@ impl<'a> _CMPU0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPU1W<'a> {
+#[doc = "Write proxy for field `CMPU1`"]
+pub struct CMPU1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPU1W<'a> {
+impl<'a> CMPU1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -291,11 +272,11 @@ impl<'a> _CMPU1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPU2W<'a> {
+#[doc = "Write proxy for field `CMPU2`"]
+pub struct CMPU2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPU2W<'a> {
+impl<'a> CMPU2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -313,11 +294,11 @@ impl<'a> _CMPU2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPU3W<'a> {
+#[doc = "Write proxy for field `CMPU3`"]
+pub struct CMPU3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPU3W<'a> {
+impl<'a> CMPU3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -335,11 +316,11 @@ impl<'a> _CMPU3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPU4W<'a> {
+#[doc = "Write proxy for field `CMPU4`"]
+pub struct CMPU4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPU4W<'a> {
+impl<'a> CMPU4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -357,11 +338,11 @@ impl<'a> _CMPU4W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPU5W<'a> {
+#[doc = "Write proxy for field `CMPU5`"]
+pub struct CMPU5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPU5W<'a> {
+impl<'a> CMPU5_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -379,11 +360,11 @@ impl<'a> _CMPU5W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPU6W<'a> {
+#[doc = "Write proxy for field `CMPU6`"]
+pub struct CMPU6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPU6W<'a> {
+impl<'a> CMPU6_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -401,11 +382,11 @@ impl<'a> _CMPU6W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CMPU7W<'a> {
+#[doc = "Write proxy for field `CMPU7`"]
+pub struct CMPU7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CMPU7W<'a> {
+impl<'a> CMPU7_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -424,100 +405,94 @@ impl<'a> _CMPU7W<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Write Ready for Synchronous Channels Update Interrupt Enable"]
     #[inline(always)]
-    pub fn wrdy(&mut self) -> _WRDYW {
-        _WRDYW { w: self }
+    pub fn wrdy(&mut self) -> WRDY_W {
+        WRDY_W { w: self }
     }
     #[doc = "Bit 3 - Synchronous Channels Update Underrun Error Interrupt Enable"]
     #[inline(always)]
-    pub fn unre(&mut self) -> _UNREW {
-        _UNREW { w: self }
+    pub fn unre(&mut self) -> UNRE_W {
+        UNRE_W { w: self }
     }
     #[doc = "Bit 8 - Comparison 0 Match Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpm0(&mut self) -> _CMPM0W {
-        _CMPM0W { w: self }
+    pub fn cmpm0(&mut self) -> CMPM0_W {
+        CMPM0_W { w: self }
     }
     #[doc = "Bit 9 - Comparison 1 Match Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpm1(&mut self) -> _CMPM1W {
-        _CMPM1W { w: self }
+    pub fn cmpm1(&mut self) -> CMPM1_W {
+        CMPM1_W { w: self }
     }
     #[doc = "Bit 10 - Comparison 2 Match Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpm2(&mut self) -> _CMPM2W {
-        _CMPM2W { w: self }
+    pub fn cmpm2(&mut self) -> CMPM2_W {
+        CMPM2_W { w: self }
     }
     #[doc = "Bit 11 - Comparison 3 Match Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpm3(&mut self) -> _CMPM3W {
-        _CMPM3W { w: self }
+    pub fn cmpm3(&mut self) -> CMPM3_W {
+        CMPM3_W { w: self }
     }
     #[doc = "Bit 12 - Comparison 4 Match Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpm4(&mut self) -> _CMPM4W {
-        _CMPM4W { w: self }
+    pub fn cmpm4(&mut self) -> CMPM4_W {
+        CMPM4_W { w: self }
     }
     #[doc = "Bit 13 - Comparison 5 Match Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpm5(&mut self) -> _CMPM5W {
-        _CMPM5W { w: self }
+    pub fn cmpm5(&mut self) -> CMPM5_W {
+        CMPM5_W { w: self }
     }
     #[doc = "Bit 14 - Comparison 6 Match Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpm6(&mut self) -> _CMPM6W {
-        _CMPM6W { w: self }
+    pub fn cmpm6(&mut self) -> CMPM6_W {
+        CMPM6_W { w: self }
     }
     #[doc = "Bit 15 - Comparison 7 Match Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpm7(&mut self) -> _CMPM7W {
-        _CMPM7W { w: self }
+    pub fn cmpm7(&mut self) -> CMPM7_W {
+        CMPM7_W { w: self }
     }
     #[doc = "Bit 16 - Comparison 0 Update Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpu0(&mut self) -> _CMPU0W {
-        _CMPU0W { w: self }
+    pub fn cmpu0(&mut self) -> CMPU0_W {
+        CMPU0_W { w: self }
     }
     #[doc = "Bit 17 - Comparison 1 Update Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpu1(&mut self) -> _CMPU1W {
-        _CMPU1W { w: self }
+    pub fn cmpu1(&mut self) -> CMPU1_W {
+        CMPU1_W { w: self }
     }
     #[doc = "Bit 18 - Comparison 2 Update Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpu2(&mut self) -> _CMPU2W {
-        _CMPU2W { w: self }
+    pub fn cmpu2(&mut self) -> CMPU2_W {
+        CMPU2_W { w: self }
     }
     #[doc = "Bit 19 - Comparison 3 Update Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpu3(&mut self) -> _CMPU3W {
-        _CMPU3W { w: self }
+    pub fn cmpu3(&mut self) -> CMPU3_W {
+        CMPU3_W { w: self }
     }
     #[doc = "Bit 20 - Comparison 4 Update Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpu4(&mut self) -> _CMPU4W {
-        _CMPU4W { w: self }
+    pub fn cmpu4(&mut self) -> CMPU4_W {
+        CMPU4_W { w: self }
     }
     #[doc = "Bit 21 - Comparison 5 Update Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpu5(&mut self) -> _CMPU5W {
-        _CMPU5W { w: self }
+    pub fn cmpu5(&mut self) -> CMPU5_W {
+        CMPU5_W { w: self }
     }
     #[doc = "Bit 22 - Comparison 6 Update Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpu6(&mut self) -> _CMPU6W {
-        _CMPU6W { w: self }
+    pub fn cmpu6(&mut self) -> CMPU6_W {
+        CMPU6_W { w: self }
     }
     #[doc = "Bit 23 - Comparison 7 Update Interrupt Enable"]
     #[inline(always)]
-    pub fn cmpu7(&mut self) -> _CMPU7W {
-        _CMPU7W { w: self }
+    pub fn cmpu7(&mut self) -> CMPU7_W {
+        CMPU7_W { w: self }
     }
 }

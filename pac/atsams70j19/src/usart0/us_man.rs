@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::US_MAN {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register US_MAN"]
+pub type R = crate::R<u32, super::US_MAN>;
+#[doc = "Writer for register US_MAN"]
+pub type W = crate::W<u32, super::US_MAN>;
+#[doc = "Register US_MAN `reset()`'s with value 0"]
+impl crate::ResetValue for super::US_MAN {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type TX_PL_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _TX_PLW<'a> {
+#[doc = "Reader of field `TX_PL`"]
+pub type TX_PL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `TX_PL`"]
+pub struct TX_PL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TX_PLW<'a> {
+impl<'a> TX_PL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -61,109 +24,91 @@ impl<'a> _TX_PLW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `TX_PP`"]
+#[doc = "Transmitter Preamble Pattern\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TX_PPR {
-    #[doc = "The preamble is composed of '1's"]
-    ALL_ONE,
-    #[doc = "The preamble is composed of '0's"]
-    ALL_ZERO,
-    #[doc = "The preamble is composed of '01's"]
-    ZERO_ONE,
-    #[doc = "The preamble is composed of '10's"]
-    ONE_ZERO,
+#[repr(u8)]
+pub enum TX_PP_A {
+    #[doc = "0: The preamble is composed of '1's"]
+    ALL_ONE = 0,
+    #[doc = "1: The preamble is composed of '0's"]
+    ALL_ZERO = 1,
+    #[doc = "2: The preamble is composed of '01's"]
+    ZERO_ONE = 2,
+    #[doc = "3: The preamble is composed of '10's"]
+    ONE_ZERO = 3,
 }
-impl crate::ToBits<u8> for TX_PPR {
+impl From<TX_PP_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            TX_PPR::ALL_ONE => 0,
-            TX_PPR::ALL_ZERO => 1,
-            TX_PPR::ZERO_ONE => 2,
-            TX_PPR::ONE_ZERO => 3,
-        }
+    fn from(variant: TX_PP_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type TX_PP_R = crate::FR<u8, TX_PPR>;
+#[doc = "Reader of field `TX_PP`"]
+pub type TX_PP_R = crate::R<u8, TX_PP_A>;
 impl TX_PP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> TX_PP_A {
+        match self.bits {
+            0 => TX_PP_A::ALL_ONE,
+            1 => TX_PP_A::ALL_ZERO,
+            2 => TX_PP_A::ZERO_ONE,
+            3 => TX_PP_A::ONE_ZERO,
+            _ => unreachable!(),
+        }
+    }
     #[doc = "Checks if the value of the field is `ALL_ONE`"]
     #[inline(always)]
     pub fn is_all_one(&self) -> bool {
-        *self == TX_PPR::ALL_ONE
+        *self == TX_PP_A::ALL_ONE
     }
     #[doc = "Checks if the value of the field is `ALL_ZERO`"]
     #[inline(always)]
     pub fn is_all_zero(&self) -> bool {
-        *self == TX_PPR::ALL_ZERO
+        *self == TX_PP_A::ALL_ZERO
     }
     #[doc = "Checks if the value of the field is `ZERO_ONE`"]
     #[inline(always)]
     pub fn is_zero_one(&self) -> bool {
-        *self == TX_PPR::ZERO_ONE
+        *self == TX_PP_A::ZERO_ONE
     }
     #[doc = "Checks if the value of the field is `ONE_ZERO`"]
     #[inline(always)]
     pub fn is_one_zero(&self) -> bool {
-        *self == TX_PPR::ONE_ZERO
+        *self == TX_PP_A::ONE_ZERO
     }
 }
-#[doc = "Values that can be written to the field `TX_PP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum TX_PPW {
-    #[doc = "The preamble is composed of '1's"]
-    ALL_ONE,
-    #[doc = "The preamble is composed of '0's"]
-    ALL_ZERO,
-    #[doc = "The preamble is composed of '01's"]
-    ZERO_ONE,
-    #[doc = "The preamble is composed of '10's"]
-    ONE_ZERO,
-}
-impl TX_PPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            TX_PPW::ALL_ONE => 0,
-            TX_PPW::ALL_ZERO => 1,
-            TX_PPW::ZERO_ONE => 2,
-            TX_PPW::ONE_ZERO => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _TX_PPW<'a> {
+#[doc = "Write proxy for field `TX_PP`"]
+pub struct TX_PP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TX_PPW<'a> {
+impl<'a> TX_PP_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: TX_PPW) -> &'a mut W {
+    pub fn variant(self, variant: TX_PP_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "The preamble is composed of '1's"]
     #[inline(always)]
     pub fn all_one(self) -> &'a mut W {
-        self.variant(TX_PPW::ALL_ONE)
+        self.variant(TX_PP_A::ALL_ONE)
     }
     #[doc = "The preamble is composed of '0's"]
     #[inline(always)]
     pub fn all_zero(self) -> &'a mut W {
-        self.variant(TX_PPW::ALL_ZERO)
+        self.variant(TX_PP_A::ALL_ZERO)
     }
     #[doc = "The preamble is composed of '01's"]
     #[inline(always)]
     pub fn zero_one(self) -> &'a mut W {
-        self.variant(TX_PPW::ZERO_ONE)
+        self.variant(TX_PP_A::ZERO_ONE)
     }
     #[doc = "The preamble is composed of '10's"]
     #[inline(always)]
     pub fn one_zero(self) -> &'a mut W {
-        self.variant(TX_PPW::ONE_ZERO)
+        self.variant(TX_PP_A::ONE_ZERO)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -172,13 +117,13 @@ impl<'a> _TX_PPW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type TX_MPOL_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _TX_MPOLW<'a> {
+#[doc = "Reader of field `TX_MPOL`"]
+pub type TX_MPOL_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `TX_MPOL`"]
+pub struct TX_MPOL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TX_MPOLW<'a> {
+impl<'a> TX_MPOL_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -196,13 +141,13 @@ impl<'a> _TX_MPOLW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type RX_PL_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _RX_PLW<'a> {
+#[doc = "Reader of field `RX_PL`"]
+pub type RX_PL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `RX_PL`"]
+pub struct RX_PL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RX_PLW<'a> {
+impl<'a> RX_PL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -210,109 +155,91 @@ impl<'a> _RX_PLW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `RX_PP`"]
+#[doc = "Receiver Preamble Pattern detected\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RX_PPR {
-    #[doc = "The preamble is composed of '1's"]
-    ALL_ONE,
-    #[doc = "The preamble is composed of '0's"]
-    ALL_ZERO,
-    #[doc = "The preamble is composed of '01's"]
-    ZERO_ONE,
-    #[doc = "The preamble is composed of '10's"]
-    ONE_ZERO,
+#[repr(u8)]
+pub enum RX_PP_A {
+    #[doc = "0: The preamble is composed of '1's"]
+    ALL_ONE = 0,
+    #[doc = "1: The preamble is composed of '0's"]
+    ALL_ZERO = 1,
+    #[doc = "2: The preamble is composed of '01's"]
+    ZERO_ONE = 2,
+    #[doc = "3: The preamble is composed of '10's"]
+    ONE_ZERO = 3,
 }
-impl crate::ToBits<u8> for RX_PPR {
+impl From<RX_PP_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            RX_PPR::ALL_ONE => 0,
-            RX_PPR::ALL_ZERO => 1,
-            RX_PPR::ZERO_ONE => 2,
-            RX_PPR::ONE_ZERO => 3,
-        }
+    fn from(variant: RX_PP_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type RX_PP_R = crate::FR<u8, RX_PPR>;
+#[doc = "Reader of field `RX_PP`"]
+pub type RX_PP_R = crate::R<u8, RX_PP_A>;
 impl RX_PP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RX_PP_A {
+        match self.bits {
+            0 => RX_PP_A::ALL_ONE,
+            1 => RX_PP_A::ALL_ZERO,
+            2 => RX_PP_A::ZERO_ONE,
+            3 => RX_PP_A::ONE_ZERO,
+            _ => unreachable!(),
+        }
+    }
     #[doc = "Checks if the value of the field is `ALL_ONE`"]
     #[inline(always)]
     pub fn is_all_one(&self) -> bool {
-        *self == RX_PPR::ALL_ONE
+        *self == RX_PP_A::ALL_ONE
     }
     #[doc = "Checks if the value of the field is `ALL_ZERO`"]
     #[inline(always)]
     pub fn is_all_zero(&self) -> bool {
-        *self == RX_PPR::ALL_ZERO
+        *self == RX_PP_A::ALL_ZERO
     }
     #[doc = "Checks if the value of the field is `ZERO_ONE`"]
     #[inline(always)]
     pub fn is_zero_one(&self) -> bool {
-        *self == RX_PPR::ZERO_ONE
+        *self == RX_PP_A::ZERO_ONE
     }
     #[doc = "Checks if the value of the field is `ONE_ZERO`"]
     #[inline(always)]
     pub fn is_one_zero(&self) -> bool {
-        *self == RX_PPR::ONE_ZERO
+        *self == RX_PP_A::ONE_ZERO
     }
 }
-#[doc = "Values that can be written to the field `RX_PP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RX_PPW {
-    #[doc = "The preamble is composed of '1's"]
-    ALL_ONE,
-    #[doc = "The preamble is composed of '0's"]
-    ALL_ZERO,
-    #[doc = "The preamble is composed of '01's"]
-    ZERO_ONE,
-    #[doc = "The preamble is composed of '10's"]
-    ONE_ZERO,
-}
-impl RX_PPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            RX_PPW::ALL_ONE => 0,
-            RX_PPW::ALL_ZERO => 1,
-            RX_PPW::ZERO_ONE => 2,
-            RX_PPW::ONE_ZERO => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _RX_PPW<'a> {
+#[doc = "Write proxy for field `RX_PP`"]
+pub struct RX_PP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RX_PPW<'a> {
+impl<'a> RX_PP_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: RX_PPW) -> &'a mut W {
+    pub fn variant(self, variant: RX_PP_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "The preamble is composed of '1's"]
     #[inline(always)]
     pub fn all_one(self) -> &'a mut W {
-        self.variant(RX_PPW::ALL_ONE)
+        self.variant(RX_PP_A::ALL_ONE)
     }
     #[doc = "The preamble is composed of '0's"]
     #[inline(always)]
     pub fn all_zero(self) -> &'a mut W {
-        self.variant(RX_PPW::ALL_ZERO)
+        self.variant(RX_PP_A::ALL_ZERO)
     }
     #[doc = "The preamble is composed of '01's"]
     #[inline(always)]
     pub fn zero_one(self) -> &'a mut W {
-        self.variant(RX_PPW::ZERO_ONE)
+        self.variant(RX_PP_A::ZERO_ONE)
     }
     #[doc = "The preamble is composed of '10's"]
     #[inline(always)]
     pub fn one_zero(self) -> &'a mut W {
-        self.variant(RX_PPW::ONE_ZERO)
+        self.variant(RX_PP_A::ONE_ZERO)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -321,13 +248,13 @@ impl<'a> _RX_PPW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type RX_MPOL_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _RX_MPOLW<'a> {
+#[doc = "Reader of field `RX_MPOL`"]
+pub type RX_MPOL_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RX_MPOL`"]
+pub struct RX_MPOL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RX_MPOLW<'a> {
+impl<'a> RX_MPOL_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -345,13 +272,13 @@ impl<'a> _RX_MPOLW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ONE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ONEW<'a> {
+#[doc = "Reader of field `ONE`"]
+pub type ONE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ONE`"]
+pub struct ONE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ONEW<'a> {
+impl<'a> ONE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -369,13 +296,13 @@ impl<'a> _ONEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DRIFT_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DRIFTW<'a> {
+#[doc = "Reader of field `DRIFT`"]
+pub type DRIFT_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DRIFT`"]
+pub struct DRIFT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DRIFTW<'a> {
+impl<'a> DRIFT_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -393,13 +320,13 @@ impl<'a> _DRIFTW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type RXIDLEV_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _RXIDLEVW<'a> {
+#[doc = "Reader of field `RXIDLEV`"]
+pub type RXIDLEV_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RXIDLEV`"]
+pub struct RXIDLEV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXIDLEVW<'a> {
+impl<'a> RXIDLEV_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -418,107 +345,96 @@ impl<'a> _RXIDLEVW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - Transmitter Preamble Length"]
     #[inline(always)]
     pub fn tx_pl(&self) -> TX_PL_R {
-        TX_PL_R::new((self.bits() & 0x0f) as u8)
+        TX_PL_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bits 8:9 - Transmitter Preamble Pattern"]
     #[inline(always)]
     pub fn tx_pp(&self) -> TX_PP_R {
-        TX_PP_R::new(((self.bits() >> 8) & 0x03) as u8)
+        TX_PP_R::new(((self.bits >> 8) & 0x03) as u8)
     }
     #[doc = "Bit 12 - Transmitter Manchester Polarity"]
     #[inline(always)]
     pub fn tx_mpol(&self) -> TX_MPOL_R {
-        TX_MPOL_R::new(((self.bits() >> 12) & 0x01) != 0)
+        TX_MPOL_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bits 16:19 - Receiver Preamble Length"]
     #[inline(always)]
     pub fn rx_pl(&self) -> RX_PL_R {
-        RX_PL_R::new(((self.bits() >> 16) & 0x0f) as u8)
+        RX_PL_R::new(((self.bits >> 16) & 0x0f) as u8)
     }
     #[doc = "Bits 24:25 - Receiver Preamble Pattern detected"]
     #[inline(always)]
     pub fn rx_pp(&self) -> RX_PP_R {
-        RX_PP_R::new(((self.bits() >> 24) & 0x03) as u8)
+        RX_PP_R::new(((self.bits >> 24) & 0x03) as u8)
     }
     #[doc = "Bit 28 - Receiver Manchester Polarity"]
     #[inline(always)]
     pub fn rx_mpol(&self) -> RX_MPOL_R {
-        RX_MPOL_R::new(((self.bits() >> 28) & 0x01) != 0)
+        RX_MPOL_R::new(((self.bits >> 28) & 0x01) != 0)
     }
     #[doc = "Bit 29 - Must Be Set to 1"]
     #[inline(always)]
     pub fn one(&self) -> ONE_R {
-        ONE_R::new(((self.bits() >> 29) & 0x01) != 0)
+        ONE_R::new(((self.bits >> 29) & 0x01) != 0)
     }
     #[doc = "Bit 30 - Drift Compensation"]
     #[inline(always)]
     pub fn drift(&self) -> DRIFT_R {
-        DRIFT_R::new(((self.bits() >> 30) & 0x01) != 0)
+        DRIFT_R::new(((self.bits >> 30) & 0x01) != 0)
     }
     #[doc = "Bit 31"]
     #[inline(always)]
     pub fn rxidlev(&self) -> RXIDLEV_R {
-        RXIDLEV_R::new(((self.bits() >> 31) & 0x01) != 0)
+        RXIDLEV_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:3 - Transmitter Preamble Length"]
     #[inline(always)]
-    pub fn tx_pl(&mut self) -> _TX_PLW {
-        _TX_PLW { w: self }
+    pub fn tx_pl(&mut self) -> TX_PL_W {
+        TX_PL_W { w: self }
     }
     #[doc = "Bits 8:9 - Transmitter Preamble Pattern"]
     #[inline(always)]
-    pub fn tx_pp(&mut self) -> _TX_PPW {
-        _TX_PPW { w: self }
+    pub fn tx_pp(&mut self) -> TX_PP_W {
+        TX_PP_W { w: self }
     }
     #[doc = "Bit 12 - Transmitter Manchester Polarity"]
     #[inline(always)]
-    pub fn tx_mpol(&mut self) -> _TX_MPOLW {
-        _TX_MPOLW { w: self }
+    pub fn tx_mpol(&mut self) -> TX_MPOL_W {
+        TX_MPOL_W { w: self }
     }
     #[doc = "Bits 16:19 - Receiver Preamble Length"]
     #[inline(always)]
-    pub fn rx_pl(&mut self) -> _RX_PLW {
-        _RX_PLW { w: self }
+    pub fn rx_pl(&mut self) -> RX_PL_W {
+        RX_PL_W { w: self }
     }
     #[doc = "Bits 24:25 - Receiver Preamble Pattern detected"]
     #[inline(always)]
-    pub fn rx_pp(&mut self) -> _RX_PPW {
-        _RX_PPW { w: self }
+    pub fn rx_pp(&mut self) -> RX_PP_W {
+        RX_PP_W { w: self }
     }
     #[doc = "Bit 28 - Receiver Manchester Polarity"]
     #[inline(always)]
-    pub fn rx_mpol(&mut self) -> _RX_MPOLW {
-        _RX_MPOLW { w: self }
+    pub fn rx_mpol(&mut self) -> RX_MPOL_W {
+        RX_MPOL_W { w: self }
     }
     #[doc = "Bit 29 - Must Be Set to 1"]
     #[inline(always)]
-    pub fn one(&mut self) -> _ONEW {
-        _ONEW { w: self }
+    pub fn one(&mut self) -> ONE_W {
+        ONE_W { w: self }
     }
     #[doc = "Bit 30 - Drift Compensation"]
     #[inline(always)]
-    pub fn drift(&mut self) -> _DRIFTW {
-        _DRIFTW { w: self }
+    pub fn drift(&mut self) -> DRIFT_W {
+        DRIFT_W { w: self }
     }
     #[doc = "Bit 31"]
     #[inline(always)]
-    pub fn rxidlev(&mut self) -> _RXIDLEVW {
-        _RXIDLEVW { w: self }
+    pub fn rxidlev(&mut self) -> RXIDLEV_W {
+        RXIDLEV_W { w: self }
     }
 }

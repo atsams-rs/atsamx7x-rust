@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::AFEC_CHER {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register AFEC_CHER"]
+pub type W = crate::W<u32, super::AFEC_CHER>;
+#[doc = "Register AFEC_CHER `reset()`'s with value 0"]
+impl crate::ResetValue for super::AFEC_CHER {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _CH0W<'a> {
+#[doc = "Write proxy for field `CH0`"]
+pub struct CH0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CH0W<'a> {
+impl<'a> CH0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _CH0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CH1W<'a> {
+#[doc = "Write proxy for field `CH1`"]
+pub struct CH1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CH1W<'a> {
+impl<'a> CH1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _CH1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CH2W<'a> {
+#[doc = "Write proxy for field `CH2`"]
+pub struct CH2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CH2W<'a> {
+impl<'a> CH2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _CH2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CH3W<'a> {
+#[doc = "Write proxy for field `CH3`"]
+pub struct CH3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CH3W<'a> {
+impl<'a> CH3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _CH3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CH4W<'a> {
+#[doc = "Write proxy for field `CH4`"]
+pub struct CH4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CH4W<'a> {
+impl<'a> CH4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _CH4W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CH5W<'a> {
+#[doc = "Write proxy for field `CH5`"]
+pub struct CH5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CH5W<'a> {
+impl<'a> CH5_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _CH5W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CH6W<'a> {
+#[doc = "Write proxy for field `CH6`"]
+pub struct CH6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CH6W<'a> {
+impl<'a> CH6_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _CH6W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CH7W<'a> {
+#[doc = "Write proxy for field `CH7`"]
+pub struct CH7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CH7W<'a> {
+impl<'a> CH7_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +184,11 @@ impl<'a> _CH7W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CH8W<'a> {
+#[doc = "Write proxy for field `CH8`"]
+pub struct CH8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CH8W<'a> {
+impl<'a> CH8_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -225,11 +206,11 @@ impl<'a> _CH8W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CH9W<'a> {
+#[doc = "Write proxy for field `CH9`"]
+pub struct CH9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CH9W<'a> {
+impl<'a> CH9_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -247,11 +228,11 @@ impl<'a> _CH9W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CH10W<'a> {
+#[doc = "Write proxy for field `CH10`"]
+pub struct CH10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CH10W<'a> {
+impl<'a> CH10_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -269,11 +250,11 @@ impl<'a> _CH10W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CH11W<'a> {
+#[doc = "Write proxy for field `CH11`"]
+pub struct CH11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CH11W<'a> {
+impl<'a> CH11_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -292,70 +273,64 @@ impl<'a> _CH11W<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Channel 0 Enable"]
     #[inline(always)]
-    pub fn ch0(&mut self) -> _CH0W {
-        _CH0W { w: self }
+    pub fn ch0(&mut self) -> CH0_W {
+        CH0_W { w: self }
     }
     #[doc = "Bit 1 - Channel 1 Enable"]
     #[inline(always)]
-    pub fn ch1(&mut self) -> _CH1W {
-        _CH1W { w: self }
+    pub fn ch1(&mut self) -> CH1_W {
+        CH1_W { w: self }
     }
     #[doc = "Bit 2 - Channel 2 Enable"]
     #[inline(always)]
-    pub fn ch2(&mut self) -> _CH2W {
-        _CH2W { w: self }
+    pub fn ch2(&mut self) -> CH2_W {
+        CH2_W { w: self }
     }
     #[doc = "Bit 3 - Channel 3 Enable"]
     #[inline(always)]
-    pub fn ch3(&mut self) -> _CH3W {
-        _CH3W { w: self }
+    pub fn ch3(&mut self) -> CH3_W {
+        CH3_W { w: self }
     }
     #[doc = "Bit 4 - Channel 4 Enable"]
     #[inline(always)]
-    pub fn ch4(&mut self) -> _CH4W {
-        _CH4W { w: self }
+    pub fn ch4(&mut self) -> CH4_W {
+        CH4_W { w: self }
     }
     #[doc = "Bit 5 - Channel 5 Enable"]
     #[inline(always)]
-    pub fn ch5(&mut self) -> _CH5W {
-        _CH5W { w: self }
+    pub fn ch5(&mut self) -> CH5_W {
+        CH5_W { w: self }
     }
     #[doc = "Bit 6 - Channel 6 Enable"]
     #[inline(always)]
-    pub fn ch6(&mut self) -> _CH6W {
-        _CH6W { w: self }
+    pub fn ch6(&mut self) -> CH6_W {
+        CH6_W { w: self }
     }
     #[doc = "Bit 7 - Channel 7 Enable"]
     #[inline(always)]
-    pub fn ch7(&mut self) -> _CH7W {
-        _CH7W { w: self }
+    pub fn ch7(&mut self) -> CH7_W {
+        CH7_W { w: self }
     }
     #[doc = "Bit 8 - Channel 8 Enable"]
     #[inline(always)]
-    pub fn ch8(&mut self) -> _CH8W {
-        _CH8W { w: self }
+    pub fn ch8(&mut self) -> CH8_W {
+        CH8_W { w: self }
     }
     #[doc = "Bit 9 - Channel 9 Enable"]
     #[inline(always)]
-    pub fn ch9(&mut self) -> _CH9W {
-        _CH9W { w: self }
+    pub fn ch9(&mut self) -> CH9_W {
+        CH9_W { w: self }
     }
     #[doc = "Bit 10 - Channel 10 Enable"]
     #[inline(always)]
-    pub fn ch10(&mut self) -> _CH10W {
-        _CH10W { w: self }
+    pub fn ch10(&mut self) -> CH10_W {
+        CH10_W { w: self }
     }
     #[doc = "Bit 11 - Channel 11 Enable"]
     #[inline(always)]
-    pub fn ch11(&mut self) -> _CH11W {
-        _CH11W { w: self }
+    pub fn ch11(&mut self) -> CH11_W {
+        CH11_W { w: self }
     }
 }

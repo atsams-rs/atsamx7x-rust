@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TC_QIER {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register TC_QIER"]
+pub type W = crate::W<u32, super::TC_QIER>;
+#[doc = "Register TC_QIER `reset()`'s with value 0"]
+impl crate::ResetValue for super::TC_QIER {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _IDXW<'a> {
+#[doc = "Write proxy for field `IDX`"]
+pub struct IDX_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _IDXW<'a> {
+impl<'a> IDX_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _IDXW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _DIRCHGW<'a> {
+#[doc = "Write proxy for field `DIRCHG`"]
+pub struct DIRCHG_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DIRCHGW<'a> {
+impl<'a> DIRCHG_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _DIRCHGW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _QERRW<'a> {
+#[doc = "Write proxy for field `QERR`"]
+pub struct QERR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _QERRW<'a> {
+impl<'a> QERR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _QERRW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _MPEW<'a> {
+#[doc = "Write proxy for field `MPE`"]
+pub struct MPE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MPEW<'a> {
+impl<'a> MPE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -116,30 +97,24 @@ impl<'a> _MPEW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Index"]
     #[inline(always)]
-    pub fn idx(&mut self) -> _IDXW {
-        _IDXW { w: self }
+    pub fn idx(&mut self) -> IDX_W {
+        IDX_W { w: self }
     }
     #[doc = "Bit 1 - Direction Change"]
     #[inline(always)]
-    pub fn dirchg(&mut self) -> _DIRCHGW {
-        _DIRCHGW { w: self }
+    pub fn dirchg(&mut self) -> DIRCHG_W {
+        DIRCHG_W { w: self }
     }
     #[doc = "Bit 2 - Quadrature Error"]
     #[inline(always)]
-    pub fn qerr(&mut self) -> _QERRW {
-        _QERRW { w: self }
+    pub fn qerr(&mut self) -> QERR_W {
+        QERR_W { w: self }
     }
     #[doc = "Bit 3 - Consecutive Missing Pulse Error"]
     #[inline(always)]
-    pub fn mpe(&mut self) -> _MPEW {
-        _MPEW { w: self }
+    pub fn mpe(&mut self) -> MPE_W {
+        MPE_W { w: self }
     }
 }

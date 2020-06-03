@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_FPE {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register PWM_FPE"]
+pub type R = crate::R<u32, super::PWM_FPE>;
+#[doc = "Writer for register PWM_FPE"]
+pub type W = crate::W<u32, super::PWM_FPE>;
+#[doc = "Register PWM_FPE `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_FPE {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type FPE0_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _FPE0W<'a> {
+#[doc = "Reader of field `FPE0`"]
+pub type FPE0_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FPE0`"]
+pub struct FPE0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FPE0W<'a> {
+impl<'a> FPE0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _FPE0W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FPE1_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _FPE1W<'a> {
+#[doc = "Reader of field `FPE1`"]
+pub type FPE1_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FPE1`"]
+pub struct FPE1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FPE1W<'a> {
+impl<'a> FPE1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -75,13 +38,13 @@ impl<'a> _FPE1W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FPE2_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _FPE2W<'a> {
+#[doc = "Reader of field `FPE2`"]
+pub type FPE2_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FPE2`"]
+pub struct FPE2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FPE2W<'a> {
+impl<'a> FPE2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -89,13 +52,13 @@ impl<'a> _FPE2W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FPE3_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _FPE3W<'a> {
+#[doc = "Reader of field `FPE3`"]
+pub type FPE3_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FPE3`"]
+pub struct FPE3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FPE3W<'a> {
+impl<'a> FPE3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -104,57 +67,46 @@ impl<'a> _FPE3W<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:7 - Fault Protection Enable for channel 0"]
     #[inline(always)]
     pub fn fpe0(&self) -> FPE0_R {
-        FPE0_R::new((self.bits() & 0xff) as u8)
+        FPE0_R::new((self.bits & 0xff) as u8)
     }
     #[doc = "Bits 8:15 - Fault Protection Enable for channel 1"]
     #[inline(always)]
     pub fn fpe1(&self) -> FPE1_R {
-        FPE1_R::new(((self.bits() >> 8) & 0xff) as u8)
+        FPE1_R::new(((self.bits >> 8) & 0xff) as u8)
     }
     #[doc = "Bits 16:23 - Fault Protection Enable for channel 2"]
     #[inline(always)]
     pub fn fpe2(&self) -> FPE2_R {
-        FPE2_R::new(((self.bits() >> 16) & 0xff) as u8)
+        FPE2_R::new(((self.bits >> 16) & 0xff) as u8)
     }
     #[doc = "Bits 24:31 - Fault Protection Enable for channel 3"]
     #[inline(always)]
     pub fn fpe3(&self) -> FPE3_R {
-        FPE3_R::new(((self.bits() >> 24) & 0xff) as u8)
+        FPE3_R::new(((self.bits >> 24) & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:7 - Fault Protection Enable for channel 0"]
     #[inline(always)]
-    pub fn fpe0(&mut self) -> _FPE0W {
-        _FPE0W { w: self }
+    pub fn fpe0(&mut self) -> FPE0_W {
+        FPE0_W { w: self }
     }
     #[doc = "Bits 8:15 - Fault Protection Enable for channel 1"]
     #[inline(always)]
-    pub fn fpe1(&mut self) -> _FPE1W {
-        _FPE1W { w: self }
+    pub fn fpe1(&mut self) -> FPE1_W {
+        FPE1_W { w: self }
     }
     #[doc = "Bits 16:23 - Fault Protection Enable for channel 2"]
     #[inline(always)]
-    pub fn fpe2(&mut self) -> _FPE2W {
-        _FPE2W { w: self }
+    pub fn fpe2(&mut self) -> FPE2_W {
+        FPE2_W { w: self }
     }
     #[doc = "Bits 24:31 - Fault Protection Enable for channel 3"]
     #[inline(always)]
-    pub fn fpe3(&mut self) -> _FPE3W {
-        _FPE3W { w: self }
+    pub fn fpe3(&mut self) -> FPE3_W {
+        FPE3_W { w: self }
     }
 }

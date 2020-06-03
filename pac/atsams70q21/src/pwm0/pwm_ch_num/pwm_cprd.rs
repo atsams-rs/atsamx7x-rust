@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_CPRD {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register PWM_CPRD"]
+pub type R = crate::R<u32, super::PWM_CPRD>;
+#[doc = "Writer for register PWM_CPRD"]
+pub type W = crate::W<u32, super::PWM_CPRD>;
+#[doc = "Register PWM_CPRD `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_CPRD {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type CPRD_R = crate::FR<u32, u32>;
-#[doc = r"Proxy"]
-pub struct _CPRDW<'a> {
+#[doc = "Reader of field `CPRD`"]
+pub type CPRD_R = crate::R<u32, u32>;
+#[doc = "Write proxy for field `CPRD`"]
+pub struct CPRD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CPRDW<'a> {
+impl<'a> CPRD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u32) -> &'a mut W {
@@ -62,27 +25,16 @@ impl<'a> _CPRDW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:23 - Channel Period"]
     #[inline(always)]
     pub fn cprd(&self) -> CPRD_R {
-        CPRD_R::new((self.bits() & 0x00ff_ffff) as u32)
+        CPRD_R::new((self.bits & 0x00ff_ffff) as u32)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:23 - Channel Period"]
     #[inline(always)]
-    pub fn cprd(&mut self) -> _CPRDW {
-        _CPRDW { w: self }
+    pub fn cprd(&mut self) -> CPRD_W {
+        CPRD_W { w: self }
     }
 }

@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::ISI_CFG1 {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register ISI_CFG1"]
+pub type R = crate::R<u32, super::ISI_CFG1>;
+#[doc = "Writer for register ISI_CFG1"]
+pub type W = crate::W<u32, super::ISI_CFG1>;
+#[doc = "Register ISI_CFG1 `reset()`'s with value 0"]
+impl crate::ResetValue for super::ISI_CFG1 {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type HSYNC_POL_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _HSYNC_POLW<'a> {
+#[doc = "Reader of field `HSYNC_POL`"]
+pub type HSYNC_POL_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `HSYNC_POL`"]
+pub struct HSYNC_POL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HSYNC_POLW<'a> {
+impl<'a> HSYNC_POL_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _HSYNC_POLW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type VSYNC_POL_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _VSYNC_POLW<'a> {
+#[doc = "Reader of field `VSYNC_POL`"]
+pub type VSYNC_POL_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `VSYNC_POL`"]
+pub struct VSYNC_POL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _VSYNC_POLW<'a> {
+impl<'a> VSYNC_POL_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _VSYNC_POLW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PIXCLK_POL_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _PIXCLK_POLW<'a> {
+#[doc = "Reader of field `PIXCLK_POL`"]
+pub type PIXCLK_POL_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PIXCLK_POL`"]
+pub struct PIXCLK_POL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PIXCLK_POLW<'a> {
+impl<'a> PIXCLK_POL_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -119,13 +82,13 @@ impl<'a> _PIXCLK_POLW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type GRAYLE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _GRAYLEW<'a> {
+#[doc = "Reader of field `GRAYLE`"]
+pub type GRAYLE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `GRAYLE`"]
+pub struct GRAYLE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _GRAYLEW<'a> {
+impl<'a> GRAYLE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -143,13 +106,13 @@ impl<'a> _GRAYLEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type EMB_SYNC_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _EMB_SYNCW<'a> {
+#[doc = "Reader of field `EMB_SYNC`"]
+pub type EMB_SYNC_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `EMB_SYNC`"]
+pub struct EMB_SYNC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _EMB_SYNCW<'a> {
+impl<'a> EMB_SYNC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -167,13 +130,13 @@ impl<'a> _EMB_SYNCW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CRC_SYNC_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CRC_SYNCW<'a> {
+#[doc = "Reader of field `CRC_SYNC`"]
+pub type CRC_SYNC_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CRC_SYNC`"]
+pub struct CRC_SYNC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CRC_SYNCW<'a> {
+impl<'a> CRC_SYNC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -191,13 +154,13 @@ impl<'a> _CRC_SYNCW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FRATE_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _FRATEW<'a> {
+#[doc = "Reader of field `FRATE`"]
+pub type FRATE_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `FRATE`"]
+pub struct FRATE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FRATEW<'a> {
+impl<'a> FRATE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -205,13 +168,13 @@ impl<'a> _FRATEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DISCR_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DISCRW<'a> {
+#[doc = "Reader of field `DISCR`"]
+pub type DISCR_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DISCR`"]
+pub struct DISCR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DISCRW<'a> {
+impl<'a> DISCR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -229,13 +192,13 @@ impl<'a> _DISCRW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FULL_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FULLW<'a> {
+#[doc = "Reader of field `FULL`"]
+pub type FULL_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FULL`"]
+pub struct FULL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FULLW<'a> {
+impl<'a> FULL_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -253,91 +216,77 @@ impl<'a> _FULLW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `THMASK`"]
+#[doc = "Threshold Mask\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum THMASKR {
-    #[doc = "Only 4 beats AHB burst allowed"]
-    BEATS_4,
-    #[doc = "Only 4 and 8 beats AHB burst allowed"]
-    BEATS_8,
-    #[doc = "4, 8 and 16 beats AHB burst allowed"]
-    BEATS_16,
+#[repr(u8)]
+pub enum THMASK_A {
+    #[doc = "0: Only 4 beats AHB burst allowed"]
+    BEATS_4 = 0,
+    #[doc = "1: Only 4 and 8 beats AHB burst allowed"]
+    BEATS_8 = 1,
+    #[doc = "2: 4, 8 and 16 beats AHB burst allowed"]
+    BEATS_16 = 2,
 }
-impl crate::ToBits<u8> for THMASKR {
+impl From<THMASK_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            THMASKR::BEATS_4 => 0,
-            THMASKR::BEATS_8 => 1,
-            THMASKR::BEATS_16 => 2,
-        }
+    fn from(variant: THMASK_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type THMASK_R = crate::FR<u8, THMASKR>;
+#[doc = "Reader of field `THMASK`"]
+pub type THMASK_R = crate::R<u8, THMASK_A>;
 impl THMASK_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, THMASK_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(THMASK_A::BEATS_4),
+            1 => Val(THMASK_A::BEATS_8),
+            2 => Val(THMASK_A::BEATS_16),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `BEATS_4`"]
     #[inline(always)]
     pub fn is_beats_4(&self) -> bool {
-        *self == THMASKR::BEATS_4
+        *self == THMASK_A::BEATS_4
     }
     #[doc = "Checks if the value of the field is `BEATS_8`"]
     #[inline(always)]
     pub fn is_beats_8(&self) -> bool {
-        *self == THMASKR::BEATS_8
+        *self == THMASK_A::BEATS_8
     }
     #[doc = "Checks if the value of the field is `BEATS_16`"]
     #[inline(always)]
     pub fn is_beats_16(&self) -> bool {
-        *self == THMASKR::BEATS_16
+        *self == THMASK_A::BEATS_16
     }
 }
-#[doc = "Values that can be written to the field `THMASK`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum THMASKW {
-    #[doc = "Only 4 beats AHB burst allowed"]
-    BEATS_4,
-    #[doc = "Only 4 and 8 beats AHB burst allowed"]
-    BEATS_8,
-    #[doc = "4, 8 and 16 beats AHB burst allowed"]
-    BEATS_16,
-}
-impl THMASKW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            THMASKW::BEATS_4 => 0,
-            THMASKW::BEATS_8 => 1,
-            THMASKW::BEATS_16 => 2,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _THMASKW<'a> {
+#[doc = "Write proxy for field `THMASK`"]
+pub struct THMASK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _THMASKW<'a> {
+impl<'a> THMASK_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: THMASKW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: THMASK_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Only 4 beats AHB burst allowed"]
     #[inline(always)]
     pub fn beats_4(self) -> &'a mut W {
-        self.variant(THMASKW::BEATS_4)
+        self.variant(THMASK_A::BEATS_4)
     }
     #[doc = "Only 4 and 8 beats AHB burst allowed"]
     #[inline(always)]
     pub fn beats_8(self) -> &'a mut W {
-        self.variant(THMASKW::BEATS_8)
+        self.variant(THMASK_A::BEATS_8)
     }
     #[doc = "4, 8 and 16 beats AHB burst allowed"]
     #[inline(always)]
     pub fn beats_16(self) -> &'a mut W {
-        self.variant(THMASKW::BEATS_16)
+        self.variant(THMASK_A::BEATS_16)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -346,13 +295,13 @@ impl<'a> _THMASKW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type SLD_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _SLDW<'a> {
+#[doc = "Reader of field `SLD`"]
+pub type SLD_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `SLD`"]
+pub struct SLD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SLDW<'a> {
+impl<'a> SLD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -360,13 +309,13 @@ impl<'a> _SLDW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type SFD_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _SFDW<'a> {
+#[doc = "Reader of field `SFD`"]
+pub type SFD_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `SFD`"]
+pub struct SFD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SFDW<'a> {
+impl<'a> SFD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -375,137 +324,126 @@ impl<'a> _SFDW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 2 - Horizontal Synchronization Polarity"]
     #[inline(always)]
     pub fn hsync_pol(&self) -> HSYNC_POL_R {
-        HSYNC_POL_R::new(((self.bits() >> 2) & 0x01) != 0)
+        HSYNC_POL_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 3 - Vertical Synchronization Polarity"]
     #[inline(always)]
     pub fn vsync_pol(&self) -> VSYNC_POL_R {
-        VSYNC_POL_R::new(((self.bits() >> 3) & 0x01) != 0)
+        VSYNC_POL_R::new(((self.bits >> 3) & 0x01) != 0)
     }
     #[doc = "Bit 4 - Pixel Clock Polarity"]
     #[inline(always)]
     pub fn pixclk_pol(&self) -> PIXCLK_POL_R {
-        PIXCLK_POL_R::new(((self.bits() >> 4) & 0x01) != 0)
+        PIXCLK_POL_R::new(((self.bits >> 4) & 0x01) != 0)
     }
     #[doc = "Bit 5 - Grayscale Little Endian"]
     #[inline(always)]
     pub fn grayle(&self) -> GRAYLE_R {
-        GRAYLE_R::new(((self.bits() >> 5) & 0x01) != 0)
+        GRAYLE_R::new(((self.bits >> 5) & 0x01) != 0)
     }
     #[doc = "Bit 6 - Embedded Synchronization"]
     #[inline(always)]
     pub fn emb_sync(&self) -> EMB_SYNC_R {
-        EMB_SYNC_R::new(((self.bits() >> 6) & 0x01) != 0)
+        EMB_SYNC_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - Embedded Synchronization Correction"]
     #[inline(always)]
     pub fn crc_sync(&self) -> CRC_SYNC_R {
-        CRC_SYNC_R::new(((self.bits() >> 7) & 0x01) != 0)
+        CRC_SYNC_R::new(((self.bits >> 7) & 0x01) != 0)
     }
     #[doc = "Bits 8:10 - Frame Rate \\[0..7\\]"]
     #[inline(always)]
     pub fn frate(&self) -> FRATE_R {
-        FRATE_R::new(((self.bits() >> 8) & 0x07) as u8)
+        FRATE_R::new(((self.bits >> 8) & 0x07) as u8)
     }
     #[doc = "Bit 11 - Disable Codec Request"]
     #[inline(always)]
     pub fn discr(&self) -> DISCR_R {
-        DISCR_R::new(((self.bits() >> 11) & 0x01) != 0)
+        DISCR_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - Full Mode is Allowed"]
     #[inline(always)]
     pub fn full(&self) -> FULL_R {
-        FULL_R::new(((self.bits() >> 12) & 0x01) != 0)
+        FULL_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bits 13:14 - Threshold Mask"]
     #[inline(always)]
     pub fn thmask(&self) -> THMASK_R {
-        THMASK_R::new(((self.bits() >> 13) & 0x03) as u8)
+        THMASK_R::new(((self.bits >> 13) & 0x03) as u8)
     }
     #[doc = "Bits 16:23 - Start of Line Delay"]
     #[inline(always)]
     pub fn sld(&self) -> SLD_R {
-        SLD_R::new(((self.bits() >> 16) & 0xff) as u8)
+        SLD_R::new(((self.bits >> 16) & 0xff) as u8)
     }
     #[doc = "Bits 24:31 - Start of Frame Delay"]
     #[inline(always)]
     pub fn sfd(&self) -> SFD_R {
-        SFD_R::new(((self.bits() >> 24) & 0xff) as u8)
+        SFD_R::new(((self.bits >> 24) & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 2 - Horizontal Synchronization Polarity"]
     #[inline(always)]
-    pub fn hsync_pol(&mut self) -> _HSYNC_POLW {
-        _HSYNC_POLW { w: self }
+    pub fn hsync_pol(&mut self) -> HSYNC_POL_W {
+        HSYNC_POL_W { w: self }
     }
     #[doc = "Bit 3 - Vertical Synchronization Polarity"]
     #[inline(always)]
-    pub fn vsync_pol(&mut self) -> _VSYNC_POLW {
-        _VSYNC_POLW { w: self }
+    pub fn vsync_pol(&mut self) -> VSYNC_POL_W {
+        VSYNC_POL_W { w: self }
     }
     #[doc = "Bit 4 - Pixel Clock Polarity"]
     #[inline(always)]
-    pub fn pixclk_pol(&mut self) -> _PIXCLK_POLW {
-        _PIXCLK_POLW { w: self }
+    pub fn pixclk_pol(&mut self) -> PIXCLK_POL_W {
+        PIXCLK_POL_W { w: self }
     }
     #[doc = "Bit 5 - Grayscale Little Endian"]
     #[inline(always)]
-    pub fn grayle(&mut self) -> _GRAYLEW {
-        _GRAYLEW { w: self }
+    pub fn grayle(&mut self) -> GRAYLE_W {
+        GRAYLE_W { w: self }
     }
     #[doc = "Bit 6 - Embedded Synchronization"]
     #[inline(always)]
-    pub fn emb_sync(&mut self) -> _EMB_SYNCW {
-        _EMB_SYNCW { w: self }
+    pub fn emb_sync(&mut self) -> EMB_SYNC_W {
+        EMB_SYNC_W { w: self }
     }
     #[doc = "Bit 7 - Embedded Synchronization Correction"]
     #[inline(always)]
-    pub fn crc_sync(&mut self) -> _CRC_SYNCW {
-        _CRC_SYNCW { w: self }
+    pub fn crc_sync(&mut self) -> CRC_SYNC_W {
+        CRC_SYNC_W { w: self }
     }
     #[doc = "Bits 8:10 - Frame Rate \\[0..7\\]"]
     #[inline(always)]
-    pub fn frate(&mut self) -> _FRATEW {
-        _FRATEW { w: self }
+    pub fn frate(&mut self) -> FRATE_W {
+        FRATE_W { w: self }
     }
     #[doc = "Bit 11 - Disable Codec Request"]
     #[inline(always)]
-    pub fn discr(&mut self) -> _DISCRW {
-        _DISCRW { w: self }
+    pub fn discr(&mut self) -> DISCR_W {
+        DISCR_W { w: self }
     }
     #[doc = "Bit 12 - Full Mode is Allowed"]
     #[inline(always)]
-    pub fn full(&mut self) -> _FULLW {
-        _FULLW { w: self }
+    pub fn full(&mut self) -> FULL_W {
+        FULL_W { w: self }
     }
     #[doc = "Bits 13:14 - Threshold Mask"]
     #[inline(always)]
-    pub fn thmask(&mut self) -> _THMASKW {
-        _THMASKW { w: self }
+    pub fn thmask(&mut self) -> THMASK_W {
+        THMASK_W { w: self }
     }
     #[doc = "Bits 16:23 - Start of Line Delay"]
     #[inline(always)]
-    pub fn sld(&mut self) -> _SLDW {
-        _SLDW { w: self }
+    pub fn sld(&mut self) -> SLD_W {
+        SLD_W { w: self }
     }
     #[doc = "Bits 24:31 - Start of Frame Delay"]
     #[inline(always)]
-    pub fn sfd(&mut self) -> _SFDW {
-        _SFDW { w: self }
+    pub fn sfd(&mut self) -> SFD_W {
+        SFD_W { w: self }
     }
 }

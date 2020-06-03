@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::USBHS_HSTCTRL {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register USBHS_HSTCTRL"]
+pub type R = crate::R<u32, super::USBHS_HSTCTRL>;
+#[doc = "Writer for register USBHS_HSTCTRL"]
+pub type W = crate::W<u32, super::USBHS_HSTCTRL>;
+#[doc = "Register USBHS_HSTCTRL `reset()`'s with value 0"]
+impl crate::ResetValue for super::USBHS_HSTCTRL {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type SOFE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _SOFEW<'a> {
+#[doc = "Reader of field `SOFE`"]
+pub type SOFE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SOFE`"]
+pub struct SOFE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SOFEW<'a> {
+impl<'a> SOFE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _SOFEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type RESET_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _RESETW<'a> {
+#[doc = "Reader of field `RESET`"]
+pub type RESET_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RESET`"]
+pub struct RESET_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RESETW<'a> {
+impl<'a> RESET_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _RESETW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type RESUME_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _RESUMEW<'a> {
+#[doc = "Reader of field `RESUME`"]
+pub type RESUME_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RESUME`"]
+pub struct RESUME_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RESUMEW<'a> {
+impl<'a> RESUME_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -119,75 +82,64 @@ impl<'a> _RESUMEW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `SPDCONF`"]
+#[doc = "Mode Configuration\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SPDCONFR {
-    #[doc = "The host starts in Full-speed mode and performs a high-speed reset to switch to High-speed mode if the downstream peripheral is high-speed capable."]
-    NORMAL,
-    #[doc = "For a better consumption, if high speed is not needed."]
-    LOW_POWER,
+#[repr(u8)]
+pub enum SPDCONF_A {
+    #[doc = "0: The host starts in Full-speed mode and performs a high-speed reset to switch to High-speed mode if the downstream peripheral is high-speed capable."]
+    NORMAL = 0,
+    #[doc = "1: For a better consumption, if high speed is not needed."]
+    LOW_POWER = 1,
 }
-impl crate::ToBits<u8> for SPDCONFR {
+impl From<SPDCONF_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            SPDCONFR::NORMAL => 0,
-            SPDCONFR::LOW_POWER => 1,
-        }
+    fn from(variant: SPDCONF_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type SPDCONF_R = crate::FR<u8, SPDCONFR>;
+#[doc = "Reader of field `SPDCONF`"]
+pub type SPDCONF_R = crate::R<u8, SPDCONF_A>;
 impl SPDCONF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, SPDCONF_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(SPDCONF_A::NORMAL),
+            1 => Val(SPDCONF_A::LOW_POWER),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `NORMAL`"]
     #[inline(always)]
     pub fn is_normal(&self) -> bool {
-        *self == SPDCONFR::NORMAL
+        *self == SPDCONF_A::NORMAL
     }
     #[doc = "Checks if the value of the field is `LOW_POWER`"]
     #[inline(always)]
     pub fn is_low_power(&self) -> bool {
-        *self == SPDCONFR::LOW_POWER
+        *self == SPDCONF_A::LOW_POWER
     }
 }
-#[doc = "Values that can be written to the field `SPDCONF`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SPDCONFW {
-    #[doc = "The host starts in Full-speed mode and performs a high-speed reset to switch to High-speed mode if the downstream peripheral is high-speed capable."]
-    NORMAL,
-    #[doc = "For a better consumption, if high speed is not needed."]
-    LOW_POWER,
-}
-impl SPDCONFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            SPDCONFW::NORMAL => 0,
-            SPDCONFW::LOW_POWER => 1,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _SPDCONFW<'a> {
+#[doc = "Write proxy for field `SPDCONF`"]
+pub struct SPDCONF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SPDCONFW<'a> {
+impl<'a> SPDCONF_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: SPDCONFW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: SPDCONF_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "The host starts in Full-speed mode and performs a high-speed reset to switch to High-speed mode if the downstream peripheral is high-speed capable."]
     #[inline(always)]
     pub fn normal(self) -> &'a mut W {
-        self.variant(SPDCONFW::NORMAL)
+        self.variant(SPDCONF_A::NORMAL)
     }
     #[doc = "For a better consumption, if high speed is not needed."]
     #[inline(always)]
     pub fn low_power(self) -> &'a mut W {
-        self.variant(SPDCONFW::LOW_POWER)
+        self.variant(SPDCONF_A::LOW_POWER)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -197,57 +149,46 @@ impl<'a> _SPDCONFW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 8 - Start of Frame Generation Enable"]
     #[inline(always)]
     pub fn sofe(&self) -> SOFE_R {
-        SOFE_R::new(((self.bits() >> 8) & 0x01) != 0)
+        SOFE_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Send USB Reset"]
     #[inline(always)]
     pub fn reset(&self) -> RESET_R {
-        RESET_R::new(((self.bits() >> 9) & 0x01) != 0)
+        RESET_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Send USB Resume"]
     #[inline(always)]
     pub fn resume(&self) -> RESUME_R {
-        RESUME_R::new(((self.bits() >> 10) & 0x01) != 0)
+        RESUME_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bits 12:13 - Mode Configuration"]
     #[inline(always)]
     pub fn spdconf(&self) -> SPDCONF_R {
-        SPDCONF_R::new(((self.bits() >> 12) & 0x03) as u8)
+        SPDCONF_R::new(((self.bits >> 12) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 8 - Start of Frame Generation Enable"]
     #[inline(always)]
-    pub fn sofe(&mut self) -> _SOFEW {
-        _SOFEW { w: self }
+    pub fn sofe(&mut self) -> SOFE_W {
+        SOFE_W { w: self }
     }
     #[doc = "Bit 9 - Send USB Reset"]
     #[inline(always)]
-    pub fn reset(&mut self) -> _RESETW {
-        _RESETW { w: self }
+    pub fn reset(&mut self) -> RESET_W {
+        RESET_W { w: self }
     }
     #[doc = "Bit 10 - Send USB Resume"]
     #[inline(always)]
-    pub fn resume(&mut self) -> _RESUMEW {
-        _RESUMEW { w: self }
+    pub fn resume(&mut self) -> RESUME_W {
+        RESUME_W { w: self }
     }
     #[doc = "Bits 12:13 - Mode Configuration"]
     #[inline(always)]
-    pub fn spdconf(&mut self) -> _SPDCONFW {
-        _SPDCONFW { w: self }
+    pub fn spdconf(&mut self) -> SPDCONF_W {
+        SPDCONF_W { w: self }
     }
 }

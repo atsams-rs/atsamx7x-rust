@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::EEFC_WPMR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register EEFC_WPMR"]
+pub type R = crate::R<u32, super::EEFC_WPMR>;
+#[doc = "Writer for register EEFC_WPMR"]
+pub type W = crate::W<u32, super::EEFC_WPMR>;
+#[doc = "Register EEFC_WPMR `reset()`'s with value 0"]
+impl crate::ResetValue for super::EEFC_WPMR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type WPEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _WPENW<'a> {
+#[doc = "Reader of field `WPEN`"]
+pub type WPEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `WPEN`"]
+pub struct WPEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WPENW<'a> {
+impl<'a> WPEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,59 +34,51 @@ impl<'a> _WPENW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `WPKEY`"]
+#[doc = "Write Protection Key\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WPKEYR {
-    #[doc = "Writing any other value in this field aborts the write operation.Always reads as 0."]
-    PASSWD,
+#[repr(u32)]
+pub enum WPKEY_A {
+    #[doc = "4539971: Writing any other value in this field aborts the write operation.Always reads as 0."]
+    PASSWD = 4539971,
 }
-impl crate::ToBits<u32> for WPKEYR {
+impl From<WPKEY_A> for u32 {
     #[inline(always)]
-    fn _bits(&self) -> u32 {
-        match *self {
-            WPKEYR::PASSWD => 4539971,
-        }
+    fn from(variant: WPKEY_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type WPKEY_R = crate::FR<u32, WPKEYR>;
+#[doc = "Reader of field `WPKEY`"]
+pub type WPKEY_R = crate::R<u32, WPKEY_A>;
 impl WPKEY_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u32, WPKEY_A> {
+        use crate::Variant::*;
+        match self.bits {
+            4539971 => Val(WPKEY_A::PASSWD),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `PASSWD`"]
     #[inline(always)]
     pub fn is_passwd(&self) -> bool {
-        *self == WPKEYR::PASSWD
+        *self == WPKEY_A::PASSWD
     }
 }
-#[doc = "Values that can be written to the field `WPKEY`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WPKEYW {
-    #[doc = "Writing any other value in this field aborts the write operation.Always reads as 0."]
-    PASSWD,
-}
-impl WPKEYW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u32 {
-        match *self {
-            WPKEYW::PASSWD => 4539971,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _WPKEYW<'a> {
+#[doc = "Write proxy for field `WPKEY`"]
+pub struct WPKEY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WPKEYW<'a> {
+impl<'a> WPKEY_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: WPKEYW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: WPKEY_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Writing any other value in this field aborts the write operation.Always reads as 0."]
     #[inline(always)]
     pub fn passwd(self) -> &'a mut W {
-        self.variant(WPKEYW::PASSWD)
+        self.variant(WPKEY_A::PASSWD)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -133,37 +88,26 @@ impl<'a> _WPKEYW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Write Protection Enable"]
     #[inline(always)]
     pub fn wpen(&self) -> WPEN_R {
-        WPEN_R::new((self.bits() & 0x01) != 0)
+        WPEN_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bits 8:31 - Write Protection Key"]
     #[inline(always)]
     pub fn wpkey(&self) -> WPKEY_R {
-        WPKEY_R::new(((self.bits() >> 8) & 0x00ff_ffff) as u32)
+        WPKEY_R::new(((self.bits >> 8) & 0x00ff_ffff) as u32)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Write Protection Enable"]
     #[inline(always)]
-    pub fn wpen(&mut self) -> _WPENW {
-        _WPENW { w: self }
+    pub fn wpen(&mut self) -> WPEN_W {
+        WPEN_W { w: self }
     }
     #[doc = "Bits 8:31 - Write Protection Key"]
     #[inline(always)]
-    pub fn wpkey(&mut self) -> _WPKEYW {
-        _WPKEYW { w: self }
+    pub fn wpkey(&mut self) -> WPKEY_W {
+        WPKEY_W { w: self }
     }
 }

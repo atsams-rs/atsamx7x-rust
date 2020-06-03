@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::XDMAC_GRWR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register XDMAC_GRWR"]
+pub type W = crate::W<u32, super::XDMAC_GRWR>;
+#[doc = "Register XDMAC_GRWR `reset()`'s with value 0"]
+impl crate::ResetValue for super::XDMAC_GRWR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _RWR0W<'a> {
+#[doc = "Write proxy for field `RWR0`"]
+pub struct RWR0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR0W<'a> {
+impl<'a> RWR0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _RWR0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR1W<'a> {
+#[doc = "Write proxy for field `RWR1`"]
+pub struct RWR1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR1W<'a> {
+impl<'a> RWR1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _RWR1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR2W<'a> {
+#[doc = "Write proxy for field `RWR2`"]
+pub struct RWR2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR2W<'a> {
+impl<'a> RWR2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _RWR2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR3W<'a> {
+#[doc = "Write proxy for field `RWR3`"]
+pub struct RWR3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR3W<'a> {
+impl<'a> RWR3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _RWR3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR4W<'a> {
+#[doc = "Write proxy for field `RWR4`"]
+pub struct RWR4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR4W<'a> {
+impl<'a> RWR4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _RWR4W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR5W<'a> {
+#[doc = "Write proxy for field `RWR5`"]
+pub struct RWR5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR5W<'a> {
+impl<'a> RWR5_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _RWR5W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR6W<'a> {
+#[doc = "Write proxy for field `RWR6`"]
+pub struct RWR6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR6W<'a> {
+impl<'a> RWR6_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _RWR6W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR7W<'a> {
+#[doc = "Write proxy for field `RWR7`"]
+pub struct RWR7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR7W<'a> {
+impl<'a> RWR7_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +184,11 @@ impl<'a> _RWR7W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR8W<'a> {
+#[doc = "Write proxy for field `RWR8`"]
+pub struct RWR8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR8W<'a> {
+impl<'a> RWR8_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -225,11 +206,11 @@ impl<'a> _RWR8W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR9W<'a> {
+#[doc = "Write proxy for field `RWR9`"]
+pub struct RWR9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR9W<'a> {
+impl<'a> RWR9_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -247,11 +228,11 @@ impl<'a> _RWR9W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR10W<'a> {
+#[doc = "Write proxy for field `RWR10`"]
+pub struct RWR10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR10W<'a> {
+impl<'a> RWR10_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -269,11 +250,11 @@ impl<'a> _RWR10W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR11W<'a> {
+#[doc = "Write proxy for field `RWR11`"]
+pub struct RWR11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR11W<'a> {
+impl<'a> RWR11_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -291,11 +272,11 @@ impl<'a> _RWR11W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR12W<'a> {
+#[doc = "Write proxy for field `RWR12`"]
+pub struct RWR12_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR12W<'a> {
+impl<'a> RWR12_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -313,11 +294,11 @@ impl<'a> _RWR12W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR13W<'a> {
+#[doc = "Write proxy for field `RWR13`"]
+pub struct RWR13_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR13W<'a> {
+impl<'a> RWR13_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -335,11 +316,11 @@ impl<'a> _RWR13W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR14W<'a> {
+#[doc = "Write proxy for field `RWR14`"]
+pub struct RWR14_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR14W<'a> {
+impl<'a> RWR14_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -357,11 +338,11 @@ impl<'a> _RWR14W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR15W<'a> {
+#[doc = "Write proxy for field `RWR15`"]
+pub struct RWR15_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR15W<'a> {
+impl<'a> RWR15_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -379,11 +360,11 @@ impl<'a> _RWR15W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR16W<'a> {
+#[doc = "Write proxy for field `RWR16`"]
+pub struct RWR16_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR16W<'a> {
+impl<'a> RWR16_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -401,11 +382,11 @@ impl<'a> _RWR16W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR17W<'a> {
+#[doc = "Write proxy for field `RWR17`"]
+pub struct RWR17_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR17W<'a> {
+impl<'a> RWR17_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -423,11 +404,11 @@ impl<'a> _RWR17W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR18W<'a> {
+#[doc = "Write proxy for field `RWR18`"]
+pub struct RWR18_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR18W<'a> {
+impl<'a> RWR18_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -445,11 +426,11 @@ impl<'a> _RWR18W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR19W<'a> {
+#[doc = "Write proxy for field `RWR19`"]
+pub struct RWR19_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR19W<'a> {
+impl<'a> RWR19_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -467,11 +448,11 @@ impl<'a> _RWR19W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR20W<'a> {
+#[doc = "Write proxy for field `RWR20`"]
+pub struct RWR20_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR20W<'a> {
+impl<'a> RWR20_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -489,11 +470,11 @@ impl<'a> _RWR20W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR21W<'a> {
+#[doc = "Write proxy for field `RWR21`"]
+pub struct RWR21_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR21W<'a> {
+impl<'a> RWR21_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -511,11 +492,11 @@ impl<'a> _RWR21W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR22W<'a> {
+#[doc = "Write proxy for field `RWR22`"]
+pub struct RWR22_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR22W<'a> {
+impl<'a> RWR22_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -533,11 +514,11 @@ impl<'a> _RWR22W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWR23W<'a> {
+#[doc = "Write proxy for field `RWR23`"]
+pub struct RWR23_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWR23W<'a> {
+impl<'a> RWR23_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -556,130 +537,124 @@ impl<'a> _RWR23W<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - XDMAC Channel 0 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr0(&mut self) -> _RWR0W {
-        _RWR0W { w: self }
+    pub fn rwr0(&mut self) -> RWR0_W {
+        RWR0_W { w: self }
     }
     #[doc = "Bit 1 - XDMAC Channel 1 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr1(&mut self) -> _RWR1W {
-        _RWR1W { w: self }
+    pub fn rwr1(&mut self) -> RWR1_W {
+        RWR1_W { w: self }
     }
     #[doc = "Bit 2 - XDMAC Channel 2 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr2(&mut self) -> _RWR2W {
-        _RWR2W { w: self }
+    pub fn rwr2(&mut self) -> RWR2_W {
+        RWR2_W { w: self }
     }
     #[doc = "Bit 3 - XDMAC Channel 3 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr3(&mut self) -> _RWR3W {
-        _RWR3W { w: self }
+    pub fn rwr3(&mut self) -> RWR3_W {
+        RWR3_W { w: self }
     }
     #[doc = "Bit 4 - XDMAC Channel 4 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr4(&mut self) -> _RWR4W {
-        _RWR4W { w: self }
+    pub fn rwr4(&mut self) -> RWR4_W {
+        RWR4_W { w: self }
     }
     #[doc = "Bit 5 - XDMAC Channel 5 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr5(&mut self) -> _RWR5W {
-        _RWR5W { w: self }
+    pub fn rwr5(&mut self) -> RWR5_W {
+        RWR5_W { w: self }
     }
     #[doc = "Bit 6 - XDMAC Channel 6 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr6(&mut self) -> _RWR6W {
-        _RWR6W { w: self }
+    pub fn rwr6(&mut self) -> RWR6_W {
+        RWR6_W { w: self }
     }
     #[doc = "Bit 7 - XDMAC Channel 7 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr7(&mut self) -> _RWR7W {
-        _RWR7W { w: self }
+    pub fn rwr7(&mut self) -> RWR7_W {
+        RWR7_W { w: self }
     }
     #[doc = "Bit 8 - XDMAC Channel 8 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr8(&mut self) -> _RWR8W {
-        _RWR8W { w: self }
+    pub fn rwr8(&mut self) -> RWR8_W {
+        RWR8_W { w: self }
     }
     #[doc = "Bit 9 - XDMAC Channel 9 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr9(&mut self) -> _RWR9W {
-        _RWR9W { w: self }
+    pub fn rwr9(&mut self) -> RWR9_W {
+        RWR9_W { w: self }
     }
     #[doc = "Bit 10 - XDMAC Channel 10 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr10(&mut self) -> _RWR10W {
-        _RWR10W { w: self }
+    pub fn rwr10(&mut self) -> RWR10_W {
+        RWR10_W { w: self }
     }
     #[doc = "Bit 11 - XDMAC Channel 11 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr11(&mut self) -> _RWR11W {
-        _RWR11W { w: self }
+    pub fn rwr11(&mut self) -> RWR11_W {
+        RWR11_W { w: self }
     }
     #[doc = "Bit 12 - XDMAC Channel 12 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr12(&mut self) -> _RWR12W {
-        _RWR12W { w: self }
+    pub fn rwr12(&mut self) -> RWR12_W {
+        RWR12_W { w: self }
     }
     #[doc = "Bit 13 - XDMAC Channel 13 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr13(&mut self) -> _RWR13W {
-        _RWR13W { w: self }
+    pub fn rwr13(&mut self) -> RWR13_W {
+        RWR13_W { w: self }
     }
     #[doc = "Bit 14 - XDMAC Channel 14 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr14(&mut self) -> _RWR14W {
-        _RWR14W { w: self }
+    pub fn rwr14(&mut self) -> RWR14_W {
+        RWR14_W { w: self }
     }
     #[doc = "Bit 15 - XDMAC Channel 15 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr15(&mut self) -> _RWR15W {
-        _RWR15W { w: self }
+    pub fn rwr15(&mut self) -> RWR15_W {
+        RWR15_W { w: self }
     }
     #[doc = "Bit 16 - XDMAC Channel 16 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr16(&mut self) -> _RWR16W {
-        _RWR16W { w: self }
+    pub fn rwr16(&mut self) -> RWR16_W {
+        RWR16_W { w: self }
     }
     #[doc = "Bit 17 - XDMAC Channel 17 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr17(&mut self) -> _RWR17W {
-        _RWR17W { w: self }
+    pub fn rwr17(&mut self) -> RWR17_W {
+        RWR17_W { w: self }
     }
     #[doc = "Bit 18 - XDMAC Channel 18 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr18(&mut self) -> _RWR18W {
-        _RWR18W { w: self }
+    pub fn rwr18(&mut self) -> RWR18_W {
+        RWR18_W { w: self }
     }
     #[doc = "Bit 19 - XDMAC Channel 19 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr19(&mut self) -> _RWR19W {
-        _RWR19W { w: self }
+    pub fn rwr19(&mut self) -> RWR19_W {
+        RWR19_W { w: self }
     }
     #[doc = "Bit 20 - XDMAC Channel 20 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr20(&mut self) -> _RWR20W {
-        _RWR20W { w: self }
+    pub fn rwr20(&mut self) -> RWR20_W {
+        RWR20_W { w: self }
     }
     #[doc = "Bit 21 - XDMAC Channel 21 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr21(&mut self) -> _RWR21W {
-        _RWR21W { w: self }
+    pub fn rwr21(&mut self) -> RWR21_W {
+        RWR21_W { w: self }
     }
     #[doc = "Bit 22 - XDMAC Channel 22 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr22(&mut self) -> _RWR22W {
-        _RWR22W { w: self }
+    pub fn rwr22(&mut self) -> RWR22_W {
+        RWR22_W { w: self }
     }
     #[doc = "Bit 23 - XDMAC Channel 23 Read Write Resume Bit"]
     #[inline(always)]
-    pub fn rwr23(&mut self) -> _RWR23W {
-        _RWR23W { w: self }
+    pub fn rwr23(&mut self) -> RWR23_W {
+        RWR23_W { w: self }
     }
 }

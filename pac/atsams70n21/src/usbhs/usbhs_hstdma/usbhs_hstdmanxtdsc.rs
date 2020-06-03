@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::USBHS_HSTDMANXTDSC {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register USBHS_HSTDMANXTDSC"]
+pub type R = crate::R<u32, super::USBHS_HSTDMANXTDSC>;
+#[doc = "Writer for register USBHS_HSTDMANXTDSC"]
+pub type W = crate::W<u32, super::USBHS_HSTDMANXTDSC>;
+#[doc = "Register USBHS_HSTDMANXTDSC `reset()`'s with value 0"]
+impl crate::ResetValue for super::USBHS_HSTDMANXTDSC {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type NXT_DSC_ADD_R = crate::FR<u32, u32>;
-#[doc = r"Proxy"]
-pub struct _NXT_DSC_ADDW<'a> {
+#[doc = "Reader of field `NXT_DSC_ADD`"]
+pub type NXT_DSC_ADD_R = crate::R<u32, u32>;
+#[doc = "Write proxy for field `NXT_DSC_ADD`"]
+pub struct NXT_DSC_ADD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NXT_DSC_ADDW<'a> {
+impl<'a> NXT_DSC_ADD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u32) -> &'a mut W {
@@ -62,27 +25,16 @@ impl<'a> _NXT_DSC_ADDW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:31 - Next Descriptor Address"]
     #[inline(always)]
     pub fn nxt_dsc_add(&self) -> NXT_DSC_ADD_R {
-        NXT_DSC_ADD_R::new((self.bits() & 0xffff_ffff) as u32)
+        NXT_DSC_ADD_R::new((self.bits & 0xffff_ffff) as u32)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:31 - Next Descriptor Address"]
     #[inline(always)]
-    pub fn nxt_dsc_add(&mut self) -> _NXT_DSC_ADDW {
-        _NXT_DSC_ADDW { w: self }
+    pub fn nxt_dsc_add(&mut self) -> NXT_DSC_ADD_W {
+        NXT_DSC_ADD_W { w: self }
     }
 }

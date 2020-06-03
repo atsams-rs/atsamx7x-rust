@@ -1,281 +1,203 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::US_MR_USART_MODE {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register US_MR_USART_MODE"]
+pub type R = crate::R<u32, super::US_MR_USART_MODE>;
+#[doc = "Writer for register US_MR_USART_MODE"]
+pub type W = crate::W<u32, super::US_MR_USART_MODE>;
+#[doc = "Register US_MR_USART_MODE `reset()`'s with value 0"]
+impl crate::ResetValue for super::US_MR_USART_MODE {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "USART Mode of Operation\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum USART_MODE_A {
+    #[doc = "0: Normal mode"]
+    NORMAL = 0,
+    #[doc = "1: RS485"]
+    RS485 = 1,
+    #[doc = "2: Hardware handshaking"]
+    HW_HANDSHAKING = 2,
+    #[doc = "3: Modem"]
+    MODEM = 3,
+    #[doc = "4: IS07816 Protocol: T = 0"]
+    IS07816_T_0 = 4,
+    #[doc = "6: IS07816 Protocol: T = 1"]
+    IS07816_T_1 = 6,
+    #[doc = "8: IrDA"]
+    IRDA = 8,
+    #[doc = "9: LON"]
+    LON = 9,
+    #[doc = "10: LIN Master mode"]
+    LIN_MASTER = 10,
+    #[doc = "11: LIN Slave mode"]
+    LIN_SLAVE = 11,
+    #[doc = "14: SPI Master mode (CLKO must be written to 1 and USCLKS = 0, 1 or 2)"]
+    SPI_MASTER = 14,
+    #[doc = "15: SPI Slave mode"]
+    SPI_SLAVE = 15,
+}
+impl From<USART_MODE_A> for u8 {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: USART_MODE_A) -> Self {
+        variant as _
     }
 }
-#[doc = "Possible values of the field `USART_MODE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum USART_MODER {
-    #[doc = "Normal mode"]
-    NORMAL,
-    #[doc = "RS485"]
-    RS485,
-    #[doc = "Hardware handshaking"]
-    HW_HANDSHAKING,
-    #[doc = "Modem"]
-    MODEM,
-    #[doc = "IS07816 Protocol: T = 0"]
-    IS07816_T_0,
-    #[doc = "IS07816 Protocol: T = 1"]
-    IS07816_T_1,
-    #[doc = "IrDA"]
-    IRDA,
-    #[doc = "LON"]
-    LON,
-    #[doc = "LIN Master mode"]
-    LIN_MASTER,
-    #[doc = "LIN Slave mode"]
-    LIN_SLAVE,
-    #[doc = "SPI Master mode (CLKO must be written to 1 and USCLKS = 0, 1 or 2)"]
-    SPI_MASTER,
-    #[doc = "SPI Slave mode"]
-    SPI_SLAVE,
-}
-impl crate::ToBits<u8> for USART_MODER {
+#[doc = "Reader of field `USART_MODE`"]
+pub type USART_MODE_R = crate::R<u8, USART_MODE_A>;
+impl USART_MODE_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            USART_MODER::NORMAL => 0,
-            USART_MODER::RS485 => 1,
-            USART_MODER::HW_HANDSHAKING => 2,
-            USART_MODER::MODEM => 3,
-            USART_MODER::IS07816_T_0 => 4,
-            USART_MODER::IS07816_T_1 => 6,
-            USART_MODER::IRDA => 8,
-            USART_MODER::LON => 9,
-            USART_MODER::LIN_MASTER => 10,
-            USART_MODER::LIN_SLAVE => 11,
-            USART_MODER::SPI_MASTER => 14,
-            USART_MODER::SPI_SLAVE => 15,
+    pub fn variant(&self) -> crate::Variant<u8, USART_MODE_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(USART_MODE_A::NORMAL),
+            1 => Val(USART_MODE_A::RS485),
+            2 => Val(USART_MODE_A::HW_HANDSHAKING),
+            3 => Val(USART_MODE_A::MODEM),
+            4 => Val(USART_MODE_A::IS07816_T_0),
+            6 => Val(USART_MODE_A::IS07816_T_1),
+            8 => Val(USART_MODE_A::IRDA),
+            9 => Val(USART_MODE_A::LON),
+            10 => Val(USART_MODE_A::LIN_MASTER),
+            11 => Val(USART_MODE_A::LIN_SLAVE),
+            14 => Val(USART_MODE_A::SPI_MASTER),
+            15 => Val(USART_MODE_A::SPI_SLAVE),
+            i => Res(i),
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type USART_MODE_R = crate::FR<u8, USART_MODER>;
-impl USART_MODE_R {
     #[doc = "Checks if the value of the field is `NORMAL`"]
     #[inline(always)]
     pub fn is_normal(&self) -> bool {
-        *self == USART_MODER::NORMAL
+        *self == USART_MODE_A::NORMAL
     }
     #[doc = "Checks if the value of the field is `RS485`"]
     #[inline(always)]
     pub fn is_rs485(&self) -> bool {
-        *self == USART_MODER::RS485
+        *self == USART_MODE_A::RS485
     }
     #[doc = "Checks if the value of the field is `HW_HANDSHAKING`"]
     #[inline(always)]
     pub fn is_hw_handshaking(&self) -> bool {
-        *self == USART_MODER::HW_HANDSHAKING
+        *self == USART_MODE_A::HW_HANDSHAKING
     }
     #[doc = "Checks if the value of the field is `MODEM`"]
     #[inline(always)]
     pub fn is_modem(&self) -> bool {
-        *self == USART_MODER::MODEM
+        *self == USART_MODE_A::MODEM
     }
     #[doc = "Checks if the value of the field is `IS07816_T_0`"]
     #[inline(always)]
     pub fn is_is07816_t_0(&self) -> bool {
-        *self == USART_MODER::IS07816_T_0
+        *self == USART_MODE_A::IS07816_T_0
     }
     #[doc = "Checks if the value of the field is `IS07816_T_1`"]
     #[inline(always)]
     pub fn is_is07816_t_1(&self) -> bool {
-        *self == USART_MODER::IS07816_T_1
+        *self == USART_MODE_A::IS07816_T_1
     }
     #[doc = "Checks if the value of the field is `IRDA`"]
     #[inline(always)]
     pub fn is_irda(&self) -> bool {
-        *self == USART_MODER::IRDA
+        *self == USART_MODE_A::IRDA
     }
     #[doc = "Checks if the value of the field is `LON`"]
     #[inline(always)]
     pub fn is_lon(&self) -> bool {
-        *self == USART_MODER::LON
+        *self == USART_MODE_A::LON
     }
     #[doc = "Checks if the value of the field is `LIN_MASTER`"]
     #[inline(always)]
     pub fn is_lin_master(&self) -> bool {
-        *self == USART_MODER::LIN_MASTER
+        *self == USART_MODE_A::LIN_MASTER
     }
     #[doc = "Checks if the value of the field is `LIN_SLAVE`"]
     #[inline(always)]
     pub fn is_lin_slave(&self) -> bool {
-        *self == USART_MODER::LIN_SLAVE
+        *self == USART_MODE_A::LIN_SLAVE
     }
     #[doc = "Checks if the value of the field is `SPI_MASTER`"]
     #[inline(always)]
     pub fn is_spi_master(&self) -> bool {
-        *self == USART_MODER::SPI_MASTER
+        *self == USART_MODE_A::SPI_MASTER
     }
     #[doc = "Checks if the value of the field is `SPI_SLAVE`"]
     #[inline(always)]
     pub fn is_spi_slave(&self) -> bool {
-        *self == USART_MODER::SPI_SLAVE
+        *self == USART_MODE_A::SPI_SLAVE
     }
 }
-#[doc = "Values that can be written to the field `USART_MODE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum USART_MODEW {
-    #[doc = "Normal mode"]
-    NORMAL,
-    #[doc = "RS485"]
-    RS485,
-    #[doc = "Hardware handshaking"]
-    HW_HANDSHAKING,
-    #[doc = "Modem"]
-    MODEM,
-    #[doc = "IS07816 Protocol: T = 0"]
-    IS07816_T_0,
-    #[doc = "IS07816 Protocol: T = 1"]
-    IS07816_T_1,
-    #[doc = "IrDA"]
-    IRDA,
-    #[doc = "LON"]
-    LON,
-    #[doc = "LIN Master mode"]
-    LIN_MASTER,
-    #[doc = "LIN Slave mode"]
-    LIN_SLAVE,
-    #[doc = "SPI Master mode (CLKO must be written to 1 and USCLKS = 0, 1 or 2)"]
-    SPI_MASTER,
-    #[doc = "SPI Slave mode"]
-    SPI_SLAVE,
-}
-impl USART_MODEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            USART_MODEW::NORMAL => 0,
-            USART_MODEW::RS485 => 1,
-            USART_MODEW::HW_HANDSHAKING => 2,
-            USART_MODEW::MODEM => 3,
-            USART_MODEW::IS07816_T_0 => 4,
-            USART_MODEW::IS07816_T_1 => 6,
-            USART_MODEW::IRDA => 8,
-            USART_MODEW::LON => 9,
-            USART_MODEW::LIN_MASTER => 10,
-            USART_MODEW::LIN_SLAVE => 11,
-            USART_MODEW::SPI_MASTER => 14,
-            USART_MODEW::SPI_SLAVE => 15,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _USART_MODEW<'a> {
+#[doc = "Write proxy for field `USART_MODE`"]
+pub struct USART_MODE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USART_MODEW<'a> {
+impl<'a> USART_MODE_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: USART_MODEW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: USART_MODE_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Normal mode"]
     #[inline(always)]
     pub fn normal(self) -> &'a mut W {
-        self.variant(USART_MODEW::NORMAL)
+        self.variant(USART_MODE_A::NORMAL)
     }
     #[doc = "RS485"]
     #[inline(always)]
     pub fn rs485(self) -> &'a mut W {
-        self.variant(USART_MODEW::RS485)
+        self.variant(USART_MODE_A::RS485)
     }
     #[doc = "Hardware handshaking"]
     #[inline(always)]
     pub fn hw_handshaking(self) -> &'a mut W {
-        self.variant(USART_MODEW::HW_HANDSHAKING)
+        self.variant(USART_MODE_A::HW_HANDSHAKING)
     }
     #[doc = "Modem"]
     #[inline(always)]
     pub fn modem(self) -> &'a mut W {
-        self.variant(USART_MODEW::MODEM)
+        self.variant(USART_MODE_A::MODEM)
     }
     #[doc = "IS07816 Protocol: T = 0"]
     #[inline(always)]
     pub fn is07816_t_0(self) -> &'a mut W {
-        self.variant(USART_MODEW::IS07816_T_0)
+        self.variant(USART_MODE_A::IS07816_T_0)
     }
     #[doc = "IS07816 Protocol: T = 1"]
     #[inline(always)]
     pub fn is07816_t_1(self) -> &'a mut W {
-        self.variant(USART_MODEW::IS07816_T_1)
+        self.variant(USART_MODE_A::IS07816_T_1)
     }
     #[doc = "IrDA"]
     #[inline(always)]
     pub fn irda(self) -> &'a mut W {
-        self.variant(USART_MODEW::IRDA)
+        self.variant(USART_MODE_A::IRDA)
     }
     #[doc = "LON"]
     #[inline(always)]
     pub fn lon(self) -> &'a mut W {
-        self.variant(USART_MODEW::LON)
+        self.variant(USART_MODE_A::LON)
     }
     #[doc = "LIN Master mode"]
     #[inline(always)]
     pub fn lin_master(self) -> &'a mut W {
-        self.variant(USART_MODEW::LIN_MASTER)
+        self.variant(USART_MODE_A::LIN_MASTER)
     }
     #[doc = "LIN Slave mode"]
     #[inline(always)]
     pub fn lin_slave(self) -> &'a mut W {
-        self.variant(USART_MODEW::LIN_SLAVE)
+        self.variant(USART_MODE_A::LIN_SLAVE)
     }
     #[doc = "SPI Master mode (CLKO must be written to 1 and USCLKS = 0, 1 or 2)"]
     #[inline(always)]
     pub fn spi_master(self) -> &'a mut W {
-        self.variant(USART_MODEW::SPI_MASTER)
+        self.variant(USART_MODE_A::SPI_MASTER)
     }
     #[doc = "SPI Slave mode"]
     #[inline(always)]
     pub fn spi_slave(self) -> &'a mut W {
-        self.variant(USART_MODEW::SPI_SLAVE)
+        self.variant(USART_MODE_A::SPI_SLAVE)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -284,109 +206,91 @@ impl<'a> _USART_MODEW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `USCLKS`"]
+#[doc = "Clock Selection\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum USCLKSR {
-    #[doc = "Peripheral clock is selected"]
-    MCK,
-    #[doc = "Peripheral clock divided (DIV = 8) is selected"]
-    DIV,
-    #[doc = "PMC programmable clock (PCK) is selected. If the SCK pin is driven (CLKO = 1), the CD field must be greater than 1."]
-    PCK,
-    #[doc = "Serial clock (SCK) is selected"]
-    SCK,
+#[repr(u8)]
+pub enum USCLKS_A {
+    #[doc = "0: Peripheral clock is selected"]
+    MCK = 0,
+    #[doc = "1: Peripheral clock divided (DIV = 8) is selected"]
+    DIV = 1,
+    #[doc = "2: PMC programmable clock (PCK) is selected. If the SCK pin is driven (CLKO = 1), the CD field must be greater than 1."]
+    PCK = 2,
+    #[doc = "3: Serial clock (SCK) is selected"]
+    SCK = 3,
 }
-impl crate::ToBits<u8> for USCLKSR {
+impl From<USCLKS_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            USCLKSR::MCK => 0,
-            USCLKSR::DIV => 1,
-            USCLKSR::PCK => 2,
-            USCLKSR::SCK => 3,
-        }
+    fn from(variant: USCLKS_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type USCLKS_R = crate::FR<u8, USCLKSR>;
+#[doc = "Reader of field `USCLKS`"]
+pub type USCLKS_R = crate::R<u8, USCLKS_A>;
 impl USCLKS_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> USCLKS_A {
+        match self.bits {
+            0 => USCLKS_A::MCK,
+            1 => USCLKS_A::DIV,
+            2 => USCLKS_A::PCK,
+            3 => USCLKS_A::SCK,
+            _ => unreachable!(),
+        }
+    }
     #[doc = "Checks if the value of the field is `MCK`"]
     #[inline(always)]
     pub fn is_mck(&self) -> bool {
-        *self == USCLKSR::MCK
+        *self == USCLKS_A::MCK
     }
     #[doc = "Checks if the value of the field is `DIV`"]
     #[inline(always)]
     pub fn is_div(&self) -> bool {
-        *self == USCLKSR::DIV
+        *self == USCLKS_A::DIV
     }
     #[doc = "Checks if the value of the field is `PCK`"]
     #[inline(always)]
     pub fn is_pck(&self) -> bool {
-        *self == USCLKSR::PCK
+        *self == USCLKS_A::PCK
     }
     #[doc = "Checks if the value of the field is `SCK`"]
     #[inline(always)]
     pub fn is_sck(&self) -> bool {
-        *self == USCLKSR::SCK
+        *self == USCLKS_A::SCK
     }
 }
-#[doc = "Values that can be written to the field `USCLKS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum USCLKSW {
-    #[doc = "Peripheral clock is selected"]
-    MCK,
-    #[doc = "Peripheral clock divided (DIV = 8) is selected"]
-    DIV,
-    #[doc = "PMC programmable clock (PCK) is selected. If the SCK pin is driven (CLKO = 1), the CD field must be greater than 1."]
-    PCK,
-    #[doc = "Serial clock (SCK) is selected"]
-    SCK,
-}
-impl USCLKSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            USCLKSW::MCK => 0,
-            USCLKSW::DIV => 1,
-            USCLKSW::PCK => 2,
-            USCLKSW::SCK => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _USCLKSW<'a> {
+#[doc = "Write proxy for field `USCLKS`"]
+pub struct USCLKS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _USCLKSW<'a> {
+impl<'a> USCLKS_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: USCLKSW) -> &'a mut W {
+    pub fn variant(self, variant: USCLKS_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Peripheral clock is selected"]
     #[inline(always)]
     pub fn mck(self) -> &'a mut W {
-        self.variant(USCLKSW::MCK)
+        self.variant(USCLKS_A::MCK)
     }
     #[doc = "Peripheral clock divided (DIV = 8) is selected"]
     #[inline(always)]
     pub fn div(self) -> &'a mut W {
-        self.variant(USCLKSW::DIV)
+        self.variant(USCLKS_A::DIV)
     }
     #[doc = "PMC programmable clock (PCK) is selected. If the SCK pin is driven (CLKO = 1), the CD field must be greater than 1."]
     #[inline(always)]
     pub fn pck(self) -> &'a mut W {
-        self.variant(USCLKSW::PCK)
+        self.variant(USCLKS_A::PCK)
     }
     #[doc = "Serial clock (SCK) is selected"]
     #[inline(always)]
     pub fn sck(self) -> &'a mut W {
-        self.variant(USCLKSW::SCK)
+        self.variant(USCLKS_A::SCK)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -395,109 +299,91 @@ impl<'a> _USCLKSW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `CHRL`"]
+#[doc = "Character Length\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CHRLR {
-    #[doc = "Character length is 5 bits"]
-    _5_BIT,
-    #[doc = "Character length is 6 bits"]
-    _6_BIT,
-    #[doc = "Character length is 7 bits"]
-    _7_BIT,
-    #[doc = "Character length is 8 bits"]
-    _8_BIT,
+#[repr(u8)]
+pub enum CHRL_A {
+    #[doc = "0: Character length is 5 bits"]
+    _5_BIT = 0,
+    #[doc = "1: Character length is 6 bits"]
+    _6_BIT = 1,
+    #[doc = "2: Character length is 7 bits"]
+    _7_BIT = 2,
+    #[doc = "3: Character length is 8 bits"]
+    _8_BIT = 3,
 }
-impl crate::ToBits<u8> for CHRLR {
+impl From<CHRL_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            CHRLR::_5_BIT => 0,
-            CHRLR::_6_BIT => 1,
-            CHRLR::_7_BIT => 2,
-            CHRLR::_8_BIT => 3,
-        }
+    fn from(variant: CHRL_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type CHRL_R = crate::FR<u8, CHRLR>;
+#[doc = "Reader of field `CHRL`"]
+pub type CHRL_R = crate::R<u8, CHRL_A>;
 impl CHRL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CHRL_A {
+        match self.bits {
+            0 => CHRL_A::_5_BIT,
+            1 => CHRL_A::_6_BIT,
+            2 => CHRL_A::_7_BIT,
+            3 => CHRL_A::_8_BIT,
+            _ => unreachable!(),
+        }
+    }
     #[doc = "Checks if the value of the field is `_5_BIT`"]
     #[inline(always)]
     pub fn is_5_bit(&self) -> bool {
-        *self == CHRLR::_5_BIT
+        *self == CHRL_A::_5_BIT
     }
     #[doc = "Checks if the value of the field is `_6_BIT`"]
     #[inline(always)]
     pub fn is_6_bit(&self) -> bool {
-        *self == CHRLR::_6_BIT
+        *self == CHRL_A::_6_BIT
     }
     #[doc = "Checks if the value of the field is `_7_BIT`"]
     #[inline(always)]
     pub fn is_7_bit(&self) -> bool {
-        *self == CHRLR::_7_BIT
+        *self == CHRL_A::_7_BIT
     }
     #[doc = "Checks if the value of the field is `_8_BIT`"]
     #[inline(always)]
     pub fn is_8_bit(&self) -> bool {
-        *self == CHRLR::_8_BIT
+        *self == CHRL_A::_8_BIT
     }
 }
-#[doc = "Values that can be written to the field `CHRL`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CHRLW {
-    #[doc = "Character length is 5 bits"]
-    _5_BIT,
-    #[doc = "Character length is 6 bits"]
-    _6_BIT,
-    #[doc = "Character length is 7 bits"]
-    _7_BIT,
-    #[doc = "Character length is 8 bits"]
-    _8_BIT,
-}
-impl CHRLW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CHRLW::_5_BIT => 0,
-            CHRLW::_6_BIT => 1,
-            CHRLW::_7_BIT => 2,
-            CHRLW::_8_BIT => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _CHRLW<'a> {
+#[doc = "Write proxy for field `CHRL`"]
+pub struct CHRL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CHRLW<'a> {
+impl<'a> CHRL_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: CHRLW) -> &'a mut W {
+    pub fn variant(self, variant: CHRL_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Character length is 5 bits"]
     #[inline(always)]
     pub fn _5_bit(self) -> &'a mut W {
-        self.variant(CHRLW::_5_BIT)
+        self.variant(CHRL_A::_5_BIT)
     }
     #[doc = "Character length is 6 bits"]
     #[inline(always)]
     pub fn _6_bit(self) -> &'a mut W {
-        self.variant(CHRLW::_6_BIT)
+        self.variant(CHRL_A::_6_BIT)
     }
     #[doc = "Character length is 7 bits"]
     #[inline(always)]
     pub fn _7_bit(self) -> &'a mut W {
-        self.variant(CHRLW::_7_BIT)
+        self.variant(CHRL_A::_7_BIT)
     }
     #[doc = "Character length is 8 bits"]
     #[inline(always)]
     pub fn _8_bit(self) -> &'a mut W {
-        self.variant(CHRLW::_8_BIT)
+        self.variant(CHRL_A::_8_BIT)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -506,13 +392,13 @@ impl<'a> _CHRLW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type SYNC_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _SYNCW<'a> {
+#[doc = "Reader of field `SYNC`"]
+pub type SYNC_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SYNC`"]
+pub struct SYNC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SYNCW<'a> {
+impl<'a> SYNC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -530,139 +416,116 @@ impl<'a> _SYNCW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `PAR`"]
+#[doc = "Parity Type\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PARR {
-    #[doc = "Even parity"]
-    EVEN,
-    #[doc = "Odd parity"]
-    ODD,
-    #[doc = "Parity forced to 0 (Space)"]
-    SPACE,
-    #[doc = "Parity forced to 1 (Mark)"]
-    MARK,
-    #[doc = "No parity"]
-    NO,
-    #[doc = "Multidrop mode"]
-    MULTIDROP,
+#[repr(u8)]
+pub enum PAR_A {
+    #[doc = "0: Even parity"]
+    EVEN = 0,
+    #[doc = "1: Odd parity"]
+    ODD = 1,
+    #[doc = "2: Parity forced to 0 (Space)"]
+    SPACE = 2,
+    #[doc = "3: Parity forced to 1 (Mark)"]
+    MARK = 3,
+    #[doc = "4: No parity"]
+    NO = 4,
+    #[doc = "6: Multidrop mode"]
+    MULTIDROP = 6,
 }
-impl crate::ToBits<u8> for PARR {
+impl From<PAR_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            PARR::EVEN => 0,
-            PARR::ODD => 1,
-            PARR::SPACE => 2,
-            PARR::MARK => 3,
-            PARR::NO => 4,
-            PARR::MULTIDROP => 6,
-        }
+    fn from(variant: PAR_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type PAR_R = crate::FR<u8, PARR>;
+#[doc = "Reader of field `PAR`"]
+pub type PAR_R = crate::R<u8, PAR_A>;
 impl PAR_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, PAR_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(PAR_A::EVEN),
+            1 => Val(PAR_A::ODD),
+            2 => Val(PAR_A::SPACE),
+            3 => Val(PAR_A::MARK),
+            4 => Val(PAR_A::NO),
+            6 => Val(PAR_A::MULTIDROP),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `EVEN`"]
     #[inline(always)]
     pub fn is_even(&self) -> bool {
-        *self == PARR::EVEN
+        *self == PAR_A::EVEN
     }
     #[doc = "Checks if the value of the field is `ODD`"]
     #[inline(always)]
     pub fn is_odd(&self) -> bool {
-        *self == PARR::ODD
+        *self == PAR_A::ODD
     }
     #[doc = "Checks if the value of the field is `SPACE`"]
     #[inline(always)]
     pub fn is_space(&self) -> bool {
-        *self == PARR::SPACE
+        *self == PAR_A::SPACE
     }
     #[doc = "Checks if the value of the field is `MARK`"]
     #[inline(always)]
     pub fn is_mark(&self) -> bool {
-        *self == PARR::MARK
+        *self == PAR_A::MARK
     }
     #[doc = "Checks if the value of the field is `NO`"]
     #[inline(always)]
     pub fn is_no(&self) -> bool {
-        *self == PARR::NO
+        *self == PAR_A::NO
     }
     #[doc = "Checks if the value of the field is `MULTIDROP`"]
     #[inline(always)]
     pub fn is_multidrop(&self) -> bool {
-        *self == PARR::MULTIDROP
+        *self == PAR_A::MULTIDROP
     }
 }
-#[doc = "Values that can be written to the field `PAR`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PARW {
-    #[doc = "Even parity"]
-    EVEN,
-    #[doc = "Odd parity"]
-    ODD,
-    #[doc = "Parity forced to 0 (Space)"]
-    SPACE,
-    #[doc = "Parity forced to 1 (Mark)"]
-    MARK,
-    #[doc = "No parity"]
-    NO,
-    #[doc = "Multidrop mode"]
-    MULTIDROP,
-}
-impl PARW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PARW::EVEN => 0,
-            PARW::ODD => 1,
-            PARW::SPACE => 2,
-            PARW::MARK => 3,
-            PARW::NO => 4,
-            PARW::MULTIDROP => 6,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _PARW<'a> {
+#[doc = "Write proxy for field `PAR`"]
+pub struct PAR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PARW<'a> {
+impl<'a> PAR_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: PARW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: PAR_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Even parity"]
     #[inline(always)]
     pub fn even(self) -> &'a mut W {
-        self.variant(PARW::EVEN)
+        self.variant(PAR_A::EVEN)
     }
     #[doc = "Odd parity"]
     #[inline(always)]
     pub fn odd(self) -> &'a mut W {
-        self.variant(PARW::ODD)
+        self.variant(PAR_A::ODD)
     }
     #[doc = "Parity forced to 0 (Space)"]
     #[inline(always)]
     pub fn space(self) -> &'a mut W {
-        self.variant(PARW::SPACE)
+        self.variant(PAR_A::SPACE)
     }
     #[doc = "Parity forced to 1 (Mark)"]
     #[inline(always)]
     pub fn mark(self) -> &'a mut W {
-        self.variant(PARW::MARK)
+        self.variant(PAR_A::MARK)
     }
     #[doc = "No parity"]
     #[inline(always)]
     pub fn no(self) -> &'a mut W {
-        self.variant(PARW::NO)
+        self.variant(PAR_A::NO)
     }
     #[doc = "Multidrop mode"]
     #[inline(always)]
     pub fn multidrop(self) -> &'a mut W {
-        self.variant(PARW::MULTIDROP)
+        self.variant(PAR_A::MULTIDROP)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -671,91 +534,77 @@ impl<'a> _PARW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `NBSTOP`"]
+#[doc = "Number of Stop Bits\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NBSTOPR {
-    #[doc = "1 stop bit"]
-    _1_BIT,
-    #[doc = "1.5 stop bit (SYNC = 0) or reserved (SYNC = 1)"]
-    _1_5_BIT,
-    #[doc = "2 stop bits"]
-    _2_BIT,
+#[repr(u8)]
+pub enum NBSTOP_A {
+    #[doc = "0: 1 stop bit"]
+    _1_BIT = 0,
+    #[doc = "1: 1.5 stop bit (SYNC = 0) or reserved (SYNC = 1)"]
+    _1_5_BIT = 1,
+    #[doc = "2: 2 stop bits"]
+    _2_BIT = 2,
 }
-impl crate::ToBits<u8> for NBSTOPR {
+impl From<NBSTOP_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            NBSTOPR::_1_BIT => 0,
-            NBSTOPR::_1_5_BIT => 1,
-            NBSTOPR::_2_BIT => 2,
-        }
+    fn from(variant: NBSTOP_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type NBSTOP_R = crate::FR<u8, NBSTOPR>;
+#[doc = "Reader of field `NBSTOP`"]
+pub type NBSTOP_R = crate::R<u8, NBSTOP_A>;
 impl NBSTOP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, NBSTOP_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(NBSTOP_A::_1_BIT),
+            1 => Val(NBSTOP_A::_1_5_BIT),
+            2 => Val(NBSTOP_A::_2_BIT),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `_1_BIT`"]
     #[inline(always)]
     pub fn is_1_bit(&self) -> bool {
-        *self == NBSTOPR::_1_BIT
+        *self == NBSTOP_A::_1_BIT
     }
     #[doc = "Checks if the value of the field is `_1_5_BIT`"]
     #[inline(always)]
     pub fn is_1_5_bit(&self) -> bool {
-        *self == NBSTOPR::_1_5_BIT
+        *self == NBSTOP_A::_1_5_BIT
     }
     #[doc = "Checks if the value of the field is `_2_BIT`"]
     #[inline(always)]
     pub fn is_2_bit(&self) -> bool {
-        *self == NBSTOPR::_2_BIT
+        *self == NBSTOP_A::_2_BIT
     }
 }
-#[doc = "Values that can be written to the field `NBSTOP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NBSTOPW {
-    #[doc = "1 stop bit"]
-    _1_BIT,
-    #[doc = "1.5 stop bit (SYNC = 0) or reserved (SYNC = 1)"]
-    _1_5_BIT,
-    #[doc = "2 stop bits"]
-    _2_BIT,
-}
-impl NBSTOPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            NBSTOPW::_1_BIT => 0,
-            NBSTOPW::_1_5_BIT => 1,
-            NBSTOPW::_2_BIT => 2,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _NBSTOPW<'a> {
+#[doc = "Write proxy for field `NBSTOP`"]
+pub struct NBSTOP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NBSTOPW<'a> {
+impl<'a> NBSTOP_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: NBSTOPW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: NBSTOP_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "1 stop bit"]
     #[inline(always)]
     pub fn _1_bit(self) -> &'a mut W {
-        self.variant(NBSTOPW::_1_BIT)
+        self.variant(NBSTOP_A::_1_BIT)
     }
     #[doc = "1.5 stop bit (SYNC = 0) or reserved (SYNC = 1)"]
     #[inline(always)]
     pub fn _1_5_bit(self) -> &'a mut W {
-        self.variant(NBSTOPW::_1_5_BIT)
+        self.variant(NBSTOP_A::_1_5_BIT)
     }
     #[doc = "2 stop bits"]
     #[inline(always)]
     pub fn _2_bit(self) -> &'a mut W {
-        self.variant(NBSTOPW::_2_BIT)
+        self.variant(NBSTOP_A::_2_BIT)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -764,109 +613,91 @@ impl<'a> _NBSTOPW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `CHMODE`"]
+#[doc = "Channel Mode\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CHMODER {
-    #[doc = "Normal mode"]
-    NORMAL,
-    #[doc = "Automatic Echo. Receiver input is connected to the TXD pin."]
-    AUTOMATIC,
-    #[doc = "Local Loopback. Transmitter output is connected to the Receiver Input."]
-    LOCAL_LOOPBACK,
-    #[doc = "Remote Loopback. RXD pin is internally connected to the TXD pin."]
-    REMOTE_LOOPBACK,
+#[repr(u8)]
+pub enum CHMODE_A {
+    #[doc = "0: Normal mode"]
+    NORMAL = 0,
+    #[doc = "1: Automatic Echo. Receiver input is connected to the TXD pin."]
+    AUTOMATIC = 1,
+    #[doc = "2: Local Loopback. Transmitter output is connected to the Receiver Input."]
+    LOCAL_LOOPBACK = 2,
+    #[doc = "3: Remote Loopback. RXD pin is internally connected to the TXD pin."]
+    REMOTE_LOOPBACK = 3,
 }
-impl crate::ToBits<u8> for CHMODER {
+impl From<CHMODE_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            CHMODER::NORMAL => 0,
-            CHMODER::AUTOMATIC => 1,
-            CHMODER::LOCAL_LOOPBACK => 2,
-            CHMODER::REMOTE_LOOPBACK => 3,
-        }
+    fn from(variant: CHMODE_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type CHMODE_R = crate::FR<u8, CHMODER>;
+#[doc = "Reader of field `CHMODE`"]
+pub type CHMODE_R = crate::R<u8, CHMODE_A>;
 impl CHMODE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CHMODE_A {
+        match self.bits {
+            0 => CHMODE_A::NORMAL,
+            1 => CHMODE_A::AUTOMATIC,
+            2 => CHMODE_A::LOCAL_LOOPBACK,
+            3 => CHMODE_A::REMOTE_LOOPBACK,
+            _ => unreachable!(),
+        }
+    }
     #[doc = "Checks if the value of the field is `NORMAL`"]
     #[inline(always)]
     pub fn is_normal(&self) -> bool {
-        *self == CHMODER::NORMAL
+        *self == CHMODE_A::NORMAL
     }
     #[doc = "Checks if the value of the field is `AUTOMATIC`"]
     #[inline(always)]
     pub fn is_automatic(&self) -> bool {
-        *self == CHMODER::AUTOMATIC
+        *self == CHMODE_A::AUTOMATIC
     }
     #[doc = "Checks if the value of the field is `LOCAL_LOOPBACK`"]
     #[inline(always)]
     pub fn is_local_loopback(&self) -> bool {
-        *self == CHMODER::LOCAL_LOOPBACK
+        *self == CHMODE_A::LOCAL_LOOPBACK
     }
     #[doc = "Checks if the value of the field is `REMOTE_LOOPBACK`"]
     #[inline(always)]
     pub fn is_remote_loopback(&self) -> bool {
-        *self == CHMODER::REMOTE_LOOPBACK
+        *self == CHMODE_A::REMOTE_LOOPBACK
     }
 }
-#[doc = "Values that can be written to the field `CHMODE`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CHMODEW {
-    #[doc = "Normal mode"]
-    NORMAL,
-    #[doc = "Automatic Echo. Receiver input is connected to the TXD pin."]
-    AUTOMATIC,
-    #[doc = "Local Loopback. Transmitter output is connected to the Receiver Input."]
-    LOCAL_LOOPBACK,
-    #[doc = "Remote Loopback. RXD pin is internally connected to the TXD pin."]
-    REMOTE_LOOPBACK,
-}
-impl CHMODEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CHMODEW::NORMAL => 0,
-            CHMODEW::AUTOMATIC => 1,
-            CHMODEW::LOCAL_LOOPBACK => 2,
-            CHMODEW::REMOTE_LOOPBACK => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _CHMODEW<'a> {
+#[doc = "Write proxy for field `CHMODE`"]
+pub struct CHMODE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CHMODEW<'a> {
+impl<'a> CHMODE_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: CHMODEW) -> &'a mut W {
+    pub fn variant(self, variant: CHMODE_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Normal mode"]
     #[inline(always)]
     pub fn normal(self) -> &'a mut W {
-        self.variant(CHMODEW::NORMAL)
+        self.variant(CHMODE_A::NORMAL)
     }
     #[doc = "Automatic Echo. Receiver input is connected to the TXD pin."]
     #[inline(always)]
     pub fn automatic(self) -> &'a mut W {
-        self.variant(CHMODEW::AUTOMATIC)
+        self.variant(CHMODE_A::AUTOMATIC)
     }
     #[doc = "Local Loopback. Transmitter output is connected to the Receiver Input."]
     #[inline(always)]
     pub fn local_loopback(self) -> &'a mut W {
-        self.variant(CHMODEW::LOCAL_LOOPBACK)
+        self.variant(CHMODE_A::LOCAL_LOOPBACK)
     }
     #[doc = "Remote Loopback. RXD pin is internally connected to the TXD pin."]
     #[inline(always)]
     pub fn remote_loopback(self) -> &'a mut W {
-        self.variant(CHMODEW::REMOTE_LOOPBACK)
+        self.variant(CHMODE_A::REMOTE_LOOPBACK)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -875,13 +706,13 @@ impl<'a> _CHMODEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type MSBF_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _MSBFW<'a> {
+#[doc = "Reader of field `MSBF`"]
+pub type MSBF_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `MSBF`"]
+pub struct MSBF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MSBFW<'a> {
+impl<'a> MSBF_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -899,13 +730,13 @@ impl<'a> _MSBFW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type MODE9_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _MODE9W<'a> {
+#[doc = "Reader of field `MODE9`"]
+pub type MODE9_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `MODE9`"]
+pub struct MODE9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MODE9W<'a> {
+impl<'a> MODE9_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -923,13 +754,13 @@ impl<'a> _MODE9W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CLKO_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CLKOW<'a> {
+#[doc = "Reader of field `CLKO`"]
+pub type CLKO_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CLKO`"]
+pub struct CLKO_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CLKOW<'a> {
+impl<'a> CLKO_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -947,13 +778,13 @@ impl<'a> _CLKOW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type OVER_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _OVERW<'a> {
+#[doc = "Reader of field `OVER`"]
+pub type OVER_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `OVER`"]
+pub struct OVER_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OVERW<'a> {
+impl<'a> OVER_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -971,13 +802,13 @@ impl<'a> _OVERW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type INACK_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _INACKW<'a> {
+#[doc = "Reader of field `INACK`"]
+pub type INACK_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `INACK`"]
+pub struct INACK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _INACKW<'a> {
+impl<'a> INACK_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -995,13 +826,13 @@ impl<'a> _INACKW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DSNACK_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DSNACKW<'a> {
+#[doc = "Reader of field `DSNACK`"]
+pub type DSNACK_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DSNACK`"]
+pub struct DSNACK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DSNACKW<'a> {
+impl<'a> DSNACK_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -1019,13 +850,13 @@ impl<'a> _DSNACKW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type VAR_SYNC_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _VAR_SYNCW<'a> {
+#[doc = "Reader of field `VAR_SYNC`"]
+pub type VAR_SYNC_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `VAR_SYNC`"]
+pub struct VAR_SYNC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _VAR_SYNCW<'a> {
+impl<'a> VAR_SYNC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -1043,13 +874,13 @@ impl<'a> _VAR_SYNCW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type INVDATA_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _INVDATAW<'a> {
+#[doc = "Reader of field `INVDATA`"]
+pub type INVDATA_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `INVDATA`"]
+pub struct INVDATA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _INVDATAW<'a> {
+impl<'a> INVDATA_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -1067,13 +898,13 @@ impl<'a> _INVDATAW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type MAX_ITERATION_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _MAX_ITERATIONW<'a> {
+#[doc = "Reader of field `MAX_ITERATION`"]
+pub type MAX_ITERATION_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `MAX_ITERATION`"]
+pub struct MAX_ITERATION_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MAX_ITERATIONW<'a> {
+impl<'a> MAX_ITERATION_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -1081,13 +912,13 @@ impl<'a> _MAX_ITERATIONW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FILTER_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FILTERW<'a> {
+#[doc = "Reader of field `FILTER`"]
+pub type FILTER_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FILTER`"]
+pub struct FILTER_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FILTERW<'a> {
+impl<'a> FILTER_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -1105,13 +936,13 @@ impl<'a> _FILTERW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type MAN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _MANW<'a> {
+#[doc = "Reader of field `MAN`"]
+pub type MAN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `MAN`"]
+pub struct MAN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MANW<'a> {
+impl<'a> MAN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -1129,13 +960,13 @@ impl<'a> _MANW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type MODSYNC_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _MODSYNCW<'a> {
+#[doc = "Reader of field `MODSYNC`"]
+pub type MODSYNC_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `MODSYNC`"]
+pub struct MODSYNC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MODSYNCW<'a> {
+impl<'a> MODSYNC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -1153,13 +984,13 @@ impl<'a> _MODSYNCW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ONEBIT_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ONEBITW<'a> {
+#[doc = "Reader of field `ONEBIT`"]
+pub type ONEBIT_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ONEBIT`"]
+pub struct ONEBIT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ONEBITW<'a> {
+impl<'a> ONEBIT_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -1178,217 +1009,206 @@ impl<'a> _ONEBITW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:3 - USART Mode of Operation"]
     #[inline(always)]
     pub fn usart_mode(&self) -> USART_MODE_R {
-        USART_MODE_R::new((self.bits() & 0x0f) as u8)
+        USART_MODE_R::new((self.bits & 0x0f) as u8)
     }
     #[doc = "Bits 4:5 - Clock Selection"]
     #[inline(always)]
     pub fn usclks(&self) -> USCLKS_R {
-        USCLKS_R::new(((self.bits() >> 4) & 0x03) as u8)
+        USCLKS_R::new(((self.bits >> 4) & 0x03) as u8)
     }
     #[doc = "Bits 6:7 - Character Length"]
     #[inline(always)]
     pub fn chrl(&self) -> CHRL_R {
-        CHRL_R::new(((self.bits() >> 6) & 0x03) as u8)
+        CHRL_R::new(((self.bits >> 6) & 0x03) as u8)
     }
     #[doc = "Bit 8 - Synchronous Mode Select"]
     #[inline(always)]
     pub fn sync(&self) -> SYNC_R {
-        SYNC_R::new(((self.bits() >> 8) & 0x01) != 0)
+        SYNC_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bits 9:11 - Parity Type"]
     #[inline(always)]
     pub fn par(&self) -> PAR_R {
-        PAR_R::new(((self.bits() >> 9) & 0x07) as u8)
+        PAR_R::new(((self.bits >> 9) & 0x07) as u8)
     }
     #[doc = "Bits 12:13 - Number of Stop Bits"]
     #[inline(always)]
     pub fn nbstop(&self) -> NBSTOP_R {
-        NBSTOP_R::new(((self.bits() >> 12) & 0x03) as u8)
+        NBSTOP_R::new(((self.bits >> 12) & 0x03) as u8)
     }
     #[doc = "Bits 14:15 - Channel Mode"]
     #[inline(always)]
     pub fn chmode(&self) -> CHMODE_R {
-        CHMODE_R::new(((self.bits() >> 14) & 0x03) as u8)
+        CHMODE_R::new(((self.bits >> 14) & 0x03) as u8)
     }
     #[doc = "Bit 16 - Bit Order"]
     #[inline(always)]
     pub fn msbf(&self) -> MSBF_R {
-        MSBF_R::new(((self.bits() >> 16) & 0x01) != 0)
+        MSBF_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - 9-bit Character Length"]
     #[inline(always)]
     pub fn mode9(&self) -> MODE9_R {
-        MODE9_R::new(((self.bits() >> 17) & 0x01) != 0)
+        MODE9_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - Clock Output Select"]
     #[inline(always)]
     pub fn clko(&self) -> CLKO_R {
-        CLKO_R::new(((self.bits() >> 18) & 0x01) != 0)
+        CLKO_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 19 - Oversampling Mode"]
     #[inline(always)]
     pub fn over(&self) -> OVER_R {
-        OVER_R::new(((self.bits() >> 19) & 0x01) != 0)
+        OVER_R::new(((self.bits >> 19) & 0x01) != 0)
     }
     #[doc = "Bit 20 - Inhibit Non Acknowledge"]
     #[inline(always)]
     pub fn inack(&self) -> INACK_R {
-        INACK_R::new(((self.bits() >> 20) & 0x01) != 0)
+        INACK_R::new(((self.bits >> 20) & 0x01) != 0)
     }
     #[doc = "Bit 21 - Disable Successive NACK"]
     #[inline(always)]
     pub fn dsnack(&self) -> DSNACK_R {
-        DSNACK_R::new(((self.bits() >> 21) & 0x01) != 0)
+        DSNACK_R::new(((self.bits >> 21) & 0x01) != 0)
     }
     #[doc = "Bit 22 - Variable Synchronization of Command/Data Sync Start Frame Delimiter"]
     #[inline(always)]
     pub fn var_sync(&self) -> VAR_SYNC_R {
-        VAR_SYNC_R::new(((self.bits() >> 22) & 0x01) != 0)
+        VAR_SYNC_R::new(((self.bits >> 22) & 0x01) != 0)
     }
     #[doc = "Bit 23 - Inverted Data"]
     #[inline(always)]
     pub fn invdata(&self) -> INVDATA_R {
-        INVDATA_R::new(((self.bits() >> 23) & 0x01) != 0)
+        INVDATA_R::new(((self.bits >> 23) & 0x01) != 0)
     }
     #[doc = "Bits 24:26 - Maximum Number of Automatic Iteration"]
     #[inline(always)]
     pub fn max_iteration(&self) -> MAX_ITERATION_R {
-        MAX_ITERATION_R::new(((self.bits() >> 24) & 0x07) as u8)
+        MAX_ITERATION_R::new(((self.bits >> 24) & 0x07) as u8)
     }
     #[doc = "Bit 28 - Receive Line Filter"]
     #[inline(always)]
     pub fn filter(&self) -> FILTER_R {
-        FILTER_R::new(((self.bits() >> 28) & 0x01) != 0)
+        FILTER_R::new(((self.bits >> 28) & 0x01) != 0)
     }
     #[doc = "Bit 29 - Manchester Encoder/Decoder Enable"]
     #[inline(always)]
     pub fn man(&self) -> MAN_R {
-        MAN_R::new(((self.bits() >> 29) & 0x01) != 0)
+        MAN_R::new(((self.bits >> 29) & 0x01) != 0)
     }
     #[doc = "Bit 30 - Manchester Synchronization Mode"]
     #[inline(always)]
     pub fn modsync(&self) -> MODSYNC_R {
-        MODSYNC_R::new(((self.bits() >> 30) & 0x01) != 0)
+        MODSYNC_R::new(((self.bits >> 30) & 0x01) != 0)
     }
     #[doc = "Bit 31 - Start Frame Delimiter Selector"]
     #[inline(always)]
     pub fn onebit(&self) -> ONEBIT_R {
-        ONEBIT_R::new(((self.bits() >> 31) & 0x01) != 0)
+        ONEBIT_R::new(((self.bits >> 31) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:3 - USART Mode of Operation"]
     #[inline(always)]
-    pub fn usart_mode(&mut self) -> _USART_MODEW {
-        _USART_MODEW { w: self }
+    pub fn usart_mode(&mut self) -> USART_MODE_W {
+        USART_MODE_W { w: self }
     }
     #[doc = "Bits 4:5 - Clock Selection"]
     #[inline(always)]
-    pub fn usclks(&mut self) -> _USCLKSW {
-        _USCLKSW { w: self }
+    pub fn usclks(&mut self) -> USCLKS_W {
+        USCLKS_W { w: self }
     }
     #[doc = "Bits 6:7 - Character Length"]
     #[inline(always)]
-    pub fn chrl(&mut self) -> _CHRLW {
-        _CHRLW { w: self }
+    pub fn chrl(&mut self) -> CHRL_W {
+        CHRL_W { w: self }
     }
     #[doc = "Bit 8 - Synchronous Mode Select"]
     #[inline(always)]
-    pub fn sync(&mut self) -> _SYNCW {
-        _SYNCW { w: self }
+    pub fn sync(&mut self) -> SYNC_W {
+        SYNC_W { w: self }
     }
     #[doc = "Bits 9:11 - Parity Type"]
     #[inline(always)]
-    pub fn par(&mut self) -> _PARW {
-        _PARW { w: self }
+    pub fn par(&mut self) -> PAR_W {
+        PAR_W { w: self }
     }
     #[doc = "Bits 12:13 - Number of Stop Bits"]
     #[inline(always)]
-    pub fn nbstop(&mut self) -> _NBSTOPW {
-        _NBSTOPW { w: self }
+    pub fn nbstop(&mut self) -> NBSTOP_W {
+        NBSTOP_W { w: self }
     }
     #[doc = "Bits 14:15 - Channel Mode"]
     #[inline(always)]
-    pub fn chmode(&mut self) -> _CHMODEW {
-        _CHMODEW { w: self }
+    pub fn chmode(&mut self) -> CHMODE_W {
+        CHMODE_W { w: self }
     }
     #[doc = "Bit 16 - Bit Order"]
     #[inline(always)]
-    pub fn msbf(&mut self) -> _MSBFW {
-        _MSBFW { w: self }
+    pub fn msbf(&mut self) -> MSBF_W {
+        MSBF_W { w: self }
     }
     #[doc = "Bit 17 - 9-bit Character Length"]
     #[inline(always)]
-    pub fn mode9(&mut self) -> _MODE9W {
-        _MODE9W { w: self }
+    pub fn mode9(&mut self) -> MODE9_W {
+        MODE9_W { w: self }
     }
     #[doc = "Bit 18 - Clock Output Select"]
     #[inline(always)]
-    pub fn clko(&mut self) -> _CLKOW {
-        _CLKOW { w: self }
+    pub fn clko(&mut self) -> CLKO_W {
+        CLKO_W { w: self }
     }
     #[doc = "Bit 19 - Oversampling Mode"]
     #[inline(always)]
-    pub fn over(&mut self) -> _OVERW {
-        _OVERW { w: self }
+    pub fn over(&mut self) -> OVER_W {
+        OVER_W { w: self }
     }
     #[doc = "Bit 20 - Inhibit Non Acknowledge"]
     #[inline(always)]
-    pub fn inack(&mut self) -> _INACKW {
-        _INACKW { w: self }
+    pub fn inack(&mut self) -> INACK_W {
+        INACK_W { w: self }
     }
     #[doc = "Bit 21 - Disable Successive NACK"]
     #[inline(always)]
-    pub fn dsnack(&mut self) -> _DSNACKW {
-        _DSNACKW { w: self }
+    pub fn dsnack(&mut self) -> DSNACK_W {
+        DSNACK_W { w: self }
     }
     #[doc = "Bit 22 - Variable Synchronization of Command/Data Sync Start Frame Delimiter"]
     #[inline(always)]
-    pub fn var_sync(&mut self) -> _VAR_SYNCW {
-        _VAR_SYNCW { w: self }
+    pub fn var_sync(&mut self) -> VAR_SYNC_W {
+        VAR_SYNC_W { w: self }
     }
     #[doc = "Bit 23 - Inverted Data"]
     #[inline(always)]
-    pub fn invdata(&mut self) -> _INVDATAW {
-        _INVDATAW { w: self }
+    pub fn invdata(&mut self) -> INVDATA_W {
+        INVDATA_W { w: self }
     }
     #[doc = "Bits 24:26 - Maximum Number of Automatic Iteration"]
     #[inline(always)]
-    pub fn max_iteration(&mut self) -> _MAX_ITERATIONW {
-        _MAX_ITERATIONW { w: self }
+    pub fn max_iteration(&mut self) -> MAX_ITERATION_W {
+        MAX_ITERATION_W { w: self }
     }
     #[doc = "Bit 28 - Receive Line Filter"]
     #[inline(always)]
-    pub fn filter(&mut self) -> _FILTERW {
-        _FILTERW { w: self }
+    pub fn filter(&mut self) -> FILTER_W {
+        FILTER_W { w: self }
     }
     #[doc = "Bit 29 - Manchester Encoder/Decoder Enable"]
     #[inline(always)]
-    pub fn man(&mut self) -> _MANW {
-        _MANW { w: self }
+    pub fn man(&mut self) -> MAN_W {
+        MAN_W { w: self }
     }
     #[doc = "Bit 30 - Manchester Synchronization Mode"]
     #[inline(always)]
-    pub fn modsync(&mut self) -> _MODSYNCW {
-        _MODSYNCW { w: self }
+    pub fn modsync(&mut self) -> MODSYNC_W {
+        MODSYNC_W { w: self }
     }
     #[doc = "Bit 31 - Start Frame Delimiter Selector"]
     #[inline(always)]
-    pub fn onebit(&mut self) -> _ONEBITW {
-        _ONEBITW { w: self }
+    pub fn onebit(&mut self) -> ONEBIT_W {
+        ONEBIT_W { w: self }
     }
 }

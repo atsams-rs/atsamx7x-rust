@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::AES_CR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register AES_CR"]
+pub type W = crate::W<u32, super::AES_CR>;
+#[doc = "Register AES_CR `reset()`'s with value 0"]
+impl crate::ResetValue for super::AES_CR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _STARTW<'a> {
+#[doc = "Write proxy for field `START`"]
+pub struct START_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _STARTW<'a> {
+impl<'a> START_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _STARTW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SWRSTW<'a> {
+#[doc = "Write proxy for field `SWRST`"]
+pub struct SWRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SWRSTW<'a> {
+impl<'a> SWRST_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _SWRSTW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LOADSEEDW<'a> {
+#[doc = "Write proxy for field `LOADSEED`"]
+pub struct LOADSEED_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LOADSEEDW<'a> {
+impl<'a> LOADSEED_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -94,25 +75,19 @@ impl<'a> _LOADSEEDW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Start Processing"]
     #[inline(always)]
-    pub fn start(&mut self) -> _STARTW {
-        _STARTW { w: self }
+    pub fn start(&mut self) -> START_W {
+        START_W { w: self }
     }
     #[doc = "Bit 8 - Software Reset"]
     #[inline(always)]
-    pub fn swrst(&mut self) -> _SWRSTW {
-        _SWRSTW { w: self }
+    pub fn swrst(&mut self) -> SWRST_W {
+        SWRST_W { w: self }
     }
     #[doc = "Bit 16 - Random Number Generator Seed Loading"]
     #[inline(always)]
-    pub fn loadseed(&mut self) -> _LOADSEEDW {
-        _LOADSEEDW { w: self }
+    pub fn loadseed(&mut self) -> LOADSEED_W {
+        LOADSEED_W { w: self }
     }
 }

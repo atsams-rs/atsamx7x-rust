@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::XDMAC_CUBC {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register XDMAC_CUBC"]
+pub type R = crate::R<u32, super::XDMAC_CUBC>;
+#[doc = "Writer for register XDMAC_CUBC"]
+pub type W = crate::W<u32, super::XDMAC_CUBC>;
+#[doc = "Register XDMAC_CUBC `reset()`'s with value 0"]
+impl crate::ResetValue for super::XDMAC_CUBC {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type UBLEN_R = crate::FR<u32, u32>;
-#[doc = r"Proxy"]
-pub struct _UBLENW<'a> {
+#[doc = "Reader of field `UBLEN`"]
+pub type UBLEN_R = crate::R<u32, u32>;
+#[doc = "Write proxy for field `UBLEN`"]
+pub struct UBLEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UBLENW<'a> {
+impl<'a> UBLEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u32) -> &'a mut W {
@@ -62,27 +25,16 @@ impl<'a> _UBLENW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:23 - Channel x Microblock Length"]
     #[inline(always)]
     pub fn ublen(&self) -> UBLEN_R {
-        UBLEN_R::new((self.bits() & 0x00ff_ffff) as u32)
+        UBLEN_R::new((self.bits & 0x00ff_ffff) as u32)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:23 - Channel x Microblock Length"]
     #[inline(always)]
-    pub fn ublen(&mut self) -> _UBLENW {
-        _UBLENW { w: self }
+    pub fn ublen(&mut self) -> UBLEN_W {
+        UBLEN_W { w: self }
     }
 }

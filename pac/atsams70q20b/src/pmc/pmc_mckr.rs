@@ -1,155 +1,100 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PMC_MCKR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register PMC_MCKR"]
+pub type R = crate::R<u32, super::PMC_MCKR>;
+#[doc = "Writer for register PMC_MCKR"]
+pub type W = crate::W<u32, super::PMC_MCKR>;
+#[doc = "Register PMC_MCKR `reset()`'s with value 0"]
+impl crate::ResetValue for super::PMC_MCKR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "Master Clock Source Selection\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum CSS_A {
+    #[doc = "0: Slow Clock is selected"]
+    SLOW_CLK = 0,
+    #[doc = "1: Main Clock is selected"]
+    MAIN_CLK = 1,
+    #[doc = "2: PLLA Clock is selected"]
+    PLLA_CLK = 2,
+    #[doc = "3: Divided UPLL Clock is selected"]
+    UPLL_CLK = 3,
+}
+impl From<CSS_A> for u8 {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: CSS_A) -> Self {
+        variant as _
     }
 }
-#[doc = "Possible values of the field `CSS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CSSR {
-    #[doc = "Slow Clock is selected"]
-    SLOW_CLK,
-    #[doc = "Main Clock is selected"]
-    MAIN_CLK,
-    #[doc = "PLLA Clock is selected"]
-    PLLA_CLK,
-    #[doc = "Divided UPLL Clock is selected"]
-    UPLL_CLK,
-}
-impl crate::ToBits<u8> for CSSR {
+#[doc = "Reader of field `CSS`"]
+pub type CSS_R = crate::R<u8, CSS_A>;
+impl CSS_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            CSSR::SLOW_CLK => 0,
-            CSSR::MAIN_CLK => 1,
-            CSSR::PLLA_CLK => 2,
-            CSSR::UPLL_CLK => 3,
+    pub fn variant(&self) -> CSS_A {
+        match self.bits {
+            0 => CSS_A::SLOW_CLK,
+            1 => CSS_A::MAIN_CLK,
+            2 => CSS_A::PLLA_CLK,
+            3 => CSS_A::UPLL_CLK,
+            _ => unreachable!(),
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type CSS_R = crate::FR<u8, CSSR>;
-impl CSS_R {
     #[doc = "Checks if the value of the field is `SLOW_CLK`"]
     #[inline(always)]
     pub fn is_slow_clk(&self) -> bool {
-        *self == CSSR::SLOW_CLK
+        *self == CSS_A::SLOW_CLK
     }
     #[doc = "Checks if the value of the field is `MAIN_CLK`"]
     #[inline(always)]
     pub fn is_main_clk(&self) -> bool {
-        *self == CSSR::MAIN_CLK
+        *self == CSS_A::MAIN_CLK
     }
     #[doc = "Checks if the value of the field is `PLLA_CLK`"]
     #[inline(always)]
     pub fn is_plla_clk(&self) -> bool {
-        *self == CSSR::PLLA_CLK
+        *self == CSS_A::PLLA_CLK
     }
     #[doc = "Checks if the value of the field is `UPLL_CLK`"]
     #[inline(always)]
     pub fn is_upll_clk(&self) -> bool {
-        *self == CSSR::UPLL_CLK
+        *self == CSS_A::UPLL_CLK
     }
 }
-#[doc = "Values that can be written to the field `CSS`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CSSW {
-    #[doc = "Slow Clock is selected"]
-    SLOW_CLK,
-    #[doc = "Main Clock is selected"]
-    MAIN_CLK,
-    #[doc = "PLLA Clock is selected"]
-    PLLA_CLK,
-    #[doc = "Divided UPLL Clock is selected"]
-    UPLL_CLK,
-}
-impl CSSW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            CSSW::SLOW_CLK => 0,
-            CSSW::MAIN_CLK => 1,
-            CSSW::PLLA_CLK => 2,
-            CSSW::UPLL_CLK => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _CSSW<'a> {
+#[doc = "Write proxy for field `CSS`"]
+pub struct CSS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CSSW<'a> {
+impl<'a> CSS_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: CSSW) -> &'a mut W {
+    pub fn variant(self, variant: CSS_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Slow Clock is selected"]
     #[inline(always)]
     pub fn slow_clk(self) -> &'a mut W {
-        self.variant(CSSW::SLOW_CLK)
+        self.variant(CSS_A::SLOW_CLK)
     }
     #[doc = "Main Clock is selected"]
     #[inline(always)]
     pub fn main_clk(self) -> &'a mut W {
-        self.variant(CSSW::MAIN_CLK)
+        self.variant(CSS_A::MAIN_CLK)
     }
     #[doc = "PLLA Clock is selected"]
     #[inline(always)]
     pub fn plla_clk(self) -> &'a mut W {
-        self.variant(CSSW::PLLA_CLK)
+        self.variant(CSS_A::PLLA_CLK)
     }
     #[doc = "Divided UPLL Clock is selected"]
     #[inline(always)]
     pub fn upll_clk(self) -> &'a mut W {
-        self.variant(CSSW::UPLL_CLK)
+        self.variant(CSS_A::UPLL_CLK)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -158,173 +103,143 @@ impl<'a> _CSSW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `PRES`"]
+#[doc = "Processor Clock Prescaler\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PRESR {
-    #[doc = "Selected clock"]
-    CLK_1,
-    #[doc = "Selected clock divided by 2"]
-    CLK_2,
-    #[doc = "Selected clock divided by 4"]
-    CLK_4,
-    #[doc = "Selected clock divided by 8"]
-    CLK_8,
-    #[doc = "Selected clock divided by 16"]
-    CLK_16,
-    #[doc = "Selected clock divided by 32"]
-    CLK_32,
-    #[doc = "Selected clock divided by 64"]
-    CLK_64,
-    #[doc = "Selected clock divided by 3"]
-    CLK_3,
+#[repr(u8)]
+pub enum PRES_A {
+    #[doc = "0: Selected clock"]
+    CLK_1 = 0,
+    #[doc = "1: Selected clock divided by 2"]
+    CLK_2 = 1,
+    #[doc = "2: Selected clock divided by 4"]
+    CLK_4 = 2,
+    #[doc = "3: Selected clock divided by 8"]
+    CLK_8 = 3,
+    #[doc = "4: Selected clock divided by 16"]
+    CLK_16 = 4,
+    #[doc = "5: Selected clock divided by 32"]
+    CLK_32 = 5,
+    #[doc = "6: Selected clock divided by 64"]
+    CLK_64 = 6,
+    #[doc = "7: Selected clock divided by 3"]
+    CLK_3 = 7,
 }
-impl crate::ToBits<u8> for PRESR {
+impl From<PRES_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            PRESR::CLK_1 => 0,
-            PRESR::CLK_2 => 1,
-            PRESR::CLK_4 => 2,
-            PRESR::CLK_8 => 3,
-            PRESR::CLK_16 => 4,
-            PRESR::CLK_32 => 5,
-            PRESR::CLK_64 => 6,
-            PRESR::CLK_3 => 7,
-        }
+    fn from(variant: PRES_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type PRES_R = crate::FR<u8, PRESR>;
+#[doc = "Reader of field `PRES`"]
+pub type PRES_R = crate::R<u8, PRES_A>;
 impl PRES_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PRES_A {
+        match self.bits {
+            0 => PRES_A::CLK_1,
+            1 => PRES_A::CLK_2,
+            2 => PRES_A::CLK_4,
+            3 => PRES_A::CLK_8,
+            4 => PRES_A::CLK_16,
+            5 => PRES_A::CLK_32,
+            6 => PRES_A::CLK_64,
+            7 => PRES_A::CLK_3,
+            _ => unreachable!(),
+        }
+    }
     #[doc = "Checks if the value of the field is `CLK_1`"]
     #[inline(always)]
     pub fn is_clk_1(&self) -> bool {
-        *self == PRESR::CLK_1
+        *self == PRES_A::CLK_1
     }
     #[doc = "Checks if the value of the field is `CLK_2`"]
     #[inline(always)]
     pub fn is_clk_2(&self) -> bool {
-        *self == PRESR::CLK_2
+        *self == PRES_A::CLK_2
     }
     #[doc = "Checks if the value of the field is `CLK_4`"]
     #[inline(always)]
     pub fn is_clk_4(&self) -> bool {
-        *self == PRESR::CLK_4
+        *self == PRES_A::CLK_4
     }
     #[doc = "Checks if the value of the field is `CLK_8`"]
     #[inline(always)]
     pub fn is_clk_8(&self) -> bool {
-        *self == PRESR::CLK_8
+        *self == PRES_A::CLK_8
     }
     #[doc = "Checks if the value of the field is `CLK_16`"]
     #[inline(always)]
     pub fn is_clk_16(&self) -> bool {
-        *self == PRESR::CLK_16
+        *self == PRES_A::CLK_16
     }
     #[doc = "Checks if the value of the field is `CLK_32`"]
     #[inline(always)]
     pub fn is_clk_32(&self) -> bool {
-        *self == PRESR::CLK_32
+        *self == PRES_A::CLK_32
     }
     #[doc = "Checks if the value of the field is `CLK_64`"]
     #[inline(always)]
     pub fn is_clk_64(&self) -> bool {
-        *self == PRESR::CLK_64
+        *self == PRES_A::CLK_64
     }
     #[doc = "Checks if the value of the field is `CLK_3`"]
     #[inline(always)]
     pub fn is_clk_3(&self) -> bool {
-        *self == PRESR::CLK_3
+        *self == PRES_A::CLK_3
     }
 }
-#[doc = "Values that can be written to the field `PRES`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PRESW {
-    #[doc = "Selected clock"]
-    CLK_1,
-    #[doc = "Selected clock divided by 2"]
-    CLK_2,
-    #[doc = "Selected clock divided by 4"]
-    CLK_4,
-    #[doc = "Selected clock divided by 8"]
-    CLK_8,
-    #[doc = "Selected clock divided by 16"]
-    CLK_16,
-    #[doc = "Selected clock divided by 32"]
-    CLK_32,
-    #[doc = "Selected clock divided by 64"]
-    CLK_64,
-    #[doc = "Selected clock divided by 3"]
-    CLK_3,
-}
-impl PRESW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PRESW::CLK_1 => 0,
-            PRESW::CLK_2 => 1,
-            PRESW::CLK_4 => 2,
-            PRESW::CLK_8 => 3,
-            PRESW::CLK_16 => 4,
-            PRESW::CLK_32 => 5,
-            PRESW::CLK_64 => 6,
-            PRESW::CLK_3 => 7,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _PRESW<'a> {
+#[doc = "Write proxy for field `PRES`"]
+pub struct PRES_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PRESW<'a> {
+impl<'a> PRES_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: PRESW) -> &'a mut W {
+    pub fn variant(self, variant: PRES_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Selected clock"]
     #[inline(always)]
     pub fn clk_1(self) -> &'a mut W {
-        self.variant(PRESW::CLK_1)
+        self.variant(PRES_A::CLK_1)
     }
     #[doc = "Selected clock divided by 2"]
     #[inline(always)]
     pub fn clk_2(self) -> &'a mut W {
-        self.variant(PRESW::CLK_2)
+        self.variant(PRES_A::CLK_2)
     }
     #[doc = "Selected clock divided by 4"]
     #[inline(always)]
     pub fn clk_4(self) -> &'a mut W {
-        self.variant(PRESW::CLK_4)
+        self.variant(PRES_A::CLK_4)
     }
     #[doc = "Selected clock divided by 8"]
     #[inline(always)]
     pub fn clk_8(self) -> &'a mut W {
-        self.variant(PRESW::CLK_8)
+        self.variant(PRES_A::CLK_8)
     }
     #[doc = "Selected clock divided by 16"]
     #[inline(always)]
     pub fn clk_16(self) -> &'a mut W {
-        self.variant(PRESW::CLK_16)
+        self.variant(PRES_A::CLK_16)
     }
     #[doc = "Selected clock divided by 32"]
     #[inline(always)]
     pub fn clk_32(self) -> &'a mut W {
-        self.variant(PRESW::CLK_32)
+        self.variant(PRES_A::CLK_32)
     }
     #[doc = "Selected clock divided by 64"]
     #[inline(always)]
     pub fn clk_64(self) -> &'a mut W {
-        self.variant(PRESW::CLK_64)
+        self.variant(PRES_A::CLK_64)
     }
     #[doc = "Selected clock divided by 3"]
     #[inline(always)]
     pub fn clk_3(self) -> &'a mut W {
-        self.variant(PRESW::CLK_3)
+        self.variant(PRES_A::CLK_3)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -333,109 +248,91 @@ impl<'a> _PRESW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `MDIV`"]
+#[doc = "Master Clock Division\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MDIVR {
-    #[doc = "Master Clock is Prescaler Output Clock divided by 1."]
-    EQ_PCK,
-    #[doc = "Master Clock is Prescaler Output Clock divided by 2."]
-    PCK_DIV2,
-    #[doc = "Master Clock is Prescaler Output Clock divided by 4."]
-    PCK_DIV4,
-    #[doc = "Master Clock is Prescaler Output Clock divided by 3."]
-    PCK_DIV3,
+#[repr(u8)]
+pub enum MDIV_A {
+    #[doc = "0: Master Clock is Prescaler Output Clock divided by 1."]
+    EQ_PCK = 0,
+    #[doc = "1: Master Clock is Prescaler Output Clock divided by 2."]
+    PCK_DIV2 = 1,
+    #[doc = "2: Master Clock is Prescaler Output Clock divided by 4."]
+    PCK_DIV4 = 2,
+    #[doc = "3: Master Clock is Prescaler Output Clock divided by 3."]
+    PCK_DIV3 = 3,
 }
-impl crate::ToBits<u8> for MDIVR {
+impl From<MDIV_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            MDIVR::EQ_PCK => 0,
-            MDIVR::PCK_DIV2 => 1,
-            MDIVR::PCK_DIV4 => 2,
-            MDIVR::PCK_DIV3 => 3,
-        }
+    fn from(variant: MDIV_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type MDIV_R = crate::FR<u8, MDIVR>;
+#[doc = "Reader of field `MDIV`"]
+pub type MDIV_R = crate::R<u8, MDIV_A>;
 impl MDIV_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> MDIV_A {
+        match self.bits {
+            0 => MDIV_A::EQ_PCK,
+            1 => MDIV_A::PCK_DIV2,
+            2 => MDIV_A::PCK_DIV4,
+            3 => MDIV_A::PCK_DIV3,
+            _ => unreachable!(),
+        }
+    }
     #[doc = "Checks if the value of the field is `EQ_PCK`"]
     #[inline(always)]
     pub fn is_eq_pck(&self) -> bool {
-        *self == MDIVR::EQ_PCK
+        *self == MDIV_A::EQ_PCK
     }
     #[doc = "Checks if the value of the field is `PCK_DIV2`"]
     #[inline(always)]
     pub fn is_pck_div2(&self) -> bool {
-        *self == MDIVR::PCK_DIV2
+        *self == MDIV_A::PCK_DIV2
     }
     #[doc = "Checks if the value of the field is `PCK_DIV4`"]
     #[inline(always)]
     pub fn is_pck_div4(&self) -> bool {
-        *self == MDIVR::PCK_DIV4
+        *self == MDIV_A::PCK_DIV4
     }
     #[doc = "Checks if the value of the field is `PCK_DIV3`"]
     #[inline(always)]
     pub fn is_pck_div3(&self) -> bool {
-        *self == MDIVR::PCK_DIV3
+        *self == MDIV_A::PCK_DIV3
     }
 }
-#[doc = "Values that can be written to the field `MDIV`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MDIVW {
-    #[doc = "Master Clock is Prescaler Output Clock divided by 1."]
-    EQ_PCK,
-    #[doc = "Master Clock is Prescaler Output Clock divided by 2."]
-    PCK_DIV2,
-    #[doc = "Master Clock is Prescaler Output Clock divided by 4."]
-    PCK_DIV4,
-    #[doc = "Master Clock is Prescaler Output Clock divided by 3."]
-    PCK_DIV3,
-}
-impl MDIVW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            MDIVW::EQ_PCK => 0,
-            MDIVW::PCK_DIV2 => 1,
-            MDIVW::PCK_DIV4 => 2,
-            MDIVW::PCK_DIV3 => 3,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _MDIVW<'a> {
+#[doc = "Write proxy for field `MDIV`"]
+pub struct MDIV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MDIVW<'a> {
+impl<'a> MDIV_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: MDIVW) -> &'a mut W {
+    pub fn variant(self, variant: MDIV_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Master Clock is Prescaler Output Clock divided by 1."]
     #[inline(always)]
     pub fn eq_pck(self) -> &'a mut W {
-        self.variant(MDIVW::EQ_PCK)
+        self.variant(MDIV_A::EQ_PCK)
     }
     #[doc = "Master Clock is Prescaler Output Clock divided by 2."]
     #[inline(always)]
     pub fn pck_div2(self) -> &'a mut W {
-        self.variant(MDIVW::PCK_DIV2)
+        self.variant(MDIV_A::PCK_DIV2)
     }
     #[doc = "Master Clock is Prescaler Output Clock divided by 4."]
     #[inline(always)]
     pub fn pck_div4(self) -> &'a mut W {
-        self.variant(MDIVW::PCK_DIV4)
+        self.variant(MDIV_A::PCK_DIV4)
     }
     #[doc = "Master Clock is Prescaler Output Clock divided by 3."]
     #[inline(always)]
     pub fn pck_div3(self) -> &'a mut W {
-        self.variant(MDIVW::PCK_DIV3)
+        self.variant(MDIV_A::PCK_DIV3)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -444,13 +341,13 @@ impl<'a> _MDIVW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type UPLLDIV2_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _UPLLDIV2W<'a> {
+#[doc = "Reader of field `UPLLDIV2`"]
+pub type UPLLDIV2_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `UPLLDIV2`"]
+pub struct UPLLDIV2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _UPLLDIV2W<'a> {
+impl<'a> UPLLDIV2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -469,57 +366,46 @@ impl<'a> _UPLLDIV2W<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - Master Clock Source Selection"]
     #[inline(always)]
     pub fn css(&self) -> CSS_R {
-        CSS_R::new((self.bits() & 0x03) as u8)
+        CSS_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bits 4:6 - Processor Clock Prescaler"]
     #[inline(always)]
     pub fn pres(&self) -> PRES_R {
-        PRES_R::new(((self.bits() >> 4) & 0x07) as u8)
+        PRES_R::new(((self.bits >> 4) & 0x07) as u8)
     }
     #[doc = "Bits 8:9 - Master Clock Division"]
     #[inline(always)]
     pub fn mdiv(&self) -> MDIV_R {
-        MDIV_R::new(((self.bits() >> 8) & 0x03) as u8)
+        MDIV_R::new(((self.bits >> 8) & 0x03) as u8)
     }
     #[doc = "Bit 13 - UPLL Divider by 2"]
     #[inline(always)]
     pub fn uplldiv2(&self) -> UPLLDIV2_R {
-        UPLLDIV2_R::new(((self.bits() >> 13) & 0x01) != 0)
+        UPLLDIV2_R::new(((self.bits >> 13) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - Master Clock Source Selection"]
     #[inline(always)]
-    pub fn css(&mut self) -> _CSSW {
-        _CSSW { w: self }
+    pub fn css(&mut self) -> CSS_W {
+        CSS_W { w: self }
     }
     #[doc = "Bits 4:6 - Processor Clock Prescaler"]
     #[inline(always)]
-    pub fn pres(&mut self) -> _PRESW {
-        _PRESW { w: self }
+    pub fn pres(&mut self) -> PRES_W {
+        PRES_W { w: self }
     }
     #[doc = "Bits 8:9 - Master Clock Division"]
     #[inline(always)]
-    pub fn mdiv(&mut self) -> _MDIVW {
-        _MDIVW { w: self }
+    pub fn mdiv(&mut self) -> MDIV_W {
+        MDIV_W { w: self }
     }
     #[doc = "Bit 13 - UPLL Divider by 2"]
     #[inline(always)]
-    pub fn uplldiv2(&mut self) -> _UPLLDIV2W {
-        _UPLLDIV2W { w: self }
+    pub fn uplldiv2(&mut self) -> UPLLDIV2_W {
+        UPLLDIV2_W { w: self }
     }
 }

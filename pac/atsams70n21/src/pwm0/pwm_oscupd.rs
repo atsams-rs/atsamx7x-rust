@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_OSCUPD {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register PWM_OSCUPD"]
+pub type W = crate::W<u32, super::PWM_OSCUPD>;
+#[doc = "Register PWM_OSCUPD `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_OSCUPD {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _OSCUPH0W<'a> {
+#[doc = "Write proxy for field `OSCUPH0`"]
+pub struct OSCUPH0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSCUPH0W<'a> {
+impl<'a> OSCUPH0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _OSCUPH0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OSCUPH1W<'a> {
+#[doc = "Write proxy for field `OSCUPH1`"]
+pub struct OSCUPH1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSCUPH1W<'a> {
+impl<'a> OSCUPH1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _OSCUPH1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OSCUPH2W<'a> {
+#[doc = "Write proxy for field `OSCUPH2`"]
+pub struct OSCUPH2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSCUPH2W<'a> {
+impl<'a> OSCUPH2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _OSCUPH2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OSCUPH3W<'a> {
+#[doc = "Write proxy for field `OSCUPH3`"]
+pub struct OSCUPH3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSCUPH3W<'a> {
+impl<'a> OSCUPH3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _OSCUPH3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OSCUPL0W<'a> {
+#[doc = "Write proxy for field `OSCUPL0`"]
+pub struct OSCUPL0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSCUPL0W<'a> {
+impl<'a> OSCUPL0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _OSCUPL0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OSCUPL1W<'a> {
+#[doc = "Write proxy for field `OSCUPL1`"]
+pub struct OSCUPL1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSCUPL1W<'a> {
+impl<'a> OSCUPL1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _OSCUPL1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OSCUPL2W<'a> {
+#[doc = "Write proxy for field `OSCUPL2`"]
+pub struct OSCUPL2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSCUPL2W<'a> {
+impl<'a> OSCUPL2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _OSCUPL2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OSCUPL3W<'a> {
+#[doc = "Write proxy for field `OSCUPL3`"]
+pub struct OSCUPL3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OSCUPL3W<'a> {
+impl<'a> OSCUPL3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -204,50 +185,44 @@ impl<'a> _OSCUPL3W<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Output Selection Clear for PWMH output of the channel 0"]
     #[inline(always)]
-    pub fn oscuph0(&mut self) -> _OSCUPH0W {
-        _OSCUPH0W { w: self }
+    pub fn oscuph0(&mut self) -> OSCUPH0_W {
+        OSCUPH0_W { w: self }
     }
     #[doc = "Bit 1 - Output Selection Clear for PWMH output of the channel 1"]
     #[inline(always)]
-    pub fn oscuph1(&mut self) -> _OSCUPH1W {
-        _OSCUPH1W { w: self }
+    pub fn oscuph1(&mut self) -> OSCUPH1_W {
+        OSCUPH1_W { w: self }
     }
     #[doc = "Bit 2 - Output Selection Clear for PWMH output of the channel 2"]
     #[inline(always)]
-    pub fn oscuph2(&mut self) -> _OSCUPH2W {
-        _OSCUPH2W { w: self }
+    pub fn oscuph2(&mut self) -> OSCUPH2_W {
+        OSCUPH2_W { w: self }
     }
     #[doc = "Bit 3 - Output Selection Clear for PWMH output of the channel 3"]
     #[inline(always)]
-    pub fn oscuph3(&mut self) -> _OSCUPH3W {
-        _OSCUPH3W { w: self }
+    pub fn oscuph3(&mut self) -> OSCUPH3_W {
+        OSCUPH3_W { w: self }
     }
     #[doc = "Bit 16 - Output Selection Clear for PWML output of the channel 0"]
     #[inline(always)]
-    pub fn oscupl0(&mut self) -> _OSCUPL0W {
-        _OSCUPL0W { w: self }
+    pub fn oscupl0(&mut self) -> OSCUPL0_W {
+        OSCUPL0_W { w: self }
     }
     #[doc = "Bit 17 - Output Selection Clear for PWML output of the channel 1"]
     #[inline(always)]
-    pub fn oscupl1(&mut self) -> _OSCUPL1W {
-        _OSCUPL1W { w: self }
+    pub fn oscupl1(&mut self) -> OSCUPL1_W {
+        OSCUPL1_W { w: self }
     }
     #[doc = "Bit 18 - Output Selection Clear for PWML output of the channel 2"]
     #[inline(always)]
-    pub fn oscupl2(&mut self) -> _OSCUPL2W {
-        _OSCUPL2W { w: self }
+    pub fn oscupl2(&mut self) -> OSCUPL2_W {
+        OSCUPL2_W { w: self }
     }
     #[doc = "Bit 19 - Output Selection Clear for PWML output of the channel 3"]
     #[inline(always)]
-    pub fn oscupl3(&mut self) -> _OSCUPL3W {
-        _OSCUPL3W { w: self }
+    pub fn oscupl3(&mut self) -> OSCUPL3_W {
+        OSCUPL3_W { w: self }
     }
 }

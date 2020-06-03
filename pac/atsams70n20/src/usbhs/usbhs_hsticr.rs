@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::USBHS_HSTICR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register USBHS_HSTICR"]
+pub type W = crate::W<u32, super::USBHS_HSTICR>;
+#[doc = "Register USBHS_HSTICR `reset()`'s with value 0"]
+impl crate::ResetValue for super::USBHS_HSTICR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _DCONNICW<'a> {
+#[doc = "Write proxy for field `DCONNIC`"]
+pub struct DCONNIC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DCONNICW<'a> {
+impl<'a> DCONNIC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _DCONNICW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _DDISCICW<'a> {
+#[doc = "Write proxy for field `DDISCIC`"]
+pub struct DDISCIC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DDISCICW<'a> {
+impl<'a> DDISCIC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _DDISCICW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RSTICW<'a> {
+#[doc = "Write proxy for field `RSTIC`"]
+pub struct RSTIC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RSTICW<'a> {
+impl<'a> RSTIC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _RSTICW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RSMEDICW<'a> {
+#[doc = "Write proxy for field `RSMEDIC`"]
+pub struct RSMEDIC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RSMEDICW<'a> {
+impl<'a> RSMEDIC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _RSMEDICW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RXRSMICW<'a> {
+#[doc = "Write proxy for field `RXRSMIC`"]
+pub struct RXRSMIC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RXRSMICW<'a> {
+impl<'a> RXRSMIC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _RXRSMICW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _HSOFICW<'a> {
+#[doc = "Write proxy for field `HSOFIC`"]
+pub struct HSOFIC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HSOFICW<'a> {
+impl<'a> HSOFIC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _HSOFICW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _HWUPICW<'a> {
+#[doc = "Write proxy for field `HWUPIC`"]
+pub struct HWUPIC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _HWUPICW<'a> {
+impl<'a> HWUPIC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -182,45 +163,39 @@ impl<'a> _HWUPICW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Device Connection Interrupt Clear"]
     #[inline(always)]
-    pub fn dconnic(&mut self) -> _DCONNICW {
-        _DCONNICW { w: self }
+    pub fn dconnic(&mut self) -> DCONNIC_W {
+        DCONNIC_W { w: self }
     }
     #[doc = "Bit 1 - Device Disconnection Interrupt Clear"]
     #[inline(always)]
-    pub fn ddiscic(&mut self) -> _DDISCICW {
-        _DDISCICW { w: self }
+    pub fn ddiscic(&mut self) -> DDISCIC_W {
+        DDISCIC_W { w: self }
     }
     #[doc = "Bit 2 - USB Reset Sent Interrupt Clear"]
     #[inline(always)]
-    pub fn rstic(&mut self) -> _RSTICW {
-        _RSTICW { w: self }
+    pub fn rstic(&mut self) -> RSTIC_W {
+        RSTIC_W { w: self }
     }
     #[doc = "Bit 3 - Downstream Resume Sent Interrupt Clear"]
     #[inline(always)]
-    pub fn rsmedic(&mut self) -> _RSMEDICW {
-        _RSMEDICW { w: self }
+    pub fn rsmedic(&mut self) -> RSMEDIC_W {
+        RSMEDIC_W { w: self }
     }
     #[doc = "Bit 4 - Upstream Resume Received Interrupt Clear"]
     #[inline(always)]
-    pub fn rxrsmic(&mut self) -> _RXRSMICW {
-        _RXRSMICW { w: self }
+    pub fn rxrsmic(&mut self) -> RXRSMIC_W {
+        RXRSMIC_W { w: self }
     }
     #[doc = "Bit 5 - Host Start of Frame Interrupt Clear"]
     #[inline(always)]
-    pub fn hsofic(&mut self) -> _HSOFICW {
-        _HSOFICW { w: self }
+    pub fn hsofic(&mut self) -> HSOFIC_W {
+        HSOFIC_W { w: self }
     }
     #[doc = "Bit 6 - Host Wake-Up Interrupt Clear"]
     #[inline(always)]
-    pub fn hwupic(&mut self) -> _HWUPICW {
-        _HWUPICW { w: self }
+    pub fn hwupic(&mut self) -> HWUPIC_W {
+        HWUPIC_W { w: self }
     }
 }

@@ -1,27 +1,11 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-impl super::EEFC_FRR {
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-}
-#[doc = r"Reader of the field"]
-pub type FVALUE_R = crate::FR<u32, u32>;
+#[doc = "Reader of register EEFC_FRR"]
+pub type R = crate::R<u32, super::EEFC_FRR>;
+#[doc = "Reader of field `FVALUE`"]
+pub type FVALUE_R = crate::R<u32, u32>;
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:31 - Flash Result Value"]
     #[inline(always)]
     pub fn fvalue(&self) -> FVALUE_R {
-        FVALUE_R::new((self.bits() & 0xffff_ffff) as u32)
+        FVALUE_R::new((self.bits & 0xffff_ffff) as u32)
     }
 }

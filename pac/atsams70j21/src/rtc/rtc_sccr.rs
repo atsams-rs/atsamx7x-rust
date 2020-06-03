@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::RTC_SCCR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register RTC_SCCR"]
+pub type W = crate::W<u32, super::RTC_SCCR>;
+#[doc = "Register RTC_SCCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::RTC_SCCR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _ACKCLRW<'a> {
+#[doc = "Write proxy for field `ACKCLR`"]
+pub struct ACKCLR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ACKCLRW<'a> {
+impl<'a> ACKCLR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _ACKCLRW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ALRCLRW<'a> {
+#[doc = "Write proxy for field `ALRCLR`"]
+pub struct ALRCLR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ALRCLRW<'a> {
+impl<'a> ALRCLR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _ALRCLRW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SECCLRW<'a> {
+#[doc = "Write proxy for field `SECCLR`"]
+pub struct SECCLR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SECCLRW<'a> {
+impl<'a> SECCLR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _SECCLRW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TIMCLRW<'a> {
+#[doc = "Write proxy for field `TIMCLR`"]
+pub struct TIMCLR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIMCLRW<'a> {
+impl<'a> TIMCLR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _TIMCLRW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CALCLRW<'a> {
+#[doc = "Write proxy for field `CALCLR`"]
+pub struct CALCLR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CALCLRW<'a> {
+impl<'a> CALCLR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _CALCLRW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TDERRCLRW<'a> {
+#[doc = "Write proxy for field `TDERRCLR`"]
+pub struct TDERRCLR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TDERRCLRW<'a> {
+impl<'a> TDERRCLR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -160,40 +141,34 @@ impl<'a> _TDERRCLRW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Acknowledge Clear"]
     #[inline(always)]
-    pub fn ackclr(&mut self) -> _ACKCLRW {
-        _ACKCLRW { w: self }
+    pub fn ackclr(&mut self) -> ACKCLR_W {
+        ACKCLR_W { w: self }
     }
     #[doc = "Bit 1 - Alarm Clear"]
     #[inline(always)]
-    pub fn alrclr(&mut self) -> _ALRCLRW {
-        _ALRCLRW { w: self }
+    pub fn alrclr(&mut self) -> ALRCLR_W {
+        ALRCLR_W { w: self }
     }
     #[doc = "Bit 2 - Second Clear"]
     #[inline(always)]
-    pub fn secclr(&mut self) -> _SECCLRW {
-        _SECCLRW { w: self }
+    pub fn secclr(&mut self) -> SECCLR_W {
+        SECCLR_W { w: self }
     }
     #[doc = "Bit 3 - Time Clear"]
     #[inline(always)]
-    pub fn timclr(&mut self) -> _TIMCLRW {
-        _TIMCLRW { w: self }
+    pub fn timclr(&mut self) -> TIMCLR_W {
+        TIMCLR_W { w: self }
     }
     #[doc = "Bit 4 - Calendar Clear"]
     #[inline(always)]
-    pub fn calclr(&mut self) -> _CALCLRW {
-        _CALCLRW { w: self }
+    pub fn calclr(&mut self) -> CALCLR_W {
+        CALCLR_W { w: self }
     }
     #[doc = "Bit 5 - Time and/or Date Free Running Error Clear"]
     #[inline(always)]
-    pub fn tderrclr(&mut self) -> _TDERRCLRW {
-        _TDERRCLRW { w: self }
+    pub fn tderrclr(&mut self) -> TDERRCLR_W {
+        TDERRCLR_W { w: self }
     }
 }

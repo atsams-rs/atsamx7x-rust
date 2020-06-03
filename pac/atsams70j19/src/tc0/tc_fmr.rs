@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TC_FMR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register TC_FMR"]
+pub type R = crate::R<u32, super::TC_FMR>;
+#[doc = "Writer for register TC_FMR"]
+pub type W = crate::W<u32, super::TC_FMR>;
+#[doc = "Register TC_FMR `reset()`'s with value 0"]
+impl crate::ResetValue for super::TC_FMR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type ENCF0_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ENCF0W<'a> {
+#[doc = "Reader of field `ENCF0`"]
+pub type ENCF0_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ENCF0`"]
+pub struct ENCF0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ENCF0W<'a> {
+impl<'a> ENCF0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _ENCF0W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ENCF1_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ENCF1W<'a> {
+#[doc = "Reader of field `ENCF1`"]
+pub type ENCF1_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ENCF1`"]
+pub struct ENCF1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ENCF1W<'a> {
+impl<'a> ENCF1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -96,37 +59,26 @@ impl<'a> _ENCF1W<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Enable Compare Fault Channel 0"]
     #[inline(always)]
     pub fn encf0(&self) -> ENCF0_R {
-        ENCF0_R::new((self.bits() & 0x01) != 0)
+        ENCF0_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Enable Compare Fault Channel 1"]
     #[inline(always)]
     pub fn encf1(&self) -> ENCF1_R {
-        ENCF1_R::new(((self.bits() >> 1) & 0x01) != 0)
+        ENCF1_R::new(((self.bits >> 1) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Enable Compare Fault Channel 0"]
     #[inline(always)]
-    pub fn encf0(&mut self) -> _ENCF0W {
-        _ENCF0W { w: self }
+    pub fn encf0(&mut self) -> ENCF0_W {
+        ENCF0_W { w: self }
     }
     #[doc = "Bit 1 - Enable Compare Fault Channel 1"]
     #[inline(always)]
-    pub fn encf1(&mut self) -> _ENCF1W {
-        _ENCF1W { w: self }
+    pub fn encf1(&mut self) -> ENCF1_W {
+        ENCF1_W { w: self }
     }
 }

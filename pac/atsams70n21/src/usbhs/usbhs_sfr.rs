@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::USBHS_SFR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register USBHS_SFR"]
+pub type W = crate::W<u32, super::USBHS_SFR>;
+#[doc = "Register USBHS_SFR `reset()`'s with value 0"]
+impl crate::ResetValue for super::USBHS_SFR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _RDERRISW<'a> {
+#[doc = "Write proxy for field `RDERRIS`"]
+pub struct RDERRIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RDERRISW<'a> {
+impl<'a> RDERRIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _RDERRISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _VBUSRQSW<'a> {
+#[doc = "Write proxy for field `VBUSRQS`"]
+pub struct VBUSRQS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _VBUSRQSW<'a> {
+impl<'a> VBUSRQS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -72,20 +53,14 @@ impl<'a> _VBUSRQSW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 4 - Remote Device Connection Error Interrupt Set"]
     #[inline(always)]
-    pub fn rderris(&mut self) -> _RDERRISW {
-        _RDERRISW { w: self }
+    pub fn rderris(&mut self) -> RDERRIS_W {
+        RDERRIS_W { w: self }
     }
     #[doc = "Bit 9 - VBUS Request Set"]
     #[inline(always)]
-    pub fn vbusrqs(&mut self) -> _VBUSRQSW {
-        _VBUSRQSW { w: self }
+    pub fn vbusrqs(&mut self) -> VBUSRQS_W {
+        VBUSRQS_W { w: self }
     }
 }

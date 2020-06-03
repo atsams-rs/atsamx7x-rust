@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_LEBR1 {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register PWM_LEBR1"]
+pub type R = crate::R<u32, super::PWM_LEBR1>;
+#[doc = "Writer for register PWM_LEBR1"]
+pub type W = crate::W<u32, super::PWM_LEBR1>;
+#[doc = "Register PWM_LEBR1 `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_LEBR1 {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type LEBDELAY_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _LEBDELAYW<'a> {
+#[doc = "Reader of field `LEBDELAY`"]
+pub type LEBDELAY_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `LEBDELAY`"]
+pub struct LEBDELAY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LEBDELAYW<'a> {
+impl<'a> LEBDELAY_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _LEBDELAYW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PWMLFEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _PWMLFENW<'a> {
+#[doc = "Reader of field `PWMLFEN`"]
+pub type PWMLFEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PWMLFEN`"]
+pub struct PWMLFEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PWMLFENW<'a> {
+impl<'a> PWMLFEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -85,13 +48,13 @@ impl<'a> _PWMLFENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PWMLREN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _PWMLRENW<'a> {
+#[doc = "Reader of field `PWMLREN`"]
+pub type PWMLREN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PWMLREN`"]
+pub struct PWMLREN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PWMLRENW<'a> {
+impl<'a> PWMLREN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -109,13 +72,13 @@ impl<'a> _PWMLRENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PWMHFEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _PWMHFENW<'a> {
+#[doc = "Reader of field `PWMHFEN`"]
+pub type PWMHFEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PWMHFEN`"]
+pub struct PWMHFEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PWMHFENW<'a> {
+impl<'a> PWMHFEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -133,13 +96,13 @@ impl<'a> _PWMHFENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PWMHREN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _PWMHRENW<'a> {
+#[doc = "Reader of field `PWMHREN`"]
+pub type PWMHREN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PWMHREN`"]
+pub struct PWMHREN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PWMHRENW<'a> {
+impl<'a> PWMHREN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -158,67 +121,56 @@ impl<'a> _PWMHRENW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:6 - Leading-Edge Blanking Delay for TRGINx"]
     #[inline(always)]
     pub fn lebdelay(&self) -> LEBDELAY_R {
-        LEBDELAY_R::new((self.bits() & 0x7f) as u8)
+        LEBDELAY_R::new((self.bits & 0x7f) as u8)
     }
     #[doc = "Bit 16 - PWML Falling Edge Enable"]
     #[inline(always)]
     pub fn pwmlfen(&self) -> PWMLFEN_R {
-        PWMLFEN_R::new(((self.bits() >> 16) & 0x01) != 0)
+        PWMLFEN_R::new(((self.bits >> 16) & 0x01) != 0)
     }
     #[doc = "Bit 17 - PWML Rising Edge Enable"]
     #[inline(always)]
     pub fn pwmlren(&self) -> PWMLREN_R {
-        PWMLREN_R::new(((self.bits() >> 17) & 0x01) != 0)
+        PWMLREN_R::new(((self.bits >> 17) & 0x01) != 0)
     }
     #[doc = "Bit 18 - PWMH Falling Edge Enable"]
     #[inline(always)]
     pub fn pwmhfen(&self) -> PWMHFEN_R {
-        PWMHFEN_R::new(((self.bits() >> 18) & 0x01) != 0)
+        PWMHFEN_R::new(((self.bits >> 18) & 0x01) != 0)
     }
     #[doc = "Bit 19 - PWMH Rising Edge Enable"]
     #[inline(always)]
     pub fn pwmhren(&self) -> PWMHREN_R {
-        PWMHREN_R::new(((self.bits() >> 19) & 0x01) != 0)
+        PWMHREN_R::new(((self.bits >> 19) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:6 - Leading-Edge Blanking Delay for TRGINx"]
     #[inline(always)]
-    pub fn lebdelay(&mut self) -> _LEBDELAYW {
-        _LEBDELAYW { w: self }
+    pub fn lebdelay(&mut self) -> LEBDELAY_W {
+        LEBDELAY_W { w: self }
     }
     #[doc = "Bit 16 - PWML Falling Edge Enable"]
     #[inline(always)]
-    pub fn pwmlfen(&mut self) -> _PWMLFENW {
-        _PWMLFENW { w: self }
+    pub fn pwmlfen(&mut self) -> PWMLFEN_W {
+        PWMLFEN_W { w: self }
     }
     #[doc = "Bit 17 - PWML Rising Edge Enable"]
     #[inline(always)]
-    pub fn pwmlren(&mut self) -> _PWMLRENW {
-        _PWMLRENW { w: self }
+    pub fn pwmlren(&mut self) -> PWMLREN_W {
+        PWMLREN_W { w: self }
     }
     #[doc = "Bit 18 - PWMH Falling Edge Enable"]
     #[inline(always)]
-    pub fn pwmhfen(&mut self) -> _PWMHFENW {
-        _PWMHFENW { w: self }
+    pub fn pwmhfen(&mut self) -> PWMHFEN_W {
+        PWMHFEN_W { w: self }
     }
     #[doc = "Bit 19 - PWMH Rising Edge Enable"]
     #[inline(always)]
-    pub fn pwmhren(&mut self) -> _PWMHRENW {
-        _PWMHRENW { w: self }
+    pub fn pwmhren(&mut self) -> PWMHREN_W {
+        PWMHREN_W { w: self }
     }
 }

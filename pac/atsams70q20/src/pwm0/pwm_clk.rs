@@ -1,121 +1,73 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_CLK {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register PWM_CLK"]
+pub type R = crate::R<u32, super::PWM_CLK>;
+#[doc = "Writer for register PWM_CLK"]
+pub type W = crate::W<u32, super::PWM_CLK>;
+#[doc = "Register PWM_CLK `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_CLK {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
+}
+#[doc = "CLKA Divide Factor\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum DIVA_A {
+    #[doc = "0: CLKA clock is turned off"]
+    CLKA_POFF = 0,
+    #[doc = "1: CLKA clock is clock selected by PREA"]
+    PREA = 1,
+}
+impl From<DIVA_A> for u8 {
     #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
+    fn from(variant: DIVA_A) -> Self {
+        variant as _
     }
 }
-#[doc = "Possible values of the field `DIVA`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DIVAR {
-    #[doc = "CLKA clock is turned off"]
-    CLKA_POFF,
-    #[doc = "CLKA clock is clock selected by PREA"]
-    PREA,
-}
-impl crate::ToBits<u8> for DIVAR {
+#[doc = "Reader of field `DIVA`"]
+pub type DIVA_R = crate::R<u8, DIVA_A>;
+impl DIVA_R {
+    #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            DIVAR::CLKA_POFF => 0,
-            DIVAR::PREA => 1,
+    pub fn variant(&self) -> crate::Variant<u8, DIVA_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(DIVA_A::CLKA_POFF),
+            1 => Val(DIVA_A::PREA),
+            i => Res(i),
         }
     }
-}
-#[doc = r"Reader of the field"]
-pub type DIVA_R = crate::FR<u8, DIVAR>;
-impl DIVA_R {
     #[doc = "Checks if the value of the field is `CLKA_POFF`"]
     #[inline(always)]
     pub fn is_clka_poff(&self) -> bool {
-        *self == DIVAR::CLKA_POFF
+        *self == DIVA_A::CLKA_POFF
     }
     #[doc = "Checks if the value of the field is `PREA`"]
     #[inline(always)]
     pub fn is_prea(&self) -> bool {
-        *self == DIVAR::PREA
+        *self == DIVA_A::PREA
     }
 }
-#[doc = "Values that can be written to the field `DIVA`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DIVAW {
-    #[doc = "CLKA clock is turned off"]
-    CLKA_POFF,
-    #[doc = "CLKA clock is clock selected by PREA"]
-    PREA,
-}
-impl DIVAW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            DIVAW::CLKA_POFF => 0,
-            DIVAW::PREA => 1,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _DIVAW<'a> {
+#[doc = "Write proxy for field `DIVA`"]
+pub struct DIVA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DIVAW<'a> {
+impl<'a> DIVA_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: DIVAW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: DIVA_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "CLKA clock is turned off"]
     #[inline(always)]
     pub fn clka_poff(self) -> &'a mut W {
-        self.variant(DIVAW::CLKA_POFF)
+        self.variant(DIVA_A::CLKA_POFF)
     }
     #[doc = "CLKA clock is clock selected by PREA"]
     #[inline(always)]
     pub fn prea(self) -> &'a mut W {
-        self.variant(DIVAW::PREA)
+        self.variant(DIVA_A::PREA)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -124,219 +76,181 @@ impl<'a> _DIVAW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `PREA`"]
+#[doc = "CLKA Source Clock Selection\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PREAR {
-    #[doc = "Peripheral clock"]
-    CLK,
-    #[doc = "Peripheral clock/2"]
-    CLK_DIV2,
-    #[doc = "Peripheral clock/4"]
-    CLK_DIV4,
-    #[doc = "Peripheral clock/8"]
-    CLK_DIV8,
-    #[doc = "Peripheral clock/16"]
-    CLK_DIV16,
-    #[doc = "Peripheral clock/32"]
-    CLK_DIV32,
-    #[doc = "Peripheral clock/64"]
-    CLK_DIV64,
-    #[doc = "Peripheral clock/128"]
-    CLK_DIV128,
-    #[doc = "Peripheral clock/256"]
-    CLK_DIV256,
-    #[doc = "Peripheral clock/512"]
-    CLK_DIV512,
-    #[doc = "Peripheral clock/1024"]
-    CLK_DIV1024,
+#[repr(u8)]
+pub enum PREA_A {
+    #[doc = "0: Peripheral clock"]
+    CLK = 0,
+    #[doc = "1: Peripheral clock/2"]
+    CLK_DIV2 = 1,
+    #[doc = "2: Peripheral clock/4"]
+    CLK_DIV4 = 2,
+    #[doc = "3: Peripheral clock/8"]
+    CLK_DIV8 = 3,
+    #[doc = "4: Peripheral clock/16"]
+    CLK_DIV16 = 4,
+    #[doc = "5: Peripheral clock/32"]
+    CLK_DIV32 = 5,
+    #[doc = "6: Peripheral clock/64"]
+    CLK_DIV64 = 6,
+    #[doc = "7: Peripheral clock/128"]
+    CLK_DIV128 = 7,
+    #[doc = "8: Peripheral clock/256"]
+    CLK_DIV256 = 8,
+    #[doc = "9: Peripheral clock/512"]
+    CLK_DIV512 = 9,
+    #[doc = "10: Peripheral clock/1024"]
+    CLK_DIV1024 = 10,
 }
-impl crate::ToBits<u8> for PREAR {
+impl From<PREA_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            PREAR::CLK => 0,
-            PREAR::CLK_DIV2 => 1,
-            PREAR::CLK_DIV4 => 2,
-            PREAR::CLK_DIV8 => 3,
-            PREAR::CLK_DIV16 => 4,
-            PREAR::CLK_DIV32 => 5,
-            PREAR::CLK_DIV64 => 6,
-            PREAR::CLK_DIV128 => 7,
-            PREAR::CLK_DIV256 => 8,
-            PREAR::CLK_DIV512 => 9,
-            PREAR::CLK_DIV1024 => 10,
-        }
+    fn from(variant: PREA_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type PREA_R = crate::FR<u8, PREAR>;
+#[doc = "Reader of field `PREA`"]
+pub type PREA_R = crate::R<u8, PREA_A>;
 impl PREA_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, PREA_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(PREA_A::CLK),
+            1 => Val(PREA_A::CLK_DIV2),
+            2 => Val(PREA_A::CLK_DIV4),
+            3 => Val(PREA_A::CLK_DIV8),
+            4 => Val(PREA_A::CLK_DIV16),
+            5 => Val(PREA_A::CLK_DIV32),
+            6 => Val(PREA_A::CLK_DIV64),
+            7 => Val(PREA_A::CLK_DIV128),
+            8 => Val(PREA_A::CLK_DIV256),
+            9 => Val(PREA_A::CLK_DIV512),
+            10 => Val(PREA_A::CLK_DIV1024),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `CLK`"]
     #[inline(always)]
     pub fn is_clk(&self) -> bool {
-        *self == PREAR::CLK
+        *self == PREA_A::CLK
     }
     #[doc = "Checks if the value of the field is `CLK_DIV2`"]
     #[inline(always)]
     pub fn is_clk_div2(&self) -> bool {
-        *self == PREAR::CLK_DIV2
+        *self == PREA_A::CLK_DIV2
     }
     #[doc = "Checks if the value of the field is `CLK_DIV4`"]
     #[inline(always)]
     pub fn is_clk_div4(&self) -> bool {
-        *self == PREAR::CLK_DIV4
+        *self == PREA_A::CLK_DIV4
     }
     #[doc = "Checks if the value of the field is `CLK_DIV8`"]
     #[inline(always)]
     pub fn is_clk_div8(&self) -> bool {
-        *self == PREAR::CLK_DIV8
+        *self == PREA_A::CLK_DIV8
     }
     #[doc = "Checks if the value of the field is `CLK_DIV16`"]
     #[inline(always)]
     pub fn is_clk_div16(&self) -> bool {
-        *self == PREAR::CLK_DIV16
+        *self == PREA_A::CLK_DIV16
     }
     #[doc = "Checks if the value of the field is `CLK_DIV32`"]
     #[inline(always)]
     pub fn is_clk_div32(&self) -> bool {
-        *self == PREAR::CLK_DIV32
+        *self == PREA_A::CLK_DIV32
     }
     #[doc = "Checks if the value of the field is `CLK_DIV64`"]
     #[inline(always)]
     pub fn is_clk_div64(&self) -> bool {
-        *self == PREAR::CLK_DIV64
+        *self == PREA_A::CLK_DIV64
     }
     #[doc = "Checks if the value of the field is `CLK_DIV128`"]
     #[inline(always)]
     pub fn is_clk_div128(&self) -> bool {
-        *self == PREAR::CLK_DIV128
+        *self == PREA_A::CLK_DIV128
     }
     #[doc = "Checks if the value of the field is `CLK_DIV256`"]
     #[inline(always)]
     pub fn is_clk_div256(&self) -> bool {
-        *self == PREAR::CLK_DIV256
+        *self == PREA_A::CLK_DIV256
     }
     #[doc = "Checks if the value of the field is `CLK_DIV512`"]
     #[inline(always)]
     pub fn is_clk_div512(&self) -> bool {
-        *self == PREAR::CLK_DIV512
+        *self == PREA_A::CLK_DIV512
     }
     #[doc = "Checks if the value of the field is `CLK_DIV1024`"]
     #[inline(always)]
     pub fn is_clk_div1024(&self) -> bool {
-        *self == PREAR::CLK_DIV1024
+        *self == PREA_A::CLK_DIV1024
     }
 }
-#[doc = "Values that can be written to the field `PREA`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PREAW {
-    #[doc = "Peripheral clock"]
-    CLK,
-    #[doc = "Peripheral clock/2"]
-    CLK_DIV2,
-    #[doc = "Peripheral clock/4"]
-    CLK_DIV4,
-    #[doc = "Peripheral clock/8"]
-    CLK_DIV8,
-    #[doc = "Peripheral clock/16"]
-    CLK_DIV16,
-    #[doc = "Peripheral clock/32"]
-    CLK_DIV32,
-    #[doc = "Peripheral clock/64"]
-    CLK_DIV64,
-    #[doc = "Peripheral clock/128"]
-    CLK_DIV128,
-    #[doc = "Peripheral clock/256"]
-    CLK_DIV256,
-    #[doc = "Peripheral clock/512"]
-    CLK_DIV512,
-    #[doc = "Peripheral clock/1024"]
-    CLK_DIV1024,
-}
-impl PREAW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PREAW::CLK => 0,
-            PREAW::CLK_DIV2 => 1,
-            PREAW::CLK_DIV4 => 2,
-            PREAW::CLK_DIV8 => 3,
-            PREAW::CLK_DIV16 => 4,
-            PREAW::CLK_DIV32 => 5,
-            PREAW::CLK_DIV64 => 6,
-            PREAW::CLK_DIV128 => 7,
-            PREAW::CLK_DIV256 => 8,
-            PREAW::CLK_DIV512 => 9,
-            PREAW::CLK_DIV1024 => 10,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _PREAW<'a> {
+#[doc = "Write proxy for field `PREA`"]
+pub struct PREA_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PREAW<'a> {
+impl<'a> PREA_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: PREAW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: PREA_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Peripheral clock"]
     #[inline(always)]
     pub fn clk(self) -> &'a mut W {
-        self.variant(PREAW::CLK)
+        self.variant(PREA_A::CLK)
     }
     #[doc = "Peripheral clock/2"]
     #[inline(always)]
     pub fn clk_div2(self) -> &'a mut W {
-        self.variant(PREAW::CLK_DIV2)
+        self.variant(PREA_A::CLK_DIV2)
     }
     #[doc = "Peripheral clock/4"]
     #[inline(always)]
     pub fn clk_div4(self) -> &'a mut W {
-        self.variant(PREAW::CLK_DIV4)
+        self.variant(PREA_A::CLK_DIV4)
     }
     #[doc = "Peripheral clock/8"]
     #[inline(always)]
     pub fn clk_div8(self) -> &'a mut W {
-        self.variant(PREAW::CLK_DIV8)
+        self.variant(PREA_A::CLK_DIV8)
     }
     #[doc = "Peripheral clock/16"]
     #[inline(always)]
     pub fn clk_div16(self) -> &'a mut W {
-        self.variant(PREAW::CLK_DIV16)
+        self.variant(PREA_A::CLK_DIV16)
     }
     #[doc = "Peripheral clock/32"]
     #[inline(always)]
     pub fn clk_div32(self) -> &'a mut W {
-        self.variant(PREAW::CLK_DIV32)
+        self.variant(PREA_A::CLK_DIV32)
     }
     #[doc = "Peripheral clock/64"]
     #[inline(always)]
     pub fn clk_div64(self) -> &'a mut W {
-        self.variant(PREAW::CLK_DIV64)
+        self.variant(PREA_A::CLK_DIV64)
     }
     #[doc = "Peripheral clock/128"]
     #[inline(always)]
     pub fn clk_div128(self) -> &'a mut W {
-        self.variant(PREAW::CLK_DIV128)
+        self.variant(PREA_A::CLK_DIV128)
     }
     #[doc = "Peripheral clock/256"]
     #[inline(always)]
     pub fn clk_div256(self) -> &'a mut W {
-        self.variant(PREAW::CLK_DIV256)
+        self.variant(PREA_A::CLK_DIV256)
     }
     #[doc = "Peripheral clock/512"]
     #[inline(always)]
     pub fn clk_div512(self) -> &'a mut W {
-        self.variant(PREAW::CLK_DIV512)
+        self.variant(PREA_A::CLK_DIV512)
     }
     #[doc = "Peripheral clock/1024"]
     #[inline(always)]
     pub fn clk_div1024(self) -> &'a mut W {
-        self.variant(PREAW::CLK_DIV1024)
+        self.variant(PREA_A::CLK_DIV1024)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -345,75 +259,64 @@ impl<'a> _PREAW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `DIVB`"]
+#[doc = "CLKB Divide Factor\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DIVBR {
-    #[doc = "CLKB clock is turned off"]
-    CLKB_POFF,
-    #[doc = "CLKB clock is clock selected by PREB"]
-    PREB,
+#[repr(u8)]
+pub enum DIVB_A {
+    #[doc = "0: CLKB clock is turned off"]
+    CLKB_POFF = 0,
+    #[doc = "1: CLKB clock is clock selected by PREB"]
+    PREB = 1,
 }
-impl crate::ToBits<u8> for DIVBR {
+impl From<DIVB_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            DIVBR::CLKB_POFF => 0,
-            DIVBR::PREB => 1,
-        }
+    fn from(variant: DIVB_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type DIVB_R = crate::FR<u8, DIVBR>;
+#[doc = "Reader of field `DIVB`"]
+pub type DIVB_R = crate::R<u8, DIVB_A>;
 impl DIVB_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, DIVB_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(DIVB_A::CLKB_POFF),
+            1 => Val(DIVB_A::PREB),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `CLKB_POFF`"]
     #[inline(always)]
     pub fn is_clkb_poff(&self) -> bool {
-        *self == DIVBR::CLKB_POFF
+        *self == DIVB_A::CLKB_POFF
     }
     #[doc = "Checks if the value of the field is `PREB`"]
     #[inline(always)]
     pub fn is_preb(&self) -> bool {
-        *self == DIVBR::PREB
+        *self == DIVB_A::PREB
     }
 }
-#[doc = "Values that can be written to the field `DIVB`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum DIVBW {
-    #[doc = "CLKB clock is turned off"]
-    CLKB_POFF,
-    #[doc = "CLKB clock is clock selected by PREB"]
-    PREB,
-}
-impl DIVBW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            DIVBW::CLKB_POFF => 0,
-            DIVBW::PREB => 1,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _DIVBW<'a> {
+#[doc = "Write proxy for field `DIVB`"]
+pub struct DIVB_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DIVBW<'a> {
+impl<'a> DIVB_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: DIVBW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: DIVB_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "CLKB clock is turned off"]
     #[inline(always)]
     pub fn clkb_poff(self) -> &'a mut W {
-        self.variant(DIVBW::CLKB_POFF)
+        self.variant(DIVB_A::CLKB_POFF)
     }
     #[doc = "CLKB clock is clock selected by PREB"]
     #[inline(always)]
     pub fn preb(self) -> &'a mut W {
-        self.variant(DIVBW::PREB)
+        self.variant(DIVB_A::PREB)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -422,219 +325,181 @@ impl<'a> _DIVBW<'a> {
         self.w
     }
 }
-#[doc = "Possible values of the field `PREB`"]
+#[doc = "CLKB Source Clock Selection\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PREBR {
-    #[doc = "Peripheral clock"]
-    CLK,
-    #[doc = "Peripheral clock/2"]
-    CLK_DIV2,
-    #[doc = "Peripheral clock/4"]
-    CLK_DIV4,
-    #[doc = "Peripheral clock/8"]
-    CLK_DIV8,
-    #[doc = "Peripheral clock/16"]
-    CLK_DIV16,
-    #[doc = "Peripheral clock/32"]
-    CLK_DIV32,
-    #[doc = "Peripheral clock/64"]
-    CLK_DIV64,
-    #[doc = "Peripheral clock/128"]
-    CLK_DIV128,
-    #[doc = "Peripheral clock/256"]
-    CLK_DIV256,
-    #[doc = "Peripheral clock/512"]
-    CLK_DIV512,
-    #[doc = "Peripheral clock/1024"]
-    CLK_DIV1024,
+#[repr(u8)]
+pub enum PREB_A {
+    #[doc = "0: Peripheral clock"]
+    CLK = 0,
+    #[doc = "1: Peripheral clock/2"]
+    CLK_DIV2 = 1,
+    #[doc = "2: Peripheral clock/4"]
+    CLK_DIV4 = 2,
+    #[doc = "3: Peripheral clock/8"]
+    CLK_DIV8 = 3,
+    #[doc = "4: Peripheral clock/16"]
+    CLK_DIV16 = 4,
+    #[doc = "5: Peripheral clock/32"]
+    CLK_DIV32 = 5,
+    #[doc = "6: Peripheral clock/64"]
+    CLK_DIV64 = 6,
+    #[doc = "7: Peripheral clock/128"]
+    CLK_DIV128 = 7,
+    #[doc = "8: Peripheral clock/256"]
+    CLK_DIV256 = 8,
+    #[doc = "9: Peripheral clock/512"]
+    CLK_DIV512 = 9,
+    #[doc = "10: Peripheral clock/1024"]
+    CLK_DIV1024 = 10,
 }
-impl crate::ToBits<u8> for PREBR {
+impl From<PREB_A> for u8 {
     #[inline(always)]
-    fn _bits(&self) -> u8 {
-        match *self {
-            PREBR::CLK => 0,
-            PREBR::CLK_DIV2 => 1,
-            PREBR::CLK_DIV4 => 2,
-            PREBR::CLK_DIV8 => 3,
-            PREBR::CLK_DIV16 => 4,
-            PREBR::CLK_DIV32 => 5,
-            PREBR::CLK_DIV64 => 6,
-            PREBR::CLK_DIV128 => 7,
-            PREBR::CLK_DIV256 => 8,
-            PREBR::CLK_DIV512 => 9,
-            PREBR::CLK_DIV1024 => 10,
-        }
+    fn from(variant: PREB_A) -> Self {
+        variant as _
     }
 }
-#[doc = r"Reader of the field"]
-pub type PREB_R = crate::FR<u8, PREBR>;
+#[doc = "Reader of field `PREB`"]
+pub type PREB_R = crate::R<u8, PREB_A>;
 impl PREB_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, PREB_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(PREB_A::CLK),
+            1 => Val(PREB_A::CLK_DIV2),
+            2 => Val(PREB_A::CLK_DIV4),
+            3 => Val(PREB_A::CLK_DIV8),
+            4 => Val(PREB_A::CLK_DIV16),
+            5 => Val(PREB_A::CLK_DIV32),
+            6 => Val(PREB_A::CLK_DIV64),
+            7 => Val(PREB_A::CLK_DIV128),
+            8 => Val(PREB_A::CLK_DIV256),
+            9 => Val(PREB_A::CLK_DIV512),
+            10 => Val(PREB_A::CLK_DIV1024),
+            i => Res(i),
+        }
+    }
     #[doc = "Checks if the value of the field is `CLK`"]
     #[inline(always)]
     pub fn is_clk(&self) -> bool {
-        *self == PREBR::CLK
+        *self == PREB_A::CLK
     }
     #[doc = "Checks if the value of the field is `CLK_DIV2`"]
     #[inline(always)]
     pub fn is_clk_div2(&self) -> bool {
-        *self == PREBR::CLK_DIV2
+        *self == PREB_A::CLK_DIV2
     }
     #[doc = "Checks if the value of the field is `CLK_DIV4`"]
     #[inline(always)]
     pub fn is_clk_div4(&self) -> bool {
-        *self == PREBR::CLK_DIV4
+        *self == PREB_A::CLK_DIV4
     }
     #[doc = "Checks if the value of the field is `CLK_DIV8`"]
     #[inline(always)]
     pub fn is_clk_div8(&self) -> bool {
-        *self == PREBR::CLK_DIV8
+        *self == PREB_A::CLK_DIV8
     }
     #[doc = "Checks if the value of the field is `CLK_DIV16`"]
     #[inline(always)]
     pub fn is_clk_div16(&self) -> bool {
-        *self == PREBR::CLK_DIV16
+        *self == PREB_A::CLK_DIV16
     }
     #[doc = "Checks if the value of the field is `CLK_DIV32`"]
     #[inline(always)]
     pub fn is_clk_div32(&self) -> bool {
-        *self == PREBR::CLK_DIV32
+        *self == PREB_A::CLK_DIV32
     }
     #[doc = "Checks if the value of the field is `CLK_DIV64`"]
     #[inline(always)]
     pub fn is_clk_div64(&self) -> bool {
-        *self == PREBR::CLK_DIV64
+        *self == PREB_A::CLK_DIV64
     }
     #[doc = "Checks if the value of the field is `CLK_DIV128`"]
     #[inline(always)]
     pub fn is_clk_div128(&self) -> bool {
-        *self == PREBR::CLK_DIV128
+        *self == PREB_A::CLK_DIV128
     }
     #[doc = "Checks if the value of the field is `CLK_DIV256`"]
     #[inline(always)]
     pub fn is_clk_div256(&self) -> bool {
-        *self == PREBR::CLK_DIV256
+        *self == PREB_A::CLK_DIV256
     }
     #[doc = "Checks if the value of the field is `CLK_DIV512`"]
     #[inline(always)]
     pub fn is_clk_div512(&self) -> bool {
-        *self == PREBR::CLK_DIV512
+        *self == PREB_A::CLK_DIV512
     }
     #[doc = "Checks if the value of the field is `CLK_DIV1024`"]
     #[inline(always)]
     pub fn is_clk_div1024(&self) -> bool {
-        *self == PREBR::CLK_DIV1024
+        *self == PREB_A::CLK_DIV1024
     }
 }
-#[doc = "Values that can be written to the field `PREB`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PREBW {
-    #[doc = "Peripheral clock"]
-    CLK,
-    #[doc = "Peripheral clock/2"]
-    CLK_DIV2,
-    #[doc = "Peripheral clock/4"]
-    CLK_DIV4,
-    #[doc = "Peripheral clock/8"]
-    CLK_DIV8,
-    #[doc = "Peripheral clock/16"]
-    CLK_DIV16,
-    #[doc = "Peripheral clock/32"]
-    CLK_DIV32,
-    #[doc = "Peripheral clock/64"]
-    CLK_DIV64,
-    #[doc = "Peripheral clock/128"]
-    CLK_DIV128,
-    #[doc = "Peripheral clock/256"]
-    CLK_DIV256,
-    #[doc = "Peripheral clock/512"]
-    CLK_DIV512,
-    #[doc = "Peripheral clock/1024"]
-    CLK_DIV1024,
-}
-impl PREBW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PREBW::CLK => 0,
-            PREBW::CLK_DIV2 => 1,
-            PREBW::CLK_DIV4 => 2,
-            PREBW::CLK_DIV8 => 3,
-            PREBW::CLK_DIV16 => 4,
-            PREBW::CLK_DIV32 => 5,
-            PREBW::CLK_DIV64 => 6,
-            PREBW::CLK_DIV128 => 7,
-            PREBW::CLK_DIV256 => 8,
-            PREBW::CLK_DIV512 => 9,
-            PREBW::CLK_DIV1024 => 10,
-        }
-    }
-}
-#[doc = r"Proxy"]
-pub struct _PREBW<'a> {
+#[doc = "Write proxy for field `PREB`"]
+pub struct PREB_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PREBW<'a> {
+impl<'a> PREB_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: PREBW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: PREB_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Peripheral clock"]
     #[inline(always)]
     pub fn clk(self) -> &'a mut W {
-        self.variant(PREBW::CLK)
+        self.variant(PREB_A::CLK)
     }
     #[doc = "Peripheral clock/2"]
     #[inline(always)]
     pub fn clk_div2(self) -> &'a mut W {
-        self.variant(PREBW::CLK_DIV2)
+        self.variant(PREB_A::CLK_DIV2)
     }
     #[doc = "Peripheral clock/4"]
     #[inline(always)]
     pub fn clk_div4(self) -> &'a mut W {
-        self.variant(PREBW::CLK_DIV4)
+        self.variant(PREB_A::CLK_DIV4)
     }
     #[doc = "Peripheral clock/8"]
     #[inline(always)]
     pub fn clk_div8(self) -> &'a mut W {
-        self.variant(PREBW::CLK_DIV8)
+        self.variant(PREB_A::CLK_DIV8)
     }
     #[doc = "Peripheral clock/16"]
     #[inline(always)]
     pub fn clk_div16(self) -> &'a mut W {
-        self.variant(PREBW::CLK_DIV16)
+        self.variant(PREB_A::CLK_DIV16)
     }
     #[doc = "Peripheral clock/32"]
     #[inline(always)]
     pub fn clk_div32(self) -> &'a mut W {
-        self.variant(PREBW::CLK_DIV32)
+        self.variant(PREB_A::CLK_DIV32)
     }
     #[doc = "Peripheral clock/64"]
     #[inline(always)]
     pub fn clk_div64(self) -> &'a mut W {
-        self.variant(PREBW::CLK_DIV64)
+        self.variant(PREB_A::CLK_DIV64)
     }
     #[doc = "Peripheral clock/128"]
     #[inline(always)]
     pub fn clk_div128(self) -> &'a mut W {
-        self.variant(PREBW::CLK_DIV128)
+        self.variant(PREB_A::CLK_DIV128)
     }
     #[doc = "Peripheral clock/256"]
     #[inline(always)]
     pub fn clk_div256(self) -> &'a mut W {
-        self.variant(PREBW::CLK_DIV256)
+        self.variant(PREB_A::CLK_DIV256)
     }
     #[doc = "Peripheral clock/512"]
     #[inline(always)]
     pub fn clk_div512(self) -> &'a mut W {
-        self.variant(PREBW::CLK_DIV512)
+        self.variant(PREB_A::CLK_DIV512)
     }
     #[doc = "Peripheral clock/1024"]
     #[inline(always)]
     pub fn clk_div1024(self) -> &'a mut W {
-        self.variant(PREBW::CLK_DIV1024)
+        self.variant(PREB_A::CLK_DIV1024)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -644,57 +509,46 @@ impl<'a> _PREBW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:7 - CLKA Divide Factor"]
     #[inline(always)]
     pub fn diva(&self) -> DIVA_R {
-        DIVA_R::new((self.bits() & 0xff) as u8)
+        DIVA_R::new((self.bits & 0xff) as u8)
     }
     #[doc = "Bits 8:11 - CLKA Source Clock Selection"]
     #[inline(always)]
     pub fn prea(&self) -> PREA_R {
-        PREA_R::new(((self.bits() >> 8) & 0x0f) as u8)
+        PREA_R::new(((self.bits >> 8) & 0x0f) as u8)
     }
     #[doc = "Bits 16:23 - CLKB Divide Factor"]
     #[inline(always)]
     pub fn divb(&self) -> DIVB_R {
-        DIVB_R::new(((self.bits() >> 16) & 0xff) as u8)
+        DIVB_R::new(((self.bits >> 16) & 0xff) as u8)
     }
     #[doc = "Bits 24:27 - CLKB Source Clock Selection"]
     #[inline(always)]
     pub fn preb(&self) -> PREB_R {
-        PREB_R::new(((self.bits() >> 24) & 0x0f) as u8)
+        PREB_R::new(((self.bits >> 24) & 0x0f) as u8)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:7 - CLKA Divide Factor"]
     #[inline(always)]
-    pub fn diva(&mut self) -> _DIVAW {
-        _DIVAW { w: self }
+    pub fn diva(&mut self) -> DIVA_W {
+        DIVA_W { w: self }
     }
     #[doc = "Bits 8:11 - CLKA Source Clock Selection"]
     #[inline(always)]
-    pub fn prea(&mut self) -> _PREAW {
-        _PREAW { w: self }
+    pub fn prea(&mut self) -> PREA_W {
+        PREA_W { w: self }
     }
     #[doc = "Bits 16:23 - CLKB Divide Factor"]
     #[inline(always)]
-    pub fn divb(&mut self) -> _DIVBW {
-        _DIVBW { w: self }
+    pub fn divb(&mut self) -> DIVB_W {
+        DIVB_W { w: self }
     }
     #[doc = "Bits 24:27 - CLKB Source Clock Selection"]
     #[inline(always)]
-    pub fn preb(&mut self) -> _PREBW {
-        _PREBW { w: self }
+    pub fn preb(&mut self) -> PREB_W {
+        PREB_W { w: self }
     }
 }

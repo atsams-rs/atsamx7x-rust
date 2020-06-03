@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::XDMAC_CID {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register XDMAC_CID"]
+pub type W = crate::W<u32, super::XDMAC_CID>;
+#[doc = "Register XDMAC_CID `reset()`'s with value 0"]
+impl crate::ResetValue for super::XDMAC_CID {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _BIDW<'a> {
+#[doc = "Write proxy for field `BID`"]
+pub struct BID_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BIDW<'a> {
+impl<'a> BID_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _BIDW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LIDW<'a> {
+#[doc = "Write proxy for field `LID`"]
+pub struct LID_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LIDW<'a> {
+impl<'a> LID_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _LIDW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _DIDW<'a> {
+#[doc = "Write proxy for field `DID`"]
+pub struct DID_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DIDW<'a> {
+impl<'a> DID_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _DIDW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _FIDW<'a> {
+#[doc = "Write proxy for field `FID`"]
+pub struct FID_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FIDW<'a> {
+impl<'a> FID_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _FIDW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RBEIDW<'a> {
+#[doc = "Write proxy for field `RBEID`"]
+pub struct RBEID_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RBEIDW<'a> {
+impl<'a> RBEID_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _RBEIDW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _WBEIDW<'a> {
+#[doc = "Write proxy for field `WBEID`"]
+pub struct WBEID_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WBEIDW<'a> {
+impl<'a> WBEID_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _WBEIDW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ROIDW<'a> {
+#[doc = "Write proxy for field `ROID`"]
+pub struct ROID_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ROIDW<'a> {
+impl<'a> ROID_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -182,45 +163,39 @@ impl<'a> _ROIDW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - End of Block Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn bid(&mut self) -> _BIDW {
-        _BIDW { w: self }
+    pub fn bid(&mut self) -> BID_W {
+        BID_W { w: self }
     }
     #[doc = "Bit 1 - End of Linked List Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn lid(&mut self) -> _LIDW {
-        _LIDW { w: self }
+    pub fn lid(&mut self) -> LID_W {
+        LID_W { w: self }
     }
     #[doc = "Bit 2 - End of Disable Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn did(&mut self) -> _DIDW {
-        _DIDW { w: self }
+    pub fn did(&mut self) -> DID_W {
+        DID_W { w: self }
     }
     #[doc = "Bit 3 - End of Flush Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn fid(&mut self) -> _FIDW {
-        _FIDW { w: self }
+    pub fn fid(&mut self) -> FID_W {
+        FID_W { w: self }
     }
     #[doc = "Bit 4 - Read Bus Error Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn rbeid(&mut self) -> _RBEIDW {
-        _RBEIDW { w: self }
+    pub fn rbeid(&mut self) -> RBEID_W {
+        RBEID_W { w: self }
     }
     #[doc = "Bit 5 - Write Bus Error Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn wbeid(&mut self) -> _WBEIDW {
-        _WBEIDW { w: self }
+    pub fn wbeid(&mut self) -> WBEID_W {
+        WBEID_W { w: self }
     }
     #[doc = "Bit 6 - Request Overflow Error Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn roid(&mut self) -> _ROIDW {
-        _ROIDW { w: self }
+    pub fn roid(&mut self) -> ROID_W {
+        ROID_W { w: self }
     }
 }

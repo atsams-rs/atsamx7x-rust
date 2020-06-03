@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::QSPI_IDR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register QSPI_IDR"]
+pub type W = crate::W<u32, super::QSPI_IDR>;
+#[doc = "Register QSPI_IDR `reset()`'s with value 0"]
+impl crate::ResetValue for super::QSPI_IDR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _RDRFW<'a> {
+#[doc = "Write proxy for field `RDRF`"]
+pub struct RDRF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RDRFW<'a> {
+impl<'a> RDRF_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _RDRFW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TDREW<'a> {
+#[doc = "Write proxy for field `TDRE`"]
+pub struct TDRE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TDREW<'a> {
+impl<'a> TDRE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _TDREW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TXEMPTYW<'a> {
+#[doc = "Write proxy for field `TXEMPTY`"]
+pub struct TXEMPTY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXEMPTYW<'a> {
+impl<'a> TXEMPTY_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _TXEMPTYW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _OVRESW<'a> {
+#[doc = "Write proxy for field `OVRES`"]
+pub struct OVRES_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _OVRESW<'a> {
+impl<'a> OVRES_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _OVRESW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CSRW<'a> {
+#[doc = "Write proxy for field `CSR`"]
+pub struct CSR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CSRW<'a> {
+impl<'a> CSR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _CSRW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CSSW<'a> {
+#[doc = "Write proxy for field `CSS`"]
+pub struct CSS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CSSW<'a> {
+impl<'a> CSS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _CSSW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _INSTREW<'a> {
+#[doc = "Write proxy for field `INSTRE`"]
+pub struct INSTRE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _INSTREW<'a> {
+impl<'a> INSTRE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -182,45 +163,39 @@ impl<'a> _INSTREW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Receive Data Register Full Interrupt Disable"]
     #[inline(always)]
-    pub fn rdrf(&mut self) -> _RDRFW {
-        _RDRFW { w: self }
+    pub fn rdrf(&mut self) -> RDRF_W {
+        RDRF_W { w: self }
     }
     #[doc = "Bit 1 - Transmit Data Register Empty Interrupt Disable"]
     #[inline(always)]
-    pub fn tdre(&mut self) -> _TDREW {
-        _TDREW { w: self }
+    pub fn tdre(&mut self) -> TDRE_W {
+        TDRE_W { w: self }
     }
     #[doc = "Bit 2 - Transmission Registers Empty Disable"]
     #[inline(always)]
-    pub fn txempty(&mut self) -> _TXEMPTYW {
-        _TXEMPTYW { w: self }
+    pub fn txempty(&mut self) -> TXEMPTY_W {
+        TXEMPTY_W { w: self }
     }
     #[doc = "Bit 3 - Overrun Error Interrupt Disable"]
     #[inline(always)]
-    pub fn ovres(&mut self) -> _OVRESW {
-        _OVRESW { w: self }
+    pub fn ovres(&mut self) -> OVRES_W {
+        OVRES_W { w: self }
     }
     #[doc = "Bit 8 - Chip Select Rise Interrupt Disable"]
     #[inline(always)]
-    pub fn csr(&mut self) -> _CSRW {
-        _CSRW { w: self }
+    pub fn csr(&mut self) -> CSR_W {
+        CSR_W { w: self }
     }
     #[doc = "Bit 9 - Chip Select Status Interrupt Disable"]
     #[inline(always)]
-    pub fn css(&mut self) -> _CSSW {
-        _CSSW { w: self }
+    pub fn css(&mut self) -> CSS_W {
+        CSS_W { w: self }
     }
     #[doc = "Bit 10 - Instruction End Interrupt Disable"]
     #[inline(always)]
-    pub fn instre(&mut self) -> _INSTREW {
-        _INSTREW { w: self }
+    pub fn instre(&mut self) -> INSTRE_W {
+        INSTRE_W { w: self }
     }
 }

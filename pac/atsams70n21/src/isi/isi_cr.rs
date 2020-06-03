@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::ISI_CR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register ISI_CR"]
+pub type W = crate::W<u32, super::ISI_CR>;
+#[doc = "Register ISI_CR `reset()`'s with value 0"]
+impl crate::ResetValue for super::ISI_CR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _ISI_ENW<'a> {
+#[doc = "Write proxy for field `ISI_EN`"]
+pub struct ISI_EN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ISI_ENW<'a> {
+impl<'a> ISI_EN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _ISI_ENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ISI_DISW<'a> {
+#[doc = "Write proxy for field `ISI_DIS`"]
+pub struct ISI_DIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ISI_DISW<'a> {
+impl<'a> ISI_DIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _ISI_DISW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ISI_SRSTW<'a> {
+#[doc = "Write proxy for field `ISI_SRST`"]
+pub struct ISI_SRST_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ISI_SRSTW<'a> {
+impl<'a> ISI_SRST_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _ISI_SRSTW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ISI_CDCW<'a> {
+#[doc = "Write proxy for field `ISI_CDC`"]
+pub struct ISI_CDC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ISI_CDCW<'a> {
+impl<'a> ISI_CDC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -116,30 +97,24 @@ impl<'a> _ISI_CDCW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - ISI Module Enable Request"]
     #[inline(always)]
-    pub fn isi_en(&mut self) -> _ISI_ENW {
-        _ISI_ENW { w: self }
+    pub fn isi_en(&mut self) -> ISI_EN_W {
+        ISI_EN_W { w: self }
     }
     #[doc = "Bit 1 - ISI Module Disable Request"]
     #[inline(always)]
-    pub fn isi_dis(&mut self) -> _ISI_DISW {
-        _ISI_DISW { w: self }
+    pub fn isi_dis(&mut self) -> ISI_DIS_W {
+        ISI_DIS_W { w: self }
     }
     #[doc = "Bit 2 - ISI Software Reset Request"]
     #[inline(always)]
-    pub fn isi_srst(&mut self) -> _ISI_SRSTW {
-        _ISI_SRSTW { w: self }
+    pub fn isi_srst(&mut self) -> ISI_SRST_W {
+        ISI_SRST_W { w: self }
     }
     #[doc = "Bit 8 - ISI Codec Request"]
     #[inline(always)]
-    pub fn isi_cdc(&mut self) -> _ISI_CDCW {
-        _ISI_CDCW { w: self }
+    pub fn isi_cdc(&mut self) -> ISI_CDC_W {
+        ISI_CDC_W { w: self }
     }
 }

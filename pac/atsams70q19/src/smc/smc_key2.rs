@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SMC_KEY2 {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register SMC_KEY2"]
+pub type W = crate::W<u32, super::SMC_KEY2>;
+#[doc = "Register SMC_KEY2 `reset()`'s with value 0"]
+impl crate::ResetValue for super::SMC_KEY2 {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _KEY2W<'a> {
+#[doc = "Write proxy for field `KEY2`"]
+pub struct KEY2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _KEY2W<'a> {
+impl<'a> KEY2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u32) -> &'a mut W {
@@ -40,15 +21,9 @@ impl<'a> _KEY2W<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:31 - Off Chip Memory Scrambling (OCMS) Key Part 2"]
     #[inline(always)]
-    pub fn key2(&mut self) -> _KEY2W {
-        _KEY2W { w: self }
+    pub fn key2(&mut self) -> KEY2_W {
+        KEY2_W { w: self }
     }
 }

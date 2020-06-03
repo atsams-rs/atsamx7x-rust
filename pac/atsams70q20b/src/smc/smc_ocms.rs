@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SMC_OCMS {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register SMC_OCMS"]
+pub type R = crate::R<u32, super::SMC_OCMS>;
+#[doc = "Writer for register SMC_OCMS"]
+pub type W = crate::W<u32, super::SMC_OCMS>;
+#[doc = "Register SMC_OCMS `reset()`'s with value 0"]
+impl crate::ResetValue for super::SMC_OCMS {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type SMSE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _SMSEW<'a> {
+#[doc = "Reader of field `SMSE`"]
+pub type SMSE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `SMSE`"]
+pub struct SMSE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SMSEW<'a> {
+impl<'a> SMSE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _SMSEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CS0SE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CS0SEW<'a> {
+#[doc = "Reader of field `CS0SE`"]
+pub type CS0SE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CS0SE`"]
+pub struct CS0SE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CS0SEW<'a> {
+impl<'a> CS0SE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _CS0SEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CS1SE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CS1SEW<'a> {
+#[doc = "Reader of field `CS1SE`"]
+pub type CS1SE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CS1SE`"]
+pub struct CS1SE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CS1SEW<'a> {
+impl<'a> CS1SE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -119,13 +82,13 @@ impl<'a> _CS1SEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CS2SE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CS2SEW<'a> {
+#[doc = "Reader of field `CS2SE`"]
+pub type CS2SE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CS2SE`"]
+pub struct CS2SE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CS2SEW<'a> {
+impl<'a> CS2SE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -143,13 +106,13 @@ impl<'a> _CS2SEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CS3SE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CS3SEW<'a> {
+#[doc = "Reader of field `CS3SE`"]
+pub type CS3SE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CS3SE`"]
+pub struct CS3SE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CS3SEW<'a> {
+impl<'a> CS3SE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -168,67 +131,56 @@ impl<'a> _CS3SEW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Static Memory Controller Scrambling Enable"]
     #[inline(always)]
     pub fn smse(&self) -> SMSE_R {
-        SMSE_R::new((self.bits() & 0x01) != 0)
+        SMSE_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 8 - Chip Select (x = 0 to 3) Scrambling Enable"]
     #[inline(always)]
     pub fn cs0se(&self) -> CS0SE_R {
-        CS0SE_R::new(((self.bits() >> 8) & 0x01) != 0)
+        CS0SE_R::new(((self.bits >> 8) & 0x01) != 0)
     }
     #[doc = "Bit 9 - Chip Select (x = 0 to 3) Scrambling Enable"]
     #[inline(always)]
     pub fn cs1se(&self) -> CS1SE_R {
-        CS1SE_R::new(((self.bits() >> 9) & 0x01) != 0)
+        CS1SE_R::new(((self.bits >> 9) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Chip Select (x = 0 to 3) Scrambling Enable"]
     #[inline(always)]
     pub fn cs2se(&self) -> CS2SE_R {
-        CS2SE_R::new(((self.bits() >> 10) & 0x01) != 0)
+        CS2SE_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Chip Select (x = 0 to 3) Scrambling Enable"]
     #[inline(always)]
     pub fn cs3se(&self) -> CS3SE_R {
-        CS3SE_R::new(((self.bits() >> 11) & 0x01) != 0)
+        CS3SE_R::new(((self.bits >> 11) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Static Memory Controller Scrambling Enable"]
     #[inline(always)]
-    pub fn smse(&mut self) -> _SMSEW {
-        _SMSEW { w: self }
+    pub fn smse(&mut self) -> SMSE_W {
+        SMSE_W { w: self }
     }
     #[doc = "Bit 8 - Chip Select (x = 0 to 3) Scrambling Enable"]
     #[inline(always)]
-    pub fn cs0se(&mut self) -> _CS0SEW {
-        _CS0SEW { w: self }
+    pub fn cs0se(&mut self) -> CS0SE_W {
+        CS0SE_W { w: self }
     }
     #[doc = "Bit 9 - Chip Select (x = 0 to 3) Scrambling Enable"]
     #[inline(always)]
-    pub fn cs1se(&mut self) -> _CS1SEW {
-        _CS1SEW { w: self }
+    pub fn cs1se(&mut self) -> CS1SE_W {
+        CS1SE_W { w: self }
     }
     #[doc = "Bit 10 - Chip Select (x = 0 to 3) Scrambling Enable"]
     #[inline(always)]
-    pub fn cs2se(&mut self) -> _CS2SEW {
-        _CS2SEW { w: self }
+    pub fn cs2se(&mut self) -> CS2SE_W {
+        CS2SE_W { w: self }
     }
     #[doc = "Bit 11 - Chip Select (x = 0 to 3) Scrambling Enable"]
     #[inline(always)]
-    pub fn cs3se(&mut self) -> _CS3SEW {
-        _CS3SEW { w: self }
+    pub fn cs3se(&mut self) -> CS3SE_W {
+        CS3SE_W { w: self }
     }
 }

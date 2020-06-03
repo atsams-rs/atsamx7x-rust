@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::RTC_IER {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register RTC_IER"]
+pub type W = crate::W<u32, super::RTC_IER>;
+#[doc = "Register RTC_IER `reset()`'s with value 0"]
+impl crate::ResetValue for super::RTC_IER {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _ACKENW<'a> {
+#[doc = "Write proxy for field `ACKEN`"]
+pub struct ACKEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ACKENW<'a> {
+impl<'a> ACKEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _ACKENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ALRENW<'a> {
+#[doc = "Write proxy for field `ALREN`"]
+pub struct ALREN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ALRENW<'a> {
+impl<'a> ALREN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _ALRENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _SECENW<'a> {
+#[doc = "Write proxy for field `SECEN`"]
+pub struct SECEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SECENW<'a> {
+impl<'a> SECEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _SECENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TIMENW<'a> {
+#[doc = "Write proxy for field `TIMEN`"]
+pub struct TIMEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TIMENW<'a> {
+impl<'a> TIMEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _TIMENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CALENW<'a> {
+#[doc = "Write proxy for field `CALEN`"]
+pub struct CALEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CALENW<'a> {
+impl<'a> CALEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _CALENW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TDERRENW<'a> {
+#[doc = "Write proxy for field `TDERREN`"]
+pub struct TDERREN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TDERRENW<'a> {
+impl<'a> TDERREN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -160,40 +141,34 @@ impl<'a> _TDERRENW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Acknowledge Update Interrupt Enable"]
     #[inline(always)]
-    pub fn acken(&mut self) -> _ACKENW {
-        _ACKENW { w: self }
+    pub fn acken(&mut self) -> ACKEN_W {
+        ACKEN_W { w: self }
     }
     #[doc = "Bit 1 - Alarm Interrupt Enable"]
     #[inline(always)]
-    pub fn alren(&mut self) -> _ALRENW {
-        _ALRENW { w: self }
+    pub fn alren(&mut self) -> ALREN_W {
+        ALREN_W { w: self }
     }
     #[doc = "Bit 2 - Second Event Interrupt Enable"]
     #[inline(always)]
-    pub fn secen(&mut self) -> _SECENW {
-        _SECENW { w: self }
+    pub fn secen(&mut self) -> SECEN_W {
+        SECEN_W { w: self }
     }
     #[doc = "Bit 3 - Time Event Interrupt Enable"]
     #[inline(always)]
-    pub fn timen(&mut self) -> _TIMENW {
-        _TIMENW { w: self }
+    pub fn timen(&mut self) -> TIMEN_W {
+        TIMEN_W { w: self }
     }
     #[doc = "Bit 4 - Calendar Event Interrupt Enable"]
     #[inline(always)]
-    pub fn calen(&mut self) -> _CALENW {
-        _CALENW { w: self }
+    pub fn calen(&mut self) -> CALEN_W {
+        CALEN_W { w: self }
     }
     #[doc = "Bit 5 - Time and/or Date Error Interrupt Enable"]
     #[inline(always)]
-    pub fn tderren(&mut self) -> _TDERRENW {
-        _TDERRENW { w: self }
+    pub fn tderren(&mut self) -> TDERREN_W {
+        TDERREN_W { w: self }
     }
 }

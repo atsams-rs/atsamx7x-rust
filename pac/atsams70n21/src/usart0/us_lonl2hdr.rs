@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::US_LONL2HDR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register US_LONL2HDR"]
+pub type R = crate::R<u32, super::US_LONL2HDR>;
+#[doc = "Writer for register US_LONL2HDR"]
+pub type W = crate::W<u32, super::US_LONL2HDR>;
+#[doc = "Register US_LONL2HDR `reset()`'s with value 0"]
+impl crate::ResetValue for super::US_LONL2HDR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type BLI_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _BLIW<'a> {
+#[doc = "Reader of field `BLI`"]
+pub type BLI_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `BLI`"]
+pub struct BLI_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BLIW<'a> {
+impl<'a> BLI_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _BLIW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ALTP_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _ALTPW<'a> {
+#[doc = "Reader of field `ALTP`"]
+pub type ALTP_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `ALTP`"]
+pub struct ALTP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ALTPW<'a> {
+impl<'a> ALTP_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -85,13 +48,13 @@ impl<'a> _ALTPW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PB_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _PBW<'a> {
+#[doc = "Reader of field `PB`"]
+pub type PB_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PB`"]
+pub struct PB_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PBW<'a> {
+impl<'a> PB_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -110,47 +73,36 @@ impl<'a> _PBW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:5 - LON Backlog Increment"]
     #[inline(always)]
     pub fn bli(&self) -> BLI_R {
-        BLI_R::new((self.bits() & 0x3f) as u8)
+        BLI_R::new((self.bits & 0x3f) as u8)
     }
     #[doc = "Bit 6 - LON Alternate Path Bit"]
     #[inline(always)]
     pub fn altp(&self) -> ALTP_R {
-        ALTP_R::new(((self.bits() >> 6) & 0x01) != 0)
+        ALTP_R::new(((self.bits >> 6) & 0x01) != 0)
     }
     #[doc = "Bit 7 - LON Priority Bit"]
     #[inline(always)]
     pub fn pb(&self) -> PB_R {
-        PB_R::new(((self.bits() >> 7) & 0x01) != 0)
+        PB_R::new(((self.bits >> 7) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:5 - LON Backlog Increment"]
     #[inline(always)]
-    pub fn bli(&mut self) -> _BLIW {
-        _BLIW { w: self }
+    pub fn bli(&mut self) -> BLI_W {
+        BLI_W { w: self }
     }
     #[doc = "Bit 6 - LON Alternate Path Bit"]
     #[inline(always)]
-    pub fn altp(&mut self) -> _ALTPW {
-        _ALTPW { w: self }
+    pub fn altp(&mut self) -> ALTP_W {
+        ALTP_W { w: self }
     }
     #[doc = "Bit 7 - LON Priority Bit"]
     #[inline(always)]
-    pub fn pb(&mut self) -> _PBW {
-        _PBW { w: self }
+    pub fn pb(&mut self) -> PB_W {
+        PB_W { w: self }
     }
 }

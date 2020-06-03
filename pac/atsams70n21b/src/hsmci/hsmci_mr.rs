@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::HSMCI_MR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register HSMCI_MR"]
+pub type R = crate::R<u32, super::HSMCI_MR>;
+#[doc = "Writer for register HSMCI_MR"]
+pub type W = crate::W<u32, super::HSMCI_MR>;
+#[doc = "Register HSMCI_MR `reset()`'s with value 0"]
+impl crate::ResetValue for super::HSMCI_MR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type CLKDIV_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _CLKDIVW<'a> {
+#[doc = "Reader of field `CLKDIV`"]
+pub type CLKDIV_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `CLKDIV`"]
+pub struct CLKDIV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CLKDIVW<'a> {
+impl<'a> CLKDIV_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _CLKDIVW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PWSDIV_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _PWSDIVW<'a> {
+#[doc = "Reader of field `PWSDIV`"]
+pub type PWSDIV_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PWSDIV`"]
+pub struct PWSDIV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PWSDIVW<'a> {
+impl<'a> PWSDIV_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -75,13 +38,13 @@ impl<'a> _PWSDIVW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type RDPROOF_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _RDPROOFW<'a> {
+#[doc = "Reader of field `RDPROOF`"]
+pub type RDPROOF_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `RDPROOF`"]
+pub struct RDPROOF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RDPROOFW<'a> {
+impl<'a> RDPROOF_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -99,13 +62,13 @@ impl<'a> _RDPROOFW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type WRPROOF_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _WRPROOFW<'a> {
+#[doc = "Reader of field `WRPROOF`"]
+pub type WRPROOF_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `WRPROOF`"]
+pub struct WRPROOF_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WRPROOFW<'a> {
+impl<'a> WRPROOF_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -123,13 +86,13 @@ impl<'a> _WRPROOFW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FBYTE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FBYTEW<'a> {
+#[doc = "Reader of field `FBYTE`"]
+pub type FBYTE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FBYTE`"]
+pub struct FBYTE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FBYTEW<'a> {
+impl<'a> FBYTE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -147,13 +110,13 @@ impl<'a> _FBYTEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type PADV_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _PADVW<'a> {
+#[doc = "Reader of field `PADV`"]
+pub type PADV_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `PADV`"]
+pub struct PADV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PADVW<'a> {
+impl<'a> PADV_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -171,13 +134,13 @@ impl<'a> _PADVW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type CLKODD_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _CLKODDW<'a> {
+#[doc = "Reader of field `CLKODD`"]
+pub type CLKODD_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `CLKODD`"]
+pub struct CLKODD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CLKODDW<'a> {
+impl<'a> CLKODD_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -196,87 +159,76 @@ impl<'a> _CLKODDW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:7 - Clock Divider"]
     #[inline(always)]
     pub fn clkdiv(&self) -> CLKDIV_R {
-        CLKDIV_R::new((self.bits() & 0xff) as u8)
+        CLKDIV_R::new((self.bits & 0xff) as u8)
     }
     #[doc = "Bits 8:10 - Power Saving Divider"]
     #[inline(always)]
     pub fn pwsdiv(&self) -> PWSDIV_R {
-        PWSDIV_R::new(((self.bits() >> 8) & 0x07) as u8)
+        PWSDIV_R::new(((self.bits >> 8) & 0x07) as u8)
     }
     #[doc = "Bit 11 - Read Proof Enable"]
     #[inline(always)]
     pub fn rdproof(&self) -> RDPROOF_R {
-        RDPROOF_R::new(((self.bits() >> 11) & 0x01) != 0)
+        RDPROOF_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - Write Proof Enable"]
     #[inline(always)]
     pub fn wrproof(&self) -> WRPROOF_R {
-        WRPROOF_R::new(((self.bits() >> 12) & 0x01) != 0)
+        WRPROOF_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 13 - Force Byte Transfer"]
     #[inline(always)]
     pub fn fbyte(&self) -> FBYTE_R {
-        FBYTE_R::new(((self.bits() >> 13) & 0x01) != 0)
+        FBYTE_R::new(((self.bits >> 13) & 0x01) != 0)
     }
     #[doc = "Bit 14 - Padding Value"]
     #[inline(always)]
     pub fn padv(&self) -> PADV_R {
-        PADV_R::new(((self.bits() >> 14) & 0x01) != 0)
+        PADV_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 16 - Clock divider is odd"]
     #[inline(always)]
     pub fn clkodd(&self) -> CLKODD_R {
-        CLKODD_R::new(((self.bits() >> 16) & 0x01) != 0)
+        CLKODD_R::new(((self.bits >> 16) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:7 - Clock Divider"]
     #[inline(always)]
-    pub fn clkdiv(&mut self) -> _CLKDIVW {
-        _CLKDIVW { w: self }
+    pub fn clkdiv(&mut self) -> CLKDIV_W {
+        CLKDIV_W { w: self }
     }
     #[doc = "Bits 8:10 - Power Saving Divider"]
     #[inline(always)]
-    pub fn pwsdiv(&mut self) -> _PWSDIVW {
-        _PWSDIVW { w: self }
+    pub fn pwsdiv(&mut self) -> PWSDIV_W {
+        PWSDIV_W { w: self }
     }
     #[doc = "Bit 11 - Read Proof Enable"]
     #[inline(always)]
-    pub fn rdproof(&mut self) -> _RDPROOFW {
-        _RDPROOFW { w: self }
+    pub fn rdproof(&mut self) -> RDPROOF_W {
+        RDPROOF_W { w: self }
     }
     #[doc = "Bit 12 - Write Proof Enable"]
     #[inline(always)]
-    pub fn wrproof(&mut self) -> _WRPROOFW {
-        _WRPROOFW { w: self }
+    pub fn wrproof(&mut self) -> WRPROOF_W {
+        WRPROOF_W { w: self }
     }
     #[doc = "Bit 13 - Force Byte Transfer"]
     #[inline(always)]
-    pub fn fbyte(&mut self) -> _FBYTEW {
-        _FBYTEW { w: self }
+    pub fn fbyte(&mut self) -> FBYTE_W {
+        FBYTE_W { w: self }
     }
     #[doc = "Bit 14 - Padding Value"]
     #[inline(always)]
-    pub fn padv(&mut self) -> _PADVW {
-        _PADVW { w: self }
+    pub fn padv(&mut self) -> PADV_W {
+        PADV_W { w: self }
     }
     #[doc = "Bit 16 - Clock divider is odd"]
     #[inline(always)]
-    pub fn clkodd(&mut self) -> _CLKODDW {
-        _CLKODDW { w: self }
+    pub fn clkodd(&mut self) -> CLKODD_W {
+        CLKODD_W { w: self }
     }
 }

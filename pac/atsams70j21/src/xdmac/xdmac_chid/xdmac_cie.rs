@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::XDMAC_CIE {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register XDMAC_CIE"]
+pub type W = crate::W<u32, super::XDMAC_CIE>;
+#[doc = "Register XDMAC_CIE `reset()`'s with value 0"]
+impl crate::ResetValue for super::XDMAC_CIE {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _BIEW<'a> {
+#[doc = "Write proxy for field `BIE`"]
+pub struct BIE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BIEW<'a> {
+impl<'a> BIE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _BIEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _LIEW<'a> {
+#[doc = "Write proxy for field `LIE`"]
+pub struct LIE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _LIEW<'a> {
+impl<'a> LIE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _LIEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _DIEW<'a> {
+#[doc = "Write proxy for field `DIE`"]
+pub struct DIE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DIEW<'a> {
+impl<'a> DIE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _DIEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _FIEW<'a> {
+#[doc = "Write proxy for field `FIE`"]
+pub struct FIE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FIEW<'a> {
+impl<'a> FIE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _FIEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RBIEW<'a> {
+#[doc = "Write proxy for field `RBIE`"]
+pub struct RBIE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RBIEW<'a> {
+impl<'a> RBIE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _RBIEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _WBIEW<'a> {
+#[doc = "Write proxy for field `WBIE`"]
+pub struct WBIE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WBIEW<'a> {
+impl<'a> WBIE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _WBIEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ROIEW<'a> {
+#[doc = "Write proxy for field `ROIE`"]
+pub struct ROIE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ROIEW<'a> {
+impl<'a> ROIE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -182,45 +163,39 @@ impl<'a> _ROIEW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - End of Block Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn bie(&mut self) -> _BIEW {
-        _BIEW { w: self }
+    pub fn bie(&mut self) -> BIE_W {
+        BIE_W { w: self }
     }
     #[doc = "Bit 1 - End of Linked List Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn lie(&mut self) -> _LIEW {
-        _LIEW { w: self }
+    pub fn lie(&mut self) -> LIE_W {
+        LIE_W { w: self }
     }
     #[doc = "Bit 2 - End of Disable Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn die(&mut self) -> _DIEW {
-        _DIEW { w: self }
+    pub fn die(&mut self) -> DIE_W {
+        DIE_W { w: self }
     }
     #[doc = "Bit 3 - End of Flush Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn fie(&mut self) -> _FIEW {
-        _FIEW { w: self }
+    pub fn fie(&mut self) -> FIE_W {
+        FIE_W { w: self }
     }
     #[doc = "Bit 4 - Read Bus Error Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn rbie(&mut self) -> _RBIEW {
-        _RBIEW { w: self }
+    pub fn rbie(&mut self) -> RBIE_W {
+        RBIE_W { w: self }
     }
     #[doc = "Bit 5 - Write Bus Error Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn wbie(&mut self) -> _WBIEW {
-        _WBIEW { w: self }
+    pub fn wbie(&mut self) -> WBIE_W {
+        WBIE_W { w: self }
     }
     #[doc = "Bit 6 - Request Overflow Error Interrupt Enable Bit"]
     #[inline(always)]
-    pub fn roie(&mut self) -> _ROIEW {
-        _ROIEW { w: self }
+    pub fn roie(&mut self) -> ROIE_W {
+        ROIE_W { w: self }
     }
 }

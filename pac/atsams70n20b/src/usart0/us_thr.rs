@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::US_THR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register US_THR"]
+pub type W = crate::W<u32, super::US_THR>;
+#[doc = "Register US_THR `reset()`'s with value 0"]
+impl crate::ResetValue for super::US_THR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _TXCHRW<'a> {
+#[doc = "Write proxy for field `TXCHR`"]
+pub struct TXCHR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXCHRW<'a> {
+impl<'a> TXCHR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
@@ -39,11 +20,11 @@ impl<'a> _TXCHRW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _TXSYNHW<'a> {
+#[doc = "Write proxy for field `TXSYNH`"]
+pub struct TXSYNH_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _TXSYNHW<'a> {
+impl<'a> TXSYNH_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -62,20 +43,14 @@ impl<'a> _TXSYNHW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:8 - Character to be Transmitted"]
     #[inline(always)]
-    pub fn txchr(&mut self) -> _TXCHRW {
-        _TXCHRW { w: self }
+    pub fn txchr(&mut self) -> TXCHR_W {
+        TXCHR_W { w: self }
     }
     #[doc = "Bit 15 - Sync Field to be Transmitted"]
     #[inline(always)]
-    pub fn txsynh(&mut self) -> _TXSYNHW {
-        _TXSYNHW { w: self }
+    pub fn txsynh(&mut self) -> TXSYNH_W {
+        TXSYNH_W { w: self }
     }
 }

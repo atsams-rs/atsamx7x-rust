@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::RSWDT_MR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register RSWDT_MR"]
+pub type R = crate::R<u32, super::RSWDT_MR>;
+#[doc = "Writer for register RSWDT_MR"]
+pub type W = crate::W<u32, super::RSWDT_MR>;
+#[doc = "Register RSWDT_MR `reset()`'s with value 0"]
+impl crate::ResetValue for super::RSWDT_MR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type WDV_R = crate::FR<u16, u16>;
-#[doc = r"Proxy"]
-pub struct _WDVW<'a> {
+#[doc = "Reader of field `WDV`"]
+pub type WDV_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `WDV`"]
+pub struct WDV_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WDVW<'a> {
+impl<'a> WDV_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _WDVW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type WDFIEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _WDFIENW<'a> {
+#[doc = "Reader of field `WDFIEN`"]
+pub type WDFIEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `WDFIEN`"]
+pub struct WDFIEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WDFIENW<'a> {
+impl<'a> WDFIEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -85,13 +48,13 @@ impl<'a> _WDFIENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type WDRSTEN_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _WDRSTENW<'a> {
+#[doc = "Reader of field `WDRSTEN`"]
+pub type WDRSTEN_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `WDRSTEN`"]
+pub struct WDRSTEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WDRSTENW<'a> {
+impl<'a> WDRSTEN_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -109,13 +72,13 @@ impl<'a> _WDRSTENW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type WDDIS_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _WDDISW<'a> {
+#[doc = "Reader of field `WDDIS`"]
+pub type WDDIS_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `WDDIS`"]
+pub struct WDDIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WDDISW<'a> {
+impl<'a> WDDIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -133,13 +96,13 @@ impl<'a> _WDDISW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type ALLONES_R = crate::FR<u16, u16>;
-#[doc = r"Proxy"]
-pub struct _ALLONESW<'a> {
+#[doc = "Reader of field `ALLONES`"]
+pub type ALLONES_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `ALLONES`"]
+pub struct ALLONES_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ALLONESW<'a> {
+impl<'a> ALLONES_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
@@ -147,13 +110,13 @@ impl<'a> _ALLONESW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type WDDBGHLT_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _WDDBGHLTW<'a> {
+#[doc = "Reader of field `WDDBGHLT`"]
+pub type WDDBGHLT_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `WDDBGHLT`"]
+pub struct WDDBGHLT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WDDBGHLTW<'a> {
+impl<'a> WDDBGHLT_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -171,13 +134,13 @@ impl<'a> _WDDBGHLTW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type WDIDLEHLT_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _WDIDLEHLTW<'a> {
+#[doc = "Reader of field `WDIDLEHLT`"]
+pub type WDIDLEHLT_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `WDIDLEHLT`"]
+pub struct WDIDLEHLT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WDIDLEHLTW<'a> {
+impl<'a> WDIDLEHLT_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -196,87 +159,76 @@ impl<'a> _WDIDLEHLTW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:11 - Watchdog Counter Value"]
     #[inline(always)]
     pub fn wdv(&self) -> WDV_R {
-        WDV_R::new((self.bits() & 0x0fff) as u16)
+        WDV_R::new((self.bits & 0x0fff) as u16)
     }
     #[doc = "Bit 12 - Watchdog Fault Interrupt Enable"]
     #[inline(always)]
     pub fn wdfien(&self) -> WDFIEN_R {
-        WDFIEN_R::new(((self.bits() >> 12) & 0x01) != 0)
+        WDFIEN_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 13 - Watchdog Reset Enable"]
     #[inline(always)]
     pub fn wdrsten(&self) -> WDRSTEN_R {
-        WDRSTEN_R::new(((self.bits() >> 13) & 0x01) != 0)
+        WDRSTEN_R::new(((self.bits >> 13) & 0x01) != 0)
     }
     #[doc = "Bit 15 - Watchdog Disable"]
     #[inline(always)]
     pub fn wddis(&self) -> WDDIS_R {
-        WDDIS_R::new(((self.bits() >> 15) & 0x01) != 0)
+        WDDIS_R::new(((self.bits >> 15) & 0x01) != 0)
     }
     #[doc = "Bits 16:27 - Must Always Be Written with 0xFFF"]
     #[inline(always)]
     pub fn allones(&self) -> ALLONES_R {
-        ALLONES_R::new(((self.bits() >> 16) & 0x0fff) as u16)
+        ALLONES_R::new(((self.bits >> 16) & 0x0fff) as u16)
     }
     #[doc = "Bit 28 - Watchdog Debug Halt"]
     #[inline(always)]
     pub fn wddbghlt(&self) -> WDDBGHLT_R {
-        WDDBGHLT_R::new(((self.bits() >> 28) & 0x01) != 0)
+        WDDBGHLT_R::new(((self.bits >> 28) & 0x01) != 0)
     }
     #[doc = "Bit 29 - Watchdog Idle Halt"]
     #[inline(always)]
     pub fn wdidlehlt(&self) -> WDIDLEHLT_R {
-        WDIDLEHLT_R::new(((self.bits() >> 29) & 0x01) != 0)
+        WDIDLEHLT_R::new(((self.bits >> 29) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:11 - Watchdog Counter Value"]
     #[inline(always)]
-    pub fn wdv(&mut self) -> _WDVW {
-        _WDVW { w: self }
+    pub fn wdv(&mut self) -> WDV_W {
+        WDV_W { w: self }
     }
     #[doc = "Bit 12 - Watchdog Fault Interrupt Enable"]
     #[inline(always)]
-    pub fn wdfien(&mut self) -> _WDFIENW {
-        _WDFIENW { w: self }
+    pub fn wdfien(&mut self) -> WDFIEN_W {
+        WDFIEN_W { w: self }
     }
     #[doc = "Bit 13 - Watchdog Reset Enable"]
     #[inline(always)]
-    pub fn wdrsten(&mut self) -> _WDRSTENW {
-        _WDRSTENW { w: self }
+    pub fn wdrsten(&mut self) -> WDRSTEN_W {
+        WDRSTEN_W { w: self }
     }
     #[doc = "Bit 15 - Watchdog Disable"]
     #[inline(always)]
-    pub fn wddis(&mut self) -> _WDDISW {
-        _WDDISW { w: self }
+    pub fn wddis(&mut self) -> WDDIS_W {
+        WDDIS_W { w: self }
     }
     #[doc = "Bits 16:27 - Must Always Be Written with 0xFFF"]
     #[inline(always)]
-    pub fn allones(&mut self) -> _ALLONESW {
-        _ALLONESW { w: self }
+    pub fn allones(&mut self) -> ALLONES_W {
+        ALLONES_W { w: self }
     }
     #[doc = "Bit 28 - Watchdog Debug Halt"]
     #[inline(always)]
-    pub fn wddbghlt(&mut self) -> _WDDBGHLTW {
-        _WDDBGHLTW { w: self }
+    pub fn wddbghlt(&mut self) -> WDDBGHLT_W {
+        WDDBGHLT_W { w: self }
     }
     #[doc = "Bit 29 - Watchdog Idle Halt"]
     #[inline(always)]
-    pub fn wdidlehlt(&mut self) -> _WDIDLEHLTW {
-        _WDIDLEHLTW { w: self }
+    pub fn wdidlehlt(&mut self) -> WDIDLEHLT_W {
+        WDIDLEHLT_W { w: self }
     }
 }

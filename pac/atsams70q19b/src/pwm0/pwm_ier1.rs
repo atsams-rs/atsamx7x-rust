@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_IER1 {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register PWM_IER1"]
+pub type W = crate::W<u32, super::PWM_IER1>;
+#[doc = "Register PWM_IER1 `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_IER1 {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _CHID0W<'a> {
+#[doc = "Write proxy for field `CHID0`"]
+pub struct CHID0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CHID0W<'a> {
+impl<'a> CHID0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _CHID0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CHID1W<'a> {
+#[doc = "Write proxy for field `CHID1`"]
+pub struct CHID1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CHID1W<'a> {
+impl<'a> CHID1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _CHID1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CHID2W<'a> {
+#[doc = "Write proxy for field `CHID2`"]
+pub struct CHID2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CHID2W<'a> {
+impl<'a> CHID2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _CHID2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _CHID3W<'a> {
+#[doc = "Write proxy for field `CHID3`"]
+pub struct CHID3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CHID3W<'a> {
+impl<'a> CHID3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _CHID3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _FCHID0W<'a> {
+#[doc = "Write proxy for field `FCHID0`"]
+pub struct FCHID0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FCHID0W<'a> {
+impl<'a> FCHID0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _FCHID0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _FCHID1W<'a> {
+#[doc = "Write proxy for field `FCHID1`"]
+pub struct FCHID1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FCHID1W<'a> {
+impl<'a> FCHID1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _FCHID1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _FCHID2W<'a> {
+#[doc = "Write proxy for field `FCHID2`"]
+pub struct FCHID2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FCHID2W<'a> {
+impl<'a> FCHID2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _FCHID2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _FCHID3W<'a> {
+#[doc = "Write proxy for field `FCHID3`"]
+pub struct FCHID3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FCHID3W<'a> {
+impl<'a> FCHID3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -204,50 +185,44 @@ impl<'a> _FCHID3W<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Counter Event on Channel 0 Interrupt Enable"]
     #[inline(always)]
-    pub fn chid0(&mut self) -> _CHID0W {
-        _CHID0W { w: self }
+    pub fn chid0(&mut self) -> CHID0_W {
+        CHID0_W { w: self }
     }
     #[doc = "Bit 1 - Counter Event on Channel 1 Interrupt Enable"]
     #[inline(always)]
-    pub fn chid1(&mut self) -> _CHID1W {
-        _CHID1W { w: self }
+    pub fn chid1(&mut self) -> CHID1_W {
+        CHID1_W { w: self }
     }
     #[doc = "Bit 2 - Counter Event on Channel 2 Interrupt Enable"]
     #[inline(always)]
-    pub fn chid2(&mut self) -> _CHID2W {
-        _CHID2W { w: self }
+    pub fn chid2(&mut self) -> CHID2_W {
+        CHID2_W { w: self }
     }
     #[doc = "Bit 3 - Counter Event on Channel 3 Interrupt Enable"]
     #[inline(always)]
-    pub fn chid3(&mut self) -> _CHID3W {
-        _CHID3W { w: self }
+    pub fn chid3(&mut self) -> CHID3_W {
+        CHID3_W { w: self }
     }
     #[doc = "Bit 16 - Fault Protection Trigger on Channel 0 Interrupt Enable"]
     #[inline(always)]
-    pub fn fchid0(&mut self) -> _FCHID0W {
-        _FCHID0W { w: self }
+    pub fn fchid0(&mut self) -> FCHID0_W {
+        FCHID0_W { w: self }
     }
     #[doc = "Bit 17 - Fault Protection Trigger on Channel 1 Interrupt Enable"]
     #[inline(always)]
-    pub fn fchid1(&mut self) -> _FCHID1W {
-        _FCHID1W { w: self }
+    pub fn fchid1(&mut self) -> FCHID1_W {
+        FCHID1_W { w: self }
     }
     #[doc = "Bit 18 - Fault Protection Trigger on Channel 2 Interrupt Enable"]
     #[inline(always)]
-    pub fn fchid2(&mut self) -> _FCHID2W {
-        _FCHID2W { w: self }
+    pub fn fchid2(&mut self) -> FCHID2_W {
+        FCHID2_W { w: self }
     }
     #[doc = "Bit 19 - Fault Protection Trigger on Channel 3 Interrupt Enable"]
     #[inline(always)]
-    pub fn fchid3(&mut self) -> _FCHID3W {
-        _FCHID3W { w: self }
+    pub fn fchid3(&mut self) -> FCHID3_W {
+        FCHID3_W { w: self }
     }
 }

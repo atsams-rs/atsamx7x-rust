@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::ICM_IER {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register ICM_IER"]
+pub type W = crate::W<u32, super::ICM_IER>;
+#[doc = "Register ICM_IER `reset()`'s with value 0"]
+impl crate::ResetValue for super::ICM_IER {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _RHCW<'a> {
+#[doc = "Write proxy for field `RHC`"]
+pub struct RHC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RHCW<'a> {
+impl<'a> RHC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -39,11 +20,11 @@ impl<'a> _RHCW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RDMW<'a> {
+#[doc = "Write proxy for field `RDM`"]
+pub struct RDM_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RDMW<'a> {
+impl<'a> RDM_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -51,11 +32,11 @@ impl<'a> _RDMW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RBEW<'a> {
+#[doc = "Write proxy for field `RBE`"]
+pub struct RBE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RBEW<'a> {
+impl<'a> RBE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -63,11 +44,11 @@ impl<'a> _RBEW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RWCW<'a> {
+#[doc = "Write proxy for field `RWC`"]
+pub struct RWC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RWCW<'a> {
+impl<'a> RWC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -75,11 +56,11 @@ impl<'a> _RWCW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RECW<'a> {
+#[doc = "Write proxy for field `REC`"]
+pub struct REC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RECW<'a> {
+impl<'a> REC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -87,11 +68,11 @@ impl<'a> _RECW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _RSUW<'a> {
+#[doc = "Write proxy for field `RSU`"]
+pub struct RSU_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RSUW<'a> {
+impl<'a> RSU_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -99,11 +80,11 @@ impl<'a> _RSUW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _URADW<'a> {
+#[doc = "Write proxy for field `URAD`"]
+pub struct URAD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _URADW<'a> {
+impl<'a> URAD_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -122,45 +103,39 @@ impl<'a> _URADW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:3 - Region Hash Completed Interrupt Enable"]
     #[inline(always)]
-    pub fn rhc(&mut self) -> _RHCW {
-        _RHCW { w: self }
+    pub fn rhc(&mut self) -> RHC_W {
+        RHC_W { w: self }
     }
     #[doc = "Bits 4:7 - Region Digest Mismatch Interrupt Enable"]
     #[inline(always)]
-    pub fn rdm(&mut self) -> _RDMW {
-        _RDMW { w: self }
+    pub fn rdm(&mut self) -> RDM_W {
+        RDM_W { w: self }
     }
     #[doc = "Bits 8:11 - Region Bus Error Interrupt Enable"]
     #[inline(always)]
-    pub fn rbe(&mut self) -> _RBEW {
-        _RBEW { w: self }
+    pub fn rbe(&mut self) -> RBE_W {
+        RBE_W { w: self }
     }
     #[doc = "Bits 12:15 - Region Wrap Condition detected Interrupt Enable"]
     #[inline(always)]
-    pub fn rwc(&mut self) -> _RWCW {
-        _RWCW { w: self }
+    pub fn rwc(&mut self) -> RWC_W {
+        RWC_W { w: self }
     }
     #[doc = "Bits 16:19 - Region End bit Condition Detected Interrupt Enable"]
     #[inline(always)]
-    pub fn rec(&mut self) -> _RECW {
-        _RECW { w: self }
+    pub fn rec(&mut self) -> REC_W {
+        REC_W { w: self }
     }
     #[doc = "Bits 20:23 - Region Status Updated Interrupt Disable"]
     #[inline(always)]
-    pub fn rsu(&mut self) -> _RSUW {
-        _RSUW { w: self }
+    pub fn rsu(&mut self) -> RSU_W {
+        RSU_W { w: self }
     }
     #[doc = "Bit 24 - Undefined Register Access Detection Interrupt Enable"]
     #[inline(always)]
-    pub fn urad(&mut self) -> _URADW {
-        _URADW { w: self }
+    pub fn urad(&mut self) -> URAD_W {
+        URAD_W { w: self }
     }
 }

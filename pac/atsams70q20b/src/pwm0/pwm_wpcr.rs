@@ -1,78 +1,54 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PWM_WPCR {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register PWM_WPCR"]
+pub type W = crate::W<u32, super::PWM_WPCR>;
+#[doc = "Register PWM_WPCR `reset()`'s with value 0"]
+impl crate::ResetValue for super::PWM_WPCR {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = "Values that can be written to the field `WPCMD`"]
+#[doc = "Write Protection Command\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WPCMDW {
-    #[doc = "Disables the software write protection of the register groups of which the bit WPRGx is at '1'."]
-    DISABLE_SW_PROT,
-    #[doc = "Enables the software write protection of the register groups of which the bit WPRGx is at '1'."]
-    ENABLE_SW_PROT,
-    #[doc = "Enables the hardware write protection of the register groups of which the bit WPRGx is at '1'. Only a hardware reset of the PWM controller can disable the hardware write protection. Moreover, to meet security requirements, the PIO lines associated with the PWM can not be configured through the PIO interface."]
-    ENABLE_HW_PROT,
+#[repr(u8)]
+pub enum WPCMD_AW {
+    #[doc = "0: Disables the software write protection of the register groups of which the bit WPRGx is at '1'."]
+    DISABLE_SW_PROT = 0,
+    #[doc = "1: Enables the software write protection of the register groups of which the bit WPRGx is at '1'."]
+    ENABLE_SW_PROT = 1,
+    #[doc = "2: Enables the hardware write protection of the register groups of which the bit WPRGx is at '1'. Only a hardware reset of the PWM controller can disable the hardware write protection. Moreover, to meet security requirements, the PIO lines associated with the PWM can not be configured through the PIO interface."]
+    ENABLE_HW_PROT = 2,
 }
-impl WPCMDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
+impl From<WPCMD_AW> for u8 {
     #[inline(always)]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            WPCMDW::DISABLE_SW_PROT => 0,
-            WPCMDW::ENABLE_SW_PROT => 1,
-            WPCMDW::ENABLE_HW_PROT => 2,
-        }
+    fn from(variant: WPCMD_AW) -> Self {
+        variant as _
     }
 }
-#[doc = r"Proxy"]
-pub struct _WPCMDW<'a> {
+#[doc = "Write proxy for field `WPCMD`"]
+pub struct WPCMD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WPCMDW<'a> {
+impl<'a> WPCMD_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: WPCMDW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: WPCMD_AW) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Disables the software write protection of the register groups of which the bit WPRGx is at '1'."]
     #[inline(always)]
     pub fn disable_sw_prot(self) -> &'a mut W {
-        self.variant(WPCMDW::DISABLE_SW_PROT)
+        self.variant(WPCMD_AW::DISABLE_SW_PROT)
     }
     #[doc = "Enables the software write protection of the register groups of which the bit WPRGx is at '1'."]
     #[inline(always)]
     pub fn enable_sw_prot(self) -> &'a mut W {
-        self.variant(WPCMDW::ENABLE_SW_PROT)
+        self.variant(WPCMD_AW::ENABLE_SW_PROT)
     }
     #[doc = "Enables the hardware write protection of the register groups of which the bit WPRGx is at '1'. Only a hardware reset of the PWM controller can disable the hardware write protection. Moreover, to meet security requirements, the PIO lines associated with the PWM can not be configured through the PIO interface."]
     #[inline(always)]
     pub fn enable_hw_prot(self) -> &'a mut W {
-        self.variant(WPCMDW::ENABLE_HW_PROT)
+        self.variant(WPCMD_AW::ENABLE_HW_PROT)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -81,11 +57,11 @@ impl<'a> _WPCMDW<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _WPRG0W<'a> {
+#[doc = "Write proxy for field `WPRG0`"]
+pub struct WPRG0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WPRG0W<'a> {
+impl<'a> WPRG0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -103,11 +79,11 @@ impl<'a> _WPRG0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _WPRG1W<'a> {
+#[doc = "Write proxy for field `WPRG1`"]
+pub struct WPRG1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WPRG1W<'a> {
+impl<'a> WPRG1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -125,11 +101,11 @@ impl<'a> _WPRG1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _WPRG2W<'a> {
+#[doc = "Write proxy for field `WPRG2`"]
+pub struct WPRG2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WPRG2W<'a> {
+impl<'a> WPRG2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -147,11 +123,11 @@ impl<'a> _WPRG2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _WPRG3W<'a> {
+#[doc = "Write proxy for field `WPRG3`"]
+pub struct WPRG3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WPRG3W<'a> {
+impl<'a> WPRG3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -169,11 +145,11 @@ impl<'a> _WPRG3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _WPRG4W<'a> {
+#[doc = "Write proxy for field `WPRG4`"]
+pub struct WPRG4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WPRG4W<'a> {
+impl<'a> WPRG4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -191,11 +167,11 @@ impl<'a> _WPRG4W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _WPRG5W<'a> {
+#[doc = "Write proxy for field `WPRG5`"]
+pub struct WPRG5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WPRG5W<'a> {
+impl<'a> WPRG5_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -213,36 +189,33 @@ impl<'a> _WPRG5W<'a> {
         self.w
     }
 }
-#[doc = "Values that can be written to the field `WPKEY`"]
+#[doc = "Write Protection Key\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WPKEYW {
-    #[doc = "Writing any other value in this field aborts the write operation of the WPCMD field.Always reads as 0"]
-    PASSWD,
+#[repr(u32)]
+pub enum WPKEY_AW {
+    #[doc = "5265229: Writing any other value in this field aborts the write operation of the WPCMD field.Always reads as 0"]
+    PASSWD = 5265229,
 }
-impl WPKEYW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
+impl From<WPKEY_AW> for u32 {
     #[inline(always)]
-    pub fn _bits(&self) -> u32 {
-        match *self {
-            WPKEYW::PASSWD => 5265229,
-        }
+    fn from(variant: WPKEY_AW) -> Self {
+        variant as _
     }
 }
-#[doc = r"Proxy"]
-pub struct _WPKEYW<'a> {
+#[doc = "Write proxy for field `WPKEY`"]
+pub struct WPKEY_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _WPKEYW<'a> {
+impl<'a> WPKEY_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: WPKEYW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+    pub fn variant(self, variant: WPKEY_AW) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Writing any other value in this field aborts the write operation of the WPCMD field.Always reads as 0"]
     #[inline(always)]
     pub fn passwd(self) -> &'a mut W {
-        self.variant(WPKEYW::PASSWD)
+        self.variant(WPKEY_AW::PASSWD)
     }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
@@ -252,50 +225,44 @@ impl<'a> _WPKEYW<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - Write Protection Command"]
     #[inline(always)]
-    pub fn wpcmd(&mut self) -> _WPCMDW {
-        _WPCMDW { w: self }
+    pub fn wpcmd(&mut self) -> WPCMD_W {
+        WPCMD_W { w: self }
     }
     #[doc = "Bit 2 - Write Protection Register Group 0"]
     #[inline(always)]
-    pub fn wprg0(&mut self) -> _WPRG0W {
-        _WPRG0W { w: self }
+    pub fn wprg0(&mut self) -> WPRG0_W {
+        WPRG0_W { w: self }
     }
     #[doc = "Bit 3 - Write Protection Register Group 1"]
     #[inline(always)]
-    pub fn wprg1(&mut self) -> _WPRG1W {
-        _WPRG1W { w: self }
+    pub fn wprg1(&mut self) -> WPRG1_W {
+        WPRG1_W { w: self }
     }
     #[doc = "Bit 4 - Write Protection Register Group 2"]
     #[inline(always)]
-    pub fn wprg2(&mut self) -> _WPRG2W {
-        _WPRG2W { w: self }
+    pub fn wprg2(&mut self) -> WPRG2_W {
+        WPRG2_W { w: self }
     }
     #[doc = "Bit 5 - Write Protection Register Group 3"]
     #[inline(always)]
-    pub fn wprg3(&mut self) -> _WPRG3W {
-        _WPRG3W { w: self }
+    pub fn wprg3(&mut self) -> WPRG3_W {
+        WPRG3_W { w: self }
     }
     #[doc = "Bit 6 - Write Protection Register Group 4"]
     #[inline(always)]
-    pub fn wprg4(&mut self) -> _WPRG4W {
-        _WPRG4W { w: self }
+    pub fn wprg4(&mut self) -> WPRG4_W {
+        WPRG4_W { w: self }
     }
     #[doc = "Bit 7 - Write Protection Register Group 5"]
     #[inline(always)]
-    pub fn wprg5(&mut self) -> _WPRG5W {
-        _WPRG5W { w: self }
+    pub fn wprg5(&mut self) -> WPRG5_W {
+        WPRG5_W { w: self }
     }
     #[doc = "Bits 8:31 - Write Protection Key"]
     #[inline(always)]
-    pub fn wpkey(&mut self) -> _WPKEYW {
-        _WPKEYW { w: self }
+    pub fn wpkey(&mut self) -> WPKEY_W {
+        WPKEY_W { w: self }
     }
 }

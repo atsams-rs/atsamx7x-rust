@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::ACTLR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register ACTLR"]
+pub type R = crate::R<u32, super::ACTLR>;
+#[doc = "Writer for register ACTLR"]
+pub type W = crate::W<u32, super::ACTLR>;
+#[doc = "Register ACTLR `reset()`'s with value 0"]
+impl crate::ResetValue for super::ACTLR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type DISFOLD_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DISFOLDW<'a> {
+#[doc = "Reader of field `DISFOLD`"]
+pub type DISFOLD_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DISFOLD`"]
+pub struct DISFOLD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DISFOLDW<'a> {
+impl<'a> DISFOLD_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,13 +34,13 @@ impl<'a> _DISFOLDW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type FPEXCODIS_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _FPEXCODISW<'a> {
+#[doc = "Reader of field `FPEXCODIS`"]
+pub type FPEXCODIS_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `FPEXCODIS`"]
+pub struct FPEXCODIS_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _FPEXCODISW<'a> {
+impl<'a> FPEXCODIS_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -95,13 +58,13 @@ impl<'a> _FPEXCODISW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DISRAMODE_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DISRAMODEW<'a> {
+#[doc = "Reader of field `DISRAMODE`"]
+pub type DISRAMODE_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DISRAMODE`"]
+pub struct DISRAMODE_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DISRAMODEW<'a> {
+impl<'a> DISRAMODE_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -119,13 +82,13 @@ impl<'a> _DISRAMODEW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DISITMATBFLUSH_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DISITMATBFLUSHW<'a> {
+#[doc = "Reader of field `DISITMATBFLUSH`"]
+pub type DISITMATBFLUSH_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DISITMATBFLUSH`"]
+pub struct DISITMATBFLUSH_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DISITMATBFLUSHW<'a> {
+impl<'a> DISITMATBFLUSH_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -143,13 +106,13 @@ impl<'a> _DISITMATBFLUSHW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DISBTACREAD_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DISBTACREADW<'a> {
+#[doc = "Reader of field `DISBTACREAD`"]
+pub type DISBTACREAD_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DISBTACREAD`"]
+pub struct DISBTACREAD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DISBTACREADW<'a> {
+impl<'a> DISBTACREAD_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -167,13 +130,13 @@ impl<'a> _DISBTACREADW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DISBTACALLOC_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DISBTACALLOCW<'a> {
+#[doc = "Reader of field `DISBTACALLOC`"]
+pub type DISBTACALLOC_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DISBTACALLOC`"]
+pub struct DISBTACALLOC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DISBTACALLOCW<'a> {
+impl<'a> DISBTACALLOC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -191,13 +154,13 @@ impl<'a> _DISBTACALLOCW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DISCRITAXIRUR_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DISCRITAXIRURW<'a> {
+#[doc = "Reader of field `DISCRITAXIRUR`"]
+pub type DISCRITAXIRUR_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DISCRITAXIRUR`"]
+pub struct DISCRITAXIRUR_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DISCRITAXIRURW<'a> {
+impl<'a> DISCRITAXIRUR_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -215,13 +178,13 @@ impl<'a> _DISCRITAXIRURW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DISDI_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _DISDIW<'a> {
+#[doc = "Reader of field `DISDI`"]
+pub type DISDI_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `DISDI`"]
+pub struct DISDI_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DISDIW<'a> {
+impl<'a> DISDI_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -229,13 +192,13 @@ impl<'a> _DISDIW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DISISSCH1_R = crate::FR<u8, u8>;
-#[doc = r"Proxy"]
-pub struct _DISISSCH1W<'a> {
+#[doc = "Reader of field `DISISSCH1`"]
+pub type DISISSCH1_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `DISISSCH1`"]
+pub struct DISISSCH1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DISISSCH1W<'a> {
+impl<'a> DISISSCH1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -243,13 +206,13 @@ impl<'a> _DISISSCH1W<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DISDYNADD_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DISDYNADDW<'a> {
+#[doc = "Reader of field `DISDYNADD`"]
+pub type DISDYNADD_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DISDYNADD`"]
+pub struct DISDYNADD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DISDYNADDW<'a> {
+impl<'a> DISDYNADD_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -267,13 +230,13 @@ impl<'a> _DISDYNADDW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DISCRITAXIRUW_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DISCRITAXIRUWW<'a> {
+#[doc = "Reader of field `DISCRITAXIRUW`"]
+pub type DISCRITAXIRUW_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DISCRITAXIRUW`"]
+pub struct DISCRITAXIRUW_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DISCRITAXIRUWW<'a> {
+impl<'a> DISCRITAXIRUW_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -291,13 +254,13 @@ impl<'a> _DISCRITAXIRUWW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type DISFPUISSOPT_R = crate::FR<bool, bool>;
-#[doc = r"Proxy"]
-pub struct _DISFPUISSOPTW<'a> {
+#[doc = "Reader of field `DISFPUISSOPT`"]
+pub type DISFPUISSOPT_R = crate::R<bool, bool>;
+#[doc = "Write proxy for field `DISFPUISSOPT`"]
+pub struct DISFPUISSOPT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _DISFPUISSOPTW<'a> {
+impl<'a> DISFPUISSOPT_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -316,137 +279,126 @@ impl<'a> _DISFPUISSOPTW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 2 - Disables folding of IT instructions"]
     #[inline(always)]
     pub fn disfold(&self) -> DISFOLD_R {
-        DISFOLD_R::new(((self.bits() >> 2) & 0x01) != 0)
+        DISFOLD_R::new(((self.bits >> 2) & 0x01) != 0)
     }
     #[doc = "Bit 10 - Disables FPU exception outputs"]
     #[inline(always)]
     pub fn fpexcodis(&self) -> FPEXCODIS_R {
-        FPEXCODIS_R::new(((self.bits() >> 10) & 0x01) != 0)
+        FPEXCODIS_R::new(((self.bits >> 10) & 0x01) != 0)
     }
     #[doc = "Bit 11 - Disables dynamic read allocate mode for Write-Back Write-Allocate memory regions"]
     #[inline(always)]
     pub fn disramode(&self) -> DISRAMODE_R {
-        DISRAMODE_R::new(((self.bits() >> 11) & 0x01) != 0)
+        DISRAMODE_R::new(((self.bits >> 11) & 0x01) != 0)
     }
     #[doc = "Bit 12 - Disables ITM and DWT ATB flush"]
     #[inline(always)]
     pub fn disitmatbflush(&self) -> DISITMATBFLUSH_R {
-        DISITMATBFLUSH_R::new(((self.bits() >> 12) & 0x01) != 0)
+        DISITMATBFLUSH_R::new(((self.bits >> 12) & 0x01) != 0)
     }
     #[doc = "Bit 13"]
     #[inline(always)]
     pub fn disbtacread(&self) -> DISBTACREAD_R {
-        DISBTACREAD_R::new(((self.bits() >> 13) & 0x01) != 0)
+        DISBTACREAD_R::new(((self.bits >> 13) & 0x01) != 0)
     }
     #[doc = "Bit 14"]
     #[inline(always)]
     pub fn disbtacalloc(&self) -> DISBTACALLOC_R {
-        DISBTACALLOC_R::new(((self.bits() >> 14) & 0x01) != 0)
+        DISBTACALLOC_R::new(((self.bits >> 14) & 0x01) != 0)
     }
     #[doc = "Bit 15"]
     #[inline(always)]
     pub fn discritaxirur(&self) -> DISCRITAXIRUR_R {
-        DISCRITAXIRUR_R::new(((self.bits() >> 15) & 0x01) != 0)
+        DISCRITAXIRUR_R::new(((self.bits >> 15) & 0x01) != 0)
     }
     #[doc = "Bits 16:20"]
     #[inline(always)]
     pub fn disdi(&self) -> DISDI_R {
-        DISDI_R::new(((self.bits() >> 16) & 0x1f) as u8)
+        DISDI_R::new(((self.bits >> 16) & 0x1f) as u8)
     }
     #[doc = "Bits 21:25"]
     #[inline(always)]
     pub fn disissch1(&self) -> DISISSCH1_R {
-        DISISSCH1_R::new(((self.bits() >> 21) & 0x1f) as u8)
+        DISISSCH1_R::new(((self.bits >> 21) & 0x1f) as u8)
     }
     #[doc = "Bit 26 - Disables dynamic allocation of ADD and SUB instructions"]
     #[inline(always)]
     pub fn disdynadd(&self) -> DISDYNADD_R {
-        DISDYNADD_R::new(((self.bits() >> 26) & 0x01) != 0)
+        DISDYNADD_R::new(((self.bits >> 26) & 0x01) != 0)
     }
     #[doc = "Bit 27 - Disable critical AXI read-under-write"]
     #[inline(always)]
     pub fn discritaxiruw(&self) -> DISCRITAXIRUW_R {
-        DISCRITAXIRUW_R::new(((self.bits() >> 27) & 0x01) != 0)
+        DISCRITAXIRUW_R::new(((self.bits >> 27) & 0x01) != 0)
     }
     #[doc = "Bit 28 - Disables dynamic allocation of ADD and SUB instructions"]
     #[inline(always)]
     pub fn disfpuissopt(&self) -> DISFPUISSOPT_R {
-        DISFPUISSOPT_R::new(((self.bits() >> 28) & 0x01) != 0)
+        DISFPUISSOPT_R::new(((self.bits >> 28) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 2 - Disables folding of IT instructions"]
     #[inline(always)]
-    pub fn disfold(&mut self) -> _DISFOLDW {
-        _DISFOLDW { w: self }
+    pub fn disfold(&mut self) -> DISFOLD_W {
+        DISFOLD_W { w: self }
     }
     #[doc = "Bit 10 - Disables FPU exception outputs"]
     #[inline(always)]
-    pub fn fpexcodis(&mut self) -> _FPEXCODISW {
-        _FPEXCODISW { w: self }
+    pub fn fpexcodis(&mut self) -> FPEXCODIS_W {
+        FPEXCODIS_W { w: self }
     }
     #[doc = "Bit 11 - Disables dynamic read allocate mode for Write-Back Write-Allocate memory regions"]
     #[inline(always)]
-    pub fn disramode(&mut self) -> _DISRAMODEW {
-        _DISRAMODEW { w: self }
+    pub fn disramode(&mut self) -> DISRAMODE_W {
+        DISRAMODE_W { w: self }
     }
     #[doc = "Bit 12 - Disables ITM and DWT ATB flush"]
     #[inline(always)]
-    pub fn disitmatbflush(&mut self) -> _DISITMATBFLUSHW {
-        _DISITMATBFLUSHW { w: self }
+    pub fn disitmatbflush(&mut self) -> DISITMATBFLUSH_W {
+        DISITMATBFLUSH_W { w: self }
     }
     #[doc = "Bit 13"]
     #[inline(always)]
-    pub fn disbtacread(&mut self) -> _DISBTACREADW {
-        _DISBTACREADW { w: self }
+    pub fn disbtacread(&mut self) -> DISBTACREAD_W {
+        DISBTACREAD_W { w: self }
     }
     #[doc = "Bit 14"]
     #[inline(always)]
-    pub fn disbtacalloc(&mut self) -> _DISBTACALLOCW {
-        _DISBTACALLOCW { w: self }
+    pub fn disbtacalloc(&mut self) -> DISBTACALLOC_W {
+        DISBTACALLOC_W { w: self }
     }
     #[doc = "Bit 15"]
     #[inline(always)]
-    pub fn discritaxirur(&mut self) -> _DISCRITAXIRURW {
-        _DISCRITAXIRURW { w: self }
+    pub fn discritaxirur(&mut self) -> DISCRITAXIRUR_W {
+        DISCRITAXIRUR_W { w: self }
     }
     #[doc = "Bits 16:20"]
     #[inline(always)]
-    pub fn disdi(&mut self) -> _DISDIW {
-        _DISDIW { w: self }
+    pub fn disdi(&mut self) -> DISDI_W {
+        DISDI_W { w: self }
     }
     #[doc = "Bits 21:25"]
     #[inline(always)]
-    pub fn disissch1(&mut self) -> _DISISSCH1W {
-        _DISISSCH1W { w: self }
+    pub fn disissch1(&mut self) -> DISISSCH1_W {
+        DISISSCH1_W { w: self }
     }
     #[doc = "Bit 26 - Disables dynamic allocation of ADD and SUB instructions"]
     #[inline(always)]
-    pub fn disdynadd(&mut self) -> _DISDYNADDW {
-        _DISDYNADDW { w: self }
+    pub fn disdynadd(&mut self) -> DISDYNADD_W {
+        DISDYNADD_W { w: self }
     }
     #[doc = "Bit 27 - Disable critical AXI read-under-write"]
     #[inline(always)]
-    pub fn discritaxiruw(&mut self) -> _DISCRITAXIRUWW {
-        _DISCRITAXIRUWW { w: self }
+    pub fn discritaxiruw(&mut self) -> DISCRITAXIRUW_W {
+        DISCRITAXIRUW_W { w: self }
     }
     #[doc = "Bit 28 - Disables dynamic allocation of ADD and SUB instructions"]
     #[inline(always)]
-    pub fn disfpuissopt(&mut self) -> _DISFPUISSOPTW {
-        _DISFPUISSOPTW { w: self }
+    pub fn disfpuissopt(&mut self) -> DISFPUISSOPT_W {
+        DISFPUISSOPT_W { w: self }
     }
 }

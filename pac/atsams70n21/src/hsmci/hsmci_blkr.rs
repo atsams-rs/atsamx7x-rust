@@ -1,59 +1,22 @@
-#[doc = r"Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::HSMCI_BLKR {
-    #[doc = r"Modifies the contents of the register"]
+#[doc = "Reader of register HSMCI_BLKR"]
+pub type R = crate::R<u32, super::HSMCI_BLKR>;
+#[doc = "Writer for register HSMCI_BLKR"]
+pub type W = crate::W<u32, super::HSMCI_BLKR>;
+#[doc = "Register HSMCI_BLKR `reset()`'s with value 0"]
+impl crate::ResetValue for super::HSMCI_BLKR {
+    type Type = u32;
     #[inline(always)]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        self.register.set(f(&R { bits }, &mut W { bits }).bits);
-    }
-    #[doc = r"Reads the contents of the register"]
-    #[inline(always)]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r"Writes to the register"]
-    #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Reader of the field"]
-pub type BCNT_R = crate::FR<u16, u16>;
-#[doc = r"Proxy"]
-pub struct _BCNTW<'a> {
+#[doc = "Reader of field `BCNT`"]
+pub type BCNT_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `BCNT`"]
+pub struct BCNT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BCNTW<'a> {
+impl<'a> BCNT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
@@ -61,13 +24,13 @@ impl<'a> _BCNTW<'a> {
         self.w
     }
 }
-#[doc = r"Reader of the field"]
-pub type BLKLEN_R = crate::FR<u16, u16>;
-#[doc = r"Proxy"]
-pub struct _BLKLENW<'a> {
+#[doc = "Reader of field `BLKLEN`"]
+pub type BLKLEN_R = crate::R<u16, u16>;
+#[doc = "Write proxy for field `BLKLEN`"]
+pub struct BLKLEN_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BLKLENW<'a> {
+impl<'a> BLKLEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
@@ -76,37 +39,26 @@ impl<'a> _BLKLENW<'a> {
     }
 }
 impl R {
-    #[doc = r"Value of the register as raw bits"]
-    #[inline(always)]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:15 - MMC/SDIO Block Count - SDIO Byte Count"]
     #[inline(always)]
     pub fn bcnt(&self) -> BCNT_R {
-        BCNT_R::new((self.bits() & 0xffff) as u16)
+        BCNT_R::new((self.bits & 0xffff) as u16)
     }
     #[doc = "Bits 16:31 - Data Block Length"]
     #[inline(always)]
     pub fn blklen(&self) -> BLKLEN_R {
-        BLKLEN_R::new(((self.bits() >> 16) & 0xffff) as u16)
+        BLKLEN_R::new(((self.bits >> 16) & 0xffff) as u16)
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:15 - MMC/SDIO Block Count - SDIO Byte Count"]
     #[inline(always)]
-    pub fn bcnt(&mut self) -> _BCNTW {
-        _BCNTW { w: self }
+    pub fn bcnt(&mut self) -> BCNT_W {
+        BCNT_W { w: self }
     }
     #[doc = "Bits 16:31 - Data Block Length"]
     #[inline(always)]
-    pub fn blklen(&mut self) -> _BLKLENW {
-        _BLKLENW { w: self }
+    pub fn blklen(&mut self) -> BLKLEN_W {
+        BLKLEN_W { w: self }
     }
 }

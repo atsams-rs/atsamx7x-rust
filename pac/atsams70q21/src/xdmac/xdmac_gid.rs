@@ -1,37 +1,18 @@
-#[doc = r"Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::XDMAC_GID {
-    #[doc = r"Writes to the register"]
+#[doc = "Writer for register XDMAC_GID"]
+pub type W = crate::W<u32, super::XDMAC_GID>;
+#[doc = "Register XDMAC_GID `reset()`'s with value 0"]
+impl crate::ResetValue for super::XDMAC_GID {
+    type Type = u32;
     #[inline(always)]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        self.register.set(
-            f(&mut W {
-                bits: Self::reset_value(),
-            })
-            .bits,
-        );
-    }
-    #[doc = r"Reset value of the register"]
-    #[inline(always)]
-    pub const fn reset_value() -> u32 {
+    fn reset_value() -> Self::Type {
         0
     }
-    #[doc = r"Writes the reset value to the register"]
-    #[inline(always)]
-    pub fn reset(&self) {
-        self.register.set(Self::reset_value())
-    }
 }
-#[doc = r"Proxy"]
-pub struct _ID0W<'a> {
+#[doc = "Write proxy for field `ID0`"]
+pub struct ID0_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID0W<'a> {
+impl<'a> ID0_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -49,11 +30,11 @@ impl<'a> _ID0W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID1W<'a> {
+#[doc = "Write proxy for field `ID1`"]
+pub struct ID1_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID1W<'a> {
+impl<'a> ID1_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -71,11 +52,11 @@ impl<'a> _ID1W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID2W<'a> {
+#[doc = "Write proxy for field `ID2`"]
+pub struct ID2_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID2W<'a> {
+impl<'a> ID2_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -93,11 +74,11 @@ impl<'a> _ID2W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID3W<'a> {
+#[doc = "Write proxy for field `ID3`"]
+pub struct ID3_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID3W<'a> {
+impl<'a> ID3_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -115,11 +96,11 @@ impl<'a> _ID3W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID4W<'a> {
+#[doc = "Write proxy for field `ID4`"]
+pub struct ID4_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID4W<'a> {
+impl<'a> ID4_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -137,11 +118,11 @@ impl<'a> _ID4W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID5W<'a> {
+#[doc = "Write proxy for field `ID5`"]
+pub struct ID5_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID5W<'a> {
+impl<'a> ID5_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -159,11 +140,11 @@ impl<'a> _ID5W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID6W<'a> {
+#[doc = "Write proxy for field `ID6`"]
+pub struct ID6_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID6W<'a> {
+impl<'a> ID6_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -181,11 +162,11 @@ impl<'a> _ID6W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID7W<'a> {
+#[doc = "Write proxy for field `ID7`"]
+pub struct ID7_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID7W<'a> {
+impl<'a> ID7_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -203,11 +184,11 @@ impl<'a> _ID7W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID8W<'a> {
+#[doc = "Write proxy for field `ID8`"]
+pub struct ID8_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID8W<'a> {
+impl<'a> ID8_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -225,11 +206,11 @@ impl<'a> _ID8W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID9W<'a> {
+#[doc = "Write proxy for field `ID9`"]
+pub struct ID9_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID9W<'a> {
+impl<'a> ID9_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -247,11 +228,11 @@ impl<'a> _ID9W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID10W<'a> {
+#[doc = "Write proxy for field `ID10`"]
+pub struct ID10_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID10W<'a> {
+impl<'a> ID10_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -269,11 +250,11 @@ impl<'a> _ID10W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID11W<'a> {
+#[doc = "Write proxy for field `ID11`"]
+pub struct ID11_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID11W<'a> {
+impl<'a> ID11_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -291,11 +272,11 @@ impl<'a> _ID11W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID12W<'a> {
+#[doc = "Write proxy for field `ID12`"]
+pub struct ID12_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID12W<'a> {
+impl<'a> ID12_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -313,11 +294,11 @@ impl<'a> _ID12W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID13W<'a> {
+#[doc = "Write proxy for field `ID13`"]
+pub struct ID13_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID13W<'a> {
+impl<'a> ID13_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -335,11 +316,11 @@ impl<'a> _ID13W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID14W<'a> {
+#[doc = "Write proxy for field `ID14`"]
+pub struct ID14_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID14W<'a> {
+impl<'a> ID14_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -357,11 +338,11 @@ impl<'a> _ID14W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID15W<'a> {
+#[doc = "Write proxy for field `ID15`"]
+pub struct ID15_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID15W<'a> {
+impl<'a> ID15_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -379,11 +360,11 @@ impl<'a> _ID15W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID16W<'a> {
+#[doc = "Write proxy for field `ID16`"]
+pub struct ID16_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID16W<'a> {
+impl<'a> ID16_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -401,11 +382,11 @@ impl<'a> _ID16W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID17W<'a> {
+#[doc = "Write proxy for field `ID17`"]
+pub struct ID17_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID17W<'a> {
+impl<'a> ID17_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -423,11 +404,11 @@ impl<'a> _ID17W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID18W<'a> {
+#[doc = "Write proxy for field `ID18`"]
+pub struct ID18_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID18W<'a> {
+impl<'a> ID18_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -445,11 +426,11 @@ impl<'a> _ID18W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID19W<'a> {
+#[doc = "Write proxy for field `ID19`"]
+pub struct ID19_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID19W<'a> {
+impl<'a> ID19_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -467,11 +448,11 @@ impl<'a> _ID19W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID20W<'a> {
+#[doc = "Write proxy for field `ID20`"]
+pub struct ID20_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID20W<'a> {
+impl<'a> ID20_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -489,11 +470,11 @@ impl<'a> _ID20W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID21W<'a> {
+#[doc = "Write proxy for field `ID21`"]
+pub struct ID21_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID21W<'a> {
+impl<'a> ID21_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -511,11 +492,11 @@ impl<'a> _ID21W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID22W<'a> {
+#[doc = "Write proxy for field `ID22`"]
+pub struct ID22_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID22W<'a> {
+impl<'a> ID22_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -533,11 +514,11 @@ impl<'a> _ID22W<'a> {
         self.w
     }
 }
-#[doc = r"Proxy"]
-pub struct _ID23W<'a> {
+#[doc = "Write proxy for field `ID23`"]
+pub struct ID23_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _ID23W<'a> {
+impl<'a> ID23_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -556,130 +537,124 @@ impl<'a> _ID23W<'a> {
     }
 }
 impl W {
-    #[doc = r"Writes raw bits to the register"]
-    #[inline(always)]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - XDMAC Channel 0 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id0(&mut self) -> _ID0W {
-        _ID0W { w: self }
+    pub fn id0(&mut self) -> ID0_W {
+        ID0_W { w: self }
     }
     #[doc = "Bit 1 - XDMAC Channel 1 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id1(&mut self) -> _ID1W {
-        _ID1W { w: self }
+    pub fn id1(&mut self) -> ID1_W {
+        ID1_W { w: self }
     }
     #[doc = "Bit 2 - XDMAC Channel 2 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id2(&mut self) -> _ID2W {
-        _ID2W { w: self }
+    pub fn id2(&mut self) -> ID2_W {
+        ID2_W { w: self }
     }
     #[doc = "Bit 3 - XDMAC Channel 3 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id3(&mut self) -> _ID3W {
-        _ID3W { w: self }
+    pub fn id3(&mut self) -> ID3_W {
+        ID3_W { w: self }
     }
     #[doc = "Bit 4 - XDMAC Channel 4 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id4(&mut self) -> _ID4W {
-        _ID4W { w: self }
+    pub fn id4(&mut self) -> ID4_W {
+        ID4_W { w: self }
     }
     #[doc = "Bit 5 - XDMAC Channel 5 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id5(&mut self) -> _ID5W {
-        _ID5W { w: self }
+    pub fn id5(&mut self) -> ID5_W {
+        ID5_W { w: self }
     }
     #[doc = "Bit 6 - XDMAC Channel 6 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id6(&mut self) -> _ID6W {
-        _ID6W { w: self }
+    pub fn id6(&mut self) -> ID6_W {
+        ID6_W { w: self }
     }
     #[doc = "Bit 7 - XDMAC Channel 7 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id7(&mut self) -> _ID7W {
-        _ID7W { w: self }
+    pub fn id7(&mut self) -> ID7_W {
+        ID7_W { w: self }
     }
     #[doc = "Bit 8 - XDMAC Channel 8 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id8(&mut self) -> _ID8W {
-        _ID8W { w: self }
+    pub fn id8(&mut self) -> ID8_W {
+        ID8_W { w: self }
     }
     #[doc = "Bit 9 - XDMAC Channel 9 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id9(&mut self) -> _ID9W {
-        _ID9W { w: self }
+    pub fn id9(&mut self) -> ID9_W {
+        ID9_W { w: self }
     }
     #[doc = "Bit 10 - XDMAC Channel 10 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id10(&mut self) -> _ID10W {
-        _ID10W { w: self }
+    pub fn id10(&mut self) -> ID10_W {
+        ID10_W { w: self }
     }
     #[doc = "Bit 11 - XDMAC Channel 11 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id11(&mut self) -> _ID11W {
-        _ID11W { w: self }
+    pub fn id11(&mut self) -> ID11_W {
+        ID11_W { w: self }
     }
     #[doc = "Bit 12 - XDMAC Channel 12 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id12(&mut self) -> _ID12W {
-        _ID12W { w: self }
+    pub fn id12(&mut self) -> ID12_W {
+        ID12_W { w: self }
     }
     #[doc = "Bit 13 - XDMAC Channel 13 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id13(&mut self) -> _ID13W {
-        _ID13W { w: self }
+    pub fn id13(&mut self) -> ID13_W {
+        ID13_W { w: self }
     }
     #[doc = "Bit 14 - XDMAC Channel 14 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id14(&mut self) -> _ID14W {
-        _ID14W { w: self }
+    pub fn id14(&mut self) -> ID14_W {
+        ID14_W { w: self }
     }
     #[doc = "Bit 15 - XDMAC Channel 15 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id15(&mut self) -> _ID15W {
-        _ID15W { w: self }
+    pub fn id15(&mut self) -> ID15_W {
+        ID15_W { w: self }
     }
     #[doc = "Bit 16 - XDMAC Channel 16 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id16(&mut self) -> _ID16W {
-        _ID16W { w: self }
+    pub fn id16(&mut self) -> ID16_W {
+        ID16_W { w: self }
     }
     #[doc = "Bit 17 - XDMAC Channel 17 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id17(&mut self) -> _ID17W {
-        _ID17W { w: self }
+    pub fn id17(&mut self) -> ID17_W {
+        ID17_W { w: self }
     }
     #[doc = "Bit 18 - XDMAC Channel 18 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id18(&mut self) -> _ID18W {
-        _ID18W { w: self }
+    pub fn id18(&mut self) -> ID18_W {
+        ID18_W { w: self }
     }
     #[doc = "Bit 19 - XDMAC Channel 19 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id19(&mut self) -> _ID19W {
-        _ID19W { w: self }
+    pub fn id19(&mut self) -> ID19_W {
+        ID19_W { w: self }
     }
     #[doc = "Bit 20 - XDMAC Channel 20 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id20(&mut self) -> _ID20W {
-        _ID20W { w: self }
+    pub fn id20(&mut self) -> ID20_W {
+        ID20_W { w: self }
     }
     #[doc = "Bit 21 - XDMAC Channel 21 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id21(&mut self) -> _ID21W {
-        _ID21W { w: self }
+    pub fn id21(&mut self) -> ID21_W {
+        ID21_W { w: self }
     }
     #[doc = "Bit 22 - XDMAC Channel 22 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id22(&mut self) -> _ID22W {
-        _ID22W { w: self }
+    pub fn id22(&mut self) -> ID22_W {
+        ID22_W { w: self }
     }
     #[doc = "Bit 23 - XDMAC Channel 23 Interrupt Disable Bit"]
     #[inline(always)]
-    pub fn id23(&mut self) -> _ID23W {
-        _ID23W { w: self }
+    pub fn id23(&mut self) -> ID23_W {
+        ID23_W { w: self }
     }
 }
