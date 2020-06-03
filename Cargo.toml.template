@@ -20,3 +20,7 @@ version = "~0.6"
 
 [features]
 rt = ["cortex-m-rt/device"]
+
+[lib]
+name = "${crate}"
+path = "src/lib.rs"

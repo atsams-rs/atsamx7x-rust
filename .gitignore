@@ -1,2 +1,6 @@
 # IDE/Editors specific stuff and junk
 .vscode/
+
+# Build artifacts
+target/
+**/*.rs.bk

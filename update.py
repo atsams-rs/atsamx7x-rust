@@ -43,7 +43,7 @@ for opt, arg in opts:
         use_nightly_features = True
 
 subprocess.run(cargo_install_command(["svd2rust"], nightly=use_nightly_features, force=cargo_force_install))
-# subprocess.run(cargo_install_command(["rustfmt-nightly"], nightly=use_nightly_features, force=cargo_force_install))
+# subprocess.run(cargo_install_command(["rustfmt%s" % ("-nightly" if use_nightly_features else "")], nightly=use_nightly_features, force=cargo_force_install))
 subprocess.run(cargo_install_command(["form"], nightly=use_nightly_features, force=cargo_force_install))
 
 all_svd_files = glob.glob("./svd/*.svd")
