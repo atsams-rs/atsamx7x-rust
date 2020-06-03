@@ -7,6 +7,12 @@ use crate::target_device::{ UART0, UART1, UART2, USART0, USART1 };
     feature = "sams70q19b",
     feature = "sams70q20b",
     feature = "sams70q21b",
+    feature = "same70n19b",
+    feature = "same70n20b",
+    feature = "same70n21b",
+    feature = "same70q19b",
+    feature = "same70q20b",
+    feature = "same70q21b",
 ))] use crate::target_device::{ UART3, USART2 };
 
 #[cfg(any(
@@ -16,6 +22,12 @@ use crate::target_device::{ UART0, UART1, UART2, USART0, USART1 };
     feature = "sams70q19b",
     feature = "sams70q20b",
     feature = "sams70q21b",
+    feature = "same70n19b",
+    feature = "same70n20b",
+    feature = "same70n21b",
+    feature = "same70q19b",
+    feature = "same70q20b",
+    feature = "same70q21b",
 ))] use crate::target_device::{ UART4 /*, USART3 */ };
 
 use crate::target_device::{
@@ -37,7 +49,13 @@ pub type Serial2 = Serial<UART2>;
     feature = "sams70n21b",
     feature = "sams70q19b",
     feature = "sams70q20b",
-    feature = "sams70q21b"
+    feature = "sams70q21b",
+    feature = "same70n19b",
+    feature = "same70n20b",
+    feature = "same70n21b",
+    feature = "same70q19b",
+    feature = "same70q20b",
+    feature = "same70q21b",
 ))]
 pub type Serial3 = Serial<UART3>;
 
@@ -47,7 +65,13 @@ pub type Serial3 = Serial<UART3>;
     feature = "sams70n21b",
     feature = "sams70q19b",
     feature = "sams70q20b",
-    feature = "sams70q21b"
+    feature = "sams70q21b",
+    feature = "same70n19b",
+    feature = "same70n20b",
+    feature = "same70n21b",
+    feature = "same70q19b",
+    feature = "same70q20b",
+    feature = "same70q21b",
 ))]
 pub type Serial4 = Serial<UART4>;
 
@@ -61,6 +85,12 @@ pub type Serial6 = Serial<USART1>;
     feature = "sams70q19b",
     feature = "sams70q20b",
     feature = "sams70q21b",
+    feature = "same70n19b",
+    feature = "same70n20b",
+    feature = "same70n21b",
+    feature = "same70q19b",
+    feature = "same70q20b",
+    feature = "same70q21b",
 ))]
 pub type Serial7 = Serial<USART2>;
 
@@ -99,7 +129,12 @@ impl hal::serial::Write<u8> for Serial<USART1> {
     }
 }
 
-#[cfg(any(feature = "sams70q20b", feature = "sams70q21b"))]
+#[cfg(any(
+    feature = "sams70q20b",
+    feature = "sams70q21b",
+    feature = "same70q20b",
+    feature = "same70q21b",
+))]
 impl hal::serial::Write<u8> for Serial<UART3> {
     type Error = Error;
 

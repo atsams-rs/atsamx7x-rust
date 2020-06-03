@@ -21,6 +21,96 @@ dependencies = [
 ]
 
 [[package]]
+name = "atsame70j19b"
+version = "0.0.2"
+dependencies = [
+ "bare-metal",
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70j20b"
+version = "0.0.2"
+dependencies = [
+ "bare-metal",
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70j21b"
+version = "0.0.2"
+dependencies = [
+ "bare-metal",
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70n19b"
+version = "0.0.2"
+dependencies = [
+ "bare-metal",
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70n20b"
+version = "0.0.2"
+dependencies = [
+ "bare-metal",
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70n21b"
+version = "0.0.2"
+dependencies = [
+ "bare-metal",
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70q19b"
+version = "0.0.2"
+dependencies = [
+ "bare-metal",
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70q20b"
+version = "0.0.2"
+dependencies = [
+ "bare-metal",
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70q21b"
+version = "0.0.2"
+dependencies = [
+ "bare-metal",
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
 name = "atsams70j19"
 version = "0.0.2"
 dependencies = [
@@ -204,6 +294,15 @@ dependencies = [
 name = "atsamx7x-hal"
 version = "0.0.2"
 dependencies = [
+ "atsame70j19b",
+ "atsame70j20b",
+ "atsame70j21b",
+ "atsame70n19b",
+ "atsame70n20b",
+ "atsame70n21b",
+ "atsame70q19b",
+ "atsame70q20b",
+ "atsame70q21b",
  "atsams70j19",
  "atsams70j19b",
  "atsams70j20",

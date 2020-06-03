@@ -21,5 +21,14 @@ extern crate nb;
 #[cfg(any(feature = "sams70q20b"))] pub use atsams70q20b as target_device;
 #[cfg(any(feature = "sams70q21"))]  pub use atsams70q21  as target_device;
 #[cfg(any(feature = "sams70q21b"))] pub use atsams70q21b as target_device;
+#[cfg(any(feature = "same70j19b"))] pub use atsame70j19b as target_device;
+#[cfg(any(feature = "same70j20b"))] pub use atsame70j20b as target_device;
+#[cfg(any(feature = "same70j21b"))] pub use atsame70j21b as target_device;
+#[cfg(any(feature = "same70n19b"))] pub use atsame70n19b as target_device;
+#[cfg(any(feature = "same70n20b"))] pub use atsame70n20b as target_device;
+#[cfg(any(feature = "same70n21b"))] pub use atsame70n21b as target_device;
+#[cfg(any(feature = "same70q19b"))] pub use atsame70q19b as target_device;
+#[cfg(any(feature = "same70q20b"))] pub use atsame70q20b as target_device;
+#[cfg(any(feature = "same70q21b"))] pub use atsame70q21b as target_device;
 
 pub mod serial;

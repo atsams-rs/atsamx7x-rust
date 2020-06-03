@@ -42,6 +42,15 @@ atsams70q20  = { version = "0.0.2", path = "../pac/atsams70q20", optional = true
 atsams70q20b = { version = "0.0.2", path = "../pac/atsams70q20b", optional = true }
 atsams70q21  = { version = "0.0.2", path = "../pac/atsams70q21", optional = true }
 atsams70q21b = { version = "0.0.2", path = "../pac/atsams70q21b", optional = true }
+atsame70j19b = { version = "0.0.2", path = "../pac/atsame70j19b", optional = true }
+atsame70j20b = { version = "0.0.2", path = "../pac/atsame70j20b", optional = true } 
+atsame70j21b = { version = "0.0.2", path = "../pac/atsame70j21b", optional = true }
+atsame70n19b = { version = "0.0.2", path = "../pac/atsame70n19b", optional = true }
+atsame70n20b = { version = "0.0.2", path = "../pac/atsame70n20b", optional = true } 
+atsame70n21b = { version = "0.0.2", path = "../pac/atsame70n21b", optional = true } 
+atsame70q19b = { version = "0.0.2", path = "../pac/atsame70q19b", optional = true } 
+atsame70q20b = { version = "0.0.2", path = "../pac/atsame70q20b", optional = true } 
+atsame70q21b = { version = "0.0.2", path = "../pac/atsame70q21b", optional = true }
 
 [features]
 device-selected = []
@@ -63,3 +72,13 @@ sams70q20  = ["atsams70q20", "device-selected"]
 sams70q20b = ["atsams70q20b", "device-selected"]
 sams70q21  = ["atsams70q21", "device-selected"]
 sams70q21b = ["atsams70q21b", "device-selected"]
+same70j19b = ["atsame70j19b", "device-selected"]
+same70j20b = ["atsame70j20b", "device-selected"]
+same70j21b = ["atsame70j21b", "device-selected"]
+same70n19b = ["atsame70n19b", "device-selected"]
+same70n20b = ["atsame70n20b", "device-selected"]
+same70n21b = ["atsame70n21b", "device-selected"]
+same70q19b = ["atsame70q19b", "device-selected"]
+same70q20b = ["atsame70q20b", "device-selected"]
+same70q21b = ["atsame70q21b", "device-selected"]
+
