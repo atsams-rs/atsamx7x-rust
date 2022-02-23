@@ -1,13 +1,37 @@
-#[doc = "Reader of register HSMCI_DMA"]
-pub type R = crate::R<u32, super::HSMCI_DMA>;
-#[doc = "Writer for register HSMCI_DMA"]
-pub type W = crate::W<u32, super::HSMCI_DMA>;
-#[doc = "Register HSMCI_DMA `reset()`'s with value 0"]
-impl crate::ResetValue for super::HSMCI_DMA {
-    type Type = u32;
+#[doc = "Register `HSMCI_DMA` reader"]
+pub struct R(crate::R<HSMCI_DMA_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<HSMCI_DMA_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<HSMCI_DMA_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<HSMCI_DMA_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `HSMCI_DMA` writer"]
+pub struct W(crate::W<HSMCI_DMA_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<HSMCI_DMA_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<HSMCI_DMA_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<HSMCI_DMA_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "DMA Channel Read and Write Chunk Size\n\nValue on reset: 0"]
@@ -31,49 +55,59 @@ impl From<CHKSIZE_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `CHKSIZE`"]
-pub type CHKSIZE_R = crate::R<u8, CHKSIZE_A>;
+#[doc = "Field `CHKSIZE` reader - DMA Channel Read and Write Chunk Size"]
+pub struct CHKSIZE_R(crate::FieldReader<u8, CHKSIZE_A>);
 impl CHKSIZE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        CHKSIZE_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u8, CHKSIZE_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<CHKSIZE_A> {
         match self.bits {
-            0 => Val(CHKSIZE_A::_1),
-            1 => Val(CHKSIZE_A::_2),
-            2 => Val(CHKSIZE_A::_4),
-            3 => Val(CHKSIZE_A::_8),
-            4 => Val(CHKSIZE_A::_16),
-            i => Res(i),
+            0 => Some(CHKSIZE_A::_1),
+            1 => Some(CHKSIZE_A::_2),
+            2 => Some(CHKSIZE_A::_4),
+            3 => Some(CHKSIZE_A::_8),
+            4 => Some(CHKSIZE_A::_16),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `_1`"]
     #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == CHKSIZE_A::_1
+        **self == CHKSIZE_A::_1
     }
     #[doc = "Checks if the value of the field is `_2`"]
     #[inline(always)]
     pub fn is_2(&self) -> bool {
-        *self == CHKSIZE_A::_2
+        **self == CHKSIZE_A::_2
     }
     #[doc = "Checks if the value of the field is `_4`"]
     #[inline(always)]
     pub fn is_4(&self) -> bool {
-        *self == CHKSIZE_A::_4
+        **self == CHKSIZE_A::_4
     }
     #[doc = "Checks if the value of the field is `_8`"]
     #[inline(always)]
     pub fn is_8(&self) -> bool {
-        *self == CHKSIZE_A::_8
+        **self == CHKSIZE_A::_8
     }
     #[doc = "Checks if the value of the field is `_16`"]
     #[inline(always)]
     pub fn is_16(&self) -> bool {
-        *self == CHKSIZE_A::_16
+        **self == CHKSIZE_A::_16
     }
 }
-#[doc = "Write proxy for field `CHKSIZE`"]
+impl core::ops::Deref for CHKSIZE_R {
+    type Target = crate::FieldReader<u8, CHKSIZE_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CHKSIZE` writer - DMA Channel Read and Write Chunk Size"]
 pub struct CHKSIZE_W<'a> {
     w: &'a mut W,
 }
@@ -111,13 +145,26 @@ impl<'a> CHKSIZE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x07 << 4)) | (((value as u32) & 0x07) << 4);
+        self.w.bits = (self.w.bits & !(0x07 << 4)) | ((value as u32 & 0x07) << 4);
         self.w
     }
 }
-#[doc = "Reader of field `DMAEN`"]
-pub type DMAEN_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `DMAEN`"]
+#[doc = "Field `DMAEN` reader - DMA Hardware Handshaking Enable"]
+pub struct DMAEN_R(crate::FieldReader<bool, bool>);
+impl DMAEN_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DMAEN_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DMAEN_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DMAEN` writer - DMA Hardware Handshaking Enable"]
 pub struct DMAEN_W<'a> {
     w: &'a mut W,
 }
@@ -135,7 +182,7 @@ impl<'a> DMAEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | ((value as u32 & 0x01) << 8);
         self.w
     }
 }
@@ -161,5 +208,31 @@ impl W {
     #[inline(always)]
     pub fn dmaen(&mut self) -> DMAEN_W {
         DMAEN_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "DMA Configuration Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [hsmci_dma](index.html) module"]
+pub struct HSMCI_DMA_SPEC;
+impl crate::RegisterSpec for HSMCI_DMA_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [hsmci_dma::R](R) reader structure"]
+impl crate::Readable for HSMCI_DMA_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [hsmci_dma::W](W) writer structure"]
+impl crate::Writable for HSMCI_DMA_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets HSMCI_DMA to value 0"]
+impl crate::Resettable for HSMCI_DMA_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

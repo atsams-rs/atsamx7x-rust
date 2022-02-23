@@ -1,14 +1,25 @@
-#[doc = "Writer for register PWM_OSS"]
-pub type W = crate::W<u32, super::PWM_OSS>;
-#[doc = "Register PWM_OSS `reset()`'s with value 0"]
-impl crate::ResetValue for super::PWM_OSS {
-    type Type = u32;
+#[doc = "Register `PWM_OSS` writer"]
+pub struct W(crate::W<PWM_OSS_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<PWM_OSS_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `OSSH0`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<PWM_OSS_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<PWM_OSS_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `OSSH0` writer - Output Selection Set for PWMH output of the channel 0"]
 pub struct OSSH0_W<'a> {
     w: &'a mut W,
 }
@@ -26,11 +37,11 @@ impl<'a> OSSH0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
-#[doc = "Write proxy for field `OSSH1`"]
+#[doc = "Field `OSSH1` writer - Output Selection Set for PWMH output of the channel 1"]
 pub struct OSSH1_W<'a> {
     w: &'a mut W,
 }
@@ -48,11 +59,11 @@ impl<'a> OSSH1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Write proxy for field `OSSH2`"]
+#[doc = "Field `OSSH2` writer - Output Selection Set for PWMH output of the channel 2"]
 pub struct OSSH2_W<'a> {
     w: &'a mut W,
 }
@@ -70,11 +81,11 @@ impl<'a> OSSH2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Write proxy for field `OSSH3`"]
+#[doc = "Field `OSSH3` writer - Output Selection Set for PWMH output of the channel 3"]
 pub struct OSSH3_W<'a> {
     w: &'a mut W,
 }
@@ -92,11 +103,11 @@ impl<'a> OSSH3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Write proxy for field `OSSL0`"]
+#[doc = "Field `OSSL0` writer - Output Selection Set for PWML output of the channel 0"]
 pub struct OSSL0_W<'a> {
     w: &'a mut W,
 }
@@ -114,11 +125,11 @@ impl<'a> OSSL0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | ((value as u32 & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Write proxy for field `OSSL1`"]
+#[doc = "Field `OSSL1` writer - Output Selection Set for PWML output of the channel 1"]
 pub struct OSSL1_W<'a> {
     w: &'a mut W,
 }
@@ -136,11 +147,11 @@ impl<'a> OSSL1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | ((value as u32 & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Write proxy for field `OSSL2`"]
+#[doc = "Field `OSSL2` writer - Output Selection Set for PWML output of the channel 2"]
 pub struct OSSL2_W<'a> {
     w: &'a mut W,
 }
@@ -158,11 +169,11 @@ impl<'a> OSSL2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | ((value as u32 & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Write proxy for field `OSSL3`"]
+#[doc = "Field `OSSL3` writer - Output Selection Set for PWML output of the channel 3"]
 pub struct OSSL3_W<'a> {
     w: &'a mut W,
 }
@@ -180,7 +191,7 @@ impl<'a> OSSL3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | ((value as u32 & 0x01) << 19);
         self.w
     }
 }
@@ -224,5 +235,27 @@ impl W {
     #[inline(always)]
     pub fn ossl3(&mut self) -> OSSL3_W {
         OSSL3_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "PWM Output Selection Set Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pwm_oss](index.html) module"]
+pub struct PWM_OSS_SPEC;
+impl crate::RegisterSpec for PWM_OSS_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [pwm_oss::W](W) writer structure"]
+impl crate::Writable for PWM_OSS_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets PWM_OSS to value 0"]
+impl crate::Resettable for PWM_OSS_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

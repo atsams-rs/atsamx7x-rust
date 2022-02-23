@@ -1,18 +1,55 @@
-#[doc = "Reader of register ISI_CFG2"]
-pub type R = crate::R<u32, super::ISI_CFG2>;
-#[doc = "Writer for register ISI_CFG2"]
-pub type W = crate::W<u32, super::ISI_CFG2>;
-#[doc = "Register ISI_CFG2 `reset()`'s with value 0"]
-impl crate::ResetValue for super::ISI_CFG2 {
-    type Type = u32;
+#[doc = "Register `ISI_CFG2` reader"]
+pub struct R(crate::R<ISI_CFG2_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<ISI_CFG2_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `IM_VSIZE`"]
-pub type IM_VSIZE_R = crate::R<u16, u16>;
-#[doc = "Write proxy for field `IM_VSIZE`"]
+impl From<crate::R<ISI_CFG2_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<ISI_CFG2_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `ISI_CFG2` writer"]
+pub struct W(crate::W<ISI_CFG2_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<ISI_CFG2_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<ISI_CFG2_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<ISI_CFG2_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `IM_VSIZE` reader - Vertical Size of the Image Sensor \\[0..2047\\]"]
+pub struct IM_VSIZE_R(crate::FieldReader<u16, u16>);
+impl IM_VSIZE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u16) -> Self {
+        IM_VSIZE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IM_VSIZE_R {
+    type Target = crate::FieldReader<u16, u16>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IM_VSIZE` writer - Vertical Size of the Image Sensor \\[0..2047\\]"]
 pub struct IM_VSIZE_W<'a> {
     w: &'a mut W,
 }
@@ -20,13 +57,26 @@ impl<'a> IM_VSIZE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x07ff) | ((value as u32) & 0x07ff);
+        self.w.bits = (self.w.bits & !0x07ff) | (value as u32 & 0x07ff);
         self.w
     }
 }
-#[doc = "Reader of field `GS_MODE`"]
-pub type GS_MODE_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `GS_MODE`"]
+#[doc = "Field `GS_MODE` reader - Grayscale Pixel Format Mode"]
+pub struct GS_MODE_R(crate::FieldReader<bool, bool>);
+impl GS_MODE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        GS_MODE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for GS_MODE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `GS_MODE` writer - Grayscale Pixel Format Mode"]
 pub struct GS_MODE_W<'a> {
     w: &'a mut W,
 }
@@ -44,13 +94,26 @@ impl<'a> GS_MODE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | ((value as u32 & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Reader of field `RGB_MODE`"]
-pub type RGB_MODE_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `RGB_MODE`"]
+#[doc = "Field `RGB_MODE` reader - RGB Input Mode"]
+pub struct RGB_MODE_R(crate::FieldReader<bool, bool>);
+impl RGB_MODE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        RGB_MODE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for RGB_MODE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `RGB_MODE` writer - RGB Input Mode"]
 pub struct RGB_MODE_W<'a> {
     w: &'a mut W,
 }
@@ -68,13 +131,26 @@ impl<'a> RGB_MODE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | ((value as u32 & 0x01) << 12);
         self.w
     }
 }
-#[doc = "Reader of field `GRAYSCALE`"]
-pub type GRAYSCALE_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `GRAYSCALE`"]
+#[doc = "Field `GRAYSCALE` reader - Grayscale Mode Format Enable"]
+pub struct GRAYSCALE_R(crate::FieldReader<bool, bool>);
+impl GRAYSCALE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        GRAYSCALE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for GRAYSCALE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `GRAYSCALE` writer - Grayscale Mode Format Enable"]
 pub struct GRAYSCALE_W<'a> {
     w: &'a mut W,
 }
@@ -92,13 +168,26 @@ impl<'a> GRAYSCALE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | ((value as u32 & 0x01) << 13);
         self.w
     }
 }
-#[doc = "Reader of field `RGB_SWAP`"]
-pub type RGB_SWAP_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `RGB_SWAP`"]
+#[doc = "Field `RGB_SWAP` reader - RGB Format Swap Mode"]
+pub struct RGB_SWAP_R(crate::FieldReader<bool, bool>);
+impl RGB_SWAP_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        RGB_SWAP_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for RGB_SWAP_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `RGB_SWAP` writer - RGB Format Swap Mode"]
 pub struct RGB_SWAP_W<'a> {
     w: &'a mut W,
 }
@@ -116,13 +205,26 @@ impl<'a> RGB_SWAP_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | ((value as u32 & 0x01) << 14);
         self.w
     }
 }
-#[doc = "Reader of field `COL_SPACE`"]
-pub type COL_SPACE_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `COL_SPACE`"]
+#[doc = "Field `COL_SPACE` reader - Color Space for the Image Data"]
+pub struct COL_SPACE_R(crate::FieldReader<bool, bool>);
+impl COL_SPACE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        COL_SPACE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for COL_SPACE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `COL_SPACE` writer - Color Space for the Image Data"]
 pub struct COL_SPACE_W<'a> {
     w: &'a mut W,
 }
@@ -140,13 +242,26 @@ impl<'a> COL_SPACE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | ((value as u32 & 0x01) << 15);
         self.w
     }
 }
-#[doc = "Reader of field `IM_HSIZE`"]
-pub type IM_HSIZE_R = crate::R<u16, u16>;
-#[doc = "Write proxy for field `IM_HSIZE`"]
+#[doc = "Field `IM_HSIZE` reader - Horizontal Size of the Image Sensor \\[0..2047\\]"]
+pub struct IM_HSIZE_R(crate::FieldReader<u16, u16>);
+impl IM_HSIZE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u16) -> Self {
+        IM_HSIZE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IM_HSIZE_R {
+    type Target = crate::FieldReader<u16, u16>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IM_HSIZE` writer - Horizontal Size of the Image Sensor \\[0..2047\\]"]
 pub struct IM_HSIZE_W<'a> {
     w: &'a mut W,
 }
@@ -154,7 +269,7 @@ impl<'a> IM_HSIZE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x07ff << 16)) | (((value as u32) & 0x07ff) << 16);
+        self.w.bits = (self.w.bits & !(0x07ff << 16)) | ((value as u32 & 0x07ff) << 16);
         self.w
     }
 }
@@ -177,9 +292,13 @@ impl From<YCC_SWAP_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `YCC_SWAP`"]
-pub type YCC_SWAP_R = crate::R<u8, YCC_SWAP_A>;
+#[doc = "Field `YCC_SWAP` reader - YCrCb Format Swap Mode"]
+pub struct YCC_SWAP_R(crate::FieldReader<u8, YCC_SWAP_A>);
 impl YCC_SWAP_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        YCC_SWAP_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> YCC_SWAP_A {
@@ -194,25 +313,32 @@ impl YCC_SWAP_R {
     #[doc = "Checks if the value of the field is `DEFAULT`"]
     #[inline(always)]
     pub fn is_default(&self) -> bool {
-        *self == YCC_SWAP_A::DEFAULT
+        **self == YCC_SWAP_A::DEFAULT
     }
     #[doc = "Checks if the value of the field is `MODE1`"]
     #[inline(always)]
     pub fn is_mode1(&self) -> bool {
-        *self == YCC_SWAP_A::MODE1
+        **self == YCC_SWAP_A::MODE1
     }
     #[doc = "Checks if the value of the field is `MODE2`"]
     #[inline(always)]
     pub fn is_mode2(&self) -> bool {
-        *self == YCC_SWAP_A::MODE2
+        **self == YCC_SWAP_A::MODE2
     }
     #[doc = "Checks if the value of the field is `MODE3`"]
     #[inline(always)]
     pub fn is_mode3(&self) -> bool {
-        *self == YCC_SWAP_A::MODE3
+        **self == YCC_SWAP_A::MODE3
     }
 }
-#[doc = "Write proxy for field `YCC_SWAP`"]
+impl core::ops::Deref for YCC_SWAP_R {
+    type Target = crate::FieldReader<u8, YCC_SWAP_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `YCC_SWAP` writer - YCrCb Format Swap Mode"]
 pub struct YCC_SWAP_W<'a> {
     w: &'a mut W,
 }
@@ -220,9 +346,7 @@ impl<'a> YCC_SWAP_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: YCC_SWAP_A) -> &'a mut W {
-        {
-            self.bits(variant.into())
-        }
+        self.bits(variant.into())
     }
     #[doc = "Byte 0 Cb(i)Byte 1 Y(i)Byte 2 Cr(i)Byte 3 Y(i+1)"]
     #[inline(always)]
@@ -247,7 +371,7 @@ impl<'a> YCC_SWAP_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 28)) | (((value as u32) & 0x03) << 28);
+        self.w.bits = (self.w.bits & !(0x03 << 28)) | ((value as u32 & 0x03) << 28);
         self.w
     }
 }
@@ -270,9 +394,13 @@ impl From<RGB_CFG_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `RGB_CFG`"]
-pub type RGB_CFG_R = crate::R<u8, RGB_CFG_A>;
+#[doc = "Field `RGB_CFG` reader - RGB Pixel Mapping Configuration"]
+pub struct RGB_CFG_R(crate::FieldReader<u8, RGB_CFG_A>);
 impl RGB_CFG_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        RGB_CFG_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> RGB_CFG_A {
@@ -287,25 +415,32 @@ impl RGB_CFG_R {
     #[doc = "Checks if the value of the field is `DEFAULT`"]
     #[inline(always)]
     pub fn is_default(&self) -> bool {
-        *self == RGB_CFG_A::DEFAULT
+        **self == RGB_CFG_A::DEFAULT
     }
     #[doc = "Checks if the value of the field is `MODE1`"]
     #[inline(always)]
     pub fn is_mode1(&self) -> bool {
-        *self == RGB_CFG_A::MODE1
+        **self == RGB_CFG_A::MODE1
     }
     #[doc = "Checks if the value of the field is `MODE2`"]
     #[inline(always)]
     pub fn is_mode2(&self) -> bool {
-        *self == RGB_CFG_A::MODE2
+        **self == RGB_CFG_A::MODE2
     }
     #[doc = "Checks if the value of the field is `MODE3`"]
     #[inline(always)]
     pub fn is_mode3(&self) -> bool {
-        *self == RGB_CFG_A::MODE3
+        **self == RGB_CFG_A::MODE3
     }
 }
-#[doc = "Write proxy for field `RGB_CFG`"]
+impl core::ops::Deref for RGB_CFG_R {
+    type Target = crate::FieldReader<u8, RGB_CFG_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `RGB_CFG` writer - RGB Pixel Mapping Configuration"]
 pub struct RGB_CFG_W<'a> {
     w: &'a mut W,
 }
@@ -313,9 +448,7 @@ impl<'a> RGB_CFG_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: RGB_CFG_A) -> &'a mut W {
-        {
-            self.bits(variant.into())
-        }
+        self.bits(variant.into())
     }
     #[doc = "Byte 0 R/G(MSB)Byte 1 G(LSB)/BByte 2 R/G(MSB)Byte 3 G(LSB)/B"]
     #[inline(always)]
@@ -340,7 +473,7 @@ impl<'a> RGB_CFG_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 30)) | (((value as u32) & 0x03) << 30);
+        self.w.bits = (self.w.bits & !(0x03 << 30)) | ((value as u32 & 0x03) << 30);
         self.w
     }
 }
@@ -436,5 +569,31 @@ impl W {
     #[inline(always)]
     pub fn rgb_cfg(&mut self) -> RGB_CFG_W {
         RGB_CFG_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "ISI Configuration 2 Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [isi_cfg2](index.html) module"]
+pub struct ISI_CFG2_SPEC;
+impl crate::RegisterSpec for ISI_CFG2_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [isi_cfg2::R](R) reader structure"]
+impl crate::Readable for ISI_CFG2_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [isi_cfg2::W](W) writer structure"]
+impl crate::Writable for ISI_CFG2_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets ISI_CFG2 to value 0"]
+impl crate::Resettable for ISI_CFG2_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

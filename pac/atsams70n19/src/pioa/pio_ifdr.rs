@@ -1,14 +1,25 @@
-#[doc = "Writer for register PIO_IFDR"]
-pub type W = crate::W<u32, super::PIO_IFDR>;
-#[doc = "Register PIO_IFDR `reset()`'s with value 0"]
-impl crate::ResetValue for super::PIO_IFDR {
-    type Type = u32;
+#[doc = "Register `PIO_IFDR` writer"]
+pub struct W(crate::W<PIO_IFDR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<PIO_IFDR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `P0`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<PIO_IFDR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<PIO_IFDR_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `P0` writer - Input Filter Disable"]
 pub struct P0_W<'a> {
     w: &'a mut W,
 }
@@ -26,11 +37,11 @@ impl<'a> P0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
-#[doc = "Write proxy for field `P1`"]
+#[doc = "Field `P1` writer - Input Filter Disable"]
 pub struct P1_W<'a> {
     w: &'a mut W,
 }
@@ -48,11 +59,11 @@ impl<'a> P1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Write proxy for field `P2`"]
+#[doc = "Field `P2` writer - Input Filter Disable"]
 pub struct P2_W<'a> {
     w: &'a mut W,
 }
@@ -70,11 +81,11 @@ impl<'a> P2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Write proxy for field `P3`"]
+#[doc = "Field `P3` writer - Input Filter Disable"]
 pub struct P3_W<'a> {
     w: &'a mut W,
 }
@@ -92,11 +103,11 @@ impl<'a> P3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Write proxy for field `P4`"]
+#[doc = "Field `P4` writer - Input Filter Disable"]
 pub struct P4_W<'a> {
     w: &'a mut W,
 }
@@ -114,11 +125,11 @@ impl<'a> P4_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Write proxy for field `P5`"]
+#[doc = "Field `P5` writer - Input Filter Disable"]
 pub struct P5_W<'a> {
     w: &'a mut W,
 }
@@ -136,11 +147,11 @@ impl<'a> P5_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Write proxy for field `P6`"]
+#[doc = "Field `P6` writer - Input Filter Disable"]
 pub struct P6_W<'a> {
     w: &'a mut W,
 }
@@ -158,11 +169,11 @@ impl<'a> P6_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Write proxy for field `P7`"]
+#[doc = "Field `P7` writer - Input Filter Disable"]
 pub struct P7_W<'a> {
     w: &'a mut W,
 }
@@ -180,11 +191,11 @@ impl<'a> P7_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | ((value as u32 & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Write proxy for field `P8`"]
+#[doc = "Field `P8` writer - Input Filter Disable"]
 pub struct P8_W<'a> {
     w: &'a mut W,
 }
@@ -202,11 +213,11 @@ impl<'a> P8_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | ((value as u32 & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Write proxy for field `P9`"]
+#[doc = "Field `P9` writer - Input Filter Disable"]
 pub struct P9_W<'a> {
     w: &'a mut W,
 }
@@ -224,11 +235,11 @@ impl<'a> P9_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | ((value as u32 & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Write proxy for field `P10`"]
+#[doc = "Field `P10` writer - Input Filter Disable"]
 pub struct P10_W<'a> {
     w: &'a mut W,
 }
@@ -246,11 +257,11 @@ impl<'a> P10_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | ((value as u32 & 0x01) << 10);
         self.w
     }
 }
-#[doc = "Write proxy for field `P11`"]
+#[doc = "Field `P11` writer - Input Filter Disable"]
 pub struct P11_W<'a> {
     w: &'a mut W,
 }
@@ -268,11 +279,11 @@ impl<'a> P11_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | ((value as u32 & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Write proxy for field `P12`"]
+#[doc = "Field `P12` writer - Input Filter Disable"]
 pub struct P12_W<'a> {
     w: &'a mut W,
 }
@@ -290,11 +301,11 @@ impl<'a> P12_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | ((value as u32 & 0x01) << 12);
         self.w
     }
 }
-#[doc = "Write proxy for field `P13`"]
+#[doc = "Field `P13` writer - Input Filter Disable"]
 pub struct P13_W<'a> {
     w: &'a mut W,
 }
@@ -312,11 +323,11 @@ impl<'a> P13_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | ((value as u32 & 0x01) << 13);
         self.w
     }
 }
-#[doc = "Write proxy for field `P14`"]
+#[doc = "Field `P14` writer - Input Filter Disable"]
 pub struct P14_W<'a> {
     w: &'a mut W,
 }
@@ -334,11 +345,11 @@ impl<'a> P14_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | ((value as u32 & 0x01) << 14);
         self.w
     }
 }
-#[doc = "Write proxy for field `P15`"]
+#[doc = "Field `P15` writer - Input Filter Disable"]
 pub struct P15_W<'a> {
     w: &'a mut W,
 }
@@ -356,11 +367,11 @@ impl<'a> P15_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | ((value as u32 & 0x01) << 15);
         self.w
     }
 }
-#[doc = "Write proxy for field `P16`"]
+#[doc = "Field `P16` writer - Input Filter Disable"]
 pub struct P16_W<'a> {
     w: &'a mut W,
 }
@@ -378,11 +389,11 @@ impl<'a> P16_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | ((value as u32 & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Write proxy for field `P17`"]
+#[doc = "Field `P17` writer - Input Filter Disable"]
 pub struct P17_W<'a> {
     w: &'a mut W,
 }
@@ -400,11 +411,11 @@ impl<'a> P17_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | ((value as u32 & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Write proxy for field `P18`"]
+#[doc = "Field `P18` writer - Input Filter Disable"]
 pub struct P18_W<'a> {
     w: &'a mut W,
 }
@@ -422,11 +433,11 @@ impl<'a> P18_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | ((value as u32 & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Write proxy for field `P19`"]
+#[doc = "Field `P19` writer - Input Filter Disable"]
 pub struct P19_W<'a> {
     w: &'a mut W,
 }
@@ -444,11 +455,11 @@ impl<'a> P19_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | ((value as u32 & 0x01) << 19);
         self.w
     }
 }
-#[doc = "Write proxy for field `P20`"]
+#[doc = "Field `P20` writer - Input Filter Disable"]
 pub struct P20_W<'a> {
     w: &'a mut W,
 }
@@ -466,11 +477,11 @@ impl<'a> P20_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | ((value as u32 & 0x01) << 20);
         self.w
     }
 }
-#[doc = "Write proxy for field `P21`"]
+#[doc = "Field `P21` writer - Input Filter Disable"]
 pub struct P21_W<'a> {
     w: &'a mut W,
 }
@@ -488,11 +499,11 @@ impl<'a> P21_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | ((value as u32 & 0x01) << 21);
         self.w
     }
 }
-#[doc = "Write proxy for field `P22`"]
+#[doc = "Field `P22` writer - Input Filter Disable"]
 pub struct P22_W<'a> {
     w: &'a mut W,
 }
@@ -510,11 +521,11 @@ impl<'a> P22_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | ((value as u32 & 0x01) << 22);
         self.w
     }
 }
-#[doc = "Write proxy for field `P23`"]
+#[doc = "Field `P23` writer - Input Filter Disable"]
 pub struct P23_W<'a> {
     w: &'a mut W,
 }
@@ -532,11 +543,11 @@ impl<'a> P23_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 23)) | (((value as u32) & 0x01) << 23);
+        self.w.bits = (self.w.bits & !(0x01 << 23)) | ((value as u32 & 0x01) << 23);
         self.w
     }
 }
-#[doc = "Write proxy for field `P24`"]
+#[doc = "Field `P24` writer - Input Filter Disable"]
 pub struct P24_W<'a> {
     w: &'a mut W,
 }
@@ -554,11 +565,11 @@ impl<'a> P24_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 24)) | (((value as u32) & 0x01) << 24);
+        self.w.bits = (self.w.bits & !(0x01 << 24)) | ((value as u32 & 0x01) << 24);
         self.w
     }
 }
-#[doc = "Write proxy for field `P25`"]
+#[doc = "Field `P25` writer - Input Filter Disable"]
 pub struct P25_W<'a> {
     w: &'a mut W,
 }
@@ -576,11 +587,11 @@ impl<'a> P25_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | ((value as u32 & 0x01) << 25);
         self.w
     }
 }
-#[doc = "Write proxy for field `P26`"]
+#[doc = "Field `P26` writer - Input Filter Disable"]
 pub struct P26_W<'a> {
     w: &'a mut W,
 }
@@ -598,11 +609,11 @@ impl<'a> P26_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | ((value as u32 & 0x01) << 26);
         self.w
     }
 }
-#[doc = "Write proxy for field `P27`"]
+#[doc = "Field `P27` writer - Input Filter Disable"]
 pub struct P27_W<'a> {
     w: &'a mut W,
 }
@@ -620,11 +631,11 @@ impl<'a> P27_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | ((value as u32 & 0x01) << 27);
         self.w
     }
 }
-#[doc = "Write proxy for field `P28`"]
+#[doc = "Field `P28` writer - Input Filter Disable"]
 pub struct P28_W<'a> {
     w: &'a mut W,
 }
@@ -642,11 +653,11 @@ impl<'a> P28_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | ((value as u32 & 0x01) << 28);
         self.w
     }
 }
-#[doc = "Write proxy for field `P29`"]
+#[doc = "Field `P29` writer - Input Filter Disable"]
 pub struct P29_W<'a> {
     w: &'a mut W,
 }
@@ -664,11 +675,11 @@ impl<'a> P29_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 29)) | (((value as u32) & 0x01) << 29);
+        self.w.bits = (self.w.bits & !(0x01 << 29)) | ((value as u32 & 0x01) << 29);
         self.w
     }
 }
-#[doc = "Write proxy for field `P30`"]
+#[doc = "Field `P30` writer - Input Filter Disable"]
 pub struct P30_W<'a> {
     w: &'a mut W,
 }
@@ -686,11 +697,11 @@ impl<'a> P30_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 30)) | (((value as u32) & 0x01) << 30);
+        self.w.bits = (self.w.bits & !(0x01 << 30)) | ((value as u32 & 0x01) << 30);
         self.w
     }
 }
-#[doc = "Write proxy for field `P31`"]
+#[doc = "Field `P31` writer - Input Filter Disable"]
 pub struct P31_W<'a> {
     w: &'a mut W,
 }
@@ -708,7 +719,7 @@ impl<'a> P31_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | ((value as u32 & 0x01) << 31);
         self.w
     }
 }
@@ -872,5 +883,27 @@ impl W {
     #[inline(always)]
     pub fn p31(&mut self) -> P31_W {
         P31_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Glitch Input Filter Disable Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pio_ifdr](index.html) module"]
+pub struct PIO_IFDR_SPEC;
+impl crate::RegisterSpec for PIO_IFDR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [pio_ifdr::W](W) writer structure"]
+impl crate::Writable for PIO_IFDR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets PIO_IFDR to value 0"]
+impl crate::Resettable for PIO_IFDR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

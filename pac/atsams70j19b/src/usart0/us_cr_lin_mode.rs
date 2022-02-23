@@ -1,14 +1,25 @@
-#[doc = "Writer for register US_CR_LIN_MODE"]
-pub type W = crate::W<u32, super::US_CR_LIN_MODE>;
-#[doc = "Register US_CR_LIN_MODE `reset()`'s with value 0"]
-impl crate::ResetValue for super::US_CR_LIN_MODE {
-    type Type = u32;
+#[doc = "Register `US_CR_LIN_MODE` writer"]
+pub struct W(crate::W<US_CR_LIN_MODE_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<US_CR_LIN_MODE_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `RSTRX`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<US_CR_LIN_MODE_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<US_CR_LIN_MODE_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `RSTRX` writer - Reset Receiver"]
 pub struct RSTRX_W<'a> {
     w: &'a mut W,
 }
@@ -26,11 +37,11 @@ impl<'a> RSTRX_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Write proxy for field `RSTTX`"]
+#[doc = "Field `RSTTX` writer - Reset Transmitter"]
 pub struct RSTTX_W<'a> {
     w: &'a mut W,
 }
@@ -48,11 +59,11 @@ impl<'a> RSTTX_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Write proxy for field `RXEN`"]
+#[doc = "Field `RXEN` writer - Receiver Enable"]
 pub struct RXEN_W<'a> {
     w: &'a mut W,
 }
@@ -70,11 +81,11 @@ impl<'a> RXEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Write proxy for field `RXDIS`"]
+#[doc = "Field `RXDIS` writer - Receiver Disable"]
 pub struct RXDIS_W<'a> {
     w: &'a mut W,
 }
@@ -92,11 +103,11 @@ impl<'a> RXDIS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Write proxy for field `TXEN`"]
+#[doc = "Field `TXEN` writer - Transmitter Enable"]
 pub struct TXEN_W<'a> {
     w: &'a mut W,
 }
@@ -114,11 +125,11 @@ impl<'a> TXEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Write proxy for field `TXDIS`"]
+#[doc = "Field `TXDIS` writer - Transmitter Disable"]
 pub struct TXDIS_W<'a> {
     w: &'a mut W,
 }
@@ -136,11 +147,11 @@ impl<'a> TXDIS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | ((value as u32 & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Write proxy for field `RSTSTA`"]
+#[doc = "Field `RSTSTA` writer - Reset Status Bits"]
 pub struct RSTSTA_W<'a> {
     w: &'a mut W,
 }
@@ -158,11 +169,11 @@ impl<'a> RSTSTA_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | ((value as u32 & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Write proxy for field `LINABT`"]
+#[doc = "Field `LINABT` writer - Abort LIN Transmission"]
 pub struct LINABT_W<'a> {
     w: &'a mut W,
 }
@@ -180,11 +191,11 @@ impl<'a> LINABT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | ((value as u32 & 0x01) << 20);
         self.w
     }
 }
-#[doc = "Write proxy for field `LINWKUP`"]
+#[doc = "Field `LINWKUP` writer - Send LIN Wakeup Signal"]
 pub struct LINWKUP_W<'a> {
     w: &'a mut W,
 }
@@ -202,7 +213,7 @@ impl<'a> LINWKUP_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | ((value as u32 & 0x01) << 21);
         self.w
     }
 }
@@ -251,5 +262,27 @@ impl W {
     #[inline(always)]
     pub fn linwkup(&mut self) -> LINWKUP_W {
         LINWKUP_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Control Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [us_cr_lin_mode](index.html) module"]
+pub struct US_CR_LIN_MODE_SPEC;
+impl crate::RegisterSpec for US_CR_LIN_MODE_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [us_cr_lin_mode::W](W) writer structure"]
+impl crate::Writable for US_CR_LIN_MODE_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets US_CR_LIN_MODE to value 0"]
+impl crate::Resettable for US_CR_LIN_MODE_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

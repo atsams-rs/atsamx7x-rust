@@ -1,14 +1,25 @@
-#[doc = "Writer for register AFEC_CHER"]
-pub type W = crate::W<u32, super::AFEC_CHER>;
-#[doc = "Register AFEC_CHER `reset()`'s with value 0"]
-impl crate::ResetValue for super::AFEC_CHER {
-    type Type = u32;
+#[doc = "Register `AFEC_CHER` writer"]
+pub struct W(crate::W<AFEC_CHER_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<AFEC_CHER_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `CH0`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<AFEC_CHER_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<AFEC_CHER_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `CH0` writer - Channel 0 Enable"]
 pub struct CH0_W<'a> {
     w: &'a mut W,
 }
@@ -26,11 +37,11 @@ impl<'a> CH0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
-#[doc = "Write proxy for field `CH1`"]
+#[doc = "Field `CH1` writer - Channel 1 Enable"]
 pub struct CH1_W<'a> {
     w: &'a mut W,
 }
@@ -48,11 +59,11 @@ impl<'a> CH1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Write proxy for field `CH2`"]
+#[doc = "Field `CH2` writer - Channel 2 Enable"]
 pub struct CH2_W<'a> {
     w: &'a mut W,
 }
@@ -70,11 +81,11 @@ impl<'a> CH2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Write proxy for field `CH3`"]
+#[doc = "Field `CH3` writer - Channel 3 Enable"]
 pub struct CH3_W<'a> {
     w: &'a mut W,
 }
@@ -92,11 +103,11 @@ impl<'a> CH3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Write proxy for field `CH4`"]
+#[doc = "Field `CH4` writer - Channel 4 Enable"]
 pub struct CH4_W<'a> {
     w: &'a mut W,
 }
@@ -114,11 +125,11 @@ impl<'a> CH4_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Write proxy for field `CH5`"]
+#[doc = "Field `CH5` writer - Channel 5 Enable"]
 pub struct CH5_W<'a> {
     w: &'a mut W,
 }
@@ -136,11 +147,11 @@ impl<'a> CH5_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Write proxy for field `CH6`"]
+#[doc = "Field `CH6` writer - Channel 6 Enable"]
 pub struct CH6_W<'a> {
     w: &'a mut W,
 }
@@ -158,11 +169,11 @@ impl<'a> CH6_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Write proxy for field `CH7`"]
+#[doc = "Field `CH7` writer - Channel 7 Enable"]
 pub struct CH7_W<'a> {
     w: &'a mut W,
 }
@@ -180,11 +191,11 @@ impl<'a> CH7_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | ((value as u32 & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Write proxy for field `CH8`"]
+#[doc = "Field `CH8` writer - Channel 8 Enable"]
 pub struct CH8_W<'a> {
     w: &'a mut W,
 }
@@ -202,11 +213,11 @@ impl<'a> CH8_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | ((value as u32 & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Write proxy for field `CH9`"]
+#[doc = "Field `CH9` writer - Channel 9 Enable"]
 pub struct CH9_W<'a> {
     w: &'a mut W,
 }
@@ -224,11 +235,11 @@ impl<'a> CH9_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | ((value as u32 & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Write proxy for field `CH10`"]
+#[doc = "Field `CH10` writer - Channel 10 Enable"]
 pub struct CH10_W<'a> {
     w: &'a mut W,
 }
@@ -246,11 +257,11 @@ impl<'a> CH10_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | ((value as u32 & 0x01) << 10);
         self.w
     }
 }
-#[doc = "Write proxy for field `CH11`"]
+#[doc = "Field `CH11` writer - Channel 11 Enable"]
 pub struct CH11_W<'a> {
     w: &'a mut W,
 }
@@ -268,7 +279,7 @@ impl<'a> CH11_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | ((value as u32 & 0x01) << 11);
         self.w
     }
 }
@@ -332,5 +343,27 @@ impl W {
     #[inline(always)]
     pub fn ch11(&mut self) -> CH11_W {
         CH11_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "AFEC Channel Enable Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [afec_cher](index.html) module"]
+pub struct AFEC_CHER_SPEC;
+impl crate::RegisterSpec for AFEC_CHER_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [afec_cher::W](W) writer structure"]
+impl crate::Writable for AFEC_CHER_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets AFEC_CHER to value 0"]
+impl crate::Resettable for AFEC_CHER_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

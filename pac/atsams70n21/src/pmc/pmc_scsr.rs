@@ -1,23 +1,153 @@
-#[doc = "Reader of register PMC_SCSR"]
-pub type R = crate::R<u32, super::PMC_SCSR>;
-#[doc = "Reader of field `HCLKS`"]
-pub type HCLKS_R = crate::R<bool, bool>;
-#[doc = "Reader of field `USBCLK`"]
-pub type USBCLK_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PCK0`"]
-pub type PCK0_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PCK1`"]
-pub type PCK1_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PCK2`"]
-pub type PCK2_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PCK3`"]
-pub type PCK3_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PCK4`"]
-pub type PCK4_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PCK5`"]
-pub type PCK5_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PCK6`"]
-pub type PCK6_R = crate::R<bool, bool>;
+#[doc = "Register `PMC_SCSR` reader"]
+pub struct R(crate::R<PMC_SCSR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<PMC_SCSR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<PMC_SCSR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<PMC_SCSR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Field `HCLKS` reader - HCLK Status"]
+pub struct HCLKS_R(crate::FieldReader<bool, bool>);
+impl HCLKS_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        HCLKS_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for HCLKS_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `USBCLK` reader - USB FS Clock Status"]
+pub struct USBCLK_R(crate::FieldReader<bool, bool>);
+impl USBCLK_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        USBCLK_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for USBCLK_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PCK0` reader - Programmable Clock 0 Output Status"]
+pub struct PCK0_R(crate::FieldReader<bool, bool>);
+impl PCK0_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PCK0_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PCK0_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PCK1` reader - Programmable Clock 1 Output Status"]
+pub struct PCK1_R(crate::FieldReader<bool, bool>);
+impl PCK1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PCK1_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PCK1_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PCK2` reader - Programmable Clock 2 Output Status"]
+pub struct PCK2_R(crate::FieldReader<bool, bool>);
+impl PCK2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PCK2_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PCK2_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PCK3` reader - Programmable Clock 3 Output Status"]
+pub struct PCK3_R(crate::FieldReader<bool, bool>);
+impl PCK3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PCK3_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PCK3_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PCK4` reader - Programmable Clock 4 Output Status"]
+pub struct PCK4_R(crate::FieldReader<bool, bool>);
+impl PCK4_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PCK4_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PCK4_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PCK5` reader - Programmable Clock 5 Output Status"]
+pub struct PCK5_R(crate::FieldReader<bool, bool>);
+impl PCK5_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PCK5_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PCK5_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PCK6` reader - Programmable Clock 6 Output Status"]
+pub struct PCK6_R(crate::FieldReader<bool, bool>);
+impl PCK6_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PCK6_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PCK6_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 impl R {
     #[doc = "Bit 0 - HCLK Status"]
     #[inline(always)]
@@ -63,5 +193,21 @@ impl R {
     #[inline(always)]
     pub fn pck6(&self) -> PCK6_R {
         PCK6_R::new(((self.bits >> 14) & 0x01) != 0)
+    }
+}
+#[doc = "System Clock Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pmc_scsr](index.html) module"]
+pub struct PMC_SCSR_SPEC;
+impl crate::RegisterSpec for PMC_SCSR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [pmc_scsr::R](R) reader structure"]
+impl crate::Readable for PMC_SCSR_SPEC {
+    type Reader = R;
+}
+#[doc = "`reset()` method sets PMC_SCSR to value 0"]
+impl crate::Resettable for PMC_SCSR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

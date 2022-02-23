@@ -1,14 +1,25 @@
-#[doc = "Writer for register PWM_CMUPD1"]
-pub type W = crate::W<u32, super::PWM_CMUPD1>;
-#[doc = "Register PWM_CMUPD1 `reset()`'s with value 0"]
-impl crate::ResetValue for super::PWM_CMUPD1 {
-    type Type = u32;
+#[doc = "Register `PWM_CMUPD1` writer"]
+pub struct W(crate::W<PWM_CMUPD1_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<PWM_CMUPD1_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `CPOLUP`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<PWM_CMUPD1_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<PWM_CMUPD1_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `CPOLUP` writer - Channel Polarity Update"]
 pub struct CPOLUP_W<'a> {
     w: &'a mut W,
 }
@@ -26,11 +37,11 @@ impl<'a> CPOLUP_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | ((value as u32 & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Write proxy for field `CPOLINVUP`"]
+#[doc = "Field `CPOLINVUP` writer - Channel Polarity Inversion Update"]
 pub struct CPOLINVUP_W<'a> {
     w: &'a mut W,
 }
@@ -48,7 +59,7 @@ impl<'a> CPOLINVUP_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | ((value as u32 & 0x01) << 13);
         self.w
     }
 }
@@ -62,5 +73,27 @@ impl W {
     #[inline(always)]
     pub fn cpolinvup(&mut self) -> CPOLINVUP_W {
         CPOLINVUP_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "PWM Channel Mode Update Register (ch_num = 1)\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pwm_cmupd1](index.html) module"]
+pub struct PWM_CMUPD1_SPEC;
+impl crate::RegisterSpec for PWM_CMUPD1_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [pwm_cmupd1::W](W) writer structure"]
+impl crate::Writable for PWM_CMUPD1_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets PWM_CMUPD1 to value 0"]
+impl crate::Resettable for PWM_CMUPD1_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

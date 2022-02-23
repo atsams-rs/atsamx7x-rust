@@ -1,14 +1,25 @@
-#[doc = "Writer for register XDMAC_GSWR"]
-pub type W = crate::W<u32, super::XDMAC_GSWR>;
-#[doc = "Register XDMAC_GSWR `reset()`'s with value 0"]
-impl crate::ResetValue for super::XDMAC_GSWR {
-    type Type = u32;
+#[doc = "Register `XDMAC_GSWR` writer"]
+pub struct W(crate::W<XDMAC_GSWR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<XDMAC_GSWR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `SWREQ0`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<XDMAC_GSWR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<XDMAC_GSWR_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `SWREQ0` writer - XDMAC Channel 0 Software Request Bit"]
 pub struct SWREQ0_W<'a> {
     w: &'a mut W,
 }
@@ -26,11 +37,11 @@ impl<'a> SWREQ0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ1`"]
+#[doc = "Field `SWREQ1` writer - XDMAC Channel 1 Software Request Bit"]
 pub struct SWREQ1_W<'a> {
     w: &'a mut W,
 }
@@ -48,11 +59,11 @@ impl<'a> SWREQ1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ2`"]
+#[doc = "Field `SWREQ2` writer - XDMAC Channel 2 Software Request Bit"]
 pub struct SWREQ2_W<'a> {
     w: &'a mut W,
 }
@@ -70,11 +81,11 @@ impl<'a> SWREQ2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ3`"]
+#[doc = "Field `SWREQ3` writer - XDMAC Channel 3 Software Request Bit"]
 pub struct SWREQ3_W<'a> {
     w: &'a mut W,
 }
@@ -92,11 +103,11 @@ impl<'a> SWREQ3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ4`"]
+#[doc = "Field `SWREQ4` writer - XDMAC Channel 4 Software Request Bit"]
 pub struct SWREQ4_W<'a> {
     w: &'a mut W,
 }
@@ -114,11 +125,11 @@ impl<'a> SWREQ4_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ5`"]
+#[doc = "Field `SWREQ5` writer - XDMAC Channel 5 Software Request Bit"]
 pub struct SWREQ5_W<'a> {
     w: &'a mut W,
 }
@@ -136,11 +147,11 @@ impl<'a> SWREQ5_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ6`"]
+#[doc = "Field `SWREQ6` writer - XDMAC Channel 6 Software Request Bit"]
 pub struct SWREQ6_W<'a> {
     w: &'a mut W,
 }
@@ -158,11 +169,11 @@ impl<'a> SWREQ6_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ7`"]
+#[doc = "Field `SWREQ7` writer - XDMAC Channel 7 Software Request Bit"]
 pub struct SWREQ7_W<'a> {
     w: &'a mut W,
 }
@@ -180,11 +191,11 @@ impl<'a> SWREQ7_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | ((value as u32 & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ8`"]
+#[doc = "Field `SWREQ8` writer - XDMAC Channel 8 Software Request Bit"]
 pub struct SWREQ8_W<'a> {
     w: &'a mut W,
 }
@@ -202,11 +213,11 @@ impl<'a> SWREQ8_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | ((value as u32 & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ9`"]
+#[doc = "Field `SWREQ9` writer - XDMAC Channel 9 Software Request Bit"]
 pub struct SWREQ9_W<'a> {
     w: &'a mut W,
 }
@@ -224,11 +235,11 @@ impl<'a> SWREQ9_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | ((value as u32 & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ10`"]
+#[doc = "Field `SWREQ10` writer - XDMAC Channel 10 Software Request Bit"]
 pub struct SWREQ10_W<'a> {
     w: &'a mut W,
 }
@@ -246,11 +257,11 @@ impl<'a> SWREQ10_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | ((value as u32 & 0x01) << 10);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ11`"]
+#[doc = "Field `SWREQ11` writer - XDMAC Channel 11 Software Request Bit"]
 pub struct SWREQ11_W<'a> {
     w: &'a mut W,
 }
@@ -268,11 +279,11 @@ impl<'a> SWREQ11_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | ((value as u32 & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ12`"]
+#[doc = "Field `SWREQ12` writer - XDMAC Channel 12 Software Request Bit"]
 pub struct SWREQ12_W<'a> {
     w: &'a mut W,
 }
@@ -290,11 +301,11 @@ impl<'a> SWREQ12_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | ((value as u32 & 0x01) << 12);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ13`"]
+#[doc = "Field `SWREQ13` writer - XDMAC Channel 13 Software Request Bit"]
 pub struct SWREQ13_W<'a> {
     w: &'a mut W,
 }
@@ -312,11 +323,11 @@ impl<'a> SWREQ13_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | ((value as u32 & 0x01) << 13);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ14`"]
+#[doc = "Field `SWREQ14` writer - XDMAC Channel 14 Software Request Bit"]
 pub struct SWREQ14_W<'a> {
     w: &'a mut W,
 }
@@ -334,11 +345,11 @@ impl<'a> SWREQ14_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | ((value as u32 & 0x01) << 14);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ15`"]
+#[doc = "Field `SWREQ15` writer - XDMAC Channel 15 Software Request Bit"]
 pub struct SWREQ15_W<'a> {
     w: &'a mut W,
 }
@@ -356,11 +367,11 @@ impl<'a> SWREQ15_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | ((value as u32 & 0x01) << 15);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ16`"]
+#[doc = "Field `SWREQ16` writer - XDMAC Channel 16 Software Request Bit"]
 pub struct SWREQ16_W<'a> {
     w: &'a mut W,
 }
@@ -378,11 +389,11 @@ impl<'a> SWREQ16_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | ((value as u32 & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ17`"]
+#[doc = "Field `SWREQ17` writer - XDMAC Channel 17 Software Request Bit"]
 pub struct SWREQ17_W<'a> {
     w: &'a mut W,
 }
@@ -400,11 +411,11 @@ impl<'a> SWREQ17_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | ((value as u32 & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ18`"]
+#[doc = "Field `SWREQ18` writer - XDMAC Channel 18 Software Request Bit"]
 pub struct SWREQ18_W<'a> {
     w: &'a mut W,
 }
@@ -422,11 +433,11 @@ impl<'a> SWREQ18_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | ((value as u32 & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ19`"]
+#[doc = "Field `SWREQ19` writer - XDMAC Channel 19 Software Request Bit"]
 pub struct SWREQ19_W<'a> {
     w: &'a mut W,
 }
@@ -444,11 +455,11 @@ impl<'a> SWREQ19_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | ((value as u32 & 0x01) << 19);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ20`"]
+#[doc = "Field `SWREQ20` writer - XDMAC Channel 20 Software Request Bit"]
 pub struct SWREQ20_W<'a> {
     w: &'a mut W,
 }
@@ -466,11 +477,11 @@ impl<'a> SWREQ20_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | ((value as u32 & 0x01) << 20);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ21`"]
+#[doc = "Field `SWREQ21` writer - XDMAC Channel 21 Software Request Bit"]
 pub struct SWREQ21_W<'a> {
     w: &'a mut W,
 }
@@ -488,11 +499,11 @@ impl<'a> SWREQ21_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | ((value as u32 & 0x01) << 21);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ22`"]
+#[doc = "Field `SWREQ22` writer - XDMAC Channel 22 Software Request Bit"]
 pub struct SWREQ22_W<'a> {
     w: &'a mut W,
 }
@@ -510,11 +521,11 @@ impl<'a> SWREQ22_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | ((value as u32 & 0x01) << 22);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWREQ23`"]
+#[doc = "Field `SWREQ23` writer - XDMAC Channel 23 Software Request Bit"]
 pub struct SWREQ23_W<'a> {
     w: &'a mut W,
 }
@@ -532,7 +543,7 @@ impl<'a> SWREQ23_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 23)) | (((value as u32) & 0x01) << 23);
+        self.w.bits = (self.w.bits & !(0x01 << 23)) | ((value as u32 & 0x01) << 23);
         self.w
     }
 }
@@ -656,5 +667,27 @@ impl W {
     #[inline(always)]
     pub fn swreq23(&mut self) -> SWREQ23_W {
         SWREQ23_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Global Channel Software Request Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gswr](index.html) module"]
+pub struct XDMAC_GSWR_SPEC;
+impl crate::RegisterSpec for XDMAC_GSWR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [xdmac_gswr::W](W) writer structure"]
+impl crate::Writable for XDMAC_GSWR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets XDMAC_GSWR to value 0"]
+impl crate::Resettable for XDMAC_GSWR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

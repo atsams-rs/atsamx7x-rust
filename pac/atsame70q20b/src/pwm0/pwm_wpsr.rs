@@ -1,33 +1,228 @@
-#[doc = "Reader of register PWM_WPSR"]
-pub type R = crate::R<u32, super::PWM_WPSR>;
-#[doc = "Reader of field `WPSWS0`"]
-pub type WPSWS0_R = crate::R<bool, bool>;
-#[doc = "Reader of field `WPSWS1`"]
-pub type WPSWS1_R = crate::R<bool, bool>;
-#[doc = "Reader of field `WPSWS2`"]
-pub type WPSWS2_R = crate::R<bool, bool>;
-#[doc = "Reader of field `WPSWS3`"]
-pub type WPSWS3_R = crate::R<bool, bool>;
-#[doc = "Reader of field `WPSWS4`"]
-pub type WPSWS4_R = crate::R<bool, bool>;
-#[doc = "Reader of field `WPSWS5`"]
-pub type WPSWS5_R = crate::R<bool, bool>;
-#[doc = "Reader of field `WPVS`"]
-pub type WPVS_R = crate::R<bool, bool>;
-#[doc = "Reader of field `WPHWS0`"]
-pub type WPHWS0_R = crate::R<bool, bool>;
-#[doc = "Reader of field `WPHWS1`"]
-pub type WPHWS1_R = crate::R<bool, bool>;
-#[doc = "Reader of field `WPHWS2`"]
-pub type WPHWS2_R = crate::R<bool, bool>;
-#[doc = "Reader of field `WPHWS3`"]
-pub type WPHWS3_R = crate::R<bool, bool>;
-#[doc = "Reader of field `WPHWS4`"]
-pub type WPHWS4_R = crate::R<bool, bool>;
-#[doc = "Reader of field `WPHWS5`"]
-pub type WPHWS5_R = crate::R<bool, bool>;
-#[doc = "Reader of field `WPVSRC`"]
-pub type WPVSRC_R = crate::R<u16, u16>;
+#[doc = "Register `PWM_WPSR` reader"]
+pub struct R(crate::R<PWM_WPSR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<PWM_WPSR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<PWM_WPSR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<PWM_WPSR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Field `WPSWS0` reader - Write Protect SW Status"]
+pub struct WPSWS0_R(crate::FieldReader<bool, bool>);
+impl WPSWS0_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WPSWS0_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WPSWS0_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WPSWS1` reader - Write Protect SW Status"]
+pub struct WPSWS1_R(crate::FieldReader<bool, bool>);
+impl WPSWS1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WPSWS1_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WPSWS1_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WPSWS2` reader - Write Protect SW Status"]
+pub struct WPSWS2_R(crate::FieldReader<bool, bool>);
+impl WPSWS2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WPSWS2_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WPSWS2_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WPSWS3` reader - Write Protect SW Status"]
+pub struct WPSWS3_R(crate::FieldReader<bool, bool>);
+impl WPSWS3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WPSWS3_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WPSWS3_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WPSWS4` reader - Write Protect SW Status"]
+pub struct WPSWS4_R(crate::FieldReader<bool, bool>);
+impl WPSWS4_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WPSWS4_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WPSWS4_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WPSWS5` reader - Write Protect SW Status"]
+pub struct WPSWS5_R(crate::FieldReader<bool, bool>);
+impl WPSWS5_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WPSWS5_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WPSWS5_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WPVS` reader - Write Protect Violation Status"]
+pub struct WPVS_R(crate::FieldReader<bool, bool>);
+impl WPVS_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WPVS_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WPVS_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WPHWS0` reader - Write Protect HW Status"]
+pub struct WPHWS0_R(crate::FieldReader<bool, bool>);
+impl WPHWS0_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WPHWS0_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WPHWS0_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WPHWS1` reader - Write Protect HW Status"]
+pub struct WPHWS1_R(crate::FieldReader<bool, bool>);
+impl WPHWS1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WPHWS1_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WPHWS1_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WPHWS2` reader - Write Protect HW Status"]
+pub struct WPHWS2_R(crate::FieldReader<bool, bool>);
+impl WPHWS2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WPHWS2_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WPHWS2_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WPHWS3` reader - Write Protect HW Status"]
+pub struct WPHWS3_R(crate::FieldReader<bool, bool>);
+impl WPHWS3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WPHWS3_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WPHWS3_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WPHWS4` reader - Write Protect HW Status"]
+pub struct WPHWS4_R(crate::FieldReader<bool, bool>);
+impl WPHWS4_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WPHWS4_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WPHWS4_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WPHWS5` reader - Write Protect HW Status"]
+pub struct WPHWS5_R(crate::FieldReader<bool, bool>);
+impl WPHWS5_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WPHWS5_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WPHWS5_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WPVSRC` reader - Write Protect Violation Source"]
+pub struct WPVSRC_R(crate::FieldReader<u16, u16>);
+impl WPVSRC_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u16) -> Self {
+        WPVSRC_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WPVSRC_R {
+    type Target = crate::FieldReader<u16, u16>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 impl R {
     #[doc = "Bit 0 - Write Protect SW Status"]
     #[inline(always)]
@@ -98,5 +293,21 @@ impl R {
     #[inline(always)]
     pub fn wpvsrc(&self) -> WPVSRC_R {
         WPVSRC_R::new(((self.bits >> 16) & 0xffff) as u16)
+    }
+}
+#[doc = "PWM Write Protection Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pwm_wpsr](index.html) module"]
+pub struct PWM_WPSR_SPEC;
+impl crate::RegisterSpec for PWM_WPSR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [pwm_wpsr::R](R) reader structure"]
+impl crate::Readable for PWM_WPSR_SPEC {
+    type Reader = R;
+}
+#[doc = "`reset()` method sets PWM_WPSR to value 0"]
+impl crate::Resettable for PWM_WPSR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

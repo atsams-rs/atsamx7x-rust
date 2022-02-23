@@ -1,146 +1,56 @@
-#[doc = "Channel Interrupt Enable Register\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_cie](xdmac_cie) module"]
-pub type XDMAC_CIE = crate::Reg<u32, _XDMAC_CIE>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _XDMAC_CIE;
-#[doc = "`write(|w| ..)` method takes [xdmac_cie::W](xdmac_cie::W) writer structure"]
-impl crate::Writable for XDMAC_CIE {}
+#[doc = "XDMAC_CIE register accessor: an alias for `Reg<XDMAC_CIE_SPEC>`"]
+pub type XDMAC_CIE = crate::Reg<xdmac_cie::XDMAC_CIE_SPEC>;
 #[doc = "Channel Interrupt Enable Register"]
 pub mod xdmac_cie;
-#[doc = "Channel Interrupt Disable Register\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_cid](xdmac_cid) module"]
-pub type XDMAC_CID = crate::Reg<u32, _XDMAC_CID>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _XDMAC_CID;
-#[doc = "`write(|w| ..)` method takes [xdmac_cid::W](xdmac_cid::W) writer structure"]
-impl crate::Writable for XDMAC_CID {}
+#[doc = "XDMAC_CID register accessor: an alias for `Reg<XDMAC_CID_SPEC>`"]
+pub type XDMAC_CID = crate::Reg<xdmac_cid::XDMAC_CID_SPEC>;
 #[doc = "Channel Interrupt Disable Register"]
 pub mod xdmac_cid;
-#[doc = "Channel Interrupt Mask Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_cim](xdmac_cim) module"]
-pub type XDMAC_CIM = crate::Reg<u32, _XDMAC_CIM>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _XDMAC_CIM;
-#[doc = "`read()` method returns [xdmac_cim::R](xdmac_cim::R) reader structure"]
-impl crate::Readable for XDMAC_CIM {}
+#[doc = "XDMAC_CIM register accessor: an alias for `Reg<XDMAC_CIM_SPEC>`"]
+pub type XDMAC_CIM = crate::Reg<xdmac_cim::XDMAC_CIM_SPEC>;
 #[doc = "Channel Interrupt Mask Register"]
 pub mod xdmac_cim;
-#[doc = "Channel Interrupt Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_cis](xdmac_cis) module"]
-pub type XDMAC_CIS = crate::Reg<u32, _XDMAC_CIS>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _XDMAC_CIS;
-#[doc = "`read()` method returns [xdmac_cis::R](xdmac_cis::R) reader structure"]
-impl crate::Readable for XDMAC_CIS {}
+#[doc = "XDMAC_CIS register accessor: an alias for `Reg<XDMAC_CIS_SPEC>`"]
+pub type XDMAC_CIS = crate::Reg<xdmac_cis::XDMAC_CIS_SPEC>;
 #[doc = "Channel Interrupt Status Register"]
 pub mod xdmac_cis;
-#[doc = "Channel Source Address Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_csa](xdmac_csa) module"]
-pub type XDMAC_CSA = crate::Reg<u32, _XDMAC_CSA>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _XDMAC_CSA;
-#[doc = "`read()` method returns [xdmac_csa::R](xdmac_csa::R) reader structure"]
-impl crate::Readable for XDMAC_CSA {}
-#[doc = "`write(|w| ..)` method takes [xdmac_csa::W](xdmac_csa::W) writer structure"]
-impl crate::Writable for XDMAC_CSA {}
+#[doc = "XDMAC_CSA register accessor: an alias for `Reg<XDMAC_CSA_SPEC>`"]
+pub type XDMAC_CSA = crate::Reg<xdmac_csa::XDMAC_CSA_SPEC>;
 #[doc = "Channel Source Address Register"]
 pub mod xdmac_csa;
-#[doc = "Channel Destination Address Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_cda](xdmac_cda) module"]
-pub type XDMAC_CDA = crate::Reg<u32, _XDMAC_CDA>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _XDMAC_CDA;
-#[doc = "`read()` method returns [xdmac_cda::R](xdmac_cda::R) reader structure"]
-impl crate::Readable for XDMAC_CDA {}
-#[doc = "`write(|w| ..)` method takes [xdmac_cda::W](xdmac_cda::W) writer structure"]
-impl crate::Writable for XDMAC_CDA {}
+#[doc = "XDMAC_CDA register accessor: an alias for `Reg<XDMAC_CDA_SPEC>`"]
+pub type XDMAC_CDA = crate::Reg<xdmac_cda::XDMAC_CDA_SPEC>;
 #[doc = "Channel Destination Address Register"]
 pub mod xdmac_cda;
-#[doc = "Channel Next Descriptor Address Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_cnda](xdmac_cnda) module"]
-pub type XDMAC_CNDA = crate::Reg<u32, _XDMAC_CNDA>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _XDMAC_CNDA;
-#[doc = "`read()` method returns [xdmac_cnda::R](xdmac_cnda::R) reader structure"]
-impl crate::Readable for XDMAC_CNDA {}
-#[doc = "`write(|w| ..)` method takes [xdmac_cnda::W](xdmac_cnda::W) writer structure"]
-impl crate::Writable for XDMAC_CNDA {}
+#[doc = "XDMAC_CNDA register accessor: an alias for `Reg<XDMAC_CNDA_SPEC>`"]
+pub type XDMAC_CNDA = crate::Reg<xdmac_cnda::XDMAC_CNDA_SPEC>;
 #[doc = "Channel Next Descriptor Address Register"]
 pub mod xdmac_cnda;
-#[doc = "Channel Next Descriptor Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_cndc](xdmac_cndc) module"]
-pub type XDMAC_CNDC = crate::Reg<u32, _XDMAC_CNDC>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _XDMAC_CNDC;
-#[doc = "`read()` method returns [xdmac_cndc::R](xdmac_cndc::R) reader structure"]
-impl crate::Readable for XDMAC_CNDC {}
-#[doc = "`write(|w| ..)` method takes [xdmac_cndc::W](xdmac_cndc::W) writer structure"]
-impl crate::Writable for XDMAC_CNDC {}
+#[doc = "XDMAC_CNDC register accessor: an alias for `Reg<XDMAC_CNDC_SPEC>`"]
+pub type XDMAC_CNDC = crate::Reg<xdmac_cndc::XDMAC_CNDC_SPEC>;
 #[doc = "Channel Next Descriptor Control Register"]
 pub mod xdmac_cndc;
-#[doc = "Channel Microblock Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_cubc](xdmac_cubc) module"]
-pub type XDMAC_CUBC = crate::Reg<u32, _XDMAC_CUBC>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _XDMAC_CUBC;
-#[doc = "`read()` method returns [xdmac_cubc::R](xdmac_cubc::R) reader structure"]
-impl crate::Readable for XDMAC_CUBC {}
-#[doc = "`write(|w| ..)` method takes [xdmac_cubc::W](xdmac_cubc::W) writer structure"]
-impl crate::Writable for XDMAC_CUBC {}
+#[doc = "XDMAC_CUBC register accessor: an alias for `Reg<XDMAC_CUBC_SPEC>`"]
+pub type XDMAC_CUBC = crate::Reg<xdmac_cubc::XDMAC_CUBC_SPEC>;
 #[doc = "Channel Microblock Control Register"]
 pub mod xdmac_cubc;
-#[doc = "Channel Block Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_cbc](xdmac_cbc) module"]
-pub type XDMAC_CBC = crate::Reg<u32, _XDMAC_CBC>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _XDMAC_CBC;
-#[doc = "`read()` method returns [xdmac_cbc::R](xdmac_cbc::R) reader structure"]
-impl crate::Readable for XDMAC_CBC {}
-#[doc = "`write(|w| ..)` method takes [xdmac_cbc::W](xdmac_cbc::W) writer structure"]
-impl crate::Writable for XDMAC_CBC {}
+#[doc = "XDMAC_CBC register accessor: an alias for `Reg<XDMAC_CBC_SPEC>`"]
+pub type XDMAC_CBC = crate::Reg<xdmac_cbc::XDMAC_CBC_SPEC>;
 #[doc = "Channel Block Control Register"]
 pub mod xdmac_cbc;
-#[doc = "Channel Configuration Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_cc](xdmac_cc) module"]
-pub type XDMAC_CC = crate::Reg<u32, _XDMAC_CC>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _XDMAC_CC;
-#[doc = "`read()` method returns [xdmac_cc::R](xdmac_cc::R) reader structure"]
-impl crate::Readable for XDMAC_CC {}
-#[doc = "`write(|w| ..)` method takes [xdmac_cc::W](xdmac_cc::W) writer structure"]
-impl crate::Writable for XDMAC_CC {}
+#[doc = "XDMAC_CC register accessor: an alias for `Reg<XDMAC_CC_SPEC>`"]
+pub type XDMAC_CC = crate::Reg<xdmac_cc::XDMAC_CC_SPEC>;
 #[doc = "Channel Configuration Register"]
 pub mod xdmac_cc;
-#[doc = "Channel Data Stride Memory Set Pattern\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_cds_msp](xdmac_cds_msp) module"]
-pub type XDMAC_CDS_MSP = crate::Reg<u32, _XDMAC_CDS_MSP>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _XDMAC_CDS_MSP;
-#[doc = "`read()` method returns [xdmac_cds_msp::R](xdmac_cds_msp::R) reader structure"]
-impl crate::Readable for XDMAC_CDS_MSP {}
-#[doc = "`write(|w| ..)` method takes [xdmac_cds_msp::W](xdmac_cds_msp::W) writer structure"]
-impl crate::Writable for XDMAC_CDS_MSP {}
+#[doc = "XDMAC_CDS_MSP register accessor: an alias for `Reg<XDMAC_CDS_MSP_SPEC>`"]
+pub type XDMAC_CDS_MSP = crate::Reg<xdmac_cds_msp::XDMAC_CDS_MSP_SPEC>;
 #[doc = "Channel Data Stride Memory Set Pattern"]
 pub mod xdmac_cds_msp;
-#[doc = "Channel Source Microblock Stride\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_csus](xdmac_csus) module"]
-pub type XDMAC_CSUS = crate::Reg<u32, _XDMAC_CSUS>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _XDMAC_CSUS;
-#[doc = "`read()` method returns [xdmac_csus::R](xdmac_csus::R) reader structure"]
-impl crate::Readable for XDMAC_CSUS {}
-#[doc = "`write(|w| ..)` method takes [xdmac_csus::W](xdmac_csus::W) writer structure"]
-impl crate::Writable for XDMAC_CSUS {}
+#[doc = "XDMAC_CSUS register accessor: an alias for `Reg<XDMAC_CSUS_SPEC>`"]
+pub type XDMAC_CSUS = crate::Reg<xdmac_csus::XDMAC_CSUS_SPEC>;
 #[doc = "Channel Source Microblock Stride"]
 pub mod xdmac_csus;
-#[doc = "Channel Destination Microblock Stride\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_cdus](xdmac_cdus) module"]
-pub type XDMAC_CDUS = crate::Reg<u32, _XDMAC_CDUS>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _XDMAC_CDUS;
-#[doc = "`read()` method returns [xdmac_cdus::R](xdmac_cdus::R) reader structure"]
-impl crate::Readable for XDMAC_CDUS {}
-#[doc = "`write(|w| ..)` method takes [xdmac_cdus::W](xdmac_cdus::W) writer structure"]
-impl crate::Writable for XDMAC_CDUS {}
+#[doc = "XDMAC_CDUS register accessor: an alias for `Reg<XDMAC_CDUS_SPEC>`"]
+pub type XDMAC_CDUS = crate::Reg<xdmac_cdus::XDMAC_CDUS_SPEC>;
 #[doc = "Channel Destination Microblock Stride"]
 pub mod xdmac_cdus;

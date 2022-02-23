@@ -1,19 +1,123 @@
-#[doc = "Reader of register UART_SR"]
-pub type R = crate::R<u32, super::UART_SR>;
-#[doc = "Reader of field `RXRDY`"]
-pub type RXRDY_R = crate::R<bool, bool>;
-#[doc = "Reader of field `TXRDY`"]
-pub type TXRDY_R = crate::R<bool, bool>;
-#[doc = "Reader of field `OVRE`"]
-pub type OVRE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `FRAME`"]
-pub type FRAME_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PARE`"]
-pub type PARE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `TXEMPTY`"]
-pub type TXEMPTY_R = crate::R<bool, bool>;
-#[doc = "Reader of field `CMP`"]
-pub type CMP_R = crate::R<bool, bool>;
+#[doc = "Register `UART_SR` reader"]
+pub struct R(crate::R<UART_SR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<UART_SR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<UART_SR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<UART_SR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Field `RXRDY` reader - Receiver Ready"]
+pub struct RXRDY_R(crate::FieldReader<bool, bool>);
+impl RXRDY_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        RXRDY_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for RXRDY_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `TXRDY` reader - Transmitter Ready"]
+pub struct TXRDY_R(crate::FieldReader<bool, bool>);
+impl TXRDY_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        TXRDY_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for TXRDY_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `OVRE` reader - Overrun Error"]
+pub struct OVRE_R(crate::FieldReader<bool, bool>);
+impl OVRE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        OVRE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for OVRE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `FRAME` reader - Framing Error"]
+pub struct FRAME_R(crate::FieldReader<bool, bool>);
+impl FRAME_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        FRAME_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for FRAME_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PARE` reader - Parity Error"]
+pub struct PARE_R(crate::FieldReader<bool, bool>);
+impl PARE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PARE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PARE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `TXEMPTY` reader - Transmitter Empty"]
+pub struct TXEMPTY_R(crate::FieldReader<bool, bool>);
+impl TXEMPTY_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        TXEMPTY_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for TXEMPTY_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CMP` reader - Comparison Match"]
+pub struct CMP_R(crate::FieldReader<bool, bool>);
+impl CMP_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        CMP_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for CMP_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 impl R {
     #[doc = "Bit 0 - Receiver Ready"]
     #[inline(always)]
@@ -49,5 +153,21 @@ impl R {
     #[inline(always)]
     pub fn cmp(&self) -> CMP_R {
         CMP_R::new(((self.bits >> 15) & 0x01) != 0)
+    }
+}
+#[doc = "Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [uart_sr](index.html) module"]
+pub struct UART_SR_SPEC;
+impl crate::RegisterSpec for UART_SR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [uart_sr::R](R) reader structure"]
+impl crate::Readable for UART_SR_SPEC {
+    type Reader = R;
+}
+#[doc = "`reset()` method sets UART_SR to value 0"]
+impl crate::Resettable for UART_SR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

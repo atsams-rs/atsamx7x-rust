@@ -1,18 +1,55 @@
-#[doc = "Reader of register AFEC_CGR"]
-pub type R = crate::R<u32, super::AFEC_CGR>;
-#[doc = "Writer for register AFEC_CGR"]
-pub type W = crate::W<u32, super::AFEC_CGR>;
-#[doc = "Register AFEC_CGR `reset()`'s with value 0"]
-impl crate::ResetValue for super::AFEC_CGR {
-    type Type = u32;
+#[doc = "Register `AFEC_CGR` reader"]
+pub struct R(crate::R<AFEC_CGR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<AFEC_CGR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `GAIN0`"]
-pub type GAIN0_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `GAIN0`"]
+impl From<crate::R<AFEC_CGR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<AFEC_CGR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `AFEC_CGR` writer"]
+pub struct W(crate::W<AFEC_CGR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<AFEC_CGR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<AFEC_CGR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<AFEC_CGR_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `GAIN0` reader - Gain for Channel 0"]
+pub struct GAIN0_R(crate::FieldReader<u8, u8>);
+impl GAIN0_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        GAIN0_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for GAIN0_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `GAIN0` writer - Gain for Channel 0"]
 pub struct GAIN0_W<'a> {
     w: &'a mut W,
 }
@@ -20,13 +57,26 @@ impl<'a> GAIN0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x03) | ((value as u32) & 0x03);
+        self.w.bits = (self.w.bits & !0x03) | (value as u32 & 0x03);
         self.w
     }
 }
-#[doc = "Reader of field `GAIN1`"]
-pub type GAIN1_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `GAIN1`"]
+#[doc = "Field `GAIN1` reader - Gain for Channel 1"]
+pub struct GAIN1_R(crate::FieldReader<u8, u8>);
+impl GAIN1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        GAIN1_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for GAIN1_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `GAIN1` writer - Gain for Channel 1"]
 pub struct GAIN1_W<'a> {
     w: &'a mut W,
 }
@@ -34,13 +84,26 @@ impl<'a> GAIN1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 2)) | (((value as u32) & 0x03) << 2);
+        self.w.bits = (self.w.bits & !(0x03 << 2)) | ((value as u32 & 0x03) << 2);
         self.w
     }
 }
-#[doc = "Reader of field `GAIN2`"]
-pub type GAIN2_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `GAIN2`"]
+#[doc = "Field `GAIN2` reader - Gain for Channel 2"]
+pub struct GAIN2_R(crate::FieldReader<u8, u8>);
+impl GAIN2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        GAIN2_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for GAIN2_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `GAIN2` writer - Gain for Channel 2"]
 pub struct GAIN2_W<'a> {
     w: &'a mut W,
 }
@@ -48,13 +111,26 @@ impl<'a> GAIN2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 4)) | (((value as u32) & 0x03) << 4);
+        self.w.bits = (self.w.bits & !(0x03 << 4)) | ((value as u32 & 0x03) << 4);
         self.w
     }
 }
-#[doc = "Reader of field `GAIN3`"]
-pub type GAIN3_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `GAIN3`"]
+#[doc = "Field `GAIN3` reader - Gain for Channel 3"]
+pub struct GAIN3_R(crate::FieldReader<u8, u8>);
+impl GAIN3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        GAIN3_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for GAIN3_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `GAIN3` writer - Gain for Channel 3"]
 pub struct GAIN3_W<'a> {
     w: &'a mut W,
 }
@@ -62,13 +138,26 @@ impl<'a> GAIN3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 6)) | (((value as u32) & 0x03) << 6);
+        self.w.bits = (self.w.bits & !(0x03 << 6)) | ((value as u32 & 0x03) << 6);
         self.w
     }
 }
-#[doc = "Reader of field `GAIN4`"]
-pub type GAIN4_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `GAIN4`"]
+#[doc = "Field `GAIN4` reader - Gain for Channel 4"]
+pub struct GAIN4_R(crate::FieldReader<u8, u8>);
+impl GAIN4_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        GAIN4_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for GAIN4_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `GAIN4` writer - Gain for Channel 4"]
 pub struct GAIN4_W<'a> {
     w: &'a mut W,
 }
@@ -76,13 +165,26 @@ impl<'a> GAIN4_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 8)) | (((value as u32) & 0x03) << 8);
+        self.w.bits = (self.w.bits & !(0x03 << 8)) | ((value as u32 & 0x03) << 8);
         self.w
     }
 }
-#[doc = "Reader of field `GAIN5`"]
-pub type GAIN5_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `GAIN5`"]
+#[doc = "Field `GAIN5` reader - Gain for Channel 5"]
+pub struct GAIN5_R(crate::FieldReader<u8, u8>);
+impl GAIN5_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        GAIN5_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for GAIN5_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `GAIN5` writer - Gain for Channel 5"]
 pub struct GAIN5_W<'a> {
     w: &'a mut W,
 }
@@ -90,13 +192,26 @@ impl<'a> GAIN5_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 10)) | (((value as u32) & 0x03) << 10);
+        self.w.bits = (self.w.bits & !(0x03 << 10)) | ((value as u32 & 0x03) << 10);
         self.w
     }
 }
-#[doc = "Reader of field `GAIN6`"]
-pub type GAIN6_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `GAIN6`"]
+#[doc = "Field `GAIN6` reader - Gain for Channel 6"]
+pub struct GAIN6_R(crate::FieldReader<u8, u8>);
+impl GAIN6_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        GAIN6_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for GAIN6_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `GAIN6` writer - Gain for Channel 6"]
 pub struct GAIN6_W<'a> {
     w: &'a mut W,
 }
@@ -104,13 +219,26 @@ impl<'a> GAIN6_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 12)) | (((value as u32) & 0x03) << 12);
+        self.w.bits = (self.w.bits & !(0x03 << 12)) | ((value as u32 & 0x03) << 12);
         self.w
     }
 }
-#[doc = "Reader of field `GAIN7`"]
-pub type GAIN7_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `GAIN7`"]
+#[doc = "Field `GAIN7` reader - Gain for Channel 7"]
+pub struct GAIN7_R(crate::FieldReader<u8, u8>);
+impl GAIN7_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        GAIN7_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for GAIN7_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `GAIN7` writer - Gain for Channel 7"]
 pub struct GAIN7_W<'a> {
     w: &'a mut W,
 }
@@ -118,13 +246,26 @@ impl<'a> GAIN7_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 14)) | (((value as u32) & 0x03) << 14);
+        self.w.bits = (self.w.bits & !(0x03 << 14)) | ((value as u32 & 0x03) << 14);
         self.w
     }
 }
-#[doc = "Reader of field `GAIN8`"]
-pub type GAIN8_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `GAIN8`"]
+#[doc = "Field `GAIN8` reader - Gain for Channel 8"]
+pub struct GAIN8_R(crate::FieldReader<u8, u8>);
+impl GAIN8_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        GAIN8_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for GAIN8_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `GAIN8` writer - Gain for Channel 8"]
 pub struct GAIN8_W<'a> {
     w: &'a mut W,
 }
@@ -132,13 +273,26 @@ impl<'a> GAIN8_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 16)) | (((value as u32) & 0x03) << 16);
+        self.w.bits = (self.w.bits & !(0x03 << 16)) | ((value as u32 & 0x03) << 16);
         self.w
     }
 }
-#[doc = "Reader of field `GAIN9`"]
-pub type GAIN9_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `GAIN9`"]
+#[doc = "Field `GAIN9` reader - Gain for Channel 9"]
+pub struct GAIN9_R(crate::FieldReader<u8, u8>);
+impl GAIN9_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        GAIN9_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for GAIN9_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `GAIN9` writer - Gain for Channel 9"]
 pub struct GAIN9_W<'a> {
     w: &'a mut W,
 }
@@ -146,13 +300,26 @@ impl<'a> GAIN9_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 18)) | (((value as u32) & 0x03) << 18);
+        self.w.bits = (self.w.bits & !(0x03 << 18)) | ((value as u32 & 0x03) << 18);
         self.w
     }
 }
-#[doc = "Reader of field `GAIN10`"]
-pub type GAIN10_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `GAIN10`"]
+#[doc = "Field `GAIN10` reader - Gain for Channel 10"]
+pub struct GAIN10_R(crate::FieldReader<u8, u8>);
+impl GAIN10_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        GAIN10_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for GAIN10_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `GAIN10` writer - Gain for Channel 10"]
 pub struct GAIN10_W<'a> {
     w: &'a mut W,
 }
@@ -160,13 +327,26 @@ impl<'a> GAIN10_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 20)) | (((value as u32) & 0x03) << 20);
+        self.w.bits = (self.w.bits & !(0x03 << 20)) | ((value as u32 & 0x03) << 20);
         self.w
     }
 }
-#[doc = "Reader of field `GAIN11`"]
-pub type GAIN11_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `GAIN11`"]
+#[doc = "Field `GAIN11` reader - Gain for Channel 11"]
+pub struct GAIN11_R(crate::FieldReader<u8, u8>);
+impl GAIN11_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        GAIN11_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for GAIN11_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `GAIN11` writer - Gain for Channel 11"]
 pub struct GAIN11_W<'a> {
     w: &'a mut W,
 }
@@ -174,7 +354,7 @@ impl<'a> GAIN11_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 22)) | (((value as u32) & 0x03) << 22);
+        self.w.bits = (self.w.bits & !(0x03 << 22)) | ((value as u32 & 0x03) << 22);
         self.w
     }
 }
@@ -300,5 +480,31 @@ impl W {
     #[inline(always)]
     pub fn gain11(&mut self) -> GAIN11_W {
         GAIN11_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "AFEC Channel Gain Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [afec_cgr](index.html) module"]
+pub struct AFEC_CGR_SPEC;
+impl crate::RegisterSpec for AFEC_CGR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [afec_cgr::R](R) reader structure"]
+impl crate::Readable for AFEC_CGR_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [afec_cgr::W](W) writer structure"]
+impl crate::Writable for AFEC_CGR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets AFEC_CGR to value 0"]
+impl crate::Resettable for AFEC_CGR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

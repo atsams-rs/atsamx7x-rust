@@ -1,14 +1,25 @@
-#[doc = "Writer for register DACC_IDR"]
-pub type W = crate::W<u32, super::DACC_IDR>;
-#[doc = "Register DACC_IDR `reset()`'s with value 0"]
-impl crate::ResetValue for super::DACC_IDR {
-    type Type = u32;
+#[doc = "Register `DACC_IDR` writer"]
+pub struct W(crate::W<DACC_IDR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<DACC_IDR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `TXRDY0`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<DACC_IDR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<DACC_IDR_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `TXRDY0` writer - Transmit Ready Interrupt Disable of channel 0"]
 pub struct TXRDY0_W<'a> {
     w: &'a mut W,
 }
@@ -26,11 +37,11 @@ impl<'a> TXRDY0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
-#[doc = "Write proxy for field `TXRDY1`"]
+#[doc = "Field `TXRDY1` writer - Transmit Ready Interrupt Disable of channel 1"]
 pub struct TXRDY1_W<'a> {
     w: &'a mut W,
 }
@@ -48,11 +59,11 @@ impl<'a> TXRDY1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Write proxy for field `EOC0`"]
+#[doc = "Field `EOC0` writer - End of Conversion Interrupt Disable of channel 0"]
 pub struct EOC0_W<'a> {
     w: &'a mut W,
 }
@@ -70,11 +81,11 @@ impl<'a> EOC0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Write proxy for field `EOC1`"]
+#[doc = "Field `EOC1` writer - End of Conversion Interrupt Disable of channel 1"]
 pub struct EOC1_W<'a> {
     w: &'a mut W,
 }
@@ -92,7 +103,7 @@ impl<'a> EOC1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
         self.w
     }
 }
@@ -116,5 +127,27 @@ impl W {
     #[inline(always)]
     pub fn eoc1(&mut self) -> EOC1_W {
         EOC1_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Interrupt Disable Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [dacc_idr](index.html) module"]
+pub struct DACC_IDR_SPEC;
+impl crate::RegisterSpec for DACC_IDR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [dacc_idr::W](W) writer structure"]
+impl crate::Writable for DACC_IDR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets DACC_IDR to value 0"]
+impl crate::Resettable for DACC_IDR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

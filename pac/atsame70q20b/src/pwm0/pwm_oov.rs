@@ -1,18 +1,55 @@
-#[doc = "Reader of register PWM_OOV"]
-pub type R = crate::R<u32, super::PWM_OOV>;
-#[doc = "Writer for register PWM_OOV"]
-pub type W = crate::W<u32, super::PWM_OOV>;
-#[doc = "Register PWM_OOV `reset()`'s with value 0"]
-impl crate::ResetValue for super::PWM_OOV {
-    type Type = u32;
+#[doc = "Register `PWM_OOV` reader"]
+pub struct R(crate::R<PWM_OOV_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<PWM_OOV_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `OOVH0`"]
-pub type OOVH0_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `OOVH0`"]
+impl From<crate::R<PWM_OOV_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<PWM_OOV_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `PWM_OOV` writer"]
+pub struct W(crate::W<PWM_OOV_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<PWM_OOV_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<PWM_OOV_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<PWM_OOV_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `OOVH0` reader - Output Override Value for PWMH output of the channel 0"]
+pub struct OOVH0_R(crate::FieldReader<bool, bool>);
+impl OOVH0_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        OOVH0_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for OOVH0_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `OOVH0` writer - Output Override Value for PWMH output of the channel 0"]
 pub struct OOVH0_W<'a> {
     w: &'a mut W,
 }
@@ -30,13 +67,26 @@ impl<'a> OOVH0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
-#[doc = "Reader of field `OOVH1`"]
-pub type OOVH1_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `OOVH1`"]
+#[doc = "Field `OOVH1` reader - Output Override Value for PWMH output of the channel 1"]
+pub struct OOVH1_R(crate::FieldReader<bool, bool>);
+impl OOVH1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        OOVH1_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for OOVH1_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `OOVH1` writer - Output Override Value for PWMH output of the channel 1"]
 pub struct OOVH1_W<'a> {
     w: &'a mut W,
 }
@@ -54,13 +104,26 @@ impl<'a> OOVH1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Reader of field `OOVH2`"]
-pub type OOVH2_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `OOVH2`"]
+#[doc = "Field `OOVH2` reader - Output Override Value for PWMH output of the channel 2"]
+pub struct OOVH2_R(crate::FieldReader<bool, bool>);
+impl OOVH2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        OOVH2_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for OOVH2_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `OOVH2` writer - Output Override Value for PWMH output of the channel 2"]
 pub struct OOVH2_W<'a> {
     w: &'a mut W,
 }
@@ -78,13 +141,26 @@ impl<'a> OOVH2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Reader of field `OOVH3`"]
-pub type OOVH3_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `OOVH3`"]
+#[doc = "Field `OOVH3` reader - Output Override Value for PWMH output of the channel 3"]
+pub struct OOVH3_R(crate::FieldReader<bool, bool>);
+impl OOVH3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        OOVH3_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for OOVH3_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `OOVH3` writer - Output Override Value for PWMH output of the channel 3"]
 pub struct OOVH3_W<'a> {
     w: &'a mut W,
 }
@@ -102,13 +178,26 @@ impl<'a> OOVH3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Reader of field `OOVL0`"]
-pub type OOVL0_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `OOVL0`"]
+#[doc = "Field `OOVL0` reader - Output Override Value for PWML output of the channel 0"]
+pub struct OOVL0_R(crate::FieldReader<bool, bool>);
+impl OOVL0_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        OOVL0_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for OOVL0_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `OOVL0` writer - Output Override Value for PWML output of the channel 0"]
 pub struct OOVL0_W<'a> {
     w: &'a mut W,
 }
@@ -126,13 +215,26 @@ impl<'a> OOVL0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | ((value as u32 & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Reader of field `OOVL1`"]
-pub type OOVL1_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `OOVL1`"]
+#[doc = "Field `OOVL1` reader - Output Override Value for PWML output of the channel 1"]
+pub struct OOVL1_R(crate::FieldReader<bool, bool>);
+impl OOVL1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        OOVL1_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for OOVL1_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `OOVL1` writer - Output Override Value for PWML output of the channel 1"]
 pub struct OOVL1_W<'a> {
     w: &'a mut W,
 }
@@ -150,13 +252,26 @@ impl<'a> OOVL1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | ((value as u32 & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Reader of field `OOVL2`"]
-pub type OOVL2_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `OOVL2`"]
+#[doc = "Field `OOVL2` reader - Output Override Value for PWML output of the channel 2"]
+pub struct OOVL2_R(crate::FieldReader<bool, bool>);
+impl OOVL2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        OOVL2_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for OOVL2_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `OOVL2` writer - Output Override Value for PWML output of the channel 2"]
 pub struct OOVL2_W<'a> {
     w: &'a mut W,
 }
@@ -174,13 +289,26 @@ impl<'a> OOVL2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | ((value as u32 & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Reader of field `OOVL3`"]
-pub type OOVL3_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `OOVL3`"]
+#[doc = "Field `OOVL3` reader - Output Override Value for PWML output of the channel 3"]
+pub struct OOVL3_R(crate::FieldReader<bool, bool>);
+impl OOVL3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        OOVL3_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for OOVL3_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `OOVL3` writer - Output Override Value for PWML output of the channel 3"]
 pub struct OOVL3_W<'a> {
     w: &'a mut W,
 }
@@ -198,7 +326,7 @@ impl<'a> OOVL3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | ((value as u32 & 0x01) << 19);
         self.w
     }
 }
@@ -284,5 +412,31 @@ impl W {
     #[inline(always)]
     pub fn oovl3(&mut self) -> OOVL3_W {
         OOVL3_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "PWM Output Override Value Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pwm_oov](index.html) module"]
+pub struct PWM_OOV_SPEC;
+impl crate::RegisterSpec for PWM_OOV_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [pwm_oov::R](R) reader structure"]
+impl crate::Readable for PWM_OOV_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [pwm_oov::W](W) writer structure"]
+impl crate::Writable for PWM_OOV_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets PWM_OOV to value 0"]
+impl crate::Resettable for PWM_OOV_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

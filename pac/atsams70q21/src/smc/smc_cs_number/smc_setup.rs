@@ -1,18 +1,55 @@
-#[doc = "Reader of register SMC_SETUP"]
-pub type R = crate::R<u32, super::SMC_SETUP>;
-#[doc = "Writer for register SMC_SETUP"]
-pub type W = crate::W<u32, super::SMC_SETUP>;
-#[doc = "Register SMC_SETUP `reset()`'s with value 0"]
-impl crate::ResetValue for super::SMC_SETUP {
-    type Type = u32;
+#[doc = "Register `SMC_SETUP` reader"]
+pub struct R(crate::R<SMC_SETUP_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<SMC_SETUP_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `NWE_SETUP`"]
-pub type NWE_SETUP_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `NWE_SETUP`"]
+impl From<crate::R<SMC_SETUP_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<SMC_SETUP_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `SMC_SETUP` writer"]
+pub struct W(crate::W<SMC_SETUP_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<SMC_SETUP_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<SMC_SETUP_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<SMC_SETUP_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `NWE_SETUP` reader - NWE Setup Length"]
+pub struct NWE_SETUP_R(crate::FieldReader<u8, u8>);
+impl NWE_SETUP_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        NWE_SETUP_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for NWE_SETUP_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `NWE_SETUP` writer - NWE Setup Length"]
 pub struct NWE_SETUP_W<'a> {
     w: &'a mut W,
 }
@@ -20,13 +57,26 @@ impl<'a> NWE_SETUP_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x3f) | ((value as u32) & 0x3f);
+        self.w.bits = (self.w.bits & !0x3f) | (value as u32 & 0x3f);
         self.w
     }
 }
-#[doc = "Reader of field `NCS_WR_SETUP`"]
-pub type NCS_WR_SETUP_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `NCS_WR_SETUP`"]
+#[doc = "Field `NCS_WR_SETUP` reader - NCS Setup Length in WRITE Access"]
+pub struct NCS_WR_SETUP_R(crate::FieldReader<u8, u8>);
+impl NCS_WR_SETUP_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        NCS_WR_SETUP_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for NCS_WR_SETUP_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `NCS_WR_SETUP` writer - NCS Setup Length in WRITE Access"]
 pub struct NCS_WR_SETUP_W<'a> {
     w: &'a mut W,
 }
@@ -34,13 +84,26 @@ impl<'a> NCS_WR_SETUP_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x3f << 8)) | (((value as u32) & 0x3f) << 8);
+        self.w.bits = (self.w.bits & !(0x3f << 8)) | ((value as u32 & 0x3f) << 8);
         self.w
     }
 }
-#[doc = "Reader of field `NRD_SETUP`"]
-pub type NRD_SETUP_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `NRD_SETUP`"]
+#[doc = "Field `NRD_SETUP` reader - NRD Setup Length"]
+pub struct NRD_SETUP_R(crate::FieldReader<u8, u8>);
+impl NRD_SETUP_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        NRD_SETUP_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for NRD_SETUP_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `NRD_SETUP` writer - NRD Setup Length"]
 pub struct NRD_SETUP_W<'a> {
     w: &'a mut W,
 }
@@ -48,13 +111,26 @@ impl<'a> NRD_SETUP_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x3f << 16)) | (((value as u32) & 0x3f) << 16);
+        self.w.bits = (self.w.bits & !(0x3f << 16)) | ((value as u32 & 0x3f) << 16);
         self.w
     }
 }
-#[doc = "Reader of field `NCS_RD_SETUP`"]
-pub type NCS_RD_SETUP_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `NCS_RD_SETUP`"]
+#[doc = "Field `NCS_RD_SETUP` reader - NCS Setup Length in READ Access"]
+pub struct NCS_RD_SETUP_R(crate::FieldReader<u8, u8>);
+impl NCS_RD_SETUP_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        NCS_RD_SETUP_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for NCS_RD_SETUP_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `NCS_RD_SETUP` writer - NCS Setup Length in READ Access"]
 pub struct NCS_RD_SETUP_W<'a> {
     w: &'a mut W,
 }
@@ -62,7 +138,7 @@ impl<'a> NCS_RD_SETUP_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x3f << 24)) | (((value as u32) & 0x3f) << 24);
+        self.w.bits = (self.w.bits & !(0x3f << 24)) | ((value as u32 & 0x3f) << 24);
         self.w
     }
 }
@@ -108,5 +184,31 @@ impl W {
     #[inline(always)]
     pub fn ncs_rd_setup(&mut self) -> NCS_RD_SETUP_W {
         NCS_RD_SETUP_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "SMC Setup Register (CS_number = 0)\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [smc_setup](index.html) module"]
+pub struct SMC_SETUP_SPEC;
+impl crate::RegisterSpec for SMC_SETUP_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [smc_setup::R](R) reader structure"]
+impl crate::Readable for SMC_SETUP_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [smc_setup::W](W) writer structure"]
+impl crate::Writable for SMC_SETUP_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets SMC_SETUP to value 0"]
+impl crate::Resettable for SMC_SETUP_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

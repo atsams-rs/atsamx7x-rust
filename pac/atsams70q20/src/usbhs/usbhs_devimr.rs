@@ -1,57 +1,408 @@
-#[doc = "Reader of register USBHS_DEVIMR"]
-pub type R = crate::R<u32, super::USBHS_DEVIMR>;
-#[doc = "Reader of field `SUSPE`"]
-pub type SUSPE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `MSOFE`"]
-pub type MSOFE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SOFE`"]
-pub type SOFE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `EORSTE`"]
-pub type EORSTE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `WAKEUPE`"]
-pub type WAKEUPE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `EORSME`"]
-pub type EORSME_R = crate::R<bool, bool>;
-#[doc = "Reader of field `UPRSME`"]
-pub type UPRSME_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PEP_0`"]
-pub type PEP_0_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PEP_1`"]
-pub type PEP_1_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PEP_2`"]
-pub type PEP_2_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PEP_3`"]
-pub type PEP_3_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PEP_4`"]
-pub type PEP_4_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PEP_5`"]
-pub type PEP_5_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PEP_6`"]
-pub type PEP_6_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PEP_7`"]
-pub type PEP_7_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PEP_8`"]
-pub type PEP_8_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PEP_9`"]
-pub type PEP_9_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PEP_10`"]
-pub type PEP_10_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PEP_11`"]
-pub type PEP_11_R = crate::R<bool, bool>;
-#[doc = "Reader of field `DMA_1`"]
-pub type DMA_1_R = crate::R<bool, bool>;
-#[doc = "Reader of field `DMA_2`"]
-pub type DMA_2_R = crate::R<bool, bool>;
-#[doc = "Reader of field `DMA_3`"]
-pub type DMA_3_R = crate::R<bool, bool>;
-#[doc = "Reader of field `DMA_4`"]
-pub type DMA_4_R = crate::R<bool, bool>;
-#[doc = "Reader of field `DMA_5`"]
-pub type DMA_5_R = crate::R<bool, bool>;
-#[doc = "Reader of field `DMA_6`"]
-pub type DMA_6_R = crate::R<bool, bool>;
-#[doc = "Reader of field `DMA_7`"]
-pub type DMA_7_R = crate::R<bool, bool>;
+#[doc = "Register `USBHS_DEVIMR` reader"]
+pub struct R(crate::R<USBHS_DEVIMR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<USBHS_DEVIMR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<USBHS_DEVIMR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<USBHS_DEVIMR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Field `SUSPE` reader - Suspend Interrupt Mask"]
+pub struct SUSPE_R(crate::FieldReader<bool, bool>);
+impl SUSPE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SUSPE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SUSPE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `MSOFE` reader - Micro Start of Frame Interrupt Mask"]
+pub struct MSOFE_R(crate::FieldReader<bool, bool>);
+impl MSOFE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        MSOFE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for MSOFE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SOFE` reader - Start of Frame Interrupt Mask"]
+pub struct SOFE_R(crate::FieldReader<bool, bool>);
+impl SOFE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SOFE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SOFE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `EORSTE` reader - End of Reset Interrupt Mask"]
+pub struct EORSTE_R(crate::FieldReader<bool, bool>);
+impl EORSTE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        EORSTE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for EORSTE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WAKEUPE` reader - Wake-Up Interrupt Mask"]
+pub struct WAKEUPE_R(crate::FieldReader<bool, bool>);
+impl WAKEUPE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WAKEUPE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WAKEUPE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `EORSME` reader - End of Resume Interrupt Mask"]
+pub struct EORSME_R(crate::FieldReader<bool, bool>);
+impl EORSME_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        EORSME_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for EORSME_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `UPRSME` reader - Upstream Resume Interrupt Mask"]
+pub struct UPRSME_R(crate::FieldReader<bool, bool>);
+impl UPRSME_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        UPRSME_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for UPRSME_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PEP_0` reader - Endpoint 0 Interrupt Mask"]
+pub struct PEP_0_R(crate::FieldReader<bool, bool>);
+impl PEP_0_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PEP_0_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PEP_0_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PEP_1` reader - Endpoint 1 Interrupt Mask"]
+pub struct PEP_1_R(crate::FieldReader<bool, bool>);
+impl PEP_1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PEP_1_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PEP_1_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PEP_2` reader - Endpoint 2 Interrupt Mask"]
+pub struct PEP_2_R(crate::FieldReader<bool, bool>);
+impl PEP_2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PEP_2_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PEP_2_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PEP_3` reader - Endpoint 3 Interrupt Mask"]
+pub struct PEP_3_R(crate::FieldReader<bool, bool>);
+impl PEP_3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PEP_3_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PEP_3_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PEP_4` reader - Endpoint 4 Interrupt Mask"]
+pub struct PEP_4_R(crate::FieldReader<bool, bool>);
+impl PEP_4_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PEP_4_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PEP_4_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PEP_5` reader - Endpoint 5 Interrupt Mask"]
+pub struct PEP_5_R(crate::FieldReader<bool, bool>);
+impl PEP_5_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PEP_5_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PEP_5_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PEP_6` reader - Endpoint 6 Interrupt Mask"]
+pub struct PEP_6_R(crate::FieldReader<bool, bool>);
+impl PEP_6_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PEP_6_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PEP_6_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PEP_7` reader - Endpoint 7 Interrupt Mask"]
+pub struct PEP_7_R(crate::FieldReader<bool, bool>);
+impl PEP_7_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PEP_7_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PEP_7_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PEP_8` reader - Endpoint 8 Interrupt Mask"]
+pub struct PEP_8_R(crate::FieldReader<bool, bool>);
+impl PEP_8_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PEP_8_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PEP_8_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PEP_9` reader - Endpoint 9 Interrupt Mask"]
+pub struct PEP_9_R(crate::FieldReader<bool, bool>);
+impl PEP_9_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PEP_9_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PEP_9_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PEP_10` reader - Endpoint 10 Interrupt Mask"]
+pub struct PEP_10_R(crate::FieldReader<bool, bool>);
+impl PEP_10_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PEP_10_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PEP_10_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PEP_11` reader - Endpoint 11 Interrupt Mask"]
+pub struct PEP_11_R(crate::FieldReader<bool, bool>);
+impl PEP_11_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PEP_11_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PEP_11_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DMA_1` reader - DMA Channel 1 Interrupt Mask"]
+pub struct DMA_1_R(crate::FieldReader<bool, bool>);
+impl DMA_1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DMA_1_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DMA_1_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DMA_2` reader - DMA Channel 2 Interrupt Mask"]
+pub struct DMA_2_R(crate::FieldReader<bool, bool>);
+impl DMA_2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DMA_2_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DMA_2_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DMA_3` reader - DMA Channel 3 Interrupt Mask"]
+pub struct DMA_3_R(crate::FieldReader<bool, bool>);
+impl DMA_3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DMA_3_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DMA_3_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DMA_4` reader - DMA Channel 4 Interrupt Mask"]
+pub struct DMA_4_R(crate::FieldReader<bool, bool>);
+impl DMA_4_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DMA_4_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DMA_4_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DMA_5` reader - DMA Channel 5 Interrupt Mask"]
+pub struct DMA_5_R(crate::FieldReader<bool, bool>);
+impl DMA_5_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DMA_5_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DMA_5_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DMA_6` reader - DMA Channel 6 Interrupt Mask"]
+pub struct DMA_6_R(crate::FieldReader<bool, bool>);
+impl DMA_6_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DMA_6_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DMA_6_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DMA_7` reader - DMA Channel 7 Interrupt Mask"]
+pub struct DMA_7_R(crate::FieldReader<bool, bool>);
+impl DMA_7_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DMA_7_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DMA_7_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 impl R {
     #[doc = "Bit 0 - Suspend Interrupt Mask"]
     #[inline(always)]
@@ -182,5 +533,21 @@ impl R {
     #[inline(always)]
     pub fn dma_7(&self) -> DMA_7_R {
         DMA_7_R::new(((self.bits >> 31) & 0x01) != 0)
+    }
+}
+#[doc = "Device Global Interrupt Mask Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usbhs_devimr](index.html) module"]
+pub struct USBHS_DEVIMR_SPEC;
+impl crate::RegisterSpec for USBHS_DEVIMR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [usbhs_devimr::R](R) reader structure"]
+impl crate::Readable for USBHS_DEVIMR_SPEC {
+    type Reader = R;
+}
+#[doc = "`reset()` method sets USBHS_DEVIMR to value 0"]
+impl crate::Resettable for USBHS_DEVIMR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

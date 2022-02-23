@@ -1,29 +1,198 @@
-#[doc = "Reader of register ISI_SR"]
-pub type R = crate::R<u32, super::ISI_SR>;
-#[doc = "Reader of field `ENABLE`"]
-pub type ENABLE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `DIS_DONE`"]
-pub type DIS_DONE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SRST`"]
-pub type SRST_R = crate::R<bool, bool>;
-#[doc = "Reader of field `CDC_PND`"]
-pub type CDC_PND_R = crate::R<bool, bool>;
-#[doc = "Reader of field `VSYNC`"]
-pub type VSYNC_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PXFR_DONE`"]
-pub type PXFR_DONE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `CXFR_DONE`"]
-pub type CXFR_DONE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SIP`"]
-pub type SIP_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P_OVR`"]
-pub type P_OVR_R = crate::R<bool, bool>;
-#[doc = "Reader of field `C_OVR`"]
-pub type C_OVR_R = crate::R<bool, bool>;
-#[doc = "Reader of field `CRC_ERR`"]
-pub type CRC_ERR_R = crate::R<bool, bool>;
-#[doc = "Reader of field `FR_OVR`"]
-pub type FR_OVR_R = crate::R<bool, bool>;
+#[doc = "Register `ISI_SR` reader"]
+pub struct R(crate::R<ISI_SR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<ISI_SR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<ISI_SR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<ISI_SR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Field `ENABLE` reader - Module Enable"]
+pub struct ENABLE_R(crate::FieldReader<bool, bool>);
+impl ENABLE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        ENABLE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for ENABLE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DIS_DONE` reader - Module Disable Request has Terminated (cleared on read)"]
+pub struct DIS_DONE_R(crate::FieldReader<bool, bool>);
+impl DIS_DONE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DIS_DONE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DIS_DONE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SRST` reader - Module Software Reset Request has Terminated (cleared on read)"]
+pub struct SRST_R(crate::FieldReader<bool, bool>);
+impl SRST_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SRST_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SRST_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CDC_PND` reader - Pending Codec Request"]
+pub struct CDC_PND_R(crate::FieldReader<bool, bool>);
+impl CDC_PND_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        CDC_PND_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for CDC_PND_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `VSYNC` reader - Vertical Synchronization (cleared on read)"]
+pub struct VSYNC_R(crate::FieldReader<bool, bool>);
+impl VSYNC_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        VSYNC_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for VSYNC_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PXFR_DONE` reader - Preview DMA Transfer has Terminated (cleared on read)"]
+pub struct PXFR_DONE_R(crate::FieldReader<bool, bool>);
+impl PXFR_DONE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PXFR_DONE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PXFR_DONE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CXFR_DONE` reader - Codec DMA Transfer has Terminated (cleared on read)"]
+pub struct CXFR_DONE_R(crate::FieldReader<bool, bool>);
+impl CXFR_DONE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        CXFR_DONE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for CXFR_DONE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SIP` reader - Synchronization in Progress"]
+pub struct SIP_R(crate::FieldReader<bool, bool>);
+impl SIP_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SIP_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SIP_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P_OVR` reader - Preview Datapath Overflow (cleared on read)"]
+pub struct P_OVR_R(crate::FieldReader<bool, bool>);
+impl P_OVR_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P_OVR_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P_OVR_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `C_OVR` reader - Codec Datapath Overflow (cleared on read)"]
+pub struct C_OVR_R(crate::FieldReader<bool, bool>);
+impl C_OVR_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        C_OVR_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for C_OVR_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CRC_ERR` reader - CRC Synchronization Error (cleared on read)"]
+pub struct CRC_ERR_R(crate::FieldReader<bool, bool>);
+impl CRC_ERR_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        CRC_ERR_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for CRC_ERR_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `FR_OVR` reader - Frame Rate Overrun (cleared on read)"]
+pub struct FR_OVR_R(crate::FieldReader<bool, bool>);
+impl FR_OVR_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        FR_OVR_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for FR_OVR_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 impl R {
     #[doc = "Bit 0 - Module Enable"]
     #[inline(always)]
@@ -84,5 +253,21 @@ impl R {
     #[inline(always)]
     pub fn fr_ovr(&self) -> FR_OVR_R {
         FR_OVR_R::new(((self.bits >> 27) & 0x01) != 0)
+    }
+}
+#[doc = "ISI Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [isi_sr](index.html) module"]
+pub struct ISI_SR_SPEC;
+impl crate::RegisterSpec for ISI_SR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [isi_sr::R](R) reader structure"]
+impl crate::Readable for ISI_SR_SPEC {
+    type Reader = R;
+}
+#[doc = "`reset()` method sets ISI_SR to value 0"]
+impl crate::Resettable for ISI_SR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

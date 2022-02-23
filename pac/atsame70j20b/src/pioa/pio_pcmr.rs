@@ -1,18 +1,55 @@
-#[doc = "Reader of register PIO_PCMR"]
-pub type R = crate::R<u32, super::PIO_PCMR>;
-#[doc = "Writer for register PIO_PCMR"]
-pub type W = crate::W<u32, super::PIO_PCMR>;
-#[doc = "Register PIO_PCMR `reset()`'s with value 0"]
-impl crate::ResetValue for super::PIO_PCMR {
-    type Type = u32;
+#[doc = "Register `PIO_PCMR` reader"]
+pub struct R(crate::R<PIO_PCMR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<PIO_PCMR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `PCEN`"]
-pub type PCEN_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `PCEN`"]
+impl From<crate::R<PIO_PCMR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<PIO_PCMR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `PIO_PCMR` writer"]
+pub struct W(crate::W<PIO_PCMR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<PIO_PCMR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<PIO_PCMR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<PIO_PCMR_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `PCEN` reader - Parallel Capture Mode Enable"]
+pub struct PCEN_R(crate::FieldReader<bool, bool>);
+impl PCEN_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PCEN_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PCEN_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PCEN` writer - Parallel Capture Mode Enable"]
 pub struct PCEN_W<'a> {
     w: &'a mut W,
 }
@@ -30,7 +67,7 @@ impl<'a> PCEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
@@ -51,37 +88,47 @@ impl From<DSIZE_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `DSIZE`"]
-pub type DSIZE_R = crate::R<u8, DSIZE_A>;
+#[doc = "Field `DSIZE` reader - Parallel Capture Mode Data Size"]
+pub struct DSIZE_R(crate::FieldReader<u8, DSIZE_A>);
 impl DSIZE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        DSIZE_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u8, DSIZE_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<DSIZE_A> {
         match self.bits {
-            0 => Val(DSIZE_A::BYTE),
-            1 => Val(DSIZE_A::HALFWORD),
-            2 => Val(DSIZE_A::WORD),
-            i => Res(i),
+            0 => Some(DSIZE_A::BYTE),
+            1 => Some(DSIZE_A::HALFWORD),
+            2 => Some(DSIZE_A::WORD),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `BYTE`"]
     #[inline(always)]
     pub fn is_byte(&self) -> bool {
-        *self == DSIZE_A::BYTE
+        **self == DSIZE_A::BYTE
     }
     #[doc = "Checks if the value of the field is `HALFWORD`"]
     #[inline(always)]
     pub fn is_halfword(&self) -> bool {
-        *self == DSIZE_A::HALFWORD
+        **self == DSIZE_A::HALFWORD
     }
     #[doc = "Checks if the value of the field is `WORD`"]
     #[inline(always)]
     pub fn is_word(&self) -> bool {
-        *self == DSIZE_A::WORD
+        **self == DSIZE_A::WORD
     }
 }
-#[doc = "Write proxy for field `DSIZE`"]
+impl core::ops::Deref for DSIZE_R {
+    type Target = crate::FieldReader<u8, DSIZE_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DSIZE` writer - Parallel Capture Mode Data Size"]
 pub struct DSIZE_W<'a> {
     w: &'a mut W,
 }
@@ -109,13 +156,26 @@ impl<'a> DSIZE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 4)) | (((value as u32) & 0x03) << 4);
+        self.w.bits = (self.w.bits & !(0x03 << 4)) | ((value as u32 & 0x03) << 4);
         self.w
     }
 }
-#[doc = "Reader of field `ALWYS`"]
-pub type ALWYS_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `ALWYS`"]
+#[doc = "Field `ALWYS` reader - Parallel Capture Mode Always Sampling"]
+pub struct ALWYS_R(crate::FieldReader<bool, bool>);
+impl ALWYS_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        ALWYS_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for ALWYS_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `ALWYS` writer - Parallel Capture Mode Always Sampling"]
 pub struct ALWYS_W<'a> {
     w: &'a mut W,
 }
@@ -133,13 +193,26 @@ impl<'a> ALWYS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | ((value as u32 & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Reader of field `HALFS`"]
-pub type HALFS_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `HALFS`"]
+#[doc = "Field `HALFS` reader - Parallel Capture Mode Half Sampling"]
+pub struct HALFS_R(crate::FieldReader<bool, bool>);
+impl HALFS_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        HALFS_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for HALFS_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `HALFS` writer - Parallel Capture Mode Half Sampling"]
 pub struct HALFS_W<'a> {
     w: &'a mut W,
 }
@@ -157,13 +230,26 @@ impl<'a> HALFS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | ((value as u32 & 0x01) << 10);
         self.w
     }
 }
-#[doc = "Reader of field `FRSTS`"]
-pub type FRSTS_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `FRSTS`"]
+#[doc = "Field `FRSTS` reader - Parallel Capture Mode First Sample"]
+pub struct FRSTS_R(crate::FieldReader<bool, bool>);
+impl FRSTS_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        FRSTS_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for FRSTS_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `FRSTS` writer - Parallel Capture Mode First Sample"]
 pub struct FRSTS_W<'a> {
     w: &'a mut W,
 }
@@ -181,7 +267,7 @@ impl<'a> FRSTS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | ((value as u32 & 0x01) << 11);
         self.w
     }
 }
@@ -237,5 +323,31 @@ impl W {
     #[inline(always)]
     pub fn frsts(&mut self) -> FRSTS_W {
         FRSTS_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Parallel Capture Mode Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pio_pcmr](index.html) module"]
+pub struct PIO_PCMR_SPEC;
+impl crate::RegisterSpec for PIO_PCMR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [pio_pcmr::R](R) reader structure"]
+impl crate::Readable for PIO_PCMR_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [pio_pcmr::W](W) writer structure"]
+impl crate::Writable for PIO_PCMR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets PIO_PCMR to value 0"]
+impl crate::Resettable for PIO_PCMR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

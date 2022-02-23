@@ -1,14 +1,25 @@
-#[doc = "Writer for register PWM_OSSUPD"]
-pub type W = crate::W<u32, super::PWM_OSSUPD>;
-#[doc = "Register PWM_OSSUPD `reset()`'s with value 0"]
-impl crate::ResetValue for super::PWM_OSSUPD {
-    type Type = u32;
+#[doc = "Register `PWM_OSSUPD` writer"]
+pub struct W(crate::W<PWM_OSSUPD_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<PWM_OSSUPD_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `OSSUPH0`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<PWM_OSSUPD_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<PWM_OSSUPD_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `OSSUPH0` writer - Output Selection Set for PWMH output of the channel 0"]
 pub struct OSSUPH0_W<'a> {
     w: &'a mut W,
 }
@@ -26,11 +37,11 @@ impl<'a> OSSUPH0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
-#[doc = "Write proxy for field `OSSUPH1`"]
+#[doc = "Field `OSSUPH1` writer - Output Selection Set for PWMH output of the channel 1"]
 pub struct OSSUPH1_W<'a> {
     w: &'a mut W,
 }
@@ -48,11 +59,11 @@ impl<'a> OSSUPH1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Write proxy for field `OSSUPH2`"]
+#[doc = "Field `OSSUPH2` writer - Output Selection Set for PWMH output of the channel 2"]
 pub struct OSSUPH2_W<'a> {
     w: &'a mut W,
 }
@@ -70,11 +81,11 @@ impl<'a> OSSUPH2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Write proxy for field `OSSUPH3`"]
+#[doc = "Field `OSSUPH3` writer - Output Selection Set for PWMH output of the channel 3"]
 pub struct OSSUPH3_W<'a> {
     w: &'a mut W,
 }
@@ -92,11 +103,11 @@ impl<'a> OSSUPH3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Write proxy for field `OSSUPL0`"]
+#[doc = "Field `OSSUPL0` writer - Output Selection Set for PWML output of the channel 0"]
 pub struct OSSUPL0_W<'a> {
     w: &'a mut W,
 }
@@ -114,11 +125,11 @@ impl<'a> OSSUPL0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | ((value as u32 & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Write proxy for field `OSSUPL1`"]
+#[doc = "Field `OSSUPL1` writer - Output Selection Set for PWML output of the channel 1"]
 pub struct OSSUPL1_W<'a> {
     w: &'a mut W,
 }
@@ -136,11 +147,11 @@ impl<'a> OSSUPL1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | ((value as u32 & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Write proxy for field `OSSUPL2`"]
+#[doc = "Field `OSSUPL2` writer - Output Selection Set for PWML output of the channel 2"]
 pub struct OSSUPL2_W<'a> {
     w: &'a mut W,
 }
@@ -158,11 +169,11 @@ impl<'a> OSSUPL2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | ((value as u32 & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Write proxy for field `OSSUPL3`"]
+#[doc = "Field `OSSUPL3` writer - Output Selection Set for PWML output of the channel 3"]
 pub struct OSSUPL3_W<'a> {
     w: &'a mut W,
 }
@@ -180,7 +191,7 @@ impl<'a> OSSUPL3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | ((value as u32 & 0x01) << 19);
         self.w
     }
 }
@@ -224,5 +235,27 @@ impl W {
     #[inline(always)]
     pub fn ossupl3(&mut self) -> OSSUPL3_W {
         OSSUPL3_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "PWM Output Selection Set Update Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pwm_ossupd](index.html) module"]
+pub struct PWM_OSSUPD_SPEC;
+impl crate::RegisterSpec for PWM_OSSUPD_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [pwm_ossupd::W](W) writer structure"]
+impl crate::Writable for PWM_OSSUPD_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets PWM_OSSUPD to value 0"]
+impl crate::Resettable for PWM_OSSUPD_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

@@ -1,5 +1,5 @@
 // Smaller part have 3x UART & 2x USART
-use crate::target_device::{ UART0, UART1, UART2, USART0, USART1 };
+use crate::target_device::{UART0, UART1, UART2, USART0, USART1};
 #[cfg(any(
     feature = "sams70n19b",
     feature = "sams70n20b",
@@ -13,7 +13,8 @@ use crate::target_device::{ UART0, UART1, UART2, USART0, USART1 };
     feature = "same70q19b",
     feature = "same70q20b",
     feature = "same70q21b",
-))] use crate::target_device::{ UART3, USART2 };
+))]
+use crate::target_device::{UART3, USART2};
 
 #[cfg(any(
     feature = "sams70n19b",
@@ -28,15 +29,15 @@ use crate::target_device::{ UART0, UART1, UART2, USART0, USART1 };
     feature = "same70q19b",
     feature = "same70q20b",
     feature = "same70q21b",
-))] use crate::target_device::{ UART4 /*, USART3 */ };
+))]
+use crate::target_device::UART4;
 
 use crate::target_device::{
-    uart0::RegisterBlock as UARTRegisterBlock,
-    usart0::RegisterBlock as USARTRegisterBlock
+    uart0::RegisterBlock as UARTRegisterBlock, usart0::RegisterBlock as USARTRegisterBlock,
 };
 
 pub struct Serial<P> {
-    peripheral: P
+    peripheral: P,
 }
 
 pub type Serial0 = Serial<UART0>;
@@ -151,14 +152,13 @@ fn write_uart(regs: &UARTRegisterBlock, word: u8) -> nb::Result<(), Error> {
     if regs.uart_sr.read().txempty().bit_is_clear() {
         Err(nb::Error::WouldBlock)
     } else {
-        regs.uart_thr
-            .write(|w| unsafe { w.txchr().bits(word) });
+        regs.uart_thr.write(|w| unsafe { w.txchr().bits(word) });
         Ok(())
     }
 }
 
 fn write_usart(regs: &USARTRegisterBlock, word: u8) -> nb::Result<(), Error> {
-    if regs.us_csr_usart_mode().read().txempty().bit_is_clear() {
+    if regs.us_csr.read().txempty().bit_is_clear() {
         Err(nb::Error::WouldBlock)
     } else {
         regs.us_thr
@@ -176,7 +176,7 @@ fn flush_uart(regs: &UARTRegisterBlock) -> nb::Result<(), Error> {
 }
 
 fn flush_usart(regs: &USARTRegisterBlock) -> nb::Result<(), Error> {
-    if regs.us_csr_usart_mode().read().txempty().bit_is_clear() {
+    if regs.us_csr.read().txempty().bit_is_clear() {
         Err(nb::Error::WouldBlock)
     } else {
         Ok(())

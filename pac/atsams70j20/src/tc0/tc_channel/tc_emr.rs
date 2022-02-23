@@ -1,13 +1,37 @@
-#[doc = "Reader of register TC_EMR"]
-pub type R = crate::R<u32, super::TC_EMR>;
-#[doc = "Writer for register TC_EMR"]
-pub type W = crate::W<u32, super::TC_EMR>;
-#[doc = "Register TC_EMR `reset()`'s with value 0"]
-impl crate::ResetValue for super::TC_EMR {
-    type Type = u32;
+#[doc = "Register `TC_EMR` reader"]
+pub struct R(crate::R<TC_EMR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<TC_EMR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<TC_EMR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<TC_EMR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `TC_EMR` writer"]
+pub struct W(crate::W<TC_EMR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<TC_EMR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<TC_EMR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<TC_EMR_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Trigger Source for Input A\n\nValue on reset: 0"]
@@ -25,31 +49,41 @@ impl From<TRIGSRCA_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `TRIGSRCA`"]
-pub type TRIGSRCA_R = crate::R<u8, TRIGSRCA_A>;
+#[doc = "Field `TRIGSRCA` reader - Trigger Source for Input A"]
+pub struct TRIGSRCA_R(crate::FieldReader<u8, TRIGSRCA_A>);
 impl TRIGSRCA_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        TRIGSRCA_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u8, TRIGSRCA_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<TRIGSRCA_A> {
         match self.bits {
-            0 => Val(TRIGSRCA_A::EXTERNAL_TIOAX),
-            1 => Val(TRIGSRCA_A::PWMX),
-            i => Res(i),
+            0 => Some(TRIGSRCA_A::EXTERNAL_TIOAX),
+            1 => Some(TRIGSRCA_A::PWMX),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `EXTERNAL_TIOAX`"]
     #[inline(always)]
     pub fn is_external_tioax(&self) -> bool {
-        *self == TRIGSRCA_A::EXTERNAL_TIOAX
+        **self == TRIGSRCA_A::EXTERNAL_TIOAX
     }
     #[doc = "Checks if the value of the field is `PWMX`"]
     #[inline(always)]
     pub fn is_pwmx(&self) -> bool {
-        *self == TRIGSRCA_A::PWMX
+        **self == TRIGSRCA_A::PWMX
     }
 }
-#[doc = "Write proxy for field `TRIGSRCA`"]
+impl core::ops::Deref for TRIGSRCA_R {
+    type Target = crate::FieldReader<u8, TRIGSRCA_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `TRIGSRCA` writer - Trigger Source for Input A"]
 pub struct TRIGSRCA_W<'a> {
     w: &'a mut W,
 }
@@ -72,7 +106,7 @@ impl<'a> TRIGSRCA_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x03) | ((value as u32) & 0x03);
+        self.w.bits = (self.w.bits & !0x03) | (value as u32 & 0x03);
         self.w
     }
 }
@@ -91,31 +125,41 @@ impl From<TRIGSRCB_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `TRIGSRCB`"]
-pub type TRIGSRCB_R = crate::R<u8, TRIGSRCB_A>;
+#[doc = "Field `TRIGSRCB` reader - Trigger Source for Input B"]
+pub struct TRIGSRCB_R(crate::FieldReader<u8, TRIGSRCB_A>);
 impl TRIGSRCB_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        TRIGSRCB_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u8, TRIGSRCB_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<TRIGSRCB_A> {
         match self.bits {
-            0 => Val(TRIGSRCB_A::EXTERNAL_TIOBX),
-            1 => Val(TRIGSRCB_A::PWMX),
-            i => Res(i),
+            0 => Some(TRIGSRCB_A::EXTERNAL_TIOBX),
+            1 => Some(TRIGSRCB_A::PWMX),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `EXTERNAL_TIOBX`"]
     #[inline(always)]
     pub fn is_external_tiobx(&self) -> bool {
-        *self == TRIGSRCB_A::EXTERNAL_TIOBX
+        **self == TRIGSRCB_A::EXTERNAL_TIOBX
     }
     #[doc = "Checks if the value of the field is `PWMX`"]
     #[inline(always)]
     pub fn is_pwmx(&self) -> bool {
-        *self == TRIGSRCB_A::PWMX
+        **self == TRIGSRCB_A::PWMX
     }
 }
-#[doc = "Write proxy for field `TRIGSRCB`"]
+impl core::ops::Deref for TRIGSRCB_R {
+    type Target = crate::FieldReader<u8, TRIGSRCB_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `TRIGSRCB` writer - Trigger Source for Input B"]
 pub struct TRIGSRCB_W<'a> {
     w: &'a mut W,
 }
@@ -138,13 +182,26 @@ impl<'a> TRIGSRCB_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 4)) | (((value as u32) & 0x03) << 4);
+        self.w.bits = (self.w.bits & !(0x03 << 4)) | ((value as u32 & 0x03) << 4);
         self.w
     }
 }
-#[doc = "Reader of field `NODIVCLK`"]
-pub type NODIVCLK_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `NODIVCLK`"]
+#[doc = "Field `NODIVCLK` reader - No Divided Clock"]
+pub struct NODIVCLK_R(crate::FieldReader<bool, bool>);
+impl NODIVCLK_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        NODIVCLK_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for NODIVCLK_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `NODIVCLK` writer - No Divided Clock"]
 pub struct NODIVCLK_W<'a> {
     w: &'a mut W,
 }
@@ -162,7 +219,7 @@ impl<'a> NODIVCLK_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | ((value as u32 & 0x01) << 8);
         self.w
     }
 }
@@ -198,5 +255,31 @@ impl W {
     #[inline(always)]
     pub fn nodivclk(&mut self) -> NODIVCLK_W {
         NODIVCLK_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Extended Mode Register (channel = 0)\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [tc_emr](index.html) module"]
+pub struct TC_EMR_SPEC;
+impl crate::RegisterSpec for TC_EMR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [tc_emr::R](R) reader structure"]
+impl crate::Readable for TC_EMR_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [tc_emr::W](W) writer structure"]
+impl crate::Writable for TC_EMR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets TC_EMR to value 0"]
+impl crate::Resettable for TC_EMR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

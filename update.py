@@ -43,10 +43,9 @@ for opt, arg in opts:
         use_nightly_features = True
 
 subprocess.run(cargo_install_command(["svd2rust"], nightly=use_nightly_features, force=cargo_force_install))
-# subprocess.run(cargo_install_command(["rustfmt%s" % ("-nightly" if use_nightly_features else "")], nightly=use_nightly_features, force=cargo_force_install))
 subprocess.run(cargo_install_command(["form"], nightly=use_nightly_features, force=cargo_force_install))
 
-all_svd_files = glob.glob("./svd/*.svd")
+all_svd_files = glob.glob("./svd/data/Atmel/ATSAM[E,S,V]7[0,1]*.svd")
 
 for svd_file in all_svd_files:
     pac_name = pathlib.Path(svd_file).stem.lower()

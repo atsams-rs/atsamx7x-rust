@@ -1,15 +1,25 @@
-#[doc = "Writer for register USBHS_DEVEPTIDR_CTRL_MODE[%s]"]
-pub type W = crate::W<u32, super::USBHS_DEVEPTIDR_CTRL_MODE>;
-#[doc = "Register USBHS_DEVEPTIDR_CTRL_MODE[%s]
-`reset()`'s with value 0"]
-impl crate::ResetValue for super::USBHS_DEVEPTIDR_CTRL_MODE {
-    type Type = u32;
+#[doc = "Register `USBHS_DEVEPTIDR_CTRL_MODE[%s]` writer"]
+pub struct W(crate::W<USBHS_DEVEPTIDR_CTRL_MODE_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<USBHS_DEVEPTIDR_CTRL_MODE_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `TXINEC`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<USBHS_DEVEPTIDR_CTRL_MODE_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<USBHS_DEVEPTIDR_CTRL_MODE_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `TXINEC` writer - Transmitted IN Interrupt Clear"]
 pub struct TXINEC_W<'a> {
     w: &'a mut W,
 }
@@ -27,11 +37,11 @@ impl<'a> TXINEC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
-#[doc = "Write proxy for field `RXOUTEC`"]
+#[doc = "Field `RXOUTEC` writer - Received OUT Data Interrupt Clear"]
 pub struct RXOUTEC_W<'a> {
     w: &'a mut W,
 }
@@ -49,11 +59,11 @@ impl<'a> RXOUTEC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Write proxy for field `RXSTPEC`"]
+#[doc = "Field `RXSTPEC` writer - Received SETUP Interrupt Clear"]
 pub struct RXSTPEC_W<'a> {
     w: &'a mut W,
 }
@@ -71,11 +81,11 @@ impl<'a> RXSTPEC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Write proxy for field `NAKOUTEC`"]
+#[doc = "Field `NAKOUTEC` writer - NAKed OUT Interrupt Clear"]
 pub struct NAKOUTEC_W<'a> {
     w: &'a mut W,
 }
@@ -93,11 +103,11 @@ impl<'a> NAKOUTEC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Write proxy for field `NAKINEC`"]
+#[doc = "Field `NAKINEC` writer - NAKed IN Interrupt Clear"]
 pub struct NAKINEC_W<'a> {
     w: &'a mut W,
 }
@@ -115,11 +125,11 @@ impl<'a> NAKINEC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Write proxy for field `OVERFEC`"]
+#[doc = "Field `OVERFEC` writer - Overflow Interrupt Clear"]
 pub struct OVERFEC_W<'a> {
     w: &'a mut W,
 }
@@ -137,11 +147,11 @@ impl<'a> OVERFEC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Write proxy for field `STALLEDEC`"]
+#[doc = "Field `STALLEDEC` writer - STALLed Interrupt Clear"]
 pub struct STALLEDEC_W<'a> {
     w: &'a mut W,
 }
@@ -159,11 +169,11 @@ impl<'a> STALLEDEC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Write proxy for field `SHORTPACKETEC`"]
+#[doc = "Field `SHORTPACKETEC` writer - Shortpacket Interrupt Clear"]
 pub struct SHORTPACKETEC_W<'a> {
     w: &'a mut W,
 }
@@ -181,11 +191,11 @@ impl<'a> SHORTPACKETEC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | ((value as u32 & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Write proxy for field `NBUSYBKEC`"]
+#[doc = "Field `NBUSYBKEC` writer - Number of Busy Banks Interrupt Clear"]
 pub struct NBUSYBKEC_W<'a> {
     w: &'a mut W,
 }
@@ -203,11 +213,11 @@ impl<'a> NBUSYBKEC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | ((value as u32 & 0x01) << 12);
         self.w
     }
 }
-#[doc = "Write proxy for field `FIFOCONC`"]
+#[doc = "Field `FIFOCONC` writer - FIFO Control Clear"]
 pub struct FIFOCONC_W<'a> {
     w: &'a mut W,
 }
@@ -225,11 +235,11 @@ impl<'a> FIFOCONC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | ((value as u32 & 0x01) << 14);
         self.w
     }
 }
-#[doc = "Write proxy for field `EPDISHDMAC`"]
+#[doc = "Field `EPDISHDMAC` writer - Endpoint Interrupts Disable HDMA Request Clear"]
 pub struct EPDISHDMAC_W<'a> {
     w: &'a mut W,
 }
@@ -247,11 +257,11 @@ impl<'a> EPDISHDMAC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | ((value as u32 & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Write proxy for field `NYETDISC`"]
+#[doc = "Field `NYETDISC` writer - NYET Token Disable Clear"]
 pub struct NYETDISC_W<'a> {
     w: &'a mut W,
 }
@@ -269,11 +279,11 @@ impl<'a> NYETDISC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | ((value as u32 & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Write proxy for field `STALLRQC`"]
+#[doc = "Field `STALLRQC` writer - STALL Request Clear"]
 pub struct STALLRQC_W<'a> {
     w: &'a mut W,
 }
@@ -291,7 +301,7 @@ impl<'a> STALLRQC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | ((value as u32 & 0x01) << 19);
         self.w
     }
 }
@@ -360,5 +370,28 @@ impl W {
     #[inline(always)]
     pub fn stallrqc(&mut self) -> STALLRQC_W {
         STALLRQC_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Device Endpoint Interrupt Disable Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usbhs_deveptidr_ctrl_mode](index.html) module"]
+pub struct USBHS_DEVEPTIDR_CTRL_MODE_SPEC;
+impl crate::RegisterSpec for USBHS_DEVEPTIDR_CTRL_MODE_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [usbhs_deveptidr_ctrl_mode::W](W) writer structure"]
+impl crate::Writable for USBHS_DEVEPTIDR_CTRL_MODE_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets USBHS_DEVEPTIDR_CTRL_MODE[%s]
+to value 0"]
+impl crate::Resettable for USBHS_DEVEPTIDR_CTRL_MODE_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

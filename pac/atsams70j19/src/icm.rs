@@ -2,132 +2,71 @@
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - Configuration Register"]
-    pub icm_cfg: ICM_CFG,
+    pub icm_cfg: crate::Reg<icm_cfg::ICM_CFG_SPEC>,
     #[doc = "0x04 - Control Register"]
-    pub icm_ctrl: ICM_CTRL,
+    pub icm_ctrl: crate::Reg<icm_ctrl::ICM_CTRL_SPEC>,
     #[doc = "0x08 - Status Register"]
-    pub icm_sr: ICM_SR,
-    _reserved3: [u8; 4usize],
+    pub icm_sr: crate::Reg<icm_sr::ICM_SR_SPEC>,
+    _reserved3: [u8; 0x04],
     #[doc = "0x10 - Interrupt Enable Register"]
-    pub icm_ier: ICM_IER,
+    pub icm_ier: crate::Reg<icm_ier::ICM_IER_SPEC>,
     #[doc = "0x14 - Interrupt Disable Register"]
-    pub icm_idr: ICM_IDR,
+    pub icm_idr: crate::Reg<icm_idr::ICM_IDR_SPEC>,
     #[doc = "0x18 - Interrupt Mask Register"]
-    pub icm_imr: ICM_IMR,
+    pub icm_imr: crate::Reg<icm_imr::ICM_IMR_SPEC>,
     #[doc = "0x1c - Interrupt Status Register"]
-    pub icm_isr: ICM_ISR,
+    pub icm_isr: crate::Reg<icm_isr::ICM_ISR_SPEC>,
     #[doc = "0x20 - Undefined Access Status Register"]
-    pub icm_uasr: ICM_UASR,
-    _reserved8: [u8; 12usize],
+    pub icm_uasr: crate::Reg<icm_uasr::ICM_UASR_SPEC>,
+    _reserved8: [u8; 0x0c],
     #[doc = "0x30 - Region Descriptor Area Start Address Register"]
-    pub icm_dscr: ICM_DSCR,
+    pub icm_dscr: crate::Reg<icm_dscr::ICM_DSCR_SPEC>,
     #[doc = "0x34 - Region Hash Area Start Address Register"]
-    pub icm_hash: ICM_HASH,
-    #[doc = "0x38 - User Initial Hash Value 0 Register 0"]
-    pub icm_uihval: [ICM_UIHVAL; 8],
+    pub icm_hash: crate::Reg<icm_hash::ICM_HASH_SPEC>,
+    #[doc = "0x38..0x58 - User Initial Hash Value 0 Register 0"]
+    pub icm_uihval: [crate::Reg<icm_uihval::ICM_UIHVAL_SPEC>; 8],
 }
-#[doc = "Configuration Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [icm_cfg](icm_cfg) module"]
-pub type ICM_CFG = crate::Reg<u32, _ICM_CFG>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ICM_CFG;
-#[doc = "`read()` method returns [icm_cfg::R](icm_cfg::R) reader structure"]
-impl crate::Readable for ICM_CFG {}
-#[doc = "`write(|w| ..)` method takes [icm_cfg::W](icm_cfg::W) writer structure"]
-impl crate::Writable for ICM_CFG {}
+#[doc = "ICM_CFG register accessor: an alias for `Reg<ICM_CFG_SPEC>`"]
+pub type ICM_CFG = crate::Reg<icm_cfg::ICM_CFG_SPEC>;
 #[doc = "Configuration Register"]
 pub mod icm_cfg;
-#[doc = "Control Register\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [icm_ctrl](icm_ctrl) module"]
-pub type ICM_CTRL = crate::Reg<u32, _ICM_CTRL>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ICM_CTRL;
-#[doc = "`write(|w| ..)` method takes [icm_ctrl::W](icm_ctrl::W) writer structure"]
-impl crate::Writable for ICM_CTRL {}
+#[doc = "ICM_CTRL register accessor: an alias for `Reg<ICM_CTRL_SPEC>`"]
+pub type ICM_CTRL = crate::Reg<icm_ctrl::ICM_CTRL_SPEC>;
 #[doc = "Control Register"]
 pub mod icm_ctrl;
-#[doc = "Status Register\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [icm_sr](icm_sr) module"]
-pub type ICM_SR = crate::Reg<u32, _ICM_SR>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ICM_SR;
-#[doc = "`write(|w| ..)` method takes [icm_sr::W](icm_sr::W) writer structure"]
-impl crate::Writable for ICM_SR {}
+#[doc = "ICM_SR register accessor: an alias for `Reg<ICM_SR_SPEC>`"]
+pub type ICM_SR = crate::Reg<icm_sr::ICM_SR_SPEC>;
 #[doc = "Status Register"]
 pub mod icm_sr;
-#[doc = "Interrupt Enable Register\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [icm_ier](icm_ier) module"]
-pub type ICM_IER = crate::Reg<u32, _ICM_IER>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ICM_IER;
-#[doc = "`write(|w| ..)` method takes [icm_ier::W](icm_ier::W) writer structure"]
-impl crate::Writable for ICM_IER {}
+#[doc = "ICM_IER register accessor: an alias for `Reg<ICM_IER_SPEC>`"]
+pub type ICM_IER = crate::Reg<icm_ier::ICM_IER_SPEC>;
 #[doc = "Interrupt Enable Register"]
 pub mod icm_ier;
-#[doc = "Interrupt Disable Register\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [icm_idr](icm_idr) module"]
-pub type ICM_IDR = crate::Reg<u32, _ICM_IDR>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ICM_IDR;
-#[doc = "`write(|w| ..)` method takes [icm_idr::W](icm_idr::W) writer structure"]
-impl crate::Writable for ICM_IDR {}
+#[doc = "ICM_IDR register accessor: an alias for `Reg<ICM_IDR_SPEC>`"]
+pub type ICM_IDR = crate::Reg<icm_idr::ICM_IDR_SPEC>;
 #[doc = "Interrupt Disable Register"]
 pub mod icm_idr;
-#[doc = "Interrupt Mask Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [icm_imr](icm_imr) module"]
-pub type ICM_IMR = crate::Reg<u32, _ICM_IMR>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ICM_IMR;
-#[doc = "`read()` method returns [icm_imr::R](icm_imr::R) reader structure"]
-impl crate::Readable for ICM_IMR {}
+#[doc = "ICM_IMR register accessor: an alias for `Reg<ICM_IMR_SPEC>`"]
+pub type ICM_IMR = crate::Reg<icm_imr::ICM_IMR_SPEC>;
 #[doc = "Interrupt Mask Register"]
 pub mod icm_imr;
-#[doc = "Interrupt Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [icm_isr](icm_isr) module"]
-pub type ICM_ISR = crate::Reg<u32, _ICM_ISR>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ICM_ISR;
-#[doc = "`read()` method returns [icm_isr::R](icm_isr::R) reader structure"]
-impl crate::Readable for ICM_ISR {}
+#[doc = "ICM_ISR register accessor: an alias for `Reg<ICM_ISR_SPEC>`"]
+pub type ICM_ISR = crate::Reg<icm_isr::ICM_ISR_SPEC>;
 #[doc = "Interrupt Status Register"]
 pub mod icm_isr;
-#[doc = "Undefined Access Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [icm_uasr](icm_uasr) module"]
-pub type ICM_UASR = crate::Reg<u32, _ICM_UASR>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ICM_UASR;
-#[doc = "`read()` method returns [icm_uasr::R](icm_uasr::R) reader structure"]
-impl crate::Readable for ICM_UASR {}
+#[doc = "ICM_UASR register accessor: an alias for `Reg<ICM_UASR_SPEC>`"]
+pub type ICM_UASR = crate::Reg<icm_uasr::ICM_UASR_SPEC>;
 #[doc = "Undefined Access Status Register"]
 pub mod icm_uasr;
-#[doc = "Region Descriptor Area Start Address Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [icm_dscr](icm_dscr) module"]
-pub type ICM_DSCR = crate::Reg<u32, _ICM_DSCR>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ICM_DSCR;
-#[doc = "`read()` method returns [icm_dscr::R](icm_dscr::R) reader structure"]
-impl crate::Readable for ICM_DSCR {}
-#[doc = "`write(|w| ..)` method takes [icm_dscr::W](icm_dscr::W) writer structure"]
-impl crate::Writable for ICM_DSCR {}
+#[doc = "ICM_DSCR register accessor: an alias for `Reg<ICM_DSCR_SPEC>`"]
+pub type ICM_DSCR = crate::Reg<icm_dscr::ICM_DSCR_SPEC>;
 #[doc = "Region Descriptor Area Start Address Register"]
 pub mod icm_dscr;
-#[doc = "Region Hash Area Start Address Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [icm_hash](icm_hash) module"]
-pub type ICM_HASH = crate::Reg<u32, _ICM_HASH>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ICM_HASH;
-#[doc = "`read()` method returns [icm_hash::R](icm_hash::R) reader structure"]
-impl crate::Readable for ICM_HASH {}
-#[doc = "`write(|w| ..)` method takes [icm_hash::W](icm_hash::W) writer structure"]
-impl crate::Writable for ICM_HASH {}
+#[doc = "ICM_HASH register accessor: an alias for `Reg<ICM_HASH_SPEC>`"]
+pub type ICM_HASH = crate::Reg<icm_hash::ICM_HASH_SPEC>;
 #[doc = "Region Hash Area Start Address Register"]
 pub mod icm_hash;
-#[doc = "User Initial Hash Value 0 Register 0\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [icm_uihval](icm_uihval) module"]
-pub type ICM_UIHVAL = crate::Reg<u32, _ICM_UIHVAL>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ICM_UIHVAL;
-#[doc = "`write(|w| ..)` method takes [icm_uihval::W](icm_uihval::W) writer structure"]
-impl crate::Writable for ICM_UIHVAL {}
+#[doc = "ICM_UIHVAL register accessor: an alias for `Reg<ICM_UIHVAL_SPEC>`"]
+pub type ICM_UIHVAL = crate::Reg<icm_uihval::ICM_UIHVAL_SPEC>;
 #[doc = "User Initial Hash Value 0 Register 0"]
 pub mod icm_uihval;

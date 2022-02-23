@@ -1,14 +1,25 @@
-#[doc = "Writer for register I2SC_IDR"]
-pub type W = crate::W<u32, super::I2SC_IDR>;
-#[doc = "Register I2SC_IDR `reset()`'s with value 0"]
-impl crate::ResetValue for super::I2SC_IDR {
-    type Type = u32;
+#[doc = "Register `I2SC_IDR` writer"]
+pub struct W(crate::W<I2SC_IDR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<I2SC_IDR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `RXRDY`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<I2SC_IDR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<I2SC_IDR_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `RXRDY` writer - Receiver Ready Interrupt Disable"]
 pub struct RXRDY_W<'a> {
     w: &'a mut W,
 }
@@ -26,11 +37,11 @@ impl<'a> RXRDY_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Write proxy for field `RXOR`"]
+#[doc = "Field `RXOR` writer - Receiver Overrun Interrupt Disable"]
 pub struct RXOR_W<'a> {
     w: &'a mut W,
 }
@@ -48,11 +59,11 @@ impl<'a> RXOR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Write proxy for field `TXRDY`"]
+#[doc = "Field `TXRDY` writer - Transmit Ready Interrupt Disable"]
 pub struct TXRDY_W<'a> {
     w: &'a mut W,
 }
@@ -70,11 +81,11 @@ impl<'a> TXRDY_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Write proxy for field `TXUR`"]
+#[doc = "Field `TXUR` writer - Transmit Underflow Interrupt Disable"]
 pub struct TXUR_W<'a> {
     w: &'a mut W,
 }
@@ -92,7 +103,7 @@ impl<'a> TXUR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
         self.w
     }
 }
@@ -116,5 +127,27 @@ impl W {
     #[inline(always)]
     pub fn txur(&mut self) -> TXUR_W {
         TXUR_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Interrupt Disable Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [i2sc_idr](index.html) module"]
+pub struct I2SC_IDR_SPEC;
+impl crate::RegisterSpec for I2SC_IDR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [i2sc_idr::W](W) writer structure"]
+impl crate::Writable for I2SC_IDR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets I2SC_IDR to value 0"]
+impl crate::Resettable for I2SC_IDR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

@@ -1,18 +1,55 @@
-#[doc = "Reader of register PWM_LEBR1"]
-pub type R = crate::R<u32, super::PWM_LEBR1>;
-#[doc = "Writer for register PWM_LEBR1"]
-pub type W = crate::W<u32, super::PWM_LEBR1>;
-#[doc = "Register PWM_LEBR1 `reset()`'s with value 0"]
-impl crate::ResetValue for super::PWM_LEBR1 {
-    type Type = u32;
+#[doc = "Register `PWM_LEBR1` reader"]
+pub struct R(crate::R<PWM_LEBR1_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<PWM_LEBR1_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `LEBDELAY`"]
-pub type LEBDELAY_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `LEBDELAY`"]
+impl From<crate::R<PWM_LEBR1_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<PWM_LEBR1_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `PWM_LEBR1` writer"]
+pub struct W(crate::W<PWM_LEBR1_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<PWM_LEBR1_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<PWM_LEBR1_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<PWM_LEBR1_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `LEBDELAY` reader - Leading-Edge Blanking Delay for TRGINx"]
+pub struct LEBDELAY_R(crate::FieldReader<u8, u8>);
+impl LEBDELAY_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        LEBDELAY_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LEBDELAY_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LEBDELAY` writer - Leading-Edge Blanking Delay for TRGINx"]
 pub struct LEBDELAY_W<'a> {
     w: &'a mut W,
 }
@@ -20,13 +57,26 @@ impl<'a> LEBDELAY_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x7f) | ((value as u32) & 0x7f);
+        self.w.bits = (self.w.bits & !0x7f) | (value as u32 & 0x7f);
         self.w
     }
 }
-#[doc = "Reader of field `PWMLFEN`"]
-pub type PWMLFEN_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `PWMLFEN`"]
+#[doc = "Field `PWMLFEN` reader - PWML Falling Edge Enable"]
+pub struct PWMLFEN_R(crate::FieldReader<bool, bool>);
+impl PWMLFEN_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PWMLFEN_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PWMLFEN_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PWMLFEN` writer - PWML Falling Edge Enable"]
 pub struct PWMLFEN_W<'a> {
     w: &'a mut W,
 }
@@ -44,13 +94,26 @@ impl<'a> PWMLFEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | ((value as u32 & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Reader of field `PWMLREN`"]
-pub type PWMLREN_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `PWMLREN`"]
+#[doc = "Field `PWMLREN` reader - PWML Rising Edge Enable"]
+pub struct PWMLREN_R(crate::FieldReader<bool, bool>);
+impl PWMLREN_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PWMLREN_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PWMLREN_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PWMLREN` writer - PWML Rising Edge Enable"]
 pub struct PWMLREN_W<'a> {
     w: &'a mut W,
 }
@@ -68,13 +131,26 @@ impl<'a> PWMLREN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | ((value as u32 & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Reader of field `PWMHFEN`"]
-pub type PWMHFEN_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `PWMHFEN`"]
+#[doc = "Field `PWMHFEN` reader - PWMH Falling Edge Enable"]
+pub struct PWMHFEN_R(crate::FieldReader<bool, bool>);
+impl PWMHFEN_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PWMHFEN_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PWMHFEN_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PWMHFEN` writer - PWMH Falling Edge Enable"]
 pub struct PWMHFEN_W<'a> {
     w: &'a mut W,
 }
@@ -92,13 +168,26 @@ impl<'a> PWMHFEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | ((value as u32 & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Reader of field `PWMHREN`"]
-pub type PWMHREN_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `PWMHREN`"]
+#[doc = "Field `PWMHREN` reader - PWMH Rising Edge Enable"]
+pub struct PWMHREN_R(crate::FieldReader<bool, bool>);
+impl PWMHREN_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PWMHREN_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PWMHREN_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PWMHREN` writer - PWMH Rising Edge Enable"]
 pub struct PWMHREN_W<'a> {
     w: &'a mut W,
 }
@@ -116,7 +205,7 @@ impl<'a> PWMHREN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | ((value as u32 & 0x01) << 19);
         self.w
     }
 }
@@ -172,5 +261,31 @@ impl W {
     #[inline(always)]
     pub fn pwmhren(&mut self) -> PWMHREN_W {
         PWMHREN_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "PWM Leading-Edge Blanking Register (trg_num = 1)\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pwm_lebr1](index.html) module"]
+pub struct PWM_LEBR1_SPEC;
+impl crate::RegisterSpec for PWM_LEBR1_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [pwm_lebr1::R](R) reader structure"]
+impl crate::Readable for PWM_LEBR1_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [pwm_lebr1::W](W) writer structure"]
+impl crate::Writable for PWM_LEBR1_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets PWM_LEBR1 to value 0"]
+impl crate::Resettable for PWM_LEBR1_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }
