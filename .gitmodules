@@ -1,0 +1,4 @@
+[submodule "svd"]
+	path = svd
+	url = https://github.com/GrepitAB/cmsis-svd.git
+	branch = add-atmel-atsams-svds
