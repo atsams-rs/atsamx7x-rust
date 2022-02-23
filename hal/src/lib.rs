@@ -3,6 +3,11 @@
 extern crate embedded_hal as hal;
 extern crate nb;
 
+#[cfg(not(feature = "device-selected"))]
+compile_error!(
+    "The HAL is built for a specific target device selected using a feature, but no such a feature was selected."
+);
+
 #[cfg(feature = "same70j19")]
 pub use atsame70j19 as target_device;
 #[cfg(feature = "same70j19b")]
@@ -94,4 +99,5 @@ pub use atsamv71q21 as target_device;
 #[cfg(feature = "samv71q21b")]
 pub use atsamv71q21b as target_device;
 
+#[cfg(feature = "device-selected")]
 pub mod serial;
