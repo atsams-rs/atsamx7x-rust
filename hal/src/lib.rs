@@ -1,6 +1,6 @@
 #![no_std]
 
-pub use embedded_hal as hal;
+pub use embedded_hal as ehal;
 pub use nb;
 
 #[cfg(not(feature = "device-selected"))]

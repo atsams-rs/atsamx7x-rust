@@ -1,4 +1,4 @@
-use crate::{hal, nb};
+use crate::{ehal, nb};
 
 // Smaller part have 3x UART & 2x USART
 use crate::target_device::{UART0, UART1, UART2, USART0, USART1};
@@ -108,7 +108,7 @@ pub enum Error {
     // omitted: other error variants
 }
 
-impl hal::serial::Write<u8> for Serial<UART0> {
+impl ehal::serial::Write<u8> for Serial<UART0> {
     type Error = Error;
 
     fn write(&mut self, word: u8) -> nb::Result<(), Error> {
@@ -120,7 +120,7 @@ impl hal::serial::Write<u8> for Serial<UART0> {
     }
 }
 
-impl hal::serial::Write<u8> for Serial<USART1> {
+impl ehal::serial::Write<u8> for Serial<USART1> {
     type Error = Error;
 
     fn write(&mut self, word: u8) -> nb::Result<(), Error> {
@@ -138,7 +138,7 @@ impl hal::serial::Write<u8> for Serial<USART1> {
     feature = "same70q20b",
     feature = "same70q21b",
 ))]
-impl hal::serial::Write<u8> for Serial<UART3> {
+impl ehal::serial::Write<u8> for Serial<UART3> {
     type Error = Error;
 
     fn write(&mut self, word: u8) -> nb::Result<(), Error> {

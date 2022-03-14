@@ -1,5 +1,5 @@
 //! Watchdog timer configuration.
-use crate::{hal, target_device};
+use crate::{ehal, target_device};
 
 pub struct Watchdog(target_device::WDT);
 
@@ -9,7 +9,7 @@ impl Watchdog {
     }
 }
 
-impl hal::watchdog::WatchdogDisable for Watchdog {
+impl ehal::watchdog::WatchdogDisable for Watchdog {
     fn disable(&mut self) {
         self.0.wdt_mr.write(|w| w.wddis().set_bit());
     }
