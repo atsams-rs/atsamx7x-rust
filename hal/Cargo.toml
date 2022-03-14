@@ -22,7 +22,7 @@ edition = "2018"
 
 [dependencies]
 cortex-m = "0.7"
-embedded-hal = "0.2.3"
+embedded-hal = { version = "0.2.7", features = ["unproven"] }
 nb = "0.1.2"
 
 atsame70j19  = { version = "0.21.0", path = "../pac/atsame70j19", optional = true }
