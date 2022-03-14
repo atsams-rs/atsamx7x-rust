@@ -327,6 +327,114 @@ dependencies = [
 ]
 
 [[package]]
+name = "atsamv70j19"
+version = "0.21.0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70j19b"
+version = "0.21.0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70j20"
+version = "0.21.0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70j20b"
+version = "0.21.0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70n19"
+version = "0.21.0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70n19b"
+version = "0.21.0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70n20"
+version = "0.21.0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70n20b"
+version = "0.21.0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70q19"
+version = "0.21.0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70q19b"
+version = "0.21.0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70q20"
+version = "0.21.0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70q20b"
+version = "0.21.0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "vcell",
+]
+
+[[package]]
 name = "atsamv71j19"
 version = "0.21.0"
 dependencies = [
@@ -528,6 +636,18 @@ dependencies = [
  "atsams70q20b",
  "atsams70q21",
  "atsams70q21b",
+ "atsamv70j19",
+ "atsamv70j19b",
+ "atsamv70j20",
+ "atsamv70j20b",
+ "atsamv70n19",
+ "atsamv70n19b",
+ "atsamv70n20",
+ "atsamv70n20b",
+ "atsamv70q19",
+ "atsamv70q19b",
+ "atsamv70q20",
+ "atsamv70q20b",
  "atsamv71j19",
  "atsamv71j19b",
  "atsamv71j20",

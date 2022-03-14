@@ -44,24 +44,64 @@ pub use atsame70q20b as target_device;
 pub use atsame70q21 as target_device;
 #[cfg(feature = "same70q21b")]
 pub use atsame70q21b as target_device;
-#[cfg(feature = "sams70j19")] pub use atsams70j19 as target_device;
-#[cfg(feature = "sams70j19b")] pub use atsams70j19b as target_device;
-#[cfg(feature = "sams70j20")] pub use atsams70j20 as target_device;
-#[cfg(feature = "sams70j20b")] pub use atsams70j20b as target_device;
-#[cfg(feature = "sams70j21")] pub use atsams70j21 as target_device;
-#[cfg(feature = "sams70j21b")] pub use atsams70j21b as target_device;
-#[cfg(feature = "sams70n19")] pub use atsams70n19 as target_device;
-#[cfg(feature = "sams70n19b")] pub use atsams70n19b as target_device;
-#[cfg(feature = "sams70n20")] pub use atsams70n20 as target_device;
-#[cfg(feature = "sams70n20b")] pub use atsams70n20b as target_device;
-#[cfg(feature = "sams70n21")] pub use atsams70n21 as target_device;
-#[cfg(feature = "sams70n21b")] pub use atsams70n21b as target_device;
-#[cfg(feature = "sams70q19")] pub use atsams70q19 as target_device;
-#[cfg(feature = "sams70q19b")] pub use atsams70q19b as target_device;
-#[cfg(feature = "sams70q20")] pub use atsams70q20 as target_device;
-#[cfg(feature = "sams70q20b")] pub use atsams70q20b as target_device;
-#[cfg(feature = "sams70q21")] pub use atsams70q21 as target_device;
-#[cfg(feature = "sams70q21b")] pub use atsams70q21b as target_device;
+#[cfg(feature = "sams70j19")]
+pub use atsams70j19 as target_device;
+#[cfg(feature = "sams70j19b")]
+pub use atsams70j19b as target_device;
+#[cfg(feature = "sams70j20")]
+pub use atsams70j20 as target_device;
+#[cfg(feature = "sams70j20b")]
+pub use atsams70j20b as target_device;
+#[cfg(feature = "sams70j21")]
+pub use atsams70j21 as target_device;
+#[cfg(feature = "sams70j21b")]
+pub use atsams70j21b as target_device;
+#[cfg(feature = "sams70n19")]
+pub use atsams70n19 as target_device;
+#[cfg(feature = "sams70n19b")]
+pub use atsams70n19b as target_device;
+#[cfg(feature = "sams70n20")]
+pub use atsams70n20 as target_device;
+#[cfg(feature = "sams70n20b")]
+pub use atsams70n20b as target_device;
+#[cfg(feature = "sams70n21")]
+pub use atsams70n21 as target_device;
+#[cfg(feature = "sams70n21b")]
+pub use atsams70n21b as target_device;
+#[cfg(feature = "sams70q19")]
+pub use atsams70q19 as target_device;
+#[cfg(feature = "sams70q19b")]
+pub use atsams70q19b as target_device;
+#[cfg(feature = "sams70q20")]
+pub use atsams70q20 as target_device;
+#[cfg(feature = "sams70q20b")]
+pub use atsams70q20b as target_device;
+#[cfg(feature = "sams70q21")]
+pub use atsams70q21 as target_device;
+#[cfg(feature = "sams70q21b")]
+pub use atsams70q21b as target_device;
+#[cfg(feature = "samv70j19")]
+pub use atsamv70j19 as target_device;
+#[cfg(feature = "samv70j19b")]
+pub use atsamv70j19b as target_device;
+#[cfg(feature = "samv70j20")]
+pub use atsamv70j20 as target_device;
+#[cfg(feature = "samv70j20b")]
+pub use atsamv70j20b as target_device;
+#[cfg(feature = "samv70n19")]
+pub use atsamv70n19 as target_device;
+#[cfg(feature = "samv70n19b")]
+pub use atsamv70n19b as target_device;
+#[cfg(feature = "samv70n20")]
+pub use atsamv70n20 as target_device;
+#[cfg(feature = "samv70n20b")]
+pub use atsamv70n20b as target_device;
+#[cfg(feature = "samv70q19")]
+pub use atsamv70q19 as target_device;
+#[cfg(feature = "samv70q19b")]
+pub use atsamv70q19b as target_device;
+#[cfg(feature = "samv70q20")]
+pub use atsamv70q20 as target_device;
 #[cfg(feature = "samv71j19")]
 pub use atsamv71j19 as target_device;
 #[cfg(feature = "samv71j19b")]
