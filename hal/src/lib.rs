@@ -1,7 +1,7 @@
 #![no_std]
 
-extern crate embedded_hal as hal;
-extern crate nb;
+pub use embedded_hal as hal;
+pub use nb;
 
 #[cfg(not(feature = "device-selected"))]
 compile_error!(

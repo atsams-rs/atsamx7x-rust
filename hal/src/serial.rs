@@ -1,3 +1,5 @@
+use crate::{hal, nb};
+
 // Smaller part have 3x UART & 2x USART
 use crate::target_device::{UART0, UART1, UART2, USART0, USART1};
 #[cfg(any(
