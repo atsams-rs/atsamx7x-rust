@@ -21,6 +21,14 @@ This repository holds work in very early stage of development and doesn't provid
   <dd>This branch holds code that requires nightly compiler to build.</dd>
 </dl>
 
+## Contributing
+
+To clone the repository use `git clone --recursive git@github.com:atsams-rs/atsamx7x-rust.git` as it uses submodules.
+
+Please pull request your contributions for review. By doing so you agree your work falls under the [License](#license) stated below.
+
+People working on serious projects using any of MCUs from families covered by this repository may apply for membership in [atsams-rs](https://github.com/atsams-rs) organization. Please contact me via [LinkedIn](https://www.linkedin.com/in/michalfita/) or [discussions](https://github.com/atsams-rs/atsamx7x-rust/discussions).
+
 ## License
 
 [BSD Zero Clause License](https://choosealicense.com/licenses/0bsd/)

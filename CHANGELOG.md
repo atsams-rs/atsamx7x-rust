@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [v0.1.0] 2022-03-15
+
+* [cmsis-svd](./cmsis-svd/README.md) submodule as source of SVD files instead of collection in LFS (#2)
+* [svd2rust] v0.21.0 used for PAC generation (#2)
 
 ## [v0.0.2] 2020-06-03
 
@@ -14,6 +18,8 @@
 * hal: Just very simple stuff added
 * automation script in Python
 
-[Unreleased]: https://github.com/stm32-rs/stm32h7xx-hal/compare/v0.0.2...HEAD
+[Unreleased]: https://github.com/stm32-rs/stm32h7xx-hal/compare/v0.1.0...HEAD
+[v0.1.0]: https://github.com/stm32-rs/stm32h7xx-hal/compare/v0.2.0...v0.1.0
 [v0.0.2]: https://github.com/stm32-rs/stm32h7xx-hal/compare/v0.0.1...v0.0.2
 [v0.0.1]: https://github.com/michalfita/atsams70-rust/tree/v0.0.1
+[svd2rust]: https://github.com/rust-embedded/svd2rust
