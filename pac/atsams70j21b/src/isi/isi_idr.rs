@@ -1,14 +1,25 @@
-#[doc = "Writer for register ISI_IDR"]
-pub type W = crate::W<u32, super::ISI_IDR>;
-#[doc = "Register ISI_IDR `reset()`'s with value 0"]
-impl crate::ResetValue for super::ISI_IDR {
-    type Type = u32;
+#[doc = "Register `ISI_IDR` writer"]
+pub struct W(crate::W<ISI_IDR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<ISI_IDR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `DIS_DONE`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<ISI_IDR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<ISI_IDR_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `DIS_DONE` writer - Disable Done Interrupt Disable"]
 pub struct DIS_DONE_W<'a> {
     w: &'a mut W,
 }
@@ -26,11 +37,11 @@ impl<'a> DIS_DONE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Write proxy for field `SRST`"]
+#[doc = "Field `SRST` writer - Software Reset Interrupt Disable"]
 pub struct SRST_W<'a> {
     w: &'a mut W,
 }
@@ -48,11 +59,11 @@ impl<'a> SRST_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Write proxy for field `VSYNC`"]
+#[doc = "Field `VSYNC` writer - Vertical Synchronization Interrupt Disable"]
 pub struct VSYNC_W<'a> {
     w: &'a mut W,
 }
@@ -70,11 +81,11 @@ impl<'a> VSYNC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | ((value as u32 & 0x01) << 10);
         self.w
     }
 }
-#[doc = "Write proxy for field `PXFR_DONE`"]
+#[doc = "Field `PXFR_DONE` writer - Preview DMA Transfer Done Interrupt Disable"]
 pub struct PXFR_DONE_W<'a> {
     w: &'a mut W,
 }
@@ -92,11 +103,11 @@ impl<'a> PXFR_DONE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | ((value as u32 & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Write proxy for field `CXFR_DONE`"]
+#[doc = "Field `CXFR_DONE` writer - Codec DMA Transfer Done Interrupt Disable"]
 pub struct CXFR_DONE_W<'a> {
     w: &'a mut W,
 }
@@ -114,11 +125,11 @@ impl<'a> CXFR_DONE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | ((value as u32 & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Write proxy for field `P_OVR`"]
+#[doc = "Field `P_OVR` writer - Preview Datapath Overflow Interrupt Disable"]
 pub struct P_OVR_W<'a> {
     w: &'a mut W,
 }
@@ -136,11 +147,11 @@ impl<'a> P_OVR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 24)) | (((value as u32) & 0x01) << 24);
+        self.w.bits = (self.w.bits & !(0x01 << 24)) | ((value as u32 & 0x01) << 24);
         self.w
     }
 }
-#[doc = "Write proxy for field `C_OVR`"]
+#[doc = "Field `C_OVR` writer - Codec Datapath Overflow Interrupt Disable"]
 pub struct C_OVR_W<'a> {
     w: &'a mut W,
 }
@@ -158,11 +169,11 @@ impl<'a> C_OVR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | ((value as u32 & 0x01) << 25);
         self.w
     }
 }
-#[doc = "Write proxy for field `CRC_ERR`"]
+#[doc = "Field `CRC_ERR` writer - Embedded Synchronization CRC Error Interrupt Disable"]
 pub struct CRC_ERR_W<'a> {
     w: &'a mut W,
 }
@@ -180,11 +191,11 @@ impl<'a> CRC_ERR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | ((value as u32 & 0x01) << 26);
         self.w
     }
 }
-#[doc = "Write proxy for field `FR_OVR`"]
+#[doc = "Field `FR_OVR` writer - Frame Rate Overflow Interrupt Disable"]
 pub struct FR_OVR_W<'a> {
     w: &'a mut W,
 }
@@ -202,7 +213,7 @@ impl<'a> FR_OVR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | ((value as u32 & 0x01) << 27);
         self.w
     }
 }
@@ -251,5 +262,27 @@ impl W {
     #[inline(always)]
     pub fn fr_ovr(&mut self) -> FR_OVR_W {
         FR_OVR_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "ISI Interrupt Disable Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [isi_idr](index.html) module"]
+pub struct ISI_IDR_SPEC;
+impl crate::RegisterSpec for ISI_IDR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [isi_idr::W](W) writer structure"]
+impl crate::Writable for ISI_IDR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets ISI_IDR to value 0"]
+impl crate::Resettable for ISI_IDR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

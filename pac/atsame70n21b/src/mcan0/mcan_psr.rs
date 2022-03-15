@@ -1,5 +1,18 @@
-#[doc = "Reader of register MCAN_PSR"]
-pub type R = crate::R<u32, super::MCAN_PSR>;
+#[doc = "Register `MCAN_PSR` reader"]
+pub struct R(crate::R<MCAN_PSR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<MCAN_PSR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<MCAN_PSR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<MCAN_PSR_SPEC>) -> Self {
+        R(reader)
+    }
+}
 #[doc = "Last Error Code (set to 111 on read)\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 #[repr(u8)]
@@ -27,9 +40,13 @@ impl From<LEC_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `LEC`"]
-pub type LEC_R = crate::R<u8, LEC_A>;
+#[doc = "Field `LEC` reader - Last Error Code (set to 111 on read)"]
+pub struct LEC_R(crate::FieldReader<u8, LEC_A>);
 impl LEC_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        LEC_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> LEC_A {
@@ -48,42 +65,49 @@ impl LEC_R {
     #[doc = "Checks if the value of the field is `NO_ERROR`"]
     #[inline(always)]
     pub fn is_no_error(&self) -> bool {
-        *self == LEC_A::NO_ERROR
+        **self == LEC_A::NO_ERROR
     }
     #[doc = "Checks if the value of the field is `STUFF_ERROR`"]
     #[inline(always)]
     pub fn is_stuff_error(&self) -> bool {
-        *self == LEC_A::STUFF_ERROR
+        **self == LEC_A::STUFF_ERROR
     }
     #[doc = "Checks if the value of the field is `FORM_ERROR`"]
     #[inline(always)]
     pub fn is_form_error(&self) -> bool {
-        *self == LEC_A::FORM_ERROR
+        **self == LEC_A::FORM_ERROR
     }
     #[doc = "Checks if the value of the field is `ACK_ERROR`"]
     #[inline(always)]
     pub fn is_ack_error(&self) -> bool {
-        *self == LEC_A::ACK_ERROR
+        **self == LEC_A::ACK_ERROR
     }
     #[doc = "Checks if the value of the field is `BIT1_ERROR`"]
     #[inline(always)]
     pub fn is_bit1_error(&self) -> bool {
-        *self == LEC_A::BIT1_ERROR
+        **self == LEC_A::BIT1_ERROR
     }
     #[doc = "Checks if the value of the field is `BIT0_ERROR`"]
     #[inline(always)]
     pub fn is_bit0_error(&self) -> bool {
-        *self == LEC_A::BIT0_ERROR
+        **self == LEC_A::BIT0_ERROR
     }
     #[doc = "Checks if the value of the field is `CRC_ERROR`"]
     #[inline(always)]
     pub fn is_crc_error(&self) -> bool {
-        *self == LEC_A::CRC_ERROR
+        **self == LEC_A::CRC_ERROR
     }
     #[doc = "Checks if the value of the field is `NO_CHANGE`"]
     #[inline(always)]
     pub fn is_no_change(&self) -> bool {
-        *self == LEC_A::NO_CHANGE
+        **self == LEC_A::NO_CHANGE
+    }
+}
+impl core::ops::Deref for LEC_R {
+    type Target = crate::FieldReader<u8, LEC_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Activity\n\nValue on reset: 0"]
@@ -105,9 +129,13 @@ impl From<ACT_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `ACT`"]
-pub type ACT_R = crate::R<u8, ACT_A>;
+#[doc = "Field `ACT` reader - Activity"]
+pub struct ACT_R(crate::FieldReader<u8, ACT_A>);
 impl ACT_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        ACT_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> ACT_A {
@@ -122,42 +150,166 @@ impl ACT_R {
     #[doc = "Checks if the value of the field is `SYNCHRONIZING`"]
     #[inline(always)]
     pub fn is_synchronizing(&self) -> bool {
-        *self == ACT_A::SYNCHRONIZING
+        **self == ACT_A::SYNCHRONIZING
     }
     #[doc = "Checks if the value of the field is `IDLE`"]
     #[inline(always)]
     pub fn is_idle(&self) -> bool {
-        *self == ACT_A::IDLE
+        **self == ACT_A::IDLE
     }
     #[doc = "Checks if the value of the field is `RECEIVER`"]
     #[inline(always)]
     pub fn is_receiver(&self) -> bool {
-        *self == ACT_A::RECEIVER
+        **self == ACT_A::RECEIVER
     }
     #[doc = "Checks if the value of the field is `TRANSMITTER`"]
     #[inline(always)]
     pub fn is_transmitter(&self) -> bool {
-        *self == ACT_A::TRANSMITTER
+        **self == ACT_A::TRANSMITTER
     }
 }
-#[doc = "Reader of field `EP`"]
-pub type EP_R = crate::R<bool, bool>;
-#[doc = "Reader of field `EW`"]
-pub type EW_R = crate::R<bool, bool>;
-#[doc = "Reader of field `BO`"]
-pub type BO_R = crate::R<bool, bool>;
-#[doc = "Reader of field `DLEC`"]
-pub type DLEC_R = crate::R<u8, u8>;
-#[doc = "Reader of field `RESI`"]
-pub type RESI_R = crate::R<bool, bool>;
-#[doc = "Reader of field `RBRS`"]
-pub type RBRS_R = crate::R<bool, bool>;
-#[doc = "Reader of field `RFDF`"]
-pub type RFDF_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PXE`"]
-pub type PXE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `TDCV`"]
-pub type TDCV_R = crate::R<u8, u8>;
+impl core::ops::Deref for ACT_R {
+    type Target = crate::FieldReader<u8, ACT_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `EP` reader - Error Passive"]
+pub struct EP_R(crate::FieldReader<bool, bool>);
+impl EP_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        EP_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for EP_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `EW` reader - Warning Status"]
+pub struct EW_R(crate::FieldReader<bool, bool>);
+impl EW_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        EW_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for EW_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `BO` reader - Bus_Off Status"]
+pub struct BO_R(crate::FieldReader<bool, bool>);
+impl BO_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        BO_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for BO_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DLEC` reader - Data Phase Last Error Code (set to 111 on read)"]
+pub struct DLEC_R(crate::FieldReader<u8, u8>);
+impl DLEC_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        DLEC_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DLEC_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `RESI` reader - ESI Flag of Last Received CAN FD Message (cleared on read)"]
+pub struct RESI_R(crate::FieldReader<bool, bool>);
+impl RESI_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        RESI_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for RESI_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `RBRS` reader - BRS Flag of Last Received CAN FD Message (cleared on read)"]
+pub struct RBRS_R(crate::FieldReader<bool, bool>);
+impl RBRS_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        RBRS_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for RBRS_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `RFDF` reader - Received a CAN FD Message (cleared on read)"]
+pub struct RFDF_R(crate::FieldReader<bool, bool>);
+impl RFDF_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        RFDF_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for RFDF_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PXE` reader - Protocol Exception Event (cleared on read)"]
+pub struct PXE_R(crate::FieldReader<bool, bool>);
+impl PXE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PXE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PXE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `TDCV` reader - Transmitter Delay Compensation Value"]
+pub struct TDCV_R(crate::FieldReader<u8, u8>);
+impl TDCV_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        TDCV_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for TDCV_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 impl R {
     #[doc = "Bits 0:2 - Last Error Code (set to 111 on read)"]
     #[inline(always)]
@@ -213,5 +365,21 @@ impl R {
     #[inline(always)]
     pub fn tdcv(&self) -> TDCV_R {
         TDCV_R::new(((self.bits >> 16) & 0x7f) as u8)
+    }
+}
+#[doc = "Protocol Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [mcan_psr](index.html) module"]
+pub struct MCAN_PSR_SPEC;
+impl crate::RegisterSpec for MCAN_PSR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [mcan_psr::R](R) reader structure"]
+impl crate::Readable for MCAN_PSR_SPEC {
+    type Reader = R;
+}
+#[doc = "`reset()` method sets MCAN_PSR to value 0"]
+impl crate::Resettable for MCAN_PSR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

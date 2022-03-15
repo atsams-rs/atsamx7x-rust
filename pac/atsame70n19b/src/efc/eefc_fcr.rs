@@ -1,11 +1,22 @@
-#[doc = "Writer for register EEFC_FCR"]
-pub type W = crate::W<u32, super::EEFC_FCR>;
-#[doc = "Register EEFC_FCR `reset()`'s with value 0"]
-impl crate::ResetValue for super::EEFC_FCR {
-    type Type = u32;
+#[doc = "Register `EEFC_FCR` writer"]
+pub struct W(crate::W<EEFC_FCR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<EEFC_FCR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<EEFC_FCR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<EEFC_FCR_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Flash Command\n\nValue on reset: 0"]
@@ -61,7 +72,7 @@ impl From<FCMD_AW> for u8 {
         variant as _
     }
 }
-#[doc = "Write proxy for field `FCMD`"]
+#[doc = "Field `FCMD` writer - Flash Command"]
 pub struct FCMD_W<'a> {
     w: &'a mut W,
 }
@@ -179,11 +190,11 @@ impl<'a> FCMD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0xff) | ((value as u32) & 0xff);
+        self.w.bits = (self.w.bits & !0xff) | (value as u32 & 0xff);
         self.w
     }
 }
-#[doc = "Write proxy for field `FARG`"]
+#[doc = "Field `FARG` writer - Flash Command Argument"]
 pub struct FARG_W<'a> {
     w: &'a mut W,
 }
@@ -191,7 +202,7 @@ impl<'a> FARG_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0xffff << 8)) | (((value as u32) & 0xffff) << 8);
+        self.w.bits = (self.w.bits & !(0xffff << 8)) | ((value as u32 & 0xffff) << 8);
         self.w
     }
 }
@@ -208,7 +219,7 @@ impl From<FKEY_AW> for u8 {
         variant as _
     }
 }
-#[doc = "Write proxy for field `FKEY`"]
+#[doc = "Field `FKEY` writer - Flash Writing Protection Key"]
 pub struct FKEY_W<'a> {
     w: &'a mut W,
 }
@@ -226,7 +237,7 @@ impl<'a> FKEY_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0xff << 24)) | (((value as u32) & 0xff) << 24);
+        self.w.bits = (self.w.bits & !(0xff << 24)) | ((value as u32 & 0xff) << 24);
         self.w
     }
 }
@@ -245,5 +256,27 @@ impl W {
     #[inline(always)]
     pub fn fkey(&mut self) -> FKEY_W {
         FKEY_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "EEFC Flash Command Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [eefc_fcr](index.html) module"]
+pub struct EEFC_FCR_SPEC;
+impl crate::RegisterSpec for EEFC_FCR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [eefc_fcr::W](W) writer structure"]
+impl crate::Writable for EEFC_FCR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets EEFC_FCR to value 0"]
+impl crate::Resettable for EEFC_FCR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

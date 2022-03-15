@@ -1,18 +1,55 @@
-#[doc = "Reader of register ACTLR"]
-pub type R = crate::R<u32, super::ACTLR>;
-#[doc = "Writer for register ACTLR"]
-pub type W = crate::W<u32, super::ACTLR>;
-#[doc = "Register ACTLR `reset()`'s with value 0"]
-impl crate::ResetValue for super::ACTLR {
-    type Type = u32;
+#[doc = "Register `ACTLR` reader"]
+pub struct R(crate::R<ACTLR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<ACTLR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `DISFOLD`"]
-pub type DISFOLD_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `DISFOLD`"]
+impl From<crate::R<ACTLR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<ACTLR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `ACTLR` writer"]
+pub struct W(crate::W<ACTLR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<ACTLR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<ACTLR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<ACTLR_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `DISFOLD` reader - Disables folding of IT instructions"]
+pub struct DISFOLD_R(crate::FieldReader<bool, bool>);
+impl DISFOLD_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DISFOLD_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DISFOLD_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DISFOLD` writer - Disables folding of IT instructions"]
 pub struct DISFOLD_W<'a> {
     w: &'a mut W,
 }
@@ -30,13 +67,26 @@ impl<'a> DISFOLD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Reader of field `FPEXCODIS`"]
-pub type FPEXCODIS_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `FPEXCODIS`"]
+#[doc = "Field `FPEXCODIS` reader - Disables FPU exception outputs"]
+pub struct FPEXCODIS_R(crate::FieldReader<bool, bool>);
+impl FPEXCODIS_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        FPEXCODIS_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for FPEXCODIS_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `FPEXCODIS` writer - Disables FPU exception outputs"]
 pub struct FPEXCODIS_W<'a> {
     w: &'a mut W,
 }
@@ -54,13 +104,26 @@ impl<'a> FPEXCODIS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | ((value as u32 & 0x01) << 10);
         self.w
     }
 }
-#[doc = "Reader of field `DISRAMODE`"]
-pub type DISRAMODE_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `DISRAMODE`"]
+#[doc = "Field `DISRAMODE` reader - Disables dynamic read allocate mode for Write-Back Write-Allocate memory regions"]
+pub struct DISRAMODE_R(crate::FieldReader<bool, bool>);
+impl DISRAMODE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DISRAMODE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DISRAMODE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DISRAMODE` writer - Disables dynamic read allocate mode for Write-Back Write-Allocate memory regions"]
 pub struct DISRAMODE_W<'a> {
     w: &'a mut W,
 }
@@ -78,13 +141,26 @@ impl<'a> DISRAMODE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | ((value as u32 & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Reader of field `DISITMATBFLUSH`"]
-pub type DISITMATBFLUSH_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `DISITMATBFLUSH`"]
+#[doc = "Field `DISITMATBFLUSH` reader - Disables ITM and DWT ATB flush"]
+pub struct DISITMATBFLUSH_R(crate::FieldReader<bool, bool>);
+impl DISITMATBFLUSH_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DISITMATBFLUSH_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DISITMATBFLUSH_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DISITMATBFLUSH` writer - Disables ITM and DWT ATB flush"]
 pub struct DISITMATBFLUSH_W<'a> {
     w: &'a mut W,
 }
@@ -102,13 +178,26 @@ impl<'a> DISITMATBFLUSH_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | ((value as u32 & 0x01) << 12);
         self.w
     }
 }
-#[doc = "Reader of field `DISBTACREAD`"]
-pub type DISBTACREAD_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `DISBTACREAD`"]
+#[doc = "Field `DISBTACREAD` reader - "]
+pub struct DISBTACREAD_R(crate::FieldReader<bool, bool>);
+impl DISBTACREAD_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DISBTACREAD_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DISBTACREAD_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DISBTACREAD` writer - "]
 pub struct DISBTACREAD_W<'a> {
     w: &'a mut W,
 }
@@ -126,13 +215,26 @@ impl<'a> DISBTACREAD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | ((value as u32 & 0x01) << 13);
         self.w
     }
 }
-#[doc = "Reader of field `DISBTACALLOC`"]
-pub type DISBTACALLOC_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `DISBTACALLOC`"]
+#[doc = "Field `DISBTACALLOC` reader - "]
+pub struct DISBTACALLOC_R(crate::FieldReader<bool, bool>);
+impl DISBTACALLOC_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DISBTACALLOC_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DISBTACALLOC_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DISBTACALLOC` writer - "]
 pub struct DISBTACALLOC_W<'a> {
     w: &'a mut W,
 }
@@ -150,13 +252,26 @@ impl<'a> DISBTACALLOC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | ((value as u32 & 0x01) << 14);
         self.w
     }
 }
-#[doc = "Reader of field `DISCRITAXIRUR`"]
-pub type DISCRITAXIRUR_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `DISCRITAXIRUR`"]
+#[doc = "Field `DISCRITAXIRUR` reader - "]
+pub struct DISCRITAXIRUR_R(crate::FieldReader<bool, bool>);
+impl DISCRITAXIRUR_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DISCRITAXIRUR_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DISCRITAXIRUR_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DISCRITAXIRUR` writer - "]
 pub struct DISCRITAXIRUR_W<'a> {
     w: &'a mut W,
 }
@@ -174,13 +289,26 @@ impl<'a> DISCRITAXIRUR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | ((value as u32 & 0x01) << 15);
         self.w
     }
 }
-#[doc = "Reader of field `DISDI`"]
-pub type DISDI_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `DISDI`"]
+#[doc = "Field `DISDI` reader - "]
+pub struct DISDI_R(crate::FieldReader<u8, u8>);
+impl DISDI_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        DISDI_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DISDI_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DISDI` writer - "]
 pub struct DISDI_W<'a> {
     w: &'a mut W,
 }
@@ -188,13 +316,26 @@ impl<'a> DISDI_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x1f << 16)) | (((value as u32) & 0x1f) << 16);
+        self.w.bits = (self.w.bits & !(0x1f << 16)) | ((value as u32 & 0x1f) << 16);
         self.w
     }
 }
-#[doc = "Reader of field `DISISSCH1`"]
-pub type DISISSCH1_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `DISISSCH1`"]
+#[doc = "Field `DISISSCH1` reader - "]
+pub struct DISISSCH1_R(crate::FieldReader<u8, u8>);
+impl DISISSCH1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        DISISSCH1_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DISISSCH1_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DISISSCH1` writer - "]
 pub struct DISISSCH1_W<'a> {
     w: &'a mut W,
 }
@@ -202,13 +343,26 @@ impl<'a> DISISSCH1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x1f << 21)) | (((value as u32) & 0x1f) << 21);
+        self.w.bits = (self.w.bits & !(0x1f << 21)) | ((value as u32 & 0x1f) << 21);
         self.w
     }
 }
-#[doc = "Reader of field `DISDYNADD`"]
-pub type DISDYNADD_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `DISDYNADD`"]
+#[doc = "Field `DISDYNADD` reader - Disables dynamic allocation of ADD and SUB instructions"]
+pub struct DISDYNADD_R(crate::FieldReader<bool, bool>);
+impl DISDYNADD_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DISDYNADD_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DISDYNADD_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DISDYNADD` writer - Disables dynamic allocation of ADD and SUB instructions"]
 pub struct DISDYNADD_W<'a> {
     w: &'a mut W,
 }
@@ -226,13 +380,26 @@ impl<'a> DISDYNADD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | ((value as u32 & 0x01) << 26);
         self.w
     }
 }
-#[doc = "Reader of field `DISCRITAXIRUW`"]
-pub type DISCRITAXIRUW_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `DISCRITAXIRUW`"]
+#[doc = "Field `DISCRITAXIRUW` reader - Disable critical AXI read-under-write"]
+pub struct DISCRITAXIRUW_R(crate::FieldReader<bool, bool>);
+impl DISCRITAXIRUW_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DISCRITAXIRUW_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DISCRITAXIRUW_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DISCRITAXIRUW` writer - Disable critical AXI read-under-write"]
 pub struct DISCRITAXIRUW_W<'a> {
     w: &'a mut W,
 }
@@ -250,13 +417,26 @@ impl<'a> DISCRITAXIRUW_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | ((value as u32 & 0x01) << 27);
         self.w
     }
 }
-#[doc = "Reader of field `DISFPUISSOPT`"]
-pub type DISFPUISSOPT_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `DISFPUISSOPT`"]
+#[doc = "Field `DISFPUISSOPT` reader - Disables dynamic allocation of ADD and SUB instructions"]
+pub struct DISFPUISSOPT_R(crate::FieldReader<bool, bool>);
+impl DISFPUISSOPT_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DISFPUISSOPT_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DISFPUISSOPT_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DISFPUISSOPT` writer - Disables dynamic allocation of ADD and SUB instructions"]
 pub struct DISFPUISSOPT_W<'a> {
     w: &'a mut W,
 }
@@ -274,7 +454,7 @@ impl<'a> DISFPUISSOPT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | ((value as u32 & 0x01) << 28);
         self.w
     }
 }
@@ -400,5 +580,31 @@ impl W {
     #[inline(always)]
     pub fn disfpuissopt(&mut self) -> DISFPUISSOPT_W {
         DISFPUISSOPT_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Auxiliary Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [actlr](index.html) module"]
+pub struct ACTLR_SPEC;
+impl crate::RegisterSpec for ACTLR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [actlr::R](R) reader structure"]
+impl crate::Readable for ACTLR_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [actlr::W](W) writer structure"]
+impl crate::Writable for ACTLR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets ACTLR to value 0"]
+impl crate::Resettable for ACTLR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

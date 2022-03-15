@@ -1,18 +1,55 @@
-#[doc = "Reader of register ISI_DMA_P_DSCR"]
-pub type R = crate::R<u32, super::ISI_DMA_P_DSCR>;
-#[doc = "Writer for register ISI_DMA_P_DSCR"]
-pub type W = crate::W<u32, super::ISI_DMA_P_DSCR>;
-#[doc = "Register ISI_DMA_P_DSCR `reset()`'s with value 0"]
-impl crate::ResetValue for super::ISI_DMA_P_DSCR {
-    type Type = u32;
+#[doc = "Register `ISI_DMA_P_DSCR` reader"]
+pub struct R(crate::R<ISI_DMA_P_DSCR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<ISI_DMA_P_DSCR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `P_DSCR`"]
-pub type P_DSCR_R = crate::R<u32, u32>;
-#[doc = "Write proxy for field `P_DSCR`"]
+impl From<crate::R<ISI_DMA_P_DSCR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<ISI_DMA_P_DSCR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `ISI_DMA_P_DSCR` writer"]
+pub struct W(crate::W<ISI_DMA_P_DSCR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<ISI_DMA_P_DSCR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<ISI_DMA_P_DSCR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<ISI_DMA_P_DSCR_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `P_DSCR` reader - Preview Descriptor Base Address"]
+pub struct P_DSCR_R(crate::FieldReader<u32, u32>);
+impl P_DSCR_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u32) -> Self {
+        P_DSCR_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P_DSCR_R {
+    type Target = crate::FieldReader<u32, u32>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P_DSCR` writer - Preview Descriptor Base Address"]
 pub struct P_DSCR_W<'a> {
     w: &'a mut W,
 }
@@ -20,7 +57,7 @@ impl<'a> P_DSCR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u32) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x3fff_ffff << 2)) | (((value as u32) & 0x3fff_ffff) << 2);
+        self.w.bits = (self.w.bits & !(0x3fff_ffff << 2)) | ((value as u32 & 0x3fff_ffff) << 2);
         self.w
     }
 }
@@ -36,5 +73,31 @@ impl W {
     #[inline(always)]
     pub fn p_dscr(&mut self) -> P_DSCR_W {
         P_DSCR_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "DMA Preview Descriptor Address Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [isi_dma_p_dscr](index.html) module"]
+pub struct ISI_DMA_P_DSCR_SPEC;
+impl crate::RegisterSpec for ISI_DMA_P_DSCR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [isi_dma_p_dscr::R](R) reader structure"]
+impl crate::Readable for ISI_DMA_P_DSCR_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [isi_dma_p_dscr::W](W) writer structure"]
+impl crate::Writable for ISI_DMA_P_DSCR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets ISI_DMA_P_DSCR to value 0"]
+impl crate::Resettable for ISI_DMA_P_DSCR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

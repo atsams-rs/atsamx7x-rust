@@ -1,18 +1,55 @@
-#[doc = "Reader of register MCAN_TXEFC"]
-pub type R = crate::R<u32, super::MCAN_TXEFC>;
-#[doc = "Writer for register MCAN_TXEFC"]
-pub type W = crate::W<u32, super::MCAN_TXEFC>;
-#[doc = "Register MCAN_TXEFC `reset()`'s with value 0"]
-impl crate::ResetValue for super::MCAN_TXEFC {
-    type Type = u32;
+#[doc = "Register `MCAN_TXEFC` reader"]
+pub struct R(crate::R<MCAN_TXEFC_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<MCAN_TXEFC_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `EFSA`"]
-pub type EFSA_R = crate::R<u16, u16>;
-#[doc = "Write proxy for field `EFSA`"]
+impl From<crate::R<MCAN_TXEFC_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<MCAN_TXEFC_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `MCAN_TXEFC` writer"]
+pub struct W(crate::W<MCAN_TXEFC_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<MCAN_TXEFC_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<MCAN_TXEFC_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<MCAN_TXEFC_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `EFSA` reader - Event FIFO Start Address"]
+pub struct EFSA_R(crate::FieldReader<u16, u16>);
+impl EFSA_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u16) -> Self {
+        EFSA_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for EFSA_R {
+    type Target = crate::FieldReader<u16, u16>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `EFSA` writer - Event FIFO Start Address"]
 pub struct EFSA_W<'a> {
     w: &'a mut W,
 }
@@ -20,13 +57,26 @@ impl<'a> EFSA_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x3fff << 2)) | (((value as u32) & 0x3fff) << 2);
+        self.w.bits = (self.w.bits & !(0x3fff << 2)) | ((value as u32 & 0x3fff) << 2);
         self.w
     }
 }
-#[doc = "Reader of field `EFS`"]
-pub type EFS_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `EFS`"]
+#[doc = "Field `EFS` reader - Event FIFO Size"]
+pub struct EFS_R(crate::FieldReader<u8, u8>);
+impl EFS_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        EFS_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for EFS_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `EFS` writer - Event FIFO Size"]
 pub struct EFS_W<'a> {
     w: &'a mut W,
 }
@@ -34,13 +84,26 @@ impl<'a> EFS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x3f << 16)) | (((value as u32) & 0x3f) << 16);
+        self.w.bits = (self.w.bits & !(0x3f << 16)) | ((value as u32 & 0x3f) << 16);
         self.w
     }
 }
-#[doc = "Reader of field `EFWM`"]
-pub type EFWM_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `EFWM`"]
+#[doc = "Field `EFWM` reader - Event FIFO Watermark"]
+pub struct EFWM_R(crate::FieldReader<u8, u8>);
+impl EFWM_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        EFWM_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for EFWM_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `EFWM` writer - Event FIFO Watermark"]
 pub struct EFWM_W<'a> {
     w: &'a mut W,
 }
@@ -48,7 +111,7 @@ impl<'a> EFWM_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x3f << 24)) | (((value as u32) & 0x3f) << 24);
+        self.w.bits = (self.w.bits & !(0x3f << 24)) | ((value as u32 & 0x3f) << 24);
         self.w
     }
 }
@@ -84,5 +147,31 @@ impl W {
     #[inline(always)]
     pub fn efwm(&mut self) -> EFWM_W {
         EFWM_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Transmit Event FIFO Configuration Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [mcan_txefc](index.html) module"]
+pub struct MCAN_TXEFC_SPEC;
+impl crate::RegisterSpec for MCAN_TXEFC_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [mcan_txefc::R](R) reader structure"]
+impl crate::Readable for MCAN_TXEFC_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [mcan_txefc::W](W) writer structure"]
+impl crate::Writable for MCAN_TXEFC_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets MCAN_TXEFC to value 0"]
+impl crate::Resettable for MCAN_TXEFC_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

@@ -1,18 +1,55 @@
-#[doc = "Reader of register HSMCI_DTOR"]
-pub type R = crate::R<u32, super::HSMCI_DTOR>;
-#[doc = "Writer for register HSMCI_DTOR"]
-pub type W = crate::W<u32, super::HSMCI_DTOR>;
-#[doc = "Register HSMCI_DTOR `reset()`'s with value 0"]
-impl crate::ResetValue for super::HSMCI_DTOR {
-    type Type = u32;
+#[doc = "Register `HSMCI_DTOR` reader"]
+pub struct R(crate::R<HSMCI_DTOR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<HSMCI_DTOR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `DTOCYC`"]
-pub type DTOCYC_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `DTOCYC`"]
+impl From<crate::R<HSMCI_DTOR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<HSMCI_DTOR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `HSMCI_DTOR` writer"]
+pub struct W(crate::W<HSMCI_DTOR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<HSMCI_DTOR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<HSMCI_DTOR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<HSMCI_DTOR_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `DTOCYC` reader - Data Timeout Cycle Number"]
+pub struct DTOCYC_R(crate::FieldReader<u8, u8>);
+impl DTOCYC_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        DTOCYC_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DTOCYC_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DTOCYC` writer - Data Timeout Cycle Number"]
 pub struct DTOCYC_W<'a> {
     w: &'a mut W,
 }
@@ -20,7 +57,7 @@ impl<'a> DTOCYC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x0f) | ((value as u32) & 0x0f);
+        self.w.bits = (self.w.bits & !0x0f) | (value as u32 & 0x0f);
         self.w
     }
 }
@@ -51,9 +88,13 @@ impl From<DTOMUL_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `DTOMUL`"]
-pub type DTOMUL_R = crate::R<u8, DTOMUL_A>;
+#[doc = "Field `DTOMUL` reader - Data Timeout Multiplier"]
+pub struct DTOMUL_R(crate::FieldReader<u8, DTOMUL_A>);
 impl DTOMUL_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        DTOMUL_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> DTOMUL_A {
@@ -72,45 +113,52 @@ impl DTOMUL_R {
     #[doc = "Checks if the value of the field is `_1`"]
     #[inline(always)]
     pub fn is_1(&self) -> bool {
-        *self == DTOMUL_A::_1
+        **self == DTOMUL_A::_1
     }
     #[doc = "Checks if the value of the field is `_16`"]
     #[inline(always)]
     pub fn is_16(&self) -> bool {
-        *self == DTOMUL_A::_16
+        **self == DTOMUL_A::_16
     }
     #[doc = "Checks if the value of the field is `_128`"]
     #[inline(always)]
     pub fn is_128(&self) -> bool {
-        *self == DTOMUL_A::_128
+        **self == DTOMUL_A::_128
     }
     #[doc = "Checks if the value of the field is `_256`"]
     #[inline(always)]
     pub fn is_256(&self) -> bool {
-        *self == DTOMUL_A::_256
+        **self == DTOMUL_A::_256
     }
     #[doc = "Checks if the value of the field is `_1024`"]
     #[inline(always)]
     pub fn is_1024(&self) -> bool {
-        *self == DTOMUL_A::_1024
+        **self == DTOMUL_A::_1024
     }
     #[doc = "Checks if the value of the field is `_4096`"]
     #[inline(always)]
     pub fn is_4096(&self) -> bool {
-        *self == DTOMUL_A::_4096
+        **self == DTOMUL_A::_4096
     }
     #[doc = "Checks if the value of the field is `_65536`"]
     #[inline(always)]
     pub fn is_65536(&self) -> bool {
-        *self == DTOMUL_A::_65536
+        **self == DTOMUL_A::_65536
     }
     #[doc = "Checks if the value of the field is `_1048576`"]
     #[inline(always)]
     pub fn is_1048576(&self) -> bool {
-        *self == DTOMUL_A::_1048576
+        **self == DTOMUL_A::_1048576
     }
 }
-#[doc = "Write proxy for field `DTOMUL`"]
+impl core::ops::Deref for DTOMUL_R {
+    type Target = crate::FieldReader<u8, DTOMUL_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DTOMUL` writer - Data Timeout Multiplier"]
 pub struct DTOMUL_W<'a> {
     w: &'a mut W,
 }
@@ -118,9 +166,7 @@ impl<'a> DTOMUL_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: DTOMUL_A) -> &'a mut W {
-        {
-            self.bits(variant.into())
-        }
+        self.bits(variant.into())
     }
     #[doc = "DTOCYC"]
     #[inline(always)]
@@ -165,7 +211,7 @@ impl<'a> DTOMUL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x07 << 4)) | (((value as u32) & 0x07) << 4);
+        self.w.bits = (self.w.bits & !(0x07 << 4)) | ((value as u32 & 0x07) << 4);
         self.w
     }
 }
@@ -191,5 +237,31 @@ impl W {
     #[inline(always)]
     pub fn dtomul(&mut self) -> DTOMUL_W {
         DTOMUL_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Data Timeout Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [hsmci_dtor](index.html) module"]
+pub struct HSMCI_DTOR_SPEC;
+impl crate::RegisterSpec for HSMCI_DTOR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [hsmci_dtor::R](R) reader structure"]
+impl crate::Readable for HSMCI_DTOR_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [hsmci_dtor::W](W) writer structure"]
+impl crate::Writable for HSMCI_DTOR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets HSMCI_DTOR to value 0"]
+impl crate::Resettable for HSMCI_DTOR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

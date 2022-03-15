@@ -1,53 +1,378 @@
-#[doc = "Reader of register XDMAC_GSWS"]
-pub type R = crate::R<u32, super::XDMAC_GSWS>;
-#[doc = "Reader of field `SWRS0`"]
-pub type SWRS0_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS1`"]
-pub type SWRS1_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS2`"]
-pub type SWRS2_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS3`"]
-pub type SWRS3_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS4`"]
-pub type SWRS4_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS5`"]
-pub type SWRS5_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS6`"]
-pub type SWRS6_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS7`"]
-pub type SWRS7_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS8`"]
-pub type SWRS8_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS9`"]
-pub type SWRS9_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS10`"]
-pub type SWRS10_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS11`"]
-pub type SWRS11_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS12`"]
-pub type SWRS12_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS13`"]
-pub type SWRS13_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS14`"]
-pub type SWRS14_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS15`"]
-pub type SWRS15_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS16`"]
-pub type SWRS16_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS17`"]
-pub type SWRS17_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS18`"]
-pub type SWRS18_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS19`"]
-pub type SWRS19_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS20`"]
-pub type SWRS20_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS21`"]
-pub type SWRS21_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS22`"]
-pub type SWRS22_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SWRS23`"]
-pub type SWRS23_R = crate::R<bool, bool>;
+#[doc = "Register `XDMAC_GSWS` reader"]
+pub struct R(crate::R<XDMAC_GSWS_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<XDMAC_GSWS_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<XDMAC_GSWS_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<XDMAC_GSWS_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Field `SWRS0` reader - XDMAC Channel 0 Software Request Status Bit"]
+pub struct SWRS0_R(crate::FieldReader<bool, bool>);
+impl SWRS0_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS0_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS0_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS1` reader - XDMAC Channel 1 Software Request Status Bit"]
+pub struct SWRS1_R(crate::FieldReader<bool, bool>);
+impl SWRS1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS1_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS1_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS2` reader - XDMAC Channel 2 Software Request Status Bit"]
+pub struct SWRS2_R(crate::FieldReader<bool, bool>);
+impl SWRS2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS2_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS2_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS3` reader - XDMAC Channel 3 Software Request Status Bit"]
+pub struct SWRS3_R(crate::FieldReader<bool, bool>);
+impl SWRS3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS3_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS3_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS4` reader - XDMAC Channel 4 Software Request Status Bit"]
+pub struct SWRS4_R(crate::FieldReader<bool, bool>);
+impl SWRS4_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS4_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS4_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS5` reader - XDMAC Channel 5 Software Request Status Bit"]
+pub struct SWRS5_R(crate::FieldReader<bool, bool>);
+impl SWRS5_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS5_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS5_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS6` reader - XDMAC Channel 6 Software Request Status Bit"]
+pub struct SWRS6_R(crate::FieldReader<bool, bool>);
+impl SWRS6_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS6_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS6_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS7` reader - XDMAC Channel 7 Software Request Status Bit"]
+pub struct SWRS7_R(crate::FieldReader<bool, bool>);
+impl SWRS7_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS7_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS7_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS8` reader - XDMAC Channel 8 Software Request Status Bit"]
+pub struct SWRS8_R(crate::FieldReader<bool, bool>);
+impl SWRS8_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS8_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS8_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS9` reader - XDMAC Channel 9 Software Request Status Bit"]
+pub struct SWRS9_R(crate::FieldReader<bool, bool>);
+impl SWRS9_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS9_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS9_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS10` reader - XDMAC Channel 10 Software Request Status Bit"]
+pub struct SWRS10_R(crate::FieldReader<bool, bool>);
+impl SWRS10_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS10_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS10_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS11` reader - XDMAC Channel 11 Software Request Status Bit"]
+pub struct SWRS11_R(crate::FieldReader<bool, bool>);
+impl SWRS11_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS11_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS11_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS12` reader - XDMAC Channel 12 Software Request Status Bit"]
+pub struct SWRS12_R(crate::FieldReader<bool, bool>);
+impl SWRS12_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS12_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS12_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS13` reader - XDMAC Channel 13 Software Request Status Bit"]
+pub struct SWRS13_R(crate::FieldReader<bool, bool>);
+impl SWRS13_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS13_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS13_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS14` reader - XDMAC Channel 14 Software Request Status Bit"]
+pub struct SWRS14_R(crate::FieldReader<bool, bool>);
+impl SWRS14_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS14_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS14_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS15` reader - XDMAC Channel 15 Software Request Status Bit"]
+pub struct SWRS15_R(crate::FieldReader<bool, bool>);
+impl SWRS15_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS15_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS15_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS16` reader - XDMAC Channel 16 Software Request Status Bit"]
+pub struct SWRS16_R(crate::FieldReader<bool, bool>);
+impl SWRS16_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS16_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS16_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS17` reader - XDMAC Channel 17 Software Request Status Bit"]
+pub struct SWRS17_R(crate::FieldReader<bool, bool>);
+impl SWRS17_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS17_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS17_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS18` reader - XDMAC Channel 18 Software Request Status Bit"]
+pub struct SWRS18_R(crate::FieldReader<bool, bool>);
+impl SWRS18_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS18_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS18_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS19` reader - XDMAC Channel 19 Software Request Status Bit"]
+pub struct SWRS19_R(crate::FieldReader<bool, bool>);
+impl SWRS19_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS19_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS19_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS20` reader - XDMAC Channel 20 Software Request Status Bit"]
+pub struct SWRS20_R(crate::FieldReader<bool, bool>);
+impl SWRS20_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS20_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS20_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS21` reader - XDMAC Channel 21 Software Request Status Bit"]
+pub struct SWRS21_R(crate::FieldReader<bool, bool>);
+impl SWRS21_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS21_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS21_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS22` reader - XDMAC Channel 22 Software Request Status Bit"]
+pub struct SWRS22_R(crate::FieldReader<bool, bool>);
+impl SWRS22_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS22_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS22_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SWRS23` reader - XDMAC Channel 23 Software Request Status Bit"]
+pub struct SWRS23_R(crate::FieldReader<bool, bool>);
+impl SWRS23_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SWRS23_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SWRS23_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 impl R {
     #[doc = "Bit 0 - XDMAC Channel 0 Software Request Status Bit"]
     #[inline(always)]
@@ -168,5 +493,21 @@ impl R {
     #[inline(always)]
     pub fn swrs23(&self) -> SWRS23_R {
         SWRS23_R::new(((self.bits >> 23) & 0x01) != 0)
+    }
+}
+#[doc = "Global Channel Software Request Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gsws](index.html) module"]
+pub struct XDMAC_GSWS_SPEC;
+impl crate::RegisterSpec for XDMAC_GSWS_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [xdmac_gsws::R](R) reader structure"]
+impl crate::Readable for XDMAC_GSWS_SPEC {
+    type Reader = R;
+}
+#[doc = "`reset()` method sets XDMAC_GSWS to value 0"]
+impl crate::Resettable for XDMAC_GSWS_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

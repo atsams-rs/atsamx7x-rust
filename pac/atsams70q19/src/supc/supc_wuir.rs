@@ -1,13 +1,37 @@
-#[doc = "Reader of register SUPC_WUIR"]
-pub type R = crate::R<u32, super::SUPC_WUIR>;
-#[doc = "Writer for register SUPC_WUIR"]
-pub type W = crate::W<u32, super::SUPC_WUIR>;
-#[doc = "Register SUPC_WUIR `reset()`'s with value 0"]
-impl crate::ResetValue for super::SUPC_WUIR {
-    type Type = u32;
+#[doc = "Register `SUPC_WUIR` reader"]
+pub struct R(crate::R<SUPC_WUIR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<SUPC_WUIR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<SUPC_WUIR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<SUPC_WUIR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `SUPC_WUIR` writer"]
+pub struct W(crate::W<SUPC_WUIR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<SUPC_WUIR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<SUPC_WUIR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<SUPC_WUIR_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Wake-up Input Enable 0 to 0\n\nValue on reset: 0"]
@@ -24,9 +48,13 @@ impl From<WKUPEN0_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPEN0`"]
-pub type WKUPEN0_R = crate::R<bool, WKUPEN0_A>;
+#[doc = "Field `WKUPEN0` reader - Wake-up Input Enable 0 to 0"]
+pub struct WKUPEN0_R(crate::FieldReader<bool, WKUPEN0_A>);
 impl WKUPEN0_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPEN0_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPEN0_A {
@@ -38,15 +66,22 @@ impl WKUPEN0_R {
     #[doc = "Checks if the value of the field is `DISABLE`"]
     #[inline(always)]
     pub fn is_disable(&self) -> bool {
-        *self == WKUPEN0_A::DISABLE
+        **self == WKUPEN0_A::DISABLE
     }
     #[doc = "Checks if the value of the field is `ENABLE`"]
     #[inline(always)]
     pub fn is_enable(&self) -> bool {
-        *self == WKUPEN0_A::ENABLE
+        **self == WKUPEN0_A::ENABLE
     }
 }
-#[doc = "Write proxy for field `WKUPEN0`"]
+impl core::ops::Deref for WKUPEN0_R {
+    type Target = crate::FieldReader<bool, WKUPEN0_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPEN0` writer - Wake-up Input Enable 0 to 0"]
 pub struct WKUPEN0_W<'a> {
     w: &'a mut W,
 }
@@ -54,9 +89,7 @@ impl<'a> WKUPEN0_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPEN0_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "The corresponding wake-up input has no wake-up effect."]
     #[inline(always)]
@@ -81,7 +114,7 @@ impl<'a> WKUPEN0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
@@ -99,9 +132,13 @@ impl From<WKUPEN1_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPEN1`"]
-pub type WKUPEN1_R = crate::R<bool, WKUPEN1_A>;
+#[doc = "Field `WKUPEN1` reader - Wake-up Input Enable 0 to 1"]
+pub struct WKUPEN1_R(crate::FieldReader<bool, WKUPEN1_A>);
 impl WKUPEN1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPEN1_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPEN1_A {
@@ -113,15 +150,22 @@ impl WKUPEN1_R {
     #[doc = "Checks if the value of the field is `DISABLE`"]
     #[inline(always)]
     pub fn is_disable(&self) -> bool {
-        *self == WKUPEN1_A::DISABLE
+        **self == WKUPEN1_A::DISABLE
     }
     #[doc = "Checks if the value of the field is `ENABLE`"]
     #[inline(always)]
     pub fn is_enable(&self) -> bool {
-        *self == WKUPEN1_A::ENABLE
+        **self == WKUPEN1_A::ENABLE
     }
 }
-#[doc = "Write proxy for field `WKUPEN1`"]
+impl core::ops::Deref for WKUPEN1_R {
+    type Target = crate::FieldReader<bool, WKUPEN1_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPEN1` writer - Wake-up Input Enable 0 to 1"]
 pub struct WKUPEN1_W<'a> {
     w: &'a mut W,
 }
@@ -129,9 +173,7 @@ impl<'a> WKUPEN1_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPEN1_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "The corresponding wake-up input has no wake-up effect."]
     #[inline(always)]
@@ -156,7 +198,7 @@ impl<'a> WKUPEN1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
@@ -174,9 +216,13 @@ impl From<WKUPEN2_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPEN2`"]
-pub type WKUPEN2_R = crate::R<bool, WKUPEN2_A>;
+#[doc = "Field `WKUPEN2` reader - Wake-up Input Enable 0 to 2"]
+pub struct WKUPEN2_R(crate::FieldReader<bool, WKUPEN2_A>);
 impl WKUPEN2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPEN2_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPEN2_A {
@@ -188,15 +234,22 @@ impl WKUPEN2_R {
     #[doc = "Checks if the value of the field is `DISABLE`"]
     #[inline(always)]
     pub fn is_disable(&self) -> bool {
-        *self == WKUPEN2_A::DISABLE
+        **self == WKUPEN2_A::DISABLE
     }
     #[doc = "Checks if the value of the field is `ENABLE`"]
     #[inline(always)]
     pub fn is_enable(&self) -> bool {
-        *self == WKUPEN2_A::ENABLE
+        **self == WKUPEN2_A::ENABLE
     }
 }
-#[doc = "Write proxy for field `WKUPEN2`"]
+impl core::ops::Deref for WKUPEN2_R {
+    type Target = crate::FieldReader<bool, WKUPEN2_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPEN2` writer - Wake-up Input Enable 0 to 2"]
 pub struct WKUPEN2_W<'a> {
     w: &'a mut W,
 }
@@ -204,9 +257,7 @@ impl<'a> WKUPEN2_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPEN2_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "The corresponding wake-up input has no wake-up effect."]
     #[inline(always)]
@@ -231,7 +282,7 @@ impl<'a> WKUPEN2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
@@ -249,9 +300,13 @@ impl From<WKUPEN3_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPEN3`"]
-pub type WKUPEN3_R = crate::R<bool, WKUPEN3_A>;
+#[doc = "Field `WKUPEN3` reader - Wake-up Input Enable 0 to 3"]
+pub struct WKUPEN3_R(crate::FieldReader<bool, WKUPEN3_A>);
 impl WKUPEN3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPEN3_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPEN3_A {
@@ -263,15 +318,22 @@ impl WKUPEN3_R {
     #[doc = "Checks if the value of the field is `DISABLE`"]
     #[inline(always)]
     pub fn is_disable(&self) -> bool {
-        *self == WKUPEN3_A::DISABLE
+        **self == WKUPEN3_A::DISABLE
     }
     #[doc = "Checks if the value of the field is `ENABLE`"]
     #[inline(always)]
     pub fn is_enable(&self) -> bool {
-        *self == WKUPEN3_A::ENABLE
+        **self == WKUPEN3_A::ENABLE
     }
 }
-#[doc = "Write proxy for field `WKUPEN3`"]
+impl core::ops::Deref for WKUPEN3_R {
+    type Target = crate::FieldReader<bool, WKUPEN3_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPEN3` writer - Wake-up Input Enable 0 to 3"]
 pub struct WKUPEN3_W<'a> {
     w: &'a mut W,
 }
@@ -279,9 +341,7 @@ impl<'a> WKUPEN3_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPEN3_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "The corresponding wake-up input has no wake-up effect."]
     #[inline(always)]
@@ -306,7 +366,7 @@ impl<'a> WKUPEN3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
@@ -324,9 +384,13 @@ impl From<WKUPEN4_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPEN4`"]
-pub type WKUPEN4_R = crate::R<bool, WKUPEN4_A>;
+#[doc = "Field `WKUPEN4` reader - Wake-up Input Enable 0 to 4"]
+pub struct WKUPEN4_R(crate::FieldReader<bool, WKUPEN4_A>);
 impl WKUPEN4_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPEN4_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPEN4_A {
@@ -338,15 +402,22 @@ impl WKUPEN4_R {
     #[doc = "Checks if the value of the field is `DISABLE`"]
     #[inline(always)]
     pub fn is_disable(&self) -> bool {
-        *self == WKUPEN4_A::DISABLE
+        **self == WKUPEN4_A::DISABLE
     }
     #[doc = "Checks if the value of the field is `ENABLE`"]
     #[inline(always)]
     pub fn is_enable(&self) -> bool {
-        *self == WKUPEN4_A::ENABLE
+        **self == WKUPEN4_A::ENABLE
     }
 }
-#[doc = "Write proxy for field `WKUPEN4`"]
+impl core::ops::Deref for WKUPEN4_R {
+    type Target = crate::FieldReader<bool, WKUPEN4_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPEN4` writer - Wake-up Input Enable 0 to 4"]
 pub struct WKUPEN4_W<'a> {
     w: &'a mut W,
 }
@@ -354,9 +425,7 @@ impl<'a> WKUPEN4_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPEN4_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "The corresponding wake-up input has no wake-up effect."]
     #[inline(always)]
@@ -381,7 +450,7 @@ impl<'a> WKUPEN4_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
         self.w
     }
 }
@@ -399,9 +468,13 @@ impl From<WKUPEN5_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPEN5`"]
-pub type WKUPEN5_R = crate::R<bool, WKUPEN5_A>;
+#[doc = "Field `WKUPEN5` reader - Wake-up Input Enable 0 to 5"]
+pub struct WKUPEN5_R(crate::FieldReader<bool, WKUPEN5_A>);
 impl WKUPEN5_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPEN5_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPEN5_A {
@@ -413,15 +486,22 @@ impl WKUPEN5_R {
     #[doc = "Checks if the value of the field is `DISABLE`"]
     #[inline(always)]
     pub fn is_disable(&self) -> bool {
-        *self == WKUPEN5_A::DISABLE
+        **self == WKUPEN5_A::DISABLE
     }
     #[doc = "Checks if the value of the field is `ENABLE`"]
     #[inline(always)]
     pub fn is_enable(&self) -> bool {
-        *self == WKUPEN5_A::ENABLE
+        **self == WKUPEN5_A::ENABLE
     }
 }
-#[doc = "Write proxy for field `WKUPEN5`"]
+impl core::ops::Deref for WKUPEN5_R {
+    type Target = crate::FieldReader<bool, WKUPEN5_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPEN5` writer - Wake-up Input Enable 0 to 5"]
 pub struct WKUPEN5_W<'a> {
     w: &'a mut W,
 }
@@ -429,9 +509,7 @@ impl<'a> WKUPEN5_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPEN5_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "The corresponding wake-up input has no wake-up effect."]
     #[inline(always)]
@@ -456,7 +534,7 @@ impl<'a> WKUPEN5_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
         self.w
     }
 }
@@ -474,9 +552,13 @@ impl From<WKUPEN6_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPEN6`"]
-pub type WKUPEN6_R = crate::R<bool, WKUPEN6_A>;
+#[doc = "Field `WKUPEN6` reader - Wake-up Input Enable 0 to 6"]
+pub struct WKUPEN6_R(crate::FieldReader<bool, WKUPEN6_A>);
 impl WKUPEN6_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPEN6_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPEN6_A {
@@ -488,15 +570,22 @@ impl WKUPEN6_R {
     #[doc = "Checks if the value of the field is `DISABLE`"]
     #[inline(always)]
     pub fn is_disable(&self) -> bool {
-        *self == WKUPEN6_A::DISABLE
+        **self == WKUPEN6_A::DISABLE
     }
     #[doc = "Checks if the value of the field is `ENABLE`"]
     #[inline(always)]
     pub fn is_enable(&self) -> bool {
-        *self == WKUPEN6_A::ENABLE
+        **self == WKUPEN6_A::ENABLE
     }
 }
-#[doc = "Write proxy for field `WKUPEN6`"]
+impl core::ops::Deref for WKUPEN6_R {
+    type Target = crate::FieldReader<bool, WKUPEN6_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPEN6` writer - Wake-up Input Enable 0 to 6"]
 pub struct WKUPEN6_W<'a> {
     w: &'a mut W,
 }
@@ -504,9 +593,7 @@ impl<'a> WKUPEN6_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPEN6_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "The corresponding wake-up input has no wake-up effect."]
     #[inline(always)]
@@ -531,7 +618,7 @@ impl<'a> WKUPEN6_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
         self.w
     }
 }
@@ -549,9 +636,13 @@ impl From<WKUPEN7_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPEN7`"]
-pub type WKUPEN7_R = crate::R<bool, WKUPEN7_A>;
+#[doc = "Field `WKUPEN7` reader - Wake-up Input Enable 0 to 7"]
+pub struct WKUPEN7_R(crate::FieldReader<bool, WKUPEN7_A>);
 impl WKUPEN7_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPEN7_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPEN7_A {
@@ -563,15 +654,22 @@ impl WKUPEN7_R {
     #[doc = "Checks if the value of the field is `DISABLE`"]
     #[inline(always)]
     pub fn is_disable(&self) -> bool {
-        *self == WKUPEN7_A::DISABLE
+        **self == WKUPEN7_A::DISABLE
     }
     #[doc = "Checks if the value of the field is `ENABLE`"]
     #[inline(always)]
     pub fn is_enable(&self) -> bool {
-        *self == WKUPEN7_A::ENABLE
+        **self == WKUPEN7_A::ENABLE
     }
 }
-#[doc = "Write proxy for field `WKUPEN7`"]
+impl core::ops::Deref for WKUPEN7_R {
+    type Target = crate::FieldReader<bool, WKUPEN7_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPEN7` writer - Wake-up Input Enable 0 to 7"]
 pub struct WKUPEN7_W<'a> {
     w: &'a mut W,
 }
@@ -579,9 +677,7 @@ impl<'a> WKUPEN7_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPEN7_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "The corresponding wake-up input has no wake-up effect."]
     #[inline(always)]
@@ -606,7 +702,7 @@ impl<'a> WKUPEN7_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | ((value as u32 & 0x01) << 7);
         self.w
     }
 }
@@ -624,9 +720,13 @@ impl From<WKUPEN8_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPEN8`"]
-pub type WKUPEN8_R = crate::R<bool, WKUPEN8_A>;
+#[doc = "Field `WKUPEN8` reader - Wake-up Input Enable 0 to 8"]
+pub struct WKUPEN8_R(crate::FieldReader<bool, WKUPEN8_A>);
 impl WKUPEN8_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPEN8_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPEN8_A {
@@ -638,15 +738,22 @@ impl WKUPEN8_R {
     #[doc = "Checks if the value of the field is `DISABLE`"]
     #[inline(always)]
     pub fn is_disable(&self) -> bool {
-        *self == WKUPEN8_A::DISABLE
+        **self == WKUPEN8_A::DISABLE
     }
     #[doc = "Checks if the value of the field is `ENABLE`"]
     #[inline(always)]
     pub fn is_enable(&self) -> bool {
-        *self == WKUPEN8_A::ENABLE
+        **self == WKUPEN8_A::ENABLE
     }
 }
-#[doc = "Write proxy for field `WKUPEN8`"]
+impl core::ops::Deref for WKUPEN8_R {
+    type Target = crate::FieldReader<bool, WKUPEN8_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPEN8` writer - Wake-up Input Enable 0 to 8"]
 pub struct WKUPEN8_W<'a> {
     w: &'a mut W,
 }
@@ -654,9 +761,7 @@ impl<'a> WKUPEN8_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPEN8_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "The corresponding wake-up input has no wake-up effect."]
     #[inline(always)]
@@ -681,7 +786,7 @@ impl<'a> WKUPEN8_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | ((value as u32 & 0x01) << 8);
         self.w
     }
 }
@@ -699,9 +804,13 @@ impl From<WKUPEN9_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPEN9`"]
-pub type WKUPEN9_R = crate::R<bool, WKUPEN9_A>;
+#[doc = "Field `WKUPEN9` reader - Wake-up Input Enable 0 to 9"]
+pub struct WKUPEN9_R(crate::FieldReader<bool, WKUPEN9_A>);
 impl WKUPEN9_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPEN9_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPEN9_A {
@@ -713,15 +822,22 @@ impl WKUPEN9_R {
     #[doc = "Checks if the value of the field is `DISABLE`"]
     #[inline(always)]
     pub fn is_disable(&self) -> bool {
-        *self == WKUPEN9_A::DISABLE
+        **self == WKUPEN9_A::DISABLE
     }
     #[doc = "Checks if the value of the field is `ENABLE`"]
     #[inline(always)]
     pub fn is_enable(&self) -> bool {
-        *self == WKUPEN9_A::ENABLE
+        **self == WKUPEN9_A::ENABLE
     }
 }
-#[doc = "Write proxy for field `WKUPEN9`"]
+impl core::ops::Deref for WKUPEN9_R {
+    type Target = crate::FieldReader<bool, WKUPEN9_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPEN9` writer - Wake-up Input Enable 0 to 9"]
 pub struct WKUPEN9_W<'a> {
     w: &'a mut W,
 }
@@ -729,9 +845,7 @@ impl<'a> WKUPEN9_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPEN9_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "The corresponding wake-up input has no wake-up effect."]
     #[inline(always)]
@@ -756,7 +870,7 @@ impl<'a> WKUPEN9_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | ((value as u32 & 0x01) << 9);
         self.w
     }
 }
@@ -774,9 +888,13 @@ impl From<WKUPEN10_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPEN10`"]
-pub type WKUPEN10_R = crate::R<bool, WKUPEN10_A>;
+#[doc = "Field `WKUPEN10` reader - Wake-up Input Enable 0 to 10"]
+pub struct WKUPEN10_R(crate::FieldReader<bool, WKUPEN10_A>);
 impl WKUPEN10_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPEN10_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPEN10_A {
@@ -788,15 +906,22 @@ impl WKUPEN10_R {
     #[doc = "Checks if the value of the field is `DISABLE`"]
     #[inline(always)]
     pub fn is_disable(&self) -> bool {
-        *self == WKUPEN10_A::DISABLE
+        **self == WKUPEN10_A::DISABLE
     }
     #[doc = "Checks if the value of the field is `ENABLE`"]
     #[inline(always)]
     pub fn is_enable(&self) -> bool {
-        *self == WKUPEN10_A::ENABLE
+        **self == WKUPEN10_A::ENABLE
     }
 }
-#[doc = "Write proxy for field `WKUPEN10`"]
+impl core::ops::Deref for WKUPEN10_R {
+    type Target = crate::FieldReader<bool, WKUPEN10_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPEN10` writer - Wake-up Input Enable 0 to 10"]
 pub struct WKUPEN10_W<'a> {
     w: &'a mut W,
 }
@@ -804,9 +929,7 @@ impl<'a> WKUPEN10_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPEN10_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "The corresponding wake-up input has no wake-up effect."]
     #[inline(always)]
@@ -831,7 +954,7 @@ impl<'a> WKUPEN10_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | ((value as u32 & 0x01) << 10);
         self.w
     }
 }
@@ -849,9 +972,13 @@ impl From<WKUPEN11_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPEN11`"]
-pub type WKUPEN11_R = crate::R<bool, WKUPEN11_A>;
+#[doc = "Field `WKUPEN11` reader - Wake-up Input Enable 0 to 11"]
+pub struct WKUPEN11_R(crate::FieldReader<bool, WKUPEN11_A>);
 impl WKUPEN11_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPEN11_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPEN11_A {
@@ -863,15 +990,22 @@ impl WKUPEN11_R {
     #[doc = "Checks if the value of the field is `DISABLE`"]
     #[inline(always)]
     pub fn is_disable(&self) -> bool {
-        *self == WKUPEN11_A::DISABLE
+        **self == WKUPEN11_A::DISABLE
     }
     #[doc = "Checks if the value of the field is `ENABLE`"]
     #[inline(always)]
     pub fn is_enable(&self) -> bool {
-        *self == WKUPEN11_A::ENABLE
+        **self == WKUPEN11_A::ENABLE
     }
 }
-#[doc = "Write proxy for field `WKUPEN11`"]
+impl core::ops::Deref for WKUPEN11_R {
+    type Target = crate::FieldReader<bool, WKUPEN11_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPEN11` writer - Wake-up Input Enable 0 to 11"]
 pub struct WKUPEN11_W<'a> {
     w: &'a mut W,
 }
@@ -879,9 +1013,7 @@ impl<'a> WKUPEN11_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPEN11_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "The corresponding wake-up input has no wake-up effect."]
     #[inline(always)]
@@ -906,7 +1038,7 @@ impl<'a> WKUPEN11_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | ((value as u32 & 0x01) << 11);
         self.w
     }
 }
@@ -924,9 +1056,13 @@ impl From<WKUPEN12_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPEN12`"]
-pub type WKUPEN12_R = crate::R<bool, WKUPEN12_A>;
+#[doc = "Field `WKUPEN12` reader - Wake-up Input Enable 0 to 12"]
+pub struct WKUPEN12_R(crate::FieldReader<bool, WKUPEN12_A>);
 impl WKUPEN12_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPEN12_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPEN12_A {
@@ -938,15 +1074,22 @@ impl WKUPEN12_R {
     #[doc = "Checks if the value of the field is `DISABLE`"]
     #[inline(always)]
     pub fn is_disable(&self) -> bool {
-        *self == WKUPEN12_A::DISABLE
+        **self == WKUPEN12_A::DISABLE
     }
     #[doc = "Checks if the value of the field is `ENABLE`"]
     #[inline(always)]
     pub fn is_enable(&self) -> bool {
-        *self == WKUPEN12_A::ENABLE
+        **self == WKUPEN12_A::ENABLE
     }
 }
-#[doc = "Write proxy for field `WKUPEN12`"]
+impl core::ops::Deref for WKUPEN12_R {
+    type Target = crate::FieldReader<bool, WKUPEN12_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPEN12` writer - Wake-up Input Enable 0 to 12"]
 pub struct WKUPEN12_W<'a> {
     w: &'a mut W,
 }
@@ -954,9 +1097,7 @@ impl<'a> WKUPEN12_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPEN12_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "The corresponding wake-up input has no wake-up effect."]
     #[inline(always)]
@@ -981,7 +1122,7 @@ impl<'a> WKUPEN12_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | ((value as u32 & 0x01) << 12);
         self.w
     }
 }
@@ -999,9 +1140,13 @@ impl From<WKUPEN13_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPEN13`"]
-pub type WKUPEN13_R = crate::R<bool, WKUPEN13_A>;
+#[doc = "Field `WKUPEN13` reader - Wake-up Input Enable 0 to 13"]
+pub struct WKUPEN13_R(crate::FieldReader<bool, WKUPEN13_A>);
 impl WKUPEN13_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPEN13_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPEN13_A {
@@ -1013,15 +1158,22 @@ impl WKUPEN13_R {
     #[doc = "Checks if the value of the field is `DISABLE`"]
     #[inline(always)]
     pub fn is_disable(&self) -> bool {
-        *self == WKUPEN13_A::DISABLE
+        **self == WKUPEN13_A::DISABLE
     }
     #[doc = "Checks if the value of the field is `ENABLE`"]
     #[inline(always)]
     pub fn is_enable(&self) -> bool {
-        *self == WKUPEN13_A::ENABLE
+        **self == WKUPEN13_A::ENABLE
     }
 }
-#[doc = "Write proxy for field `WKUPEN13`"]
+impl core::ops::Deref for WKUPEN13_R {
+    type Target = crate::FieldReader<bool, WKUPEN13_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPEN13` writer - Wake-up Input Enable 0 to 13"]
 pub struct WKUPEN13_W<'a> {
     w: &'a mut W,
 }
@@ -1029,9 +1181,7 @@ impl<'a> WKUPEN13_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPEN13_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "The corresponding wake-up input has no wake-up effect."]
     #[inline(always)]
@@ -1056,7 +1206,7 @@ impl<'a> WKUPEN13_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | ((value as u32 & 0x01) << 13);
         self.w
     }
 }
@@ -1074,9 +1224,13 @@ impl From<WKUPT0_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPT0`"]
-pub type WKUPT0_R = crate::R<bool, WKUPT0_A>;
+#[doc = "Field `WKUPT0` reader - Wake-up Input Type 0 to 0"]
+pub struct WKUPT0_R(crate::FieldReader<bool, WKUPT0_A>);
 impl WKUPT0_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPT0_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPT0_A {
@@ -1088,15 +1242,22 @@ impl WKUPT0_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == WKUPT0_A::LOW
+        **self == WKUPT0_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == WKUPT0_A::HIGH
+        **self == WKUPT0_A::HIGH
     }
 }
-#[doc = "Write proxy for field `WKUPT0`"]
+impl core::ops::Deref for WKUPT0_R {
+    type Target = crate::FieldReader<bool, WKUPT0_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPT0` writer - Wake-up Input Type 0 to 0"]
 pub struct WKUPT0_W<'a> {
     w: &'a mut W,
 }
@@ -1104,9 +1265,7 @@ impl<'a> WKUPT0_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPT0_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     #[inline(always)]
@@ -1131,7 +1290,7 @@ impl<'a> WKUPT0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | ((value as u32 & 0x01) << 16);
         self.w
     }
 }
@@ -1149,9 +1308,13 @@ impl From<WKUPT1_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPT1`"]
-pub type WKUPT1_R = crate::R<bool, WKUPT1_A>;
+#[doc = "Field `WKUPT1` reader - Wake-up Input Type 0 to 1"]
+pub struct WKUPT1_R(crate::FieldReader<bool, WKUPT1_A>);
 impl WKUPT1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPT1_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPT1_A {
@@ -1163,15 +1326,22 @@ impl WKUPT1_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == WKUPT1_A::LOW
+        **self == WKUPT1_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == WKUPT1_A::HIGH
+        **self == WKUPT1_A::HIGH
     }
 }
-#[doc = "Write proxy for field `WKUPT1`"]
+impl core::ops::Deref for WKUPT1_R {
+    type Target = crate::FieldReader<bool, WKUPT1_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPT1` writer - Wake-up Input Type 0 to 1"]
 pub struct WKUPT1_W<'a> {
     w: &'a mut W,
 }
@@ -1179,9 +1349,7 @@ impl<'a> WKUPT1_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPT1_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     #[inline(always)]
@@ -1206,7 +1374,7 @@ impl<'a> WKUPT1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | ((value as u32 & 0x01) << 17);
         self.w
     }
 }
@@ -1224,9 +1392,13 @@ impl From<WKUPT2_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPT2`"]
-pub type WKUPT2_R = crate::R<bool, WKUPT2_A>;
+#[doc = "Field `WKUPT2` reader - Wake-up Input Type 0 to 2"]
+pub struct WKUPT2_R(crate::FieldReader<bool, WKUPT2_A>);
 impl WKUPT2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPT2_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPT2_A {
@@ -1238,15 +1410,22 @@ impl WKUPT2_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == WKUPT2_A::LOW
+        **self == WKUPT2_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == WKUPT2_A::HIGH
+        **self == WKUPT2_A::HIGH
     }
 }
-#[doc = "Write proxy for field `WKUPT2`"]
+impl core::ops::Deref for WKUPT2_R {
+    type Target = crate::FieldReader<bool, WKUPT2_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPT2` writer - Wake-up Input Type 0 to 2"]
 pub struct WKUPT2_W<'a> {
     w: &'a mut W,
 }
@@ -1254,9 +1433,7 @@ impl<'a> WKUPT2_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPT2_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     #[inline(always)]
@@ -1281,7 +1458,7 @@ impl<'a> WKUPT2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | ((value as u32 & 0x01) << 18);
         self.w
     }
 }
@@ -1299,9 +1476,13 @@ impl From<WKUPT3_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPT3`"]
-pub type WKUPT3_R = crate::R<bool, WKUPT3_A>;
+#[doc = "Field `WKUPT3` reader - Wake-up Input Type 0 to 3"]
+pub struct WKUPT3_R(crate::FieldReader<bool, WKUPT3_A>);
 impl WKUPT3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPT3_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPT3_A {
@@ -1313,15 +1494,22 @@ impl WKUPT3_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == WKUPT3_A::LOW
+        **self == WKUPT3_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == WKUPT3_A::HIGH
+        **self == WKUPT3_A::HIGH
     }
 }
-#[doc = "Write proxy for field `WKUPT3`"]
+impl core::ops::Deref for WKUPT3_R {
+    type Target = crate::FieldReader<bool, WKUPT3_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPT3` writer - Wake-up Input Type 0 to 3"]
 pub struct WKUPT3_W<'a> {
     w: &'a mut W,
 }
@@ -1329,9 +1517,7 @@ impl<'a> WKUPT3_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPT3_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     #[inline(always)]
@@ -1356,7 +1542,7 @@ impl<'a> WKUPT3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | ((value as u32 & 0x01) << 19);
         self.w
     }
 }
@@ -1374,9 +1560,13 @@ impl From<WKUPT4_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPT4`"]
-pub type WKUPT4_R = crate::R<bool, WKUPT4_A>;
+#[doc = "Field `WKUPT4` reader - Wake-up Input Type 0 to 4"]
+pub struct WKUPT4_R(crate::FieldReader<bool, WKUPT4_A>);
 impl WKUPT4_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPT4_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPT4_A {
@@ -1388,15 +1578,22 @@ impl WKUPT4_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == WKUPT4_A::LOW
+        **self == WKUPT4_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == WKUPT4_A::HIGH
+        **self == WKUPT4_A::HIGH
     }
 }
-#[doc = "Write proxy for field `WKUPT4`"]
+impl core::ops::Deref for WKUPT4_R {
+    type Target = crate::FieldReader<bool, WKUPT4_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPT4` writer - Wake-up Input Type 0 to 4"]
 pub struct WKUPT4_W<'a> {
     w: &'a mut W,
 }
@@ -1404,9 +1601,7 @@ impl<'a> WKUPT4_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPT4_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     #[inline(always)]
@@ -1431,7 +1626,7 @@ impl<'a> WKUPT4_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | ((value as u32 & 0x01) << 20);
         self.w
     }
 }
@@ -1449,9 +1644,13 @@ impl From<WKUPT5_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPT5`"]
-pub type WKUPT5_R = crate::R<bool, WKUPT5_A>;
+#[doc = "Field `WKUPT5` reader - Wake-up Input Type 0 to 5"]
+pub struct WKUPT5_R(crate::FieldReader<bool, WKUPT5_A>);
 impl WKUPT5_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPT5_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPT5_A {
@@ -1463,15 +1662,22 @@ impl WKUPT5_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == WKUPT5_A::LOW
+        **self == WKUPT5_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == WKUPT5_A::HIGH
+        **self == WKUPT5_A::HIGH
     }
 }
-#[doc = "Write proxy for field `WKUPT5`"]
+impl core::ops::Deref for WKUPT5_R {
+    type Target = crate::FieldReader<bool, WKUPT5_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPT5` writer - Wake-up Input Type 0 to 5"]
 pub struct WKUPT5_W<'a> {
     w: &'a mut W,
 }
@@ -1479,9 +1685,7 @@ impl<'a> WKUPT5_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPT5_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     #[inline(always)]
@@ -1506,7 +1710,7 @@ impl<'a> WKUPT5_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | ((value as u32 & 0x01) << 21);
         self.w
     }
 }
@@ -1524,9 +1728,13 @@ impl From<WKUPT6_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPT6`"]
-pub type WKUPT6_R = crate::R<bool, WKUPT6_A>;
+#[doc = "Field `WKUPT6` reader - Wake-up Input Type 0 to 6"]
+pub struct WKUPT6_R(crate::FieldReader<bool, WKUPT6_A>);
 impl WKUPT6_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPT6_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPT6_A {
@@ -1538,15 +1746,22 @@ impl WKUPT6_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == WKUPT6_A::LOW
+        **self == WKUPT6_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == WKUPT6_A::HIGH
+        **self == WKUPT6_A::HIGH
     }
 }
-#[doc = "Write proxy for field `WKUPT6`"]
+impl core::ops::Deref for WKUPT6_R {
+    type Target = crate::FieldReader<bool, WKUPT6_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPT6` writer - Wake-up Input Type 0 to 6"]
 pub struct WKUPT6_W<'a> {
     w: &'a mut W,
 }
@@ -1554,9 +1769,7 @@ impl<'a> WKUPT6_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPT6_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     #[inline(always)]
@@ -1581,7 +1794,7 @@ impl<'a> WKUPT6_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | ((value as u32 & 0x01) << 22);
         self.w
     }
 }
@@ -1599,9 +1812,13 @@ impl From<WKUPT7_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPT7`"]
-pub type WKUPT7_R = crate::R<bool, WKUPT7_A>;
+#[doc = "Field `WKUPT7` reader - Wake-up Input Type 0 to 7"]
+pub struct WKUPT7_R(crate::FieldReader<bool, WKUPT7_A>);
 impl WKUPT7_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPT7_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPT7_A {
@@ -1613,15 +1830,22 @@ impl WKUPT7_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == WKUPT7_A::LOW
+        **self == WKUPT7_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == WKUPT7_A::HIGH
+        **self == WKUPT7_A::HIGH
     }
 }
-#[doc = "Write proxy for field `WKUPT7`"]
+impl core::ops::Deref for WKUPT7_R {
+    type Target = crate::FieldReader<bool, WKUPT7_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPT7` writer - Wake-up Input Type 0 to 7"]
 pub struct WKUPT7_W<'a> {
     w: &'a mut W,
 }
@@ -1629,9 +1853,7 @@ impl<'a> WKUPT7_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPT7_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     #[inline(always)]
@@ -1656,7 +1878,7 @@ impl<'a> WKUPT7_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 23)) | (((value as u32) & 0x01) << 23);
+        self.w.bits = (self.w.bits & !(0x01 << 23)) | ((value as u32 & 0x01) << 23);
         self.w
     }
 }
@@ -1674,9 +1896,13 @@ impl From<WKUPT8_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPT8`"]
-pub type WKUPT8_R = crate::R<bool, WKUPT8_A>;
+#[doc = "Field `WKUPT8` reader - Wake-up Input Type 0 to 8"]
+pub struct WKUPT8_R(crate::FieldReader<bool, WKUPT8_A>);
 impl WKUPT8_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPT8_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPT8_A {
@@ -1688,15 +1914,22 @@ impl WKUPT8_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == WKUPT8_A::LOW
+        **self == WKUPT8_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == WKUPT8_A::HIGH
+        **self == WKUPT8_A::HIGH
     }
 }
-#[doc = "Write proxy for field `WKUPT8`"]
+impl core::ops::Deref for WKUPT8_R {
+    type Target = crate::FieldReader<bool, WKUPT8_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPT8` writer - Wake-up Input Type 0 to 8"]
 pub struct WKUPT8_W<'a> {
     w: &'a mut W,
 }
@@ -1704,9 +1937,7 @@ impl<'a> WKUPT8_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPT8_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     #[inline(always)]
@@ -1731,7 +1962,7 @@ impl<'a> WKUPT8_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 24)) | (((value as u32) & 0x01) << 24);
+        self.w.bits = (self.w.bits & !(0x01 << 24)) | ((value as u32 & 0x01) << 24);
         self.w
     }
 }
@@ -1749,9 +1980,13 @@ impl From<WKUPT9_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPT9`"]
-pub type WKUPT9_R = crate::R<bool, WKUPT9_A>;
+#[doc = "Field `WKUPT9` reader - Wake-up Input Type 0 to 9"]
+pub struct WKUPT9_R(crate::FieldReader<bool, WKUPT9_A>);
 impl WKUPT9_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPT9_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPT9_A {
@@ -1763,15 +1998,22 @@ impl WKUPT9_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == WKUPT9_A::LOW
+        **self == WKUPT9_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == WKUPT9_A::HIGH
+        **self == WKUPT9_A::HIGH
     }
 }
-#[doc = "Write proxy for field `WKUPT9`"]
+impl core::ops::Deref for WKUPT9_R {
+    type Target = crate::FieldReader<bool, WKUPT9_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPT9` writer - Wake-up Input Type 0 to 9"]
 pub struct WKUPT9_W<'a> {
     w: &'a mut W,
 }
@@ -1779,9 +2021,7 @@ impl<'a> WKUPT9_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPT9_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     #[inline(always)]
@@ -1806,7 +2046,7 @@ impl<'a> WKUPT9_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | ((value as u32 & 0x01) << 25);
         self.w
     }
 }
@@ -1824,9 +2064,13 @@ impl From<WKUPT10_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPT10`"]
-pub type WKUPT10_R = crate::R<bool, WKUPT10_A>;
+#[doc = "Field `WKUPT10` reader - Wake-up Input Type 0 to 10"]
+pub struct WKUPT10_R(crate::FieldReader<bool, WKUPT10_A>);
 impl WKUPT10_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPT10_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPT10_A {
@@ -1838,15 +2082,22 @@ impl WKUPT10_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == WKUPT10_A::LOW
+        **self == WKUPT10_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == WKUPT10_A::HIGH
+        **self == WKUPT10_A::HIGH
     }
 }
-#[doc = "Write proxy for field `WKUPT10`"]
+impl core::ops::Deref for WKUPT10_R {
+    type Target = crate::FieldReader<bool, WKUPT10_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPT10` writer - Wake-up Input Type 0 to 10"]
 pub struct WKUPT10_W<'a> {
     w: &'a mut W,
 }
@@ -1854,9 +2105,7 @@ impl<'a> WKUPT10_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPT10_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     #[inline(always)]
@@ -1881,7 +2130,7 @@ impl<'a> WKUPT10_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | ((value as u32 & 0x01) << 26);
         self.w
     }
 }
@@ -1899,9 +2148,13 @@ impl From<WKUPT11_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPT11`"]
-pub type WKUPT11_R = crate::R<bool, WKUPT11_A>;
+#[doc = "Field `WKUPT11` reader - Wake-up Input Type 0 to 11"]
+pub struct WKUPT11_R(crate::FieldReader<bool, WKUPT11_A>);
 impl WKUPT11_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPT11_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPT11_A {
@@ -1913,15 +2166,22 @@ impl WKUPT11_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == WKUPT11_A::LOW
+        **self == WKUPT11_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == WKUPT11_A::HIGH
+        **self == WKUPT11_A::HIGH
     }
 }
-#[doc = "Write proxy for field `WKUPT11`"]
+impl core::ops::Deref for WKUPT11_R {
+    type Target = crate::FieldReader<bool, WKUPT11_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPT11` writer - Wake-up Input Type 0 to 11"]
 pub struct WKUPT11_W<'a> {
     w: &'a mut W,
 }
@@ -1929,9 +2189,7 @@ impl<'a> WKUPT11_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPT11_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     #[inline(always)]
@@ -1956,7 +2214,7 @@ impl<'a> WKUPT11_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | ((value as u32 & 0x01) << 27);
         self.w
     }
 }
@@ -1974,9 +2232,13 @@ impl From<WKUPT12_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPT12`"]
-pub type WKUPT12_R = crate::R<bool, WKUPT12_A>;
+#[doc = "Field `WKUPT12` reader - Wake-up Input Type 0 to 12"]
+pub struct WKUPT12_R(crate::FieldReader<bool, WKUPT12_A>);
 impl WKUPT12_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPT12_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPT12_A {
@@ -1988,15 +2250,22 @@ impl WKUPT12_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == WKUPT12_A::LOW
+        **self == WKUPT12_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == WKUPT12_A::HIGH
+        **self == WKUPT12_A::HIGH
     }
 }
-#[doc = "Write proxy for field `WKUPT12`"]
+impl core::ops::Deref for WKUPT12_R {
+    type Target = crate::FieldReader<bool, WKUPT12_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPT12` writer - Wake-up Input Type 0 to 12"]
 pub struct WKUPT12_W<'a> {
     w: &'a mut W,
 }
@@ -2004,9 +2273,7 @@ impl<'a> WKUPT12_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPT12_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     #[inline(always)]
@@ -2031,7 +2298,7 @@ impl<'a> WKUPT12_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | ((value as u32 & 0x01) << 28);
         self.w
     }
 }
@@ -2049,9 +2316,13 @@ impl From<WKUPT13_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WKUPT13`"]
-pub type WKUPT13_R = crate::R<bool, WKUPT13_A>;
+#[doc = "Field `WKUPT13` reader - Wake-up Input Type 0 to 13"]
+pub struct WKUPT13_R(crate::FieldReader<bool, WKUPT13_A>);
 impl WKUPT13_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WKUPT13_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WKUPT13_A {
@@ -2063,15 +2334,22 @@ impl WKUPT13_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == WKUPT13_A::LOW
+        **self == WKUPT13_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == WKUPT13_A::HIGH
+        **self == WKUPT13_A::HIGH
     }
 }
-#[doc = "Write proxy for field `WKUPT13`"]
+impl core::ops::Deref for WKUPT13_R {
+    type Target = crate::FieldReader<bool, WKUPT13_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WKUPT13` writer - Wake-up Input Type 0 to 13"]
 pub struct WKUPT13_W<'a> {
     w: &'a mut W,
 }
@@ -2079,9 +2357,7 @@ impl<'a> WKUPT13_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WKUPT13_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     #[inline(always)]
@@ -2106,7 +2382,7 @@ impl<'a> WKUPT13_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 29)) | (((value as u32) & 0x01) << 29);
+        self.w.bits = (self.w.bits & !(0x01 << 29)) | ((value as u32 & 0x01) << 29);
         self.w
     }
 }
@@ -2392,5 +2668,31 @@ impl W {
     #[inline(always)]
     pub fn wkupt13(&mut self) -> WKUPT13_W {
         WKUPT13_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Supply Controller Wake-up Inputs Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [supc_wuir](index.html) module"]
+pub struct SUPC_WUIR_SPEC;
+impl crate::RegisterSpec for SUPC_WUIR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [supc_wuir::R](R) reader structure"]
+impl crate::Readable for SUPC_WUIR_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [supc_wuir::W](W) writer structure"]
+impl crate::Writable for SUPC_WUIR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets SUPC_WUIR to value 0"]
+impl crate::Resettable for SUPC_WUIR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

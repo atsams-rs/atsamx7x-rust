@@ -1,18 +1,55 @@
-#[doc = "Reader of register LOCKBIT_WORD0"]
-pub type R = crate::R<u32, super::LOCKBIT_WORD0>;
-#[doc = "Writer for register LOCKBIT_WORD0"]
-pub type W = crate::W<u32, super::LOCKBIT_WORD0>;
-#[doc = "Register LOCKBIT_WORD0 `reset()`'s with value 0"]
-impl crate::ResetValue for super::LOCKBIT_WORD0 {
-    type Type = u32;
+#[doc = "Register `LOCKBIT_WORD0` reader"]
+pub struct R(crate::R<LOCKBIT_WORD0_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<LOCKBIT_WORD0_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `LOCK_REGION_0`"]
-pub type LOCK_REGION_0_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_0`"]
+impl From<crate::R<LOCKBIT_WORD0_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<LOCKBIT_WORD0_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `LOCKBIT_WORD0` writer"]
+pub struct W(crate::W<LOCKBIT_WORD0_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<LOCKBIT_WORD0_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<LOCKBIT_WORD0_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<LOCKBIT_WORD0_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `LOCK_REGION_0` reader - Lock Region 0"]
+pub struct LOCK_REGION_0_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_0_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_0_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_0_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_0` writer - Lock Region 0"]
 pub struct LOCK_REGION_0_W<'a> {
     w: &'a mut W,
 }
@@ -30,13 +67,26 @@ impl<'a> LOCK_REGION_0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_1`"]
-pub type LOCK_REGION_1_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_1`"]
+#[doc = "Field `LOCK_REGION_1` reader - Lock Region 1"]
+pub struct LOCK_REGION_1_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_1_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_1_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_1` writer - Lock Region 1"]
 pub struct LOCK_REGION_1_W<'a> {
     w: &'a mut W,
 }
@@ -54,13 +104,26 @@ impl<'a> LOCK_REGION_1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_2`"]
-pub type LOCK_REGION_2_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_2`"]
+#[doc = "Field `LOCK_REGION_2` reader - Lock Region 2"]
+pub struct LOCK_REGION_2_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_2_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_2_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_2` writer - Lock Region 2"]
 pub struct LOCK_REGION_2_W<'a> {
     w: &'a mut W,
 }
@@ -78,13 +141,26 @@ impl<'a> LOCK_REGION_2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_3`"]
-pub type LOCK_REGION_3_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_3`"]
+#[doc = "Field `LOCK_REGION_3` reader - Lock Region 3"]
+pub struct LOCK_REGION_3_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_3_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_3_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_3` writer - Lock Region 3"]
 pub struct LOCK_REGION_3_W<'a> {
     w: &'a mut W,
 }
@@ -102,13 +178,26 @@ impl<'a> LOCK_REGION_3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_4`"]
-pub type LOCK_REGION_4_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_4`"]
+#[doc = "Field `LOCK_REGION_4` reader - Lock Region 4"]
+pub struct LOCK_REGION_4_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_4_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_4_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_4_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_4` writer - Lock Region 4"]
 pub struct LOCK_REGION_4_W<'a> {
     w: &'a mut W,
 }
@@ -126,13 +215,26 @@ impl<'a> LOCK_REGION_4_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_5`"]
-pub type LOCK_REGION_5_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_5`"]
+#[doc = "Field `LOCK_REGION_5` reader - Lock Region 5"]
+pub struct LOCK_REGION_5_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_5_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_5_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_5_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_5` writer - Lock Region 5"]
 pub struct LOCK_REGION_5_W<'a> {
     w: &'a mut W,
 }
@@ -150,13 +252,26 @@ impl<'a> LOCK_REGION_5_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_6`"]
-pub type LOCK_REGION_6_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_6`"]
+#[doc = "Field `LOCK_REGION_6` reader - Lock Region 6"]
+pub struct LOCK_REGION_6_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_6_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_6_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_6_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_6` writer - Lock Region 6"]
 pub struct LOCK_REGION_6_W<'a> {
     w: &'a mut W,
 }
@@ -174,13 +289,26 @@ impl<'a> LOCK_REGION_6_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_7`"]
-pub type LOCK_REGION_7_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_7`"]
+#[doc = "Field `LOCK_REGION_7` reader - Lock Region 7"]
+pub struct LOCK_REGION_7_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_7_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_7_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_7_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_7` writer - Lock Region 7"]
 pub struct LOCK_REGION_7_W<'a> {
     w: &'a mut W,
 }
@@ -198,13 +326,26 @@ impl<'a> LOCK_REGION_7_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | ((value as u32 & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_8`"]
-pub type LOCK_REGION_8_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_8`"]
+#[doc = "Field `LOCK_REGION_8` reader - Lock Region 8"]
+pub struct LOCK_REGION_8_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_8_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_8_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_8_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_8` writer - Lock Region 8"]
 pub struct LOCK_REGION_8_W<'a> {
     w: &'a mut W,
 }
@@ -222,13 +363,26 @@ impl<'a> LOCK_REGION_8_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | ((value as u32 & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_9`"]
-pub type LOCK_REGION_9_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_9`"]
+#[doc = "Field `LOCK_REGION_9` reader - Lock Region 9"]
+pub struct LOCK_REGION_9_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_9_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_9_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_9_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_9` writer - Lock Region 9"]
 pub struct LOCK_REGION_9_W<'a> {
     w: &'a mut W,
 }
@@ -246,13 +400,26 @@ impl<'a> LOCK_REGION_9_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | ((value as u32 & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_10`"]
-pub type LOCK_REGION_10_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_10`"]
+#[doc = "Field `LOCK_REGION_10` reader - Lock Region 10"]
+pub struct LOCK_REGION_10_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_10_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_10_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_10_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_10` writer - Lock Region 10"]
 pub struct LOCK_REGION_10_W<'a> {
     w: &'a mut W,
 }
@@ -270,13 +437,26 @@ impl<'a> LOCK_REGION_10_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | ((value as u32 & 0x01) << 10);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_11`"]
-pub type LOCK_REGION_11_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_11`"]
+#[doc = "Field `LOCK_REGION_11` reader - Lock Region 11"]
+pub struct LOCK_REGION_11_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_11_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_11_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_11_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_11` writer - Lock Region 11"]
 pub struct LOCK_REGION_11_W<'a> {
     w: &'a mut W,
 }
@@ -294,13 +474,26 @@ impl<'a> LOCK_REGION_11_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | ((value as u32 & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_12`"]
-pub type LOCK_REGION_12_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_12`"]
+#[doc = "Field `LOCK_REGION_12` reader - Lock Region 12"]
+pub struct LOCK_REGION_12_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_12_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_12_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_12_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_12` writer - Lock Region 12"]
 pub struct LOCK_REGION_12_W<'a> {
     w: &'a mut W,
 }
@@ -318,13 +511,26 @@ impl<'a> LOCK_REGION_12_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | ((value as u32 & 0x01) << 12);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_13`"]
-pub type LOCK_REGION_13_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_13`"]
+#[doc = "Field `LOCK_REGION_13` reader - Lock Region 13"]
+pub struct LOCK_REGION_13_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_13_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_13_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_13_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_13` writer - Lock Region 13"]
 pub struct LOCK_REGION_13_W<'a> {
     w: &'a mut W,
 }
@@ -342,13 +548,26 @@ impl<'a> LOCK_REGION_13_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | ((value as u32 & 0x01) << 13);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_14`"]
-pub type LOCK_REGION_14_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_14`"]
+#[doc = "Field `LOCK_REGION_14` reader - Lock Region 14"]
+pub struct LOCK_REGION_14_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_14_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_14_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_14_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_14` writer - Lock Region 14"]
 pub struct LOCK_REGION_14_W<'a> {
     w: &'a mut W,
 }
@@ -366,13 +585,26 @@ impl<'a> LOCK_REGION_14_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | ((value as u32 & 0x01) << 14);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_15`"]
-pub type LOCK_REGION_15_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_15`"]
+#[doc = "Field `LOCK_REGION_15` reader - Lock Region 15"]
+pub struct LOCK_REGION_15_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_15_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_15_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_15_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_15` writer - Lock Region 15"]
 pub struct LOCK_REGION_15_W<'a> {
     w: &'a mut W,
 }
@@ -390,13 +622,26 @@ impl<'a> LOCK_REGION_15_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | ((value as u32 & 0x01) << 15);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_16`"]
-pub type LOCK_REGION_16_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_16`"]
+#[doc = "Field `LOCK_REGION_16` reader - Lock Region 16"]
+pub struct LOCK_REGION_16_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_16_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_16_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_16_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_16` writer - Lock Region 16"]
 pub struct LOCK_REGION_16_W<'a> {
     w: &'a mut W,
 }
@@ -414,13 +659,26 @@ impl<'a> LOCK_REGION_16_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | ((value as u32 & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_17`"]
-pub type LOCK_REGION_17_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_17`"]
+#[doc = "Field `LOCK_REGION_17` reader - Lock Region 17"]
+pub struct LOCK_REGION_17_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_17_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_17_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_17_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_17` writer - Lock Region 17"]
 pub struct LOCK_REGION_17_W<'a> {
     w: &'a mut W,
 }
@@ -438,13 +696,26 @@ impl<'a> LOCK_REGION_17_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | ((value as u32 & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_18`"]
-pub type LOCK_REGION_18_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_18`"]
+#[doc = "Field `LOCK_REGION_18` reader - Lock Region 18"]
+pub struct LOCK_REGION_18_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_18_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_18_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_18_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_18` writer - Lock Region 18"]
 pub struct LOCK_REGION_18_W<'a> {
     w: &'a mut W,
 }
@@ -462,13 +733,26 @@ impl<'a> LOCK_REGION_18_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | ((value as u32 & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_19`"]
-pub type LOCK_REGION_19_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_19`"]
+#[doc = "Field `LOCK_REGION_19` reader - Lock Region 19"]
+pub struct LOCK_REGION_19_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_19_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_19_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_19_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_19` writer - Lock Region 19"]
 pub struct LOCK_REGION_19_W<'a> {
     w: &'a mut W,
 }
@@ -486,13 +770,26 @@ impl<'a> LOCK_REGION_19_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | ((value as u32 & 0x01) << 19);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_20`"]
-pub type LOCK_REGION_20_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_20`"]
+#[doc = "Field `LOCK_REGION_20` reader - Lock Region 20"]
+pub struct LOCK_REGION_20_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_20_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_20_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_20_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_20` writer - Lock Region 20"]
 pub struct LOCK_REGION_20_W<'a> {
     w: &'a mut W,
 }
@@ -510,13 +807,26 @@ impl<'a> LOCK_REGION_20_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | ((value as u32 & 0x01) << 20);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_21`"]
-pub type LOCK_REGION_21_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_21`"]
+#[doc = "Field `LOCK_REGION_21` reader - Lock Region 21"]
+pub struct LOCK_REGION_21_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_21_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_21_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_21_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_21` writer - Lock Region 21"]
 pub struct LOCK_REGION_21_W<'a> {
     w: &'a mut W,
 }
@@ -534,13 +844,26 @@ impl<'a> LOCK_REGION_21_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | ((value as u32 & 0x01) << 21);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_22`"]
-pub type LOCK_REGION_22_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_22`"]
+#[doc = "Field `LOCK_REGION_22` reader - Lock Region 22"]
+pub struct LOCK_REGION_22_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_22_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_22_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_22_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_22` writer - Lock Region 22"]
 pub struct LOCK_REGION_22_W<'a> {
     w: &'a mut W,
 }
@@ -558,13 +881,26 @@ impl<'a> LOCK_REGION_22_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | ((value as u32 & 0x01) << 22);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_23`"]
-pub type LOCK_REGION_23_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_23`"]
+#[doc = "Field `LOCK_REGION_23` reader - Lock Region 23"]
+pub struct LOCK_REGION_23_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_23_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_23_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_23_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_23` writer - Lock Region 23"]
 pub struct LOCK_REGION_23_W<'a> {
     w: &'a mut W,
 }
@@ -582,13 +918,26 @@ impl<'a> LOCK_REGION_23_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 23)) | (((value as u32) & 0x01) << 23);
+        self.w.bits = (self.w.bits & !(0x01 << 23)) | ((value as u32 & 0x01) << 23);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_24`"]
-pub type LOCK_REGION_24_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_24`"]
+#[doc = "Field `LOCK_REGION_24` reader - Lock Region 24"]
+pub struct LOCK_REGION_24_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_24_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_24_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_24_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_24` writer - Lock Region 24"]
 pub struct LOCK_REGION_24_W<'a> {
     w: &'a mut W,
 }
@@ -606,13 +955,26 @@ impl<'a> LOCK_REGION_24_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 24)) | (((value as u32) & 0x01) << 24);
+        self.w.bits = (self.w.bits & !(0x01 << 24)) | ((value as u32 & 0x01) << 24);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_25`"]
-pub type LOCK_REGION_25_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_25`"]
+#[doc = "Field `LOCK_REGION_25` reader - Lock Region 25"]
+pub struct LOCK_REGION_25_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_25_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_25_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_25_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_25` writer - Lock Region 25"]
 pub struct LOCK_REGION_25_W<'a> {
     w: &'a mut W,
 }
@@ -630,13 +992,26 @@ impl<'a> LOCK_REGION_25_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | ((value as u32 & 0x01) << 25);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_26`"]
-pub type LOCK_REGION_26_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_26`"]
+#[doc = "Field `LOCK_REGION_26` reader - Lock Region 26"]
+pub struct LOCK_REGION_26_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_26_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_26_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_26_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_26` writer - Lock Region 26"]
 pub struct LOCK_REGION_26_W<'a> {
     w: &'a mut W,
 }
@@ -654,13 +1029,26 @@ impl<'a> LOCK_REGION_26_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | ((value as u32 & 0x01) << 26);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_27`"]
-pub type LOCK_REGION_27_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_27`"]
+#[doc = "Field `LOCK_REGION_27` reader - Lock Region 27"]
+pub struct LOCK_REGION_27_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_27_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_27_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_27_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_27` writer - Lock Region 27"]
 pub struct LOCK_REGION_27_W<'a> {
     w: &'a mut W,
 }
@@ -678,13 +1066,26 @@ impl<'a> LOCK_REGION_27_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | ((value as u32 & 0x01) << 27);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_28`"]
-pub type LOCK_REGION_28_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_28`"]
+#[doc = "Field `LOCK_REGION_28` reader - Lock Region 28"]
+pub struct LOCK_REGION_28_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_28_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_28_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_28_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_28` writer - Lock Region 28"]
 pub struct LOCK_REGION_28_W<'a> {
     w: &'a mut W,
 }
@@ -702,13 +1103,26 @@ impl<'a> LOCK_REGION_28_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | ((value as u32 & 0x01) << 28);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_29`"]
-pub type LOCK_REGION_29_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_29`"]
+#[doc = "Field `LOCK_REGION_29` reader - Lock Region 29"]
+pub struct LOCK_REGION_29_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_29_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_29_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_29_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_29` writer - Lock Region 29"]
 pub struct LOCK_REGION_29_W<'a> {
     w: &'a mut W,
 }
@@ -726,13 +1140,26 @@ impl<'a> LOCK_REGION_29_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 29)) | (((value as u32) & 0x01) << 29);
+        self.w.bits = (self.w.bits & !(0x01 << 29)) | ((value as u32 & 0x01) << 29);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_30`"]
-pub type LOCK_REGION_30_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_30`"]
+#[doc = "Field `LOCK_REGION_30` reader - Lock Region 30"]
+pub struct LOCK_REGION_30_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_30_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_30_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_30_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_30` writer - Lock Region 30"]
 pub struct LOCK_REGION_30_W<'a> {
     w: &'a mut W,
 }
@@ -750,13 +1177,26 @@ impl<'a> LOCK_REGION_30_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 30)) | (((value as u32) & 0x01) << 30);
+        self.w.bits = (self.w.bits & !(0x01 << 30)) | ((value as u32 & 0x01) << 30);
         self.w
     }
 }
-#[doc = "Reader of field `LOCK_REGION_31`"]
-pub type LOCK_REGION_31_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `LOCK_REGION_31`"]
+#[doc = "Field `LOCK_REGION_31` reader - Lock Region 31"]
+pub struct LOCK_REGION_31_R(crate::FieldReader<bool, bool>);
+impl LOCK_REGION_31_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LOCK_REGION_31_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LOCK_REGION_31_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LOCK_REGION_31` writer - Lock Region 31"]
 pub struct LOCK_REGION_31_W<'a> {
     w: &'a mut W,
 }
@@ -774,7 +1214,7 @@ impl<'a> LOCK_REGION_31_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | ((value as u32 & 0x01) << 31);
         self.w
     }
 }
@@ -1100,5 +1540,31 @@ impl W {
     #[inline(always)]
     pub fn lock_region_31(&mut self) -> LOCK_REGION_31_W {
         LOCK_REGION_31_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Lock Bits Word 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lockbit_word0](index.html) module"]
+pub struct LOCKBIT_WORD0_SPEC;
+impl crate::RegisterSpec for LOCKBIT_WORD0_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [lockbit_word0::R](R) reader structure"]
+impl crate::Readable for LOCKBIT_WORD0_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [lockbit_word0::W](W) writer structure"]
+impl crate::Writable for LOCKBIT_WORD0_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets LOCKBIT_WORD0 to value 0"]
+impl crate::Resettable for LOCKBIT_WORD0_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

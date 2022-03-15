@@ -1,13 +1,37 @@
-#[doc = "Reader of register QSPI_MR"]
-pub type R = crate::R<u32, super::QSPI_MR>;
-#[doc = "Writer for register QSPI_MR"]
-pub type W = crate::W<u32, super::QSPI_MR>;
-#[doc = "Register QSPI_MR `reset()`'s with value 0"]
-impl crate::ResetValue for super::QSPI_MR {
-    type Type = u32;
+#[doc = "Register `QSPI_MR` reader"]
+pub struct R(crate::R<QSPI_MR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<QSPI_MR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<QSPI_MR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<QSPI_MR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `QSPI_MR` writer"]
+pub struct W(crate::W<QSPI_MR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<QSPI_MR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<QSPI_MR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<QSPI_MR_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Serial Memory Mode\n\nValue on reset: 0"]
@@ -24,9 +48,13 @@ impl From<SMM_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `SMM`"]
-pub type SMM_R = crate::R<bool, SMM_A>;
+#[doc = "Field `SMM` reader - Serial Memory Mode"]
+pub struct SMM_R(crate::FieldReader<bool, SMM_A>);
 impl SMM_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SMM_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> SMM_A {
@@ -38,15 +66,22 @@ impl SMM_R {
     #[doc = "Checks if the value of the field is `SPI`"]
     #[inline(always)]
     pub fn is_spi(&self) -> bool {
-        *self == SMM_A::SPI
+        **self == SMM_A::SPI
     }
     #[doc = "Checks if the value of the field is `MEMORY`"]
     #[inline(always)]
     pub fn is_memory(&self) -> bool {
-        *self == SMM_A::MEMORY
+        **self == SMM_A::MEMORY
     }
 }
-#[doc = "Write proxy for field `SMM`"]
+impl core::ops::Deref for SMM_R {
+    type Target = crate::FieldReader<bool, SMM_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SMM` writer - Serial Memory Mode"]
 pub struct SMM_W<'a> {
     w: &'a mut W,
 }
@@ -54,9 +89,7 @@ impl<'a> SMM_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: SMM_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "The QSPI is in SPI mode."]
     #[inline(always)]
@@ -81,7 +114,7 @@ impl<'a> SMM_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
@@ -99,9 +132,13 @@ impl From<LLB_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `LLB`"]
-pub type LLB_R = crate::R<bool, LLB_A>;
+#[doc = "Field `LLB` reader - Local Loopback Enable"]
+pub struct LLB_R(crate::FieldReader<bool, LLB_A>);
 impl LLB_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LLB_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> LLB_A {
@@ -113,15 +150,22 @@ impl LLB_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == LLB_A::DISABLED
+        **self == LLB_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == LLB_A::ENABLED
+        **self == LLB_A::ENABLED
     }
 }
-#[doc = "Write proxy for field `LLB`"]
+impl core::ops::Deref for LLB_R {
+    type Target = crate::FieldReader<bool, LLB_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LLB` writer - Local Loopback Enable"]
 pub struct LLB_W<'a> {
     w: &'a mut W,
 }
@@ -129,9 +173,7 @@ impl<'a> LLB_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: LLB_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Local loopback path disabled."]
     #[inline(always)]
@@ -156,7 +198,7 @@ impl<'a> LLB_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
@@ -174,9 +216,13 @@ impl From<WDRBT_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `WDRBT`"]
-pub type WDRBT_R = crate::R<bool, WDRBT_A>;
+#[doc = "Field `WDRBT` reader - Wait Data Read Before Transfer"]
+pub struct WDRBT_R(crate::FieldReader<bool, WDRBT_A>);
 impl WDRBT_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WDRBT_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> WDRBT_A {
@@ -188,15 +234,22 @@ impl WDRBT_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == WDRBT_A::DISABLED
+        **self == WDRBT_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == WDRBT_A::ENABLED
+        **self == WDRBT_A::ENABLED
     }
 }
-#[doc = "Write proxy for field `WDRBT`"]
+impl core::ops::Deref for WDRBT_R {
+    type Target = crate::FieldReader<bool, WDRBT_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WDRBT` writer - Wait Data Read Before Transfer"]
 pub struct WDRBT_W<'a> {
     w: &'a mut W,
 }
@@ -204,9 +257,7 @@ impl<'a> WDRBT_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: WDRBT_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "No effect. In SPI mode, a transfer can be initiated whatever the state of the QSPI_RDR is."]
     #[inline(always)]
@@ -231,7 +282,7 @@ impl<'a> WDRBT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
@@ -252,37 +303,47 @@ impl From<CSMODE_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `CSMODE`"]
-pub type CSMODE_R = crate::R<u8, CSMODE_A>;
+#[doc = "Field `CSMODE` reader - Chip Select Mode"]
+pub struct CSMODE_R(crate::FieldReader<u8, CSMODE_A>);
 impl CSMODE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        CSMODE_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u8, CSMODE_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<CSMODE_A> {
         match self.bits {
-            0 => Val(CSMODE_A::NOT_RELOADED),
-            1 => Val(CSMODE_A::LASTXFER),
-            2 => Val(CSMODE_A::SYSTEMATICALLY),
-            i => Res(i),
+            0 => Some(CSMODE_A::NOT_RELOADED),
+            1 => Some(CSMODE_A::LASTXFER),
+            2 => Some(CSMODE_A::SYSTEMATICALLY),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `NOT_RELOADED`"]
     #[inline(always)]
     pub fn is_not_reloaded(&self) -> bool {
-        *self == CSMODE_A::NOT_RELOADED
+        **self == CSMODE_A::NOT_RELOADED
     }
     #[doc = "Checks if the value of the field is `LASTXFER`"]
     #[inline(always)]
     pub fn is_lastxfer(&self) -> bool {
-        *self == CSMODE_A::LASTXFER
+        **self == CSMODE_A::LASTXFER
     }
     #[doc = "Checks if the value of the field is `SYSTEMATICALLY`"]
     #[inline(always)]
     pub fn is_systematically(&self) -> bool {
-        *self == CSMODE_A::SYSTEMATICALLY
+        **self == CSMODE_A::SYSTEMATICALLY
     }
 }
-#[doc = "Write proxy for field `CSMODE`"]
+impl core::ops::Deref for CSMODE_R {
+    type Target = crate::FieldReader<u8, CSMODE_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CSMODE` writer - Chip Select Mode"]
 pub struct CSMODE_W<'a> {
     w: &'a mut W,
 }
@@ -310,7 +371,7 @@ impl<'a> CSMODE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 4)) | (((value as u32) & 0x03) << 4);
+        self.w.bits = (self.w.bits & !(0x03 << 4)) | ((value as u32 & 0x03) << 4);
         self.w
     }
 }
@@ -329,31 +390,41 @@ impl From<NBBITS_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `NBBITS`"]
-pub type NBBITS_R = crate::R<u8, NBBITS_A>;
+#[doc = "Field `NBBITS` reader - Number Of Bits Per Transfer"]
+pub struct NBBITS_R(crate::FieldReader<u8, NBBITS_A>);
 impl NBBITS_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        NBBITS_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u8, NBBITS_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<NBBITS_A> {
         match self.bits {
-            0 => Val(NBBITS_A::_8_BIT),
-            8 => Val(NBBITS_A::_16_BIT),
-            i => Res(i),
+            0 => Some(NBBITS_A::_8_BIT),
+            8 => Some(NBBITS_A::_16_BIT),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `_8_BIT`"]
     #[inline(always)]
     pub fn is_8_bit(&self) -> bool {
-        *self == NBBITS_A::_8_BIT
+        **self == NBBITS_A::_8_BIT
     }
     #[doc = "Checks if the value of the field is `_16_BIT`"]
     #[inline(always)]
     pub fn is_16_bit(&self) -> bool {
-        *self == NBBITS_A::_16_BIT
+        **self == NBBITS_A::_16_BIT
     }
 }
-#[doc = "Write proxy for field `NBBITS`"]
+impl core::ops::Deref for NBBITS_R {
+    type Target = crate::FieldReader<u8, NBBITS_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `NBBITS` writer - Number Of Bits Per Transfer"]
 pub struct NBBITS_W<'a> {
     w: &'a mut W,
 }
@@ -376,13 +447,26 @@ impl<'a> NBBITS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x0f << 8)) | (((value as u32) & 0x0f) << 8);
+        self.w.bits = (self.w.bits & !(0x0f << 8)) | ((value as u32 & 0x0f) << 8);
         self.w
     }
 }
-#[doc = "Reader of field `DLYBCT`"]
-pub type DLYBCT_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `DLYBCT`"]
+#[doc = "Field `DLYBCT` reader - Delay Between Consecutive Transfers"]
+pub struct DLYBCT_R(crate::FieldReader<u8, u8>);
+impl DLYBCT_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        DLYBCT_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DLYBCT_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DLYBCT` writer - Delay Between Consecutive Transfers"]
 pub struct DLYBCT_W<'a> {
     w: &'a mut W,
 }
@@ -390,13 +474,26 @@ impl<'a> DLYBCT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0xff << 16)) | (((value as u32) & 0xff) << 16);
+        self.w.bits = (self.w.bits & !(0xff << 16)) | ((value as u32 & 0xff) << 16);
         self.w
     }
 }
-#[doc = "Reader of field `DLYCS`"]
-pub type DLYCS_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `DLYCS`"]
+#[doc = "Field `DLYCS` reader - Minimum Inactive QCS Delay"]
+pub struct DLYCS_R(crate::FieldReader<u8, u8>);
+impl DLYCS_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        DLYCS_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DLYCS_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DLYCS` writer - Minimum Inactive QCS Delay"]
 pub struct DLYCS_W<'a> {
     w: &'a mut W,
 }
@@ -404,7 +501,7 @@ impl<'a> DLYCS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0xff << 24)) | (((value as u32) & 0xff) << 24);
+        self.w.bits = (self.w.bits & !(0xff << 24)) | ((value as u32 & 0xff) << 24);
         self.w
     }
 }
@@ -480,5 +577,31 @@ impl W {
     #[inline(always)]
     pub fn dlycs(&mut self) -> DLYCS_W {
         DLYCS_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Mode Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [qspi_mr](index.html) module"]
+pub struct QSPI_MR_SPEC;
+impl crate::RegisterSpec for QSPI_MR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [qspi_mr::R](R) reader structure"]
+impl crate::Readable for QSPI_MR_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [qspi_mr::W](W) writer structure"]
+impl crate::Writable for QSPI_MR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets QSPI_MR to value 0"]
+impl crate::Resettable for QSPI_MR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

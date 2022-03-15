@@ -1,14 +1,37 @@
-#[doc = "Reader of register MATRIX_MCFG[%s]"]
-pub type R = crate::R<u32, super::MATRIX_MCFG>;
-#[doc = "Writer for register MATRIX_MCFG[%s]"]
-pub type W = crate::W<u32, super::MATRIX_MCFG>;
-#[doc = "Register MATRIX_MCFG[%s]
-`reset()`'s with value 0"]
-impl crate::ResetValue for super::MATRIX_MCFG {
-    type Type = u32;
+#[doc = "Register `MATRIX_MCFG[%s]` reader"]
+pub struct R(crate::R<MATRIX_MCFG_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<MATRIX_MCFG_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<MATRIX_MCFG_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<MATRIX_MCFG_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `MATRIX_MCFG[%s]` writer"]
+pub struct W(crate::W<MATRIX_MCFG_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<MATRIX_MCFG_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<MATRIX_MCFG_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<MATRIX_MCFG_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Undefined Length Burst Type\n\nValue on reset: 0"]
@@ -38,9 +61,13 @@ impl From<ULBT_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `ULBT`"]
-pub type ULBT_R = crate::R<u8, ULBT_A>;
+#[doc = "Field `ULBT` reader - Undefined Length Burst Type"]
+pub struct ULBT_R(crate::FieldReader<u8, ULBT_A>);
 impl ULBT_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        ULBT_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> ULBT_A {
@@ -59,45 +86,52 @@ impl ULBT_R {
     #[doc = "Checks if the value of the field is `UNLTD_LENGTH`"]
     #[inline(always)]
     pub fn is_unltd_length(&self) -> bool {
-        *self == ULBT_A::UNLTD_LENGTH
+        **self == ULBT_A::UNLTD_LENGTH
     }
     #[doc = "Checks if the value of the field is `SINGLE_ACCESS`"]
     #[inline(always)]
     pub fn is_single_access(&self) -> bool {
-        *self == ULBT_A::SINGLE_ACCESS
+        **self == ULBT_A::SINGLE_ACCESS
     }
     #[doc = "Checks if the value of the field is `_4BEAT_BURST`"]
     #[inline(always)]
     pub fn is_4beat_burst(&self) -> bool {
-        *self == ULBT_A::_4BEAT_BURST
+        **self == ULBT_A::_4BEAT_BURST
     }
     #[doc = "Checks if the value of the field is `_8BEAT_BURST`"]
     #[inline(always)]
     pub fn is_8beat_burst(&self) -> bool {
-        *self == ULBT_A::_8BEAT_BURST
+        **self == ULBT_A::_8BEAT_BURST
     }
     #[doc = "Checks if the value of the field is `_16BEAT_BURST`"]
     #[inline(always)]
     pub fn is_16beat_burst(&self) -> bool {
-        *self == ULBT_A::_16BEAT_BURST
+        **self == ULBT_A::_16BEAT_BURST
     }
     #[doc = "Checks if the value of the field is `_32BEAT_BURST`"]
     #[inline(always)]
     pub fn is_32beat_burst(&self) -> bool {
-        *self == ULBT_A::_32BEAT_BURST
+        **self == ULBT_A::_32BEAT_BURST
     }
     #[doc = "Checks if the value of the field is `_64BEAT_BURST`"]
     #[inline(always)]
     pub fn is_64beat_burst(&self) -> bool {
-        *self == ULBT_A::_64BEAT_BURST
+        **self == ULBT_A::_64BEAT_BURST
     }
     #[doc = "Checks if the value of the field is `_128BEAT_BURST`"]
     #[inline(always)]
     pub fn is_128beat_burst(&self) -> bool {
-        *self == ULBT_A::_128BEAT_BURST
+        **self == ULBT_A::_128BEAT_BURST
     }
 }
-#[doc = "Write proxy for field `ULBT`"]
+impl core::ops::Deref for ULBT_R {
+    type Target = crate::FieldReader<u8, ULBT_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `ULBT` writer - Undefined Length Burst Type"]
 pub struct ULBT_W<'a> {
     w: &'a mut W,
 }
@@ -105,9 +139,7 @@ impl<'a> ULBT_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: ULBT_A) -> &'a mut W {
-        {
-            self.bits(variant.into())
-        }
+        self.bits(variant.into())
     }
     #[doc = "Unlimited Length Burst-No predicted end of burst is generated, therefore INCR bursts coming from this master can only be broken if the Slave Slot Cycle Limit is reached. If the Slot Cycle Limit is not reached, the burst is normally completed by the master, at the latest, on the next AHB 1-Kbyte address boundary, allowing up to 256-beat word bursts or 128-beat double-word bursts.This value should not be used in the very particular case of a master capable of performing back-to-back undefined length bursts on a single slave, since this could indefinitely freeze the slave arbitration and thus prevent another master from accessing this slave."]
     #[inline(always)]
@@ -152,7 +184,7 @@ impl<'a> ULBT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x07) | ((value as u32) & 0x07);
+        self.w.bits = (self.w.bits & !0x07) | (value as u32 & 0x07);
         self.w
     }
 }
@@ -168,5 +200,32 @@ impl W {
     #[inline(always)]
     pub fn ulbt(&mut self) -> ULBT_W {
         ULBT_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Master Configuration Register 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [matrix_mcfg](index.html) module"]
+pub struct MATRIX_MCFG_SPEC;
+impl crate::RegisterSpec for MATRIX_MCFG_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [matrix_mcfg::R](R) reader structure"]
+impl crate::Readable for MATRIX_MCFG_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [matrix_mcfg::W](W) writer structure"]
+impl crate::Writable for MATRIX_MCFG_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets MATRIX_MCFG[%s]
+to value 0"]
+impl crate::Resettable for MATRIX_MCFG_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

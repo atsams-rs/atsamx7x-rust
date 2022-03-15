@@ -1,18 +1,55 @@
-#[doc = "Reader of register ISI_R2Y_SET2"]
-pub type R = crate::R<u32, super::ISI_R2Y_SET2>;
-#[doc = "Writer for register ISI_R2Y_SET2"]
-pub type W = crate::W<u32, super::ISI_R2Y_SET2>;
-#[doc = "Register ISI_R2Y_SET2 `reset()`'s with value 0"]
-impl crate::ResetValue for super::ISI_R2Y_SET2 {
-    type Type = u32;
+#[doc = "Register `ISI_R2Y_SET2` reader"]
+pub struct R(crate::R<ISI_R2Y_SET2_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<ISI_R2Y_SET2_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `C6`"]
-pub type C6_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `C6`"]
+impl From<crate::R<ISI_R2Y_SET2_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<ISI_R2Y_SET2_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `ISI_R2Y_SET2` writer"]
+pub struct W(crate::W<ISI_R2Y_SET2_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<ISI_R2Y_SET2_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<ISI_R2Y_SET2_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<ISI_R2Y_SET2_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `C6` reader - Color Space Conversion Matrix Coefficient C6"]
+pub struct C6_R(crate::FieldReader<u8, u8>);
+impl C6_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        C6_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for C6_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `C6` writer - Color Space Conversion Matrix Coefficient C6"]
 pub struct C6_W<'a> {
     w: &'a mut W,
 }
@@ -20,13 +57,26 @@ impl<'a> C6_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x7f) | ((value as u32) & 0x7f);
+        self.w.bits = (self.w.bits & !0x7f) | (value as u32 & 0x7f);
         self.w
     }
 }
-#[doc = "Reader of field `C7`"]
-pub type C7_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `C7`"]
+#[doc = "Field `C7` reader - Color Space Conversion Matrix Coefficient C7"]
+pub struct C7_R(crate::FieldReader<u8, u8>);
+impl C7_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        C7_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for C7_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `C7` writer - Color Space Conversion Matrix Coefficient C7"]
 pub struct C7_W<'a> {
     w: &'a mut W,
 }
@@ -34,13 +84,26 @@ impl<'a> C7_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x7f << 8)) | (((value as u32) & 0x7f) << 8);
+        self.w.bits = (self.w.bits & !(0x7f << 8)) | ((value as u32 & 0x7f) << 8);
         self.w
     }
 }
-#[doc = "Reader of field `C8`"]
-pub type C8_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `C8`"]
+#[doc = "Field `C8` reader - Color Space Conversion Matrix Coefficient C8"]
+pub struct C8_R(crate::FieldReader<u8, u8>);
+impl C8_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        C8_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for C8_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `C8` writer - Color Space Conversion Matrix Coefficient C8"]
 pub struct C8_W<'a> {
     w: &'a mut W,
 }
@@ -48,13 +111,26 @@ impl<'a> C8_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x7f << 16)) | (((value as u32) & 0x7f) << 16);
+        self.w.bits = (self.w.bits & !(0x7f << 16)) | ((value as u32 & 0x7f) << 16);
         self.w
     }
 }
-#[doc = "Reader of field `Boff`"]
-pub type BOFF_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `Boff`"]
+#[doc = "Field `Boff` reader - Color Space Conversion Blue Component Offset"]
+pub struct BOFF_R(crate::FieldReader<bool, bool>);
+impl BOFF_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        BOFF_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for BOFF_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `Boff` writer - Color Space Conversion Blue Component Offset"]
 pub struct BOFF_W<'a> {
     w: &'a mut W,
 }
@@ -72,7 +148,7 @@ impl<'a> BOFF_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 24)) | (((value as u32) & 0x01) << 24);
+        self.w.bits = (self.w.bits & !(0x01 << 24)) | ((value as u32 & 0x01) << 24);
         self.w
     }
 }
@@ -118,5 +194,31 @@ impl W {
     #[inline(always)]
     pub fn boff(&mut self) -> BOFF_W {
         BOFF_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "ISI Color Space Conversion RGB To YCrCb Set 2 Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [isi_r2y_set2](index.html) module"]
+pub struct ISI_R2Y_SET2_SPEC;
+impl crate::RegisterSpec for ISI_R2Y_SET2_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [isi_r2y_set2::R](R) reader structure"]
+impl crate::Readable for ISI_R2Y_SET2_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [isi_r2y_set2::W](W) writer structure"]
+impl crate::Writable for ISI_R2Y_SET2_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets ISI_R2Y_SET2 to value 0"]
+impl crate::Resettable for ISI_R2Y_SET2_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

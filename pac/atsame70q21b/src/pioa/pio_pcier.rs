@@ -1,14 +1,25 @@
-#[doc = "Writer for register PIO_PCIER"]
-pub type W = crate::W<u32, super::PIO_PCIER>;
-#[doc = "Register PIO_PCIER `reset()`'s with value 0"]
-impl crate::ResetValue for super::PIO_PCIER {
-    type Type = u32;
+#[doc = "Register `PIO_PCIER` writer"]
+pub struct W(crate::W<PIO_PCIER_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<PIO_PCIER_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `DRDY`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<PIO_PCIER_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<PIO_PCIER_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `DRDY` writer - Parallel Capture Mode Data Ready Interrupt Enable"]
 pub struct DRDY_W<'a> {
     w: &'a mut W,
 }
@@ -26,11 +37,11 @@ impl<'a> DRDY_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
-#[doc = "Write proxy for field `OVRE`"]
+#[doc = "Field `OVRE` writer - Parallel Capture Mode Overrun Error Interrupt Enable"]
 pub struct OVRE_W<'a> {
     w: &'a mut W,
 }
@@ -48,11 +59,11 @@ impl<'a> OVRE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Write proxy for field `ENDRX`"]
+#[doc = "Field `ENDRX` writer - End of Reception Transfer Interrupt Enable"]
 pub struct ENDRX_W<'a> {
     w: &'a mut W,
 }
@@ -70,11 +81,11 @@ impl<'a> ENDRX_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Write proxy for field `RXBUFF`"]
+#[doc = "Field `RXBUFF` writer - Reception Buffer Full Interrupt Enable"]
 pub struct RXBUFF_W<'a> {
     w: &'a mut W,
 }
@@ -92,7 +103,7 @@ impl<'a> RXBUFF_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
@@ -116,5 +127,27 @@ impl W {
     #[inline(always)]
     pub fn rxbuff(&mut self) -> RXBUFF_W {
         RXBUFF_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Parallel Capture Interrupt Enable Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pio_pcier](index.html) module"]
+pub struct PIO_PCIER_SPEC;
+impl crate::RegisterSpec for PIO_PCIER_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [pio_pcier::W](W) writer structure"]
+impl crate::Writable for PIO_PCIER_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets PIO_PCIER to value 0"]
+impl crate::Resettable for PIO_PCIER_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

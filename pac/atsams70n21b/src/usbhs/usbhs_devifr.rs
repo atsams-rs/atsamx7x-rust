@@ -1,14 +1,25 @@
-#[doc = "Writer for register USBHS_DEVIFR"]
-pub type W = crate::W<u32, super::USBHS_DEVIFR>;
-#[doc = "Register USBHS_DEVIFR `reset()`'s with value 0"]
-impl crate::ResetValue for super::USBHS_DEVIFR {
-    type Type = u32;
+#[doc = "Register `USBHS_DEVIFR` writer"]
+pub struct W(crate::W<USBHS_DEVIFR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<USBHS_DEVIFR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `SUSPS`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<USBHS_DEVIFR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<USBHS_DEVIFR_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `SUSPS` writer - Suspend Interrupt Set"]
 pub struct SUSPS_W<'a> {
     w: &'a mut W,
 }
@@ -26,11 +37,11 @@ impl<'a> SUSPS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
-#[doc = "Write proxy for field `MSOFS`"]
+#[doc = "Field `MSOFS` writer - Micro Start of Frame Interrupt Set"]
 pub struct MSOFS_W<'a> {
     w: &'a mut W,
 }
@@ -48,11 +59,11 @@ impl<'a> MSOFS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Write proxy for field `SOFS`"]
+#[doc = "Field `SOFS` writer - Start of Frame Interrupt Set"]
 pub struct SOFS_W<'a> {
     w: &'a mut W,
 }
@@ -70,11 +81,11 @@ impl<'a> SOFS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Write proxy for field `EORSTS`"]
+#[doc = "Field `EORSTS` writer - End of Reset Interrupt Set"]
 pub struct EORSTS_W<'a> {
     w: &'a mut W,
 }
@@ -92,11 +103,11 @@ impl<'a> EORSTS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Write proxy for field `WAKEUPS`"]
+#[doc = "Field `WAKEUPS` writer - Wake-Up Interrupt Set"]
 pub struct WAKEUPS_W<'a> {
     w: &'a mut W,
 }
@@ -114,11 +125,11 @@ impl<'a> WAKEUPS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Write proxy for field `EORSMS`"]
+#[doc = "Field `EORSMS` writer - End of Resume Interrupt Set"]
 pub struct EORSMS_W<'a> {
     w: &'a mut W,
 }
@@ -136,11 +147,11 @@ impl<'a> EORSMS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Write proxy for field `UPRSMS`"]
+#[doc = "Field `UPRSMS` writer - Upstream Resume Interrupt Set"]
 pub struct UPRSMS_W<'a> {
     w: &'a mut W,
 }
@@ -158,11 +169,11 @@ impl<'a> UPRSMS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Write proxy for field `DMA_1`"]
+#[doc = "Field `DMA_1` writer - DMA Channel 1 Interrupt Set"]
 pub struct DMA_1_W<'a> {
     w: &'a mut W,
 }
@@ -180,11 +191,11 @@ impl<'a> DMA_1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | ((value as u32 & 0x01) << 25);
         self.w
     }
 }
-#[doc = "Write proxy for field `DMA_2`"]
+#[doc = "Field `DMA_2` writer - DMA Channel 2 Interrupt Set"]
 pub struct DMA_2_W<'a> {
     w: &'a mut W,
 }
@@ -202,11 +213,11 @@ impl<'a> DMA_2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | ((value as u32 & 0x01) << 26);
         self.w
     }
 }
-#[doc = "Write proxy for field `DMA_3`"]
+#[doc = "Field `DMA_3` writer - DMA Channel 3 Interrupt Set"]
 pub struct DMA_3_W<'a> {
     w: &'a mut W,
 }
@@ -224,11 +235,11 @@ impl<'a> DMA_3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | ((value as u32 & 0x01) << 27);
         self.w
     }
 }
-#[doc = "Write proxy for field `DMA_4`"]
+#[doc = "Field `DMA_4` writer - DMA Channel 4 Interrupt Set"]
 pub struct DMA_4_W<'a> {
     w: &'a mut W,
 }
@@ -246,11 +257,11 @@ impl<'a> DMA_4_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | ((value as u32 & 0x01) << 28);
         self.w
     }
 }
-#[doc = "Write proxy for field `DMA_5`"]
+#[doc = "Field `DMA_5` writer - DMA Channel 5 Interrupt Set"]
 pub struct DMA_5_W<'a> {
     w: &'a mut W,
 }
@@ -268,11 +279,11 @@ impl<'a> DMA_5_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 29)) | (((value as u32) & 0x01) << 29);
+        self.w.bits = (self.w.bits & !(0x01 << 29)) | ((value as u32 & 0x01) << 29);
         self.w
     }
 }
-#[doc = "Write proxy for field `DMA_6`"]
+#[doc = "Field `DMA_6` writer - DMA Channel 6 Interrupt Set"]
 pub struct DMA_6_W<'a> {
     w: &'a mut W,
 }
@@ -290,11 +301,11 @@ impl<'a> DMA_6_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 30)) | (((value as u32) & 0x01) << 30);
+        self.w.bits = (self.w.bits & !(0x01 << 30)) | ((value as u32 & 0x01) << 30);
         self.w
     }
 }
-#[doc = "Write proxy for field `DMA_7`"]
+#[doc = "Field `DMA_7` writer - DMA Channel 7 Interrupt Set"]
 pub struct DMA_7_W<'a> {
     w: &'a mut W,
 }
@@ -312,7 +323,7 @@ impl<'a> DMA_7_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | ((value as u32 & 0x01) << 31);
         self.w
     }
 }
@@ -386,5 +397,27 @@ impl W {
     #[inline(always)]
     pub fn dma_7(&mut self) -> DMA_7_W {
         DMA_7_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Device Global Interrupt Set Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usbhs_devifr](index.html) module"]
+pub struct USBHS_DEVIFR_SPEC;
+impl crate::RegisterSpec for USBHS_DEVIFR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [usbhs_devifr::W](W) writer structure"]
+impl crate::Writable for USBHS_DEVIFR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets USBHS_DEVIFR to value 0"]
+impl crate::Resettable for USBHS_DEVIFR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

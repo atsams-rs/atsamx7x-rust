@@ -1,43 +1,303 @@
-#[doc = "Reader of register PMC_SLPWK_ASR0"]
-pub type R = crate::R<u32, super::PMC_SLPWK_ASR0>;
-#[doc = "Reader of field `PID7`"]
-pub type PID7_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID8`"]
-pub type PID8_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID10`"]
-pub type PID10_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID11`"]
-pub type PID11_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID13`"]
-pub type PID13_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID14`"]
-pub type PID14_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID16`"]
-pub type PID16_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID19`"]
-pub type PID19_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID20`"]
-pub type PID20_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID22`"]
-pub type PID22_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID23`"]
-pub type PID23_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID24`"]
-pub type PID24_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID25`"]
-pub type PID25_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID26`"]
-pub type PID26_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID27`"]
-pub type PID27_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID28`"]
-pub type PID28_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID29`"]
-pub type PID29_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID30`"]
-pub type PID30_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PID31`"]
-pub type PID31_R = crate::R<bool, bool>;
+#[doc = "Register `PMC_SLPWK_ASR0` reader"]
+pub struct R(crate::R<PMC_SLPWK_ASR0_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<PMC_SLPWK_ASR0_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<PMC_SLPWK_ASR0_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<PMC_SLPWK_ASR0_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Field `PID7` reader - Peripheral 7 Activity Status"]
+pub struct PID7_R(crate::FieldReader<bool, bool>);
+impl PID7_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID7_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID7_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID8` reader - Peripheral 8 Activity Status"]
+pub struct PID8_R(crate::FieldReader<bool, bool>);
+impl PID8_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID8_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID8_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID10` reader - Peripheral 10 Activity Status"]
+pub struct PID10_R(crate::FieldReader<bool, bool>);
+impl PID10_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID10_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID10_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID11` reader - Peripheral 11 Activity Status"]
+pub struct PID11_R(crate::FieldReader<bool, bool>);
+impl PID11_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID11_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID11_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID13` reader - Peripheral 13 Activity Status"]
+pub struct PID13_R(crate::FieldReader<bool, bool>);
+impl PID13_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID13_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID13_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID14` reader - Peripheral 14 Activity Status"]
+pub struct PID14_R(crate::FieldReader<bool, bool>);
+impl PID14_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID14_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID14_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID16` reader - Peripheral 16 Activity Status"]
+pub struct PID16_R(crate::FieldReader<bool, bool>);
+impl PID16_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID16_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID16_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID19` reader - Peripheral 19 Activity Status"]
+pub struct PID19_R(crate::FieldReader<bool, bool>);
+impl PID19_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID19_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID19_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID20` reader - Peripheral 20 Activity Status"]
+pub struct PID20_R(crate::FieldReader<bool, bool>);
+impl PID20_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID20_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID20_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID22` reader - Peripheral 22 Activity Status"]
+pub struct PID22_R(crate::FieldReader<bool, bool>);
+impl PID22_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID22_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID22_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID23` reader - Peripheral 23 Activity Status"]
+pub struct PID23_R(crate::FieldReader<bool, bool>);
+impl PID23_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID23_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID23_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID24` reader - Peripheral 24 Activity Status"]
+pub struct PID24_R(crate::FieldReader<bool, bool>);
+impl PID24_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID24_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID24_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID25` reader - Peripheral 25 Activity Status"]
+pub struct PID25_R(crate::FieldReader<bool, bool>);
+impl PID25_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID25_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID25_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID26` reader - Peripheral 26 Activity Status"]
+pub struct PID26_R(crate::FieldReader<bool, bool>);
+impl PID26_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID26_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID26_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID27` reader - Peripheral 27 Activity Status"]
+pub struct PID27_R(crate::FieldReader<bool, bool>);
+impl PID27_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID27_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID27_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID28` reader - Peripheral 28 Activity Status"]
+pub struct PID28_R(crate::FieldReader<bool, bool>);
+impl PID28_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID28_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID28_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID29` reader - Peripheral 29 Activity Status"]
+pub struct PID29_R(crate::FieldReader<bool, bool>);
+impl PID29_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID29_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID29_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID30` reader - Peripheral 30 Activity Status"]
+pub struct PID30_R(crate::FieldReader<bool, bool>);
+impl PID30_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID30_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID30_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PID31` reader - Peripheral 31 Activity Status"]
+pub struct PID31_R(crate::FieldReader<bool, bool>);
+impl PID31_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PID31_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PID31_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 impl R {
     #[doc = "Bit 7 - Peripheral 7 Activity Status"]
     #[inline(always)]
@@ -133,5 +393,21 @@ impl R {
     #[inline(always)]
     pub fn pid31(&self) -> PID31_R {
         PID31_R::new(((self.bits >> 31) & 0x01) != 0)
+    }
+}
+#[doc = "SleepWalking Activity Status Register 0\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pmc_slpwk_asr0](index.html) module"]
+pub struct PMC_SLPWK_ASR0_SPEC;
+impl crate::RegisterSpec for PMC_SLPWK_ASR0_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [pmc_slpwk_asr0::R](R) reader structure"]
+impl crate::Readable for PMC_SLPWK_ASR0_SPEC {
+    type Reader = R;
+}
+#[doc = "`reset()` method sets PMC_SLPWK_ASR0 to value 0"]
+impl crate::Resettable for PMC_SLPWK_ASR0_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

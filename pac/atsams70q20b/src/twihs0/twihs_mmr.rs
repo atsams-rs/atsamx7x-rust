@@ -1,13 +1,37 @@
-#[doc = "Reader of register TWIHS_MMR"]
-pub type R = crate::R<u32, super::TWIHS_MMR>;
-#[doc = "Writer for register TWIHS_MMR"]
-pub type W = crate::W<u32, super::TWIHS_MMR>;
-#[doc = "Register TWIHS_MMR `reset()`'s with value 0"]
-impl crate::ResetValue for super::TWIHS_MMR {
-    type Type = u32;
+#[doc = "Register `TWIHS_MMR` reader"]
+pub struct R(crate::R<TWIHS_MMR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<TWIHS_MMR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<TWIHS_MMR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<TWIHS_MMR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `TWIHS_MMR` writer"]
+pub struct W(crate::W<TWIHS_MMR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<TWIHS_MMR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<TWIHS_MMR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<TWIHS_MMR_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Internal Device Address Size\n\nValue on reset: 0"]
@@ -29,9 +53,13 @@ impl From<IADRSZ_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `IADRSZ`"]
-pub type IADRSZ_R = crate::R<u8, IADRSZ_A>;
+#[doc = "Field `IADRSZ` reader - Internal Device Address Size"]
+pub struct IADRSZ_R(crate::FieldReader<u8, IADRSZ_A>);
 impl IADRSZ_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        IADRSZ_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> IADRSZ_A {
@@ -46,25 +74,32 @@ impl IADRSZ_R {
     #[doc = "Checks if the value of the field is `NONE`"]
     #[inline(always)]
     pub fn is_none(&self) -> bool {
-        *self == IADRSZ_A::NONE
+        **self == IADRSZ_A::NONE
     }
     #[doc = "Checks if the value of the field is `_1_BYTE`"]
     #[inline(always)]
     pub fn is_1_byte(&self) -> bool {
-        *self == IADRSZ_A::_1_BYTE
+        **self == IADRSZ_A::_1_BYTE
     }
     #[doc = "Checks if the value of the field is `_2_BYTE`"]
     #[inline(always)]
     pub fn is_2_byte(&self) -> bool {
-        *self == IADRSZ_A::_2_BYTE
+        **self == IADRSZ_A::_2_BYTE
     }
     #[doc = "Checks if the value of the field is `_3_BYTE`"]
     #[inline(always)]
     pub fn is_3_byte(&self) -> bool {
-        *self == IADRSZ_A::_3_BYTE
+        **self == IADRSZ_A::_3_BYTE
     }
 }
-#[doc = "Write proxy for field `IADRSZ`"]
+impl core::ops::Deref for IADRSZ_R {
+    type Target = crate::FieldReader<u8, IADRSZ_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IADRSZ` writer - Internal Device Address Size"]
 pub struct IADRSZ_W<'a> {
     w: &'a mut W,
 }
@@ -72,9 +107,7 @@ impl<'a> IADRSZ_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: IADRSZ_A) -> &'a mut W {
-        {
-            self.bits(variant.into())
-        }
+        self.bits(variant.into())
     }
     #[doc = "No internal device address"]
     #[inline(always)]
@@ -99,13 +132,26 @@ impl<'a> IADRSZ_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 8)) | (((value as u32) & 0x03) << 8);
+        self.w.bits = (self.w.bits & !(0x03 << 8)) | ((value as u32 & 0x03) << 8);
         self.w
     }
 }
-#[doc = "Reader of field `MREAD`"]
-pub type MREAD_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `MREAD`"]
+#[doc = "Field `MREAD` reader - Master Read Direction"]
+pub struct MREAD_R(crate::FieldReader<bool, bool>);
+impl MREAD_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        MREAD_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for MREAD_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `MREAD` writer - Master Read Direction"]
 pub struct MREAD_W<'a> {
     w: &'a mut W,
 }
@@ -123,13 +169,26 @@ impl<'a> MREAD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | ((value as u32 & 0x01) << 12);
         self.w
     }
 }
-#[doc = "Reader of field `DADR`"]
-pub type DADR_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `DADR`"]
+#[doc = "Field `DADR` reader - Device Address"]
+pub struct DADR_R(crate::FieldReader<u8, u8>);
+impl DADR_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        DADR_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DADR_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DADR` writer - Device Address"]
 pub struct DADR_W<'a> {
     w: &'a mut W,
 }
@@ -137,7 +196,7 @@ impl<'a> DADR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x7f << 16)) | (((value as u32) & 0x7f) << 16);
+        self.w.bits = (self.w.bits & !(0x7f << 16)) | ((value as u32 & 0x7f) << 16);
         self.w
     }
 }
@@ -173,5 +232,31 @@ impl W {
     #[inline(always)]
     pub fn dadr(&mut self) -> DADR_W {
         DADR_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Master Mode Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [twihs_mmr](index.html) module"]
+pub struct TWIHS_MMR_SPEC;
+impl crate::RegisterSpec for TWIHS_MMR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [twihs_mmr::R](R) reader structure"]
+impl crate::Readable for TWIHS_MMR_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [twihs_mmr::W](W) writer structure"]
+impl crate::Writable for TWIHS_MMR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets TWIHS_MMR to value 0"]
+impl crate::Resettable for TWIHS_MMR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

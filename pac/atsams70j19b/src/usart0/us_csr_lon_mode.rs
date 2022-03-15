@@ -1,33 +1,228 @@
-#[doc = "Reader of register US_CSR_LON_MODE"]
-pub type R = crate::R<u32, super::US_CSR_LON_MODE>;
-#[doc = "Reader of field `RXRDY`"]
-pub type RXRDY_R = crate::R<bool, bool>;
-#[doc = "Reader of field `TXRDY`"]
-pub type TXRDY_R = crate::R<bool, bool>;
-#[doc = "Reader of field `OVRE`"]
-pub type OVRE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `TXEMPTY`"]
-pub type TXEMPTY_R = crate::R<bool, bool>;
-#[doc = "Reader of field `RIIC`"]
-pub type RIIC_R = crate::R<bool, bool>;
-#[doc = "Reader of field `DSRIC`"]
-pub type DSRIC_R = crate::R<bool, bool>;
-#[doc = "Reader of field `DCDIC`"]
-pub type DCDIC_R = crate::R<bool, bool>;
-#[doc = "Reader of field `LSFE`"]
-pub type LSFE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `LCRCE`"]
-pub type LCRCE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `LTXD`"]
-pub type LTXD_R = crate::R<bool, bool>;
-#[doc = "Reader of field `LCOL`"]
-pub type LCOL_R = crate::R<bool, bool>;
-#[doc = "Reader of field `LFET`"]
-pub type LFET_R = crate::R<bool, bool>;
-#[doc = "Reader of field `LRXD`"]
-pub type LRXD_R = crate::R<bool, bool>;
-#[doc = "Reader of field `LBLOVFE`"]
-pub type LBLOVFE_R = crate::R<bool, bool>;
+#[doc = "Register `US_CSR_LON_MODE` reader"]
+pub struct R(crate::R<US_CSR_LON_MODE_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<US_CSR_LON_MODE_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<US_CSR_LON_MODE_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<US_CSR_LON_MODE_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Field `RXRDY` reader - Receiver Ready (cleared by reading US_RHR)"]
+pub struct RXRDY_R(crate::FieldReader<bool, bool>);
+impl RXRDY_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        RXRDY_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for RXRDY_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `TXRDY` reader - Transmitter Ready (cleared by writing US_THR)"]
+pub struct TXRDY_R(crate::FieldReader<bool, bool>);
+impl TXRDY_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        TXRDY_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for TXRDY_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `OVRE` reader - Overrun Error (cleared by writing a one to bit US_CR.RSTSTA)"]
+pub struct OVRE_R(crate::FieldReader<bool, bool>);
+impl OVRE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        OVRE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for OVRE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `TXEMPTY` reader - Transmitter Empty (cleared by writing US_THR)"]
+pub struct TXEMPTY_R(crate::FieldReader<bool, bool>);
+impl TXEMPTY_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        TXEMPTY_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for TXEMPTY_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `RIIC` reader - Ring Indicator Input Change Flag (cleared on read)"]
+pub struct RIIC_R(crate::FieldReader<bool, bool>);
+impl RIIC_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        RIIC_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for RIIC_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DSRIC` reader - Data Set Ready Input Change Flag (cleared on read)"]
+pub struct DSRIC_R(crate::FieldReader<bool, bool>);
+impl DSRIC_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DSRIC_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DSRIC_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DCDIC` reader - Data Carrier Detect Input Change Flag (cleared on read)"]
+pub struct DCDIC_R(crate::FieldReader<bool, bool>);
+impl DCDIC_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        DCDIC_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for DCDIC_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LSFE` reader - LON Short Frame Error"]
+pub struct LSFE_R(crate::FieldReader<bool, bool>);
+impl LSFE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LSFE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LSFE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LCRCE` reader - LON CRC Error"]
+pub struct LCRCE_R(crate::FieldReader<bool, bool>);
+impl LCRCE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LCRCE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LCRCE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LTXD` reader - LON Transmission End Flag"]
+pub struct LTXD_R(crate::FieldReader<bool, bool>);
+impl LTXD_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LTXD_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LTXD_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LCOL` reader - LON Collision Detected Flag"]
+pub struct LCOL_R(crate::FieldReader<bool, bool>);
+impl LCOL_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LCOL_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LCOL_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LFET` reader - LON Frame Early Termination"]
+pub struct LFET_R(crate::FieldReader<bool, bool>);
+impl LFET_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LFET_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LFET_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LRXD` reader - LON Reception End Flag"]
+pub struct LRXD_R(crate::FieldReader<bool, bool>);
+impl LRXD_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LRXD_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LRXD_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LBLOVFE` reader - LON Backlog Overflow Error"]
+pub struct LBLOVFE_R(crate::FieldReader<bool, bool>);
+impl LBLOVFE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LBLOVFE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LBLOVFE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 impl R {
     #[doc = "Bit 0 - Receiver Ready (cleared by reading US_RHR)"]
     #[inline(always)]
@@ -98,5 +293,21 @@ impl R {
     #[inline(always)]
     pub fn lblovfe(&self) -> LBLOVFE_R {
         LBLOVFE_R::new(((self.bits >> 28) & 0x01) != 0)
+    }
+}
+#[doc = "Channel Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [us_csr_lon_mode](index.html) module"]
+pub struct US_CSR_LON_MODE_SPEC;
+impl crate::RegisterSpec for US_CSR_LON_MODE_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [us_csr_lon_mode::R](R) reader structure"]
+impl crate::Readable for US_CSR_LON_MODE_SPEC {
+    type Reader = R;
+}
+#[doc = "`reset()` method sets US_CSR_LON_MODE to value 0"]
+impl crate::Resettable for US_CSR_LON_MODE_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

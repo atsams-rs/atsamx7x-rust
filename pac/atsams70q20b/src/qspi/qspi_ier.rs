@@ -1,14 +1,25 @@
-#[doc = "Writer for register QSPI_IER"]
-pub type W = crate::W<u32, super::QSPI_IER>;
-#[doc = "Register QSPI_IER `reset()`'s with value 0"]
-impl crate::ResetValue for super::QSPI_IER {
-    type Type = u32;
+#[doc = "Register `QSPI_IER` writer"]
+pub struct W(crate::W<QSPI_IER_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<QSPI_IER_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `RDRF`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<QSPI_IER_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<QSPI_IER_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `RDRF` writer - Receive Data Register Full Interrupt Enable"]
 pub struct RDRF_W<'a> {
     w: &'a mut W,
 }
@@ -26,11 +37,11 @@ impl<'a> RDRF_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
-#[doc = "Write proxy for field `TDRE`"]
+#[doc = "Field `TDRE` writer - Transmit Data Register Empty Interrupt Enable"]
 pub struct TDRE_W<'a> {
     w: &'a mut W,
 }
@@ -48,11 +59,11 @@ impl<'a> TDRE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Write proxy for field `TXEMPTY`"]
+#[doc = "Field `TXEMPTY` writer - Transmission Registers Empty Enable"]
 pub struct TXEMPTY_W<'a> {
     w: &'a mut W,
 }
@@ -70,11 +81,11 @@ impl<'a> TXEMPTY_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Write proxy for field `OVRES`"]
+#[doc = "Field `OVRES` writer - Overrun Error Interrupt Enable"]
 pub struct OVRES_W<'a> {
     w: &'a mut W,
 }
@@ -92,11 +103,11 @@ impl<'a> OVRES_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Write proxy for field `CSR`"]
+#[doc = "Field `CSR` writer - Chip Select Rise Interrupt Enable"]
 pub struct CSR_W<'a> {
     w: &'a mut W,
 }
@@ -114,11 +125,11 @@ impl<'a> CSR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | ((value as u32 & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Write proxy for field `CSS`"]
+#[doc = "Field `CSS` writer - Chip Select Status Interrupt Enable"]
 pub struct CSS_W<'a> {
     w: &'a mut W,
 }
@@ -136,11 +147,11 @@ impl<'a> CSS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | ((value as u32 & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Write proxy for field `INSTRE`"]
+#[doc = "Field `INSTRE` writer - Instruction End Interrupt Enable"]
 pub struct INSTRE_W<'a> {
     w: &'a mut W,
 }
@@ -158,7 +169,7 @@ impl<'a> INSTRE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | ((value as u32 & 0x01) << 10);
         self.w
     }
 }
@@ -197,5 +208,27 @@ impl W {
     #[inline(always)]
     pub fn instre(&mut self) -> INSTRE_W {
         INSTRE_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Interrupt Enable Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [qspi_ier](index.html) module"]
+pub struct QSPI_IER_SPEC;
+impl crate::RegisterSpec for QSPI_IER_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [qspi_ier::W](W) writer structure"]
+impl crate::Writable for QSPI_IER_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets QSPI_IER to value 0"]
+impl crate::Resettable for QSPI_IER_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

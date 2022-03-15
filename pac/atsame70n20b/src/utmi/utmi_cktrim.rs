@@ -1,13 +1,37 @@
-#[doc = "Reader of register UTMI_CKTRIM"]
-pub type R = crate::R<u32, super::UTMI_CKTRIM>;
-#[doc = "Writer for register UTMI_CKTRIM"]
-pub type W = crate::W<u32, super::UTMI_CKTRIM>;
-#[doc = "Register UTMI_CKTRIM `reset()`'s with value 0"]
-impl crate::ResetValue for super::UTMI_CKTRIM {
-    type Type = u32;
+#[doc = "Register `UTMI_CKTRIM` reader"]
+pub struct R(crate::R<UTMI_CKTRIM_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<UTMI_CKTRIM_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<UTMI_CKTRIM_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<UTMI_CKTRIM_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `UTMI_CKTRIM` writer"]
+pub struct W(crate::W<UTMI_CKTRIM_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<UTMI_CKTRIM_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<UTMI_CKTRIM_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<UTMI_CKTRIM_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "UTMI Reference Clock Frequency\n\nValue on reset: 0"]
@@ -25,31 +49,41 @@ impl From<FREQ_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `FREQ`"]
-pub type FREQ_R = crate::R<u8, FREQ_A>;
+#[doc = "Field `FREQ` reader - UTMI Reference Clock Frequency"]
+pub struct FREQ_R(crate::FieldReader<u8, FREQ_A>);
 impl FREQ_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        FREQ_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u8, FREQ_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<FREQ_A> {
         match self.bits {
-            0 => Val(FREQ_A::XTAL12),
-            1 => Val(FREQ_A::XTAL16),
-            i => Res(i),
+            0 => Some(FREQ_A::XTAL12),
+            1 => Some(FREQ_A::XTAL16),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `XTAL12`"]
     #[inline(always)]
     pub fn is_xtal12(&self) -> bool {
-        *self == FREQ_A::XTAL12
+        **self == FREQ_A::XTAL12
     }
     #[doc = "Checks if the value of the field is `XTAL16`"]
     #[inline(always)]
     pub fn is_xtal16(&self) -> bool {
-        *self == FREQ_A::XTAL16
+        **self == FREQ_A::XTAL16
     }
 }
-#[doc = "Write proxy for field `FREQ`"]
+impl core::ops::Deref for FREQ_R {
+    type Target = crate::FieldReader<u8, FREQ_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `FREQ` writer - UTMI Reference Clock Frequency"]
 pub struct FREQ_W<'a> {
     w: &'a mut W,
 }
@@ -72,7 +106,7 @@ impl<'a> FREQ_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x03) | ((value as u32) & 0x03);
+        self.w.bits = (self.w.bits & !0x03) | (value as u32 & 0x03);
         self.w
     }
 }
@@ -88,5 +122,31 @@ impl W {
     #[inline(always)]
     pub fn freq(&mut self) -> FREQ_W {
         FREQ_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "UTMI Clock Trimming Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [utmi_cktrim](index.html) module"]
+pub struct UTMI_CKTRIM_SPEC;
+impl crate::RegisterSpec for UTMI_CKTRIM_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [utmi_cktrim::R](R) reader structure"]
+impl crate::Readable for UTMI_CKTRIM_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [utmi_cktrim::W](W) writer structure"]
+impl crate::Writable for UTMI_CKTRIM_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets UTMI_CKTRIM to value 0"]
+impl crate::Resettable for UTMI_CKTRIM_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

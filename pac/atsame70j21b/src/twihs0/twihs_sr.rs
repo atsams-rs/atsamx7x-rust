@@ -1,43 +1,303 @@
-#[doc = "Reader of register TWIHS_SR"]
-pub type R = crate::R<u32, super::TWIHS_SR>;
-#[doc = "Reader of field `TXCOMP`"]
-pub type TXCOMP_R = crate::R<bool, bool>;
-#[doc = "Reader of field `RXRDY`"]
-pub type RXRDY_R = crate::R<bool, bool>;
-#[doc = "Reader of field `TXRDY`"]
-pub type TXRDY_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SVREAD`"]
-pub type SVREAD_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SVACC`"]
-pub type SVACC_R = crate::R<bool, bool>;
-#[doc = "Reader of field `GACC`"]
-pub type GACC_R = crate::R<bool, bool>;
-#[doc = "Reader of field `OVRE`"]
-pub type OVRE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `UNRE`"]
-pub type UNRE_R = crate::R<bool, bool>;
-#[doc = "Reader of field `NACK`"]
-pub type NACK_R = crate::R<bool, bool>;
-#[doc = "Reader of field `ARBLST`"]
-pub type ARBLST_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SCLWS`"]
-pub type SCLWS_R = crate::R<bool, bool>;
-#[doc = "Reader of field `EOSACC`"]
-pub type EOSACC_R = crate::R<bool, bool>;
-#[doc = "Reader of field `MCACK`"]
-pub type MCACK_R = crate::R<bool, bool>;
-#[doc = "Reader of field `TOUT`"]
-pub type TOUT_R = crate::R<bool, bool>;
-#[doc = "Reader of field `PECERR`"]
-pub type PECERR_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SMBDAM`"]
-pub type SMBDAM_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SMBHHM`"]
-pub type SMBHHM_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SCL`"]
-pub type SCL_R = crate::R<bool, bool>;
-#[doc = "Reader of field `SDA`"]
-pub type SDA_R = crate::R<bool, bool>;
+#[doc = "Register `TWIHS_SR` reader"]
+pub struct R(crate::R<TWIHS_SR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<TWIHS_SR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<TWIHS_SR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<TWIHS_SR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Field `TXCOMP` reader - Transmission Completed (cleared by writing TWIHS_THR)"]
+pub struct TXCOMP_R(crate::FieldReader<bool, bool>);
+impl TXCOMP_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        TXCOMP_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for TXCOMP_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `RXRDY` reader - Receive Holding Register Ready (cleared by reading TWIHS_RHR)"]
+pub struct RXRDY_R(crate::FieldReader<bool, bool>);
+impl RXRDY_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        RXRDY_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for RXRDY_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `TXRDY` reader - Transmit Holding Register Ready (cleared by writing TWIHS_THR)"]
+pub struct TXRDY_R(crate::FieldReader<bool, bool>);
+impl TXRDY_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        TXRDY_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for TXRDY_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SVREAD` reader - Slave Read"]
+pub struct SVREAD_R(crate::FieldReader<bool, bool>);
+impl SVREAD_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SVREAD_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SVREAD_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SVACC` reader - Slave Access"]
+pub struct SVACC_R(crate::FieldReader<bool, bool>);
+impl SVACC_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SVACC_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SVACC_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `GACC` reader - General Call Access (cleared on read)"]
+pub struct GACC_R(crate::FieldReader<bool, bool>);
+impl GACC_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        GACC_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for GACC_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `OVRE` reader - Overrun Error (cleared on read)"]
+pub struct OVRE_R(crate::FieldReader<bool, bool>);
+impl OVRE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        OVRE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for OVRE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `UNRE` reader - Underrun Error (cleared on read)"]
+pub struct UNRE_R(crate::FieldReader<bool, bool>);
+impl UNRE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        UNRE_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for UNRE_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `NACK` reader - Not Acknowledged (cleared on read)"]
+pub struct NACK_R(crate::FieldReader<bool, bool>);
+impl NACK_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        NACK_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for NACK_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `ARBLST` reader - Arbitration Lost (cleared on read)"]
+pub struct ARBLST_R(crate::FieldReader<bool, bool>);
+impl ARBLST_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        ARBLST_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for ARBLST_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SCLWS` reader - Clock Wait State"]
+pub struct SCLWS_R(crate::FieldReader<bool, bool>);
+impl SCLWS_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SCLWS_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SCLWS_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `EOSACC` reader - End Of Slave Access (cleared on read)"]
+pub struct EOSACC_R(crate::FieldReader<bool, bool>);
+impl EOSACC_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        EOSACC_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for EOSACC_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `MCACK` reader - Master Code Acknowledge (cleared on read)"]
+pub struct MCACK_R(crate::FieldReader<bool, bool>);
+impl MCACK_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        MCACK_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for MCACK_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `TOUT` reader - Timeout Error (cleared on read)"]
+pub struct TOUT_R(crate::FieldReader<bool, bool>);
+impl TOUT_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        TOUT_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for TOUT_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PECERR` reader - PEC Error (cleared on read)"]
+pub struct PECERR_R(crate::FieldReader<bool, bool>);
+impl PECERR_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        PECERR_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PECERR_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SMBDAM` reader - SMBus Default Address Match (cleared on read)"]
+pub struct SMBDAM_R(crate::FieldReader<bool, bool>);
+impl SMBDAM_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SMBDAM_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SMBDAM_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SMBHHM` reader - SMBus Host Header Address Match (cleared on read)"]
+pub struct SMBHHM_R(crate::FieldReader<bool, bool>);
+impl SMBHHM_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SMBHHM_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SMBHHM_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SCL` reader - SCL Line Value"]
+pub struct SCL_R(crate::FieldReader<bool, bool>);
+impl SCL_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SCL_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SCL_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SDA` reader - SDA Line Value"]
+pub struct SDA_R(crate::FieldReader<bool, bool>);
+impl SDA_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        SDA_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for SDA_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 impl R {
     #[doc = "Bit 0 - Transmission Completed (cleared by writing TWIHS_THR)"]
     #[inline(always)]
@@ -133,5 +393,21 @@ impl R {
     #[inline(always)]
     pub fn sda(&self) -> SDA_R {
         SDA_R::new(((self.bits >> 25) & 0x01) != 0)
+    }
+}
+#[doc = "Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [twihs_sr](index.html) module"]
+pub struct TWIHS_SR_SPEC;
+impl crate::RegisterSpec for TWIHS_SR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [twihs_sr::R](R) reader structure"]
+impl crate::Readable for TWIHS_SR_SPEC {
+    type Reader = R;
+}
+#[doc = "`reset()` method sets TWIHS_SR to value 0"]
+impl crate::Resettable for TWIHS_SR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

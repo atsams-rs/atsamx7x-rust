@@ -1,18 +1,55 @@
-#[doc = "Reader of register XDMAC_GWAC"]
-pub type R = crate::R<u32, super::XDMAC_GWAC>;
-#[doc = "Writer for register XDMAC_GWAC"]
-pub type W = crate::W<u32, super::XDMAC_GWAC>;
-#[doc = "Register XDMAC_GWAC `reset()`'s with value 0"]
-impl crate::ResetValue for super::XDMAC_GWAC {
-    type Type = u32;
+#[doc = "Register `XDMAC_GWAC` reader"]
+pub struct R(crate::R<XDMAC_GWAC_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<XDMAC_GWAC_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `PW0`"]
-pub type PW0_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `PW0`"]
+impl From<crate::R<XDMAC_GWAC_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<XDMAC_GWAC_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `XDMAC_GWAC` writer"]
+pub struct W(crate::W<XDMAC_GWAC_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<XDMAC_GWAC_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<XDMAC_GWAC_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<XDMAC_GWAC_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `PW0` reader - Pool Weight 0"]
+pub struct PW0_R(crate::FieldReader<u8, u8>);
+impl PW0_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        PW0_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PW0_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PW0` writer - Pool Weight 0"]
 pub struct PW0_W<'a> {
     w: &'a mut W,
 }
@@ -20,13 +57,26 @@ impl<'a> PW0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x0f) | ((value as u32) & 0x0f);
+        self.w.bits = (self.w.bits & !0x0f) | (value as u32 & 0x0f);
         self.w
     }
 }
-#[doc = "Reader of field `PW1`"]
-pub type PW1_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `PW1`"]
+#[doc = "Field `PW1` reader - Pool Weight 1"]
+pub struct PW1_R(crate::FieldReader<u8, u8>);
+impl PW1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        PW1_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PW1_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PW1` writer - Pool Weight 1"]
 pub struct PW1_W<'a> {
     w: &'a mut W,
 }
@@ -34,13 +84,26 @@ impl<'a> PW1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x0f << 4)) | (((value as u32) & 0x0f) << 4);
+        self.w.bits = (self.w.bits & !(0x0f << 4)) | ((value as u32 & 0x0f) << 4);
         self.w
     }
 }
-#[doc = "Reader of field `PW2`"]
-pub type PW2_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `PW2`"]
+#[doc = "Field `PW2` reader - Pool Weight 2"]
+pub struct PW2_R(crate::FieldReader<u8, u8>);
+impl PW2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        PW2_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PW2_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PW2` writer - Pool Weight 2"]
 pub struct PW2_W<'a> {
     w: &'a mut W,
 }
@@ -48,13 +111,26 @@ impl<'a> PW2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x0f << 8)) | (((value as u32) & 0x0f) << 8);
+        self.w.bits = (self.w.bits & !(0x0f << 8)) | ((value as u32 & 0x0f) << 8);
         self.w
     }
 }
-#[doc = "Reader of field `PW3`"]
-pub type PW3_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `PW3`"]
+#[doc = "Field `PW3` reader - Pool Weight 3"]
+pub struct PW3_R(crate::FieldReader<u8, u8>);
+impl PW3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        PW3_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PW3_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PW3` writer - Pool Weight 3"]
 pub struct PW3_W<'a> {
     w: &'a mut W,
 }
@@ -62,7 +138,7 @@ impl<'a> PW3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x0f << 12)) | (((value as u32) & 0x0f) << 12);
+        self.w.bits = (self.w.bits & !(0x0f << 12)) | ((value as u32 & 0x0f) << 12);
         self.w
     }
 }
@@ -108,5 +184,31 @@ impl W {
     #[inline(always)]
     pub fn pw3(&mut self) -> PW3_W {
         PW3_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Global Weighted Arbiter Configuration Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gwac](index.html) module"]
+pub struct XDMAC_GWAC_SPEC;
+impl crate::RegisterSpec for XDMAC_GWAC_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [xdmac_gwac::R](R) reader structure"]
+impl crate::Readable for XDMAC_GWAC_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [xdmac_gwac::W](W) writer structure"]
+impl crate::Writable for XDMAC_GWAC_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets XDMAC_GWAC to value 0"]
+impl crate::Resettable for XDMAC_GWAC_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

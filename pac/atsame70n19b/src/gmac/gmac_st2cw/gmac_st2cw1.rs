@@ -1,18 +1,55 @@
-#[doc = "Reader of register GMAC_ST2CW1"]
-pub type R = crate::R<u32, super::GMAC_ST2CW1>;
-#[doc = "Writer for register GMAC_ST2CW1"]
-pub type W = crate::W<u32, super::GMAC_ST2CW1>;
-#[doc = "Register GMAC_ST2CW1 `reset()`'s with value 0"]
-impl crate::ResetValue for super::GMAC_ST2CW1 {
-    type Type = u32;
+#[doc = "Register `GMAC_ST2CW1` reader"]
+pub struct R(crate::R<GMAC_ST2CW1_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<GMAC_ST2CW1_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `OFFSVAL`"]
-pub type OFFSVAL_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `OFFSVAL`"]
+impl From<crate::R<GMAC_ST2CW1_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<GMAC_ST2CW1_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `GMAC_ST2CW1` writer"]
+pub struct W(crate::W<GMAC_ST2CW1_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<GMAC_ST2CW1_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<GMAC_ST2CW1_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<GMAC_ST2CW1_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `OFFSVAL` reader - Offset Value in Bytes"]
+pub struct OFFSVAL_R(crate::FieldReader<u8, u8>);
+impl OFFSVAL_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        OFFSVAL_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for OFFSVAL_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `OFFSVAL` writer - Offset Value in Bytes"]
 pub struct OFFSVAL_W<'a> {
     w: &'a mut W,
 }
@@ -20,7 +57,7 @@ impl<'a> OFFSVAL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x7f) | ((value as u32) & 0x7f);
+        self.w.bits = (self.w.bits & !0x7f) | (value as u32 & 0x7f);
         self.w
     }
 }
@@ -43,9 +80,13 @@ impl From<OFFSSTRT_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `OFFSSTRT`"]
-pub type OFFSSTRT_R = crate::R<u8, OFFSSTRT_A>;
+#[doc = "Field `OFFSSTRT` reader - Ethernet Frame Offset Start"]
+pub struct OFFSSTRT_R(crate::FieldReader<u8, OFFSSTRT_A>);
 impl OFFSSTRT_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        OFFSSTRT_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> OFFSSTRT_A {
@@ -60,25 +101,32 @@ impl OFFSSTRT_R {
     #[doc = "Checks if the value of the field is `FRAMESTART`"]
     #[inline(always)]
     pub fn is_framestart(&self) -> bool {
-        *self == OFFSSTRT_A::FRAMESTART
+        **self == OFFSSTRT_A::FRAMESTART
     }
     #[doc = "Checks if the value of the field is `ETHERTYPE`"]
     #[inline(always)]
     pub fn is_ethertype(&self) -> bool {
-        *self == OFFSSTRT_A::ETHERTYPE
+        **self == OFFSSTRT_A::ETHERTYPE
     }
     #[doc = "Checks if the value of the field is `IP`"]
     #[inline(always)]
     pub fn is_ip(&self) -> bool {
-        *self == OFFSSTRT_A::IP
+        **self == OFFSSTRT_A::IP
     }
     #[doc = "Checks if the value of the field is `TCP_UDP`"]
     #[inline(always)]
     pub fn is_tcp_udp(&self) -> bool {
-        *self == OFFSSTRT_A::TCP_UDP
+        **self == OFFSSTRT_A::TCP_UDP
     }
 }
-#[doc = "Write proxy for field `OFFSSTRT`"]
+impl core::ops::Deref for OFFSSTRT_R {
+    type Target = crate::FieldReader<u8, OFFSSTRT_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `OFFSSTRT` writer - Ethernet Frame Offset Start"]
 pub struct OFFSSTRT_W<'a> {
     w: &'a mut W,
 }
@@ -86,9 +134,7 @@ impl<'a> OFFSSTRT_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: OFFSSTRT_A) -> &'a mut W {
-        {
-            self.bits(variant.into())
-        }
+        self.bits(variant.into())
     }
     #[doc = "Offset from the start of the frame"]
     #[inline(always)]
@@ -113,7 +159,7 @@ impl<'a> OFFSSTRT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 7)) | (((value as u32) & 0x03) << 7);
+        self.w.bits = (self.w.bits & !(0x03 << 7)) | ((value as u32 & 0x03) << 7);
         self.w
     }
 }
@@ -139,5 +185,31 @@ impl W {
     #[inline(always)]
     pub fn offsstrt(&mut self) -> OFFSSTRT_W {
         OFFSSTRT_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Screening Type 2 Compare Word 1 Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gmac_st2cw1](index.html) module"]
+pub struct GMAC_ST2CW1_SPEC;
+impl crate::RegisterSpec for GMAC_ST2CW1_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [gmac_st2cw1::R](R) reader structure"]
+impl crate::Readable for GMAC_ST2CW1_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [gmac_st2cw1::W](W) writer structure"]
+impl crate::Writable for GMAC_ST2CW1_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets GMAC_ST2CW1 to value 0"]
+impl crate::Resettable for GMAC_ST2CW1_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

@@ -1,18 +1,55 @@
-#[doc = "Reader of register PWM_ETRG2"]
-pub type R = crate::R<u32, super::PWM_ETRG2>;
-#[doc = "Writer for register PWM_ETRG2"]
-pub type W = crate::W<u32, super::PWM_ETRG2>;
-#[doc = "Register PWM_ETRG2 `reset()`'s with value 0"]
-impl crate::ResetValue for super::PWM_ETRG2 {
-    type Type = u32;
+#[doc = "Register `PWM_ETRG2` reader"]
+pub struct R(crate::R<PWM_ETRG2_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<PWM_ETRG2_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `MAXCNT`"]
-pub type MAXCNT_R = crate::R<u32, u32>;
-#[doc = "Write proxy for field `MAXCNT`"]
+impl From<crate::R<PWM_ETRG2_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<PWM_ETRG2_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `PWM_ETRG2` writer"]
+pub struct W(crate::W<PWM_ETRG2_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<PWM_ETRG2_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<PWM_ETRG2_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<PWM_ETRG2_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `MAXCNT` reader - Maximum Counter value"]
+pub struct MAXCNT_R(crate::FieldReader<u32, u32>);
+impl MAXCNT_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u32) -> Self {
+        MAXCNT_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for MAXCNT_R {
+    type Target = crate::FieldReader<u32, u32>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `MAXCNT` writer - Maximum Counter value"]
 pub struct MAXCNT_W<'a> {
     w: &'a mut W,
 }
@@ -20,7 +57,7 @@ impl<'a> MAXCNT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u32) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x00ff_ffff) | ((value as u32) & 0x00ff_ffff);
+        self.w.bits = (self.w.bits & !0x00ff_ffff) | (value as u32 & 0x00ff_ffff);
         self.w
     }
 }
@@ -43,9 +80,13 @@ impl From<TRGMODE_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `TRGMODE`"]
-pub type TRGMODE_R = crate::R<u8, TRGMODE_A>;
+#[doc = "Field `TRGMODE` reader - External Trigger Mode"]
+pub struct TRGMODE_R(crate::FieldReader<u8, TRGMODE_A>);
 impl TRGMODE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        TRGMODE_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> TRGMODE_A {
@@ -60,25 +101,32 @@ impl TRGMODE_R {
     #[doc = "Checks if the value of the field is `OFF`"]
     #[inline(always)]
     pub fn is_off(&self) -> bool {
-        *self == TRGMODE_A::OFF
+        **self == TRGMODE_A::OFF
     }
     #[doc = "Checks if the value of the field is `MODE1`"]
     #[inline(always)]
     pub fn is_mode1(&self) -> bool {
-        *self == TRGMODE_A::MODE1
+        **self == TRGMODE_A::MODE1
     }
     #[doc = "Checks if the value of the field is `MODE2`"]
     #[inline(always)]
     pub fn is_mode2(&self) -> bool {
-        *self == TRGMODE_A::MODE2
+        **self == TRGMODE_A::MODE2
     }
     #[doc = "Checks if the value of the field is `MODE3`"]
     #[inline(always)]
     pub fn is_mode3(&self) -> bool {
-        *self == TRGMODE_A::MODE3
+        **self == TRGMODE_A::MODE3
     }
 }
-#[doc = "Write proxy for field `TRGMODE`"]
+impl core::ops::Deref for TRGMODE_R {
+    type Target = crate::FieldReader<u8, TRGMODE_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `TRGMODE` writer - External Trigger Mode"]
 pub struct TRGMODE_W<'a> {
     w: &'a mut W,
 }
@@ -86,9 +134,7 @@ impl<'a> TRGMODE_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: TRGMODE_A) -> &'a mut W {
-        {
-            self.bits(variant.into())
-        }
+        self.bits(variant.into())
     }
     #[doc = "External trigger is not enabled."]
     #[inline(always)]
@@ -113,7 +159,7 @@ impl<'a> TRGMODE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 24)) | (((value as u32) & 0x03) << 24);
+        self.w.bits = (self.w.bits & !(0x03 << 24)) | ((value as u32 & 0x03) << 24);
         self.w
     }
 }
@@ -131,9 +177,13 @@ impl From<TRGEDGE_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `TRGEDGE`"]
-pub type TRGEDGE_R = crate::R<bool, TRGEDGE_A>;
+#[doc = "Field `TRGEDGE` reader - Edge Selection"]
+pub struct TRGEDGE_R(crate::FieldReader<bool, TRGEDGE_A>);
 impl TRGEDGE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        TRGEDGE_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> TRGEDGE_A {
@@ -145,15 +195,22 @@ impl TRGEDGE_R {
     #[doc = "Checks if the value of the field is `FALLING_ZERO`"]
     #[inline(always)]
     pub fn is_falling_zero(&self) -> bool {
-        *self == TRGEDGE_A::FALLING_ZERO
+        **self == TRGEDGE_A::FALLING_ZERO
     }
     #[doc = "Checks if the value of the field is `RISING_ONE`"]
     #[inline(always)]
     pub fn is_rising_one(&self) -> bool {
-        *self == TRGEDGE_A::RISING_ONE
+        **self == TRGEDGE_A::RISING_ONE
     }
 }
-#[doc = "Write proxy for field `TRGEDGE`"]
+impl core::ops::Deref for TRGEDGE_R {
+    type Target = crate::FieldReader<bool, TRGEDGE_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `TRGEDGE` writer - Edge Selection"]
 pub struct TRGEDGE_W<'a> {
     w: &'a mut W,
 }
@@ -161,9 +218,7 @@ impl<'a> TRGEDGE_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: TRGEDGE_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "TRGMODE = 1: TRGINx event detection on falling edge.TRGMODE = 2, 3: TRGINx active level is 0"]
     #[inline(always)]
@@ -188,13 +243,26 @@ impl<'a> TRGEDGE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | ((value as u32 & 0x01) << 28);
         self.w
     }
 }
-#[doc = "Reader of field `TRGFILT`"]
-pub type TRGFILT_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `TRGFILT`"]
+#[doc = "Field `TRGFILT` reader - Filtered input"]
+pub struct TRGFILT_R(crate::FieldReader<bool, bool>);
+impl TRGFILT_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        TRGFILT_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for TRGFILT_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `TRGFILT` writer - Filtered input"]
 pub struct TRGFILT_W<'a> {
     w: &'a mut W,
 }
@@ -212,13 +280,26 @@ impl<'a> TRGFILT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 29)) | (((value as u32) & 0x01) << 29);
+        self.w.bits = (self.w.bits & !(0x01 << 29)) | ((value as u32 & 0x01) << 29);
         self.w
     }
 }
-#[doc = "Reader of field `TRGSRC`"]
-pub type TRGSRC_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `TRGSRC`"]
+#[doc = "Field `TRGSRC` reader - Trigger Source"]
+pub struct TRGSRC_R(crate::FieldReader<bool, bool>);
+impl TRGSRC_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        TRGSRC_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for TRGSRC_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `TRGSRC` writer - Trigger Source"]
 pub struct TRGSRC_W<'a> {
     w: &'a mut W,
 }
@@ -236,13 +317,26 @@ impl<'a> TRGSRC_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 30)) | (((value as u32) & 0x01) << 30);
+        self.w.bits = (self.w.bits & !(0x01 << 30)) | ((value as u32 & 0x01) << 30);
         self.w
     }
 }
-#[doc = "Reader of field `RFEN`"]
-pub type RFEN_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `RFEN`"]
+#[doc = "Field `RFEN` reader - Recoverable Fault Enable"]
+pub struct RFEN_R(crate::FieldReader<bool, bool>);
+impl RFEN_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        RFEN_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for RFEN_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `RFEN` writer - Recoverable Fault Enable"]
 pub struct RFEN_W<'a> {
     w: &'a mut W,
 }
@@ -260,7 +354,7 @@ impl<'a> RFEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | ((value as u32 & 0x01) << 31);
         self.w
     }
 }
@@ -326,5 +420,31 @@ impl W {
     #[inline(always)]
     pub fn rfen(&mut self) -> RFEN_W {
         RFEN_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "PWM External Trigger Register (trg_num = 2)\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pwm_etrg2](index.html) module"]
+pub struct PWM_ETRG2_SPEC;
+impl crate::RegisterSpec for PWM_ETRG2_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [pwm_etrg2::R](R) reader structure"]
+impl crate::Readable for PWM_ETRG2_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [pwm_etrg2::W](W) writer structure"]
+impl crate::Writable for PWM_ETRG2_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets PWM_ETRG2 to value 0"]
+impl crate::Resettable for PWM_ETRG2_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

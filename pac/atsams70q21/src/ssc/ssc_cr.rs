@@ -1,14 +1,25 @@
-#[doc = "Writer for register SSC_CR"]
-pub type W = crate::W<u32, super::SSC_CR>;
-#[doc = "Register SSC_CR `reset()`'s with value 0"]
-impl crate::ResetValue for super::SSC_CR {
-    type Type = u32;
+#[doc = "Register `SSC_CR` writer"]
+pub struct W(crate::W<SSC_CR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<SSC_CR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `RXEN`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<SSC_CR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<SSC_CR_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `RXEN` writer - Receive Enable"]
 pub struct RXEN_W<'a> {
     w: &'a mut W,
 }
@@ -26,11 +37,11 @@ impl<'a> RXEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
-#[doc = "Write proxy for field `RXDIS`"]
+#[doc = "Field `RXDIS` writer - Receive Disable"]
 pub struct RXDIS_W<'a> {
     w: &'a mut W,
 }
@@ -48,11 +59,11 @@ impl<'a> RXDIS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Write proxy for field `TXEN`"]
+#[doc = "Field `TXEN` writer - Transmit Enable"]
 pub struct TXEN_W<'a> {
     w: &'a mut W,
 }
@@ -70,11 +81,11 @@ impl<'a> TXEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | ((value as u32 & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Write proxy for field `TXDIS`"]
+#[doc = "Field `TXDIS` writer - Transmit Disable"]
 pub struct TXDIS_W<'a> {
     w: &'a mut W,
 }
@@ -92,11 +103,11 @@ impl<'a> TXDIS_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | ((value as u32 & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Write proxy for field `SWRST`"]
+#[doc = "Field `SWRST` writer - Software Reset"]
 pub struct SWRST_W<'a> {
     w: &'a mut W,
 }
@@ -114,7 +125,7 @@ impl<'a> SWRST_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | ((value as u32 & 0x01) << 15);
         self.w
     }
 }
@@ -143,5 +154,27 @@ impl W {
     #[inline(always)]
     pub fn swrst(&mut self) -> SWRST_W {
         SWRST_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Control Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ssc_cr](index.html) module"]
+pub struct SSC_CR_SPEC;
+impl crate::RegisterSpec for SSC_CR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [ssc_cr::W](W) writer structure"]
+impl crate::Writable for SSC_CR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets SSC_CR to value 0"]
+impl crate::Resettable for SSC_CR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

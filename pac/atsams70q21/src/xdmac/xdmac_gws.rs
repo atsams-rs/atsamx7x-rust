@@ -1,18 +1,55 @@
-#[doc = "Reader of register XDMAC_GWS"]
-pub type R = crate::R<u32, super::XDMAC_GWS>;
-#[doc = "Writer for register XDMAC_GWS"]
-pub type W = crate::W<u32, super::XDMAC_GWS>;
-#[doc = "Register XDMAC_GWS `reset()`'s with value 0"]
-impl crate::ResetValue for super::XDMAC_GWS {
-    type Type = u32;
+#[doc = "Register `XDMAC_GWS` reader"]
+pub struct R(crate::R<XDMAC_GWS_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<XDMAC_GWS_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `WS0`"]
-pub type WS0_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS0`"]
+impl From<crate::R<XDMAC_GWS_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<XDMAC_GWS_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `XDMAC_GWS` writer"]
+pub struct W(crate::W<XDMAC_GWS_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<XDMAC_GWS_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<XDMAC_GWS_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<XDMAC_GWS_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `WS0` reader - XDMAC Channel 0 Write Suspend Bit"]
+pub struct WS0_R(crate::FieldReader<bool, bool>);
+impl WS0_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS0_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS0_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS0` writer - XDMAC Channel 0 Write Suspend Bit"]
 pub struct WS0_W<'a> {
     w: &'a mut W,
 }
@@ -30,13 +67,26 @@ impl<'a> WS0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
-#[doc = "Reader of field `WS1`"]
-pub type WS1_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS1`"]
+#[doc = "Field `WS1` reader - XDMAC Channel 1 Write Suspend Bit"]
+pub struct WS1_R(crate::FieldReader<bool, bool>);
+impl WS1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS1_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS1_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS1` writer - XDMAC Channel 1 Write Suspend Bit"]
 pub struct WS1_W<'a> {
     w: &'a mut W,
 }
@@ -54,13 +104,26 @@ impl<'a> WS1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
-#[doc = "Reader of field `WS2`"]
-pub type WS2_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS2`"]
+#[doc = "Field `WS2` reader - XDMAC Channel 2 Write Suspend Bit"]
+pub struct WS2_R(crate::FieldReader<bool, bool>);
+impl WS2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS2_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS2_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS2` writer - XDMAC Channel 2 Write Suspend Bit"]
 pub struct WS2_W<'a> {
     w: &'a mut W,
 }
@@ -78,13 +141,26 @@ impl<'a> WS2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
-#[doc = "Reader of field `WS3`"]
-pub type WS3_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS3`"]
+#[doc = "Field `WS3` reader - XDMAC Channel 3 Write Suspend Bit"]
+pub struct WS3_R(crate::FieldReader<bool, bool>);
+impl WS3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS3_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS3_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS3` writer - XDMAC Channel 3 Write Suspend Bit"]
 pub struct WS3_W<'a> {
     w: &'a mut W,
 }
@@ -102,13 +178,26 @@ impl<'a> WS3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
-#[doc = "Reader of field `WS4`"]
-pub type WS4_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS4`"]
+#[doc = "Field `WS4` reader - XDMAC Channel 4 Write Suspend Bit"]
+pub struct WS4_R(crate::FieldReader<bool, bool>);
+impl WS4_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS4_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS4_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS4` writer - XDMAC Channel 4 Write Suspend Bit"]
 pub struct WS4_W<'a> {
     w: &'a mut W,
 }
@@ -126,13 +215,26 @@ impl<'a> WS4_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
         self.w
     }
 }
-#[doc = "Reader of field `WS5`"]
-pub type WS5_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS5`"]
+#[doc = "Field `WS5` reader - XDMAC Channel 5 Write Suspend Bit"]
+pub struct WS5_R(crate::FieldReader<bool, bool>);
+impl WS5_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS5_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS5_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS5` writer - XDMAC Channel 5 Write Suspend Bit"]
 pub struct WS5_W<'a> {
     w: &'a mut W,
 }
@@ -150,13 +252,26 @@ impl<'a> WS5_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
         self.w
     }
 }
-#[doc = "Reader of field `WS6`"]
-pub type WS6_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS6`"]
+#[doc = "Field `WS6` reader - XDMAC Channel 6 Write Suspend Bit"]
+pub struct WS6_R(crate::FieldReader<bool, bool>);
+impl WS6_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS6_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS6_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS6` writer - XDMAC Channel 6 Write Suspend Bit"]
 pub struct WS6_W<'a> {
     w: &'a mut W,
 }
@@ -174,13 +289,26 @@ impl<'a> WS6_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
         self.w
     }
 }
-#[doc = "Reader of field `WS7`"]
-pub type WS7_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS7`"]
+#[doc = "Field `WS7` reader - XDMAC Channel 7 Write Suspend Bit"]
+pub struct WS7_R(crate::FieldReader<bool, bool>);
+impl WS7_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS7_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS7_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS7` writer - XDMAC Channel 7 Write Suspend Bit"]
 pub struct WS7_W<'a> {
     w: &'a mut W,
 }
@@ -198,13 +326,26 @@ impl<'a> WS7_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | ((value as u32 & 0x01) << 7);
         self.w
     }
 }
-#[doc = "Reader of field `WS8`"]
-pub type WS8_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS8`"]
+#[doc = "Field `WS8` reader - XDMAC Channel 8 Write Suspend Bit"]
+pub struct WS8_R(crate::FieldReader<bool, bool>);
+impl WS8_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS8_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS8_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS8` writer - XDMAC Channel 8 Write Suspend Bit"]
 pub struct WS8_W<'a> {
     w: &'a mut W,
 }
@@ -222,13 +363,26 @@ impl<'a> WS8_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | ((value as u32 & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Reader of field `WS9`"]
-pub type WS9_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS9`"]
+#[doc = "Field `WS9` reader - XDMAC Channel 9 Write Suspend Bit"]
+pub struct WS9_R(crate::FieldReader<bool, bool>);
+impl WS9_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS9_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS9_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS9` writer - XDMAC Channel 9 Write Suspend Bit"]
 pub struct WS9_W<'a> {
     w: &'a mut W,
 }
@@ -246,13 +400,26 @@ impl<'a> WS9_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | ((value as u32 & 0x01) << 9);
         self.w
     }
 }
-#[doc = "Reader of field `WS10`"]
-pub type WS10_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS10`"]
+#[doc = "Field `WS10` reader - XDMAC Channel 10 Write Suspend Bit"]
+pub struct WS10_R(crate::FieldReader<bool, bool>);
+impl WS10_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS10_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS10_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS10` writer - XDMAC Channel 10 Write Suspend Bit"]
 pub struct WS10_W<'a> {
     w: &'a mut W,
 }
@@ -270,13 +437,26 @@ impl<'a> WS10_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | ((value as u32 & 0x01) << 10);
         self.w
     }
 }
-#[doc = "Reader of field `WS11`"]
-pub type WS11_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS11`"]
+#[doc = "Field `WS11` reader - XDMAC Channel 11 Write Suspend Bit"]
+pub struct WS11_R(crate::FieldReader<bool, bool>);
+impl WS11_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS11_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS11_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS11` writer - XDMAC Channel 11 Write Suspend Bit"]
 pub struct WS11_W<'a> {
     w: &'a mut W,
 }
@@ -294,13 +474,26 @@ impl<'a> WS11_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | ((value as u32 & 0x01) << 11);
         self.w
     }
 }
-#[doc = "Reader of field `WS12`"]
-pub type WS12_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS12`"]
+#[doc = "Field `WS12` reader - XDMAC Channel 12 Write Suspend Bit"]
+pub struct WS12_R(crate::FieldReader<bool, bool>);
+impl WS12_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS12_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS12_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS12` writer - XDMAC Channel 12 Write Suspend Bit"]
 pub struct WS12_W<'a> {
     w: &'a mut W,
 }
@@ -318,13 +511,26 @@ impl<'a> WS12_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | ((value as u32 & 0x01) << 12);
         self.w
     }
 }
-#[doc = "Reader of field `WS13`"]
-pub type WS13_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS13`"]
+#[doc = "Field `WS13` reader - XDMAC Channel 13 Write Suspend Bit"]
+pub struct WS13_R(crate::FieldReader<bool, bool>);
+impl WS13_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS13_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS13_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS13` writer - XDMAC Channel 13 Write Suspend Bit"]
 pub struct WS13_W<'a> {
     w: &'a mut W,
 }
@@ -342,13 +548,26 @@ impl<'a> WS13_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | ((value as u32 & 0x01) << 13);
         self.w
     }
 }
-#[doc = "Reader of field `WS14`"]
-pub type WS14_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS14`"]
+#[doc = "Field `WS14` reader - XDMAC Channel 14 Write Suspend Bit"]
+pub struct WS14_R(crate::FieldReader<bool, bool>);
+impl WS14_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS14_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS14_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS14` writer - XDMAC Channel 14 Write Suspend Bit"]
 pub struct WS14_W<'a> {
     w: &'a mut W,
 }
@@ -366,13 +585,26 @@ impl<'a> WS14_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | ((value as u32 & 0x01) << 14);
         self.w
     }
 }
-#[doc = "Reader of field `WS15`"]
-pub type WS15_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS15`"]
+#[doc = "Field `WS15` reader - XDMAC Channel 15 Write Suspend Bit"]
+pub struct WS15_R(crate::FieldReader<bool, bool>);
+impl WS15_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS15_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS15_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS15` writer - XDMAC Channel 15 Write Suspend Bit"]
 pub struct WS15_W<'a> {
     w: &'a mut W,
 }
@@ -390,13 +622,26 @@ impl<'a> WS15_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | ((value as u32 & 0x01) << 15);
         self.w
     }
 }
-#[doc = "Reader of field `WS16`"]
-pub type WS16_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS16`"]
+#[doc = "Field `WS16` reader - XDMAC Channel 16 Write Suspend Bit"]
+pub struct WS16_R(crate::FieldReader<bool, bool>);
+impl WS16_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS16_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS16_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS16` writer - XDMAC Channel 16 Write Suspend Bit"]
 pub struct WS16_W<'a> {
     w: &'a mut W,
 }
@@ -414,13 +659,26 @@ impl<'a> WS16_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 16)) | (((value as u32) & 0x01) << 16);
+        self.w.bits = (self.w.bits & !(0x01 << 16)) | ((value as u32 & 0x01) << 16);
         self.w
     }
 }
-#[doc = "Reader of field `WS17`"]
-pub type WS17_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS17`"]
+#[doc = "Field `WS17` reader - XDMAC Channel 17 Write Suspend Bit"]
+pub struct WS17_R(crate::FieldReader<bool, bool>);
+impl WS17_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS17_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS17_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS17` writer - XDMAC Channel 17 Write Suspend Bit"]
 pub struct WS17_W<'a> {
     w: &'a mut W,
 }
@@ -438,13 +696,26 @@ impl<'a> WS17_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 17)) | (((value as u32) & 0x01) << 17);
+        self.w.bits = (self.w.bits & !(0x01 << 17)) | ((value as u32 & 0x01) << 17);
         self.w
     }
 }
-#[doc = "Reader of field `WS18`"]
-pub type WS18_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS18`"]
+#[doc = "Field `WS18` reader - XDMAC Channel 18 Write Suspend Bit"]
+pub struct WS18_R(crate::FieldReader<bool, bool>);
+impl WS18_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS18_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS18_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS18` writer - XDMAC Channel 18 Write Suspend Bit"]
 pub struct WS18_W<'a> {
     w: &'a mut W,
 }
@@ -462,13 +733,26 @@ impl<'a> WS18_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 18)) | (((value as u32) & 0x01) << 18);
+        self.w.bits = (self.w.bits & !(0x01 << 18)) | ((value as u32 & 0x01) << 18);
         self.w
     }
 }
-#[doc = "Reader of field `WS19`"]
-pub type WS19_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS19`"]
+#[doc = "Field `WS19` reader - XDMAC Channel 19 Write Suspend Bit"]
+pub struct WS19_R(crate::FieldReader<bool, bool>);
+impl WS19_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS19_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS19_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS19` writer - XDMAC Channel 19 Write Suspend Bit"]
 pub struct WS19_W<'a> {
     w: &'a mut W,
 }
@@ -486,13 +770,26 @@ impl<'a> WS19_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 19)) | (((value as u32) & 0x01) << 19);
+        self.w.bits = (self.w.bits & !(0x01 << 19)) | ((value as u32 & 0x01) << 19);
         self.w
     }
 }
-#[doc = "Reader of field `WS20`"]
-pub type WS20_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS20`"]
+#[doc = "Field `WS20` reader - XDMAC Channel 20 Write Suspend Bit"]
+pub struct WS20_R(crate::FieldReader<bool, bool>);
+impl WS20_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS20_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS20_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS20` writer - XDMAC Channel 20 Write Suspend Bit"]
 pub struct WS20_W<'a> {
     w: &'a mut W,
 }
@@ -510,13 +807,26 @@ impl<'a> WS20_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | ((value as u32 & 0x01) << 20);
         self.w
     }
 }
-#[doc = "Reader of field `WS21`"]
-pub type WS21_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS21`"]
+#[doc = "Field `WS21` reader - XDMAC Channel 21 Write Suspend Bit"]
+pub struct WS21_R(crate::FieldReader<bool, bool>);
+impl WS21_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS21_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS21_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS21` writer - XDMAC Channel 21 Write Suspend Bit"]
 pub struct WS21_W<'a> {
     w: &'a mut W,
 }
@@ -534,13 +844,26 @@ impl<'a> WS21_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | ((value as u32 & 0x01) << 21);
         self.w
     }
 }
-#[doc = "Reader of field `WS22`"]
-pub type WS22_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS22`"]
+#[doc = "Field `WS22` reader - XDMAC Channel 22 Write Suspend Bit"]
+pub struct WS22_R(crate::FieldReader<bool, bool>);
+impl WS22_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS22_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS22_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS22` writer - XDMAC Channel 22 Write Suspend Bit"]
 pub struct WS22_W<'a> {
     w: &'a mut W,
 }
@@ -558,13 +881,26 @@ impl<'a> WS22_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | ((value as u32 & 0x01) << 22);
         self.w
     }
 }
-#[doc = "Reader of field `WS23`"]
-pub type WS23_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `WS23`"]
+#[doc = "Field `WS23` reader - XDMAC Channel 23 Write Suspend Bit"]
+pub struct WS23_R(crate::FieldReader<bool, bool>);
+impl WS23_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        WS23_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for WS23_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WS23` writer - XDMAC Channel 23 Write Suspend Bit"]
 pub struct WS23_W<'a> {
     w: &'a mut W,
 }
@@ -582,7 +918,7 @@ impl<'a> WS23_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 23)) | (((value as u32) & 0x01) << 23);
+        self.w.bits = (self.w.bits & !(0x01 << 23)) | ((value as u32 & 0x01) << 23);
         self.w
     }
 }
@@ -828,5 +1164,31 @@ impl W {
     #[inline(always)]
     pub fn ws23(&mut self) -> WS23_W {
         WS23_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Global Channel Write Suspend Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gws](index.html) module"]
+pub struct XDMAC_GWS_SPEC;
+impl crate::RegisterSpec for XDMAC_GWS_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [xdmac_gws::R](R) reader structure"]
+impl crate::Readable for XDMAC_GWS_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [xdmac_gws::W](W) writer structure"]
+impl crate::Writable for XDMAC_GWS_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets XDMAC_GWS to value 0"]
+impl crate::Resettable for XDMAC_GWS_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

@@ -1,14 +1,25 @@
-#[doc = "Writer for register PWM_CMPMUPD"]
-pub type W = crate::W<u32, super::PWM_CMPMUPD>;
-#[doc = "Register PWM_CMPMUPD `reset()`'s with value 0"]
-impl crate::ResetValue for super::PWM_CMPMUPD {
-    type Type = u32;
+#[doc = "Register `PWM_CMPMUPD` writer"]
+pub struct W(crate::W<PWM_CMPMUPD_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<PWM_CMPMUPD_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Write proxy for field `CENUPD`"]
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<PWM_CMPMUPD_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<PWM_CMPMUPD_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `CENUPD` writer - Comparison x Enable Update"]
 pub struct CENUPD_W<'a> {
     w: &'a mut W,
 }
@@ -26,11 +37,11 @@ impl<'a> CENUPD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
-#[doc = "Write proxy for field `CTRUPD`"]
+#[doc = "Field `CTRUPD` writer - Comparison x Trigger Update"]
 pub struct CTRUPD_W<'a> {
     w: &'a mut W,
 }
@@ -38,11 +49,11 @@ impl<'a> CTRUPD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x0f << 4)) | (((value as u32) & 0x0f) << 4);
+        self.w.bits = (self.w.bits & !(0x0f << 4)) | ((value as u32 & 0x0f) << 4);
         self.w
     }
 }
-#[doc = "Write proxy for field `CPRUPD`"]
+#[doc = "Field `CPRUPD` writer - Comparison x Period Update"]
 pub struct CPRUPD_W<'a> {
     w: &'a mut W,
 }
@@ -50,11 +61,11 @@ impl<'a> CPRUPD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x0f << 8)) | (((value as u32) & 0x0f) << 8);
+        self.w.bits = (self.w.bits & !(0x0f << 8)) | ((value as u32 & 0x0f) << 8);
         self.w
     }
 }
-#[doc = "Write proxy for field `CUPRUPD`"]
+#[doc = "Field `CUPRUPD` writer - Comparison x Update Period Update"]
 pub struct CUPRUPD_W<'a> {
     w: &'a mut W,
 }
@@ -62,7 +73,7 @@ impl<'a> CUPRUPD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x0f << 16)) | (((value as u32) & 0x0f) << 16);
+        self.w.bits = (self.w.bits & !(0x0f << 16)) | ((value as u32 & 0x0f) << 16);
         self.w
     }
 }
@@ -86,5 +97,27 @@ impl W {
     #[inline(always)]
     pub fn cuprupd(&mut self) -> CUPRUPD_W {
         CUPRUPD_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "PWM Comparison 0 Mode Update Register\n\nThis register you can [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pwm_cmpmupd](index.html) module"]
+pub struct PWM_CMPMUPD_SPEC;
+impl crate::RegisterSpec for PWM_CMPMUPD_SPEC {
+    type Ux = u32;
+}
+#[doc = "`write(|w| ..)` method takes [pwm_cmpmupd::W](W) writer structure"]
+impl crate::Writable for PWM_CMPMUPD_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets PWM_CMPMUPD to value 0"]
+impl crate::Resettable for PWM_CMPMUPD_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

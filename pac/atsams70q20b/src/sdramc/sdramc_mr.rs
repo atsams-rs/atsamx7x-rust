@@ -1,13 +1,37 @@
-#[doc = "Reader of register SDRAMC_MR"]
-pub type R = crate::R<u32, super::SDRAMC_MR>;
-#[doc = "Writer for register SDRAMC_MR"]
-pub type W = crate::W<u32, super::SDRAMC_MR>;
-#[doc = "Register SDRAMC_MR `reset()`'s with value 0"]
-impl crate::ResetValue for super::SDRAMC_MR {
-    type Type = u32;
+#[doc = "Register `SDRAMC_MR` reader"]
+pub struct R(crate::R<SDRAMC_MR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<SDRAMC_MR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<SDRAMC_MR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<SDRAMC_MR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `SDRAMC_MR` writer"]
+pub struct W(crate::W<SDRAMC_MR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<SDRAMC_MR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<SDRAMC_MR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<SDRAMC_MR_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "SDRAMC Command Mode\n\nValue on reset: 0"]
@@ -35,61 +59,71 @@ impl From<MODE_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `MODE`"]
-pub type MODE_R = crate::R<u8, MODE_A>;
+#[doc = "Field `MODE` reader - SDRAMC Command Mode"]
+pub struct MODE_R(crate::FieldReader<u8, MODE_A>);
 impl MODE_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        MODE_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u8, MODE_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<MODE_A> {
         match self.bits {
-            0 => Val(MODE_A::NORMAL),
-            1 => Val(MODE_A::NOP),
-            2 => Val(MODE_A::ALLBANKS_PRECHARGE),
-            3 => Val(MODE_A::LOAD_MODEREG),
-            4 => Val(MODE_A::AUTO_REFRESH),
-            5 => Val(MODE_A::EXT_LOAD_MODEREG),
-            6 => Val(MODE_A::DEEP_POWERDOWN),
-            i => Res(i),
+            0 => Some(MODE_A::NORMAL),
+            1 => Some(MODE_A::NOP),
+            2 => Some(MODE_A::ALLBANKS_PRECHARGE),
+            3 => Some(MODE_A::LOAD_MODEREG),
+            4 => Some(MODE_A::AUTO_REFRESH),
+            5 => Some(MODE_A::EXT_LOAD_MODEREG),
+            6 => Some(MODE_A::DEEP_POWERDOWN),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `NORMAL`"]
     #[inline(always)]
     pub fn is_normal(&self) -> bool {
-        *self == MODE_A::NORMAL
+        **self == MODE_A::NORMAL
     }
     #[doc = "Checks if the value of the field is `NOP`"]
     #[inline(always)]
     pub fn is_nop(&self) -> bool {
-        *self == MODE_A::NOP
+        **self == MODE_A::NOP
     }
     #[doc = "Checks if the value of the field is `ALLBANKS_PRECHARGE`"]
     #[inline(always)]
     pub fn is_allbanks_precharge(&self) -> bool {
-        *self == MODE_A::ALLBANKS_PRECHARGE
+        **self == MODE_A::ALLBANKS_PRECHARGE
     }
     #[doc = "Checks if the value of the field is `LOAD_MODEREG`"]
     #[inline(always)]
     pub fn is_load_modereg(&self) -> bool {
-        *self == MODE_A::LOAD_MODEREG
+        **self == MODE_A::LOAD_MODEREG
     }
     #[doc = "Checks if the value of the field is `AUTO_REFRESH`"]
     #[inline(always)]
     pub fn is_auto_refresh(&self) -> bool {
-        *self == MODE_A::AUTO_REFRESH
+        **self == MODE_A::AUTO_REFRESH
     }
     #[doc = "Checks if the value of the field is `EXT_LOAD_MODEREG`"]
     #[inline(always)]
     pub fn is_ext_load_modereg(&self) -> bool {
-        *self == MODE_A::EXT_LOAD_MODEREG
+        **self == MODE_A::EXT_LOAD_MODEREG
     }
     #[doc = "Checks if the value of the field is `DEEP_POWERDOWN`"]
     #[inline(always)]
     pub fn is_deep_powerdown(&self) -> bool {
-        *self == MODE_A::DEEP_POWERDOWN
+        **self == MODE_A::DEEP_POWERDOWN
     }
 }
-#[doc = "Write proxy for field `MODE`"]
+impl core::ops::Deref for MODE_R {
+    type Target = crate::FieldReader<u8, MODE_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `MODE` writer - SDRAMC Command Mode"]
 pub struct MODE_W<'a> {
     w: &'a mut W,
 }
@@ -137,7 +171,7 @@ impl<'a> MODE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x07) | ((value as u32) & 0x07);
+        self.w.bits = (self.w.bits & !0x07) | (value as u32 & 0x07);
         self.w
     }
 }
@@ -153,5 +187,31 @@ impl W {
     #[inline(always)]
     pub fn mode(&mut self) -> MODE_W {
         MODE_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "SDRAMC Mode Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sdramc_mr](index.html) module"]
+pub struct SDRAMC_MR_SPEC;
+impl crate::RegisterSpec for SDRAMC_MR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [sdramc_mr::R](R) reader structure"]
+impl crate::Readable for SDRAMC_MR_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [sdramc_mr::W](W) writer structure"]
+impl crate::Writable for SDRAMC_MR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets SDRAMC_MR to value 0"]
+impl crate::Resettable for SDRAMC_MR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

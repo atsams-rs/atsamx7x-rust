@@ -1,13 +1,37 @@
-#[doc = "Reader of register MCAN_TEST"]
-pub type R = crate::R<u32, super::MCAN_TEST>;
-#[doc = "Writer for register MCAN_TEST"]
-pub type W = crate::W<u32, super::MCAN_TEST>;
-#[doc = "Register MCAN_TEST `reset()`'s with value 0"]
-impl crate::ResetValue for super::MCAN_TEST {
-    type Type = u32;
+#[doc = "Register `MCAN_TEST` reader"]
+pub struct R(crate::R<MCAN_TEST_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<MCAN_TEST_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<MCAN_TEST_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<MCAN_TEST_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `MCAN_TEST` writer"]
+pub struct W(crate::W<MCAN_TEST_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<MCAN_TEST_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<MCAN_TEST_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<MCAN_TEST_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Loop Back Mode (read/write)\n\nValue on reset: 0"]
@@ -24,9 +48,13 @@ impl From<LBCK_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `LBCK`"]
-pub type LBCK_R = crate::R<bool, LBCK_A>;
+#[doc = "Field `LBCK` reader - Loop Back Mode (read/write)"]
+pub struct LBCK_R(crate::FieldReader<bool, LBCK_A>);
 impl LBCK_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        LBCK_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> LBCK_A {
@@ -38,15 +66,22 @@ impl LBCK_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == LBCK_A::DISABLED
+        **self == LBCK_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == LBCK_A::ENABLED
+        **self == LBCK_A::ENABLED
     }
 }
-#[doc = "Write proxy for field `LBCK`"]
+impl core::ops::Deref for LBCK_R {
+    type Target = crate::FieldReader<bool, LBCK_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LBCK` writer - Loop Back Mode (read/write)"]
 pub struct LBCK_W<'a> {
     w: &'a mut W,
 }
@@ -54,9 +89,7 @@ impl<'a> LBCK_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: LBCK_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Reset value. Loop Back mode is disabled."]
     #[inline(always)]
@@ -81,7 +114,7 @@ impl<'a> LBCK_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
         self.w
     }
 }
@@ -104,9 +137,13 @@ impl From<TX_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `TX`"]
-pub type TX_R = crate::R<u8, TX_A>;
+#[doc = "Field `TX` reader - Control of Transmit Pin (read/write)"]
+pub struct TX_R(crate::FieldReader<u8, TX_A>);
 impl TX_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: u8) -> Self {
+        TX_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> TX_A {
@@ -121,25 +158,32 @@ impl TX_R {
     #[doc = "Checks if the value of the field is `RESET`"]
     #[inline(always)]
     pub fn is_reset(&self) -> bool {
-        *self == TX_A::RESET
+        **self == TX_A::RESET
     }
     #[doc = "Checks if the value of the field is `SAMPLE_POINT_MONITORING`"]
     #[inline(always)]
     pub fn is_sample_point_monitoring(&self) -> bool {
-        *self == TX_A::SAMPLE_POINT_MONITORING
+        **self == TX_A::SAMPLE_POINT_MONITORING
     }
     #[doc = "Checks if the value of the field is `DOMINANT`"]
     #[inline(always)]
     pub fn is_dominant(&self) -> bool {
-        *self == TX_A::DOMINANT
+        **self == TX_A::DOMINANT
     }
     #[doc = "Checks if the value of the field is `RECESSIVE`"]
     #[inline(always)]
     pub fn is_recessive(&self) -> bool {
-        *self == TX_A::RECESSIVE
+        **self == TX_A::RECESSIVE
     }
 }
-#[doc = "Write proxy for field `TX`"]
+impl core::ops::Deref for TX_R {
+    type Target = crate::FieldReader<u8, TX_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `TX` writer - Control of Transmit Pin (read/write)"]
 pub struct TX_W<'a> {
     w: &'a mut W,
 }
@@ -147,9 +191,7 @@ impl<'a> TX_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: TX_A) -> &'a mut W {
-        {
-            self.bits(variant.into())
-        }
+        self.bits(variant.into())
     }
     #[doc = "Reset value, CANTX controlled by the CAN Core, updated at the end of the CAN bit time."]
     #[inline(always)]
@@ -174,13 +216,26 @@ impl<'a> TX_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 5)) | (((value as u32) & 0x03) << 5);
+        self.w.bits = (self.w.bits & !(0x03 << 5)) | ((value as u32 & 0x03) << 5);
         self.w
     }
 }
-#[doc = "Reader of field `RX`"]
-pub type RX_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `RX`"]
+#[doc = "Field `RX` reader - Receive Pin (read-only)"]
+pub struct RX_R(crate::FieldReader<bool, bool>);
+impl RX_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        RX_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for RX_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `RX` writer - Receive Pin (read-only)"]
 pub struct RX_W<'a> {
     w: &'a mut W,
 }
@@ -198,7 +253,7 @@ impl<'a> RX_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | ((value as u32 & 0x01) << 7);
         self.w
     }
 }
@@ -234,5 +289,31 @@ impl W {
     #[inline(always)]
     pub fn rx(&mut self) -> RX_W {
         RX_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Test Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [mcan_test](index.html) module"]
+pub struct MCAN_TEST_SPEC;
+impl crate::RegisterSpec for MCAN_TEST_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [mcan_test::R](R) reader structure"]
+impl crate::Readable for MCAN_TEST_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [mcan_test::W](W) writer structure"]
+impl crate::Writable for MCAN_TEST_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets MCAN_TEST to value 0"]
+impl crate::Resettable for MCAN_TEST_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

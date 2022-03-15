@@ -1,22 +1,23 @@
 [package]
 name = "atsams70q19b"
 description = "Peripheral access API for ATSAMS70Q19B microcontrollers from Atmel/Microchip (generated using svd2rust)"
-version = "0.0.2"
-authors = ["Michal Fita <michal.fita@gmail.com>"]
+version = "0.21.0"
+authors = ["Michal Fita <michal.fita@gmail.com>", "Viktor Sonesten <viktor.sonesten@grepit.se>"]
 categories = ["no-std", "embedded", "hardware-support"]
 keywords = ["no-std", "arm", "cortex-m", "atsam", "pac"]
 license = "0BSD"
 repository = "https://github.com/michalfita/atsams70-rust"
 readme = "README.md"
+edition = "2018"
+rust-version = "1.46.0"
 
 [dependencies]
-bare-metal = "~0.2"
-cortex-m = "~0.6"
-vcell = "~0.1"
+cortex-m = "0.7"
+vcell = "0.1.2"
 
 [dependencies.cortex-m-rt]
 optional = true
-version = "~0.6"
+version = "0.7"
 
 [features]
 rt = ["cortex-m-rt/device"]

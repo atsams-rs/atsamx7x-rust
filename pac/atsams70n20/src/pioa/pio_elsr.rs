@@ -1,69 +1,498 @@
-#[doc = "Reader of register PIO_ELSR"]
-pub type R = crate::R<u32, super::PIO_ELSR>;
-#[doc = "Reader of field `P0`"]
-pub type P0_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P1`"]
-pub type P1_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P2`"]
-pub type P2_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P3`"]
-pub type P3_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P4`"]
-pub type P4_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P5`"]
-pub type P5_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P6`"]
-pub type P6_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P7`"]
-pub type P7_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P8`"]
-pub type P8_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P9`"]
-pub type P9_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P10`"]
-pub type P10_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P11`"]
-pub type P11_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P12`"]
-pub type P12_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P13`"]
-pub type P13_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P14`"]
-pub type P14_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P15`"]
-pub type P15_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P16`"]
-pub type P16_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P17`"]
-pub type P17_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P18`"]
-pub type P18_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P19`"]
-pub type P19_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P20`"]
-pub type P20_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P21`"]
-pub type P21_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P22`"]
-pub type P22_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P23`"]
-pub type P23_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P24`"]
-pub type P24_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P25`"]
-pub type P25_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P26`"]
-pub type P26_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P27`"]
-pub type P27_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P28`"]
-pub type P28_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P29`"]
-pub type P29_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P30`"]
-pub type P30_R = crate::R<bool, bool>;
-#[doc = "Reader of field `P31`"]
-pub type P31_R = crate::R<bool, bool>;
+#[doc = "Register `PIO_ELSR` reader"]
+pub struct R(crate::R<PIO_ELSR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<PIO_ELSR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<PIO_ELSR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<PIO_ELSR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Field `P0` reader - Edge/Level Interrupt Source Selection"]
+pub struct P0_R(crate::FieldReader<bool, bool>);
+impl P0_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P0_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P0_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P1` reader - Edge/Level Interrupt Source Selection"]
+pub struct P1_R(crate::FieldReader<bool, bool>);
+impl P1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P1_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P1_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P2` reader - Edge/Level Interrupt Source Selection"]
+pub struct P2_R(crate::FieldReader<bool, bool>);
+impl P2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P2_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P2_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P3` reader - Edge/Level Interrupt Source Selection"]
+pub struct P3_R(crate::FieldReader<bool, bool>);
+impl P3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P3_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P3_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P4` reader - Edge/Level Interrupt Source Selection"]
+pub struct P4_R(crate::FieldReader<bool, bool>);
+impl P4_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P4_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P4_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P5` reader - Edge/Level Interrupt Source Selection"]
+pub struct P5_R(crate::FieldReader<bool, bool>);
+impl P5_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P5_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P5_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P6` reader - Edge/Level Interrupt Source Selection"]
+pub struct P6_R(crate::FieldReader<bool, bool>);
+impl P6_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P6_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P6_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P7` reader - Edge/Level Interrupt Source Selection"]
+pub struct P7_R(crate::FieldReader<bool, bool>);
+impl P7_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P7_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P7_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P8` reader - Edge/Level Interrupt Source Selection"]
+pub struct P8_R(crate::FieldReader<bool, bool>);
+impl P8_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P8_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P8_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P9` reader - Edge/Level Interrupt Source Selection"]
+pub struct P9_R(crate::FieldReader<bool, bool>);
+impl P9_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P9_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P9_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P10` reader - Edge/Level Interrupt Source Selection"]
+pub struct P10_R(crate::FieldReader<bool, bool>);
+impl P10_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P10_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P10_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P11` reader - Edge/Level Interrupt Source Selection"]
+pub struct P11_R(crate::FieldReader<bool, bool>);
+impl P11_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P11_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P11_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P12` reader - Edge/Level Interrupt Source Selection"]
+pub struct P12_R(crate::FieldReader<bool, bool>);
+impl P12_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P12_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P12_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P13` reader - Edge/Level Interrupt Source Selection"]
+pub struct P13_R(crate::FieldReader<bool, bool>);
+impl P13_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P13_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P13_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P14` reader - Edge/Level Interrupt Source Selection"]
+pub struct P14_R(crate::FieldReader<bool, bool>);
+impl P14_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P14_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P14_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P15` reader - Edge/Level Interrupt Source Selection"]
+pub struct P15_R(crate::FieldReader<bool, bool>);
+impl P15_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P15_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P15_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P16` reader - Edge/Level Interrupt Source Selection"]
+pub struct P16_R(crate::FieldReader<bool, bool>);
+impl P16_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P16_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P16_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P17` reader - Edge/Level Interrupt Source Selection"]
+pub struct P17_R(crate::FieldReader<bool, bool>);
+impl P17_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P17_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P17_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P18` reader - Edge/Level Interrupt Source Selection"]
+pub struct P18_R(crate::FieldReader<bool, bool>);
+impl P18_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P18_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P18_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P19` reader - Edge/Level Interrupt Source Selection"]
+pub struct P19_R(crate::FieldReader<bool, bool>);
+impl P19_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P19_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P19_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P20` reader - Edge/Level Interrupt Source Selection"]
+pub struct P20_R(crate::FieldReader<bool, bool>);
+impl P20_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P20_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P20_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P21` reader - Edge/Level Interrupt Source Selection"]
+pub struct P21_R(crate::FieldReader<bool, bool>);
+impl P21_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P21_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P21_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P22` reader - Edge/Level Interrupt Source Selection"]
+pub struct P22_R(crate::FieldReader<bool, bool>);
+impl P22_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P22_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P22_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P23` reader - Edge/Level Interrupt Source Selection"]
+pub struct P23_R(crate::FieldReader<bool, bool>);
+impl P23_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P23_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P23_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P24` reader - Edge/Level Interrupt Source Selection"]
+pub struct P24_R(crate::FieldReader<bool, bool>);
+impl P24_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P24_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P24_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P25` reader - Edge/Level Interrupt Source Selection"]
+pub struct P25_R(crate::FieldReader<bool, bool>);
+impl P25_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P25_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P25_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P26` reader - Edge/Level Interrupt Source Selection"]
+pub struct P26_R(crate::FieldReader<bool, bool>);
+impl P26_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P26_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P26_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P27` reader - Edge/Level Interrupt Source Selection"]
+pub struct P27_R(crate::FieldReader<bool, bool>);
+impl P27_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P27_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P27_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P28` reader - Edge/Level Interrupt Source Selection"]
+pub struct P28_R(crate::FieldReader<bool, bool>);
+impl P28_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P28_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P28_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P29` reader - Edge/Level Interrupt Source Selection"]
+pub struct P29_R(crate::FieldReader<bool, bool>);
+impl P29_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P29_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P29_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P30` reader - Edge/Level Interrupt Source Selection"]
+pub struct P30_R(crate::FieldReader<bool, bool>);
+impl P30_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P30_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P30_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `P31` reader - Edge/Level Interrupt Source Selection"]
+pub struct P31_R(crate::FieldReader<bool, bool>);
+impl P31_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        P31_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for P31_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 impl R {
     #[doc = "Bit 0 - Edge/Level Interrupt Source Selection"]
     #[inline(always)]
@@ -224,5 +653,21 @@ impl R {
     #[inline(always)]
     pub fn p31(&self) -> P31_R {
         P31_R::new(((self.bits >> 31) & 0x01) != 0)
+    }
+}
+#[doc = "Edge/Level Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pio_elsr](index.html) module"]
+pub struct PIO_ELSR_SPEC;
+impl crate::RegisterSpec for PIO_ELSR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [pio_elsr::R](R) reader structure"]
+impl crate::Readable for PIO_ELSR_SPEC {
+    type Reader = R;
+}
+#[doc = "`reset()` method sets PIO_ELSR to value 0"]
+impl crate::Resettable for PIO_ELSR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

@@ -1,53 +1,378 @@
-#[doc = "Reader of register XDMAC_GIS"]
-pub type R = crate::R<u32, super::XDMAC_GIS>;
-#[doc = "Reader of field `IS0`"]
-pub type IS0_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS1`"]
-pub type IS1_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS2`"]
-pub type IS2_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS3`"]
-pub type IS3_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS4`"]
-pub type IS4_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS5`"]
-pub type IS5_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS6`"]
-pub type IS6_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS7`"]
-pub type IS7_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS8`"]
-pub type IS8_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS9`"]
-pub type IS9_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS10`"]
-pub type IS10_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS11`"]
-pub type IS11_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS12`"]
-pub type IS12_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS13`"]
-pub type IS13_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS14`"]
-pub type IS14_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS15`"]
-pub type IS15_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS16`"]
-pub type IS16_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS17`"]
-pub type IS17_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS18`"]
-pub type IS18_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS19`"]
-pub type IS19_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS20`"]
-pub type IS20_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS21`"]
-pub type IS21_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS22`"]
-pub type IS22_R = crate::R<bool, bool>;
-#[doc = "Reader of field `IS23`"]
-pub type IS23_R = crate::R<bool, bool>;
+#[doc = "Register `XDMAC_GIS` reader"]
+pub struct R(crate::R<XDMAC_GIS_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<XDMAC_GIS_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<XDMAC_GIS_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<XDMAC_GIS_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Field `IS0` reader - XDMAC Channel 0 Interrupt Status Bit"]
+pub struct IS0_R(crate::FieldReader<bool, bool>);
+impl IS0_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS0_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS0_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS1` reader - XDMAC Channel 1 Interrupt Status Bit"]
+pub struct IS1_R(crate::FieldReader<bool, bool>);
+impl IS1_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS1_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS1_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS2` reader - XDMAC Channel 2 Interrupt Status Bit"]
+pub struct IS2_R(crate::FieldReader<bool, bool>);
+impl IS2_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS2_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS2_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS3` reader - XDMAC Channel 3 Interrupt Status Bit"]
+pub struct IS3_R(crate::FieldReader<bool, bool>);
+impl IS3_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS3_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS3_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS4` reader - XDMAC Channel 4 Interrupt Status Bit"]
+pub struct IS4_R(crate::FieldReader<bool, bool>);
+impl IS4_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS4_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS4_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS5` reader - XDMAC Channel 5 Interrupt Status Bit"]
+pub struct IS5_R(crate::FieldReader<bool, bool>);
+impl IS5_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS5_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS5_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS6` reader - XDMAC Channel 6 Interrupt Status Bit"]
+pub struct IS6_R(crate::FieldReader<bool, bool>);
+impl IS6_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS6_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS6_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS7` reader - XDMAC Channel 7 Interrupt Status Bit"]
+pub struct IS7_R(crate::FieldReader<bool, bool>);
+impl IS7_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS7_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS7_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS8` reader - XDMAC Channel 8 Interrupt Status Bit"]
+pub struct IS8_R(crate::FieldReader<bool, bool>);
+impl IS8_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS8_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS8_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS9` reader - XDMAC Channel 9 Interrupt Status Bit"]
+pub struct IS9_R(crate::FieldReader<bool, bool>);
+impl IS9_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS9_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS9_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS10` reader - XDMAC Channel 10 Interrupt Status Bit"]
+pub struct IS10_R(crate::FieldReader<bool, bool>);
+impl IS10_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS10_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS10_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS11` reader - XDMAC Channel 11 Interrupt Status Bit"]
+pub struct IS11_R(crate::FieldReader<bool, bool>);
+impl IS11_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS11_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS11_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS12` reader - XDMAC Channel 12 Interrupt Status Bit"]
+pub struct IS12_R(crate::FieldReader<bool, bool>);
+impl IS12_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS12_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS12_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS13` reader - XDMAC Channel 13 Interrupt Status Bit"]
+pub struct IS13_R(crate::FieldReader<bool, bool>);
+impl IS13_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS13_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS13_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS14` reader - XDMAC Channel 14 Interrupt Status Bit"]
+pub struct IS14_R(crate::FieldReader<bool, bool>);
+impl IS14_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS14_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS14_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS15` reader - XDMAC Channel 15 Interrupt Status Bit"]
+pub struct IS15_R(crate::FieldReader<bool, bool>);
+impl IS15_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS15_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS15_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS16` reader - XDMAC Channel 16 Interrupt Status Bit"]
+pub struct IS16_R(crate::FieldReader<bool, bool>);
+impl IS16_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS16_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS16_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS17` reader - XDMAC Channel 17 Interrupt Status Bit"]
+pub struct IS17_R(crate::FieldReader<bool, bool>);
+impl IS17_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS17_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS17_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS18` reader - XDMAC Channel 18 Interrupt Status Bit"]
+pub struct IS18_R(crate::FieldReader<bool, bool>);
+impl IS18_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS18_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS18_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS19` reader - XDMAC Channel 19 Interrupt Status Bit"]
+pub struct IS19_R(crate::FieldReader<bool, bool>);
+impl IS19_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS19_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS19_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS20` reader - XDMAC Channel 20 Interrupt Status Bit"]
+pub struct IS20_R(crate::FieldReader<bool, bool>);
+impl IS20_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS20_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS20_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS21` reader - XDMAC Channel 21 Interrupt Status Bit"]
+pub struct IS21_R(crate::FieldReader<bool, bool>);
+impl IS21_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS21_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS21_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS22` reader - XDMAC Channel 22 Interrupt Status Bit"]
+pub struct IS22_R(crate::FieldReader<bool, bool>);
+impl IS22_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS22_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS22_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `IS23` reader - XDMAC Channel 23 Interrupt Status Bit"]
+pub struct IS23_R(crate::FieldReader<bool, bool>);
+impl IS23_R {
+    #[inline(always)]
+    pub(crate) fn new(bits: bool) -> Self {
+        IS23_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for IS23_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 impl R {
     #[doc = "Bit 0 - XDMAC Channel 0 Interrupt Status Bit"]
     #[inline(always)]
@@ -168,5 +493,21 @@ impl R {
     #[inline(always)]
     pub fn is23(&self) -> IS23_R {
         IS23_R::new(((self.bits >> 23) & 0x01) != 0)
+    }
+}
+#[doc = "Global Interrupt Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xdmac_gis](index.html) module"]
+pub struct XDMAC_GIS_SPEC;
+impl crate::RegisterSpec for XDMAC_GIS_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [xdmac_gis::R](R) reader structure"]
+impl crate::Readable for XDMAC_GIS_SPEC {
+    type Reader = R;
+}
+#[doc = "`reset()` method sets XDMAC_GIS to value 0"]
+impl crate::Resettable for XDMAC_GIS_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }
