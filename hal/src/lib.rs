@@ -1,7 +1,7 @@
 #![no_std]
 
-extern crate embedded_hal as hal;
-extern crate nb;
+pub use embedded_hal as ehal;
+pub use nb;
 
 #[cfg(not(feature = "device-selected"))]
 compile_error!(
@@ -141,3 +141,5 @@ pub use atsamv71q21b as target_device;
 
 #[cfg(feature = "device-selected")]
 pub mod serial;
+#[cfg(feature = "device-selected")]
+pub mod watchdog;
