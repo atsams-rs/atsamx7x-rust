@@ -102,6 +102,8 @@ pub use atsamv70q19 as target_device;
 pub use atsamv70q19b as target_device;
 #[cfg(feature = "samv70q20")]
 pub use atsamv70q20 as target_device;
+#[cfg(feature = "samv70q20b")]
+pub use atsamv70q20b as target_device;
 #[cfg(feature = "samv71j19")]
 pub use atsamv71j19 as target_device;
 #[cfg(feature = "samv71j19b")]
