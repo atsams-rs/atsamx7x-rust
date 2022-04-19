@@ -3,7 +3,7 @@ import subprocess, glob, pathlib, shutil, os, string, getopt, sys
 
 def generate_cargo(crate: str, location: pathlib.Path):
     template = ""
-    with open("Cargo.toml.template") as templatefile:
+    with open("pac/Cargo.toml.template") as templatefile:
         template = templatefile.read()
     with open(location.joinpath("Cargo.toml"), "w") as cargotomlfile:
         cargotomlcontent = string.Template(template).substitute(crate=crate, mcu=crate.upper())
@@ -11,7 +11,8 @@ def generate_cargo(crate: str, location: pathlib.Path):
 
 def generate_readme(crate: str, location: pathlib.Path):
     template = ""
-    with open("README.md.template") as templatefile:
+    template_filename = "pac/README.md.template" if crate[-1:] == 'b' else "pac/README.md.revA.template" 
+    with open(template_filename) as templatefile:
         template = templatefile.read()
     with open(location.joinpath("README.md"), "w") as cargotomlfile:
         cargotomlcontent = string.Template(template).substitute(crate=crate, mcu=crate.upper())
