@@ -141,7 +141,7 @@ pub use atsamv71q21 as target_device;
 #[cfg(feature = "samv71q21b")]
 pub use atsamv71q21b as target_device;
 
-#[cfg(feature = "device-selected")]
+#[cfg(feature = "rev-b")]
 pub mod serial;
-#[cfg(feature = "device-selected")]
+#[cfg(feature = "rev-b")]
 pub mod watchdog;
