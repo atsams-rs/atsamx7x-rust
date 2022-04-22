@@ -145,3 +145,7 @@ pub use atsamv71q21b as target_device;
 pub mod serial;
 #[cfg(feature = "rev-b")]
 pub mod watchdog;
+#[cfg(feature = "rev-b")]
+pub mod pmc;
+#[cfg(feature = "rev-b")]
+pub mod efc;
