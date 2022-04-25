@@ -3,11 +3,6 @@
 pub use embedded_hal as ehal;
 pub use nb;
 
-#[cfg(not(feature = "device-selected"))]
-compile_error!(
-    "The HAL is built for a specific target device selected using a feature, but no such a feature was selected."
-);
-
 #[cfg(feature = "same70j19")]
 pub use atsame70j19 as target_device;
 #[cfg(feature = "same70j19b")]
