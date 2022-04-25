@@ -112,6 +112,7 @@ flash-1M = []   # "20"-suffix
 flash-512K = [] # "19"-suffix
 rev-a = []                  # No suffix after flash memory density number
 rev-b = ["device-selected"] # "b"-suffix
+
 device-selected = []
 
 same70j19  = ["atsame70j19", "e70", "pins-64", "flash-512K", "rev-a"]
