@@ -1,7 +1,7 @@
-//! Flash block configuration
+//! Flash controller configuration
 
-use crate::target_device::EFC;
 use crate::pmc::PmcError;
+use crate::target_device::EFC;
 
 pub struct Efc {
     pub(crate) periph: EFC,
@@ -42,17 +42,15 @@ pub enum FlashWaitStates {
     Six,
 }
 
-impl FlashWaitStates {
-    /// Calculate the lowest possible number of flash wait states from a given
-    /// master clock frequency in MHz.
-    ///
-    /// The max mck frequency supported is 150MHz. This is *not* the CPU frequency,
-    /// which may go up to 300MHz.
-    ///
-    /// Note: This is probably only valid at VDDIO = 3.0V
-    pub fn from_mck_mhz(freq: u8) -> Result<Self, PmcError> {
-        // Reference: Table 58-51 Embedded Flash Wait States for Worst-Case Conditions
-        let fws = match freq {
+impl TryFrom<u8> for FlashWaitStates {
+    type Error = PmcError;
+
+    #[cfg(feature = "vddio-3v")]
+    fn try_from(freq: u8) -> Result<Self, Error> {
+        // References:
+        // - Table 58-50 (p. 1804) Embedded Flash Wait States for Worst-Case Conditions (V70/V71)
+        // - Table 59-50 (p. 1850) Embedded Flash Wait States for Worst-Case Conditions (E70/S70; VDDIO = 3.0V)
+        match freq {
             0..=23 => Self::Zero,
             24..=46 => Self::One,
             47..=69 => Self::Two,
@@ -60,9 +58,34 @@ impl FlashWaitStates {
             93..=115 => Self::Four,
             116..=138 => Self::Five,
             139..=150 => Self::Six,
-            _ => return Err(PmcError::InvalidConfiguration),
-        };
+            _ => Err(PmcError::InvalidConfiguration),
+        }
+    }
 
-        Ok(fws)
+    #[cfg(feature = "vddio-1v")]
+    fn try_from(freq: u8) -> Result<Self, Error> {
+        // References:
+        // - Table 59-50 (p. 1850) Embedded Flash Wait States for Worst-Case Conditions (E70/S70; VDDIO = 1.7V)
+        match freq {
+            0..=21 => Self::Zero,
+            22..=42 => Self::One,
+            43..=63 => Self::Two,
+            64..=84 => Self::Three,
+            85..=106 => Self::Four,
+            107..=125 => Self::Five,
+            126..=137 => Self::Six,
+            _ => Err(PmcError::InvalidConfiguration),
+        }
+    }
+}
+
+impl FlashWaitStates {
+    /// Calculate the lowest possible number of flash wait states from a given
+    /// master clock frequency in MHz.
+    ///
+    /// The max mck frequency supported is 150MHz. This is *not* the CPU frequency,
+    /// which may go up to 300MHz.
+    pub fn from_mck_mhz(freq: u8) -> Result<Self, PmcError> {
+        freq.try_into()?
     }
 }
