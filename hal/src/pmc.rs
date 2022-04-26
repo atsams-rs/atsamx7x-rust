@@ -22,14 +22,50 @@ pub enum PmcError {
 
 /// The selected "Main Clock Oscillator" source
 ///
-/// TODO/NOTE: At the moment, we only support the internal trimmed 12MHz
-/// oscillator. Some driver behavior is hardcoded on this assumption for
-/// the sake of simplicity.
+/// MainCrystalOsc should have a frequency type, I think
 ///
 /// This corresponds to CKGR_MOR.MOSCSEL
+#[derive(Debug, PartialEq, Clone)]
 pub enum MainClockOscillatorSource {
-    MainCk12MHz,
+    MainRcOsc(MainRcFreq),
+    MainCrystalOsc(MegaHertz),
 }
+
+#[derive(Debug, PartialEq, Clone, Copy)]
+pub enum MainRcFreq {
+    MHz4 = 0,
+    MHz8 = 1,
+    MHz12 = 2,
+}
+
+#[derive(Debug, PartialEq, Clone)]
+pub struct MegaHertz(pub u32);
+
+pub struct MainClock {
+    source: MainClockOscillatorSource,
+}
+
+// Slow Clock Oscillator Source is set in SUPC
+pub enum SlowClockOscillatorSource {
+    SlowRcOsc,
+    SlowCrystalOsc,
+}
+
+pub struct SlowClock {
+    source: SlowClockOscillatorSource,
+}
+
+pub struct PllaConfig<'a> {
+    pub source: &'a MainClock,
+    pub div: u8,
+    pub mult: u8,
+}
+
+pub struct PllaClock<'a> {
+    config: PllaConfig<'a>,
+}
+
+pub struct UpllClock;
 
 /// The selected "Master Clock" source
 ///
@@ -78,7 +114,8 @@ impl ClockSettings {
             MasterClockSource::PllaClock => {
                 // The internal 12MHz osc is currently the (only) choice for driving the PLLACK
                 let main_ck: f32 = match self.main_clk_osc_src {
-                    MainClockOscillatorSource::MainCk12MHz => 12.0,
+                    MainClockOscillatorSource::MainRcOsc(MainRcFreq::MHz12) => 12.0,
+                    _ => panic!("Only Internal 12MHz source is accepted here"),
                 };
 
                 // These values disable the PLLA
@@ -153,9 +190,77 @@ impl Pmc {
 
             // TODO: I could probably figure out the default settings...
             // this is fine for now.
+            // TODO: If the get_mainck() etc. API is to be used pmc needs to have ownership over
+            // the clock structs at startup to prevent multiple instances of MainClock to be
+            // constructed. Watchucallit, Singletons.
             settings: None,
         }
     }
+
+    pub fn get_mainck(&mut self, source: MainClockOscillatorSource) -> Result<MainClock, PmcError> {
+        match source {
+            MainClockOscillatorSource::MainRcOsc(ref freq) => {
+                let freq_bits = *freq as u8;
+                self.periph.ckgr_mor.modify( |_,w| {
+                        w.moscsel().clear_bit();
+                        w.moscrcen().set_bit();
+                        unsafe { w.moscrcf().bits(freq_bits); }
+                        w
+                    });
+            },
+            MainClockOscillatorSource::MainCrystalOsc(ref freq) => {
+                // Crystal Frequency needs to be between 3 and 20MHz (30.2)
+                if freq.0 < 3 || freq.0 > 20 {
+                    return Err(PmcError::InvalidConfiguration);
+                }
+                self.periph.ckgr_mor.modify( |_,w| {
+                    w.moscxten().set_bit();
+                    w
+                });
+                // loop until main crystal oscillator has stabilised
+                while self.periph.pmc_sr.read().moscxts().bit_is_clear() {}
+                self.periph.ckgr_mor.modify( |_,w| {
+                    w.moscsel().set_bit();
+                    w
+                });
+                // loop until source switch has completed
+                while self.periph.pmc_sr.read().moscsels().bit_is_clear() {}
+            }
+        }
+        Ok(MainClock{ source })
+    }
+
+    pub fn get_pllack<'a>(&mut self, config: PllaConfig<'a>) -> Result<PllaClock<'a>, PmcError> {
+        if config.mult > 63 && config.mult < 2 {
+            return Err(PmcError::InvalidConfiguration);
+        }
+        if config.div == 0 || config.div > 127 {
+            return Err(PmcError::InvalidConfiguration);
+        }
+        // NOTE: Maximum frequency is not checked her
+
+        self.periph.ckgr_pllar.modify( |_,w| {
+            w.one().set_bit();
+            unsafe {
+                w.mula().bits(config.mult as u16 - 1);
+                w.diva().bits(config.div);
+            }
+            w
+        });
+        // loop until PLLA Lock Status
+        while self.periph.pmc_sr.read().locka().bit_is_clear() {}
+        Ok(PllaClock{ config })
+    }
+
+    pub fn get_upllck(&mut self) -> Result<UpllClock, PmcError> {
+        self.periph.ckgr_uckr.modify(|_,w| w.upllen().set_bit());
+        // loop until UPLL Lock Status
+        while self.periph.pmc_sr.read().locku().bit_is_clear() {}
+
+        Ok(UpllClock)
+    }
+
+
 
     pub fn settings(&self) -> Option<&ClockSettings> {
         self.settings.as_ref()
@@ -251,7 +356,7 @@ impl Pmc {
         // TODO: This is the only supported variant. This code will fail if we add another option.
         // You should implement the logic of steps 1-5 here if you are adding more MCO source
         // options to the public interface!
-        let MainClockOscillatorSource::MainCk12MHz = cfg.main_clk_osc_src;
+        // let MainClockOscillatorSource::MainRcOsc(MHz12) = cfg.main_clk_osc_src;
 
         // # Step 6
         //
