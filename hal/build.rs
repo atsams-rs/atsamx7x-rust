@@ -17,5 +17,15 @@ fn main() -> Result<(), &'static str> {
         );
     }
 
+    if feat("vddio-3v") && feat("vddio-1v") {
+        return Err(
+            "\"vddio-3v\" and \"vddio-1v\" are mutually exclusive features, try building with one, not both."
+            );
+    } else if !(feat("vddio-3v") || feat("vddio-1v")) {
+        return Err(
+            "The HAL is built for a specific voltage level using a feature, but no such feature was selected."
+            );
+    }
+
     Ok(())
 }
