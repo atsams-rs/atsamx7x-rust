@@ -95,13 +95,9 @@ atsamv71q21b = { version = "0.21.0", path = "../pac/atsamv71q21b", optional = tr
 [features]
 # Internal-only feature flags; do not set directly.
 # Refer to §2 in the data sheet.
-## Different electrical characteristics for different VDDIO values
-## Refer to Tables 58-3 and 58-9
-vddio-3v = [] # Minimum value of 3.3V
-vddio-1v = [] # Minimum value of 1.7V
 ## Refer to §2.
-v71 = ["vddio-3v"]
-v70 = ["vddio-3v"]
+v71 = []
+v70 = []
 e70 = []
 s70 = []
 pins-64 = []    # J variants
