@@ -67,6 +67,29 @@ pub struct PllaClock<'a> {
 
 pub struct UpllClock;
 
+pub enum Clock<'a> {
+    Slck(&'a SlowClock),
+    Mainck(&'a MainClock),
+    Pllack(&'a PllaClock<'a>),
+    Upllck(&'a UpllClock),
+    Mck(&'a HostClock<'a>),
+}
+
+
+pub struct HostClockConfig<'a> {
+    pub clock: Clock<'a>,
+    pub pres: u8,
+    pub div: u8,
+}
+
+pub struct HostClock<'a> {
+    pub config: &'a HostClockConfig<'a>,
+}
+
+pub struct ProcessorClock<'a> {
+    pub config: &'a HostClockConfig<'a>,
+}
+
 /// The selected "Master Clock" source
 ///
 /// TODO/NOTE: At the moment, we only support the PLLA Clock.
@@ -208,6 +231,11 @@ impl Pmc {
                         w
                     });
             },
+            // NOTE Only the RC oscillator works for now.
+            // I misunderstood how the Crystal Oscillator/SAME70 XPLAINED board works.
+            // The devkit should be used with the crystal oscillator in standby mode,
+            // so I cannot test the crystal oscillator as it stands now. I tried to make bypass
+            // mode work, but I failed.
             MainClockOscillatorSource::MainCrystalOsc(ref freq) => {
                 // Crystal Frequency needs to be between 3 and 20MHz (30.2)
                 if freq.0 < 3 || freq.0 > 20 {
@@ -215,6 +243,7 @@ impl Pmc {
                 }
                 self.periph.ckgr_mor.modify( |_,w| {
                     w.moscxten().set_bit();
+                    unsafe{ w.moscxtst().bits(255);}
                     w
                 });
                 // loop until main crystal oscillator has stabilised
@@ -231,7 +260,7 @@ impl Pmc {
     }
 
     pub fn get_pllack<'a>(&mut self, config: PllaConfig<'a>) -> Result<PllaClock<'a>, PmcError> {
-        if config.mult > 63 && config.mult < 2 {
+        if config.mult > 63 || config.mult < 2 {
             return Err(PmcError::InvalidConfiguration);
         }
         if config.div == 0 || config.div > 127 {
@@ -258,6 +287,61 @@ impl Pmc {
         while self.periph.pmc_sr.read().locku().bit_is_clear() {}
 
         Ok(UpllClock)
+    }
+
+    pub fn get_hclk<'a>(&mut self, config: &'a HostClockConfig<'a>) -> Result<(ProcessorClock<'a>, HostClock<'a>), PmcError> {
+        let pres_bits = match config.pres {
+            1 => 0,
+            2 => 1,
+            4 => 2,
+            8 => 3,
+            16 => 4,
+            32 => 5,
+            64 => 6,
+            3 => 7,
+            _ => return Err(PmcError::UnimplementedError),
+        };
+        let div_bits = match config.div {
+            1 => 0,
+            2 => 1,
+            3 => 2,
+            4 => 3,
+            _ => return Err(PmcError::InvalidConfiguration),
+        };
+
+        match config.clock {
+            Clock::Slck(clock) => {
+                self.periph.pmc_mckr.modify(|_,w| w.css().slow_clk());
+                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
+                self.periph.pmc_mckr.modify(|_,w| w.pres().bits(pres_bits));
+                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
+                self.periph.pmc_mckr.modify( |_,w| w.mdiv().bits(div_bits));
+                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
+            },
+            Clock::Mainck(clock) => {
+                self.periph.pmc_mckr.modify(|_,w| w.css().main_clk());
+                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
+                self.periph.pmc_mckr.modify(|_,w| w.pres().bits(pres_bits));
+                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
+                self.periph.pmc_mckr.modify( |_,w| { w.mdiv().bits(div_bits)});
+                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
+            },
+            Clock::Pllack(clock) => {
+                self.periph.pmc_mckr.modify(|_,w| w.pres().bits(pres_bits));
+                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
+                self.periph.pmc_mckr.modify( |_,w| w.mdiv().bits(div_bits));
+                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
+                self.periph.pmc_mckr.modify(|_,w| w.css().plla_clk());
+                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
+            },
+            // Upllck passes through a divider, so it should be Upllckdiv but that's not
+            // implemented yet
+            Clock::Upllck(clock) => {return Err(PmcError::InvalidConfiguration)},
+            // Mck cannot be used as a source for mck
+            Clock::Mck(clock) => {return Err(PmcError::InvalidConfiguration);},
+        }
+        Ok((ProcessorClock{ config: &config }, HostClock{ config: &config } ))
+        
     }
 
 
