@@ -1,7 +1,6 @@
 //! Clock hierarchy configuration
 
 use crate::efc::Efc;
-use crate::efc::FlashWaitStates;
 use crate::target_device::PMC;
 
 pub use crate::target_device::pmc::pmc_mckr::MDIV_A as MckDivider;
@@ -418,16 +417,7 @@ impl Pmc {
         //
         // The flash controller (EEFC) is driven from the master clock (stated in section 31.2)
         let mck_new = cfg.calc_master_clk_mhz()?;
-        let fws = FlashWaitStates::from_mck_mhz(mck_new)?;
-
-        efc.periph.eefc_wpmr.modify(|_r, w| {
-            w.wpkey().passwd();
-            w.wpen().clear_bit();
-            w
-        });
-        efc.periph
-            .eefc_fmr
-            .modify(|_r, w| unsafe { w.fws().bits(fws as u8) });
+        efc.set_wait_states(mck_new)?;
 
         // Note: This follows Datasheet 31.17 "Recommendeded Programming Sequence"
         //
