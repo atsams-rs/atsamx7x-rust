@@ -28,6 +28,7 @@ pub enum PmcError {
 pub enum MainClockOscillatorSource {
     MainRcOsc(MainRcFreq),
     MainCrystalOsc(MegaHertz),
+    MainExternalOsc(MegaHertz),
 }
 
 #[derive(Debug, PartialEq, Clone, Copy)]
@@ -253,6 +254,19 @@ impl Pmc {
                 });
                 // loop until source switch has completed
                 while self.periph.pmc_sr.read().moscsels().bit_is_clear() {}
+            }
+            MainClockOscillatorSource::MainExternalOsc(ref freq) => {
+                // Oscillator Frequency needs to be between 3 and 20MHz (30.2)
+                if freq.0 < 3 || freq.0 > 20 {
+                    return Err(PmcError::InvalidConfiguration);
+                }
+                self.periph.ckgr_mor.modify( |_,w| {
+                    w.moscxtby().set_bit();
+                    w
+                });
+                // loop until source switch has completed
+                while self.periph.pmc_sr.read().moscsels().bit_is_clear() {}
+
             }
         }
         Ok(MainClock{ source })
