@@ -2,6 +2,7 @@
 
 use crate::efc::Efc;
 use crate::target_device::PMC;
+use fugit::Rate;
 
 pub use crate::target_device::pmc::pmc_mckr::MDIV_A as MckDivider;
 pub use crate::target_device::pmc::pmc_mckr::PRES_A as MckPrescaler;
@@ -27,8 +28,8 @@ pub enum PmcError {
 #[derive(Debug, PartialEq, Clone)]
 pub enum MainClockOscillatorSource {
     MainRcOsc(MainRcFreq),
-    MainCrystalOsc(MegaHertz),
-    MainExternalOsc(MegaHertz),
+    MainCrystalOsc(Rate<u32,1,1>),
+    MainExternalOsc(Rate<u32,1,1>),
 }
 
 #[derive(Debug, PartialEq, Clone, Copy)]
@@ -225,6 +226,7 @@ impl Pmc {
             MainClockOscillatorSource::MainRcOsc(ref freq) => {
                 let freq_bits = *freq as u8;
                 self.periph.ckgr_mor.modify( |_,w| {
+                        w.key().passwd();
                         w.moscsel().clear_bit();
                         w.moscrcen().set_bit();
                         unsafe { w.moscrcf().bits(freq_bits); }
@@ -238,10 +240,11 @@ impl Pmc {
             // mode work, but I failed.
             MainClockOscillatorSource::MainCrystalOsc(ref freq) => {
                 // Crystal Frequency needs to be between 3 and 20MHz (30.2)
-                if freq.0 < 3 || freq.0 > 20 {
+                if freq.to_MHz() < 3 || freq.to_MHz() > 20 {
                     return Err(PmcError::InvalidConfiguration);
                 }
                 self.periph.ckgr_mor.modify( |_,w| {
+                    w.key().passwd();
                     w.moscxten().set_bit();
                     unsafe{ w.moscxtst().bits(255);}
                     w
@@ -249,7 +252,9 @@ impl Pmc {
                 // loop until main crystal oscillator has stabilised
                 while self.periph.pmc_sr.read().moscxts().bit_is_clear() {}
                 self.periph.ckgr_mor.modify( |_,w| {
+                    w.key().passwd();
                     w.moscsel().set_bit();
+                    unsafe{ w.moscxtst().bits(255);}
                     w
                 });
                 // loop until source switch has completed
@@ -257,15 +262,27 @@ impl Pmc {
             }
             MainClockOscillatorSource::MainExternalOsc(ref freq) => {
                 // Oscillator Frequency needs to be between 3 and 20MHz (30.2)
-                if freq.0 < 3 || freq.0 > 20 {
+                if freq.to_MHz() < 3 || freq.to_MHz() > 20 {
                     return Err(PmcError::InvalidConfiguration);
                 }
                 self.periph.ckgr_mor.modify( |_,w| {
+                    w.key().passwd();
                     w.moscxtby().set_bit();
                     w
                 });
                 // loop until source switch has completed
                 while self.periph.pmc_sr.read().moscsels().bit_is_clear() {}
+                self.periph.ckgr_mor.modify( |_,w| {
+                    w.key().passwd();
+                    w.moscsel().set_bit();
+                    w
+                });
+                while self.periph.pmc_sr.read().moscsels().bit_is_clear() {}
+                self.periph.ckgr_mor.modify( |_,w| {
+                                             w.key().passwd();
+                                             w.moscrcen().clear_bit();
+                                             w
+                                             });
 
             }
         }

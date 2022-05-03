@@ -24,6 +24,7 @@ edition = "2021"
 cortex-m = "0.7"
 embedded-hal = { version = "0.2.7", features = ["unproven"] }
 nb = "0.1.2"
+fugit = "0.3.5"
 
 atsame70j19  = { version = "0.21.0", path = "../pac/atsame70j19", optional = true }
 atsame70j19b = { version = "0.21.0", path = "../pac/atsame70j19b", optional = true }
