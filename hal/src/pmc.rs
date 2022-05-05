@@ -102,6 +102,33 @@ pub enum MasterClockSource {
     PllaClock,
 }
 
+
+pub struct Pck {
+    id: PckId,
+
+}
+
+
+#[derive(Debug, PartialEq, Eq, Copy, Clone)]
+pub enum PckId {
+    Pck0,
+    Pck1,
+    Pck2,
+    Pck3,
+    Pck4,
+    Pck5,
+    Pck6,
+    Pck7,
+}
+
+pub enum PckSource {
+    Sclk,
+    Mainck,
+    Pllack,
+    UpllCk,
+    Mck,
+}
+
 pub struct ClockSettings {
     // "Main Clock" is abbreviated "MAINCK"
     /// Main Clock Oscillator Source
@@ -372,6 +399,18 @@ impl Pmc {
         }
         Ok((ProcessorClock{ config: &config }, HostClock{ config: &config } ))
         
+    }
+
+    pub fn get_pck(&mut self, source: PckSource, pres: u8, id: PckId) -> Result<Pck,PmcError> {
+        
+        self.periph.pmc_pck[id as usize].write(|w| unsafe {
+            w.pres().bits(pres);
+            w.css().bits(source as u8)
+        });
+        self.periph.pmc_scer.write( |w|unsafe{ w.bits(1<<(id as u8+8))});
+        while (self.periph.pmc_scsr.read().bits() & (1<< (id as u8+8))) == 0 {}
+        Ok(Pck {id})
+
     }
 
 
