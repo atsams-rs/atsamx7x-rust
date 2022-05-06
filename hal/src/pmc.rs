@@ -1,4 +1,8 @@
 //! Clock hierarchy configuration
+//!
+//! This module allows the user to fully control the various clock sources available on ATSAMx7x
+//! chips.
+//! 
 
 use crate::efc::Efc;
 use crate::target_device::PMC;
@@ -21,10 +25,6 @@ pub enum PmcError {
 }
 
 /// The selected "Main Clock Oscillator" source
-///
-/// MainCrystalOsc should have a frequency type, I think
-///
-/// This corresponds to CKGR_MOR.MOSCSEL
 #[derive(Debug, PartialEq, Clone)]
 pub enum MainClockOscillatorSource {
     MainRcOsc(MainRcFreq),
@@ -32,6 +32,7 @@ pub enum MainClockOscillatorSource {
     MainExternalOsc(Rate<u32,1,1>),
 }
 
+/// RC Source can be configured to run at 4, 8, or 12MHz
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub enum MainRcFreq {
     MHz4 = 0,
@@ -39,9 +40,7 @@ pub enum MainRcFreq {
     MHz12 = 2,
 }
 
-#[derive(Debug, PartialEq, Clone)]
-pub struct MegaHertz(pub u32);
-
+/// MAINCK Token
 pub struct MainClock {
     source: MainClockOscillatorSource,
 }
@@ -52,6 +51,7 @@ pub enum SlowClockOscillatorSource {
     SlowCrystalOsc,
 }
 
+/// SCLK Token
 pub struct SlowClock {
     source: SlowClockOscillatorSource,
 }
@@ -62,6 +62,7 @@ pub struct PllaConfig<'a> {
     pub mult: u8,
 }
 
+/// PLLA Token
 pub struct PllaClock<'a> {
     config: PllaConfig<'a>,
 }
@@ -77,16 +78,19 @@ pub enum Clock<'a> {
 }
 
 
+/// HCLK/MCK Config
 pub struct HostClockConfig<'a> {
     pub clock: Clock<'a>,
     pub pres: u8,
     pub div: u8,
 }
 
+/// MCK Token
 pub struct HostClock<'a> {
     pub config: &'a HostClockConfig<'a>,
 }
 
+/// HCLK Token
 pub struct ProcessorClock<'a> {
     pub config: &'a HostClockConfig<'a>,
 }
@@ -102,12 +106,11 @@ pub enum MasterClockSource {
     PllaClock,
 }
 
-
+/// PCK token
 pub struct Pck {
     id: PckId,
 
 }
-
 
 #[derive(Debug, PartialEq, Eq, Copy, Clone)]
 pub enum PckId {
@@ -248,6 +251,8 @@ impl Pmc {
         }
     }
 
+    /// Configures MAINCk and returns a corresponding Clock Token.
+    /// This Method corresponds to Steps 2-4 in 31.17 Recommended Programming Sequence.
     pub fn get_mainck(&mut self, source: MainClockOscillatorSource) -> Result<MainClock, PmcError> {
         match source {
             MainClockOscillatorSource::MainRcOsc(ref freq) => {
@@ -260,11 +265,6 @@ impl Pmc {
                         w
                     });
             },
-            // NOTE Only the RC oscillator works for now.
-            // I misunderstood how the Crystal Oscillator/SAME70 XPLAINED board works.
-            // The devkit should be used with the crystal oscillator in standby mode,
-            // so I cannot test the crystal oscillator as it stands now. I tried to make bypass
-            // mode work, but I failed.
             MainClockOscillatorSource::MainCrystalOsc(ref freq) => {
                 // Crystal Frequency needs to be between 3 and 20MHz (30.2)
                 if freq.to_MHz() < 3 || freq.to_MHz() > 20 {
@@ -316,6 +316,8 @@ impl Pmc {
         Ok(MainClock{ source })
     }
 
+    /// Configures PLLACK and returns a corresponding clock token.
+    /// This method corresponds to Step 6 of 31.17 Recommended Programming Sequence.
     pub fn get_pllack<'a>(&mut self, config: PllaConfig<'a>) -> Result<PllaClock<'a>, PmcError> {
         if config.mult > 63 || config.mult < 2 {
             return Err(PmcError::InvalidConfiguration);
@@ -338,6 +340,8 @@ impl Pmc {
         Ok(PllaClock{ config })
     }
 
+    /// Configures UPLLCK
+    /// TODO: There's the UPLLDIV2 that is not touched right now. Should be toggleable.
     pub fn get_upllck(&mut self) -> Result<UpllClock, PmcError> {
         self.periph.ckgr_uckr.modify(|_,w| w.upllen().set_bit());
         // loop until UPLL Lock Status
@@ -346,6 +350,8 @@ impl Pmc {
         Ok(UpllClock)
     }
 
+    /// Configures HCLK and MCK and returns corresponding Clock Tokens.
+    /// This method corresponds to Step 7 in 31.17.
     pub fn get_hclk<'a>(&mut self, config: &'a HostClockConfig<'a>) -> Result<(ProcessorClock<'a>, HostClock<'a>), PmcError> {
         let pres_bits = match config.pres {
             1 => 0,
@@ -401,6 +407,8 @@ impl Pmc {
         
     }
 
+    /// Configures PCKx and returns a token.
+    /// Corresponds to Step 8 in 31.17
     pub fn get_pck(&mut self, source: PckSource, pres: u8, id: PckId) -> Result<Pck,PmcError> {
         
         self.periph.pmc_pck[id as usize].write(|w| unsafe {
