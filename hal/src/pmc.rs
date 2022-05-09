@@ -4,16 +4,17 @@
 //! chips.
 //! 
 
-use crate::efc::Efc;
 use crate::target_device::PMC;
 use fugit::Rate;
 
 pub use crate::target_device::pmc::pmc_mckr::MDIV_A as MckDivider;
 pub use crate::target_device::pmc::pmc_mckr::PRES_A as MckPrescaler;
+pub use crate::target_device::pmc::pmc_mckr::CSS_A as HCC_CSS;
+pub use crate::target_device::pmc::pmc_pck::CSS_A as PCK_CSS;
+pub use crate::target_device::pmc::ckgr_mor::MOSCRCF_A as MainRcFreq;
 
 pub struct Pmc {
     periph: PMC,
-    settings: Option<ClockSettings>,
 }
 
 #[derive(Debug, PartialEq, Clone)]
@@ -32,14 +33,6 @@ pub enum MainClockOscillatorSource {
     MainExternalOsc(Rate<u32,1,1>),
 }
 
-/// RC Source can be configured to run at 4, 8, or 12MHz
-#[derive(Debug, PartialEq, Clone, Copy)]
-pub enum MainRcFreq {
-    MHz4 = 0,
-    MHz8 = 1,
-    MHz12 = 2,
-}
-
 /// MAINCK Token
 pub struct MainClock {
     source: MainClockOscillatorSource,
@@ -56,43 +49,29 @@ pub struct SlowClock {
     source: SlowClockOscillatorSource,
 }
 
-pub struct PllaConfig<'a> {
-    pub source: &'a MainClock,
+pub struct PllaConfig {
     pub div: u8,
     pub mult: u8,
 }
 
 /// PLLA Token
-pub struct PllaClock<'a> {
-    config: PllaConfig<'a>,
+pub struct PllaClock {
 }
 
 pub struct UpllClock;
 
-pub enum Clock<'a> {
-    Slck(&'a SlowClock),
-    Mainck(&'a MainClock),
-    Pllack(&'a PllaClock<'a>),
-    Upllck(&'a UpllClock),
-    Mck(&'a HostClock<'a>),
-}
-
-
 /// HCLK/MCK Config
-pub struct HostClockConfig<'a> {
-    pub clock: Clock<'a>,
-    pub pres: u8,
-    pub div: u8,
+pub struct HostClockConfig {
+    pub pres: MckPrescaler,
+    pub div: MckDivider,
 }
 
 /// MCK Token
-pub struct HostClock<'a> {
-    pub config: &'a HostClockConfig<'a>,
+pub struct HostClock {
 }
 
 /// HCLK Token
-pub struct ProcessorClock<'a> {
-    pub config: &'a HostClockConfig<'a>,
+pub struct ProcessorClock {
 }
 
 /// The selected "Master Clock" source
@@ -124,111 +103,46 @@ pub enum PckId {
     Pck7,
 }
 
-pub enum PckSource {
-    Sclk,
-    Mainck,
-    Pllack,
-    UpllCk,
-    Mck,
+pub trait PllaSource {}
+
+impl PllaSource for MainClock {}
+
+pub trait HostClockSource {
+    const HCC_CSS: HCC_CSS;
 }
 
-pub struct ClockSettings {
-    // "Main Clock" is abbreviated "MAINCK"
-    /// Main Clock Oscillator Source
-    pub main_clk_osc_src: MainClockOscillatorSource,
+impl HostClockSource for SlowClock {
+    const HCC_CSS: HCC_CSS = HCC_CSS::SLOW_CLK;
+}
+impl HostClockSource for MainClock {
+    const HCC_CSS: HCC_CSS = HCC_CSS::MAIN_CLK;
+}
+impl HostClockSource for PllaClock {
 
-    // "Master Clock" is abbreviated "MCK"
-    /// Master Clock Prescaler
-    pub mck_pres: MckPrescaler,
-    /// Master Clock Source
-    pub mck_src: MasterClockSource,
-    /// Master Clock Divider
-    pub mck_div: MckDivider,
-
-    /// PLLA Multiplier - 10 bits
-    ///
-    /// Resulting change is (1 + MULA) * INPUT
-    ///
-    /// A value of zero disables the PLLA.
-    pub multiplier_a: u16,
-    /// PLLA Divider - 8 bits
-    ///
-    /// Result change is INPUT / DIVA
-    ///
-    /// A value of zero disables the PLLA.
-    pub divider_a: u8,
+    const HCC_CSS: HCC_CSS = HCC_CSS::PLLA_CLK;
+}
+impl HostClockSource for UpllClock {
+    const HCC_CSS: HCC_CSS = HCC_CSS::UPLL_CLK;
 }
 
-impl ClockSettings {
-    pub fn calc_master_clk_mhz(&self) -> Result<u8, PmcError> {
-        // NOTE: This is based on Figure 31-1 - "General Clock Distribution Block Diagram"
+pub trait PckSource {
+    const PCK_CSS: PCK_CSS;
+}
 
-        // PLLACK is currently the (only) choice for driving the Master Clock Controller
-        let mck_input = match self.mck_src {
-            MasterClockSource::PllaClock => {
-                // The internal 12MHz osc is currently the (only) choice for driving the PLLACK
-                let main_ck: f32 = match self.main_clk_osc_src {
-                    MainClockOscillatorSource::MainRcOsc(MainRcFreq::MHz12) => 12.0,
-                    _ => panic!("Only Internal 12MHz source is accepted here"),
-                };
-
-                // These values disable the PLLA
-                if (self.multiplier_a == 0) || (self.divider_a == 0) {
-                    return Err(PmcError::InvalidConfiguration);
-                }
-
-                let plla_ck = main_ck * ((self.multiplier_a + 1) as f32);
-                let plla_ck = plla_ck / (self.divider_a as f32);
-
-                plla_ck
-            }
-        };
-
-        // MCK input first passes through a prescaler...
-        let presc: f32 = match self.mck_pres {
-            MckPrescaler::CLK_1 => 1.0,
-            MckPrescaler::CLK_2 => 2.0,
-            MckPrescaler::CLK_3 => 3.0,
-            MckPrescaler::CLK_4 => 4.0,
-            MckPrescaler::CLK_8 => 8.0,
-            MckPrescaler::CLK_16 => 16.0,
-            MckPrescaler::CLK_32 => 32.0,
-            MckPrescaler::CLK_64 => 64.0,
-        };
-
-        let post_pres = mck_input / presc;
-
-        // ... then the output of the prescaler is passed through a divider
-        let div: f32 = match self.mck_div {
-            MckDivider::EQ_PCK => 1.0,
-            MckDivider::PCK_DIV2 => 2.0,
-            MckDivider::PCK_DIV3 => 3.0,
-            MckDivider::PCK_DIV4 => 4.0,
-        };
-        let mck = post_pres / div;
-
-        // Make sure we're still in a reasonable range
-        //
-        // TODO: The datasheet says:
-        //
-        // > Master Clock (MCK), programmable from a few hundred Hz to the maximum operating frequency of
-        // > the device. It is available to the modules running permanently, such as the Enhanced Embedded
-        // > Flash Controller
-        //
-        // However I currently assume that it never exceeds 150MHz. This could probably be changed.
-        // This is mostly because the datasheet only lists calculations for flash wait states up to
-        // a master clock of 150MHz.
-        if mck > 255.0 {
-            return Err(PmcError::InvalidConfiguration);
-        } else {
-            // Note, this is a "floor" operation, while we should probably
-            // be using "ceil", though that requires libm (or a similar float library).
-            //
-            // For now, this is probably close enough.
-            let mck_u8 = mck as u8;
-            Ok(mck_u8)
-        }
-    }
+impl PckSource for SlowClock {
+    const PCK_CSS: PCK_CSS = PCK_CSS::SLOW_CLK;
+}
+impl PckSource for MainClock {
+    const PCK_CSS: PCK_CSS = PCK_CSS::MAIN_CLK;
+}
+impl PckSource for UpllClock {
+    const PCK_CSS: PCK_CSS = PCK_CSS::UPLL_CLK;
+}
+impl PckSource for PllaClock {
+    const PCK_CSS: PCK_CSS = PCK_CSS::PLLA_CLK;
+}
+impl PckSource for HostClock {
+    const PCK_CSS: PCK_CSS = PCK_CSS::MCK;
 }
 
 impl Pmc {
@@ -247,11 +161,11 @@ impl Pmc {
             // TODO: If the get_mainck() etc. API is to be used pmc needs to have ownership over
             // the clock structs at startup to prevent multiple instances of MainClock to be
             // constructed. Watchucallit, Singletons.
-            settings: None,
+            // settings: None,
         }
     }
 
-    /// Configures MAINCk and returns a corresponding Clock Token.
+    /// Configures MAINCK and returns a corresponding Clock Token.
     /// This Method corresponds to Steps 2-4 in 31.17 Recommended Programming Sequence.
     pub fn get_mainck(&mut self, source: MainClockOscillatorSource) -> Result<MainClock, PmcError> {
         match source {
@@ -318,7 +232,7 @@ impl Pmc {
 
     /// Configures PLLACK and returns a corresponding clock token.
     /// This method corresponds to Step 6 of 31.17 Recommended Programming Sequence.
-    pub fn get_pllack<'a>(&mut self, config: PllaConfig<'a>) -> Result<PllaClock<'a>, PmcError> {
+    pub fn get_pllack<SRC: PllaSource>(&mut self, config: PllaConfig, source: &SRC) -> Result<PllaClock, PmcError> {
         if config.mult > 63 || config.mult < 2 {
             return Err(PmcError::InvalidConfiguration);
         }
@@ -337,7 +251,7 @@ impl Pmc {
         });
         // loop until PLLA Lock Status
         while self.periph.pmc_sr.read().locka().bit_is_clear() {}
-        Ok(PllaClock{ config })
+        Ok(PllaClock{})
     }
 
     /// Configures UPLLCK
@@ -352,68 +266,28 @@ impl Pmc {
 
     /// Configures HCLK and MCK and returns corresponding Clock Tokens.
     /// This method corresponds to Step 7 in 31.17.
-    pub fn get_hclk<'a>(&mut self, config: &'a HostClockConfig<'a>) -> Result<(ProcessorClock<'a>, HostClock<'a>), PmcError> {
-        let pres_bits = match config.pres {
-            1 => 0,
-            2 => 1,
-            4 => 2,
-            8 => 3,
-            16 => 4,
-            32 => 5,
-            64 => 6,
-            3 => 7,
-            _ => return Err(PmcError::UnimplementedError),
-        };
-        let div_bits = match config.div {
-            1 => 0,
-            2 => 1,
-            3 => 2,
-            4 => 3,
-            _ => return Err(PmcError::InvalidConfiguration),
-        };
+    pub fn get_hclk<SRC: HostClockSource>(&mut self, config: &HostClockConfig, source: &SRC) -> Result<(ProcessorClock, HostClock), PmcError> {
+        let pres_bits = config.pres as u8;
+        let div_bits = config.div as u8;
 
-        match config.clock {
-            Clock::Slck(clock) => {
-                self.periph.pmc_mckr.modify(|_,w| w.css().slow_clk());
-                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-                self.periph.pmc_mckr.modify(|_,w| w.pres().bits(pres_bits));
-                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-                self.periph.pmc_mckr.modify( |_,w| w.mdiv().bits(div_bits));
-                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-            },
-            Clock::Mainck(clock) => {
-                self.periph.pmc_mckr.modify(|_,w| w.css().main_clk());
-                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-                self.periph.pmc_mckr.modify(|_,w| w.pres().bits(pres_bits));
-                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-                self.periph.pmc_mckr.modify( |_,w| { w.mdiv().bits(div_bits)});
-                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-            },
-            Clock::Pllack(clock) => {
-                self.periph.pmc_mckr.modify(|_,w| w.pres().bits(pres_bits));
-                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-                self.periph.pmc_mckr.modify( |_,w| w.mdiv().bits(div_bits));
-                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-                self.periph.pmc_mckr.modify(|_,w| w.css().plla_clk());
-                while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-            },
-            // Upllck passes through a divider, so it should be Upllckdiv but that's not
-            // implemented yet
-            Clock::Upllck(clock) => {return Err(PmcError::InvalidConfiguration)},
-            // Mck cannot be used as a source for mck
-            Clock::Mck(clock) => {return Err(PmcError::InvalidConfiguration);},
-        }
-        Ok((ProcessorClock{ config: &config }, HostClock{ config: &config } ))
+        self.periph.pmc_mckr.modify(|_,w| w.css().bits(SRC::HCC_CSS as u8));
+        while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
+        self.periph.pmc_mckr.modify(|_,w| w.pres().bits(pres_bits));
+        while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
+        self.periph.pmc_mckr.modify( |_,w| w.mdiv().bits(div_bits));
+        while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
+        
+        Ok((ProcessorClock{}, HostClock{} ))
         
     }
 
     /// Configures PCKx and returns a token.
     /// Corresponds to Step 8 in 31.17
-    pub fn get_pck(&mut self, source: PckSource, pres: u8, id: PckId) -> Result<Pck,PmcError> {
+    pub fn get_pck<SRC: PckSource>(&mut self, source: &SRC, pres: u8, id: PckId) -> Result<Pck,PmcError> {
         
         self.periph.pmc_pck[id as usize].write(|w| unsafe {
             w.pres().bits(pres);
-            w.css().bits(source as u8)
+            w.css().bits(SRC::PCK_CSS as u8)
         });
         self.periph.pmc_scer.write( |w|unsafe{ w.bits(1<<(id as u8+8))});
         while (self.periph.pmc_scsr.read().bits() & (1<< (id as u8+8))) == 0 {}
@@ -421,11 +295,6 @@ impl Pmc {
 
     }
 
-
-
-    pub fn settings(&self) -> Option<&ClockSettings> {
-        self.settings.as_ref()
-    }
 
     pub fn enable_peripherals(&mut self, pids: &[PeripheralIdentifier]) -> Result<(), PmcError> {
         if pids.is_empty() {
@@ -488,137 +357,6 @@ impl Pmc {
         Ok(())
     }
 
-    pub fn set_clocks(&mut self, efc: &mut Efc, cfg: ClockSettings) -> Result<(), PmcError> {
-        // Calculate the master clock to determine the number of flash wait states.
-        // This must be done BEFORE increasing the clock speed, in case the current number
-        // of wait states is insufficient for the new speed.
-        //
-        // The flash controller (EEFC) is driven from the master clock (stated in section 31.2)
-        let mck_new = cfg.calc_master_clk_mhz()?;
-        efc.set_wait_states(mck_new)?;
-
-        // Note: This follows Datasheet 31.17 "Recommendeded Programming Sequence"
-        //
-        // Steps 1-5 skipped, using the internal osc
-
-        // The Main RC oscillator. Three output frequencies can be selected: 4/8/12 MHz. By default 12 MHz is
-        // selected. 8 MHz and 12 MHz are factory-trimmed. The Main RC Oscillator is the default choice, and
-        // requires no further configuration.
-        //
-        // TODO: This is the only supported variant. This code will fail if we add another option.
-        // You should implement the logic of steps 1-5 here if you are adding more MCO source
-        // options to the public interface!
-        // let MainClockOscillatorSource::MainRcOsc(MHz12) = cfg.main_clk_osc_src;
-
-        // # Step 6
-        //
-        // All parameters needed to configure PLLA and the divider are located in CKGR_PLLAR.
-        // CKGR_PLLAR.DIVA is used to control the divider. This parameter can be programmed between 0
-        // and 127. Divider output is divider input divided by DIVA parameter. By default, DIVA field is cleared
-        // which means that the divider and PLLA are turned off.
-        //
-        // CKGR_PLLAR.MULA is the PLLA multiplier factor. This parameter can be programmed between 0
-        // and 62. If MULA is cleared, PLLA will be turned off, otherwise the PLLA output frequency is PLLA
-        // input frequency multiplied by (MULA + 1).
-        //
-        // CKGR_PLLAR.PLLACOUNT specifies the number of SLCK cycles before PMC_SR.LOCKA is set
-        // after CKGR_PLLAR has been written.
-
-        // TODO: Since we have a fixed input clock of 12MHz, mul_a cannot exceed 24 (25x12 = 300MHz)
-        if cfg.multiplier_a > 24 {
-            return Err(PmcError::InvalidConfiguration);
-        }
-
-        if cfg.divider_a == 0 || cfg.divider_a > 127 {
-            return Err(PmcError::InvalidConfiguration);
-        }
-
-        self.periph.ckgr_pllar.modify(|_r, w| {
-            w.one().set_bit();
-            unsafe {
-                w.mula().bits(cfg.multiplier_a.into());
-
-                // This is the reset value?
-                w.pllacount().bits(0b111111);
-                w.diva().bits(cfg.divider_a);
-            }
-            w
-        });
-
-        // Once CKGR_PLLAR has been written, the user must wait for PMC_SR.LOCKA to be set. This can
-        // be done either by polling PMC_SR.LOCKA or by waiting for the interrupt line to be raised if the
-        // associated interrupt source (LOCKA) has been enabled in PMC_IER. All fields in CKGR_PLLAR
-        // can be programmed in a single write operation. If MULA or DIVA is modified, the LOCKA bit goes
-        // low to indicate that PLLA is not yet ready. When PLLA is locked, LOCKA is set again. The user
-        // must wait for the LOCKA bit to be set before using the PLLA output clock.
-        while self.periph.pmc_sr.read().locka().bit_is_clear() {}
-
-        // # Step 7
-        // Select MCK and HCLK:
-        // MCK and HCLK are configurable via PMC_MCKR.
-        //
-        // CSS is used to select the clock source of MCK and HCLK. By default, the selected clock source is
-        // MAINCK.
-        //
-        // PRES is used to define the HCLK and MCK prescalers The user can choose between different
-        // values (1, 2, 3, 4, 8, 16, 32, 64). Prescaler output is the selected clock source frequency divided by
-        // the PRES value.
-        //
-        // MDIV is used to define the MCK divider. It is possible to choose between different values (0, 1, 2,
-        // 3). MCK output is the HCLK frequency divided by 1, 2, 3 or 4, depending on the value programmed
-        // in MDIV.
-        //
-        // By default, MDIV is cleared, which indicates that the HCLK is equal to MCK.
-        // Once the PMC_MCKR has been written, the user must wait for PMC_SR.MCKRDY to be set. This
-        // can be done either by polling PMC_SR.MCKRDY or by waiting for the interrupt line to be raised if
-        // the associated interrupt source (MCKRDY) has been enabled in PMC_IER. PMC_MCKR must not
-        // be programmed in a single write operation. The programming sequence for PMC_MCKR is as
-        // follows:
-        //
-        // If a new value for PMC_MCKR.CSS corresponds to any of the available PLL clocks:
-        // a. Program PMC_MCKR.PRES.
-        // b. Wait for PMC_SR.MCKRDY to be set.
-        self.periph
-            .pmc_mckr
-            .modify(|_r, w| w.pres().variant(cfg.mck_pres));
-        while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-
-        // c. Program PMC_MCKR.MDIV.
-        // d. Wait for PMC_SR.MCKRDY to be set.
-        self.periph
-            .pmc_mckr
-            .modify(|_r, w| w.mdiv().variant(cfg.mck_div));
-        while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-
-        // TODO: Again: a hardcoded compile time check
-        let MasterClockSource::PllaClock = cfg.mck_src;
-
-        // e. Program PMC_MCKR.CSS.
-        // f. Wait for PMC_SR.MCKRDY to be set.
-        self.periph.pmc_mckr.modify(|_r, w| w.css().plla_clk());
-        while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-
-        // If a new value for PMC_MCKR.CSS corresponds to MAINCK or SLCK:
-        // a. Program PMC_MCKR.CSS.
-        // b. Wait for PMC_SR.MCKRDY to be set.
-        // c. Program PMC_MCKR.PRES.
-        // d. Wait for PMC_SR.MCKRDY to be set.
-        //
-        // If CSS, MDIV or PRES are modified at any stage, the MCKRDY bit goes low to indicate that MCK
-        // and HCLK are not yet ready. The user must wait for MCKRDY bit to be set again before using MCK
-        // and HCLK.
-        //
-        // Note: If PLLA clock was selected as MCK and the user decides to modify it by writing a new value
-        // into CKGR_PLLAR, the MCKRDY flag will go low while PLLA is unlocked. Once PLLA is locked
-        // again, LOCKA goes high and MCKRDY is set.
-        //
-        // While PLLA is unlocked, MCK selection is automatically changed to SLCK for PLLA. For further
-        // information, see "Clock Switching Waveforms".
-        //
-        // MCK is MAINCK divided by 2.
-        self.settings = Some(cfg);
-        Ok(())
-    }
 }
 
 #[allow(non_camel_case_types)]
