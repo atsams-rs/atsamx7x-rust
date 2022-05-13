@@ -5,6 +5,7 @@
 //! 
 
 use crate::target_device::PMC;
+use crate::target_device::SUPC;
 use fugit::Rate;
 
 pub use crate::target_device::pmc::pmc_mckr::MDIV_A as MckDivider;
@@ -42,6 +43,7 @@ pub struct MainClock {
 pub enum SlowClockOscillatorSource {
     SlowRcOsc,
     SlowCrystalOsc,
+    SlowExternalOsc,
 }
 
 /// SCLK Token
@@ -163,6 +165,28 @@ impl Pmc {
             // constructed. Watchucallit, Singletons.
             // settings: None,
         }
+    }
+
+    /// Configures SLCK and returns a corresponding Clock Token.
+    ///
+    /// Note: Clearing xtalset or oscbypass has no effect.
+    /// Setting oscbypass after setting xtalset has no effect.
+    /// Changes to The SLCK source cannot be unmade in software.
+    pub fn get_slck(&mut self, supc: &mut SUPC, source: SlowClockOscillatorSource) -> Result<SlowClock, PmcError> {
+        match source {
+            SlowClockOscillatorSource::SlowRcOsc => (), 
+            SlowClockOscillatorSource::SlowCrystalOsc => {
+                supc.supc_cr.write(|w| { w.xtalsel().set_bit();
+                                         w.key().passwd()});
+            },
+            SlowClockOscillatorSource::SlowExternalOsc =>{
+                supc.supc_mr.modify(|_,w| { w.oscbypass().set_bit();
+                                         w.key().passwd()});
+                supc.supc_cr.write(|w| { w.xtalsel().set_bit();
+                                         w.key().passwd()});
+            },
+        }
+        Ok(SlowClock{ source })
     }
 
     /// Configures MAINCK and returns a corresponding Clock Token.
