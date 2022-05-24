@@ -3,3 +3,6 @@ members = [
     "hal",
     "pac/*",
 ]
+exclude = [
+  "boards/atsame70_xpro"
+]

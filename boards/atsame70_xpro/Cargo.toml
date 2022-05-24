@@ -1,0 +1,22 @@
+[package]
+name = "atsame70_xpro"
+version = "0.1.0"
+edition = "2021"
+authors = [
+    "Viktor Sonesten <viktor.sonesten@grepit.se>"
+]
+license = "0BSD"
+
+[dependencies]
+cortex-m-rtic = "1.0"
+cortex-m = "0.7"
+panic-halt = "0.2"
+
+[dependencies.atsamx7x-hal]
+version = "0.1.0"
+path = "../../hal"
+features = ["same70q21b-rt"]
+
+[profile.dev]
+debug = true
+lto = true
