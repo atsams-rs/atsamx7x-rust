@@ -2,17 +2,17 @@
 //!
 //! This module allows the user to fully control the various clock sources available on ATSAMx7x
 //! chips.
-//! 
+//!
 
 use crate::target_device::PMC;
 use crate::target_device::SUPC;
 use fugit::Rate;
 
+pub use crate::target_device::pmc::ckgr_mor::MOSCRCF_A as MainRcFreq;
+pub use crate::target_device::pmc::pmc_mckr::CSS_A as HCC_CSS;
 pub use crate::target_device::pmc::pmc_mckr::MDIV_A as MckDivider;
 pub use crate::target_device::pmc::pmc_mckr::PRES_A as MckPrescaler;
-pub use crate::target_device::pmc::pmc_mckr::CSS_A as HCC_CSS;
 pub use crate::target_device::pmc::pmc_pck::CSS_A as PCK_CSS;
-pub use crate::target_device::pmc::ckgr_mor::MOSCRCF_A as MainRcFreq;
 
 pub struct Pmc {
     periph: PMC,
@@ -30,8 +30,8 @@ pub enum PmcError {
 #[derive(Debug, PartialEq, Clone)]
 pub enum MainClockOscillatorSource {
     MainRcOsc(MainRcFreq),
-    MainCrystalOsc(Rate<u32,1,1>),
-    MainExternalOsc(Rate<u32,1,1>),
+    MainCrystalOsc(Rate<u32, 1, 1>),
+    MainExternalOsc(Rate<u32, 1, 1>),
 }
 
 /// MAINCK Token
@@ -57,8 +57,7 @@ pub struct PllaConfig {
 }
 
 /// PLLA Token
-pub struct PllaClock {
-}
+pub struct PllaClock {}
 
 pub struct UpllClock;
 
@@ -69,12 +68,10 @@ pub struct HostClockConfig {
 }
 
 /// MCK Token
-pub struct HostClock {
-}
+pub struct HostClock {}
 
 /// HCLK Token
-pub struct ProcessorClock {
-}
+pub struct ProcessorClock {}
 
 /// The selected "Master Clock" source
 ///
@@ -90,7 +87,6 @@ pub enum MasterClockSource {
 /// PCK token
 pub struct Pck {
     id: PckId,
-
 }
 
 #[derive(Debug, PartialEq, Eq, Copy, Clone)]
@@ -120,7 +116,6 @@ impl HostClockSource for MainClock {
     const HCC_CSS: HCC_CSS = HCC_CSS::MAIN_CLK;
 }
 impl HostClockSource for PllaClock {
-
     const HCC_CSS: HCC_CSS = HCC_CSS::PLLA_CLK;
 }
 impl HostClockSource for UpllClock {
@@ -157,7 +152,6 @@ impl Pmc {
 
         Self {
             periph,
-
             // TODO: I could probably figure out the default settings...
             // this is fine for now.
             // TODO: If the get_mainck() etc. API is to be used pmc needs to have ownership over
@@ -172,21 +166,31 @@ impl Pmc {
     /// Note: Clearing xtalset or oscbypass has no effect.
     /// Setting oscbypass after setting xtalset has no effect.
     /// Changes to The SLCK source cannot be unmade in software.
-    pub fn get_slck(&mut self, supc: &mut SUPC, source: SlowClockOscillatorSource) -> Result<SlowClock, PmcError> {
+    pub fn get_slck(
+        &mut self,
+        supc: &mut SUPC,
+        source: SlowClockOscillatorSource,
+    ) -> Result<SlowClock, PmcError> {
         match source {
-            SlowClockOscillatorSource::SlowRcOsc => (), 
+            SlowClockOscillatorSource::SlowRcOsc => (),
             SlowClockOscillatorSource::SlowCrystalOsc => {
-                supc.supc_cr.write(|w| { w.xtalsel().set_bit();
-                                         w.key().passwd()});
-            },
-            SlowClockOscillatorSource::SlowExternalOsc =>{
-                supc.supc_mr.modify(|_,w| { w.oscbypass().set_bit();
-                                         w.key().passwd()});
-                supc.supc_cr.write(|w| { w.xtalsel().set_bit();
-                                         w.key().passwd()});
-            },
+                supc.supc_cr.write(|w| {
+                    w.xtalsel().set_bit();
+                    w.key().passwd()
+                });
+            }
+            SlowClockOscillatorSource::SlowExternalOsc => {
+                supc.supc_mr.modify(|_, w| {
+                    w.oscbypass().set_bit();
+                    w.key().passwd()
+                });
+                supc.supc_cr.write(|w| {
+                    w.xtalsel().set_bit();
+                    w.key().passwd()
+                });
+            }
         }
-        Ok(SlowClock{ source })
+        Ok(SlowClock { source })
     }
 
     /// Configures MAINCK and returns a corresponding Clock Token.
@@ -195,31 +199,37 @@ impl Pmc {
         match source {
             MainClockOscillatorSource::MainRcOsc(ref freq) => {
                 let freq_bits = *freq as u8;
-                self.periph.ckgr_mor.modify( |_,w| {
-                        w.key().passwd();
-                        w.moscsel().clear_bit();
-                        w.moscrcen().set_bit();
-                        unsafe { w.moscrcf().bits(freq_bits); }
-                        w
-                    });
-            },
+                self.periph.ckgr_mor.modify(|_, w| {
+                    w.key().passwd();
+                    w.moscsel().clear_bit();
+                    w.moscrcen().set_bit();
+                    unsafe {
+                        w.moscrcf().bits(freq_bits);
+                    }
+                    w
+                });
+            }
             MainClockOscillatorSource::MainCrystalOsc(ref freq) => {
                 // Crystal Frequency needs to be between 3 and 20MHz (30.2)
                 if freq.to_MHz() < 3 || freq.to_MHz() > 20 {
                     return Err(PmcError::InvalidConfiguration);
                 }
-                self.periph.ckgr_mor.modify( |_,w| {
+                self.periph.ckgr_mor.modify(|_, w| {
                     w.key().passwd();
                     w.moscxten().set_bit();
-                    unsafe{ w.moscxtst().bits(255);}
+                    unsafe {
+                        w.moscxtst().bits(255);
+                    }
                     w
                 });
                 // loop until main crystal oscillator has stabilised
                 while self.periph.pmc_sr.read().moscxts().bit_is_clear() {}
-                self.periph.ckgr_mor.modify( |_,w| {
+                self.periph.ckgr_mor.modify(|_, w| {
                     w.key().passwd();
                     w.moscsel().set_bit();
-                    unsafe{ w.moscxtst().bits(255);}
+                    unsafe {
+                        w.moscxtst().bits(255);
+                    }
                     w
                 });
                 // loop until source switch has completed
@@ -230,33 +240,36 @@ impl Pmc {
                 if freq.to_MHz() < 3 || freq.to_MHz() > 20 {
                     return Err(PmcError::InvalidConfiguration);
                 }
-                self.periph.ckgr_mor.modify( |_,w| {
+                self.periph.ckgr_mor.modify(|_, w| {
                     w.key().passwd();
                     w.moscxtby().set_bit();
                     w
                 });
                 // loop until source switch has completed
                 while self.periph.pmc_sr.read().moscsels().bit_is_clear() {}
-                self.periph.ckgr_mor.modify( |_,w| {
+                self.periph.ckgr_mor.modify(|_, w| {
                     w.key().passwd();
                     w.moscsel().set_bit();
                     w
                 });
                 while self.periph.pmc_sr.read().moscsels().bit_is_clear() {}
-                self.periph.ckgr_mor.modify( |_,w| {
-                                             w.key().passwd();
-                                             w.moscrcen().clear_bit();
-                                             w
-                                             });
-
+                self.periph.ckgr_mor.modify(|_, w| {
+                    w.key().passwd();
+                    w.moscrcen().clear_bit();
+                    w
+                });
             }
         }
-        Ok(MainClock{ source })
+        Ok(MainClock { source })
     }
 
     /// Configures PLLACK and returns a corresponding clock token.
     /// This method corresponds to Step 6 of 31.17 Recommended Programming Sequence.
-    pub fn get_pllack<SRC: PllaSource>(&mut self, config: PllaConfig, source: &SRC) -> Result<PllaClock, PmcError> {
+    pub fn get_pllack<SRC: PllaSource>(
+        &mut self,
+        config: PllaConfig,
+        source: &SRC,
+    ) -> Result<PllaClock, PmcError> {
         if config.mult > 63 || config.mult < 2 {
             return Err(PmcError::InvalidConfiguration);
         }
@@ -265,7 +278,7 @@ impl Pmc {
         }
         // NOTE: Maximum frequency is not checked her
 
-        self.periph.ckgr_pllar.modify( |_,w| {
+        self.periph.ckgr_pllar.modify(|_, w| {
             w.one().set_bit();
             unsafe {
                 w.mula().bits(config.mult as u16 - 1);
@@ -275,13 +288,13 @@ impl Pmc {
         });
         // loop until PLLA Lock Status
         while self.periph.pmc_sr.read().locka().bit_is_clear() {}
-        Ok(PllaClock{})
+        Ok(PllaClock {})
     }
 
     /// Configures UPLLCK
     /// TODO: There's the UPLLDIV2 that is not touched right now. Should be toggleable.
     pub fn get_upllck(&mut self) -> Result<UpllClock, PmcError> {
-        self.periph.ckgr_uckr.modify(|_,w| w.upllen().set_bit());
+        self.periph.ckgr_uckr.modify(|_, w| w.upllen().set_bit());
         // loop until UPLL Lock Status
         while self.periph.pmc_sr.read().locku().bit_is_clear() {}
 
@@ -290,35 +303,44 @@ impl Pmc {
 
     /// Configures HCLK and MCK and returns corresponding Clock Tokens.
     /// This method corresponds to Step 7 in 31.17.
-    pub fn get_hclk<SRC: HostClockSource>(&mut self, config: &HostClockConfig, source: &SRC) -> Result<(ProcessorClock, HostClock), PmcError> {
+    pub fn get_hclk<SRC: HostClockSource>(
+        &mut self,
+        config: &HostClockConfig,
+        source: &SRC,
+    ) -> Result<(ProcessorClock, HostClock), PmcError> {
         let pres_bits = config.pres as u8;
         let div_bits = config.div as u8;
 
-        self.periph.pmc_mckr.modify(|_,w| w.css().bits(SRC::HCC_CSS as u8));
+        self.periph
+            .pmc_mckr
+            .modify(|_, w| w.css().bits(SRC::HCC_CSS as u8));
         while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-        self.periph.pmc_mckr.modify(|_,w| w.pres().bits(pres_bits));
+        self.periph.pmc_mckr.modify(|_, w| w.pres().bits(pres_bits));
         while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-        self.periph.pmc_mckr.modify( |_,w| w.mdiv().bits(div_bits));
+        self.periph.pmc_mckr.modify(|_, w| w.mdiv().bits(div_bits));
         while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-        
-        Ok((ProcessorClock{}, HostClock{} ))
-        
+
+        Ok((ProcessorClock {}, HostClock {}))
     }
 
     /// Configures PCKx and returns a token.
     /// Corresponds to Step 8 in 31.17
-    pub fn get_pck<SRC: PckSource>(&mut self, source: &SRC, pres: u8, id: PckId) -> Result<Pck,PmcError> {
-        
+    pub fn get_pck<SRC: PckSource>(
+        &mut self,
+        source: &SRC,
+        pres: u8,
+        id: PckId,
+    ) -> Result<Pck, PmcError> {
         self.periph.pmc_pck[id as usize].write(|w| unsafe {
             w.pres().bits(pres);
             w.css().bits(SRC::PCK_CSS as u8)
         });
-        self.periph.pmc_scer.write( |w|unsafe{ w.bits(1<<(id as u8+8))});
-        while (self.periph.pmc_scsr.read().bits() & (1<< (id as u8+8))) == 0 {}
-        Ok(Pck {id})
-
+        self.periph
+            .pmc_scer
+            .write(|w| unsafe { w.bits(1 << (id as u8 + 8)) });
+        while (self.periph.pmc_scsr.read().bits() & (1 << (id as u8 + 8))) == 0 {}
+        Ok(Pck { id })
     }
-
 
     pub fn enable_peripherals(&mut self, pids: &[PeripheralIdentifier]) -> Result<(), PmcError> {
         if pids.is_empty() {
@@ -380,7 +402,6 @@ impl Pmc {
 
         Ok(())
     }
-
 }
 
 #[allow(non_camel_case_types)]
