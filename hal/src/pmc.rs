@@ -14,6 +14,8 @@ pub use crate::target_device::pmc::pmc_mckr::MDIV_A as MckDivider;
 pub use crate::target_device::pmc::pmc_mckr::PRES_A as MckPrescaler;
 pub use crate::target_device::pmc::pmc_pck::CSS_A as PCK_CSS;
 
+pub type Megahertz = fugit::Megahertz<u32>;
+
 pub struct Pmc {
     periph: PMC,
 }
@@ -26,17 +28,18 @@ pub enum PmcError {
     InternalError,
 }
 
-/// The selected "Main Clock Oscillator" source
+/// The source of the Main Clock (MAINCK)
 #[derive(Debug, PartialEq, Clone)]
-pub enum MainClockOscillatorSource {
-    MainRcOsc(MainRcFreq),
-    MainCrystalOsc(Rate<u32, 1, 1>),
-    MainExternalOsc(Rate<u32, 1, 1>),
+pub enum MainCkSource {
+    /// Internal "Main RC" oscillator.
+    Internal(MainRcFreq),
+    /// External oscillator, connected to XIN/XOUT.
+    External(Megahertz),
 }
 
 /// MAINCK Token
 pub struct MainClock {
-    source: MainClockOscillatorSource,
+    source: MainCkSource,
 }
 
 // Slow Clock Oscillator Source is set in SUPC
@@ -195,69 +198,52 @@ impl Pmc {
 
     /// Configures MAINCK and returns a corresponding Clock Token.
     /// This Method corresponds to Steps 2-4 in 31.17 Recommended Programming Sequence.
-    pub fn get_mainck(&mut self, source: MainClockOscillatorSource) -> Result<MainClock, PmcError> {
+    pub fn get_mainck(&mut self, source: MainCkSource) -> Result<MainClock, PmcError> {
+        // Refer to §31.20.8, §31.20.16
+
         match source {
-            MainClockOscillatorSource::MainRcOsc(ref freq) => {
-                let freq_bits = *freq as u8;
+            MainCkSource::Internal(freq) => {
                 self.periph.ckgr_mor.modify(|_, w| {
                     w.key().passwd();
                     w.moscsel().clear_bit();
                     w.moscrcen().set_bit();
-                    unsafe {
-                        w.moscrcf().bits(freq_bits);
-                    }
+                    w.moscrcf().variant(freq);
                     w
                 });
+
+                // TODO hande note for MOSCRCF unhandled (p. 276;
+                // first table, second row)
+
+                // Wait until clock is stable.
+                while self.periph.pmc_sr.read().moscrcs().bit_is_clear() {}
             }
-            MainClockOscillatorSource::MainCrystalOsc(ref freq) => {
+            MainCkSource::External(freq) => {
                 // Crystal Frequency needs to be between 3 and 20MHz (30.2)
                 if freq.to_MHz() < 3 || freq.to_MHz() > 20 {
                     return Err(PmcError::InvalidConfiguration);
                 }
-                self.periph.ckgr_mor.modify(|_, w| {
-                    w.key().passwd();
-                    w.moscxten().set_bit();
-                    unsafe {
-                        w.moscxtst().bits(255);
-                    }
-                    w
-                });
-                // loop until main crystal oscillator has stabilised
-                while self.periph.pmc_sr.read().moscxts().bit_is_clear() {}
-                self.periph.ckgr_mor.modify(|_, w| {
-                    w.key().passwd();
-                    w.moscsel().set_bit();
-                    unsafe {
-                        w.moscxtst().bits(255);
-                    }
-                    w
-                });
-                // loop until source switch has completed
-                while self.periph.pmc_sr.read().moscsels().bit_is_clear() {}
-            }
-            MainClockOscillatorSource::MainExternalOsc(ref freq) => {
-                // Oscillator Frequency needs to be between 3 and 20MHz (30.2)
-                if freq.to_MHz() < 3 || freq.to_MHz() > 20 {
-                    return Err(PmcError::InvalidConfiguration);
-                }
+
+                // Bypass the main crystal oscillator
                 self.periph.ckgr_mor.modify(|_, w| {
                     w.key().passwd();
                     w.moscxtby().set_bit();
+                    w.moscxten().clear_bit();
+                    unsafe {
+                        w.moscxtst().bits(u8::MAX);
+                    }
                     w
                 });
-                // loop until source switch has completed
-                while self.periph.pmc_sr.read().moscsels().bit_is_clear() {}
+
+                // Wait until oscillator is stable
+                while self.periph.pmc_sr.read().moscxts().bit_is_clear() {}
+
+                // Switch over to the external clock
                 self.periph.ckgr_mor.modify(|_, w| {
                     w.key().passwd();
                     w.moscsel().set_bit();
                     w
                 });
                 while self.periph.pmc_sr.read().moscsels().bit_is_clear() {}
-                self.periph.ckgr_mor.modify(|_, w| {
-                    w.key().passwd();
-                    w.moscrcen().clear_bit();
-                    w
-                });
             }
         }
         Ok(MainClock { source })
