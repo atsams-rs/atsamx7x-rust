@@ -25,3 +25,7 @@ The example can now be flashed after first, in a seperate shell, `openocd -f ope
 ```shell
 $ cargo run
 ```
+
+## Erasing bad firmware
+In case the board has been flashed with software that sets it in a bad state before the debugger can attach, bridge the "ERASE" header (J400; north of the MCU) between power cycles, and remove the bridge.
+The flash area has now been zeroed.
