@@ -17,7 +17,7 @@ pub use crate::target_device::pmc::pmc_pck::CSS_A as PCK_CSS;
 pub type Megahertz = fugit::Megahertz<u32>;
 
 pub struct Pmc {
-    periph: PMC,
+    pmc: PMC,
 }
 
 #[derive(Debug, PartialEq, Clone)]
@@ -146,15 +146,15 @@ impl PckSource for HostClock {
 }
 
 impl Pmc {
-    pub fn new(periph: PMC) -> Self {
-        periph.pmc_wpmr.modify(|_r, w| {
+    pub fn new(pmc: PMC) -> Self {
+        pmc.pmc_wpmr.modify(|_r, w| {
             w.wpkey().passwd();
             w.wpen().clear_bit();
             w
         });
 
         Self {
-            periph,
+            pmc,
             // TODO: I could probably figure out the default settings...
             // this is fine for now.
             // TODO: If the get_mainck() etc. API is to be used pmc needs to have ownership over
@@ -203,7 +203,7 @@ impl Pmc {
 
         match source {
             MainCkSource::Internal(freq) => {
-                self.periph.ckgr_mor.modify(|_, w| {
+                self.pmc.ckgr_mor.modify(|_, w| {
                     w.key().passwd();
                     w.moscsel().clear_bit();
                     w.moscrcen().set_bit();
@@ -215,7 +215,7 @@ impl Pmc {
                 // first table, second row)
 
                 // Wait until clock is stable.
-                while self.periph.pmc_sr.read().moscrcs().bit_is_clear() {}
+                while self.pmc.pmc_sr.read().moscrcs().bit_is_clear() {}
             }
             MainCkSource::External(freq) => {
                 // Crystal Frequency needs to be between 3 and 20MHz (30.2)
@@ -224,7 +224,7 @@ impl Pmc {
                 }
 
                 // Bypass the main crystal oscillator
-                self.periph.ckgr_mor.modify(|_, w| {
+                self.pmc.ckgr_mor.modify(|_, w| {
                     w.key().passwd();
                     w.moscxtby().set_bit();
                     w.moscxten().clear_bit();
@@ -235,15 +235,15 @@ impl Pmc {
                 });
 
                 // Wait until oscillator is stable
-                while self.periph.pmc_sr.read().moscxts().bit_is_clear() {}
+                while self.pmc.pmc_sr.read().moscxts().bit_is_clear() {}
 
                 // Switch over to the external clock
-                self.periph.ckgr_mor.modify(|_, w| {
+                self.pmc.ckgr_mor.modify(|_, w| {
                     w.key().passwd();
                     w.moscsel().set_bit();
                     w
                 });
-                while self.periph.pmc_sr.read().moscsels().bit_is_clear() {}
+                while self.pmc.pmc_sr.read().moscsels().bit_is_clear() {}
             }
         }
         Ok(MainClock { source })
@@ -264,7 +264,7 @@ impl Pmc {
         }
         // NOTE: Maximum frequency is not checked her
 
-        self.periph.ckgr_pllar.modify(|_, w| {
+        self.pmc.ckgr_pllar.modify(|_, w| {
             w.one().set_bit();
             unsafe {
                 w.mula().bits(config.mult as u16 - 1);
@@ -273,16 +273,16 @@ impl Pmc {
             w
         });
         // loop until PLLA Lock Status
-        while self.periph.pmc_sr.read().locka().bit_is_clear() {}
+        while self.pmc.pmc_sr.read().locka().bit_is_clear() {}
         Ok(PllaClock {})
     }
 
     /// Configures UPLLCK
     /// TODO: There's the UPLLDIV2 that is not touched right now. Should be toggleable.
     pub fn get_upllck(&mut self) -> Result<UpllClock, PmcError> {
-        self.periph.ckgr_uckr.modify(|_, w| w.upllen().set_bit());
+        self.pmc.ckgr_uckr.modify(|_, w| w.upllen().set_bit());
         // loop until UPLL Lock Status
-        while self.periph.pmc_sr.read().locku().bit_is_clear() {}
+        while self.pmc.pmc_sr.read().locku().bit_is_clear() {}
 
         Ok(UpllClock)
     }
@@ -297,14 +297,14 @@ impl Pmc {
         let pres_bits = config.pres as u8;
         let div_bits = config.div as u8;
 
-        self.periph
+        self.pmc
             .pmc_mckr
             .modify(|_, w| w.css().bits(SRC::HCC_CSS as u8));
-        while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-        self.periph.pmc_mckr.modify(|_, w| w.pres().bits(pres_bits));
-        while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
-        self.periph.pmc_mckr.modify(|_, w| w.mdiv().bits(div_bits));
-        while self.periph.pmc_sr.read().mckrdy().bit_is_clear() {}
+        while self.pmc.pmc_sr.read().mckrdy().bit_is_clear() {}
+        self.pmc.pmc_mckr.modify(|_, w| w.pres().bits(pres_bits));
+        while self.pmc.pmc_sr.read().mckrdy().bit_is_clear() {}
+        self.pmc.pmc_mckr.modify(|_, w| w.mdiv().bits(div_bits));
+        while self.pmc.pmc_sr.read().mckrdy().bit_is_clear() {}
 
         Ok((ProcessorClock {}, HostClock {}))
     }
@@ -317,14 +317,14 @@ impl Pmc {
         pres: u8,
         id: PckId,
     ) -> Result<Pck, PmcError> {
-        self.periph.pmc_pck[id as usize].write(|w| unsafe {
+        self.pmc.pmc_pck[id as usize].write(|w| unsafe {
             w.pres().bits(pres);
             w.css().bits(SRC::PCK_CSS as u8)
         });
-        self.periph
+        self.pmc
             .pmc_scer
             .write(|w| unsafe { w.bits(1 << (id as u8 + 8)) });
-        while (self.periph.pmc_scsr.read().bits() & (1 << (id as u8 + 8))) == 0 {}
+        while (self.pmc.pmc_scsr.read().bits() & (1 << (id as u8 + 8))) == 0 {}
         Ok(Pck { id })
     }
 
@@ -333,8 +333,8 @@ impl Pmc {
             return Ok(());
         }
 
-        let pcsr0 = self.periph.pmc_pcsr0.read().bits();
-        let pcsr1 = self.periph.pmc_pcsr1.read().bits();
+        let pcsr0 = self.pmc.pmc_pcsr0.read().bits();
+        let pcsr1 = self.pmc.pmc_pcsr1.read().bits();
 
         let mut pcr0 = 0;
         let mut pcr1 = 0;
@@ -383,8 +383,8 @@ impl Pmc {
         }
 
         // Enable the newly set peripherals
-        self.periph.pmc_pcer0.write(|w| unsafe { w.bits(pcr0) });
-        self.periph.pmc_pcer1.write(|w| unsafe { w.bits(pcr1) });
+        self.pmc.pmc_pcer0.write(|w| unsafe { w.bits(pcr0) });
+        self.pmc.pmc_pcer1.write(|w| unsafe { w.bits(pcr1) });
 
         Ok(())
     }
