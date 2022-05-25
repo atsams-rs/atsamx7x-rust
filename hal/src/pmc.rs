@@ -4,8 +4,10 @@
 //! chips.
 //!
 
+use crate::efc::Efc;
 use crate::target_device::PMC;
 use crate::target_device::SUPC;
+
 use fugit::Rate;
 
 pub use crate::target_device::pmc::ckgr_mor::MOSCRCF_A as MainRcFreq;
@@ -368,7 +370,24 @@ impl Pmc {
         &mut self,
         HostClockConfig { pres, div }: HostClockConfig,
         source: &SRC,
+        efc: &mut Efc,
     ) -> Result<(ProcessorClock, HostClock), PmcError> {
+        // Ensure we use the correct amount of wait states for flash
+        // access for the new HCLK frequency.
+        efc.set_wait_states(
+            source.freq()
+                / match pres {
+                    MckPrescaler::CLK_1 => 1,
+                    MckPrescaler::CLK_2 => 2,
+                    MckPrescaler::CLK_3 => 3,
+                    MckPrescaler::CLK_4 => 4,
+                    MckPrescaler::CLK_8 => 8,
+                    MckPrescaler::CLK_16 => 16,
+                    MckPrescaler::CLK_32 => 32,
+                    MckPrescaler::CLK_64 => 64,
+                },
+        )?;
+
         let source = SRC::HCC_CSS;
 
         match source {

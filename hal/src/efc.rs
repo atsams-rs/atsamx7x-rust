@@ -1,6 +1,6 @@
 //! Flash controller configuration
 
-use crate::pmc::PmcError;
+use crate::pmc::{Megahertz, PmcError};
 use crate::target_device::EFC;
 
 /// The voltage which drives the MCU.
@@ -35,7 +35,7 @@ impl Efc {
     ///
     /// The max mck frequency supported is 150MHz. This is *not* the CPU frequency,
     /// which may go up to 300MHz.
-    pub fn set_wait_states(&mut self, freq: u8) -> Result<(), PmcError> {
+    pub fn set_wait_states(&mut self, freq: Megahertz) -> Result<(), PmcError> {
         let fws = FlashWaitStates::calculate(freq, &self.vddio)?;
 
         self.periph
@@ -62,7 +62,7 @@ enum FlashWaitStates {
 }
 
 impl FlashWaitStates {
-    pub fn calculate(freq: u8, vddio: &VddioLevel) -> Result<Self, PmcError> {
+    pub fn calculate(freq: Megahertz, vddio: &VddioLevel) -> Result<Self, PmcError> {
         #[cfg(any(feature = "v70", feature = "v71"))]
         if vddio == &VddioLevel::V1 {
             // V70/V71 must be driven with VDDIO = 3.3V, typical
@@ -72,12 +72,12 @@ impl FlashWaitStates {
         Self::fws_from_freq(freq, vddio)
     }
 
-    fn fws_from_freq(freq: u8, vddio: &VddioLevel) -> Result<Self, PmcError> {
+    fn fws_from_freq(freq: Megahertz, vddio: &VddioLevel) -> Result<Self, PmcError> {
         match vddio {
             VddioLevel::V1 => {
                 // References:
                 // - Table 59-50 (p. 1850) Embedded Flash Wait States for Worst-Case Conditions (E70/S70; VDDIO = 1.7V)
-                Ok(match freq {
+                Ok(match freq.to_MHz() {
                     0..=21 => Self::Zero,
                     22..=42 => Self::One,
                     43..=63 => Self::Two,
@@ -92,7 +92,7 @@ impl FlashWaitStates {
                 // References:
                 // - Table 58-50 (p. 1804) Embedded Flash Wait States for Worst-Case Conditions (V70/V71)
                 // - Table 59-50 (p. 1850) Embedded Flash Wait States for Worst-Case Conditions (E70/S70; VDDIO = 3.0V)
-                Ok(match freq {
+                Ok(match freq.to_MHz() {
                     0..=23 => Self::Zero,
                     24..=46 => Self::One,
                     47..=69 => Self::Two,
