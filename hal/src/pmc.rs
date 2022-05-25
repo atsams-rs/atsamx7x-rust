@@ -74,7 +74,9 @@ pub struct PllaClock {
     freq: Megahertz,
 }
 
-pub struct UpllClock;
+pub struct UpllClock {
+    freq: Megahertz
+}
 
 /// HCLK/MCK Config
 pub struct HostClockConfig {
@@ -119,6 +121,16 @@ pub enum PckId {
     Pck7,
 }
 
+pub trait UpllSource {
+    fn freq(&self) -> Megahertz;
+}
+
+impl UpllSource for MainClock {
+    fn freq(&self) -> Megahertz {
+        self.freq
+    }
+}
+
 pub trait PllaSource {
     fn freq(&self) -> Megahertz;
 }
@@ -156,6 +168,10 @@ impl HostClockSource for PllaClock {
 }
 impl HostClockSource for UpllClock {
     const HCC_CSS: HCC_CSS = HCC_CSS::UPLL_CLK;
+
+    fn freq(&self) -> Megahertz {
+        self.freq
+    }
 }
 
 pub trait PckSource {
@@ -356,12 +372,27 @@ impl Pmc {
 
     /// Configures UPLLCK
     /// TODO: There's the UPLLDIV2 that is not touched right now. Should be toggleable.
-    pub fn get_upllck(&mut self) -> Result<UpllClock, PmcError> {
-        self.pmc.ckgr_uckr.modify(|_, w| w.upllen().set_bit());
-        // loop until UPLL Lock Status
+    pub fn get_upllck<SRC: UpllSource>(&mut self, source: &SRC, utmi: &mut crate::target_device::UTMI) -> Result<UpllClock, PmcError> {
+        use crate::target_device::utmi::utmi_cktrim::FREQ_A as FREQ;
+
+        let freq = match source.freq().to_MHz() {
+            12 => FREQ::XTAL12,
+            16 => FREQ::XTAL16,
+            _ => return Err(PmcError::InvalidConfiguration),
+        };
+
+        // Configure the UTMI PLL clock and wait for lock.
+        utmi.utmi_cktrim.modify(|_, w| w.freq().variant(freq));
+        self.pmc.ckgr_uckr.modify(|_, w| {
+            w.upllen().set_bit();
+            unsafe {
+                w.upllcount().bits(u8::MAX);
+            }
+            w
+        });
         while self.pmc.pmc_sr.read().locku().bit_is_clear() {}
 
-        Ok(UpllClock)
+        Ok(UpllClock { freq: Megahertz::from_raw(480) })
     }
 
     /// Configures HCLK and MCK and returns corresponding Clock Tokens.
