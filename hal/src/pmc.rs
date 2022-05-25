@@ -47,6 +47,7 @@ pub enum MainCkSource {
 /// MAINCK Token
 pub struct MainClock {
     source: MainCkSource,
+    freq: Megahertz,
 }
 
 // Slow Clock Oscillator Source is set in SUPC
@@ -67,7 +68,9 @@ pub struct PllaConfig {
 }
 
 /// PLLA Token
-pub struct PllaClock {}
+pub struct PllaClock {
+    freq: Megahertz,
+}
 
 pub struct UpllClock;
 
@@ -114,12 +117,22 @@ pub enum PckId {
     Pck7,
 }
 
-pub trait PllaSource {}
+pub trait PllaSource {
+    fn freq(&self) -> Megahertz;
+}
 
-impl PllaSource for MainClock {}
+impl PllaSource for MainClock {
+    fn freq(&self) -> Megahertz {
+        self.freq
+    }
+}
 
 pub trait HostClockSource {
     const HCC_CSS: HCC_CSS;
+
+    fn freq(&self) -> Megahertz {
+        todo!()
+    }
 }
 
 impl HostClockSource for SlowClock {
@@ -127,9 +140,17 @@ impl HostClockSource for SlowClock {
 }
 impl HostClockSource for MainClock {
     const HCC_CSS: HCC_CSS = HCC_CSS::MAIN_CLK;
+
+    fn freq(&self) -> Megahertz {
+        self.freq
+    }
 }
 impl HostClockSource for PllaClock {
     const HCC_CSS: HCC_CSS = HCC_CSS::PLLA_CLK;
+
+    fn freq(&self) -> Megahertz {
+        self.freq
+    }
 }
 impl HostClockSource for UpllClock {
     const HCC_CSS: HCC_CSS = HCC_CSS::UPLL_CLK;
@@ -211,7 +232,7 @@ impl Pmc {
     pub fn get_mainck(&mut self, source: MainCkSource) -> Result<MainClock, PmcError> {
         // Refer to §31.20.8, §31.20.16
 
-        match source {
+        let freq = match source {
             MainCkSource::InternalRC(freq) => {
                 self.pmc.ckgr_mor.modify(|_, w| {
                     w.key().passwd();
@@ -226,6 +247,12 @@ impl Pmc {
 
                 // Wait until clock is stable.
                 while self.pmc.pmc_sr.read().moscrcs().bit_is_clear() {}
+
+                Megahertz::from_raw(match freq {
+                    MainRcFreq::_4_MHZ => 4,
+                    MainRcFreq::_8_MHZ => 8,
+                    MainRcFreq::_12_MHZ => 12,
+                })
             }
             MainCkSource::ExternalNormal(freq) => {
                 // Clock signal frequency needs to be between 3 and
@@ -255,6 +282,8 @@ impl Pmc {
                 while self.pmc.pmc_sr.read().moscsels().bit_is_clear() {}
 
                 // TODO check MAINCK frequency (§31.17; step 5).
+
+                freq
             }
             MainCkSource::ExternalBypass(freq) => {
                 // Crystal frequency needs to be between 3 and 20MHz
@@ -284,9 +313,12 @@ impl Pmc {
                     w
                 });
                 while self.pmc.pmc_sr.read().moscsels().bit_is_clear() {}
+
+                freq
             }
-        }
-        Ok(MainClock { source })
+        };
+
+        Ok(MainClock { source, freq })
     }
 
     /// Configures PLLACK and returns a corresponding clock token.
@@ -315,7 +347,9 @@ impl Pmc {
         });
         while self.pmc.pmc_sr.read().locka().bit_is_clear() {}
 
-        Ok(PllaClock {})
+        Ok(PllaClock {
+            freq: (source.freq() / div as u32) * mult as u32,
+        })
     }
 
     /// Configures UPLLCK
@@ -347,7 +381,7 @@ impl Pmc {
 
                 self.pmc.pmc_mckr.modify(|_, w| w.css().variant(source));
                 while self.pmc.pmc_sr.read().mckrdy().bit_is_clear() {}
-            },
+            }
             HCC_CSS::MAIN_CLK | HCC_CSS::SLOW_CLK => {
                 self.pmc.pmc_mckr.modify(|_, w| w.css().variant(source));
                 while self.pmc.pmc_sr.read().mckrdy().bit_is_clear() {}
