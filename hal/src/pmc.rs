@@ -28,13 +28,20 @@ pub enum PmcError {
     InternalError,
 }
 
-/// The source of the Main Clock (MAINCK)
+/// The source of the Main Clock (MAINCK).
+///
+/// Refer to §60.2.1.
 #[derive(Debug, PartialEq, Clone)]
 pub enum MainCkSource {
     /// Internal "Main RC" oscillator.
-    Internal(MainRcFreq),
-    /// External oscillator, connected to XIN/XOUT.
-    External(Megahertz),
+    InternalRC(MainRcFreq),
+    /// External crystal powered by the MCU and connected to XIN and
+    /// XOUT.
+    ExternalNormal(Megahertz),
+    /// External clock signal connected to XIN, XOUT potentially
+    /// unconnected. Bypasses the oscillator otherwise used when using
+    /// [ExternalNormal].
+    ExternalBypass(Megahertz),
 }
 
 /// MAINCK Token
@@ -202,7 +209,7 @@ impl Pmc {
         // Refer to §31.20.8, §31.20.16
 
         match source {
-            MainCkSource::Internal(freq) => {
+            MainCkSource::InternalRC(freq) => {
                 self.pmc.ckgr_mor.modify(|_, w| {
                     w.key().passwd();
                     w.moscsel().clear_bit();
@@ -217,13 +224,43 @@ impl Pmc {
                 // Wait until clock is stable.
                 while self.pmc.pmc_sr.read().moscrcs().bit_is_clear() {}
             }
-            MainCkSource::External(freq) => {
-                // Crystal Frequency needs to be between 3 and 20MHz (30.2)
+            MainCkSource::ExternalNormal(freq) => {
+                // Clock signal frequency needs to be between 3 and
+                // 20MHz (§30.2).
                 if freq.to_MHz() < 3 || freq.to_MHz() > 20 {
                     return Err(PmcError::InvalidConfiguration);
                 }
 
-                // Bypass the main crystal oscillator
+                // Enable the external oscillator and wait for it to
+                // stabilize.
+                self.pmc.ckgr_mor.modify(|_, w| {
+                    w.key().passwd();
+                    w.moscxten().set_bit();
+                    unsafe {
+                        w.moscxtst().bits(u8::MAX);
+                    }
+                    w
+                });
+                while self.pmc.pmc_sr.read().moscxts().bit_is_clear() {}
+
+                // Switch over to the main oscillator.
+                self.pmc.ckgr_mor.modify(|_, w| {
+                    w.key().passwd();
+                    w.moscsel().set_bit();
+                    w
+                });
+                while self.pmc.pmc_sr.read().moscsels().bit_is_clear() {}
+
+                // TODO check MAINCK frequency (§31.17; step 5).
+            }
+            MainCkSource::ExternalBypass(freq) => {
+                // Crystal frequency needs to be between 3 and 20MHz
+                // (§30.2).
+                if freq.to_MHz() < 3 || freq.to_MHz() > 20 {
+                    return Err(PmcError::InvalidConfiguration);
+                }
+
+                // Bypass the main crystal oscillator and disable it.
                 self.pmc.ckgr_mor.modify(|_, w| {
                     w.key().passwd();
                     w.moscxtby().set_bit();
@@ -234,10 +271,10 @@ impl Pmc {
                     w
                 });
 
-                // Wait until oscillator is stable
+                // Wait until oscillator is stable.
                 while self.pmc.pmc_sr.read().moscxts().bit_is_clear() {}
 
-                // Switch over to the external clock
+                // Switch over to the external clock.
                 self.pmc.ckgr_mor.modify(|_, w| {
                     w.key().passwd();
                     w.moscsel().set_bit();
