@@ -290,27 +290,28 @@ impl Pmc {
     /// This method corresponds to Step 6 of 31.17 Recommended Programming Sequence.
     pub fn get_pllack<SRC: PllaSource>(
         &mut self,
-        config: PllaConfig,
+        PllaConfig { div, mult }: PllaConfig,
         source: &SRC,
     ) -> Result<PllaClock, PmcError> {
-        if config.mult > 63 || config.mult < 2 {
+        if mult > 63 || mult < 2 {
             return Err(PmcError::InvalidConfiguration);
         }
-        if config.div == 0 || config.div > 127 {
+        if div == 0 || div > 127 {
             return Err(PmcError::InvalidConfiguration);
         }
-        // NOTE: Maximum frequency is not checked her
+        // TODO: Ensure valid requested output frequency.
 
+        // Configure PLLA and wait for lock.
         self.pmc.ckgr_pllar.modify(|_, w| {
             w.one().set_bit();
             unsafe {
-                w.mula().bits(config.mult as u16 - 1);
-                w.diva().bits(config.div);
+                w.mula().bits(mult as u16 - 1); // HW adds 1
+                w.diva().bits(div);
             }
             w
         });
-        // loop until PLLA Lock Status
         while self.pmc.pmc_sr.read().locka().bit_is_clear() {}
+
         Ok(PllaClock {})
     }
 
