@@ -73,7 +73,10 @@ pub struct UpllClock;
 
 /// HCLK/MCK Config
 pub struct HostClockConfig {
+    /// General prescaler that affects HCLK, SysTick, FCLK, MCK and
+    /// peripheral clocks.
     pub pres: MckPrescaler,
+    /// Divider that only affects MCK and peripheral clocks.
     pub div: MckDivider,
 }
 
@@ -329,20 +332,35 @@ impl Pmc {
     /// This method corresponds to Step 7 in 31.17.
     pub fn get_hclk<SRC: HostClockSource>(
         &mut self,
-        config: &HostClockConfig,
+        HostClockConfig { pres, div }: HostClockConfig,
         source: &SRC,
     ) -> Result<(ProcessorClock, HostClock), PmcError> {
-        let pres_bits = config.pres as u8;
-        let div_bits = config.div as u8;
+        let source = SRC::HCC_CSS;
 
-        self.pmc
-            .pmc_mckr
-            .modify(|_, w| w.css().bits(SRC::HCC_CSS as u8));
-        while self.pmc.pmc_sr.read().mckrdy().bit_is_clear() {}
-        self.pmc.pmc_mckr.modify(|_, w| w.pres().bits(pres_bits));
-        while self.pmc.pmc_sr.read().mckrdy().bit_is_clear() {}
-        self.pmc.pmc_mckr.modify(|_, w| w.mdiv().bits(div_bits));
-        while self.pmc.pmc_sr.read().mckrdy().bit_is_clear() {}
+        match source {
+            HCC_CSS::PLLA_CLK | HCC_CSS::UPLL_CLK => {
+                self.pmc.pmc_mckr.modify(|_, w| w.pres().variant(pres));
+                while self.pmc.pmc_sr.read().mckrdy().bit_is_clear() {}
+
+                self.pmc.pmc_mckr.modify(|_, w| w.mdiv().variant(div));
+                while self.pmc.pmc_sr.read().mckrdy().bit_is_clear() {}
+
+                self.pmc.pmc_mckr.modify(|_, w| w.css().variant(source));
+                while self.pmc.pmc_sr.read().mckrdy().bit_is_clear() {}
+            },
+            HCC_CSS::MAIN_CLK | HCC_CSS::SLOW_CLK => {
+                self.pmc.pmc_mckr.modify(|_, w| w.css().variant(source));
+                while self.pmc.pmc_sr.read().mckrdy().bit_is_clear() {}
+
+                self.pmc.pmc_mckr.modify(|_, w| w.pres().variant(pres));
+                while self.pmc.pmc_sr.read().mckrdy().bit_is_clear() {}
+
+                // XXX: Not a part of the RPS: is it a noop? Or is
+                // MDIV static?
+                self.pmc.pmc_mckr.modify(|_, w| w.mdiv().variant(div));
+                while self.pmc.pmc_sr.read().mckrdy().bit_is_clear() {}
+            }
+        }
 
         Ok((ProcessorClock {}, HostClock {}))
     }
