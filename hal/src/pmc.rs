@@ -27,10 +27,12 @@ pub enum UpllDivider {
     Div2,
 }
 
+/// Power Management Controller
 pub struct Pmc {
     pmc: PMC,
 }
 
+/// Possible errors that can occur on PMC configuration.
 #[derive(Debug, PartialEq, Clone)]
 pub enum PmcError {
     ClockingError(PeripheralIdentifier),
@@ -39,7 +41,7 @@ pub enum PmcError {
     InternalError,
 }
 
-/// The source of the Main Clock (MAINCK).
+/// The source of the Main Clock (MAINCK)
 ///
 /// Refer to §60.2.1.
 #[derive(Debug, PartialEq, Clone)]
@@ -51,46 +53,51 @@ pub enum MainCkSource {
     ExternalNormal(Megahertz),
     /// External clock signal connected to XIN, XOUT potentially
     /// unconnected. Bypasses the oscillator otherwise used when using
-    /// [ExternalNormal].
+    /// [MainCkSource::ExternalNormal].
     ExternalBypass(Megahertz),
 }
 
-/// MAINCK Token
+/// MAINCK token
 pub struct MainClock {
     freq: Megahertz,
 }
 
-// Slow Clock Oscillator Source is set in SUPC
+/// The source of the Slow Clock (SLCK)
+///
+/// Refer to §23.4.2 and §60.2.1.
 pub enum SlowClockOscillatorSource {
     SlowRcOsc,
     SlowCrystalOsc,
     SlowExternalOsc,
 }
 
-/// SCLK Token
+/// SCLK token
 pub struct SlowClock {
     freq: Hertz,
 }
 
+/// PLLA configuration
 pub struct PllaConfig {
     pub div: u8,
     pub mult: u8,
 }
 
-/// PLLA Token
+/// PLLA token
 pub struct PllaClock {
     freq: Hertz,
 }
 
+/// UPLLCK token
 pub struct UpllClock {
     freq: Megahertz
 }
 
+/// UPLLCKDIV token
 pub struct UpllDivClock {
     freq: Megahertz
 }
 
-/// HCLK/MCK Config
+/// HCLK/MCK configuration
 pub struct HostClockConfig {
     /// General prescaler that affects HCLK, SysTick, FCLK, MCK and
     /// peripheral clocks.
@@ -99,10 +106,10 @@ pub struct HostClockConfig {
     pub div: MckDivider,
 }
 
-/// MCK Token
+/// MCK token
 pub struct HostClock {}
 
-/// HCLK Token
+/// HCLK token
 pub struct ProcessorClock {}
 
 /// The selected "Master Clock" source
@@ -122,6 +129,7 @@ pub struct Pck {
     id: PckId,
 }
 
+/// PCK to configure
 #[derive(Debug, PartialEq, Eq, Copy, Clone)]
 pub enum PckId {
     Pck0,
@@ -134,6 +142,7 @@ pub enum PckId {
     Pck7,
 }
 
+#[doc(hidden)]
 pub trait UpllDivSource {
     fn freq(&self) -> Megahertz;
 }
@@ -144,6 +153,7 @@ impl UpllDivSource for UpllClock {
     }
 }
 
+#[doc(hidden)]
 pub trait UpllSource {
     fn freq(&self) -> Megahertz;
 }
@@ -154,6 +164,7 @@ impl UpllSource for MainClock {
     }
 }
 
+#[doc(hidden)]
 pub trait PllaSource {
     fn freq(&self) -> Megahertz;
 }
@@ -164,6 +175,7 @@ impl PllaSource for MainClock {
     }
 }
 
+#[doc(hidden)]
 pub trait HostClockSource {
     const HCC_CSS: HCC_CSS;
 
@@ -199,6 +211,7 @@ impl HostClockSource for UpllDivClock {
     }
 }
 
+#[doc(hidden)]
 pub trait PckSource {
     const PCK_CSS: PCK_CSS;
 }
@@ -565,6 +578,7 @@ impl Pmc {
     }
 }
 
+/// Identifiers for peripherals
 #[allow(non_camel_case_types)]
 #[derive(Debug, PartialEq, Eq, Copy, Clone)]
 #[repr(u32)]
