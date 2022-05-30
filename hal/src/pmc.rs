@@ -1,8 +1,46 @@
 //! Clock hierarchy configuration
 //!
-//! This module allows the user to fully control the various clock sources available on ATSAMx7x
-//! chips.
+//! This module handles the clock hierarchy configuration. It is based
+//! upon trait tokens to statically limit which clocks can be
+//! connected where, following what hardware supports (c.f. §31.3).
 //!
+//! Below is an example configuration that drives the host clock via
+//! MAINCK, and PCK2 with PLLA, clocked at 96 MHz:
+//!
+//! ```ignore
+//! let mut efc = {
+//!     use hal::efc::{Efc, VddioLevel};
+//!     Efc::new(ctx.device.EFC, VddioLevel::V3)
+//! };
+//!
+//! // Configure the clock hierarchy
+//! {
+//!     use hal::pmc::{
+//!         HostClockConfig, MainCkSource, MckDivider, MckPrescaler, Megahertz, PckId,
+//!         PllaConfig, Pmc,
+//!     };
+//!
+//!     let mut pmc = Pmc::new(ctx.device.PMC);
+//!     let mainck = pmc
+//!         .get_mainck(MainCkSource::ExternalBypass(Megahertz::from_raw(12)))
+//!         .unwrap();
+//!     let plla = pmc
+//!         .get_pllack(PllaConfig { div: 1, mult: 8 }, &mainck)
+//!         .unwrap();
+//!     let _hclk = pmc
+//!         .get_hclk(
+//!             HostClockConfig {
+//!                 pres: MckPrescaler::CLK_1,
+//!                 div: MckDivider::EQ_PCK,
+//!             },
+//!             &mainck,
+//!             &mut efc,
+//!         )
+//!         .unwrap();
+//!
+//!     let _pck2 = pmc.get_pck(&plla, 0, PckId::Pck2);
+//! }
+//! ```
 
 use crate::efc::Efc;
 use crate::target_device::PMC;
