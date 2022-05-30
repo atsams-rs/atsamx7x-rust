@@ -248,7 +248,7 @@ impl Pmc {
         &mut self,
         supc: &mut SUPC,
         source: SlowClockOscillatorSource,
-    ) -> Result<SlowClock, PmcError> {
+    ) -> SlowClock {
         match source {
             SlowClockOscillatorSource::SlowRcOsc => (),
             SlowClockOscillatorSource::SlowCrystalOsc => {
@@ -268,7 +268,8 @@ impl Pmc {
                 });
             }
         }
-        Ok(SlowClock { source, freq: Hertz::from_raw(32_768) })
+
+        SlowClock { source, freq: Hertz::from_raw(32_768) }
     }
 
     /// Configures MAINCK and returns a corresponding Clock Token.
@@ -491,7 +492,7 @@ impl Pmc {
         source: &SRC,
         pres: u8,
         id: PckId,
-    ) -> Result<Pck, PmcError> {
+    ) -> Pck {
         self.pmc.pmc_pck[id as usize].write(|w| unsafe {
             w.pres().bits(pres);
             w.css().bits(SRC::PCK_CSS as u8)
@@ -500,7 +501,7 @@ impl Pmc {
             .pmc_scer
             .write(|w| unsafe { w.bits(1 << (id as u8 + 8)) });
         while (self.pmc.pmc_scsr.read().bits() & (1 << (id as u8 + 8))) == 0 {}
-        Ok(Pck { id })
+        Pck { id }
     }
 
     pub fn enable_peripherals(&mut self, pids: &[PeripheralIdentifier]) -> Result<(), PmcError> {
