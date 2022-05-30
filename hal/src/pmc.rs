@@ -8,7 +8,7 @@ use crate::efc::Efc;
 use crate::target_device::PMC;
 use crate::target_device::SUPC;
 
-use fugit::Rate;
+pub use fugit::{HertzU32 as Hertz, MegahertzU32 as Megahertz};
 
 pub use crate::target_device::pmc::ckgr_mor::MOSCRCF_A as MainRcFreq;
 pub use crate::target_device::pmc::pmc_mckr::CSS_A as HCC_CSS;
@@ -26,8 +26,6 @@ pub enum UpllDivider {
     /// frequency.
     Div2,
 }
-
-pub type Megahertz = fugit::Megahertz<u32>;
 
 pub struct Pmc {
     pmc: PMC,
@@ -82,7 +80,7 @@ pub struct PllaConfig {
 
 /// PLLA Token
 pub struct PllaClock {
-    freq: Megahertz,
+    freq: Hertz,
 }
 
 pub struct UpllClock {
@@ -169,7 +167,7 @@ impl PllaSource for MainClock {
 pub trait HostClockSource {
     const HCC_CSS: HCC_CSS;
 
-    fn freq(&self) -> Megahertz {
+    fn freq(&self) -> Hertz {
         todo!()
     }
 }
@@ -180,22 +178,22 @@ impl HostClockSource for SlowClock {
 impl HostClockSource for MainClock {
     const HCC_CSS: HCC_CSS = HCC_CSS::MAIN_CLK;
 
-    fn freq(&self) -> Megahertz {
-        self.freq
+    fn freq(&self) -> Hertz {
+        self.freq.convert()
     }
 }
 impl HostClockSource for PllaClock {
     const HCC_CSS: HCC_CSS = HCC_CSS::PLLA_CLK;
 
-    fn freq(&self) -> Megahertz {
-        self.freq
+    fn freq(&self) -> Hertz {
+        self.freq.convert()
     }
 }
 impl HostClockSource for UpllDivClock {
     const HCC_CSS: HCC_CSS = HCC_CSS::UPLL_CLK;
 
-    fn freq(&self) -> Megahertz {
-        self.freq
+    fn freq(&self) -> Hertz {
+        self.freq.convert()
     }
 }
 
@@ -391,7 +389,7 @@ impl Pmc {
         while self.pmc.pmc_sr.read().locka().bit_is_clear() {}
 
         Ok(PllaClock {
-            freq: (source.freq() / div as u32) * mult as u32,
+            freq: (source.freq().convert() / div as u32) * mult as u32,
         })
     }
 
@@ -440,7 +438,7 @@ impl Pmc {
         // Ensure we use the correct amount of wait states for flash
         // access for the new HCLK frequency.
         efc.set_wait_states(
-            source.freq()
+            source.freq().convert()
                 / match pres {
                     MckPrescaler::CLK_1 => 1,
                     MckPrescaler::CLK_2 => 2,
