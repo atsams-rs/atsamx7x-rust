@@ -71,6 +71,7 @@ pub enum SlowClockOscillatorSource {
 /// SCLK Token
 pub struct SlowClock {
     source: SlowClockOscillatorSource,
+    freq: Hertz,
 }
 
 pub struct PllaConfig {
@@ -167,13 +168,15 @@ impl PllaSource for MainClock {
 pub trait HostClockSource {
     const HCC_CSS: HCC_CSS;
 
-    fn freq(&self) -> Hertz {
-        todo!()
-    }
+    fn freq(&self) -> Hertz;
 }
 
 impl HostClockSource for SlowClock {
     const HCC_CSS: HCC_CSS = HCC_CSS::SLOW_CLK;
+
+    fn freq(&self) -> Hertz {
+        self.freq
+    }
 }
 impl HostClockSource for MainClock {
     const HCC_CSS: HCC_CSS = HCC_CSS::MAIN_CLK;
@@ -265,7 +268,7 @@ impl Pmc {
                 });
             }
         }
-        Ok(SlowClock { source })
+        Ok(SlowClock { source, freq: Hertz::from_raw(32_768) })
     }
 
     /// Configures MAINCK and returns a corresponding Clock Token.
