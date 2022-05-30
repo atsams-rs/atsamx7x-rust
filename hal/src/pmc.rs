@@ -242,9 +242,7 @@ impl Pmc {
 
     /// Configures SLCK and returns a corresponding Clock Token.
     ///
-    /// Note: Clearing xtalset or oscbypass has no effect.
-    /// Setting oscbypass after setting xtalset has no effect.
-    /// Changes to The SLCK source cannot be unmade in software.
+    /// Note: Changes to The SLCK source cannot be unmade in software.
     pub fn get_slck(
         &mut self,
         supc: &mut SUPC,
