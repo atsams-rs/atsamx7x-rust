@@ -16,6 +16,17 @@ pub use crate::target_device::pmc::pmc_mckr::MDIV_A as MckDivider;
 pub use crate::target_device::pmc::pmc_mckr::PRES_A as MckPrescaler;
 pub use crate::target_device::pmc::pmc_pck::CSS_A as PCK_CSS;
 
+/// Output divider for UPLLCK.
+#[derive(Debug, PartialEq, Clone)]
+pub enum UpllDivider {
+    /// UPLLCK is divided by 1: input and output frequencies are
+    /// equal.
+    Div1,
+    /// UPLLCK is diveded by 2: output frequency is half of input
+    /// frequency.
+    Div2,
+}
+
 pub type Megahertz = fugit::Megahertz<u32>;
 
 pub struct Pmc {
@@ -78,6 +89,10 @@ pub struct UpllClock {
     freq: Megahertz
 }
 
+pub struct UpllDivClock {
+    freq: Megahertz
+}
+
 /// HCLK/MCK Config
 pub struct HostClockConfig {
     /// General prescaler that affects HCLK, SysTick, FCLK, MCK and
@@ -119,6 +134,16 @@ pub enum PckId {
     Pck5,
     Pck6,
     Pck7,
+}
+
+pub trait UpllDivSource {
+    fn freq(&self) -> Megahertz;
+}
+
+impl UpllDivSource for UpllClock {
+    fn freq(&self) -> Megahertz {
+        self.freq
+    }
 }
 
 pub trait UpllSource {
@@ -166,7 +191,7 @@ impl HostClockSource for PllaClock {
         self.freq
     }
 }
-impl HostClockSource for UpllClock {
+impl HostClockSource for UpllDivClock {
     const HCC_CSS: HCC_CSS = HCC_CSS::UPLL_CLK;
 
     fn freq(&self) -> Megahertz {
@@ -184,7 +209,7 @@ impl PckSource for SlowClock {
 impl PckSource for MainClock {
     const PCK_CSS: PCK_CSS = PCK_CSS::MAIN_CLK;
 }
-impl PckSource for UpllClock {
+impl PckSource for UpllDivClock {
     const PCK_CSS: PCK_CSS = PCK_CSS::UPLL_CLK;
 }
 impl PckSource for PllaClock {
@@ -371,7 +396,6 @@ impl Pmc {
     }
 
     /// Configures UPLLCK
-    /// TODO: There's the UPLLDIV2 that is not touched right now. Should be toggleable.
     pub fn get_upllck<SRC: UpllSource>(&mut self, source: &SRC, utmi: &mut crate::target_device::UTMI) -> Result<UpllClock, PmcError> {
         use crate::target_device::utmi::utmi_cktrim::FREQ_A as FREQ;
 
@@ -393,6 +417,16 @@ impl Pmc {
         while self.pmc.pmc_sr.read().locku().bit_is_clear() {}
 
         Ok(UpllClock { freq: Megahertz::from_raw(480) })
+    }
+
+    /// Configures UPLLCKDIV
+    pub fn get_upllckdiv<SRC: UpllDivSource>(&mut self, source: &SRC, div: UpllDivider) -> UpllDivClock {
+        self.pmc.pmc_mckr.modify(|_, w| w.uplldiv2().bit(div == UpllDivider::Div2));
+
+        UpllDivClock { freq: source.freq() / match div {
+            UpllDivider::Div1 => 1,
+            UpllDivider::Div2 => 2,
+        }}
     }
 
     /// Configures HCLK and MCK and returns corresponding Clock Tokens.
