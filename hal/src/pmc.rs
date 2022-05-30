@@ -112,17 +112,6 @@ pub struct HostClock {}
 /// HCLK token
 pub struct ProcessorClock {}
 
-/// The selected "Master Clock" source
-///
-/// TODO/NOTE: At the moment, we only support the PLLA Clock.
-/// Some driver behavior is hardcoded on this assumption for
-/// the sake of simplicity.
-///
-/// This corresponds to PMC_MCKR.CSS
-pub enum MasterClockSource {
-    PllaClock,
-}
-
 /// PCK token
 pub struct Pck {
     #[allow(dead_code)]
