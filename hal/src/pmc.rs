@@ -57,7 +57,6 @@ pub enum MainCkSource {
 
 /// MAINCK Token
 pub struct MainClock {
-    source: MainCkSource,
     freq: Megahertz,
 }
 
@@ -70,7 +69,6 @@ pub enum SlowClockOscillatorSource {
 
 /// SCLK Token
 pub struct SlowClock {
-    source: SlowClockOscillatorSource,
     freq: Hertz,
 }
 
@@ -120,6 +118,7 @@ pub enum MasterClockSource {
 
 /// PCK token
 pub struct Pck {
+    #[allow(dead_code)]
     id: PckId,
 }
 
@@ -269,7 +268,7 @@ impl Pmc {
             }
         }
 
-        SlowClock { source, freq: Hertz::from_raw(32_768) }
+        SlowClock { freq: Hertz::from_raw(32_768) }
     }
 
     /// Configures MAINCK and returns a corresponding Clock Token.
@@ -363,7 +362,7 @@ impl Pmc {
             }
         };
 
-        Ok(MainClock { source, freq })
+        Ok(MainClock { freq })
     }
 
     /// Configures PLLACK and returns a corresponding clock token.
@@ -489,7 +488,7 @@ impl Pmc {
     /// Corresponds to Step 8 in 31.17
     pub fn get_pck<SRC: PckSource>(
         &mut self,
-        source: &SRC,
+        _source: &SRC,
         pres: u8,
         id: PckId,
     ) -> Pck {
