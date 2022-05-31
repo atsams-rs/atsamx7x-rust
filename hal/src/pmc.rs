@@ -282,15 +282,7 @@ impl Pmc {
             w
         });
 
-        Self {
-            pmc,
-            // TODO: I could probably figure out the default settings...
-            // this is fine for now.
-            // TODO: If the get_mainck() etc. API is to be used pmc needs to have ownership over
-            // the clock structs at startup to prevent multiple instances of MainClock to be
-            // constructed. Watchucallit, Singletons.
-            // settings: None,
-        }
+        Self { pmc }
     }
 
     /// Configures SLCK and returns a corresponding Clock Token.
