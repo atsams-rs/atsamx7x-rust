@@ -260,6 +260,15 @@ impl PckSource for HostClock {
 }
 
 impl Pmc {
+    /// Time to wait until an observed clock is stable, from the
+    /// perpective of SLCK (@ 32.768KHz).
+    ///
+    /// Refer to §31.20.8, for example.
+    const WAIT_UNTIL_STABLE_62_MILLISECS: u8 = u8::MAX;
+
+    const SLCK_FREQ: Hertz = Hertz::from_raw(32_768);
+    const UPLL_FREQ: Megahertz = Megahertz::from_raw(480);
+
     pub fn new(pmc: PMC) -> Self {
         pmc.pmc_wpmr.modify(|_r, w| {
             w.wpkey().passwd();
@@ -306,7 +315,9 @@ impl Pmc {
             }
         }
 
-        SlowClock { freq: Hertz::from_raw(32_768) }
+        SlowClock {
+            freq: Self::SLCK_FREQ,
+        }
     }
 
     /// Configures MAINCK and returns a corresponding Clock Token.
@@ -349,7 +360,7 @@ impl Pmc {
                     w.key().passwd();
                     w.moscxten().set_bit();
                     unsafe {
-                        w.moscxtst().bits(u8::MAX);
+                        w.moscxtst().bits(Self::WAIT_UNTIL_STABLE_62_MILLISECS);
                     }
                     w
                 });
@@ -380,7 +391,7 @@ impl Pmc {
                     w.moscxtby().set_bit();
                     w.moscxten().clear_bit();
                     unsafe {
-                        w.moscxtst().bits(u8::MAX);
+                        w.moscxtst().bits(Self::WAIT_UNTIL_STABLE_62_MILLISECS);
                     }
                     w
                 });
@@ -449,13 +460,15 @@ impl Pmc {
         self.pmc.ckgr_uckr.modify(|_, w| {
             w.upllen().set_bit();
             unsafe {
-                w.upllcount().bits(u8::MAX);
+                w.upllcount().bits(Self::WAIT_UNTIL_STABLE_62_MILLISECS);
             }
             w
         });
         while self.pmc.pmc_sr.read().locku().bit_is_clear() {}
 
-        Ok(UpllClock { freq: Megahertz::from_raw(480) })
+        Ok(UpllClock {
+            freq: Self::UPLL_FREQ,
+        })
     }
 
     /// Configures UPLLCKDIV
