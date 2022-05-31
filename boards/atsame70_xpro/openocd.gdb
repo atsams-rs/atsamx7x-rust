@@ -25,7 +25,7 @@ define reload
 end
 
 define reflash
-  !cargo build
+  !cargo build --all --examples
   monitor reset halt
   load
   continue

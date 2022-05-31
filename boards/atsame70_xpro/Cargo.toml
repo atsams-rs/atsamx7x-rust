@@ -15,7 +15,7 @@ panic-halt = "0.2"
 [dependencies.atsamx7x-hal]
 version = "0.1.0"
 path = "../../hal"
-features = ["same70q21b-rt"]
+features = ["same70q21b-rt", "unproven"]
 
 [profile.dev]
 debug = true
