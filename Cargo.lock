@@ -670,6 +670,7 @@ dependencies = [
  "embedded-hal",
  "fugit",
  "nb 0.1.3",
+ "paste",
 ]
 
 [[package]]

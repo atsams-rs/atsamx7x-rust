@@ -139,6 +139,8 @@ pub use atsamv71q21b as target_device;
 #[cfg(feature = "rev-b")]
 pub mod efc;
 #[cfg(feature = "rev-b")]
+pub mod pio;
+#[cfg(feature = "rev-b")]
 pub mod pmc;
 #[cfg(feature = "rev-b")]
 pub mod serial;
