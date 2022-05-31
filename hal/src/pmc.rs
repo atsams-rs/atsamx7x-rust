@@ -103,10 +103,16 @@ pub struct MainClock {
 /// The source of the Slow Clock (SLCK)
 ///
 /// Refer to §23.4.2 and §60.2.1.
-pub enum SlowClockOscillatorSource {
-    SlowRcOsc,
-    SlowCrystalOsc,
-    SlowExternalOsc,
+pub enum SlowCkSource {
+    /// Internal "Slow RC" oscillator.
+    InternalRC,
+    /// External crystal powered by the MCU and connected to XIN32 and
+    /// XOUT32.
+    ExternalNormal,
+    /// External clock signal connected to XIN32, XOUT32 potentially
+    /// unconnected. Bypasses the oscillator otherwise used when using
+    /// [SlowCkSource::ExternalNormal].
+    ExternalBypass,
 }
 
 /// SCLK token
@@ -290,16 +296,16 @@ impl Pmc {
     /// Configures SLCK and returns a corresponding Clock Token.
     ///
     /// Note: Changes to The SLCK source cannot be unmade in software.
-    pub fn get_slck(&mut self, supc: &mut SUPC, source: SlowClockOscillatorSource) -> SlowClock {
+    pub fn get_slck(&mut self, supc: &mut SUPC, source: SlowCkSource) -> SlowClock {
         match source {
-            SlowClockOscillatorSource::SlowRcOsc => (),
-            SlowClockOscillatorSource::SlowCrystalOsc => {
+            SlowCkSource::InternalRC => (),
+            SlowCkSource::ExternalNormal => {
                 supc.supc_cr.write(|w| {
                     w.xtalsel().set_bit();
                     w.key().passwd()
                 });
             }
-            SlowClockOscillatorSource::SlowExternalOsc => {
+            SlowCkSource::ExternalBypass => {
                 supc.supc_mr.modify(|_, w| {
                     w.oscbypass().set_bit();
                     w.key().passwd()
