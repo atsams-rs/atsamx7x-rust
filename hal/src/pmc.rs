@@ -127,12 +127,12 @@ pub struct PllaClock {
 
 /// UPLLCK token
 pub struct UpllClock {
-    freq: Megahertz
+    freq: Megahertz,
 }
 
 /// UPLLCKDIV token
 pub struct UpllDivClock {
-    freq: Megahertz
+    freq: Megahertz,
 }
 
 /// HCLK/MCK configuration
@@ -290,11 +290,7 @@ impl Pmc {
     /// Configures SLCK and returns a corresponding Clock Token.
     ///
     /// Note: Changes to The SLCK source cannot be unmade in software.
-    pub fn get_slck(
-        &mut self,
-        supc: &mut SUPC,
-        source: SlowClockOscillatorSource,
-    ) -> SlowClock {
+    pub fn get_slck(&mut self, supc: &mut SUPC, source: SlowClockOscillatorSource) -> SlowClock {
         match source {
             SlowClockOscillatorSource::SlowRcOsc => (),
             SlowClockOscillatorSource::SlowCrystalOsc => {
@@ -446,7 +442,11 @@ impl Pmc {
     }
 
     /// Configures UPLLCK
-    pub fn get_upllck<SRC: UpllSource>(&mut self, source: &SRC, utmi: &mut crate::target_device::UTMI) -> Result<UpllClock, PmcError> {
+    pub fn get_upllck<SRC: UpllSource>(
+        &mut self,
+        source: &SRC,
+        utmi: &mut crate::target_device::UTMI,
+    ) -> Result<UpllClock, PmcError> {
         use crate::target_device::utmi::utmi_cktrim::FREQ_A as FREQ;
 
         let freq = match source.freq().to_MHz() {
@@ -472,13 +472,22 @@ impl Pmc {
     }
 
     /// Configures UPLLCKDIV
-    pub fn get_upllckdiv<SRC: UpllDivSource>(&mut self, source: &SRC, div: UpllDivider) -> UpllDivClock {
-        self.pmc.pmc_mckr.modify(|_, w| w.uplldiv2().bit(div == UpllDivider::Div2));
+    pub fn get_upllckdiv<SRC: UpllDivSource>(
+        &mut self,
+        source: &SRC,
+        div: UpllDivider,
+    ) -> UpllDivClock {
+        self.pmc
+            .pmc_mckr
+            .modify(|_, w| w.uplldiv2().bit(div == UpllDivider::Div2));
 
-        UpllDivClock { freq: source.freq() / match div {
-            UpllDivider::Div1 => 1,
-            UpllDivider::Div2 => 2,
-        }}
+        UpllDivClock {
+            freq: source.freq()
+                / match div {
+                    UpllDivider::Div1 => 1,
+                    UpllDivider::Div2 => 2,
+                },
+        }
     }
 
     /// Configures HCLK and MCK and returns corresponding Clock Tokens.
@@ -537,12 +546,7 @@ impl Pmc {
 
     /// Configures PCKx and returns a token.
     /// Corresponds to Step 8 in 31.17
-    pub fn get_pck<SRC: PckSource>(
-        &mut self,
-        _source: &SRC,
-        pres: u8,
-        id: PckId,
-    ) -> Pck {
+    pub fn get_pck<SRC: PckSource>(&mut self, _source: &SRC, pres: u8, id: PckId) -> Pck {
         self.pmc.pmc_pck[id as usize].write(|w| unsafe {
             w.pres().bits(pres);
             w.css().bits(SRC::PCK_CSS as u8)
