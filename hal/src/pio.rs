@@ -87,30 +87,34 @@ where
     }
 
     pub fn into_mode<AlternateMode: PinMode>(self) -> Pin<I, AlternateMode> {
-        match I::DESC.group {
-            PinGroup::A => {
-                let pioa: *const PIOA = PIOA::ptr() as *const _;
-                let pioa = unsafe { &*pioa };
-                let idx = I::DESC.num;
+        // All PIO groups use the same register definition.
+        type PioReg = crate::target_device::pioa::RegisterBlock;
 
-                // configure function
-                pioa.pio_abcdsr[0]
-                    .modify(|_, w| unsafe { w.bits((AlternateMode::ABCD.sr0 as u32) << idx) });
-                pioa.pio_abcdsr[1]
-                    .modify(|_, w| unsafe { w.bits((AlternateMode::ABCD.sr1 as u32) << idx) });
+        // Resolve the register address of the pin's group.
+        let reg: *const PioReg = match I::DESC.group {
+            PinGroup::A => PIOA::ptr(),
+            PinGroup::B => PIOB::ptr(),
+            PinGroup::C => PIOC::ptr(),
+            PinGroup::D => PIOD::ptr(),
+            PinGroup::E => PIOE::ptr(),
+        } as *const _;
+        let reg = unsafe { &*reg };
 
-                // give pin to peripheral
-                pioa.pio_pdr.write(|w| unsafe { w.bits(1 << idx) });
+        let idx = I::DESC.num;
 
-                // disable multidrive
-                pioa.pio_mddr.write(|w| unsafe { w.bits(1 << idx) });
+        // configure function
+        reg.pio_abcdsr[0].modify(|_, w| unsafe { w.bits((AlternateMode::ABCD.sr0 as u32) << idx) });
+        reg.pio_abcdsr[1].modify(|_, w| unsafe { w.bits((AlternateMode::ABCD.sr1 as u32) << idx) });
 
-                // disable pull-up/down resistors
-                pioa.pio_pudr.write(|w| unsafe { w.bits(1 << idx) });
-                pioa.pio_ppddr.write(|w| unsafe { w.bits(1 << idx) });
-            }
-            _ => todo!(),
-        }
+        // give pin to peripheral
+        reg.pio_pdr.write(|w| unsafe { w.bits(1 << idx) });
+
+        // disable multidrive
+        reg.pio_mddr.write(|w| unsafe { w.bits(1 << idx) });
+
+        // disable pull-up/down resistors
+        reg.pio_pudr.write(|w| unsafe { w.bits(1 << idx) });
+        reg.pio_ppddr.write(|w| unsafe { w.bits(1 << idx) });
 
         unsafe { Pin::new() }
     }
