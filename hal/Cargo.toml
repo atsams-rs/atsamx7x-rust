@@ -1,7 +1,10 @@
 [package]
 name = "atsamx7x-hal"
 version = "0.1.0"
-authors = ["Michal Fita <michal.fita@gmail.com>", "Viktor Sonesten <viktor.sonesten@grepit.se>"]
+authors = [
+        "Viktor Sonesten <viktor.sonesten@grepit.se>",
+        "Martin Mörtsell <martin.mortsell@grepit.se>"
+]
 description = "HAL and peripheral access API for ATSAME70, ATSAMS70, ATSAMV70, and ATSAMV71 microcontrollers"
 categories = [
     "embedded",
@@ -15,8 +18,7 @@ keywords = [
     "embedded-hal",
     "hal"
 ]
-license = "0BSD"
-repository = "https://github.com/atsams-rs/atsamx7x-rust"
+repository = "https://git.grepit.se/embedded-rust/atsamx7x-hal"
 readme = "README.md"
 edition = "2021"
 
