@@ -18,11 +18,6 @@ pub trait PinMode: Sealed {
 }
 
 pub enum Reset {}
-pub enum FunctionA {}
-pub enum FunctionB {}
-pub enum FunctionC {}
-pub enum FunctionD {}
-
 impl Sealed for Reset {}
 impl PinMode for Reset {
     const ABCD: FunctionSelect = functions::A::ABCD;
