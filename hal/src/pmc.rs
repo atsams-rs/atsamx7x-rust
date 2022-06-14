@@ -272,8 +272,8 @@ impl Pmc {
     /// Refer to §31.20.8, for example.
     const WAIT_UNTIL_STABLE_62_MILLISECS: u8 = u8::MAX;
 
-    const SLCK_FREQ: Hertz = Hertz::from_raw(32_768);
-    const UPLL_FREQ: Megahertz = Megahertz::from_raw(480);
+    pub(crate) const SLCK_FREQ: Hertz = Hertz::from_raw(32_768);
+    pub(crate) const UPLL_FREQ: Megahertz = Megahertz::from_raw(480);
 
     pub fn new(pmc: PMC) -> Self {
         pmc.pmc_wpmr.modify(|_r, w| {
