@@ -9,6 +9,7 @@ impl Watchdog {
     }
 }
 
+#[cfg(feature = "unproven")]
 impl ehal::watchdog::WatchdogDisable for Watchdog {
     fn disable(&mut self) {
         self.0.wdt_mr.write(|w| w.wddis().set_bit());

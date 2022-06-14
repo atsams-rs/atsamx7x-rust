@@ -24,7 +24,7 @@ edition = "2021"
 
 [dependencies]
 cortex-m = "0.7"
-embedded-hal = { version = "0.2.7", features = ["unproven"] }
+embedded-hal = { version = "0.2.7" }
 nb = "0.1.2"
 fugit = "0.3.5"
 
@@ -113,6 +113,8 @@ rev-a = []                  # No suffix after flash memory density number
 rev-b = ["device-selected"] # "b"-suffix
 
 device-selected = []
+
+unproven = ["embedded-hal/unproven"]
 
 same70j19  = ["atsame70j19", "e70", "pins-64", "flash-512K", "rev-a"]
 same70j19-rt = ["same70j19", "atsame70j19/rt"]
