@@ -1,6 +1,7 @@
 #![no_std]
 
 pub use embedded_hal as ehal;
+pub use fugit;
 pub use nb;
 
 #[cfg(feature = "same70j19")]
