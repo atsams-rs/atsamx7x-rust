@@ -27,7 +27,7 @@ mod app {
 
             let mut pmc = Pmc::new(ctx.device.PMC);
             let mainck = pmc
-                .get_mainck(MainCkSource::ExternalBypass(Megahertz::from_raw(12)))
+                .get_mainck(MainCkSource::ExternalNormal(Megahertz::from_raw(12)))
                 .unwrap();
             let upllck = pmc.get_upllck(&mainck, &mut ctx.device.UTMI).unwrap();
             let upllckdiv = pmc.get_upllckdiv(&upllck, UpllDivider::Div2);
