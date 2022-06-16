@@ -5,7 +5,7 @@ The examples are written in [RTIC](https://rtic.rs).
 
 ## Prerequisites
 * Install the cross-compilation toolchain: `rustup target add thumbv7em-none-eabihf`.
-* Install [openocd `v0.11.0`](https://openocd.org/openocd-0-11-0-released.html) (or above).
+* Install [cargo-embed](https://github.com/probe-rs/cargo-embed): `cargo install cargo-embed`.
 
 ## Flashing an example
 First, the General-Purpose Non-Volatile-Memory (GPNVM) boot bit must be set in order to map the flashed firmware to address `0x0`;
@@ -21,9 +21,9 @@ required for the interrupts and software resets to work as expected:
    samv-gpnvm1: 1
    ```
 
-The example can now be flashed after first, in a seperate shell, `openocd -f openocd.cfg`
+The examples can now be flashed and run. For example:
 ```shell
-$ cargo run
+$ cargo embed --example blinky
 ```
 
 ## Erasing bad firmware

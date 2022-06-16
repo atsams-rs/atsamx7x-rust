@@ -3,12 +3,13 @@
 #![no_std]
 #![no_main]
 
-use panic_halt as _;
+use panic_rtt_target as _;
 
 #[rtic::app(device = atsamx7x_hal::target_device, peripherals = true, dispatchers = [IXC])]
 mod app {
     use atsamx7x_hal as hal;
     use hal::ehal::watchdog::WatchdogDisable;
+    use rtt_target::{rprintln, rtt_init_print};
 
     #[shared]
     struct Shared {}
@@ -18,6 +19,9 @@ mod app {
 
     #[init]
     fn init(mut ctx: init::Context) -> (Shared, Local, init::Monotonics) {
+        rtt_init_print!();
+        rprintln!("init");
+
         // Disable the watchdog.
         hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
 
@@ -42,6 +46,8 @@ mod app {
             hal::pio::BankConfiguration::default(),
         );
         let _ = banka.pa3.into_peripheral::<hal::pio::C>();
+
+        rprintln!("2.4MHz clock signal fed out onto PA3");
 
         (Shared {}, Local {}, init::Monotonics())
     }

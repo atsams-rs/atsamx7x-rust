@@ -2,13 +2,14 @@
 #![no_std]
 #![no_main]
 
-use panic_halt as _;
+use panic_rtt_target as _;
 
 #[rtic::app(device = hal::target_device, peripherals = true)]
 mod app {
     use atsamx7x_hal as hal;
     use hal::ehal::{digital::v2::ToggleableOutputPin, watchdog::WatchdogDisable};
     use hal::pio::*;
+    use rtt_target::{rprintln, rtt_init_print};
 
     #[shared]
     struct Shared {}
@@ -20,6 +21,9 @@ mod app {
 
     #[init]
     fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
+        rtt_init_print!();
+        rprintln!("init");
+
         // Disable the watchdog.
         hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
 
@@ -34,6 +38,7 @@ mod app {
     fn idle(ctx: idle::Context) -> ! {
         loop {
             ctx.local.led.toggle().unwrap();
+            rprintln!("LED0 toggled");
             cortex_m::asm::delay(12_000_000);
         }
     }

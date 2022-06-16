@@ -10,7 +10,8 @@ license = "0BSD"
 [dependencies]
 cortex-m-rtic = "1.0"
 cortex-m = "0.7"
-panic-halt = "0.2"
+panic-rtt-target = { version = "0.1.2", features = ["cortex-m"] }
+rtt-target = { version = "0.3.1", features = ["cortex-m"] }
 
 [dependencies.atsamx7x-hal]
 version = "0.1.0"
