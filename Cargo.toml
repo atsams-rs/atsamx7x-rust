@@ -4,5 +4,6 @@ members = [
     "pac/*",
 ]
 exclude = [
-  "boards/atsame70_xpro"
+  "boards/atsame70_xpro",
+  "boards/atsamv71-xult"
 ]
