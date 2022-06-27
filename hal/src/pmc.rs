@@ -150,8 +150,48 @@ pub struct HostClockConfig {
     pub div: MckDivider,
 }
 
+trait Prescaler {
+    fn value(&self) -> u32;
+}
+
+impl Prescaler for MckPrescaler {
+    fn value(&self) -> u32 {
+        use MckPrescaler::*;
+        match *self {
+            CLK_1 => 1,
+            CLK_2 => 2,
+            CLK_3 => 3,
+            CLK_4 => 4,
+            CLK_8 => 8,
+            CLK_16 => 16,
+            CLK_32 => 32,
+            CLK_64 => 64,
+        }
+    }
+}
+
+impl Prescaler for MckDivider {
+    fn value(&self) -> u32 {
+        use MckDivider::*;
+        match *self {
+            EQ_PCK => 1,
+            PCK_DIV2 => 2,
+            PCK_DIV3 => 3,
+            PCK_DIV4 => 4,
+        }
+    }
+}
+
 /// MCK token
-pub struct HostClock {}
+pub struct HostClock {
+    freq: Hertz,
+}
+
+impl HostClock {
+    pub fn freq(&self) -> Hertz {
+        self.freq
+    }
+}
 
 /// HCLK token
 pub struct ProcessorClock {}
@@ -512,8 +552,9 @@ impl Pmc {
                 },
         )?;
 
-        let source = SRC::HCC_CSS;
+        let freq = source.freq();
 
+        let source = SRC::HCC_CSS;
         match source {
             HCC_CSS::PLLA_CLK | HCC_CSS::UPLL_CLK => {
                 self.pmc.pmc_mckr.modify(|_, w| w.pres().variant(pres));
@@ -539,7 +580,12 @@ impl Pmc {
             }
         }
 
-        Ok((ProcessorClock {}, HostClock {}))
+        Ok((
+            ProcessorClock {},
+            HostClock {
+                freq: freq / pres.value() / div.value(),
+            },
+        ))
     }
 
     /// Configures PCKx and returns a token.
