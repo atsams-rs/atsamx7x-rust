@@ -31,16 +31,22 @@ pub(in crate::pio) unsafe trait RegisterInterface {
     fn into_peripheral(&mut self, cfg: DynPeripheral) {
         use DynPeripheral::*;
         let (sr0, sr1) = match cfg {
-            A => (0, 0),
-            B => (1, 0),
-            C => (0, 1),
-            D => (1, 1),
+            A => (false, false),
+            B => (true, false),
+            C => (false, true),
+            D => (true, true),
         };
         let idx = self.id().num;
 
-        // configure function
-        self.reg().pio_abcdsr[0].modify(|_, w| unsafe { w.bits(sr0 << idx) });
-        self.reg().pio_abcdsr[1].modify(|_, w| unsafe { w.bits(sr1 << idx) });
+        // configure function, preserving other pin bits
+        for (i, bit) in (0..=1).zip([sr0, sr1]) {
+            self.reg().pio_abcdsr[i].modify(|r, w| unsafe {
+                w.bits(match bit {
+                    true => r.bits() | 1 << idx,
+                    false => r.bits() & !(1 << idx),
+                })
+            });
+        }
 
         // give pin to peripheral
         self.reg().pio_pdr.write(|w| unsafe { w.bits(self.mask()) });
