@@ -8,6 +8,8 @@
 //! MAINCK, and PCK2 with PLLA, clocked at 96 MHz:
 //!
 //! ```ignore
+//! let wd = hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
+//!
 //! let mut efc = {
 //!     use hal::efc::{Efc, VddioLevel};
 //!     Efc::new(ctx.device.EFC, VddioLevel::V3)
@@ -20,7 +22,7 @@
 //!         PllaConfig, Pmc,
 //!     };
 //!
-//!     let mut pmc = Pmc::new(ctx.device.PMC);
+//!     let mut pmc = Pmc::new(ctx.device.PMC, &wd);
 //!     let mainck = pmc
 //!         .get_mainck(MainCkSource::ExternalBypass(Megahertz::from_raw(12)))
 //!         .unwrap();
@@ -41,10 +43,18 @@
 //!     let _pck2 = pmc.get_pck(&plla, 0, PckId::Pck2);
 //! }
 //! ```
+//!
+//! At reset, the watchdog is enabled and will time out after
+//! approximately 15 seconds. In many cases this is unwanted; and in
+//! some, unexpected. In order to put the watchdog into a known state
+//! (from the firmware developer's perspective), the `Pmc` required a
+//! disabled watchdog (`&Watchdog<Disabled>`). After this initial
+//! no-operation use the watchdog can be reconfigured.
 
 use crate::efc::Efc;
 use crate::target_device::PMC;
 use crate::target_device::SUPC;
+use crate::watchdog::{Disabled, Watchdog};
 
 pub use fugit::{HertzU32 as Hertz, MegahertzU32 as Megahertz};
 
@@ -315,7 +325,7 @@ impl Pmc {
     pub(crate) const SLCK_FREQ: Hertz = Hertz::from_raw(32_768);
     pub(crate) const UPLL_FREQ: Megahertz = Megahertz::from_raw(480);
 
-    pub fn new(pmc: PMC) -> Self {
+    pub fn new(pmc: PMC, _wd: &Watchdog<Disabled>) -> Self {
         pmc.pmc_wpmr.modify(|_r, w| {
             w.wpkey().passwd();
             w.wpen().clear_bit();

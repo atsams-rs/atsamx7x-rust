@@ -8,7 +8,6 @@ use panic_rtt_target as _;
 #[rtic::app(device = atsamx7x_hal::target_device, peripherals = true, dispatchers = [IXC])]
 mod app {
     use atsamx7x_hal as hal;
-    use hal::ehal::watchdog::WatchdogDisable;
     use rtt_target::{rprintln, rtt_init_print};
 
     #[shared]
@@ -23,13 +22,13 @@ mod app {
         rprintln!("init");
 
         // Disable the watchdog.
-        hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
+        let wd = hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
 
         // Configure the clock hierarchy
         let mut pmc = {
             use hal::pmc::{MainCkSource, Megahertz, PckId, Pmc, UpllDivider};
 
-            let mut pmc = Pmc::new(ctx.device.PMC);
+            let mut pmc = Pmc::new(ctx.device.PMC, &wd);
             let mainck = pmc
                 .get_mainck(MainCkSource::ExternalNormal(Megahertz::from_raw(12)))
                 .unwrap();

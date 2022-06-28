@@ -1,17 +1,41 @@
 //! Watchdog timer configuration.
-use crate::{ehal, target_device};
+use crate::target_device::WDT;
 
-pub struct Watchdog(target_device::WDT);
+use core::marker::PhantomData;
 
-impl Watchdog {
-    pub fn new(wdt: target_device::WDT) -> Self {
-        Self(wdt)
+pub trait WatchdogState {}
+
+pub enum Disabled {}
+pub enum Reset {}
+
+impl WatchdogState for Disabled {}
+impl WatchdogState for Reset {}
+
+pub struct Watchdog<S: WatchdogState> {
+    watchdog: WDT,
+    state: PhantomData<S>,
+}
+
+impl Watchdog<Reset> {
+    pub fn new(watchdog: WDT) -> Self {
+        Self {
+            watchdog,
+            state: PhantomData,
+        }
+    }
+
+    /// Disables the watchdog completely.
+    pub fn disable(self) -> Watchdog<Disabled> {
+        self.watchdog.wdt_mr.write(|w| w.wddis().set_bit());
+        Watchdog {
+            watchdog: self.watchdog,
+            state: PhantomData,
+        }
     }
 }
 
-#[cfg(feature = "unproven")]
-impl ehal::watchdog::WatchdogDisable for Watchdog {
-    fn disable(&mut self) {
-        self.0.wdt_mr.write(|w| w.wddis().set_bit());
+impl From<WDT> for Watchdog<Disabled> {
+    fn from(wd: WDT) -> Self {
+        Watchdog::new(wd).disable()
     }
 }

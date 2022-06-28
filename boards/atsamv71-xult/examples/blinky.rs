@@ -7,7 +7,7 @@ use panic_rtt_target as _;
 #[rtic::app(device = hal::target_device, peripherals = true)]
 mod app {
     use atsamx7x_hal as hal;
-    use hal::ehal::{digital::v2::ToggleableOutputPin, watchdog::WatchdogDisable};
+    use hal::ehal::digital::v2::ToggleableOutputPin;
     use hal::pio::*;
     use rtt_target::{rprintln, rtt_init_print};
 
@@ -25,9 +25,9 @@ mod app {
         rprintln!("init");
 
         // Disable the watchdog.
-        hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
+        let wd = hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
 
-        let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC);
+        let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC, &wd);
         let banka = hal::pio::BankA::new(ctx.device.PIOA, &mut pmc, BankConfiguration::default());
         let led = banka.pa23.into_output();
 
