@@ -8,7 +8,7 @@ use panic_halt as _;
 #[rtic::app(device = hal::target_device, peripherals = true)]
 mod app {
     use atsamx7x_hal as hal;
-    use hal::ehal::{digital::v2::ToggleableOutputPin, watchdog::WatchdogDisable};
+    use hal::ehal::digital::v2::ToggleableOutputPin;
     use hal::pio::*;
 
     #[shared]
@@ -22,9 +22,9 @@ mod app {
     #[init]
     fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
         // Disable the watchdog.
-        hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
+        let wd = hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
 
-        let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC);
+        let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC, &wd);
         let bankb = hal::pio::BankB::new(ctx.device.PIOB, &mut pmc, BankConfiguration::default());
         let led = bankb.pb8.into_output();
 
