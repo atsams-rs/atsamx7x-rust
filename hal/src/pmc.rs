@@ -210,8 +210,17 @@ pub struct ProcessorClock {}
 pub struct Pck {
     #[allow(dead_code)]
     id: PckId,
+    freq: Hertz,
 }
 
+impl Pck {
+    pub fn freq(&mut self) -> Hertz {
+        self.freq
+    }
+    pub(crate) fn id(&self) -> PckId {
+        self.id
+    }
+}
 /// PCK to configure
 #[derive(Debug, PartialEq, Eq, Copy, Clone)]
 pub enum PckId {
@@ -297,22 +306,43 @@ impl HostClockSource for UpllDivClock {
 #[doc(hidden)]
 pub trait PckSource {
     const PCK_CSS: PCK_CSS;
+    fn freq(&self) -> Hertz;
 }
 
 impl PckSource for SlowClock {
     const PCK_CSS: PCK_CSS = PCK_CSS::SLOW_CLK;
+
+    fn freq(&self) -> Hertz {
+        self.freq.convert()
+    }
 }
 impl PckSource for MainClock {
     const PCK_CSS: PCK_CSS = PCK_CSS::MAIN_CLK;
+
+    fn freq(&self) -> Hertz {
+        self.freq.convert()
+    }
 }
 impl PckSource for UpllDivClock {
     const PCK_CSS: PCK_CSS = PCK_CSS::UPLL_CLK;
+
+    fn freq(&self) -> Hertz {
+        self.freq.convert()
+    }
 }
 impl PckSource for PllaClock {
     const PCK_CSS: PCK_CSS = PCK_CSS::PLLA_CLK;
+
+    fn freq(&self) -> Hertz {
+        self.freq.convert()
+    }
 }
 impl PckSource for HostClock {
     const PCK_CSS: PCK_CSS = PCK_CSS::MCK;
+
+    fn freq(&self) -> Hertz {
+        self.freq.convert()
+    }
 }
 
 impl Pmc {
@@ -600,7 +630,7 @@ impl Pmc {
 
     /// Configures PCKx and returns a token.
     /// Corresponds to Step 8 in 31.17
-    pub fn get_pck<SRC: PckSource>(&mut self, _source: &SRC, pres: u8, id: PckId) -> Pck {
+    pub fn get_pck<SRC: PckSource>(&mut self, source: &SRC, pres: u8, id: PckId) -> Pck {
         self.pmc.pmc_pck[id as usize].write(|w| unsafe {
             w.pres().bits(pres);
             w.css().bits(SRC::PCK_CSS as u8)
@@ -609,7 +639,10 @@ impl Pmc {
             .pmc_scer
             .write(|w| unsafe { w.bits(1 << (id as u8 + 8)) });
         while (self.pmc.pmc_scsr.read().bits() & (1 << (id as u8 + 8))) == 0 {}
-        Pck { id }
+        Pck {
+            id: id,
+            freq: source.freq() / (pres as u32),
+        }
     }
 
     pub fn enable_peripherals(&mut self, pids: &[PeripheralIdentifier]) -> Result<(), PmcError> {
