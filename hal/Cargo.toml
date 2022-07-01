@@ -3,7 +3,8 @@ name = "atsamx7x-hal"
 version = "0.1.0"
 authors = [
         "Viktor Sonesten <viktor.sonesten@grepit.se>",
-        "Martin Mörtsell <martin.mortsell@grepit.se>"
+        "Martin Mörtsell <martin.mortsell@grepit.se>",
+        "Ivar Jönsson <ivar.jonsson@grepit.se>",
 ]
 description = "HAL and peripheral access API for ATSAME70, ATSAMS70, ATSAMV70, and ATSAMV71 microcontrollers"
 categories = [
@@ -25,7 +26,7 @@ edition = "2021"
 [dependencies]
 cortex-m = "0.7"
 embedded-hal = { version = "0.2.7" }
-nb = "0.1.2"
+nb = "1"
 fugit = "0.3.5"
 paste = "1"
 
