@@ -5,5 +5,5 @@ members = [
 ]
 exclude = [
   "boards/atsame70_xpro",
-  "boards/atsamv71-xult"
+  "boards/atsamv71_xult"
 ]

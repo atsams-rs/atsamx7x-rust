@@ -26,7 +26,7 @@ mod app {
 
         // Configure the clock hierarchy
         let mut pmc = {
-            use hal::pmc::{MainCkSource, Megahertz, PckId, Pmc, UpllDivider};
+            use hal::pmc::{MainCkSource, Megahertz, Pck, Pck2, Pmc, UpllDivider};
 
             let mut pmc = Pmc::new(ctx.device.PMC, &wd);
             let mainck = pmc
@@ -34,7 +34,7 @@ mod app {
                 .unwrap();
             let upllck = pmc.get_upllck(&mainck, &mut ctx.device.UTMI).unwrap();
             let upllckdiv = pmc.get_upllckdiv(&upllck, UpllDivider::Div2);
-            let _pck2 = pmc.get_pck(&upllckdiv, 100 - 1, PckId::Pck2); // @ 2.4MHz
+            let _pck2: Pck<Pck2> = pmc.get_pck(&upllckdiv, 100 - 1); // @ 2.4MHz
 
             pmc
         };

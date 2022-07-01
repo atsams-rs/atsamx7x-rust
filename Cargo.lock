@@ -669,7 +669,7 @@ dependencies = [
  "cortex-m",
  "embedded-hal",
  "fugit",
- "nb 0.1.3",
+ "nb 1.0.0",
  "paste",
 ]
 

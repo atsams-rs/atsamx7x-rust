@@ -56,7 +56,9 @@ use crate::target_device::PMC;
 use crate::target_device::SUPC;
 use crate::watchdog::{Disabled, Watchdog};
 
+use core::marker::PhantomData;
 pub use fugit::{HertzU32 as Hertz, MegahertzU32 as Megahertz};
+use paste::paste;
 
 pub use crate::target_device::pmc::ckgr_mor::MOSCRCF_A as MainRcFreq;
 pub use crate::target_device::pmc::pmc_mckr::CSS_A as HCC_CSS;
@@ -206,23 +208,35 @@ impl HostClock {
 /// HCLK token
 pub struct ProcessorClock {}
 
-/// PCK token
-pub struct Pck {
-    #[allow(dead_code)]
-    id: PckId,
+pub trait PckId {
+    const ID: u8;
 }
 
-/// PCK to configure
-#[derive(Debug, PartialEq, Eq, Copy, Clone)]
-pub enum PckId {
-    Pck0,
-    Pck1,
-    Pck2,
-    Pck3,
-    Pck4,
-    Pck5,
-    Pck6,
-    Pck7,
+macro_rules! impl_pck {
+    ($($Id:literal,)+) => {
+        paste! {
+            $(
+                pub enum [<Pck $Id>] {}
+                impl PckId for [<Pck $Id>] {
+                    const ID: u8 = $Id;
+                }
+            )+
+        }
+    }
+}
+
+impl_pck!(0, 1, 2, 3, 4, 5, 6, 7,);
+
+/// PCK token
+pub struct Pck<I: PckId> {
+    id: PhantomData<I>,
+    freq: Hertz,
+}
+
+impl<I: PckId> Pck<I> {
+    pub fn freq(&self) -> Hertz {
+        self.freq
+    }
 }
 
 #[doc(hidden)]
@@ -297,22 +311,43 @@ impl HostClockSource for UpllDivClock {
 #[doc(hidden)]
 pub trait PckSource {
     const PCK_CSS: PCK_CSS;
+    fn freq(&self) -> Hertz;
 }
 
 impl PckSource for SlowClock {
     const PCK_CSS: PCK_CSS = PCK_CSS::SLOW_CLK;
+
+    fn freq(&self) -> Hertz {
+        self.freq.convert()
+    }
 }
 impl PckSource for MainClock {
     const PCK_CSS: PCK_CSS = PCK_CSS::MAIN_CLK;
+
+    fn freq(&self) -> Hertz {
+        self.freq.convert()
+    }
 }
 impl PckSource for UpllDivClock {
     const PCK_CSS: PCK_CSS = PCK_CSS::UPLL_CLK;
+
+    fn freq(&self) -> Hertz {
+        self.freq.convert()
+    }
 }
 impl PckSource for PllaClock {
     const PCK_CSS: PCK_CSS = PCK_CSS::PLLA_CLK;
+
+    fn freq(&self) -> Hertz {
+        self.freq.convert()
+    }
 }
 impl PckSource for HostClock {
     const PCK_CSS: PCK_CSS = PCK_CSS::MCK;
+
+    fn freq(&self) -> Hertz {
+        self.freq.convert()
+    }
 }
 
 impl Pmc {
@@ -600,16 +635,23 @@ impl Pmc {
 
     /// Configures PCKx and returns a token.
     /// Corresponds to Step 8 in 31.17
-    pub fn get_pck<SRC: PckSource>(&mut self, _source: &SRC, pres: u8, id: PckId) -> Pck {
-        self.pmc.pmc_pck[id as usize].write(|w| unsafe {
+    pub fn get_pck<SRC: PckSource, I: PckId>(&mut self, source: &SRC, pres: u8) -> Pck<I> {
+        self.pmc.pmc_pck[I::ID as usize].write(|w| unsafe {
             w.pres().bits(pres);
             w.css().bits(SRC::PCK_CSS as u8)
         });
-        self.pmc
-            .pmc_scer
-            .write(|w| unsafe { w.bits(1 << (id as u8 + 8)) });
-        while (self.pmc.pmc_scsr.read().bits() & (1 << (id as u8 + 8))) == 0 {}
-        Pck { id }
+
+        // PCK fields are in the second byte of the SCER and SCSR
+        // registers.
+        const PCK_REG_OFFSET: u8 = 8;
+        let mask = 1 << (I::ID + PCK_REG_OFFSET);
+
+        self.pmc.pmc_scer.write(|w| unsafe { w.bits(mask) });
+        while (self.pmc.pmc_scsr.read().bits() & mask) == 0 {}
+        Pck {
+            id: PhantomData,
+            freq: source.freq() / (pres as u32),
+        }
     }
 
     pub fn enable_peripherals(&mut self, pids: &[PeripheralIdentifier]) -> Result<(), PmcError> {
