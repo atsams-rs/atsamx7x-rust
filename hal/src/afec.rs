@@ -6,9 +6,7 @@
 //! configures the created [`Afec`] for 12-bit samples of single-ended
 //! inputs of single sample-and-hold mode. After its creation the
 //! wanted channels are enabled, after which a sample can be
-//! performed. Sampling is done in channel number order, and when
-//! concluded, a [`Samples`] iterator of all enabled channels is
-//! returned.
+//! performed. Sampling is done on singular channels ([`Pin`]s).
 //!
 //! This implementation presumes that VREFP is 3.3V.
 //!
@@ -33,36 +31,26 @@
 //!     .unwrap();
 //!
 //! let banka = hal::pio::BankA::new(ctx.device.PIOA, &mut pmc, BankConfiguration::default());
+//! let mut pin = banka.pa17.into_input(PullDir::PullUp);
 //! let mut afec = Afec::new_afec0(ctx.device.AFEC0, &mut pmc, &mck);
-//! afec.configure_channel(banka.pa17.into_input(PullDir::PullUp));
-//!
-//! for s in ctx.local.afec.sample() {
-//!     rprintln!("Ch: {} = {:.2}V", s.channel, s.voltage); // e.g.: "Ch: 6 = 1.75V"
-//! }
+//! let voltage: f32 = afec.sample(&mut pin).unwrap();
 //! ```
 
+use crate::ehal::adc;
 use crate::pio::*;
 use crate::pmc::{HostClock, PeripheralIdentifier, Pmc};
 use crate::target_device::{afec0::RegisterBlock, AFEC0, AFEC1};
 
+use core::convert::Infallible;
 use core::marker::PhantomData;
 
 pub type Channel = u8;
-
-/// Type denoting [`Pin`]s handled by [`Afec0`]
-pub trait Afec0ChannelPin: ChannelPin {}
-/// Type denoting [`Pin`]s handled by [`Afec0`]
-pub trait Afec1ChannelPin: ChannelPin {}
-/// [`Afec`] [`Pin`] metadata
-pub trait ChannelPin {
-    /// The numerical channel that this [`Pin`] corresponds to.
-    const CHANNEL: Channel;
-}
+pub type Voltage = f32;
 
 macro_rules! impl_channel_pins {
     (
         $(
-            $Trait:ident {
+            $Afec:ident {
                 $(
                     $( #[$cfg:meta] )?
                     ($Pin:ident, $Channel:literal),
@@ -73,11 +61,13 @@ macro_rules! impl_channel_pins {
         $(
             $(
                 $( #[$cfg] )?
-                impl $Trait for Pin<$Pin, Input> {}
+                impl adc::Channel<$Afec> for Pin<$Pin, Input> {
+                    type ID = Channel;
 
-                $( #[$cfg] )?
-                impl ChannelPin for Pin<$Pin, Input> {
-                    const CHANNEL: Channel = $Channel;
+                    #[inline]
+                    fn channel() -> Self::ID {
+                        $Channel
+                    }
                 }
             )+
         )+
@@ -85,7 +75,7 @@ macro_rules! impl_channel_pins {
 }
 
 impl_channel_pins!(
-    Afec0ChannelPin {
+    Afec0 {
         // Channel 11 is dedicated to the temperature sensor.
 
         #[cfg(not(feature = "pins-64"))]
@@ -108,7 +98,7 @@ impl_channel_pins!(
         (PE5, 3),
     }
 
-    Afec1ChannelPin {
+    Afec1 {
         (PB1, 0),
         #[cfg(feature = "pins-144")]
         (PC0, 9),
@@ -170,8 +160,9 @@ pub enum AfecError {
 
 /// Result component of an [`Afec::sample`].
 #[derive(Copy, Clone, Debug)]
-pub struct Sample {
+struct Sample {
     /// The numerical channel that was measured.
+    #[allow(dead_code)]
     pub channel: Channel,
     /// The measured voltage on this channel.
     pub voltage: f32,
@@ -180,7 +171,7 @@ pub struct Sample {
 const NUM_CHANNELS: usize = 12;
 
 /// Iterator of [`Sample`]s for enabled and measured channels, from [`Afec::sample`].
-pub struct Samples([Option<Sample>; NUM_CHANNELS]);
+struct Samples([Option<Sample>; NUM_CHANNELS]);
 impl Iterator for Samples {
     type Item = Sample;
 
@@ -288,7 +279,7 @@ impl<A: AfecMeta> Afec<A> {
 
     /// Sample all channels previously configured. Returns a
     /// [`Samples`] with up to 12 samples channels.
-    pub fn sample(&mut self) -> Samples {
+    pub fn sample(&mut self, ch: Channel) -> Voltage {
         // start the conversion
         self.reg().afec_cr.write(|w| w.start().set_bit());
 
@@ -330,7 +321,7 @@ impl<A: AfecMeta> Afec<A> {
         }
         assert_eq!(self.reg().afec_isr.read().bits() & CHANNELS_MASK, 0);
 
-        Samples(samples)
+        samples[ch as usize].unwrap().voltage
     }
 
     fn code_to_voltage(code: u16) -> f32 {
@@ -359,6 +350,8 @@ impl<A: AfecMeta> Afec<A> {
 
     #[inline]
     fn enable_channel(&mut self, ch: Channel) {
+        // Disable all channels except ch
+        self.reg().afec_chdr.write(|w| unsafe { w.bits(0xffff) });
         self.reg().afec_cher.write(|w| unsafe { w.bits(1 << ch) });
 
         // set a no-compensation channel offset
@@ -377,18 +370,6 @@ impl Afec<Afec0> {
     pub fn new_afec0(_afec: AFEC0, pmc: &mut Pmc, mck: &HostClock) -> Result<Self, AfecError> {
         Self::new(pmc, mck)
     }
-
-    #[inline]
-    pub fn configure_temp_sensor(&mut self) {
-        const TEMP_SENSOR_CHANNEL: Channel = 11;
-        self.enable_channel(TEMP_SENSOR_CHANNEL)
-    }
-
-    #[inline]
-    /// Enable and configure sampling for the given [`ChannelPin`].
-    pub fn configure_channel<P: Afec0ChannelPin + ChannelPin>(&mut self, _pin: P) {
-        self.enable_channel(P::CHANNEL)
-    }
 }
 
 impl Afec<Afec1> {
@@ -396,10 +377,18 @@ impl Afec<Afec1> {
     pub fn new_afec1(_afec: AFEC1, pmc: &mut Pmc, mck: &HostClock) -> Result<Self, AfecError> {
         Self::new(pmc, mck)
     }
+}
 
-    #[inline]
-    /// Enable and configure sampling for the given [`ChannelPin`].
-    pub fn configure_channel<P: Afec0ChannelPin + ChannelPin>(&mut self, _pin: P) {
-        self.enable_channel(P::CHANNEL)
+impl<Word, Pin, A: AfecMeta> adc::OneShot<A, Word, Pin> for Afec<A>
+where
+    Word: From<Voltage>,
+    Pin: adc::Channel<A, ID = Channel>,
+{
+    type Error = Infallible;
+
+    /// Request that the [`Afec`] begin a conversion of the specified [`Pin`].
+    fn read(&mut self, _pin: &mut Pin) -> nb::Result<Word, Self::Error> {
+        self.enable_channel(Pin::channel());
+        Ok(self.sample(Pin::channel()).into())
     }
 }

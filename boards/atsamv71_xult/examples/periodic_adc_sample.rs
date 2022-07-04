@@ -9,6 +9,7 @@ mod app {
     use atsamx7x_hal as hal;
     use hal::afec::*;
     use hal::efc::*;
+    use hal::ehal::adc::OneShot;
     use hal::pio::*;
     use hal::pmc::*;
     use rtt_target::{rprintln, rtt_init_print};
@@ -19,6 +20,7 @@ mod app {
     #[local]
     struct Local {
         afec: Afec<Afec0>,
+        pin: Pin<PA17, Input>,
     }
 
     #[init]
@@ -44,18 +46,18 @@ mod app {
             .unwrap();
 
         let banka = hal::pio::BankA::new(ctx.device.PIOA, &mut pmc, BankConfiguration::default());
-        let mut afec = Afec::new_afec0(ctx.device.AFEC0, &mut pmc, &mck).unwrap();
-        afec.configure_channel(banka.pa17.into_input(PullDir::PullUp));
+        let afec = Afec::new_afec0(ctx.device.AFEC0, &mut pmc, &mck).unwrap();
+        let pin = banka.pa17.into_input(PullDir::PullUp);
 
-        (Shared {}, Local { afec }, init::Monotonics())
+        (Shared {}, Local { afec, pin }, init::Monotonics())
     }
 
-    #[idle(local = [afec])]
+    #[idle(local = [afec, pin])]
     fn idle(ctx: idle::Context) -> ! {
+        let idle::LocalResources { afec, pin } = ctx.local;
         loop {
-            for s in ctx.local.afec.sample() {
-                rprintln!("Ch: {} = {:.2}V", s.channel, s.voltage);
-            }
+            let v: f32 = afec.read(pin).unwrap();
+            rprintln!("PA17 (channel 6) = {:.2}V", v);
             cortex_m::asm::delay(12_000_000);
         }
     }
