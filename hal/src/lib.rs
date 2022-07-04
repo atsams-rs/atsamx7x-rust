@@ -138,6 +138,8 @@ pub use atsamv71q21 as target_device;
 pub use atsamv71q21b as target_device;
 
 #[cfg(feature = "rev-b")]
+pub mod afec;
+#[cfg(feature = "rev-b")]
 pub mod efc;
 #[cfg(feature = "rev-b")]
 pub mod pio;
