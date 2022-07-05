@@ -17,3 +17,6 @@ impl ExtU32 for u32 {
 
 pub mod uart;
 pub use uart::*;
+
+pub mod twi;
+pub use twi::*;
