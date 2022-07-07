@@ -20,3 +20,6 @@ pub use uart::*;
 
 pub mod twi;
 pub use twi::*;
+
+pub mod spi;
+pub use spi::*;
