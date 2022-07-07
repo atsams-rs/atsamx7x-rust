@@ -1,3 +1,5 @@
+//! Serial communication peripherals
+
 use crate::fugit::{HertzU32 as Hertz, RateExtU32};
 
 /// Bits per second
@@ -20,3 +22,6 @@ pub use uart::*;
 
 pub mod twi;
 pub use twi::*;
+
+pub mod spi;
+pub use spi::*;
