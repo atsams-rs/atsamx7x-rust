@@ -29,6 +29,8 @@ embedded-hal = { version = "0.2.7" }
 nb = "1"
 fugit = "0.3.5"
 paste = "1"
+usb-device = "0.2.8"
+rtt-target = { version = "0.3.1", optional = true }
 
 atsame70j19  = { version = "0.21.0", path = "../pac/atsame70j19", optional = true }
 atsame70j19b = { version = "0.21.0", path = "../pac/atsame70j19b", optional = true }
@@ -117,6 +119,9 @@ rev-b = ["device-selected"] # "b"-suffix
 device-selected = []
 
 unproven = ["embedded-hal/unproven"]
+
+rtt = ["rtt-target"]
+rtt-usb = ["rtt"]
 
 same70j19  = ["atsame70j19", "e70", "pins-64", "flash-512K", "rev-a"]
 same70j19-rt = ["same70j19", "atsame70j19/rt"]

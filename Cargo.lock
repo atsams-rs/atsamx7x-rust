@@ -671,6 +671,8 @@ dependencies = [
  "fugit",
  "nb 1.0.0",
  "paste",
+ "rtt-target",
+ "usb-device",
 ]
 
 [[package]]
@@ -788,6 +790,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "rtt-target"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "065d6058bb1204f51a562a67209e1817cf714759d5cf845aa45c75fa7b0b9d9b"
+dependencies = [
+ "ufmt-write",
+]
+
+[[package]]
 name = "rustc_version"
 version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -823,10 +834,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "ufmt-write"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e87a2ed6b42ec5e28cc3b94c09982969e9227600b2e3dcbc1db927a84c06bd69"
+
+[[package]]
 name = "unicode-xid"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "826e7639553986605ec5979c7dd957c7895e93eabed50ab2ffa7f6128a75097c"
+
+[[package]]
+name = "usb-device"
+version = "0.2.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6be90410d4772074ea49525e2e753b65920b94b57eee21a6ef7b6a6fe6296245"
 
 [[package]]
 name = "vcell"
