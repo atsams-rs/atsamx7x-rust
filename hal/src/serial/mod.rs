@@ -1,3 +1,5 @@
+//! Serial communication peripherals
+
 use crate::fugit::{HertzU32 as Hertz, RateExtU32};
 
 /// Bits per second
