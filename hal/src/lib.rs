@@ -148,4 +148,6 @@ pub mod pmc;
 #[cfg(feature = "rev-b")]
 pub mod serial;
 #[cfg(feature = "rev-b")]
+pub mod usb;
+#[cfg(feature = "rev-b")]
 pub mod watchdog;

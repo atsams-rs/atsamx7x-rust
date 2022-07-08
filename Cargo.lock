@@ -666,11 +666,13 @@ dependencies = [
  "atsamv71q20b",
  "atsamv71q21",
  "atsamv71q21b",
+ "bit-iter",
  "cortex-m",
  "embedded-hal",
  "fugit",
  "nb 1.0.0",
  "paste",
+ "usb-device",
 ]
 
 [[package]]
@@ -681,6 +683,12 @@ checksum = "5deb64efa5bd81e31fcd1938615a6d98c82eafcbcd787162b6f63b91d6bac5b3"
 dependencies = [
  "rustc_version",
 ]
+
+[[package]]
+name = "bit-iter"
+version = "1.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "23067a77080631c5d676e61865867f5e595a3f9a50bf6973e24fb7ce5c20ee91"
 
 [[package]]
 name = "bitfield"
@@ -827,6 +835,12 @@ name = "unicode-xid"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "826e7639553986605ec5979c7dd957c7895e93eabed50ab2ffa7f6128a75097c"
+
+[[package]]
+name = "usb-device"
+version = "0.2.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6be90410d4772074ea49525e2e753b65920b94b57eee21a6ef7b6a6fe6296245"
 
 [[package]]
 name = "vcell"

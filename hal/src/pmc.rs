@@ -528,7 +528,7 @@ impl Pmc {
     pub fn get_upllck<SRC: UpllSource>(
         &mut self,
         source: &SRC,
-        utmi: &mut crate::target_device::UTMI,
+        utmi: crate::target_device::UTMI,
     ) -> Result<UpllClock, PmcError> {
         use crate::target_device::utmi::utmi_cktrim::FREQ_A as FREQ;
 
