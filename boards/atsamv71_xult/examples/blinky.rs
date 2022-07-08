@@ -4,12 +4,19 @@
 
 use panic_rtt_target as _;
 
-#[rtic::app(device = hal::target_device, peripherals = true)]
+#[rtic::app(device = hal::target_device, peripherals = true, dispatchers = [UART0])]
 mod app {
     use atsamx7x_hal as hal;
+    use dwt_systick_monotonic::{DwtSystick, ExtU32};
+    use hal::efc::*;
     use hal::ehal::digital::v2::ToggleableOutputPin;
+    use hal::fugit::RateExtU32;
     use hal::pio::*;
+    use hal::pmc::*;
     use rtt_target::{rprintln, rtt_init_print};
+
+    #[monotonic(binds = SysTick, default = true)]
+    type Mono = DwtSystick<12_000_000>;
 
     #[shared]
     struct Shared {}
@@ -20,26 +27,43 @@ mod app {
     }
 
     #[init]
-    fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
+    fn init(mut ctx: init::Context) -> (Shared, Local, init::Monotonics) {
         rtt_init_print!();
-        rprintln!("init");
 
-        // Disable the watchdog.
-        let wd = hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
+        let mut pmc = Pmc::new(ctx.device.PMC, &ctx.device.WDT.into());
+        let mainck = pmc
+            .get_mainck(MainCkSource::ExternalNormal(12.MHz()))
+            .unwrap();
+        let (hclk, _mck) = pmc
+            .get_hclk(
+                HostClockConfig {
+                    pres: MckPrescaler::CLK_1,
+                    div: MckDivider::EQ_PCK,
+                },
+                &mainck,
+                &mut Efc::new(ctx.device.EFC, VddioLevel::V3),
+            )
+            .unwrap();
 
-        let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC, &wd);
+        let mono = DwtSystick::new(
+            &mut ctx.core.DCB,
+            ctx.core.DWT,
+            ctx.core.SYST,
+            hclk.systick_freq().to_Hz(),
+        );
+
         let banka = hal::pio::BankA::new(ctx.device.PIOA, &mut pmc, BankConfiguration::default());
         let led = banka.pa23.into_output();
 
-        (Shared {}, Local { led }, init::Monotonics())
+        toggle_led::spawn().unwrap();
+
+        (Shared {}, Local { led }, init::Monotonics(mono))
     }
 
-    #[idle(local = [led])]
-    fn idle(ctx: idle::Context) -> ! {
-        loop {
-            ctx.local.led.toggle().unwrap();
-            rprintln!("LED0 toggled");
-            cortex_m::asm::delay(12_000_000);
-        }
+    #[task(local = [led])]
+    fn toggle_led(ctx: toggle_led::Context) {
+        ctx.local.led.toggle().unwrap();
+        rprintln!("LED0 toggled");
+        toggle_led::spawn_after(1.secs()).unwrap();
     }
 }
