@@ -16,7 +16,7 @@ mod app {
     struct Local {}
 
     #[init]
-    fn init(mut ctx: init::Context) -> (Shared, Local, init::Monotonics) {
+    fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
         // Disable the watchdog.
         let wd = hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
 
@@ -28,7 +28,7 @@ mod app {
             let mainck = pmc
                 .get_mainck(MainCkSource::ExternalBypass(Megahertz::from_raw(12)))
                 .unwrap();
-            let upllck = pmc.get_upllck(&mainck, &mut ctx.device.UTMI).unwrap();
+            let upllck = pmc.get_upllck(&mainck, ctx.device.UTMI).unwrap();
             let upllckdiv = pmc.get_upllckdiv(&upllck, UpllDivider::Div2);
             let _pck2: Pck<Pck2> = pmc.get_pck(&upllckdiv, 100 - 1); // @ 2.4MHz
 
