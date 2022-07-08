@@ -206,7 +206,21 @@ impl HostClock {
 }
 
 /// HCLK token
-pub struct ProcessorClock {}
+pub struct ProcessorClock {
+    freq: Hertz,
+}
+
+impl ProcessorClock {
+    pub fn freq(&self) -> Hertz {
+        self.freq
+    }
+
+    pub fn systick_freq(&self) -> Hertz {
+        // §31.3 would suggest that SysTick is HCLK/2, but experiments
+        // show that it is equal to HCLK.
+        self.freq
+    }
+}
 
 pub trait PckId {
     const ID: u8;
@@ -626,7 +640,9 @@ impl Pmc {
         }
 
         Ok((
-            ProcessorClock {},
+            ProcessorClock {
+                freq: freq / pres.value(),
+            },
             HostClock {
                 freq: freq / pres.value() / div.value(),
             },
