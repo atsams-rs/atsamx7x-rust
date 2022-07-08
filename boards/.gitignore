@@ -1,1 +1,2 @@
-**/Cargo.lock
+pac/Cargo.lock
+hal/Cargo.lock
