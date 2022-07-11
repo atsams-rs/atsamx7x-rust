@@ -82,7 +82,7 @@ pub enum DynPinMode {
 
 /// Value-level `enum` regresenting [`Pin`] banks
 #[doc(hidden)]
-#[derive(PartialEq, Clone, Copy)]
+#[derive(Eq, PartialEq, Clone, Copy)]
 pub enum DynBank {
     A,
     B,
@@ -109,7 +109,7 @@ impl DynBank {
 
 /// Value-level `struct` representing [`Pin`] IDs
 #[doc(hidden)]
-#[derive(PartialEq, Clone, Copy)]
+#[derive(Eq, PartialEq, Clone, Copy)]
 pub struct DynPinId {
     pub bank: DynBank,
     pub num: u8,

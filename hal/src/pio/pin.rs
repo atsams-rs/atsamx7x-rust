@@ -20,7 +20,7 @@ pub(in crate::pio) struct Registers<I: PinId> {
     id: PhantomData<I>,
 }
 
-unsafe impl<I: PinId> RegisterInterface for Registers<I> {
+impl<I: PinId> RegisterInterface for Registers<I> {
     #[inline]
     fn id(&self) -> DynPinId {
         I::DYN
@@ -226,21 +226,25 @@ where
     }
 
     #[inline]
+    #[allow(clippy::bool_comparison)]
     pub(in crate::pio) fn _is_written_high(&self) -> bool {
         self.regs.read_out_pin() == true
     }
 
     #[inline]
+    #[allow(clippy::bool_comparison)]
     pub(in crate::pio) fn _is_written_low(&self) -> bool {
         self.regs.read_out_pin() == false
     }
 
     #[inline]
+    #[allow(clippy::bool_comparison)]
     pub(in crate::pio) fn _is_read_high(&self) -> bool {
         self.regs.read_in_pin() == true
     }
 
     #[inline]
+    #[allow(clippy::bool_comparison)]
     pub(in crate::pio) fn _is_read_low(&self) -> bool {
         self.regs.read_in_pin() == false
     }

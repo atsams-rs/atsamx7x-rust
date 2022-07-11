@@ -80,7 +80,7 @@ pub struct Twi<M: TwiMeta> {
     meta: PhantomData<M>,
 }
 
-#[derive(PartialEq)]
+#[derive(Eq, PartialEq)]
 enum TwiAction {
     Read,
     Write,
@@ -113,15 +113,15 @@ impl<M: TwiMeta> Twi<M> {
         let calc_div = |ckdiv| {
             (clk.freq() / conf.freq)
                 .checked_sub(3)
-                .and_then(|v| Some(v / 2u32.pow(ckdiv)))
+                .map(|v| v / 2u32.pow(ckdiv))
         };
         let (ckdiv, div) = (0..0b11u8)
             .find_map(|ckdiv| {
                 let div: u8 = calc_div(ckdiv as u32)?.try_into().ok()?;
                 if div > 0 {
-                    return Some((ckdiv, div));
+                    Some((ckdiv, div))
                 } else {
-                    return None;
+                    None
                 }
             })
             .ok_or(TwiError::ImpossibleFreq)?;

@@ -97,18 +97,18 @@ impl<B: PinBank> Iterator for BankInterruptsIter<B> {
         match self.idx {
             32.. => {
                 // We have iterated over all pins: nothing more to do.
-                return None;
+                None
             }
             idx if self.irq & (1 << idx) != 0 => {
                 // Pin number `idx` had a pending interrupt.
                 let pin = self.idx;
-                self.idx = self.idx + 1;
+                self.idx += 1;
                 Some(pin)
             }
             _ => {
                 // Pin number `idx` did not have a pending interrupt:
                 // advance to the next pin.
-                self.idx = self.idx + 1;
+                self.idx += 1;
                 self.next()
             }
         }

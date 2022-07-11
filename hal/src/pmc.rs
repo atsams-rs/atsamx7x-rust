@@ -67,7 +67,7 @@ pub use crate::target_device::pmc::pmc_mckr::PRES_A as MckPrescaler;
 pub use crate::target_device::pmc::pmc_pck::CSS_A as PCK_CSS;
 
 /// Output divider for UPLLCK.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, Eq, PartialEq, Clone)]
 pub enum UpllDivider {
     /// UPLLCK is divided by 1: input and output frequencies are
     /// equal.
@@ -83,7 +83,7 @@ pub struct Pmc {
 }
 
 /// Possible errors that can occur on PMC configuration.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, Eq, PartialEq, Clone)]
 pub enum PmcError {
     ClockingError(PeripheralIdentifier),
     InvalidConfiguration,
@@ -500,7 +500,7 @@ impl Pmc {
         PllaConfig { div, mult }: PllaConfig,
         source: &SRC,
     ) -> Result<PllaClock, PmcError> {
-        if mult > 63 || mult < 2 {
+        if !(2..=63).contains(&mult) {
             return Err(PmcError::InvalidConfiguration);
         }
         if div == 0 || div > 127 {
@@ -667,8 +667,9 @@ impl Pmc {
 
         for pid in pids {
             // Check if this supports PMC clocking
-            pid.supports_pmc_clocking()
-                .map_err(|_| PmcError::ClockingError(*pid))?;
+            if !pid.supports_pmc_clocking() {
+                return Err(PmcError::ClockingError(*pid));
+            }
 
             let pid_val: u32 = (*pid) as u32;
 
@@ -874,33 +875,32 @@ pub enum PeripheralIdentifier {
 }
 
 impl PeripheralIdentifier {
-    pub fn supports_pmc_clocking(&self) -> Result<(), ()> {
+    pub(crate) fn supports_pmc_clocking(&self) -> bool {
         use PeripheralIdentifier::*;
         // These pids don't support PMC clocking
-        match self {
-            SUPC => Err(()),
-            RSTC => Err(()),
-            RTC => Err(()),
-            RTT => Err(()),
-            WDT => Err(()),
-            PMC => Err(()),
-            EFC => Err(()),
-            MCAN0INT1 => Err(()),
-            MCAN1INT1 => Err(()),
-            MLB_IRQ1 => Err(()),
-            _RESERVED => Err(()),
-            ARM => Err(()),
-            SDRAMC => Err(()),
-            RSWDT => Err(()),
-            ARM_CACHE_ECC_WARNING => Err(()),
-            ARM_CACHE_ECC_FAULT => Err(()),
-            GMAC_Q1 => Err(()),
-            GMAC_Q2 => Err(()),
-            ARM_FPU_IXC_FPU => Err(()),
-            GMAC_Q3 => Err(()),
-            GMAC_Q4 => Err(()),
-            GMAC_Q5 => Err(()),
-            _ => Ok(()),
-        }
+        !matches!(
+            self,
+            SUPC | RSTC
+                | RTC
+                | RTT
+                | WDT
+                | PMC
+                | EFC
+                | MCAN0INT1
+                | MCAN1INT1
+                | MLB_IRQ1
+                | _RESERVED
+                | ARM
+                | SDRAMC
+                | RSWDT
+                | ARM_CACHE_ECC_WARNING
+                | ARM_CACHE_ECC_FAULT
+                | GMAC_Q1
+                | GMAC_Q2
+                | ARM_FPU_IXC_FPU
+                | GMAC_Q3
+                | GMAC_Q4
+                | GMAC_Q5
+        )
     }
 }

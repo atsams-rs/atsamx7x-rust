@@ -615,7 +615,7 @@ impl<'spi, M: SpiMeta> blocking::spi::Transactional<u8> for Client<'spi, M> {
         use blocking::spi::Operation;
 
         let len = operations.len();
-        for (i, o) in operations.into_iter().enumerate() {
+        for (i, o) in operations.iter_mut().enumerate() {
             let last_op = i == len - 1;
 
             if let Some(e) = match o {

@@ -168,7 +168,7 @@ impl UartConfiguration {
     }
 }
 
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, Eq, PartialEq, Clone)]
 /// Possible [`Uart`] errors
 pub enum UartError {
     /// An impossible baud rate was requested.

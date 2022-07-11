@@ -6,7 +6,7 @@ fn main() -> Result<(), &'static str> {
     fn feat(f: &str) -> bool {
         env::var(format!(
             "CARGO_FEATURE_{}",
-            f.to_ascii_uppercase().replace("-", "_")
+            f.to_ascii_uppercase().replace('-', "_")
         ))
         .is_ok()
     }
