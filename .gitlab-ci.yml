@@ -1,0 +1,57 @@
+image: "registry.git.grepit.se/embedded-rust/atsamx7x-hal"
+
+stages:
+  - HAL
+  - examples
+  - lint
+
+default:
+  before_script:
+    - rustup show
+
+samv71q21b:
+  stage: HAL
+  script:
+    - cd hal
+    - cargo check --features samv71q21b,unproven
+
+same70n21b:
+  stage: HAL
+  script:
+    - cd hal
+    - cargo check --features same70n21b,unproven
+
+e70:
+  stage: examples
+  script:
+    - cd boards/atsame70_xpro
+    - cargo check --examples
+
+v71:
+  stage: examples
+  script:
+    - cd boards/atsamv71_xult
+    - cargo check --examples
+
+fmt:
+  stage: lint
+  needs: []
+  script:
+    - cd hal
+    - cargo fmt -- --check
+    - cd ../boards/atsame70_xpro
+    - cargo fmt -- --check
+    - cd ../atsamv71_xult
+    - cargo fmt -- --check
+
+clippy:
+  stage: lint
+  allow_failure: true
+  needs: ["samv71q21b"]
+  script:
+    - cd hal
+    - cargo clippy --no-deps --features samv71q21b,unproven
+    - cd ../boards/atsame70_xpro
+    - cargo clippy --examples --no-deps
+    - cd ../atsamv71_xult
+    - cargo clippy --examples --no-deps
