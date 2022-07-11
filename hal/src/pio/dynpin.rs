@@ -82,12 +82,14 @@ pub enum DynPinMode {
 
 /// Value-level `enum` regresenting [`Pin`] banks
 #[doc(hidden)]
-#[derive(PartialEq, Clone, Copy)]
+#[derive(Eq, PartialEq, Clone, Copy)]
 pub enum DynBank {
     A,
     B,
+    #[cfg(feature = "pins-144")]
     C,
     D,
+    #[cfg(feature = "pins-144")]
     E,
 }
 
@@ -96,8 +98,10 @@ impl DynBank {
         match self {
             Self::A => PIOA::ptr(),
             Self::B => PIOB::ptr(),
+            #[cfg(feature = "pins-144")]
             Self::C => PIOC::ptr(),
             Self::D => PIOD::ptr(),
+            #[cfg(feature = "pins-144")]
             Self::E => PIOE::ptr(),
         }
     }
@@ -105,7 +109,7 @@ impl DynBank {
 
 /// Value-level `struct` representing [`Pin`] IDs
 #[doc(hidden)]
-#[derive(PartialEq, Clone, Copy)]
+#[derive(Eq, PartialEq, Clone, Copy)]
 pub struct DynPinId {
     pub bank: DynBank,
     pub num: u8,

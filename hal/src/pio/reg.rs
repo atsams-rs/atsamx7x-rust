@@ -2,7 +2,7 @@ use crate::target_device::pioa::RegisterBlock;
 
 use super::dynpin::*;
 
-pub(in crate::pio) unsafe trait RegisterInterface {
+pub(in crate::pio) trait RegisterInterface {
     fn id(&self) -> DynPinId;
 
     /// Return the `u32` mask to set/clear a bit for this
@@ -21,14 +21,14 @@ pub(in crate::pio) unsafe trait RegisterInterface {
     fn change_mode(&mut self, mode: DynPinMode) {
         match mode {
             DynPinMode::Reset => unimplemented!(),
-            DynPinMode::Peripheral(a) => self.into_peripheral(a),
-            DynPinMode::Output => self.into_output(),
-            DynPinMode::Input => self.into_input(),
+            DynPinMode::Peripheral(a) => self.as_peripheral(a),
+            DynPinMode::Output => self.as_output(),
+            DynPinMode::Input => self.as_input(),
         }
     }
 
     #[inline]
-    fn into_peripheral(&mut self, cfg: DynPeripheral) {
+    fn as_peripheral(&mut self, cfg: DynPeripheral) {
         use DynPeripheral::*;
         let (sr0, sr1) = match cfg {
             A => (false, false),
@@ -58,7 +58,7 @@ pub(in crate::pio) unsafe trait RegisterInterface {
     }
 
     #[inline]
-    fn into_output(&mut self) {
+    fn as_output(&mut self) {
         // set initial output state as low (0)
         self.write_pin(false);
 
@@ -75,7 +75,7 @@ pub(in crate::pio) unsafe trait RegisterInterface {
     }
 
     #[inline]
-    fn into_input(&mut self) {
+    fn as_input(&mut self) {
         // take pin from peripheral
         self.reg().pio_per.write(|w| unsafe { w.bits(self.mask()) });
 

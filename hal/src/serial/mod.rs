@@ -3,7 +3,7 @@
 use crate::fugit::{HertzU32 as Hertz, RateExtU32};
 
 /// Bits per second
-#[derive(Clone, Copy, PartialEq, PartialOrd, Debug)]
+#[derive(Clone, Copy, Eq, PartialEq, PartialOrd, Debug)]
 pub struct Bps(pub(crate) Hertz);
 
 /// [`u32`] type extension that adds convenience methods

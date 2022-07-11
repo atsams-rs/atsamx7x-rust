@@ -97,18 +97,18 @@ impl<B: PinBank> Iterator for BankInterruptsIter<B> {
         match self.idx {
             32.. => {
                 // We have iterated over all pins: nothing more to do.
-                return None;
+                None
             }
             idx if self.irq & (1 << idx) != 0 => {
                 // Pin number `idx` had a pending interrupt.
                 let pin = self.idx;
-                self.idx = self.idx + 1;
+                self.idx += 1;
                 Some(pin)
             }
             _ => {
                 // Pin number `idx` did not have a pending interrupt:
                 // advance to the next pin.
-                self.idx = self.idx + 1;
+                self.idx += 1;
                 self.next()
             }
         }
@@ -253,28 +253,41 @@ macro_rules! bank {
 macro_rules! banks {
     (
         $(
+            $( #[$cfg1:meta] )?
             $Bank:ident {
                 $(
-                    $( #[$cfg:meta] )?
+                    $( #[$cfg2:meta] )?
                     ($Id:ident, $NUM:literal),
                 )+
             }
         )+
     ) => {
         $(
-            $(
-                $( #[$cfg] )?
-                pin_id!($Bank, $Id, $NUM);
-            )+
-            bank!(
-                $Bank,
-                $(
-                    $( #[$cfg] )?
-                    $Id,
-                )+
-            );
-            impl PinBank for $Bank {
-                const DYN: DynBank = DynBank::$Bank;
+            paste! {
+                $( #[$cfg1] )?
+                mod [<$Bank:lower _impl>] {
+                    use super::*;
+
+                    $(
+                        $( #[$cfg2] )?
+                            pin_id!($Bank, $Id, $NUM);
+                    )+
+
+                    bank!(
+                        $Bank,
+                        $(
+                            $( #[$cfg2] )?
+                                $Id,
+                        )+
+                    );
+
+                    impl PinBank for $Bank {
+                        const DYN: DynBank = DynBank::$Bank;
+                    }
+
+                }
+                $( #[$cfg1] )?
+                pub use [<$Bank:lower _impl>]::*;
             }
         )+
     };
@@ -288,6 +301,7 @@ banks!(
         (PA3, 3),
         (PA4, 4),
         (PA5, 5),
+        #[cfg(feature = "pins-144")]
         (PA6, 6),
         (PA7, 7),
         (PA8, 8),
@@ -311,6 +325,7 @@ banks!(
         (PA26, 26),
         (PA27, 27),
         (PA28, 28),
+        #[cfg(feature = "pins-144")]
         (PA29, 29),
         (PA30, 30),
         (PA31, 31),
@@ -331,6 +346,7 @@ banks!(
         (PB13, 13),
     }
 
+    #[cfg(feature = "pins-144")]
     C {
         (PC0, 0),
         (PC1, 1),
@@ -390,17 +406,20 @@ banks!(
         (PD20, 20),
         (PD21, 21),
         (PD22, 22),
+        #[cfg(feature = "pins-144")]
         (PD23, 23),
         (PD24, 24),
         (PD25, 25),
         (PD26, 26),
         (PD27, 27),
         (PD28, 28),
+        #[cfg(feature = "pins-144")]
         (PD29, 29),
         (PD30, 30),
         (PD31, 31),
     }
 
+    #[cfg(feature = "pins-144")]
     E {
         (PE0, 0),
         (PE1, 1),

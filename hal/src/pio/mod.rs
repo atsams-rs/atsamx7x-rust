@@ -102,12 +102,13 @@ use crate::target_device::{
     // All PIO banks below use the same register block definition.
     pioa::RegisterBlock,
 
+    // Banks common to all chip sizes.
     PIOA,
     PIOB,
-    PIOC,
     PIOD,
-    PIOE,
 };
+#[cfg(feature = "pins-144")]
+use crate::target_device::{PIOC, PIOE};
 
 pub mod pin;
 pub use pin::*;

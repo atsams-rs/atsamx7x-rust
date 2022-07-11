@@ -89,7 +89,7 @@ pub use usb_device;
 const NUM_ENDPOINTS: usize = 10;
 
 /// Endpoint configuration.
-#[derive(Debug, Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq)]
 struct EPConfig {
     ep_type: EndpointType,
     ep_dir: UsbDirection,
@@ -106,7 +106,7 @@ impl EPConfig {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Eq, PartialEq)]
 struct Endpoints {
     ep_config: [Option<EPConfig>; NUM_ENDPOINTS],
 }
@@ -474,13 +474,13 @@ impl Inner {
         }
 
         if ep_out == 0 && ep_in_complete == 0 && ep_setup == 0 {
-            return PollResult::None;
+            PollResult::None
         } else {
-            return PollResult::Data {
+            PollResult::Data {
                 ep_out,
                 ep_in_complete,
                 ep_setup,
-            };
+            }
         }
     }
 

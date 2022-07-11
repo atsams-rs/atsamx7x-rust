@@ -6,7 +6,7 @@ use crate::target_device::EFC;
 /// The voltage which drives the MCU.
 ///
 /// Refer to §58 and §59.
-#[derive(PartialEq)]
+#[derive(Eq, PartialEq)]
 pub enum VddioLevel {
     /// VDDIO = 3.3V, typical
     V3,
@@ -49,7 +49,7 @@ impl Efc {
 /// The number of flash wait states for a read operation.
 ///
 /// Note: The number of cycles a read takes is 1 + FWS.
-#[derive(Debug, PartialEq, Copy, Clone)]
+#[derive(Debug, Eq, PartialEq, Copy, Clone)]
 #[repr(u8)]
 enum FlashWaitStates {
     Zero,
