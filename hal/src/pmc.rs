@@ -134,6 +134,12 @@ pub struct SlowClock {
     freq: Hertz,
 }
 
+impl SlowClock {
+    pub fn freq(&self) -> Hertz {
+        self.freq
+    }
+}
+
 /// PLLA configuration
 pub struct PllaConfig {
     /// The input clock divider.

@@ -672,7 +672,9 @@ dependencies = [
  "fugit",
  "nb 1.0.0",
  "paste",
+ "rtic-monotonic",
  "usb-device",
+ "void",
 ]
 
 [[package]]
@@ -794,6 +796,12 @@ checksum = "54a21852a652ad6f610c9510194f398ff6f8692e334fd1145fed931f7fbe44ea"
 dependencies = [
  "proc-macro2",
 ]
+
+[[package]]
+name = "rtic-monotonic"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fb8b0b822d1a366470b9cea83a1d4e788392db763539dc4ba022bcc787fece82"
 
 [[package]]
 name = "rustc_version"
