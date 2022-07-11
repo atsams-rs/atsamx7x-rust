@@ -387,16 +387,19 @@ impl<M: UartMeta> Uart<M> {
 macro_rules! impl_uart {
     (
         $(
-            $( #[$cfg:meta] )?
+            $( #[$cfg1:meta] )?
             $Uart:ident: {
                 RX: [ $RxPin:ty ],
-                TX: [ $( $TxPin:ty, )+ ],
+                TX: [$(
+                    $( #[$cfg2:meta] )?
+                    $TxPin:ty,
+                )+],
             },
         )+
     ) => {
         paste! {
             $(
-                $( #[$cfg] )?
+                $( #[$cfg1] )?
                 mod [<$Uart:lower _impl>] {
                     use super::*;
 
@@ -409,6 +412,7 @@ macro_rules! impl_uart {
                     pub trait [<$Uart RxPin>] {}
 
                     $(
+                        $( #[$cfg2] )?
                         impl [<$Uart TxPin>] for $TxPin {}
                     )+
                     impl [<$Uart RxPin>] for $RxPin {}
@@ -430,6 +434,7 @@ macro_rules! impl_uart {
                         }
                     }
                 }
+                $( #[$cfg1] )?
                 pub use [<$Uart:lower _impl>]::*;
             )+
         }
@@ -443,7 +448,12 @@ impl_uart!(
     },
     Uart1: {
         RX: [ Pin<PA5, PeripheralC> ],
-        TX: [ Pin<PA4, PeripheralC>, Pin<PA6, PeripheralC>, Pin<PD26, PeripheralD>, ],
+        TX: [
+            Pin<PA4, PeripheralC>,
+            #[cfg(feature = "pins-144")]
+            Pin<PA6, PeripheralC>,
+            Pin<PD26, PeripheralD>,
+        ],
     },
     Uart2: {
         RX: [ Pin<PD25, PeripheralC> ],
