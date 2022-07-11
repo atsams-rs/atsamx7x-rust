@@ -4,15 +4,19 @@
 
 use panic_rtt_target as _;
 
-#[rtic::app(device = hal::target_device, peripherals = true)]
+#[rtic::app(device = hal::target_device, peripherals = true, dispatchers = [UART0])]
 mod app {
     use atsamx7x_hal as hal;
+    use dwt_systick_monotonic::{DwtSystick, ExtU32};
     use hal::afec::*;
     use hal::efc::*;
     use hal::ehal::adc::OneShot;
     use hal::pio::*;
     use hal::pmc::*;
     use rtt_target::{rprintln, rtt_init_print};
+
+    #[monotonic(binds = SysTick, default = true)]
+    type Mono = DwtSystick<12_000_000>;
 
     #[shared]
     struct Shared {}
@@ -24,7 +28,7 @@ mod app {
     }
 
     #[init]
-    fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
+    fn init(mut ctx: init::Context) -> (Shared, Local, init::Monotonics) {
         rtt_init_print!();
         rprintln!("init");
 
@@ -34,7 +38,7 @@ mod app {
         let mainck = pmc
             .get_mainck(MainCkSource::InternalRC(MainRcFreq::_12_MHZ))
             .unwrap();
-        let (_, mck) = pmc
+        let (hclk, mck) = pmc
             .get_hclk(
                 HostClockConfig {
                     pres: MckPrescaler::CLK_1,
@@ -45,20 +49,29 @@ mod app {
             )
             .unwrap();
 
+        let mono = DwtSystick::new(
+            &mut ctx.core.DCB,
+            ctx.core.DWT,
+            ctx.core.SYST,
+            hclk.systick_freq().to_Hz(),
+        );
+
         let banka = hal::pio::BankA::new(ctx.device.PIOA, &mut pmc, BankConfiguration::default());
         let afec = Afec::new_afec0(ctx.device.AFEC0, &mut pmc, &mck).unwrap();
         let pin = banka.pa17.into_input(PullDir::PullUp);
 
-        (Shared {}, Local { afec, pin }, init::Monotonics())
+        adc_sample::spawn().unwrap();
+
+        (Shared {}, Local { afec, pin }, init::Monotonics(mono))
     }
 
-    #[idle(local = [afec, pin])]
-    fn idle(ctx: idle::Context) -> ! {
-        let idle::LocalResources { afec, pin } = ctx.local;
-        loop {
-            let v: f32 = afec.read(pin).unwrap();
-            rprintln!("PA17 (channel 6) = {:.2}V", v);
-            cortex_m::asm::delay(12_000_000);
-        }
+    #[task(local = [afec, pin])]
+    fn adc_sample(ctx: adc_sample::Context) {
+        let adc_sample::LocalResources { afec, pin } = ctx.local;
+
+        let v: f32 = afec.read(pin).unwrap();
+        rprintln!("PA17 (channel 6) = {:.2}V", v);
+
+        adc_sample::spawn_after(1.secs()).unwrap();
     }
 }
