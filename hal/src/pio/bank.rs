@@ -9,6 +9,7 @@ use crate::pmc::{PeripheralIdentifier, Pmc};
 use paste::paste;
 
 /// Type-level enum for [`Pin`] banks
+#[allow(missing_docs)]
 pub trait PinBank: Sealed {
     const DYN: DynBank;
 }
@@ -198,6 +199,7 @@ macro_rules! bank {
             #[doc = "Collection of all the [`Pin`]s in [`PIO" $Bank "`]"]
             pub struct [<Bank $Bank>] {
                 reg: Option<[<PIO $Bank>]>,
+                #[doc = "Abstraction for the interrupts that can trigger on [`" $Bank "`]."]
                 pub interrupts: BankInterrupts<$Bank>,
                 $(
                     #[doc = "Pin " $Id]

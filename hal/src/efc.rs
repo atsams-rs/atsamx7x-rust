@@ -14,12 +14,15 @@ pub enum VddioLevel {
     V1,
 }
 
+/// [`EFC`] abstraction.
 pub struct Efc {
     pub(crate) periph: EFC,
     vddio: VddioLevel,
 }
 
 impl Efc {
+    /// Creates a new [`Efc`], the behavior of which depends on the
+    /// voltage, [`VddioLevel`], that drives the MCU.
     pub fn new(periph: EFC, vddio: VddioLevel) -> Self {
         periph.eefc_wpmr.modify(|_r, w| {
             w.wpkey().passwd();

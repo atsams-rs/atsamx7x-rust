@@ -55,6 +55,7 @@ use core::marker::PhantomData;
 use paste::paste;
 
 /// [`Twi`] metadata
+#[allow(missing_docs)]
 pub trait TwiMeta {
     const REG: *const RegisterBlock;
     const PID: PeripheralIdentifier;

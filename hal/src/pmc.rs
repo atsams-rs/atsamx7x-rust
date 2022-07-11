@@ -50,6 +50,7 @@
 //! (from the firmware developer's perspective), the `Pmc` required a
 //! disabled watchdog (`&Watchdog<Disabled>`). After this initial
 //! no-operation use the watchdog can be reconfigured.
+#![allow(missing_docs)]
 
 use crate::efc::Efc;
 use crate::target_device::PMC;
@@ -84,6 +85,7 @@ pub struct Pmc {
 
 /// Possible errors that can occur on PMC configuration.
 #[derive(Debug, Eq, PartialEq, Clone)]
+#[allow(missing_docs)]
 pub enum PmcError {
     ClockingError(PeripheralIdentifier),
     InvalidConfiguration,
@@ -134,7 +136,9 @@ pub struct SlowClock {
 
 /// PLLA configuration
 pub struct PllaConfig {
+    /// The input clock divider.
     pub div: u8,
+    /// The output clock multiplier.
     pub mult: u8,
 }
 

@@ -1,4 +1,51 @@
+/*!
+ATSAMx7x HAL - Hardware Abstraction Layer for the Microchip SAM E70/S70/V70/V71 (rev. B) MCUs
+---
+
+This crate is a non-exhaustive abstraction layer of the peripherals
+available on the Microchip SAM E70/S70/V70/V71 MCUs. Only the
+B-revision is supported.
+
+Where able, hardware state is tracked by the type system and does not incur run-time overhead.
+
+Examples for most implemented peripherals [can be found in the git repository, under `boards/`](https://git.grepit.se/embedded-rust/atsamx7x-hal/-/tree/master/boards).
+
+# Getting Started
+
+After system start, the device's wathdog is active, and will trigger a
+system reset after about ~15 seconds. Additionally, before any work
+can be done, the clock hierarchy must be configured, because it is
+upstream of all other peripherals. Below is a clock hierarchy
+configuration example that also disabled the watchdog.
+
+```
+let mut efc = Efc::new(ctx.device.EFC, VddioLevel::V3);
+
+let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC, &ctx.device.WDT.into());
+let mainck = pmc
+    .get_mainck(MainCkSource::InternalRC(MainRcFreq::_12_MHZ))
+    .unwrap();
+let (hclk, mck) = pmc
+    .get_hclk(
+        HostClockConfig {
+            pres: MckPrescaler::CLK_1,
+            div: MckDivider::EQ_PCK,
+        },
+        &mainck,
+        &mut efc,
+    )
+    .unwrap();
+```
+*/
+
 #![no_std]
+#![deny(rustdoc::broken_intra_doc_links)]
+#![deny(rustdoc::private_intra_doc_links)]
+#![deny(missing_docs)]
+#![deny(rustdoc::missing_crate_level_docs)]
+#![deny(rustdoc::invalid_codeblock_attributes)]
+#![deny(rustdoc::invalid_rust_codeblocks)]
+#![deny(rustdoc::bare_urls)]
 
 pub use embedded_hal as ehal;
 pub use fugit;
