@@ -86,8 +86,10 @@ pub enum DynPinMode {
 pub enum DynBank {
     A,
     B,
+    #[cfg(feature = "pins-144")]
     C,
     D,
+    #[cfg(feature = "pins-144")]
     E,
 }
 
@@ -96,8 +98,10 @@ impl DynBank {
         match self {
             Self::A => PIOA::ptr(),
             Self::B => PIOB::ptr(),
+            #[cfg(feature = "pins-144")]
             Self::C => PIOC::ptr(),
             Self::D => PIOD::ptr(),
+            #[cfg(feature = "pins-144")]
             Self::E => PIOE::ptr(),
         }
     }

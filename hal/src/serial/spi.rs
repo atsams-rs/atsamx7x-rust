@@ -73,7 +73,9 @@ use crate::ehal::blocking;
 use crate::fugit::{ExtU32, NanosDurationU32 as NanosDuration};
 use crate::pio::*;
 use crate::pmc::{HostClock, PeripheralIdentifier, Pmc};
-use crate::target_device::{spi0::RegisterBlock, SPI0, SPI1};
+#[cfg(feature = "pins-144")]
+use crate::target_device::SPI1;
+use crate::target_device::{spi0::RegisterBlock, SPI0};
 use crate::{ehal, nb};
 use ehal::spi::Mode;
 
@@ -522,6 +524,7 @@ macro_rules! impl_spi {
                         }
                     }
                 }
+                $( #[$cfg] )?
                 pub use [<$Spi:lower _impl>]::*;
             )+
         }

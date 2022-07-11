@@ -253,28 +253,41 @@ macro_rules! bank {
 macro_rules! banks {
     (
         $(
+            $( #[$cfg1:meta] )?
             $Bank:ident {
                 $(
-                    $( #[$cfg:meta] )?
+                    $( #[$cfg2:meta] )?
                     ($Id:ident, $NUM:literal),
                 )+
             }
         )+
     ) => {
         $(
-            $(
-                $( #[$cfg] )?
-                pin_id!($Bank, $Id, $NUM);
-            )+
-            bank!(
-                $Bank,
-                $(
-                    $( #[$cfg] )?
-                    $Id,
-                )+
-            );
-            impl PinBank for $Bank {
-                const DYN: DynBank = DynBank::$Bank;
+            paste! {
+                $( #[$cfg1] )?
+                mod [<$Bank:lower _impl>] {
+                    use super::*;
+
+                    $(
+                        $( #[$cfg2] )?
+                            pin_id!($Bank, $Id, $NUM);
+                    )+
+
+                    bank!(
+                        $Bank,
+                        $(
+                            $( #[$cfg2] )?
+                                $Id,
+                        )+
+                    );
+
+                    impl PinBank for $Bank {
+                        const DYN: DynBank = DynBank::$Bank;
+                    }
+
+                }
+                $( #[$cfg1] )?
+                pub use [<$Bank:lower _impl>]::*;
             }
         )+
     };
@@ -331,6 +344,7 @@ banks!(
         (PB13, 13),
     }
 
+    #[cfg(feature = "pins-144")]
     C {
         (PC0, 0),
         (PC1, 1),
@@ -401,6 +415,7 @@ banks!(
         (PD31, 31),
     }
 
+    #[cfg(feature = "pins-144")]
     E {
         (PE0, 0),
         (PE1, 1),
