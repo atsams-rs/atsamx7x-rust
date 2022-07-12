@@ -65,6 +65,7 @@ use nb;
 use paste::paste;
 
 /// Available parity modes
+#[allow(missing_docs)]
 pub enum ParityMode {
     Even,
     Odd,
@@ -118,6 +119,7 @@ impl From<ChannelMode> for ChannelModeInner {
 }
 
 /// Metadata for a UART peripheral
+#[allow(missing_docs)]
 pub trait UartMeta {
     const REG: *const RegisterBlock;
     const PID: PeripheralIdentifier;
@@ -182,6 +184,7 @@ pub trait UartClock {
     /// C.f. §47.6.2
     const BRSRCCK: bool;
 
+    /// Returns the frequency of the [`UartClock`].
     fn freq(&self) -> Hertz;
 }
 impl UartClock for HostClock {

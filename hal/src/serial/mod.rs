@@ -8,6 +8,8 @@ pub struct Bps(pub(crate) Hertz);
 
 /// [`u32`] type extension that adds convenience methods
 pub trait ExtU32 {
+    /// Creates a bit-per-second ([`Bps`]) representation from a
+    /// [`u32`].
     fn bps(self) -> Bps;
 }
 

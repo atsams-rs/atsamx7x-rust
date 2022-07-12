@@ -3,20 +3,26 @@ use crate::target_device::WDT;
 
 use core::marker::PhantomData;
 
+/// The state of the [`Watchdog`].
 pub trait WatchdogState {}
 
+/// The [`Watchdog`] is disabled.
 pub enum Disabled {}
+/// The [`Watchdog`] is in reset and has yet to be configured. It will
+/// trigger a system reset ~15 seconds from system start.
 pub enum Reset {}
 
 impl WatchdogState for Disabled {}
 impl WatchdogState for Reset {}
 
+/// [`WDT`] abstraction.
 pub struct Watchdog<S: WatchdogState> {
     watchdog: WDT,
     state: PhantomData<S>,
 }
 
 impl Watchdog<Reset> {
+    /// Creates a [`Watchdog`] in [`Reset`] from the device's [`WDT`].
     pub fn new(watchdog: WDT) -> Self {
         Self {
             watchdog,

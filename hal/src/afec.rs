@@ -44,7 +44,9 @@ use crate::target_device::{afec0::RegisterBlock, AFEC0, AFEC1};
 use core::convert::Infallible;
 use core::marker::PhantomData;
 
+/// [`Afec`] channel.
 pub type Channel = u8;
+/// Calculated [`Afec`] measurement type.
 pub type Voltage = f32;
 
 macro_rules! impl_channel_pins {
@@ -126,6 +128,7 @@ impl_channel_pins!(
 );
 
 /// Metadata for an AFEC peripheral
+#[allow(missing_docs)]
 pub trait AfecMeta {
     const REG: *const RegisterBlock;
     const PID: PeripheralIdentifier;
@@ -277,9 +280,7 @@ impl<A: AfecMeta> Afec<A> {
         Ok(())
     }
 
-    /// Sample all channels previously configured. Returns a
-    /// [`Samples`] with up to 12 samples channels.
-    pub fn sample(&mut self, ch: Channel) -> Voltage {
+    fn sample(&mut self, ch: Channel) -> Voltage {
         // start the conversion
         self.reg().afec_cr.write(|w| w.start().set_bit());
 

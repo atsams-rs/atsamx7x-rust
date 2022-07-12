@@ -4,6 +4,7 @@ stages:
   - HAL
   - examples
   - lint
+  - docs
 
 default:
   before_script:
@@ -55,3 +56,10 @@ clippy:
     - cargo clippy --examples --no-deps
     - cd ../atsamv71_xult
     - cargo clippy --examples --no-deps
+
+docs:
+  stage: docs
+  needs: ["samv71q21b"]
+  script:
+    - cd hal
+    - cargo doc --features samv71q21b,unproven --no-deps

@@ -103,6 +103,7 @@ pub enum Event {
 }
 
 /// Metadata for a [`Spi`] peripheral.
+#[allow(missing_docs)]
 pub trait SpiMeta {
     const REG: *const RegisterBlock;
     const PID: PeripheralIdentifier;
@@ -473,6 +474,7 @@ macro_rules! impl_spi {
                     pub trait [<$Spi SpckPin>] {}
                     #[doc = "Trait that identifies valid NPCS [`Pin`]s for [`" [<$Spi:upper>] "`]."]
                     pub trait [<$Spi NpCsPin>] {
+                        /// Numerical identifier for this NPCS (select) pin.
                         const CS: u8;
                     }
 

@@ -100,6 +100,7 @@ impl<C: PeripheralConfig> Sealed for Peripheral<C> {}
 //================================================================================
 
 /// Type-level enum representing [`Pin`] modes
+#[allow(missing_docs)]
 pub trait PinMode: Sealed {
     const DYN: DynPinMode;
 }
@@ -124,6 +125,7 @@ impl PinMode for Input {
 // Pin definition
 //================================================================================
 
+#[allow(missing_docs)]
 pub trait PinId: Sealed {
     const DYN: DynPinId;
 }
