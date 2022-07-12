@@ -27,6 +27,7 @@ dependencies = [
  "atsamx7x-hal",
  "cortex-m",
  "cortex-m-rtic",
+ "dwt-systick-monotonic",
  "heapless",
  "panic-rtt-target",
  "rtt-target",
@@ -53,7 +54,9 @@ dependencies = [
  "fugit",
  "nb 1.0.0",
  "paste",
+ "rtic-monotonic",
  "usb-device",
+ "void",
 ]
 
 [[package]]
@@ -177,6 +180,17 @@ dependencies = [
  "cfg-if",
  "cortex-m",
  "riscv",
+]
+
+[[package]]
+name = "dwt-systick-monotonic"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d51defa1e02b32ded3e28e15fc90e19216de08e2127a6fa15e19081836d6f13e"
+dependencies = [
+ "cortex-m",
+ "fugit",
+ "rtic-monotonic",
 ]
 
 [[package]]

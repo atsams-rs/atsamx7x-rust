@@ -5,11 +5,16 @@
 
 use panic_halt as _;
 
-#[rtic::app(device = hal::target_device, peripherals = true)]
+#[rtic::app(device = hal::target_device, peripherals = true, dispatchers = [IXC])]
 mod app {
     use atsamx7x_hal as hal;
     use hal::ehal::digital::v2::ToggleableOutputPin;
     use hal::pio::*;
+    use hal::pmc::*;
+    use hal::rtt::*;
+
+    #[monotonic(binds = RTT, default = true)]
+    type MyMon = Mono<8192>;
 
     #[shared]
     struct Shared {}
@@ -21,21 +26,21 @@ mod app {
 
     #[init]
     fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
-        // Disable the watchdog.
-        let wd = hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
+        let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC, &ctx.device.WDT.into());
+        let slck = pmc.get_slck(ctx.device.SUPC, SlowCkSource::ExternalBypass);
+        let mono = Rtt::new_8192Hz(ctx.device.RTT, &slck).into_monotonic();
 
-        let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC, &wd);
         let bankb = hal::pio::BankB::new(ctx.device.PIOB, &mut pmc, BankConfiguration::default());
         let led = bankb.pb8.into_output();
 
-        (Shared {}, Local { led }, init::Monotonics())
+        toggle_led::spawn().unwrap();
+
+        (Shared {}, Local { led }, init::Monotonics(mono))
     }
 
-    #[idle(local = [led])]
-    fn idle(ctx: idle::Context) -> ! {
-        loop {
-            ctx.local.led.toggle().unwrap();
-            cortex_m::asm::delay(12_000_000);
-        }
+    #[task(local = [led])]
+    fn toggle_led(ctx: toggle_led::Context) {
+        ctx.local.led.toggle().unwrap();
+        toggle_led::spawn_after(1.secs()).unwrap();
     }
 }
