@@ -391,7 +391,7 @@ impl Pmc {
     /// Configures SLCK and returns a corresponding Clock Token.
     ///
     /// Note: Changes to The SLCK source cannot be unmade in software.
-    pub fn get_slck(&mut self, supc: &mut SUPC, source: SlowCkSource) -> SlowClock {
+    pub fn get_slck(&mut self, supc: SUPC, source: SlowCkSource) -> SlowClock {
         match source {
             SlowCkSource::InternalRC => (),
             SlowCkSource::ExternalNormal => {
