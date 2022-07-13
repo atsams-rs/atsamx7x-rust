@@ -53,7 +53,9 @@ dependencies = [
  "fugit",
  "nb 1.0.0",
  "paste",
+ "rtic-monotonic",
  "usb-device",
+ "void",
 ]
 
 [[package]]
