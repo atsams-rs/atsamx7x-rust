@@ -38,7 +38,7 @@ let (hclk, mck) = pmc
 ```
 */
 
-#![no_std]
+#![cfg_attr(not(test), no_std)]
 #![deny(rustdoc::broken_intra_doc_links)]
 #![deny(rustdoc::private_intra_doc_links)]
 #![deny(missing_docs)]

@@ -79,7 +79,7 @@
 //! [`InterruptType::FallingEdge`] with a debounce filter of 50ms.
 //! [`Pin<PB8, Output>`] is then connected to a LED.
 //!
-//! ```ignore
+//! ```
 //! use hal::pio::*;
 //!
 //! let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC);

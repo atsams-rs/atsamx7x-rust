@@ -34,7 +34,7 @@ impl<B: PinBank> BankInterrupts<B> {
     /// **NOTE**: The hardware implementation is subject to
     /// false-positives. Refer to [top-level documentation on interrupts].
     ///
-    /// ```ignore
+    /// ```
     /// let banka = BankA::new(..);
     /// for pin in banka.interrupts.iter() {
     ///     match pin {

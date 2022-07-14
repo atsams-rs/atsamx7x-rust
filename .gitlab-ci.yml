@@ -69,3 +69,10 @@ docs:
   script:
     - cd hal
     - cargo doc --features samv71q21b,unproven --no-deps
+
+doc tests:
+  stage: docs
+  needs: ["samv71q21b"]
+  script:
+    - cd hal
+    - cargo test --doc --features samv71q21b,unproven --target x86_64-unknown-linux-gnu
