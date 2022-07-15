@@ -1,7 +1,7 @@
 //! Parallel Input/Output Controller
 //!
-//! The ATSAMx7x family of MCUs expose up to five PIO banks ([`PIOA`],
-//! [`PIOB`], [`PIOC`], [`PIOD`], [`PIOE`]). This module provide an
+//! The ATSAMx7x family of MCUs expose up to five PIO banks (`PIOA`,
+//! `PIOB`, `PIOC`, `PIOD`, `PIOE`). This module provide an
 //! abstraction on top of these banks, and allows singular [`Pin`]s to
 //! be conveniently configured.
 //!
