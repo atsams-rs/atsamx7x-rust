@@ -297,8 +297,11 @@ macro_rules! banks {
 
 banks!(
     A {
+        #[cfg(not(feature = "pins-64"))]
         (PA0, 0),
+        #[cfg(not(feature = "pins-64"))]
         (PA1, 1),
+        #[cfg(not(feature = "pins-64"))]
         (PA2, 2),
         (PA3, 3),
         (PA4, 4),
@@ -313,23 +316,35 @@ banks!(
         (PA12, 12),
         (PA13, 13),
         (PA14, 14),
+        #[cfg(not(feature = "pins-64"))]
         (PA15, 15),
+        #[cfg(not(feature = "pins-64"))]
         (PA16, 16),
+        #[cfg(not(feature = "pins-64"))]
         (PA17, 17),
+        #[cfg(not(feature = "pins-64"))]
         (PA18, 18),
+        #[cfg(not(feature = "pins-64"))]
         (PA19, 19),
+        #[cfg(not(feature = "pins-64"))]
         (PA20, 20),
         (PA21, 21),
         (PA22, 22),
+        #[cfg(not(feature = "pins-64"))]
         (PA23, 23),
         (PA24, 24),
+        #[cfg(not(feature = "pins-64"))]
         (PA25, 25),
+        #[cfg(not(feature = "pins-64"))]
         (PA26, 26),
         (PA27, 27),
+        #[cfg(not(feature = "pins-64"))]
         (PA28, 28),
         #[cfg(feature = "pins-144")]
         (PA29, 29),
+        #[cfg(not(feature = "pins-64"))]
         (PA30, 30),
+        #[cfg(not(feature = "pins-64"))]
         (PA31, 31),
     }
 
@@ -345,6 +360,7 @@ banks!(
         (PB8, 8),
         (PB9, 9),
         (PB12, 12),
+        #[cfg(not(feature = "pins-64"))]
         (PB13, 13),
     }
 
@@ -398,13 +414,21 @@ banks!(
         (PD10, 10),
         (PD11, 11),
         (PD12, 12),
+        #[cfg(not(feature = "pins-64"))]
         (PD13, 13),
+        #[cfg(not(feature = "pins-64"))]
         (PD14, 14),
+        #[cfg(not(feature = "pins-64"))]
         (PD15, 15),
+        #[cfg(not(feature = "pins-64"))]
         (PD16, 16),
+        #[cfg(not(feature = "pins-64"))]
         (PD17, 17),
+        #[cfg(not(feature = "pins-64"))]
         (PD18, 18),
+        #[cfg(not(feature = "pins-64"))]
         (PD19, 19),
+        #[cfg(not(feature = "pins-64"))]
         (PD20, 20),
         (PD21, 21),
         (PD22, 22),
@@ -413,10 +437,13 @@ banks!(
         (PD24, 24),
         (PD25, 25),
         (PD26, 26),
+        #[cfg(not(feature = "pins-64"))]
         (PD27, 27),
+        #[cfg(not(feature = "pins-64"))]
         (PD28, 28),
         #[cfg(feature = "pins-144")]
         (PD29, 29),
+        #[cfg(not(feature = "pins-64"))]
         (PD30, 30),
         (PD31, 31),
     }

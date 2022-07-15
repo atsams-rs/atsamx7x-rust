@@ -25,5 +25,7 @@ pub use uart::*;
 pub mod twi;
 pub use twi::*;
 
+#[cfg(not(feature = "pins-64"))]
 pub mod spi;
+#[cfg(not(feature = "pins-64"))]
 pub use spi::*;
