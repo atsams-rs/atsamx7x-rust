@@ -4,7 +4,7 @@ use core::marker::PhantomData;
 use fugit::NanosDurationU32 as NanosDuration;
 
 use super::*;
-use crate::pmc::{PeripheralIdentifier, Pmc};
+use crate::clocks::{Clock, HostClock, PeripheralIdentifier, SlowClock, SlowClockSource};
 
 use paste::paste;
 
@@ -159,8 +159,12 @@ trait Bank {
 
     /// Calculates the SLCK prescaler used for the debounce input
     /// filter. Refer to §32.5.9 and §32.6.29.
-    fn set_min_duration_on_debounce(&mut self, min_duration: NanosDuration) {
-        let slck: NanosDuration = crate::pmc::Pmc::SLCK_FREQ.into_duration();
+    fn set_min_duration_on_debounce<S: SlowClockSource>(
+        &mut self,
+        slck: &SlowClock<S>,
+        min_duration: NanosDuration,
+    ) {
+        let slck: NanosDuration = slck.freq().into_duration();
         let div = min_duration / (2 * slck);
         let div: u16 = div.clamp(0, u16::MAX.into()) as u16;
 
@@ -211,9 +215,9 @@ macro_rules! bank {
             impl [<Bank $Bank>] {
                 #[doc = "Creates a new [`Bank" $Bank "`], starts the [`PIO" $Bank "`] peripheral clock, and applied the given [`BankConfiguration`]."]
                 #[inline]
-                pub fn new(reg: [<PIO $Bank>], pmc: &mut Pmc, cfg: BankConfiguration) -> Self {
+                pub fn new<S: SlowClockSource>(reg: [<PIO $Bank>], mck: &mut HostClock, slck: &SlowClock<S>, cfg: BankConfiguration) -> Self {
                     // enable the bank's peripheral clock
-                    pmc.enable_peripherals(&[PeripheralIdentifier::[<PIO $Bank>]]).unwrap();
+                    mck.enable_peripheral(PeripheralIdentifier::[<PIO $Bank>]);
 
                     let mut bank = Self {
                         reg: Some(reg),
@@ -224,7 +228,7 @@ macro_rules! bank {
                         )+
                     };
 
-                    bank.set_min_duration_on_debounce(cfg.min_debounce_duration);
+                    bank.set_min_duration_on_debounce(slck, cfg.min_debounce_duration);
                     bank
                 }
 

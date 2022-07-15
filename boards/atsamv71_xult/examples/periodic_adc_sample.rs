@@ -9,10 +9,11 @@ mod app {
     use atsamx7x_hal as hal;
     use dwt_systick_monotonic::{DwtSystick, ExtU32};
     use hal::afec::*;
+    use hal::clocks::*;
     use hal::efc::*;
     use hal::ehal::adc::OneShot;
+    use hal::fugit::RateExtU32;
     use hal::pio::*;
-    use hal::pmc::*;
     use rtt_target::{rprintln, rtt_init_print};
 
     #[monotonic(binds = SysTick, default = true)]
@@ -32,22 +33,29 @@ mod app {
         rtt_init_print!();
         rprintln!("init");
 
-        let mut efc = Efc::new(ctx.device.EFC, VddioLevel::V3);
-
-        let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC, &ctx.device.WDT.into());
-        let mainck = pmc
-            .get_mainck(MainCkSource::InternalRC(MainRcFreq::_12_MHZ))
-            .unwrap();
-        let (hclk, mck) = pmc
-            .get_hclk(
-                HostClockConfig {
-                    pres: MckPrescaler::CLK_1,
-                    div: MckDivider::EQ_PCK,
-                },
+        let clocks = Tokens::new(
+            (ctx.device.PMC, ctx.device.SUPC, ctx.device.UTMI),
+            &ctx.device.WDT.into(),
+        );
+        let slck = clocks.slck.configure_external_normal();
+        let mainck = clocks.mainck.configure_external_normal(12.MHz()).unwrap();
+        let (hclk, mut mck) = HostClockController::new(clocks.hclk, clocks.mck)
+            .configure(
                 &mainck,
-                &mut efc,
+                &mut Efc::new(ctx.device.EFC, VddioLevel::V3),
+                HostClockConfig {
+                    pres: HccPrescaler::Div1,
+                    div: MckDivider::Div1,
+                },
             )
             .unwrap();
+
+        let banka = hal::pio::BankA::new(
+            ctx.device.PIOA,
+            &mut mck,
+            &slck,
+            BankConfiguration::default(),
+        );
 
         let mono = DwtSystick::new(
             &mut ctx.core.DCB,
@@ -56,8 +64,7 @@ mod app {
             hclk.systick_freq().to_Hz(),
         );
 
-        let banka = hal::pio::BankA::new(ctx.device.PIOA, &mut pmc, BankConfiguration::default());
-        let afec = Afec::new_afec0(ctx.device.AFEC0, &mut pmc, &mck).unwrap();
+        let afec = Afec::new_afec0(ctx.device.AFEC0, &mut mck).unwrap();
         let pin = banka.pa17.into_input(PullDir::PullUp);
 
         adc_sample::spawn().unwrap();

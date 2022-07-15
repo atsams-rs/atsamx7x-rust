@@ -73,7 +73,7 @@ loop {
 ```
  */
 
-use crate::pmc::{PeripheralIdentifier, Pmc, UpllClock};
+use crate::clocks::{HostClock, PeripheralIdentifier, UpllClock};
 use crate::target_device::{usbhs::RegisterBlock, USBHS};
 
 use core::cell::UnsafeCell;
@@ -160,9 +160,8 @@ pub struct Usb {
 impl Usb {
     /// Create a new [`Usb`] from the device's [`USBHS`] and
     /// configured clock hierarchy.
-    pub fn new(_usb: USBHS, pmc: &mut Pmc, _clk: &UpllClock) -> Self {
-        pmc.enable_peripherals(&[PeripheralIdentifier::USBHS])
-            .unwrap();
+    pub fn new(_usb: USBHS, mck: &mut HostClock, _clk: &UpllClock) -> Self {
+        mck.enable_peripheral(PeripheralIdentifier::USBHS);
 
         let inner = Inner {
             endpoints: Endpoints::new(),

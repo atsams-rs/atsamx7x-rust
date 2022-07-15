@@ -23,11 +23,11 @@ pub enum PullDir {
 pub enum InputFilter {
     /// Enables the input glitch filter.
     ///
-    /// Glitches with a duration of less than 1/2 of MCK periods are
-    /// filtered out. The frequency of MCK is configured via
-    /// [`Pmc::get_hclk`].
+    /// Glitches with a duration of less than 1/2 of [`HostClock`] periods are
+    /// filtered out. The frequency of [`HostClock`] is configured via [`HostClockController::configure`].
     ///
-    /// [`Pmc::get_hclk`]: crate::pmc::Pmc::get_hclk
+    /// [`HostClock`]: crate::clocks::HostClock
+    /// [`HostClockController::configure`]: crate::clocks::HostClockController::configure
     Glitch,
 
     /// Enables the input debouncing filter.

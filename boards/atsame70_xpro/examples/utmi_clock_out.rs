@@ -8,6 +8,9 @@ use panic_halt as _;
 #[rtic::app(device = atsamx7x_hal::target_device, peripherals = true, dispatchers = [IXC])]
 mod app {
     use atsamx7x_hal as hal;
+    use hal::clocks::*;
+    use hal::efc::*;
+    use hal::fugit::RateExtU32;
 
     #[shared]
     struct Shared {}
@@ -17,27 +20,30 @@ mod app {
 
     #[init]
     fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
-        // Disable the watchdog.
-        let wd = hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
-
-        // Configure the clock hierarchy
-        let mut pmc = {
-            use hal::pmc::{MainCkSource, Megahertz, Pck, Pck2, Pmc, UpllDivider};
-
-            let mut pmc = Pmc::new(ctx.device.PMC, &wd);
-            let mainck = pmc
-                .get_mainck(MainCkSource::ExternalBypass(Megahertz::from_raw(12)))
-                .unwrap();
-            let upllck = pmc.get_upllck(&mainck, ctx.device.UTMI).unwrap();
-            let upllckdiv = pmc.get_upllckdiv(&upllck, UpllDivider::Div2);
-            let _pck2: Pck<Pck2> = pmc.get_pck(&upllckdiv, 100 - 1); // @ 2.4MHz
-
-            pmc
-        };
+        let clocks = Tokens::new(
+            (ctx.device.PMC, ctx.device.SUPC, ctx.device.UTMI),
+            &ctx.device.WDT.into(), // disable the watchdog
+        );
+        let mainck = clocks.mainck.configure_external_bypass(12.MHz()).unwrap();
+        let slck = clocks.slck.configure_external_bypass();
+        let upllck = clocks.upllck.configure(&mainck).unwrap();
+        let upllckdiv = clocks.upllckdiv.configure(&upllck, UpllDivider::Div2);
+        let _pck2: Pck<Pck2> = clocks.pcks.pck2.configure(&upllckdiv, 100 - 1); // @ 2.4MHz
+        let (_hclk, mut mck) = HostClockController::new(clocks.hclk, clocks.mck)
+            .configure(
+                &upllckdiv,
+                &mut Efc::new(ctx.device.EFC, VddioLevel::V3),
+                HostClockConfig {
+                    pres: HccPrescaler::Div2,
+                    div: MckDivider::Div1,
+                },
+            )
+            .unwrap();
 
         let banka = hal::pio::BankA::new(
             ctx.device.PIOA,
-            &mut pmc,
+            &mut mck,
+            &slck,
             hal::pio::BankConfiguration::default(),
         );
         let _ = banka.pa3.into_peripheral::<hal::pio::C>();
