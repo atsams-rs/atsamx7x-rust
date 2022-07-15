@@ -36,9 +36,9 @@
 //! let voltage: f32 = afec.sample(&mut pin).unwrap();
 //! ```
 
+use crate::clocks::{Clock, HostClock, PeripheralIdentifier};
 use crate::ehal::adc;
 use crate::pio::*;
-use crate::pmc::{HostClock, PeripheralIdentifier, Pmc};
 use crate::target_device::{afec0::RegisterBlock, AFEC0, AFEC1};
 
 use core::convert::Infallible;
@@ -187,8 +187,8 @@ impl Iterator for Samples {
 }
 
 impl<A: AfecMeta> Afec<A> {
-    fn new(pmc: &mut Pmc, mck: &HostClock) -> Result<Self, AfecError> {
-        pmc.enable_peripherals(&[A::PID]).unwrap();
+    fn new(mck: &mut HostClock) -> Result<Self, AfecError> {
+        mck.enable_peripheral(A::PID);
         let mut afec = Self { assoc: PhantomData };
         afec.reset();
         afec.configure(mck)?;
@@ -368,15 +368,15 @@ impl<A: AfecMeta> Afec<A> {
 
 impl Afec<Afec0> {
     /// Create a new [`Afec`].
-    pub fn new_afec0(_afec: AFEC0, pmc: &mut Pmc, mck: &HostClock) -> Result<Self, AfecError> {
-        Self::new(pmc, mck)
+    pub fn new_afec0(_afec: AFEC0, mck: &mut HostClock) -> Result<Self, AfecError> {
+        Self::new(mck)
     }
 }
 
 impl Afec<Afec1> {
     /// Create a new [`Afec`].
-    pub fn new_afec1(_afec: AFEC1, pmc: &mut Pmc, mck: &HostClock) -> Result<Self, AfecError> {
-        Self::new(pmc, mck)
+    pub fn new_afec1(_afec: AFEC1, mck: &mut HostClock) -> Result<Self, AfecError> {
+        Self::new(mck)
     }
 }
 

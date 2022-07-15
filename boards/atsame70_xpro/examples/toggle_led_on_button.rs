@@ -8,7 +8,10 @@ use panic_halt as _;
 #[rtic::app(device = hal::target_device, peripherals = true, dispatchers = [PIOB])]
 mod app {
     use atsamx7x_hal as hal;
+    use hal::clocks::*;
+    use hal::efc::*;
     use hal::ehal::digital::v2::ToggleableOutputPin;
+    use hal::fugit::RateExtU32;
     use hal::pio::*;
 
     #[shared]
@@ -22,13 +25,27 @@ mod app {
 
     #[init]
     fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
-        // Disable the watchdog.
-        let wd = hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
+        let clocks = Tokens::new(
+            (ctx.device.PMC, ctx.device.SUPC, ctx.device.UTMI),
+            &ctx.device.WDT.into(),
+        );
+        let slck = clocks.slck.configure_external_bypass();
+        let mainck = clocks.mainck.configure_external_bypass(12.MHz()).unwrap();
+        let (_hclk, mut mck) = HostClockController::new(clocks.hclk, clocks.mck)
+            .configure(
+                &mainck,
+                &mut Efc::new(ctx.device.EFC, VddioLevel::V3),
+                HostClockConfig {
+                    pres: HccPrescaler::Div1,
+                    div: MckDivider::Div1,
+                },
+            )
+            .unwrap();
 
-        let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC, &wd);
-        let banka = BankA::new(
+        let banka = hal::pio::BankA::new(
             ctx.device.PIOA,
-            &mut pmc,
+            &mut mck,
+            &slck,
             BankConfiguration {
                 min_debounce_duration: hal::fugit::MillisDurationU32::from_ticks(50).convert(),
             },
@@ -37,7 +54,12 @@ mod app {
         button.set_interrupt(Some(InterruptType::FallingEdge));
         button.set_filter(Some(InputFilter::Debounce));
 
-        let bankb = BankB::new(ctx.device.PIOB, &mut pmc, BankConfiguration::default());
+        let bankb = hal::pio::BankB::new(
+            ctx.device.PIOB,
+            &mut mck,
+            &slck,
+            BankConfiguration::default(),
+        );
         let led = bankb.pb8.into_output();
 
         (

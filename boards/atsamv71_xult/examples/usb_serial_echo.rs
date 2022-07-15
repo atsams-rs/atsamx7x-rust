@@ -8,9 +8,9 @@ use panic_rtt_target as _;
 #[rtic::app(device = hal::target_device, peripherals = true)]
 mod app {
     use atsamx7x_hal as hal;
+    use hal::clocks::*;
     use hal::efc::*;
     use hal::fugit::RateExtU32;
-    use hal::pmc::*;
     use hal::usb::usb_device::{bus::UsbBusAllocator, prelude::*};
     use rtt_target::{rprint, rprintln, rtt_init_print};
     use usbd_serial::{SerialPort, USB_CLASS_CDC};
@@ -32,25 +32,27 @@ mod app {
         rtt_init_print!();
         rprint!("init...");
 
-        let mut pmc = Pmc::new(ctx.device.PMC, &ctx.device.WDT.into());
-        let mainck = pmc
-            .get_mainck(MainCkSource::ExternalNormal(12.MHz()))
+        let clocks = Tokens::new(
+            (ctx.device.PMC, ctx.device.SUPC, ctx.device.UTMI),
+            &ctx.device.WDT.into(),
+        );
+        let mainck = clocks.mainck.configure_external_normal(12.MHz()).unwrap();
+        let upllck = clocks.upllck.configure(&mainck).unwrap();
+        let upllckdiv = clocks.upllckdiv.configure(&upllck, UpllDivider::Div2);
+        let (_hclk, mut mck) = HostClockController::new(clocks.hclk, clocks.mck)
+            .configure(
+                &upllckdiv,
+                &mut Efc::new(ctx.device.EFC, VddioLevel::V3),
+                HostClockConfig {
+                    pres: HccPrescaler::Div2,
+                    div: MckDivider::Div1,
+                },
+            )
             .unwrap();
-        let upllck = pmc.get_upllck(&mainck, ctx.device.UTMI).unwrap();
-        let upllckdiv = pmc.get_upllckdiv(&upllck, UpllDivider::Div2);
-        pmc.get_hclk(
-            HostClockConfig {
-                pres: MckPrescaler::CLK_2,
-                div: MckDivider::EQ_PCK,
-            },
-            &upllckdiv,
-            &mut Efc::new(ctx.device.EFC, VddioLevel::V3),
-        )
-        .unwrap();
 
         let usb_alloc = unsafe {
             USB_ALLOCATOR =
-                Some(hal::usb::Usb::new(ctx.device.USBHS, &mut pmc, &upllck).into_usb_allocator());
+                Some(hal::usb::Usb::new(ctx.device.USBHS, &mut mck, &upllck).into_usb_allocator());
             USB_ALLOCATOR.as_ref().unwrap()
         };
 
