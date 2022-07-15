@@ -27,10 +27,7 @@ impl<S: MainClockSource> Clock for MainClock<S> {
 
 impl Token<MainClock<InternalRC>> {
     /// Configure [`MainClock`] for the [`InternalRC`] source.
-    pub fn configure_internal(
-        self,
-        freq: InternalRcFreq,
-    ) -> Result<MainClock<InternalRC>, ClockError> {
+    pub fn configure_internal(self, freq: InternalRcFreq) -> MainClock<InternalRC> {
         self.pmc().ckgr_mor.modify(|_, w| {
             w.key().passwd();
             w.moscsel().clear_bit();
@@ -51,10 +48,10 @@ impl Token<MainClock<InternalRC>> {
             InternalRcFreq::_12_MHZ => 12,
         });
 
-        Ok(MainClock {
+        MainClock {
             freq,
             source: PhantomData,
-        })
+        }
     }
 
     /// Configure [`MainClock`] for the [`ExternalNormal`] source.
@@ -65,7 +62,7 @@ impl Token<MainClock<InternalRC>> {
         // Clock signal frequency needs to be between 3 and
         // 20MHz (§30.2).
         if freq.to_MHz() < 3 || freq.to_MHz() > 20 {
-            return Err(ClockError::InvalidConfiguration);
+            return Err(ClockError::InvalidMainCk);
         }
 
         // Enable the external oscillator and wait for it to
@@ -103,7 +100,7 @@ impl Token<MainClock<InternalRC>> {
         // Crystal frequency needs to be between 3 and 20MHz
         // (§30.2).
         if freq.to_MHz() < 3 || freq.to_MHz() > 20 {
-            return Err(ClockError::InvalidConfiguration);
+            return Err(ClockError::InvalidMainCk);
         }
 
         // Bypass the main crystal oscillator and disable it.

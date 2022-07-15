@@ -190,20 +190,36 @@ impl Tokens {
     }
 }
 
-/// Possible errors that can occur on PMC configuration.
+/// Possible [`Clock`] configuration errors.
 #[derive(Debug, Eq, PartialEq, Clone)]
-#[allow(missing_docs)]
 pub enum ClockError {
-    InvalidConfiguration,
-    UnimplementedError,
-    InternalError,
+    /// [`MainClock`] frequency must be in the range of 3MHz to 20MHz
+    /// (inclusive).
+    InvalidMainCk,
+
+    /// [`PllaClock`] multiplier and divider must be in the ranges of
+    /// `2..=63` and `1..=127`, respectively.
+    InvalidPllaCk,
+
+    /// [`UpllClock`] input frequency must be 12 MHz or 16 MHz.
+    InvalidUpllCk(Hertz),
+
+    /// [`HostClockController`] input frequency is too high: a valid
+    /// number of flash wait states could not be calculated.
+    ///
+    /// Lower the input frequency to 137 MHz or 150MHz (for
+    /// [`VddioLevel::V1`] and [`VddioLevel::V3`], respectively).
+    ///
+    /// [`VddioLevel::V1`]: crate::efc::VddioLevel::V1
+    /// [`VddioLevel::V3`]: crate::efc::VddioLevel::V3
+    InvalidHccFreq(Megahertz),
+
+    /// The V70/V71 must be driven with VDDIO = 3.3V, typical.
+    #[cfg(any(feature = "v70", feature = "v71"))]
+    InvalidVddioLevel,
 }
 
-trait Prescaler {
-    fn value(&self) -> u32;
-}
-
-/// Identifiers for peripherals
+#[doc(hidden)]
 #[allow(non_camel_case_types)]
 #[derive(Debug, PartialEq, Eq, Copy, Clone)]
 #[repr(u32)]

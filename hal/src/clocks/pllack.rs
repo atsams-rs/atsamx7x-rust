@@ -19,10 +19,10 @@ impl Token<PllaClock> {
         PllaConfig { div, mult }: PllaConfig,
     ) -> Result<PllaClock, ClockError> {
         if !(2..=63).contains(&mult) {
-            return Err(ClockError::InvalidConfiguration);
+            return Err(ClockError::InvalidPllaCk);
         }
         if div == 0 || div > 127 {
-            return Err(ClockError::InvalidConfiguration);
+            return Err(ClockError::InvalidPllaCk);
         }
         // TODO: Ensure valid requested output frequency.
 

@@ -20,7 +20,7 @@ impl Token<UpllClock> {
         let freq = match source.freq().to_MHz() {
             12 => FREQ::XTAL12,
             16 => FREQ::XTAL16,
-            _ => return Err(ClockError::InvalidConfiguration),
+            _ => return Err(ClockError::InvalidUpllCk(source.freq())),
         };
 
         // Configure the UTMI PLL clock and wait for lock.
