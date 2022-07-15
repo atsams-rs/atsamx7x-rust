@@ -69,7 +69,7 @@ impl FlashWaitStates {
         #[cfg(any(feature = "v70", feature = "v71"))]
         if vddio == &VddioLevel::V1 {
             // V70/V71 must be driven with VDDIO = 3.3V, typical
-            return Err(ClockError::InvalidConfiguration);
+            return Err(ClockError::InvalidVddioLevel);
         }
 
         Self::fws_from_freq(freq, vddio)
@@ -88,7 +88,7 @@ impl FlashWaitStates {
                     85..=106 => Self::Four,
                     107..=125 => Self::Five,
                     126..=137 => Self::Six,
-                    _ => return Err(ClockError::InvalidConfiguration),
+                    _ => return Err(ClockError::InvalidHccFreq(freq)),
                 })
             }
             VddioLevel::V3 => {
@@ -103,7 +103,7 @@ impl FlashWaitStates {
                     93..=115 => Self::Four,
                     116..=138 => Self::Five,
                     139..=150 => Self::Six,
-                    _ => return Err(ClockError::InvalidConfiguration),
+                    _ => return Err(ClockError::InvalidHccFreq(freq)),
                 })
             }
         }
