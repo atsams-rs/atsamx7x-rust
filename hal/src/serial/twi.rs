@@ -1,45 +1,42 @@
-//! Two-wire interface (I²C compatible)
-//! ---
-//!
-//! This module contains the abstractions for the device's TWIHS
-//! feripheral, by use of the [`Twi`] abstraction. The peripheral
-//! supports I²C, which is also the only protocol currently
-//! implemented.
-//!
-//! # Example usage
-//!
-//! ```
-//! let mut efc = Efc::new(ctx.device.EFC, VddioLevel::V3);
-//! let mut pmc = Pmc::new(ctx.device.PMC, &ctx.device.WDT.into());
-//! let mainck = pmc
-//!     .get_mainck(MainCkSource::InternalRC(MainRcFreq::_12_MHZ))
-//!     .unwrap();
-//! let (_, mck) = pmc
-//!     .get_hclk(
-//!         HostClockConfig {
-//!             pres: MckPrescaler::CLK_1,
-//!             div: MckDivider::EQ_PCK,
-//!         },
-//!         &mainck,
-//!         &mut efc,
-//!     )
-//!     .unwrap();
-//!
-//! let banka = BankA::new(ctx.device.PIOA, &mut pmc, BankConfiguration::default());
-//! let sda = banka.pa3.into_peripheral();
-//! let sdc = banka.pa4.into_peripheral();
-//! let twi = Twi::new_twihs0(
-//!     ctx.device.TWIHS0,
-//!     (sdc, sda),
-//!     I2cConfiguration { freq: 1.MHz() },
-//!     &mut pmc,
-//!     &mck,
-//! )
-//! .unwrap();
-//!
-//! let mut buffer: [u8; 18] = [0; 18];
-//! twi.write_read(0x0, &[0b1000_0000], &mut buffer).unwrap();
-//! ```
+/*!
+Two-wire interface (I²C compatible)
+---
+
+This module contains the abstractions for the device's TWIHS
+feripheral, by use of the [`Twi`] abstraction. The peripheral
+supports I²C, which is also the only protocol currently
+implemented.
+
+# Example usage
+
+```no_run
+# use atsamx7x_hal as hal;
+# use hal::pio::*;
+# use hal::clocks::*;
+# use hal::efc::*;
+# use hal::serial::twi::*;
+# use hal::fugit::RateExtU32;
+# let pac = hal::target_device::Peripherals::take().unwrap();
+# let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
+let banka = BankA::new(pac.PIOA, &mut mck, &slck, BankConfiguration::default());
+
+let sda = banka.pa3.into_peripheral();
+let sdc = banka.pa4.into_peripheral();
+
+let mut twi = Twi::new_twihs0(
+    pac.TWIHS0,
+    (sdc, sda),
+    I2cConfiguration { freq: 1.MHz() },
+    &mut mck,
+)
+.unwrap();
+
+use hal::ehal::blocking::i2c::WriteRead;
+
+let mut buffer: [u8; 18] = [0; 18];
+twi.write_read(0x0, &[0b1000_0000], &mut buffer).unwrap();
+```
+*/
 
 use crate::clocks::{Clock, Hertz, HostClock, PeripheralIdentifier};
 use crate::ehal::blocking;
