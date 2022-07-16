@@ -13,32 +13,19 @@ trais are implemented.
 
 # Example usage
 
-```
-let mut efc = {
-    use hal::efc::{Efc, VddioLevel};
-    Efc::new(ctx.device.EFC, VddioLevel::V3)
-};
-use hal::pmc::{
-    HostClockConfig, MainCkSource, MckDivider, MckPrescaler, Megahertz,
-};
+```no_run
+# use atsamx7x_hal as hal;
+# use hal::pio::*;
+# use hal::clocks::*;
+# use hal::efc::*;
+# use hal::serial::spi::*;
+# use hal::serial::ExtU32 as _;
+# use hal::fugit::ExtU32;
+# let pac = hal::target_device::Peripherals::take().unwrap();
+# let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 
-let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC, &ctx.device.WDT.into());
-let mainck = pmc
-    .get_mainck(MainCkSource::ExternalBypass(12.MHz()))
-    .unwrap();
-let (_, hclk) = pmc
-    .get_hclk(
-        HostClockConfig {
-            pres: MckPrescaler::CLK_1,
-            div: MckDivider::EQ_PCK,
-        },
-        &mainck,
-        &mut efc,
-    )
-    .unwrap();
-
-let bankd = BankD::new(ctx.device.PIOD, &mut pmc, BankConfiguration::default());
-let bankb = BankB::new(ctx.device.PIOB, &mut pmc, BankConfiguration::default());
+let bankd = BankD::new(pac.PIOD, &mut mck, &slck, BankConfiguration::default());
+let bankb = BankB::new(pac.PIOB, &mut mck, &slck, BankConfiguration::default());
 
 let miso = bankd.pd20.into_peripheral();
 let pck = bankd.pd22.into_peripheral();
@@ -46,10 +33,10 @@ let mosi = bankd.pd21.into_peripheral();
 let pcs0 = bankb.pb2.into_peripheral();
 
 let mut spi = Spi::new_spi0(
-    ctx.device.SPI0,
+    pac.SPI0,
     (pck, mosi, miso),
     SpiConfiguration::default(),
-    &mut pmc,
+    &mut mck,
 )
 .unwrap();
 
@@ -60,8 +47,10 @@ spi.setup_client(
         hal::ehal::spi::MODE_0,
     )
     .delay_before_clock_edge(20.nanos()),
-    &hclk,
+    &mck,
 );
+
+use hal::ehal::blocking::spi::Write;
 
 let mut client = spi.select(&pcs0).unwrap(); // borrows spi
 client.write(b"Hello").unwrap();
