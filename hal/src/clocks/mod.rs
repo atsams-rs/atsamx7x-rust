@@ -94,13 +94,13 @@ let (hclk, mck) = HostClockController::new(clocks.hclk, clocks.mck)
         &pllack,
         &mut efc,
         HostClockConfig {
-            pres: MckPrescaler::CLK_1,
-            div: MckDivider::EQ_PCK,
+            pres: HccPrescaler::Div1,
+            div: MckDivider::Div1,
         },
     )
     .unwrap();
 ```
-*/
+ */
 
 use crate::target_device::{pmc, supc, utmi, PMC, SUPC, UTMI};
 use crate::watchdog::{Disabled, Watchdog};
