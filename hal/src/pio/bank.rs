@@ -34,8 +34,14 @@ impl<B: PinBank> BankInterrupts<B> {
     /// **NOTE**: The hardware implementation is subject to
     /// false-positives. Refer to [top-level documentation on interrupts].
     ///
-    /// ```
-    /// let banka = BankA::new(..);
+    /// ```no_run
+    /// # use atsamx7x_hal as hal;
+    /// # use hal::pio::*;
+    /// # use hal::clocks::*;
+    /// # use hal::efc::*;
+    /// # let pac = hal::target_device::Peripherals::take().unwrap();
+    /// # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
+    /// let mut banka = BankA::new(pac.PIOA, &mut mck, &slck, BankConfiguration::default());
     /// for pin in banka.interrupts.iter() {
     ///     match pin {
     ///         11 => {
@@ -215,7 +221,12 @@ macro_rules! bank {
             impl [<Bank $Bank>] {
                 #[doc = "Creates a new [`Bank" $Bank "`], starts the [`PIO" $Bank "`] peripheral clock, and applied the given [`BankConfiguration`]."]
                 #[inline]
-                pub fn new<S: SlowClockSource>(reg: [<PIO $Bank>], mck: &mut HostClock, slck: &SlowClock<S>, cfg: BankConfiguration) -> Self {
+                pub fn new<S: SlowClockSource>(
+                    reg: [<PIO $Bank>],
+                    mck: &mut HostClock,
+                    slck: &SlowClock<S>,
+                    cfg: BankConfiguration,
+                ) -> Self {
                     // enable the bank's peripheral clock
                     mck.enable_peripheral(PeripheralIdentifier::[<PIO $Bank>]);
 
