@@ -188,6 +188,26 @@ impl Tokens {
             pcks: PckTokens::new(),
         }
     }
+
+    #[doc(hidden)]
+    pub fn por_state(self, efc: &mut crate::efc::Efc) -> (SlowClock<InternalRC>, HostClock) {
+        let slck = self.slck.configure_internal();
+        let mainck = self.mainck.configure_internal(InternalRcFreq::_12_MHZ);
+
+        // configure the processor and peripheral clocks
+        let (_hclk, mck) = HostClockController::new(self.hclk, self.mck)
+            .configure(
+                &mainck,
+                efc,
+                HostClockConfig {
+                    pres: HccPrescaler::Div1,
+                    div: MckDivider::Div1,
+                },
+            )
+            .unwrap();
+
+        (slck, mck)
+    }
 }
 
 /// Possible [`Clock`] configuration errors.
