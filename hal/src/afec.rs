@@ -1,40 +1,36 @@
-//! Analog Front-End Controller (AFEC; i.e., ADC)
-//! ---
-//!
-//! This module provides an abstraction of the system's AFECs (ADCs).
-//! While the feature-set is expansive, the present implementation
-//! configures the created [`Afec`] for 12-bit samples of single-ended
-//! inputs of single sample-and-hold mode. After its creation the
-//! wanted channels are enabled, after which a sample can be
-//! performed. Sampling is done on singular channels ([`Pin`]s).
-//!
-//! This implementation presumes that VREFP is 3.3V.
-//!
-//! # Example usage
-//!
-//! ```
-//! let mut efc = Efc::new(ctx.device.EFC, VddioLevel::V3);
-//!
-//! let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC, &ctx.device.WDT.into());
-//! let mainck = pmc
-//!     .get_mainck(MainCkSource::InternalRC(MainRcFreq::_12_MHZ))
-//!     .unwrap();
-//! let (_, mck) = pmc
-//!     .get_hclk(
-//!         HostClockConfig {
-//!             pres: MckPrescaler::CLK_1,
-//!             div: MckDivider::EQ_PCK,
-//!         },
-//!         &mainck,
-//!         &mut efc,
-//!     )
-//!     .unwrap();
-//!
-//! let banka = hal::pio::BankA::new(ctx.device.PIOA, &mut pmc, BankConfiguration::default());
-//! let mut pin = banka.pa17.into_input(PullDir::PullUp);
-//! let mut afec = Afec::new_afec0(ctx.device.AFEC0, &mut pmc, &mck);
-//! let voltage: f32 = afec.sample(&mut pin).unwrap();
-//! ```
+/*!
+Analog Front-End Controller (AFEC; i.e., ADC)
+---
+
+This module provides an abstraction of the system's AFECs (ADCs).
+While the feature-set is expansive, the present implementation
+configures the created [`Afec`] for 12-bit samples of single-ended
+inputs of single sample-and-hold mode. After its creation the
+wanted channels are enabled, after which a sample can be
+performed. Sampling is done on singular channels ([`Pin`]s).
+
+This implementation presumes that VREFP is 3.3V.
+
+# Example usage
+
+```no_run
+# use atsamx7x_hal as hal;
+# use hal::pio::*;
+# use hal::clocks::*;
+# use hal::efc::*;
+# use hal::afec::*;
+# use hal::fugit::RateExtU32;
+# let pac = hal::target_device::Peripherals::take().unwrap();
+# let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
+
+let banka = BankA::new(pac.PIOA, &mut mck, &slck, BankConfiguration::default());
+let mut pin = banka.pa17.into_input(PullDir::PullUp);
+
+use hal::ehal::adc::OneShot;
+let mut afec = Afec::new_afec0(pac.AFEC0, &mut mck).unwrap();
+let voltage: f32 = afec.read(&mut pin).unwrap();
+```
+*/
 
 use crate::clocks::{Clock, HostClock, PeripheralIdentifier};
 use crate::ehal::adc;
