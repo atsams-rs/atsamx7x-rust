@@ -352,26 +352,15 @@ impl<M: SpiMeta> Spi<M> {
             // use 8b words
             w.bits_()._8_bit();
 
-            // C.f. Table 41-2, p. 933
             use ehal::spi::{Phase, Polarity};
-            match (conf.mode.phase, conf.mode.polarity) {
-                (Phase::CaptureOnFirstTransition, Polarity::IdleLow) => {
-                    w.cpol().clear_bit();
-                    w.ncpha().set_bit();
-                }
-                (Phase::CaptureOnSecondTransition, Polarity::IdleLow) => {
-                    w.cpol().clear_bit();
-                    w.ncpha().clear_bit();
-                }
-                (Phase::CaptureOnFirstTransition, Polarity::IdleHigh) => {
-                    w.cpol().set_bit();
-                    w.ncpha().set_bit();
-                }
-                (Phase::CaptureOnSecondTransition, Polarity::IdleHigh) => {
-                    w.cpol().set_bit();
-                    w.ncpha().clear_bit();
-                }
-            }
+            match conf.mode.polarity {
+                Polarity::IdleLow => w.cpol().idle_low(),
+                Polarity::IdleHigh => w.cpol().idle_high(),
+            };
+            match conf.mode.phase {
+                Phase::CaptureOnFirstTransition => w.ncpha().valid_leading_edge(),
+                Phase::CaptureOnSecondTransition => w.ncpha().valid_trailing_edge(),
+            };
 
             // Keep client selected until lastxfer is called before
             // the last write.
