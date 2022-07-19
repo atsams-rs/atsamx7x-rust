@@ -75,13 +75,43 @@ use crate::pio::*;
 use crate::pmc::{HostClock, PeripheralIdentifier, Pmc};
 #[cfg(feature = "pins-144")]
 use crate::target_device::SPI1;
-use crate::target_device::{spi0::RegisterBlock, SPI0};
+use crate::target_device::{spi0::spi_tdr::PCS_AW as HwChipSelect, spi0::RegisterBlock, SPI0};
 use crate::{ehal, nb};
 use ehal::spi::Mode;
 
 use core::marker::PhantomData;
 
 use paste::*;
+
+trait ChipSelect {
+    fn as_index(&self) -> usize;
+    fn as_variant(&self) -> HwChipSelect;
+}
+
+impl ChipSelect for HwChipSelect {
+    /// Returns the offset index in the memory layout that
+    /// dereferences the configuration register of the given
+    /// [`HwChipSelect`].
+    #[inline(always)]
+    fn as_index(&self) -> usize {
+        // The #[repr(u8)] of cs are that of a zero moving left in a
+        // ones(4) field, when an external decoder is not used:
+        //
+        //    NPCS0 = 1110
+        //    NPCS1 = 1101
+        //    NPCS2 = 1011
+        //    NPCS3 = 0111
+        //
+        // C.f. §41.8.4
+        (*self as u8).trailing_ones().try_into().unwrap()
+    }
+
+    /// Returns the hardware descriptor used to select a chip.
+    #[inline(always)]
+    fn as_variant(&self) -> Self {
+        *self
+    }
+}
 
 /// Possible [`Spi`] hardware events.
 #[derive(Clone, Copy, Debug)]
@@ -294,7 +324,7 @@ impl<M: SpiMeta> Spi<M> {
 
     fn setup_client_inner(
         &mut self,
-        cs: u8,
+        cs: impl ChipSelect,
         conf: ClientConfiguration,
         clk: &HostClock,
     ) -> Result<(), SpiError> {
@@ -310,7 +340,9 @@ impl<M: SpiMeta> Spi<M> {
         let dlybct = Self::calc_dlybct(clk, conf.delay_between_transfer)?;
         let dlybs = Self::calc_dlybs(clk, conf.delay_before_clock_edge)?;
 
-        self.reg().spi_csr[cs as usize].modify(|_, w| {
+        let cs = cs.as_index();
+
+        self.reg().spi_csr[cs].modify(|_, w| {
             unsafe {
                 w.scbr().bits(scbr);
                 w.dlybs().bits(dlybs);
@@ -348,7 +380,7 @@ impl<M: SpiMeta> Spi<M> {
             w
         });
 
-        self.cs_configured[cs as usize] = true;
+        self.cs_configured[cs] = true;
 
         Ok(())
     }
@@ -384,7 +416,7 @@ impl<M: SpiMeta> Spi<M> {
 pub struct Client<'spi, M: SpiMeta> {
     meta: PhantomData<&'spi M>,
     last_xfer: bool,
-    cs: u8,
+    cs: HwChipSelect,
 }
 
 impl<'spi, M: SpiMeta> Client<'spi, M> {
@@ -435,15 +467,15 @@ impl<'spi, M: SpiMeta> Client<'spi, M> {
 }
 
 impl<'spi, M: SpiMeta> Spi<M> {
-    fn select_inner(&'spi mut self, cs: u8) -> Result<Client<'spi, M>, SpiError> {
-        if self.cs_configured.get(cs as usize).is_none() {
+    fn select_inner<CS: ChipSelect>(&'spi mut self, cs: CS) -> Result<Client<'spi, M>, SpiError> {
+        if self.cs_configured.get(cs.as_index()).is_none() {
             return Err(SpiError::UnconfiguredClient);
         }
 
         Ok(Client {
             meta: PhantomData,
             last_xfer: false,
-            cs,
+            cs: cs.as_variant(),
         })
     }
 }
@@ -456,7 +488,7 @@ macro_rules! impl_spi {
                 MISO: [ $MisoType:ty ],
                 MOSI: [ $MosiType:ty ],
                 SPCK: [ $SpckType:ty ],
-                CS: [ $(($NpCsPin:ty, $Cs:literal)),+ ],
+                CS: [ $(($NpCsPin:ty, $Cs:expr)),+ ],
             },
         )+
     ) => {
@@ -474,8 +506,8 @@ macro_rules! impl_spi {
                     pub trait [<$Spi SpckPin>] {}
                     #[doc = "Trait that identifies valid NPCS [`Pin`]s for [`" [<$Spi:upper>] "`]."]
                     pub trait [<$Spi NpCsPin>] {
-                        /// Numerical identifier for this NPCS (select) pin.
-                        const CS: u8;
+                        /// Hardware identifier for this NPCS (select) pin.
+                        const CS: HwChipSelect;
                     }
 
                     impl [<$Spi MosiPin>] for $MosiType {}
@@ -483,7 +515,7 @@ macro_rules! impl_spi {
                     impl [<$Spi SpckPin>] for $SpckType {}
                     $(
                         impl [<$Spi NpCsPin>] for $NpCsPin {
-                            const CS: u8 = $Cs;
+                            const CS: HwChipSelect = $Cs;
                         }
                     )+
 
@@ -539,11 +571,11 @@ impl_spi!(
         MOSI: [ Pin<PD21, PeripheralB> ],
         SPCK: [ Pin<PD22, PeripheralB> ],
         CS: [
-            (Pin<PA31, PeripheralA>, 1),
-            (Pin<PB2, PeripheralD>, 0),
-            (Pin<PD12, PeripheralC>, 2),
-            (Pin<PD25, PeripheralB>, 1),
-            (Pin<PD27, PeripheralB>, 3)
+            (Pin<PA31, PeripheralA>, HwChipSelect::NPCS1),
+            (Pin<PB2,  PeripheralD>, HwChipSelect::NPCS0),
+            (Pin<PD12, PeripheralC>, HwChipSelect::NPCS2),
+            (Pin<PD25, PeripheralB>, HwChipSelect::NPCS1),
+            (Pin<PD27, PeripheralB>, HwChipSelect::NPCS3)
         ],
     },
 
@@ -553,13 +585,13 @@ impl_spi!(
         MOSI: [ Pin<PC27, PeripheralC> ],
         SPCK: [ Pin<PC24, PeripheralC> ],
         CS: [
-            (Pin<PC25, PeripheralC>, 0),
-            (Pin<PC28, PeripheralC>, 1),
-            (Pin<PC29, PeripheralC>, 2),
-            (Pin<PC30, PeripheralC>, 3),
-            (Pin<PD0, PeripheralC>, 1),
-            (Pin<PD1, PeripheralC>, 2),
-            (Pin<PD2, PeripheralC>, 3)
+            (Pin<PC25, PeripheralC>, HwChipSelect::NPCS0),
+            (Pin<PC28, PeripheralC>, HwChipSelect::NPCS1),
+            (Pin<PC29, PeripheralC>, HwChipSelect::NPCS2),
+            (Pin<PC30, PeripheralC>, HwChipSelect::NPCS3),
+            (Pin<PD0,  PeripheralC>, HwChipSelect::NPCS1),
+            (Pin<PD1,  PeripheralC>, HwChipSelect::NPCS2),
+            (Pin<PD2,  PeripheralC>, HwChipSelect::NPCS3)
         ],
     },
 );
@@ -594,9 +626,9 @@ impl<'spi, M: SpiMeta> ehal::spi::FullDuplex<u8> for Client<'spi, M> {
         self.reg().spi_tdr.write(|w| {
             unsafe {
                 w.td().bits(word as u16);
-                w.pcs().bits(self.cs);
             }
 
+            w.pcs().variant(self.cs);
             w.lastxfer().bit(self.last_xfer);
             w
         });
