@@ -25,10 +25,8 @@ mod app {
         buf: [u8; 64],
     }
 
-    #[init]
+    #[init(local = [usb_alloc: Option<UsbBusAllocator<hal::usb::Usb>> = None])]
     fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
-        static mut USB_ALLOCATOR: Option<UsbBusAllocator<hal::usb::Usb>> = None;
-
         rtt_init_print!();
         rprint!("init...");
 
@@ -48,20 +46,19 @@ mod app {
         )
         .unwrap();
 
-        let usb_alloc = unsafe {
-            USB_ALLOCATOR =
-                Some(hal::usb::Usb::new(ctx.device.USBHS, &mut pmc, &upllck).into_usb_allocator());
-            USB_ALLOCATOR.as_ref().unwrap()
-        };
-
-        let serial = SerialPort::new(&usb_alloc);
-        let usb_dev = UsbDeviceBuilder::new(&usb_alloc, UsbVidPid(0xdead, 0xbeef))
-            .manufacturer("ATSAMx7x HAL Contributors")
-            .product("Serial port echo")
-            .serial_number("N/A")
-            .device_class(USB_CLASS_CDC)
-            .max_packet_size_0(64) // makes control transfers 8x faster
-            .build();
+        *ctx.local.usb_alloc =
+            Some(hal::usb::Usb::new(ctx.device.USBHS, &mut pmc, &upllck).into_usb_allocator());
+        let serial = SerialPort::new(ctx.local.usb_alloc.as_ref().unwrap());
+        let usb_dev = UsbDeviceBuilder::new(
+            ctx.local.usb_alloc.as_ref().unwrap(),
+            UsbVidPid(0xdead, 0xbeef),
+        )
+        .manufacturer("ATSAMx7x HAL Contributors")
+        .product("Serial port echo")
+        .serial_number("N/A")
+        .device_class(USB_CLASS_CDC)
+        .max_packet_size_0(64) // makes control transfers 8x faster
+        .build();
 
         rprintln!(" done");
 
