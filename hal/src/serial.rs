@@ -2,35 +2,15 @@ use crate::{ehal, nb};
 
 // Smaller part have 3x UART & 2x USART
 use crate::target_device::{UART0, UART1, UART2, USART0, USART1};
-#[cfg(any(
-    feature = "sams70n19b",
-    feature = "sams70n20b",
-    feature = "sams70n21b",
-    feature = "sams70q19b",
-    feature = "sams70q20b",
-    feature = "sams70q21b",
-    feature = "same70n19b",
-    feature = "same70n20b",
-    feature = "same70n21b",
-    feature = "same70q19b",
-    feature = "same70q20b",
-    feature = "same70q21b",
+#[cfg(all(
+    any(feature = "e70", feature = "s70"),
+    any(feature = "pins-100", feature = "pins-144")
 ))]
 use crate::target_device::{UART3, USART2};
 
-#[cfg(any(
-    feature = "sams70n19b",
-    feature = "sams70n20b",
-    feature = "sams70n21b",
-    feature = "sams70q19b",
-    feature = "sams70q20b",
-    feature = "sams70q21b",
-    feature = "same70n19b",
-    feature = "same70n20b",
-    feature = "same70n21b",
-    feature = "same70q19b",
-    feature = "same70q20b",
-    feature = "same70q21b",
+#[cfg(all(
+    any(feature = "e70", feature = "s70"),
+    any(feature = "pins-100", feature = "pins-144")
 ))]
 use crate::target_device::UART4;
 
@@ -46,54 +26,24 @@ pub type Serial0 = Serial<UART0>;
 pub type Serial1 = Serial<UART1>;
 pub type Serial2 = Serial<UART2>;
 
-#[cfg(any(
-    feature = "sams70n19b",
-    feature = "sams70n20b",
-    feature = "sams70n21b",
-    feature = "sams70q19b",
-    feature = "sams70q20b",
-    feature = "sams70q21b",
-    feature = "same70n19b",
-    feature = "same70n20b",
-    feature = "same70n21b",
-    feature = "same70q19b",
-    feature = "same70q20b",
-    feature = "same70q21b",
+#[cfg(all(
+    any(feature = "e70", feature = "s70"),
+    any(feature = "pins-100", feature = "pins-144")
 ))]
 pub type Serial3 = Serial<UART3>;
 
-#[cfg(any(
-    feature = "sams70n19b",
-    feature = "sams70n20b",
-    feature = "sams70n21b",
-    feature = "sams70q19b",
-    feature = "sams70q20b",
-    feature = "sams70q21b",
-    feature = "same70n19b",
-    feature = "same70n20b",
-    feature = "same70n21b",
-    feature = "same70q19b",
-    feature = "same70q20b",
-    feature = "same70q21b",
+#[cfg(all(
+    any(feature = "e70", feature = "s70"),
+    any(feature = "pins-100", feature = "pins-144")
 ))]
 pub type Serial4 = Serial<UART4>;
 
 pub type Serial5 = Serial<USART0>;
 pub type Serial6 = Serial<USART1>;
 
-#[cfg(any(
-    feature = "sams70n19b",
-    feature = "sams70n20b",
-    feature = "sams70n21b",
-    feature = "sams70q19b",
-    feature = "sams70q20b",
-    feature = "sams70q21b",
-    feature = "same70n19b",
-    feature = "same70n20b",
-    feature = "same70n21b",
-    feature = "same70q19b",
-    feature = "same70q20b",
-    feature = "same70q21b",
+#[cfg(all(
+    any(feature = "e70", feature = "s70"),
+    any(feature = "pins-100", feature = "pins-144")
 ))]
 pub type Serial7 = Serial<USART2>;
 
@@ -132,12 +82,7 @@ impl ehal::serial::Write<u8> for Serial<USART1> {
     }
 }
 
-#[cfg(any(
-    feature = "sams70q20b",
-    feature = "sams70q21b",
-    feature = "same70q20b",
-    feature = "same70q21b",
-))]
+#[cfg(all(any(feature = "e70", feature = "s70"), feature = "pins-100"))]
 impl ehal::serial::Write<u8> for Serial<UART3> {
     type Error = Error;
 
