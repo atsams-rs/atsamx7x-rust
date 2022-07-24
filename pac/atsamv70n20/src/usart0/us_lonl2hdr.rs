@@ -35,106 +35,17 @@ impl From<crate::W<US_LONL2HDR_SPEC>> for W {
     }
 }
 #[doc = "Field `BLI` reader - LON Backlog Increment"]
-pub struct BLI_R(crate::FieldReader<u8, u8>);
-impl BLI_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: u8) -> Self {
-        BLI_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for BLI_R {
-    type Target = crate::FieldReader<u8, u8>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type BLI_R = crate::FieldReader<u8, u8>;
 #[doc = "Field `BLI` writer - LON Backlog Increment"]
-pub struct BLI_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> BLI_W<'a> {
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x3f) | (value as u32 & 0x3f);
-        self.w
-    }
-}
+pub type BLI_W<'a, const O: u8> = crate::FieldWriter<'a, u32, US_LONL2HDR_SPEC, u8, u8, 6, O>;
 #[doc = "Field `ALTP` reader - LON Alternate Path Bit"]
-pub struct ALTP_R(crate::FieldReader<bool, bool>);
-impl ALTP_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        ALTP_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for ALTP_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type ALTP_R = crate::BitReader<bool>;
 #[doc = "Field `ALTP` writer - LON Alternate Path Bit"]
-pub struct ALTP_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> ALTP_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
-        self.w
-    }
-}
+pub type ALTP_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_LONL2HDR_SPEC, bool, O>;
 #[doc = "Field `PB` reader - LON Priority Bit"]
-pub struct PB_R(crate::FieldReader<bool, bool>);
-impl PB_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        PB_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for PB_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type PB_R = crate::BitReader<bool>;
 #[doc = "Field `PB` writer - LON Priority Bit"]
-pub struct PB_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> PB_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 7)) | ((value as u32 & 0x01) << 7);
-        self.w
-    }
-}
+pub type PB_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_LONL2HDR_SPEC, bool, O>;
 impl R {
     #[doc = "Bits 0:5 - LON Backlog Increment"]
     #[inline(always)]
@@ -144,29 +55,29 @@ impl R {
     #[doc = "Bit 6 - LON Alternate Path Bit"]
     #[inline(always)]
     pub fn altp(&self) -> ALTP_R {
-        ALTP_R::new(((self.bits >> 6) & 0x01) != 0)
+        ALTP_R::new(((self.bits >> 6) & 1) != 0)
     }
     #[doc = "Bit 7 - LON Priority Bit"]
     #[inline(always)]
     pub fn pb(&self) -> PB_R {
-        PB_R::new(((self.bits >> 7) & 0x01) != 0)
+        PB_R::new(((self.bits >> 7) & 1) != 0)
     }
 }
 impl W {
     #[doc = "Bits 0:5 - LON Backlog Increment"]
     #[inline(always)]
-    pub fn bli(&mut self) -> BLI_W {
-        BLI_W { w: self }
+    pub fn bli(&mut self) -> BLI_W<0> {
+        BLI_W::new(self)
     }
     #[doc = "Bit 6 - LON Alternate Path Bit"]
     #[inline(always)]
-    pub fn altp(&mut self) -> ALTP_W {
-        ALTP_W { w: self }
+    pub fn altp(&mut self) -> ALTP_W<6> {
+        ALTP_W::new(self)
     }
     #[doc = "Bit 7 - LON Priority Bit"]
     #[inline(always)]
-    pub fn pb(&mut self) -> PB_W {
-        PB_W { w: self }
+    pub fn pb(&mut self) -> PB_W<7> {
+        PB_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

@@ -1,16 +1,16 @@
-#[doc = "PWM_CMPV register accessor: an alias for `Reg<PWM_CMPV_SPEC>`"]
-pub type PWM_CMPV = crate::Reg<pwm_cmpv::PWM_CMPV_SPEC>;
+#[doc = "CMPV register accessor: an alias for `Reg<CMPV_SPEC>`"]
+pub type CMPV = crate::Reg<cmpv::CMPV_SPEC>;
 #[doc = "PWM Comparison 0 Value Register"]
-pub mod pwm_cmpv;
-#[doc = "PWM_CMPVUPD register accessor: an alias for `Reg<PWM_CMPVUPD_SPEC>`"]
-pub type PWM_CMPVUPD = crate::Reg<pwm_cmpvupd::PWM_CMPVUPD_SPEC>;
+pub mod cmpv;
+#[doc = "CMPVUPD register accessor: an alias for `Reg<CMPVUPD_SPEC>`"]
+pub type CMPVUPD = crate::Reg<cmpvupd::CMPVUPD_SPEC>;
 #[doc = "PWM Comparison 0 Value Update Register"]
-pub mod pwm_cmpvupd;
-#[doc = "PWM_CMPM register accessor: an alias for `Reg<PWM_CMPM_SPEC>`"]
-pub type PWM_CMPM = crate::Reg<pwm_cmpm::PWM_CMPM_SPEC>;
+pub mod cmpvupd;
+#[doc = "CMPM register accessor: an alias for `Reg<CMPM_SPEC>`"]
+pub type CMPM = crate::Reg<cmpm::CMPM_SPEC>;
 #[doc = "PWM Comparison 0 Mode Register"]
-pub mod pwm_cmpm;
-#[doc = "PWM_CMPMUPD register accessor: an alias for `Reg<PWM_CMPMUPD_SPEC>`"]
-pub type PWM_CMPMUPD = crate::Reg<pwm_cmpmupd::PWM_CMPMUPD_SPEC>;
+pub mod cmpm;
+#[doc = "CMPMUPD register accessor: an alias for `Reg<CMPMUPD_SPEC>`"]
+pub type CMPMUPD = crate::Reg<cmpmupd::CMPMUPD_SPEC>;
 #[doc = "PWM Comparison 0 Mode Update Register"]
-pub mod pwm_cmpmupd;
+pub mod cmpmupd;

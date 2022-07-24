@@ -73,15 +73,8 @@ impl From<FCMD_AW> for u8 {
     }
 }
 #[doc = "Field `FCMD` writer - Flash Command"]
-pub struct FCMD_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> FCMD_W<'a> {
-    #[doc = r"Writes `variant` to the field"]
-    #[inline(always)]
-    pub fn variant(self, variant: FCMD_AW) -> &'a mut W {
-        unsafe { self.bits(variant.into()) }
-    }
+pub type FCMD_W<'a, const O: u8> = crate::FieldWriter<'a, u32, EEFC_FCR_SPEC, u8, FCMD_AW, 8, O>;
+impl<'a, const O: u8> FCMD_W<'a, O> {
     #[doc = "Get Flash descriptor"]
     #[inline(always)]
     pub fn getd(self) -> &'a mut W {
@@ -187,25 +180,9 @@ impl<'a> FCMD_W<'a> {
     pub fn spus(self) -> &'a mut W {
         self.variant(FCMD_AW::SPUS)
     }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0xff) | (value as u32 & 0xff);
-        self.w
-    }
 }
 #[doc = "Field `FARG` writer - Flash Command Argument"]
-pub struct FARG_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> FARG_W<'a> {
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0xffff << 8)) | ((value as u32 & 0xffff) << 8);
-        self.w
-    }
-}
+pub type FARG_W<'a, const O: u8> = crate::FieldWriter<'a, u32, EEFC_FCR_SPEC, u16, u16, 16, O>;
 #[doc = "Flash Writing Protection Key\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 #[repr(u8)]
@@ -220,42 +197,29 @@ impl From<FKEY_AW> for u8 {
     }
 }
 #[doc = "Field `FKEY` writer - Flash Writing Protection Key"]
-pub struct FKEY_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> FKEY_W<'a> {
-    #[doc = r"Writes `variant` to the field"]
-    #[inline(always)]
-    pub fn variant(self, variant: FKEY_AW) -> &'a mut W {
-        unsafe { self.bits(variant.into()) }
-    }
+pub type FKEY_W<'a, const O: u8> = crate::FieldWriter<'a, u32, EEFC_FCR_SPEC, u8, FKEY_AW, 8, O>;
+impl<'a, const O: u8> FKEY_W<'a, O> {
     #[doc = "The 0x5A value enables the command defined by the bits of the register. If the field is written with a different value, the write is not performed and no action is started."]
     #[inline(always)]
     pub fn passwd(self) -> &'a mut W {
         self.variant(FKEY_AW::PASSWD)
     }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0xff << 24)) | ((value as u32 & 0xff) << 24);
-        self.w
-    }
 }
 impl W {
     #[doc = "Bits 0:7 - Flash Command"]
     #[inline(always)]
-    pub fn fcmd(&mut self) -> FCMD_W {
-        FCMD_W { w: self }
+    pub fn fcmd(&mut self) -> FCMD_W<0> {
+        FCMD_W::new(self)
     }
     #[doc = "Bits 8:23 - Flash Command Argument"]
     #[inline(always)]
-    pub fn farg(&mut self) -> FARG_W {
-        FARG_W { w: self }
+    pub fn farg(&mut self) -> FARG_W<8> {
+        FARG_W::new(self)
     }
     #[doc = "Bits 24:31 - Flash Writing Protection Key"]
     #[inline(always)]
-    pub fn fkey(&mut self) -> FKEY_W {
-        FKEY_W { w: self }
+    pub fn fkey(&mut self) -> FKEY_W<24> {
+        FKEY_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

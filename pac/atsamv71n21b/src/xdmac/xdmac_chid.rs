@@ -1,56 +1,56 @@
-#[doc = "XDMAC_CIE register accessor: an alias for `Reg<XDMAC_CIE_SPEC>`"]
-pub type XDMAC_CIE = crate::Reg<xdmac_cie::XDMAC_CIE_SPEC>;
+#[doc = "CIE register accessor: an alias for `Reg<CIE_SPEC>`"]
+pub type CIE = crate::Reg<cie::CIE_SPEC>;
 #[doc = "Channel Interrupt Enable Register"]
-pub mod xdmac_cie;
-#[doc = "XDMAC_CID register accessor: an alias for `Reg<XDMAC_CID_SPEC>`"]
-pub type XDMAC_CID = crate::Reg<xdmac_cid::XDMAC_CID_SPEC>;
+pub mod cie;
+#[doc = "CID register accessor: an alias for `Reg<CID_SPEC>`"]
+pub type CID = crate::Reg<cid::CID_SPEC>;
 #[doc = "Channel Interrupt Disable Register"]
-pub mod xdmac_cid;
-#[doc = "XDMAC_CIM register accessor: an alias for `Reg<XDMAC_CIM_SPEC>`"]
-pub type XDMAC_CIM = crate::Reg<xdmac_cim::XDMAC_CIM_SPEC>;
+pub mod cid;
+#[doc = "CIM register accessor: an alias for `Reg<CIM_SPEC>`"]
+pub type CIM = crate::Reg<cim::CIM_SPEC>;
 #[doc = "Channel Interrupt Mask Register"]
-pub mod xdmac_cim;
-#[doc = "XDMAC_CIS register accessor: an alias for `Reg<XDMAC_CIS_SPEC>`"]
-pub type XDMAC_CIS = crate::Reg<xdmac_cis::XDMAC_CIS_SPEC>;
+pub mod cim;
+#[doc = "CIS register accessor: an alias for `Reg<CIS_SPEC>`"]
+pub type CIS = crate::Reg<cis::CIS_SPEC>;
 #[doc = "Channel Interrupt Status Register"]
-pub mod xdmac_cis;
-#[doc = "XDMAC_CSA register accessor: an alias for `Reg<XDMAC_CSA_SPEC>`"]
-pub type XDMAC_CSA = crate::Reg<xdmac_csa::XDMAC_CSA_SPEC>;
+pub mod cis;
+#[doc = "CSA register accessor: an alias for `Reg<CSA_SPEC>`"]
+pub type CSA = crate::Reg<csa::CSA_SPEC>;
 #[doc = "Channel Source Address Register"]
-pub mod xdmac_csa;
-#[doc = "XDMAC_CDA register accessor: an alias for `Reg<XDMAC_CDA_SPEC>`"]
-pub type XDMAC_CDA = crate::Reg<xdmac_cda::XDMAC_CDA_SPEC>;
+pub mod csa;
+#[doc = "CDA register accessor: an alias for `Reg<CDA_SPEC>`"]
+pub type CDA = crate::Reg<cda::CDA_SPEC>;
 #[doc = "Channel Destination Address Register"]
-pub mod xdmac_cda;
-#[doc = "XDMAC_CNDA register accessor: an alias for `Reg<XDMAC_CNDA_SPEC>`"]
-pub type XDMAC_CNDA = crate::Reg<xdmac_cnda::XDMAC_CNDA_SPEC>;
+pub mod cda;
+#[doc = "CNDA register accessor: an alias for `Reg<CNDA_SPEC>`"]
+pub type CNDA = crate::Reg<cnda::CNDA_SPEC>;
 #[doc = "Channel Next Descriptor Address Register"]
-pub mod xdmac_cnda;
-#[doc = "XDMAC_CNDC register accessor: an alias for `Reg<XDMAC_CNDC_SPEC>`"]
-pub type XDMAC_CNDC = crate::Reg<xdmac_cndc::XDMAC_CNDC_SPEC>;
+pub mod cnda;
+#[doc = "CNDC register accessor: an alias for `Reg<CNDC_SPEC>`"]
+pub type CNDC = crate::Reg<cndc::CNDC_SPEC>;
 #[doc = "Channel Next Descriptor Control Register"]
-pub mod xdmac_cndc;
-#[doc = "XDMAC_CUBC register accessor: an alias for `Reg<XDMAC_CUBC_SPEC>`"]
-pub type XDMAC_CUBC = crate::Reg<xdmac_cubc::XDMAC_CUBC_SPEC>;
+pub mod cndc;
+#[doc = "CUBC register accessor: an alias for `Reg<CUBC_SPEC>`"]
+pub type CUBC = crate::Reg<cubc::CUBC_SPEC>;
 #[doc = "Channel Microblock Control Register"]
-pub mod xdmac_cubc;
-#[doc = "XDMAC_CBC register accessor: an alias for `Reg<XDMAC_CBC_SPEC>`"]
-pub type XDMAC_CBC = crate::Reg<xdmac_cbc::XDMAC_CBC_SPEC>;
+pub mod cubc;
+#[doc = "CBC register accessor: an alias for `Reg<CBC_SPEC>`"]
+pub type CBC = crate::Reg<cbc::CBC_SPEC>;
 #[doc = "Channel Block Control Register"]
-pub mod xdmac_cbc;
-#[doc = "XDMAC_CC register accessor: an alias for `Reg<XDMAC_CC_SPEC>`"]
-pub type XDMAC_CC = crate::Reg<xdmac_cc::XDMAC_CC_SPEC>;
+pub mod cbc;
+#[doc = "CC register accessor: an alias for `Reg<CC_SPEC>`"]
+pub type CC = crate::Reg<cc::CC_SPEC>;
 #[doc = "Channel Configuration Register"]
-pub mod xdmac_cc;
-#[doc = "XDMAC_CDS_MSP register accessor: an alias for `Reg<XDMAC_CDS_MSP_SPEC>`"]
-pub type XDMAC_CDS_MSP = crate::Reg<xdmac_cds_msp::XDMAC_CDS_MSP_SPEC>;
+pub mod cc;
+#[doc = "CDS_MSP register accessor: an alias for `Reg<CDS_MSP_SPEC>`"]
+pub type CDS_MSP = crate::Reg<cds_msp::CDS_MSP_SPEC>;
 #[doc = "Channel Data Stride Memory Set Pattern"]
-pub mod xdmac_cds_msp;
-#[doc = "XDMAC_CSUS register accessor: an alias for `Reg<XDMAC_CSUS_SPEC>`"]
-pub type XDMAC_CSUS = crate::Reg<xdmac_csus::XDMAC_CSUS_SPEC>;
+pub mod cds_msp;
+#[doc = "CSUS register accessor: an alias for `Reg<CSUS_SPEC>`"]
+pub type CSUS = crate::Reg<csus::CSUS_SPEC>;
 #[doc = "Channel Source Microblock Stride"]
-pub mod xdmac_csus;
-#[doc = "XDMAC_CDUS register accessor: an alias for `Reg<XDMAC_CDUS_SPEC>`"]
-pub type XDMAC_CDUS = crate::Reg<xdmac_cdus::XDMAC_CDUS_SPEC>;
+pub mod csus;
+#[doc = "CDUS register accessor: an alias for `Reg<CDUS_SPEC>`"]
+pub type CDUS = crate::Reg<cdus::CDUS_SPEC>;
 #[doc = "Channel Destination Microblock Stride"]
-pub mod xdmac_cdus;
+pub mod cdus;

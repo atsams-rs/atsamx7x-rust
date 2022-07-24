@@ -35,32 +35,10 @@ impl From<crate::W<CCFG_CAN0_SPEC>> for W {
     }
 }
 #[doc = "Field `CAN0DMABA` reader - CAN0 DMA Base Address"]
-pub struct CAN0DMABA_R(crate::FieldReader<u16, u16>);
-impl CAN0DMABA_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: u16) -> Self {
-        CAN0DMABA_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for CAN0DMABA_R {
-    type Target = crate::FieldReader<u16, u16>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type CAN0DMABA_R = crate::FieldReader<u16, u16>;
 #[doc = "Field `CAN0DMABA` writer - CAN0 DMA Base Address"]
-pub struct CAN0DMABA_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> CAN0DMABA_W<'a> {
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0xffff << 16)) | ((value as u32 & 0xffff) << 16);
-        self.w
-    }
-}
+pub type CAN0DMABA_W<'a, const O: u8> =
+    crate::FieldWriter<'a, u32, CCFG_CAN0_SPEC, u16, u16, 16, O>;
 impl R {
     #[doc = "Bits 16:31 - CAN0 DMA Base Address"]
     #[inline(always)]
@@ -71,8 +49,8 @@ impl R {
 impl W {
     #[doc = "Bits 16:31 - CAN0 DMA Base Address"]
     #[inline(always)]
-    pub fn can0dmaba(&mut self) -> CAN0DMABA_W {
-        CAN0DMABA_W { w: self }
+    pub fn can0dmaba(&mut self) -> CAN0DMABA_W<16> {
+        CAN0DMABA_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

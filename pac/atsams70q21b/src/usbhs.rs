@@ -2,635 +2,596 @@
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - Device General Control Register"]
-    pub usbhs_devctrl: crate::Reg<usbhs_devctrl::USBHS_DEVCTRL_SPEC>,
+    pub devctrl: crate::Reg<devctrl::DEVCTRL_SPEC>,
     #[doc = "0x04 - Device Global Interrupt Status Register"]
-    pub usbhs_devisr: crate::Reg<usbhs_devisr::USBHS_DEVISR_SPEC>,
+    pub devisr: crate::Reg<devisr::DEVISR_SPEC>,
     #[doc = "0x08 - Device Global Interrupt Clear Register"]
-    pub usbhs_devicr: crate::Reg<usbhs_devicr::USBHS_DEVICR_SPEC>,
+    pub devicr: crate::Reg<devicr::DEVICR_SPEC>,
     #[doc = "0x0c - Device Global Interrupt Set Register"]
-    pub usbhs_devifr: crate::Reg<usbhs_devifr::USBHS_DEVIFR_SPEC>,
+    pub devifr: crate::Reg<devifr::DEVIFR_SPEC>,
     #[doc = "0x10 - Device Global Interrupt Mask Register"]
-    pub usbhs_devimr: crate::Reg<usbhs_devimr::USBHS_DEVIMR_SPEC>,
+    pub devimr: crate::Reg<devimr::DEVIMR_SPEC>,
     #[doc = "0x14 - Device Global Interrupt Disable Register"]
-    pub usbhs_devidr: crate::Reg<usbhs_devidr::USBHS_DEVIDR_SPEC>,
+    pub devidr: crate::Reg<devidr::DEVIDR_SPEC>,
     #[doc = "0x18 - Device Global Interrupt Enable Register"]
-    pub usbhs_devier: crate::Reg<usbhs_devier::USBHS_DEVIER_SPEC>,
+    pub devier: crate::Reg<devier::DEVIER_SPEC>,
     #[doc = "0x1c - Device Endpoint Register"]
-    pub usbhs_devept: crate::Reg<usbhs_devept::USBHS_DEVEPT_SPEC>,
+    pub devept: crate::Reg<devept::DEVEPT_SPEC>,
     #[doc = "0x20 - Device Frame Number Register"]
-    pub usbhs_devfnum: crate::Reg<usbhs_devfnum::USBHS_DEVFNUM_SPEC>,
+    pub devfnum: crate::Reg<devfnum::DEVFNUM_SPEC>,
     _reserved9: [u8; 0xdc],
     #[doc = "0x100..0x128 - Device Endpoint Configuration Register"]
-    pub usbhs_deveptcfg: [crate::Reg<usbhs_deveptcfg::USBHS_DEVEPTCFG_SPEC>; 10],
+    pub deveptcfg: [crate::Reg<deveptcfg::DEVEPTCFG_SPEC>; 10],
     _reserved10: [u8; 0x08],
-    _reserved_10_usbhs_deveptisr: [u8; 0x28],
+    _reserved_10_deveptisr: [u8; 0x28],
     _reserved11: [u8; 0x08],
-    _reserved_11_usbhs_devepticr: [u8; 0x28],
+    _reserved_11_devepticr: [u8; 0x28],
     _reserved12: [u8; 0x08],
-    _reserved_12_usbhs_deveptifr: [u8; 0x28],
+    _reserved_12_deveptifr: [u8; 0x28],
     _reserved13: [u8; 0x08],
-    _reserved_13_usbhs_deveptimr: [u8; 0x28],
+    _reserved_13_deveptimr: [u8; 0x28],
     _reserved14: [u8; 0x08],
-    _reserved_14_usbhs_deveptier: [u8; 0x28],
+    _reserved_14_deveptier: [u8; 0x28],
     _reserved15: [u8; 0x08],
-    _reserved_15_usbhs_deveptidr: [u8; 0x28],
+    _reserved_15_deveptidr: [u8; 0x28],
     _reserved16: [u8; 0xc8],
     #[doc = "0x310..0x380 - Device DMA Channel Next Descriptor Address Register"]
     pub usbhs_devdma: [USBHS_DEVDMA; 7],
     _reserved17: [u8; 0x80],
     #[doc = "0x400 - Host General Control Register"]
-    pub usbhs_hstctrl: crate::Reg<usbhs_hstctrl::USBHS_HSTCTRL_SPEC>,
+    pub hstctrl: crate::Reg<hstctrl::HSTCTRL_SPEC>,
     #[doc = "0x404 - Host Global Interrupt Status Register"]
-    pub usbhs_hstisr: crate::Reg<usbhs_hstisr::USBHS_HSTISR_SPEC>,
+    pub hstisr: crate::Reg<hstisr::HSTISR_SPEC>,
     #[doc = "0x408 - Host Global Interrupt Clear Register"]
-    pub usbhs_hsticr: crate::Reg<usbhs_hsticr::USBHS_HSTICR_SPEC>,
+    pub hsticr: crate::Reg<hsticr::HSTICR_SPEC>,
     #[doc = "0x40c - Host Global Interrupt Set Register"]
-    pub usbhs_hstifr: crate::Reg<usbhs_hstifr::USBHS_HSTIFR_SPEC>,
+    pub hstifr: crate::Reg<hstifr::HSTIFR_SPEC>,
     #[doc = "0x410 - Host Global Interrupt Mask Register"]
-    pub usbhs_hstimr: crate::Reg<usbhs_hstimr::USBHS_HSTIMR_SPEC>,
+    pub hstimr: crate::Reg<hstimr::HSTIMR_SPEC>,
     #[doc = "0x414 - Host Global Interrupt Disable Register"]
-    pub usbhs_hstidr: crate::Reg<usbhs_hstidr::USBHS_HSTIDR_SPEC>,
+    pub hstidr: crate::Reg<hstidr::HSTIDR_SPEC>,
     #[doc = "0x418 - Host Global Interrupt Enable Register"]
-    pub usbhs_hstier: crate::Reg<usbhs_hstier::USBHS_HSTIER_SPEC>,
+    pub hstier: crate::Reg<hstier::HSTIER_SPEC>,
     #[doc = "0x41c - Host Pipe Register"]
-    pub usbhs_hstpip: crate::Reg<usbhs_hstpip::USBHS_HSTPIP_SPEC>,
+    pub hstpip: crate::Reg<hstpip::HSTPIP_SPEC>,
     #[doc = "0x420 - Host Frame Number Register"]
-    pub usbhs_hstfnum: crate::Reg<usbhs_hstfnum::USBHS_HSTFNUM_SPEC>,
+    pub hstfnum: crate::Reg<hstfnum::HSTFNUM_SPEC>,
     #[doc = "0x424 - Host Address 1 Register"]
-    pub usbhs_hstaddr1: crate::Reg<usbhs_hstaddr1::USBHS_HSTADDR1_SPEC>,
+    pub hstaddr1: crate::Reg<hstaddr1::HSTADDR1_SPEC>,
     #[doc = "0x428 - Host Address 2 Register"]
-    pub usbhs_hstaddr2: crate::Reg<usbhs_hstaddr2::USBHS_HSTADDR2_SPEC>,
+    pub hstaddr2: crate::Reg<hstaddr2::HSTADDR2_SPEC>,
     #[doc = "0x42c - Host Address 3 Register"]
-    pub usbhs_hstaddr3: crate::Reg<usbhs_hstaddr3::USBHS_HSTADDR3_SPEC>,
+    pub hstaddr3: crate::Reg<hstaddr3::HSTADDR3_SPEC>,
     _reserved29: [u8; 0xd0],
-    _reserved_29_usbhs_: [u8; 0x28],
+    _reserved_29_hstpipcfg: [u8; 0x28],
     _reserved30: [u8; 0x08],
-    _reserved_30_usbhs_hstpipisr: [u8; 0x28],
+    _reserved_30_hstpipisr: [u8; 0x28],
     _reserved31: [u8; 0x08],
-    _reserved_31_usbhs_hstpipicr: [u8; 0x28],
+    _reserved_31_hstpipicr: [u8; 0x28],
     _reserved32: [u8; 0x08],
-    _reserved_32_usbhs_hstpipifr: [u8; 0x28],
+    _reserved_32_hstpipifr: [u8; 0x28],
     _reserved33: [u8; 0x08],
-    _reserved_33_usbhs_hstpipimr: [u8; 0x28],
+    _reserved_33_hstpipimr: [u8; 0x28],
     _reserved34: [u8; 0x08],
-    _reserved_34_usbhs_hstpipier: [u8; 0x28],
+    _reserved_34_hstpipier: [u8; 0x28],
     _reserved35: [u8; 0x08],
-    _reserved_35_usbhs_hstpipidr: [u8; 0x28],
+    _reserved_35_hstpipidr: [u8; 0x28],
     _reserved36: [u8; 0x08],
     #[doc = "0x650..0x678 - Host Pipe IN Request Register"]
-    pub usbhs_hstpipinrq: [crate::Reg<usbhs_hstpipinrq::USBHS_HSTPIPINRQ_SPEC>; 10],
+    pub hstpipinrq: [crate::Reg<hstpipinrq::HSTPIPINRQ_SPEC>; 10],
     _reserved37: [u8; 0x08],
     #[doc = "0x680..0x6a8 - Host Pipe Error Register"]
-    pub usbhs_hstpiperr: [crate::Reg<usbhs_hstpiperr::USBHS_HSTPIPERR_SPEC>; 10],
+    pub hstpiperr: [crate::Reg<hstpiperr::HSTPIPERR_SPEC>; 10],
     _reserved38: [u8; 0x68],
     #[doc = "0x710..0x780 - Host DMA Channel Next Descriptor Address Register"]
     pub usbhs_hstdma: [USBHS_HSTDMA; 7],
     _reserved39: [u8; 0x80],
     #[doc = "0x800 - General Control Register"]
-    pub usbhs_ctrl: crate::Reg<usbhs_ctrl::USBHS_CTRL_SPEC>,
+    pub ctrl: crate::Reg<ctrl::CTRL_SPEC>,
     #[doc = "0x804 - General Status Register"]
-    pub usbhs_sr: crate::Reg<usbhs_sr::USBHS_SR_SPEC>,
+    pub sr: crate::Reg<sr::SR_SPEC>,
     #[doc = "0x808 - General Status Clear Register"]
-    pub usbhs_scr: crate::Reg<usbhs_scr::USBHS_SCR_SPEC>,
+    pub scr: crate::Reg<scr::SCR_SPEC>,
     #[doc = "0x80c - General Status Set Register"]
-    pub usbhs_sfr: crate::Reg<usbhs_sfr::USBHS_SFR_SPEC>,
+    pub sfr: crate::Reg<sfr::SFR_SPEC>,
 }
 impl RegisterBlock {
     #[doc = "0x130..0x158 - Device Endpoint Interrupt Status Register"]
     #[inline(always)]
-    pub fn usbhs_deveptisr_intrpt_mode(
+    pub fn deveptisr_intrpt_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptisr_intrpt_mode::USBHS_DEVEPTISR_INTRPT_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptisr_intrpt_mode::DEVEPTISR_INTRPT_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(304usize)
-                as *const [crate::Reg<
-                    usbhs_deveptisr_intrpt_mode::USBHS_DEVEPTISR_INTRPT_MODE_SPEC,
-                >; 10])
+                as *const [crate::Reg<deveptisr_intrpt_mode::DEVEPTISR_INTRPT_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x130..0x158 - Device Endpoint Interrupt Status Register"]
     #[inline(always)]
-    pub fn usbhs_deveptisr_blk_mode(
+    pub fn deveptisr_blk_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptisr_blk_mode::USBHS_DEVEPTISR_BLK_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptisr_blk_mode::DEVEPTISR_BLK_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(304usize)
-                as *const [crate::Reg<usbhs_deveptisr_blk_mode::USBHS_DEVEPTISR_BLK_MODE_SPEC>; 10])
+                as *const [crate::Reg<deveptisr_blk_mode::DEVEPTISR_BLK_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x130..0x158 - Device Endpoint Interrupt Status Register"]
     #[inline(always)]
-    pub fn usbhs_deveptisr_iso_mode(
+    pub fn deveptisr_iso_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptisr_iso_mode::USBHS_DEVEPTISR_ISO_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptisr_iso_mode::DEVEPTISR_ISO_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(304usize)
-                as *const [crate::Reg<usbhs_deveptisr_iso_mode::USBHS_DEVEPTISR_ISO_MODE_SPEC>; 10])
+                as *const [crate::Reg<deveptisr_iso_mode::DEVEPTISR_ISO_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x130..0x158 - Device Endpoint Interrupt Status Register"]
     #[inline(always)]
-    pub fn usbhs_deveptisr_ctrl_mode(
+    pub fn deveptisr_ctrl_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptisr_ctrl_mode::USBHS_DEVEPTISR_CTRL_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptisr_ctrl_mode::DEVEPTISR_CTRL_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(304usize)
-                as *const [crate::Reg<usbhs_deveptisr_ctrl_mode::USBHS_DEVEPTISR_CTRL_MODE_SPEC>;
-                    10])
+                as *const [crate::Reg<deveptisr_ctrl_mode::DEVEPTISR_CTRL_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x160..0x188 - Device Endpoint Interrupt Clear Register"]
     #[inline(always)]
-    pub fn usbhs_devepticr_intrpt_mode(
+    pub fn devepticr_intrpt_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_devepticr_intrpt_mode::USBHS_DEVEPTICR_INTRPT_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<devepticr_intrpt_mode::DEVEPTICR_INTRPT_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(352usize)
-                as *const [crate::Reg<
-                    usbhs_devepticr_intrpt_mode::USBHS_DEVEPTICR_INTRPT_MODE_SPEC,
-                >; 10])
+                as *const [crate::Reg<devepticr_intrpt_mode::DEVEPTICR_INTRPT_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x160..0x188 - Device Endpoint Interrupt Clear Register"]
     #[inline(always)]
-    pub fn usbhs_devepticr_blk_mode(
+    pub fn devepticr_blk_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_devepticr_blk_mode::USBHS_DEVEPTICR_BLK_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<devepticr_blk_mode::DEVEPTICR_BLK_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(352usize)
-                as *const [crate::Reg<usbhs_devepticr_blk_mode::USBHS_DEVEPTICR_BLK_MODE_SPEC>; 10])
+                as *const [crate::Reg<devepticr_blk_mode::DEVEPTICR_BLK_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x160..0x188 - Device Endpoint Interrupt Clear Register"]
     #[inline(always)]
-    pub fn usbhs_devepticr_iso_mode(
+    pub fn devepticr_iso_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_devepticr_iso_mode::USBHS_DEVEPTICR_ISO_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<devepticr_iso_mode::DEVEPTICR_ISO_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(352usize)
-                as *const [crate::Reg<usbhs_devepticr_iso_mode::USBHS_DEVEPTICR_ISO_MODE_SPEC>; 10])
+                as *const [crate::Reg<devepticr_iso_mode::DEVEPTICR_ISO_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x160..0x188 - Device Endpoint Interrupt Clear Register"]
     #[inline(always)]
-    pub fn usbhs_devepticr_ctrl_mode(
+    pub fn devepticr_ctrl_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_devepticr_ctrl_mode::USBHS_DEVEPTICR_CTRL_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<devepticr_ctrl_mode::DEVEPTICR_CTRL_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(352usize)
-                as *const [crate::Reg<usbhs_devepticr_ctrl_mode::USBHS_DEVEPTICR_CTRL_MODE_SPEC>;
-                    10])
+                as *const [crate::Reg<devepticr_ctrl_mode::DEVEPTICR_CTRL_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x190..0x1b8 - Device Endpoint Interrupt Set Register"]
     #[inline(always)]
-    pub fn usbhs_deveptifr_intrpt_mode(
+    pub fn deveptifr_intrpt_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptifr_intrpt_mode::USBHS_DEVEPTIFR_INTRPT_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptifr_intrpt_mode::DEVEPTIFR_INTRPT_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(400usize)
-                as *const [crate::Reg<
-                    usbhs_deveptifr_intrpt_mode::USBHS_DEVEPTIFR_INTRPT_MODE_SPEC,
-                >; 10])
+                as *const [crate::Reg<deveptifr_intrpt_mode::DEVEPTIFR_INTRPT_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x190..0x1b8 - Device Endpoint Interrupt Set Register"]
     #[inline(always)]
-    pub fn usbhs_deveptifr_blk_mode(
+    pub fn deveptifr_blk_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptifr_blk_mode::USBHS_DEVEPTIFR_BLK_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptifr_blk_mode::DEVEPTIFR_BLK_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(400usize)
-                as *const [crate::Reg<usbhs_deveptifr_blk_mode::USBHS_DEVEPTIFR_BLK_MODE_SPEC>; 10])
+                as *const [crate::Reg<deveptifr_blk_mode::DEVEPTIFR_BLK_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x190..0x1b8 - Device Endpoint Interrupt Set Register"]
     #[inline(always)]
-    pub fn usbhs_deveptifr_iso_mode(
+    pub fn deveptifr_iso_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptifr_iso_mode::USBHS_DEVEPTIFR_ISO_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptifr_iso_mode::DEVEPTIFR_ISO_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(400usize)
-                as *const [crate::Reg<usbhs_deveptifr_iso_mode::USBHS_DEVEPTIFR_ISO_MODE_SPEC>; 10])
+                as *const [crate::Reg<deveptifr_iso_mode::DEVEPTIFR_ISO_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x190..0x1b8 - Device Endpoint Interrupt Set Register"]
     #[inline(always)]
-    pub fn usbhs_deveptifr_ctrl_mode(
+    pub fn deveptifr_ctrl_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptifr_ctrl_mode::USBHS_DEVEPTIFR_CTRL_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptifr_ctrl_mode::DEVEPTIFR_CTRL_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(400usize)
-                as *const [crate::Reg<usbhs_deveptifr_ctrl_mode::USBHS_DEVEPTIFR_CTRL_MODE_SPEC>;
-                    10])
+                as *const [crate::Reg<deveptifr_ctrl_mode::DEVEPTIFR_CTRL_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x1c0..0x1e8 - Device Endpoint Interrupt Mask Register"]
     #[inline(always)]
-    pub fn usbhs_deveptimr_intrpt_mode(
+    pub fn deveptimr_intrpt_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptimr_intrpt_mode::USBHS_DEVEPTIMR_INTRPT_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptimr_intrpt_mode::DEVEPTIMR_INTRPT_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(448usize)
-                as *const [crate::Reg<
-                    usbhs_deveptimr_intrpt_mode::USBHS_DEVEPTIMR_INTRPT_MODE_SPEC,
-                >; 10])
+                as *const [crate::Reg<deveptimr_intrpt_mode::DEVEPTIMR_INTRPT_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x1c0..0x1e8 - Device Endpoint Interrupt Mask Register"]
     #[inline(always)]
-    pub fn usbhs_deveptimr_blk_mode(
+    pub fn deveptimr_blk_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptimr_blk_mode::USBHS_DEVEPTIMR_BLK_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptimr_blk_mode::DEVEPTIMR_BLK_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(448usize)
-                as *const [crate::Reg<usbhs_deveptimr_blk_mode::USBHS_DEVEPTIMR_BLK_MODE_SPEC>; 10])
+                as *const [crate::Reg<deveptimr_blk_mode::DEVEPTIMR_BLK_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x1c0..0x1e8 - Device Endpoint Interrupt Mask Register"]
     #[inline(always)]
-    pub fn usbhs_deveptimr_iso_mode(
+    pub fn deveptimr_iso_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptimr_iso_mode::USBHS_DEVEPTIMR_ISO_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptimr_iso_mode::DEVEPTIMR_ISO_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(448usize)
-                as *const [crate::Reg<usbhs_deveptimr_iso_mode::USBHS_DEVEPTIMR_ISO_MODE_SPEC>; 10])
+                as *const [crate::Reg<deveptimr_iso_mode::DEVEPTIMR_ISO_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x1c0..0x1e8 - Device Endpoint Interrupt Mask Register"]
     #[inline(always)]
-    pub fn usbhs_deveptimr_ctrl_mode(
+    pub fn deveptimr_ctrl_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptimr_ctrl_mode::USBHS_DEVEPTIMR_CTRL_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptimr_ctrl_mode::DEVEPTIMR_CTRL_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(448usize)
-                as *const [crate::Reg<usbhs_deveptimr_ctrl_mode::USBHS_DEVEPTIMR_CTRL_MODE_SPEC>;
-                    10])
+                as *const [crate::Reg<deveptimr_ctrl_mode::DEVEPTIMR_CTRL_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x1f0..0x218 - Device Endpoint Interrupt Enable Register"]
     #[inline(always)]
-    pub fn usbhs_deveptier_intrpt_mode(
+    pub fn deveptier_intrpt_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptier_intrpt_mode::USBHS_DEVEPTIER_INTRPT_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptier_intrpt_mode::DEVEPTIER_INTRPT_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(496usize)
-                as *const [crate::Reg<
-                    usbhs_deveptier_intrpt_mode::USBHS_DEVEPTIER_INTRPT_MODE_SPEC,
-                >; 10])
+                as *const [crate::Reg<deveptier_intrpt_mode::DEVEPTIER_INTRPT_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x1f0..0x218 - Device Endpoint Interrupt Enable Register"]
     #[inline(always)]
-    pub fn usbhs_deveptier_blk_mode(
+    pub fn deveptier_blk_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptier_blk_mode::USBHS_DEVEPTIER_BLK_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptier_blk_mode::DEVEPTIER_BLK_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(496usize)
-                as *const [crate::Reg<usbhs_deveptier_blk_mode::USBHS_DEVEPTIER_BLK_MODE_SPEC>; 10])
+                as *const [crate::Reg<deveptier_blk_mode::DEVEPTIER_BLK_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x1f0..0x218 - Device Endpoint Interrupt Enable Register"]
     #[inline(always)]
-    pub fn usbhs_deveptier_iso_mode(
+    pub fn deveptier_iso_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptier_iso_mode::USBHS_DEVEPTIER_ISO_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptier_iso_mode::DEVEPTIER_ISO_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(496usize)
-                as *const [crate::Reg<usbhs_deveptier_iso_mode::USBHS_DEVEPTIER_ISO_MODE_SPEC>; 10])
+                as *const [crate::Reg<deveptier_iso_mode::DEVEPTIER_ISO_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x1f0..0x218 - Device Endpoint Interrupt Enable Register"]
     #[inline(always)]
-    pub fn usbhs_deveptier_ctrl_mode(
+    pub fn deveptier_ctrl_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptier_ctrl_mode::USBHS_DEVEPTIER_CTRL_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptier_ctrl_mode::DEVEPTIER_CTRL_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(496usize)
-                as *const [crate::Reg<usbhs_deveptier_ctrl_mode::USBHS_DEVEPTIER_CTRL_MODE_SPEC>;
-                    10])
+                as *const [crate::Reg<deveptier_ctrl_mode::DEVEPTIER_CTRL_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x220..0x248 - Device Endpoint Interrupt Disable Register"]
     #[inline(always)]
-    pub fn usbhs_deveptidr_intrpt_mode(
+    pub fn deveptidr_intrpt_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptidr_intrpt_mode::USBHS_DEVEPTIDR_INTRPT_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptidr_intrpt_mode::DEVEPTIDR_INTRPT_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(544usize)
-                as *const [crate::Reg<
-                    usbhs_deveptidr_intrpt_mode::USBHS_DEVEPTIDR_INTRPT_MODE_SPEC,
-                >; 10])
+                as *const [crate::Reg<deveptidr_intrpt_mode::DEVEPTIDR_INTRPT_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x220..0x248 - Device Endpoint Interrupt Disable Register"]
     #[inline(always)]
-    pub fn usbhs_deveptidr_blk_mode(
+    pub fn deveptidr_blk_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptidr_blk_mode::USBHS_DEVEPTIDR_BLK_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptidr_blk_mode::DEVEPTIDR_BLK_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(544usize)
-                as *const [crate::Reg<usbhs_deveptidr_blk_mode::USBHS_DEVEPTIDR_BLK_MODE_SPEC>; 10])
+                as *const [crate::Reg<deveptidr_blk_mode::DEVEPTIDR_BLK_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x220..0x248 - Device Endpoint Interrupt Disable Register"]
     #[inline(always)]
-    pub fn usbhs_deveptidr_iso_mode(
+    pub fn deveptidr_iso_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptidr_iso_mode::USBHS_DEVEPTIDR_ISO_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptidr_iso_mode::DEVEPTIDR_ISO_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(544usize)
-                as *const [crate::Reg<usbhs_deveptidr_iso_mode::USBHS_DEVEPTIDR_ISO_MODE_SPEC>; 10])
+                as *const [crate::Reg<deveptidr_iso_mode::DEVEPTIDR_ISO_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x220..0x248 - Device Endpoint Interrupt Disable Register"]
     #[inline(always)]
-    pub fn usbhs_deveptidr_ctrl_mode(
+    pub fn deveptidr_ctrl_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_deveptidr_ctrl_mode::USBHS_DEVEPTIDR_CTRL_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<deveptidr_ctrl_mode::DEVEPTIDR_CTRL_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(544usize)
-                as *const [crate::Reg<usbhs_deveptidr_ctrl_mode::USBHS_DEVEPTIDR_CTRL_MODE_SPEC>;
-                    10])
+                as *const [crate::Reg<deveptidr_ctrl_mode::DEVEPTIDR_CTRL_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x500..0x528 - Host Pipe Configuration Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipcfg_ctrl_bulk_mode(
+    pub fn hstpipcfg_ctrl_bulk_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipcfg_ctrl_bulk_mode::USBHS_HSTPIPCFG_CTRL_BULK_MODE_SPEC>; 10]
-    {
+    ) -> &[crate::Reg<hstpipcfg_ctrl_bulk_mode::HSTPIPCFG_CTRL_BULK_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1280usize)
-                as *const [crate::Reg<
-                    usbhs_hstpipcfg_ctrl_bulk_mode::USBHS_HSTPIPCFG_CTRL_BULK_MODE_SPEC,
-                >; 10])
+                as *const [crate::Reg<hstpipcfg_ctrl_bulk_mode::HSTPIPCFG_CTRL_BULK_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x500..0x528 - Host Pipe Configuration Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipcfg(&self) -> &[crate::Reg<usbhs_hstpipcfg::USBHS_HSTPIPCFG_SPEC>; 10] {
+    pub fn hstpipcfg(&self) -> &[crate::Reg<hstpipcfg::HSTPIPCFG_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1280usize)
-                as *const [crate::Reg<usbhs_hstpipcfg::USBHS_HSTPIPCFG_SPEC>; 10])
+                as *const [crate::Reg<hstpipcfg::HSTPIPCFG_SPEC>; 10])
         }
     }
     #[doc = "0x530..0x558 - Host Pipe Status Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipisr_intrpt_mode(
+    pub fn hstpipisr_intrpt_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipisr_intrpt_mode::USBHS_HSTPIPISR_INTRPT_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipisr_intrpt_mode::HSTPIPISR_INTRPT_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1328usize)
-                as *const [crate::Reg<
-                    usbhs_hstpipisr_intrpt_mode::USBHS_HSTPIPISR_INTRPT_MODE_SPEC,
-                >; 10])
+                as *const [crate::Reg<hstpipisr_intrpt_mode::HSTPIPISR_INTRPT_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x530..0x558 - Host Pipe Status Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipisr_blk_mode(
+    pub fn hstpipisr_blk_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipisr_blk_mode::USBHS_HSTPIPISR_BLK_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipisr_blk_mode::HSTPIPISR_BLK_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1328usize)
-                as *const [crate::Reg<usbhs_hstpipisr_blk_mode::USBHS_HSTPIPISR_BLK_MODE_SPEC>; 10])
+                as *const [crate::Reg<hstpipisr_blk_mode::HSTPIPISR_BLK_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x530..0x558 - Host Pipe Status Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipisr_iso_mode(
+    pub fn hstpipisr_iso_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipisr_iso_mode::USBHS_HSTPIPISR_ISO_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipisr_iso_mode::HSTPIPISR_ISO_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1328usize)
-                as *const [crate::Reg<usbhs_hstpipisr_iso_mode::USBHS_HSTPIPISR_ISO_MODE_SPEC>; 10])
+                as *const [crate::Reg<hstpipisr_iso_mode::HSTPIPISR_ISO_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x530..0x558 - Host Pipe Status Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipisr_ctrl_mode(
+    pub fn hstpipisr_ctrl_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipisr_ctrl_mode::USBHS_HSTPIPISR_CTRL_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipisr_ctrl_mode::HSTPIPISR_CTRL_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1328usize)
-                as *const [crate::Reg<usbhs_hstpipisr_ctrl_mode::USBHS_HSTPIPISR_CTRL_MODE_SPEC>;
-                    10])
+                as *const [crate::Reg<hstpipisr_ctrl_mode::HSTPIPISR_CTRL_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x560..0x588 - Host Pipe Clear Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipicr_intrpt_mode(
+    pub fn hstpipicr_intrpt_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipicr_intrpt_mode::USBHS_HSTPIPICR_INTRPT_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipicr_intrpt_mode::HSTPIPICR_INTRPT_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1376usize)
-                as *const [crate::Reg<
-                    usbhs_hstpipicr_intrpt_mode::USBHS_HSTPIPICR_INTRPT_MODE_SPEC,
-                >; 10])
+                as *const [crate::Reg<hstpipicr_intrpt_mode::HSTPIPICR_INTRPT_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x560..0x588 - Host Pipe Clear Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipicr_blk_mode(
+    pub fn hstpipicr_blk_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipicr_blk_mode::USBHS_HSTPIPICR_BLK_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipicr_blk_mode::HSTPIPICR_BLK_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1376usize)
-                as *const [crate::Reg<usbhs_hstpipicr_blk_mode::USBHS_HSTPIPICR_BLK_MODE_SPEC>; 10])
+                as *const [crate::Reg<hstpipicr_blk_mode::HSTPIPICR_BLK_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x560..0x588 - Host Pipe Clear Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipicr_iso_mode(
+    pub fn hstpipicr_iso_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipicr_iso_mode::USBHS_HSTPIPICR_ISO_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipicr_iso_mode::HSTPIPICR_ISO_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1376usize)
-                as *const [crate::Reg<usbhs_hstpipicr_iso_mode::USBHS_HSTPIPICR_ISO_MODE_SPEC>; 10])
+                as *const [crate::Reg<hstpipicr_iso_mode::HSTPIPICR_ISO_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x560..0x588 - Host Pipe Clear Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipicr_ctrl_mode(
+    pub fn hstpipicr_ctrl_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipicr_ctrl_mode::USBHS_HSTPIPICR_CTRL_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipicr_ctrl_mode::HSTPIPICR_CTRL_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1376usize)
-                as *const [crate::Reg<usbhs_hstpipicr_ctrl_mode::USBHS_HSTPIPICR_CTRL_MODE_SPEC>;
-                    10])
+                as *const [crate::Reg<hstpipicr_ctrl_mode::HSTPIPICR_CTRL_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x590..0x5b8 - Host Pipe Set Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipifr_intrpt_mode(
+    pub fn hstpipifr_intrpt_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipifr_intrpt_mode::USBHS_HSTPIPIFR_INTRPT_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipifr_intrpt_mode::HSTPIPIFR_INTRPT_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1424usize)
-                as *const [crate::Reg<
-                    usbhs_hstpipifr_intrpt_mode::USBHS_HSTPIPIFR_INTRPT_MODE_SPEC,
-                >; 10])
+                as *const [crate::Reg<hstpipifr_intrpt_mode::HSTPIPIFR_INTRPT_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x590..0x5b8 - Host Pipe Set Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipifr_blk_mode(
+    pub fn hstpipifr_blk_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipifr_blk_mode::USBHS_HSTPIPIFR_BLK_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipifr_blk_mode::HSTPIPIFR_BLK_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1424usize)
-                as *const [crate::Reg<usbhs_hstpipifr_blk_mode::USBHS_HSTPIPIFR_BLK_MODE_SPEC>; 10])
+                as *const [crate::Reg<hstpipifr_blk_mode::HSTPIPIFR_BLK_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x590..0x5b8 - Host Pipe Set Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipifr_iso_mode(
+    pub fn hstpipifr_iso_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipifr_iso_mode::USBHS_HSTPIPIFR_ISO_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipifr_iso_mode::HSTPIPIFR_ISO_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1424usize)
-                as *const [crate::Reg<usbhs_hstpipifr_iso_mode::USBHS_HSTPIPIFR_ISO_MODE_SPEC>; 10])
+                as *const [crate::Reg<hstpipifr_iso_mode::HSTPIPIFR_ISO_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x590..0x5b8 - Host Pipe Set Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipifr_ctrl_mode(
+    pub fn hstpipifr_ctrl_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipifr_ctrl_mode::USBHS_HSTPIPIFR_CTRL_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipifr_ctrl_mode::HSTPIPIFR_CTRL_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1424usize)
-                as *const [crate::Reg<usbhs_hstpipifr_ctrl_mode::USBHS_HSTPIPIFR_CTRL_MODE_SPEC>;
-                    10])
+                as *const [crate::Reg<hstpipifr_ctrl_mode::HSTPIPIFR_CTRL_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x5c0..0x5e8 - Host Pipe Mask Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipimr_intrpt_mode(
+    pub fn hstpipimr_intrpt_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipimr_intrpt_mode::USBHS_HSTPIPIMR_INTRPT_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipimr_intrpt_mode::HSTPIPIMR_INTRPT_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1472usize)
-                as *const [crate::Reg<
-                    usbhs_hstpipimr_intrpt_mode::USBHS_HSTPIPIMR_INTRPT_MODE_SPEC,
-                >; 10])
+                as *const [crate::Reg<hstpipimr_intrpt_mode::HSTPIPIMR_INTRPT_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x5c0..0x5e8 - Host Pipe Mask Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipimr_blk_mode(
+    pub fn hstpipimr_blk_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipimr_blk_mode::USBHS_HSTPIPIMR_BLK_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipimr_blk_mode::HSTPIPIMR_BLK_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1472usize)
-                as *const [crate::Reg<usbhs_hstpipimr_blk_mode::USBHS_HSTPIPIMR_BLK_MODE_SPEC>; 10])
+                as *const [crate::Reg<hstpipimr_blk_mode::HSTPIPIMR_BLK_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x5c0..0x5e8 - Host Pipe Mask Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipimr_iso_mode(
+    pub fn hstpipimr_iso_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipimr_iso_mode::USBHS_HSTPIPIMR_ISO_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipimr_iso_mode::HSTPIPIMR_ISO_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1472usize)
-                as *const [crate::Reg<usbhs_hstpipimr_iso_mode::USBHS_HSTPIPIMR_ISO_MODE_SPEC>; 10])
+                as *const [crate::Reg<hstpipimr_iso_mode::HSTPIPIMR_ISO_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x5c0..0x5e8 - Host Pipe Mask Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipimr_ctrl_mode(
+    pub fn hstpipimr_ctrl_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipimr_ctrl_mode::USBHS_HSTPIPIMR_CTRL_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipimr_ctrl_mode::HSTPIPIMR_CTRL_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1472usize)
-                as *const [crate::Reg<usbhs_hstpipimr_ctrl_mode::USBHS_HSTPIPIMR_CTRL_MODE_SPEC>;
-                    10])
+                as *const [crate::Reg<hstpipimr_ctrl_mode::HSTPIPIMR_CTRL_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x5f0..0x618 - Host Pipe Enable Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipier_intrpt_mode(
+    pub fn hstpipier_intrpt_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipier_intrpt_mode::USBHS_HSTPIPIER_INTRPT_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipier_intrpt_mode::HSTPIPIER_INTRPT_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1520usize)
-                as *const [crate::Reg<
-                    usbhs_hstpipier_intrpt_mode::USBHS_HSTPIPIER_INTRPT_MODE_SPEC,
-                >; 10])
+                as *const [crate::Reg<hstpipier_intrpt_mode::HSTPIPIER_INTRPT_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x5f0..0x618 - Host Pipe Enable Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipier_blk_mode(
+    pub fn hstpipier_blk_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipier_blk_mode::USBHS_HSTPIPIER_BLK_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipier_blk_mode::HSTPIPIER_BLK_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1520usize)
-                as *const [crate::Reg<usbhs_hstpipier_blk_mode::USBHS_HSTPIPIER_BLK_MODE_SPEC>; 10])
+                as *const [crate::Reg<hstpipier_blk_mode::HSTPIPIER_BLK_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x5f0..0x618 - Host Pipe Enable Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipier_iso_mode(
+    pub fn hstpipier_iso_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipier_iso_mode::USBHS_HSTPIPIER_ISO_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipier_iso_mode::HSTPIPIER_ISO_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1520usize)
-                as *const [crate::Reg<usbhs_hstpipier_iso_mode::USBHS_HSTPIPIER_ISO_MODE_SPEC>; 10])
+                as *const [crate::Reg<hstpipier_iso_mode::HSTPIPIER_ISO_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x5f0..0x618 - Host Pipe Enable Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipier_ctrl_mode(
+    pub fn hstpipier_ctrl_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipier_ctrl_mode::USBHS_HSTPIPIER_CTRL_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipier_ctrl_mode::HSTPIPIER_CTRL_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1520usize)
-                as *const [crate::Reg<usbhs_hstpipier_ctrl_mode::USBHS_HSTPIPIER_CTRL_MODE_SPEC>;
-                    10])
+                as *const [crate::Reg<hstpipier_ctrl_mode::HSTPIPIER_CTRL_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x620..0x648 - Host Pipe Disable Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipidr_intrpt_mode(
+    pub fn hstpipidr_intrpt_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipidr_intrpt_mode::USBHS_HSTPIPIDR_INTRPT_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipidr_intrpt_mode::HSTPIPIDR_INTRPT_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1568usize)
-                as *const [crate::Reg<
-                    usbhs_hstpipidr_intrpt_mode::USBHS_HSTPIPIDR_INTRPT_MODE_SPEC,
-                >; 10])
+                as *const [crate::Reg<hstpipidr_intrpt_mode::HSTPIPIDR_INTRPT_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x620..0x648 - Host Pipe Disable Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipidr_blk_mode(
+    pub fn hstpipidr_blk_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipidr_blk_mode::USBHS_HSTPIPIDR_BLK_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipidr_blk_mode::HSTPIPIDR_BLK_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1568usize)
-                as *const [crate::Reg<usbhs_hstpipidr_blk_mode::USBHS_HSTPIPIDR_BLK_MODE_SPEC>; 10])
+                as *const [crate::Reg<hstpipidr_blk_mode::HSTPIPIDR_BLK_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x620..0x648 - Host Pipe Disable Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipidr_iso_mode(
+    pub fn hstpipidr_iso_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipidr_iso_mode::USBHS_HSTPIPIDR_ISO_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipidr_iso_mode::HSTPIPIDR_ISO_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1568usize)
-                as *const [crate::Reg<usbhs_hstpipidr_iso_mode::USBHS_HSTPIPIDR_ISO_MODE_SPEC>; 10])
+                as *const [crate::Reg<hstpipidr_iso_mode::HSTPIPIDR_ISO_MODE_SPEC>; 10])
         }
     }
     #[doc = "0x620..0x648 - Host Pipe Disable Register"]
     #[inline(always)]
-    pub fn usbhs_hstpipidr_ctrl_mode(
+    pub fn hstpipidr_ctrl_mode(
         &self,
-    ) -> &[crate::Reg<usbhs_hstpipidr_ctrl_mode::USBHS_HSTPIPIDR_CTRL_MODE_SPEC>; 10] {
+    ) -> &[crate::Reg<hstpipidr_ctrl_mode::HSTPIPIDR_CTRL_MODE_SPEC>; 10] {
         unsafe {
             &*(((self as *const Self) as *const u8).add(1568usize)
-                as *const [crate::Reg<usbhs_hstpipidr_ctrl_mode::USBHS_HSTPIPIDR_CTRL_MODE_SPEC>;
-                    10])
+                as *const [crate::Reg<hstpipidr_ctrl_mode::HSTPIPIDR_CTRL_MODE_SPEC>; 10])
         }
     }
 }
@@ -638,17 +599,13 @@ impl RegisterBlock {
 #[repr(C)]
 pub struct USBHS_DEVDMA {
     #[doc = "0x00 - Device DMA Channel Next Descriptor Address Register"]
-    pub usbhs_devdmanxtdsc:
-        crate::Reg<self::usbhs_devdma::usbhs_devdmanxtdsc::USBHS_DEVDMANXTDSC_SPEC>,
+    pub devdmanxtdsc: crate::Reg<self::usbhs_devdma::devdmanxtdsc::DEVDMANXTDSC_SPEC>,
     #[doc = "0x04 - Device DMA Channel Address Register"]
-    pub usbhs_devdmaaddress:
-        crate::Reg<self::usbhs_devdma::usbhs_devdmaaddress::USBHS_DEVDMAADDRESS_SPEC>,
+    pub devdmaaddress: crate::Reg<self::usbhs_devdma::devdmaaddress::DEVDMAADDRESS_SPEC>,
     #[doc = "0x08 - Device DMA Channel Control Register"]
-    pub usbhs_devdmacontrol:
-        crate::Reg<self::usbhs_devdma::usbhs_devdmacontrol::USBHS_DEVDMACONTROL_SPEC>,
+    pub devdmacontrol: crate::Reg<self::usbhs_devdma::devdmacontrol::DEVDMACONTROL_SPEC>,
     #[doc = "0x0c - Device DMA Channel Status Register"]
-    pub usbhs_devdmastatus:
-        crate::Reg<self::usbhs_devdma::usbhs_devdmastatus::USBHS_DEVDMASTATUS_SPEC>,
+    pub devdmastatus: crate::Reg<self::usbhs_devdma::devdmastatus::DEVDMASTATUS_SPEC>,
 }
 #[doc = r"Register block"]
 #[doc = "Device DMA Channel Next Descriptor Address Register"]
@@ -657,379 +614,327 @@ pub mod usbhs_devdma;
 #[repr(C)]
 pub struct USBHS_HSTDMA {
     #[doc = "0x00 - Host DMA Channel Next Descriptor Address Register"]
-    pub usbhs_hstdmanxtdsc:
-        crate::Reg<self::usbhs_hstdma::usbhs_hstdmanxtdsc::USBHS_HSTDMANXTDSC_SPEC>,
+    pub hstdmanxtdsc: crate::Reg<self::usbhs_hstdma::hstdmanxtdsc::HSTDMANXTDSC_SPEC>,
     #[doc = "0x04 - Host DMA Channel Address Register"]
-    pub usbhs_hstdmaaddress:
-        crate::Reg<self::usbhs_hstdma::usbhs_hstdmaaddress::USBHS_HSTDMAADDRESS_SPEC>,
+    pub hstdmaaddress: crate::Reg<self::usbhs_hstdma::hstdmaaddress::HSTDMAADDRESS_SPEC>,
     #[doc = "0x08 - Host DMA Channel Control Register"]
-    pub usbhs_hstdmacontrol:
-        crate::Reg<self::usbhs_hstdma::usbhs_hstdmacontrol::USBHS_HSTDMACONTROL_SPEC>,
+    pub hstdmacontrol: crate::Reg<self::usbhs_hstdma::hstdmacontrol::HSTDMACONTROL_SPEC>,
     #[doc = "0x0c - Host DMA Channel Status Register"]
-    pub usbhs_hstdmastatus:
-        crate::Reg<self::usbhs_hstdma::usbhs_hstdmastatus::USBHS_HSTDMASTATUS_SPEC>,
+    pub hstdmastatus: crate::Reg<self::usbhs_hstdma::hstdmastatus::HSTDMASTATUS_SPEC>,
 }
 #[doc = r"Register block"]
 #[doc = "Host DMA Channel Next Descriptor Address Register"]
 pub mod usbhs_hstdma;
-#[doc = "USBHS_DEVCTRL register accessor: an alias for `Reg<USBHS_DEVCTRL_SPEC>`"]
-pub type USBHS_DEVCTRL = crate::Reg<usbhs_devctrl::USBHS_DEVCTRL_SPEC>;
+#[doc = "DEVCTRL register accessor: an alias for `Reg<DEVCTRL_SPEC>`"]
+pub type DEVCTRL = crate::Reg<devctrl::DEVCTRL_SPEC>;
 #[doc = "Device General Control Register"]
-pub mod usbhs_devctrl;
-#[doc = "USBHS_DEVISR register accessor: an alias for `Reg<USBHS_DEVISR_SPEC>`"]
-pub type USBHS_DEVISR = crate::Reg<usbhs_devisr::USBHS_DEVISR_SPEC>;
+pub mod devctrl;
+#[doc = "DEVISR register accessor: an alias for `Reg<DEVISR_SPEC>`"]
+pub type DEVISR = crate::Reg<devisr::DEVISR_SPEC>;
 #[doc = "Device Global Interrupt Status Register"]
-pub mod usbhs_devisr;
-#[doc = "USBHS_DEVICR register accessor: an alias for `Reg<USBHS_DEVICR_SPEC>`"]
-pub type USBHS_DEVICR = crate::Reg<usbhs_devicr::USBHS_DEVICR_SPEC>;
+pub mod devisr;
+#[doc = "DEVICR register accessor: an alias for `Reg<DEVICR_SPEC>`"]
+pub type DEVICR = crate::Reg<devicr::DEVICR_SPEC>;
 #[doc = "Device Global Interrupt Clear Register"]
-pub mod usbhs_devicr;
-#[doc = "USBHS_DEVIFR register accessor: an alias for `Reg<USBHS_DEVIFR_SPEC>`"]
-pub type USBHS_DEVIFR = crate::Reg<usbhs_devifr::USBHS_DEVIFR_SPEC>;
+pub mod devicr;
+#[doc = "DEVIFR register accessor: an alias for `Reg<DEVIFR_SPEC>`"]
+pub type DEVIFR = crate::Reg<devifr::DEVIFR_SPEC>;
 #[doc = "Device Global Interrupt Set Register"]
-pub mod usbhs_devifr;
-#[doc = "USBHS_DEVIMR register accessor: an alias for `Reg<USBHS_DEVIMR_SPEC>`"]
-pub type USBHS_DEVIMR = crate::Reg<usbhs_devimr::USBHS_DEVIMR_SPEC>;
+pub mod devifr;
+#[doc = "DEVIMR register accessor: an alias for `Reg<DEVIMR_SPEC>`"]
+pub type DEVIMR = crate::Reg<devimr::DEVIMR_SPEC>;
 #[doc = "Device Global Interrupt Mask Register"]
-pub mod usbhs_devimr;
-#[doc = "USBHS_DEVIDR register accessor: an alias for `Reg<USBHS_DEVIDR_SPEC>`"]
-pub type USBHS_DEVIDR = crate::Reg<usbhs_devidr::USBHS_DEVIDR_SPEC>;
+pub mod devimr;
+#[doc = "DEVIDR register accessor: an alias for `Reg<DEVIDR_SPEC>`"]
+pub type DEVIDR = crate::Reg<devidr::DEVIDR_SPEC>;
 #[doc = "Device Global Interrupt Disable Register"]
-pub mod usbhs_devidr;
-#[doc = "USBHS_DEVIER register accessor: an alias for `Reg<USBHS_DEVIER_SPEC>`"]
-pub type USBHS_DEVIER = crate::Reg<usbhs_devier::USBHS_DEVIER_SPEC>;
+pub mod devidr;
+#[doc = "DEVIER register accessor: an alias for `Reg<DEVIER_SPEC>`"]
+pub type DEVIER = crate::Reg<devier::DEVIER_SPEC>;
 #[doc = "Device Global Interrupt Enable Register"]
-pub mod usbhs_devier;
-#[doc = "USBHS_DEVEPT register accessor: an alias for `Reg<USBHS_DEVEPT_SPEC>`"]
-pub type USBHS_DEVEPT = crate::Reg<usbhs_devept::USBHS_DEVEPT_SPEC>;
+pub mod devier;
+#[doc = "DEVEPT register accessor: an alias for `Reg<DEVEPT_SPEC>`"]
+pub type DEVEPT = crate::Reg<devept::DEVEPT_SPEC>;
 #[doc = "Device Endpoint Register"]
-pub mod usbhs_devept;
-#[doc = "USBHS_DEVFNUM register accessor: an alias for `Reg<USBHS_DEVFNUM_SPEC>`"]
-pub type USBHS_DEVFNUM = crate::Reg<usbhs_devfnum::USBHS_DEVFNUM_SPEC>;
+pub mod devept;
+#[doc = "DEVFNUM register accessor: an alias for `Reg<DEVFNUM_SPEC>`"]
+pub type DEVFNUM = crate::Reg<devfnum::DEVFNUM_SPEC>;
 #[doc = "Device Frame Number Register"]
-pub mod usbhs_devfnum;
-#[doc = "USBHS_DEVEPTCFG register accessor: an alias for `Reg<USBHS_DEVEPTCFG_SPEC>`"]
-pub type USBHS_DEVEPTCFG = crate::Reg<usbhs_deveptcfg::USBHS_DEVEPTCFG_SPEC>;
+pub mod devfnum;
+#[doc = "DEVEPTCFG register accessor: an alias for `Reg<DEVEPTCFG_SPEC>`"]
+pub type DEVEPTCFG = crate::Reg<deveptcfg::DEVEPTCFG_SPEC>;
 #[doc = "Device Endpoint Configuration Register"]
-pub mod usbhs_deveptcfg;
-#[doc = "USBHS_DEVEPTISR_CTRL_MODE register accessor: an alias for `Reg<USBHS_DEVEPTISR_CTRL_MODE_SPEC>`"]
-pub type USBHS_DEVEPTISR_CTRL_MODE =
-    crate::Reg<usbhs_deveptisr_ctrl_mode::USBHS_DEVEPTISR_CTRL_MODE_SPEC>;
+pub mod deveptcfg;
+#[doc = "DEVEPTISR_CTRL_MODE register accessor: an alias for `Reg<DEVEPTISR_CTRL_MODE_SPEC>`"]
+pub type DEVEPTISR_CTRL_MODE = crate::Reg<deveptisr_ctrl_mode::DEVEPTISR_CTRL_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Status Register"]
-pub mod usbhs_deveptisr_ctrl_mode;
-#[doc = "USBHS_DEVEPTISR_ISO_MODE register accessor: an alias for `Reg<USBHS_DEVEPTISR_ISO_MODE_SPEC>`"]
-pub type USBHS_DEVEPTISR_ISO_MODE =
-    crate::Reg<usbhs_deveptisr_iso_mode::USBHS_DEVEPTISR_ISO_MODE_SPEC>;
+pub mod deveptisr_ctrl_mode;
+#[doc = "DEVEPTISR_ISO_MODE register accessor: an alias for `Reg<DEVEPTISR_ISO_MODE_SPEC>`"]
+pub type DEVEPTISR_ISO_MODE = crate::Reg<deveptisr_iso_mode::DEVEPTISR_ISO_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Status Register"]
-pub mod usbhs_deveptisr_iso_mode;
-#[doc = "USBHS_DEVEPTISR_BLK_MODE register accessor: an alias for `Reg<USBHS_DEVEPTISR_BLK_MODE_SPEC>`"]
-pub type USBHS_DEVEPTISR_BLK_MODE =
-    crate::Reg<usbhs_deveptisr_blk_mode::USBHS_DEVEPTISR_BLK_MODE_SPEC>;
+pub mod deveptisr_iso_mode;
+#[doc = "DEVEPTISR_BLK_MODE register accessor: an alias for `Reg<DEVEPTISR_BLK_MODE_SPEC>`"]
+pub type DEVEPTISR_BLK_MODE = crate::Reg<deveptisr_blk_mode::DEVEPTISR_BLK_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Status Register"]
-pub mod usbhs_deveptisr_blk_mode;
-#[doc = "USBHS_DEVEPTISR_INTRPT_MODE register accessor: an alias for `Reg<USBHS_DEVEPTISR_INTRPT_MODE_SPEC>`"]
-pub type USBHS_DEVEPTISR_INTRPT_MODE =
-    crate::Reg<usbhs_deveptisr_intrpt_mode::USBHS_DEVEPTISR_INTRPT_MODE_SPEC>;
+pub mod deveptisr_blk_mode;
+#[doc = "DEVEPTISR_INTRPT_MODE register accessor: an alias for `Reg<DEVEPTISR_INTRPT_MODE_SPEC>`"]
+pub type DEVEPTISR_INTRPT_MODE = crate::Reg<deveptisr_intrpt_mode::DEVEPTISR_INTRPT_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Status Register"]
-pub mod usbhs_deveptisr_intrpt_mode;
-#[doc = "USBHS_DEVEPTICR_CTRL_MODE register accessor: an alias for `Reg<USBHS_DEVEPTICR_CTRL_MODE_SPEC>`"]
-pub type USBHS_DEVEPTICR_CTRL_MODE =
-    crate::Reg<usbhs_devepticr_ctrl_mode::USBHS_DEVEPTICR_CTRL_MODE_SPEC>;
+pub mod deveptisr_intrpt_mode;
+#[doc = "DEVEPTICR_CTRL_MODE register accessor: an alias for `Reg<DEVEPTICR_CTRL_MODE_SPEC>`"]
+pub type DEVEPTICR_CTRL_MODE = crate::Reg<devepticr_ctrl_mode::DEVEPTICR_CTRL_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Clear Register"]
-pub mod usbhs_devepticr_ctrl_mode;
-#[doc = "USBHS_DEVEPTICR_ISO_MODE register accessor: an alias for `Reg<USBHS_DEVEPTICR_ISO_MODE_SPEC>`"]
-pub type USBHS_DEVEPTICR_ISO_MODE =
-    crate::Reg<usbhs_devepticr_iso_mode::USBHS_DEVEPTICR_ISO_MODE_SPEC>;
+pub mod devepticr_ctrl_mode;
+#[doc = "DEVEPTICR_ISO_MODE register accessor: an alias for `Reg<DEVEPTICR_ISO_MODE_SPEC>`"]
+pub type DEVEPTICR_ISO_MODE = crate::Reg<devepticr_iso_mode::DEVEPTICR_ISO_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Clear Register"]
-pub mod usbhs_devepticr_iso_mode;
-#[doc = "USBHS_DEVEPTICR_BLK_MODE register accessor: an alias for `Reg<USBHS_DEVEPTICR_BLK_MODE_SPEC>`"]
-pub type USBHS_DEVEPTICR_BLK_MODE =
-    crate::Reg<usbhs_devepticr_blk_mode::USBHS_DEVEPTICR_BLK_MODE_SPEC>;
+pub mod devepticr_iso_mode;
+#[doc = "DEVEPTICR_BLK_MODE register accessor: an alias for `Reg<DEVEPTICR_BLK_MODE_SPEC>`"]
+pub type DEVEPTICR_BLK_MODE = crate::Reg<devepticr_blk_mode::DEVEPTICR_BLK_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Clear Register"]
-pub mod usbhs_devepticr_blk_mode;
-#[doc = "USBHS_DEVEPTICR_INTRPT_MODE register accessor: an alias for `Reg<USBHS_DEVEPTICR_INTRPT_MODE_SPEC>`"]
-pub type USBHS_DEVEPTICR_INTRPT_MODE =
-    crate::Reg<usbhs_devepticr_intrpt_mode::USBHS_DEVEPTICR_INTRPT_MODE_SPEC>;
+pub mod devepticr_blk_mode;
+#[doc = "DEVEPTICR_INTRPT_MODE register accessor: an alias for `Reg<DEVEPTICR_INTRPT_MODE_SPEC>`"]
+pub type DEVEPTICR_INTRPT_MODE = crate::Reg<devepticr_intrpt_mode::DEVEPTICR_INTRPT_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Clear Register"]
-pub mod usbhs_devepticr_intrpt_mode;
-#[doc = "USBHS_DEVEPTIFR_CTRL_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIFR_CTRL_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIFR_CTRL_MODE =
-    crate::Reg<usbhs_deveptifr_ctrl_mode::USBHS_DEVEPTIFR_CTRL_MODE_SPEC>;
+pub mod devepticr_intrpt_mode;
+#[doc = "DEVEPTIFR_CTRL_MODE register accessor: an alias for `Reg<DEVEPTIFR_CTRL_MODE_SPEC>`"]
+pub type DEVEPTIFR_CTRL_MODE = crate::Reg<deveptifr_ctrl_mode::DEVEPTIFR_CTRL_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Set Register"]
-pub mod usbhs_deveptifr_ctrl_mode;
-#[doc = "USBHS_DEVEPTIFR_ISO_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIFR_ISO_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIFR_ISO_MODE =
-    crate::Reg<usbhs_deveptifr_iso_mode::USBHS_DEVEPTIFR_ISO_MODE_SPEC>;
+pub mod deveptifr_ctrl_mode;
+#[doc = "DEVEPTIFR_ISO_MODE register accessor: an alias for `Reg<DEVEPTIFR_ISO_MODE_SPEC>`"]
+pub type DEVEPTIFR_ISO_MODE = crate::Reg<deveptifr_iso_mode::DEVEPTIFR_ISO_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Set Register"]
-pub mod usbhs_deveptifr_iso_mode;
-#[doc = "USBHS_DEVEPTIFR_BLK_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIFR_BLK_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIFR_BLK_MODE =
-    crate::Reg<usbhs_deveptifr_blk_mode::USBHS_DEVEPTIFR_BLK_MODE_SPEC>;
+pub mod deveptifr_iso_mode;
+#[doc = "DEVEPTIFR_BLK_MODE register accessor: an alias for `Reg<DEVEPTIFR_BLK_MODE_SPEC>`"]
+pub type DEVEPTIFR_BLK_MODE = crate::Reg<deveptifr_blk_mode::DEVEPTIFR_BLK_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Set Register"]
-pub mod usbhs_deveptifr_blk_mode;
-#[doc = "USBHS_DEVEPTIFR_INTRPT_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIFR_INTRPT_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIFR_INTRPT_MODE =
-    crate::Reg<usbhs_deveptifr_intrpt_mode::USBHS_DEVEPTIFR_INTRPT_MODE_SPEC>;
+pub mod deveptifr_blk_mode;
+#[doc = "DEVEPTIFR_INTRPT_MODE register accessor: an alias for `Reg<DEVEPTIFR_INTRPT_MODE_SPEC>`"]
+pub type DEVEPTIFR_INTRPT_MODE = crate::Reg<deveptifr_intrpt_mode::DEVEPTIFR_INTRPT_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Set Register"]
-pub mod usbhs_deveptifr_intrpt_mode;
-#[doc = "USBHS_DEVEPTIMR_CTRL_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIMR_CTRL_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIMR_CTRL_MODE =
-    crate::Reg<usbhs_deveptimr_ctrl_mode::USBHS_DEVEPTIMR_CTRL_MODE_SPEC>;
+pub mod deveptifr_intrpt_mode;
+#[doc = "DEVEPTIMR_CTRL_MODE register accessor: an alias for `Reg<DEVEPTIMR_CTRL_MODE_SPEC>`"]
+pub type DEVEPTIMR_CTRL_MODE = crate::Reg<deveptimr_ctrl_mode::DEVEPTIMR_CTRL_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Mask Register"]
-pub mod usbhs_deveptimr_ctrl_mode;
-#[doc = "USBHS_DEVEPTIMR_ISO_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIMR_ISO_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIMR_ISO_MODE =
-    crate::Reg<usbhs_deveptimr_iso_mode::USBHS_DEVEPTIMR_ISO_MODE_SPEC>;
+pub mod deveptimr_ctrl_mode;
+#[doc = "DEVEPTIMR_ISO_MODE register accessor: an alias for `Reg<DEVEPTIMR_ISO_MODE_SPEC>`"]
+pub type DEVEPTIMR_ISO_MODE = crate::Reg<deveptimr_iso_mode::DEVEPTIMR_ISO_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Mask Register"]
-pub mod usbhs_deveptimr_iso_mode;
-#[doc = "USBHS_DEVEPTIMR_BLK_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIMR_BLK_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIMR_BLK_MODE =
-    crate::Reg<usbhs_deveptimr_blk_mode::USBHS_DEVEPTIMR_BLK_MODE_SPEC>;
+pub mod deveptimr_iso_mode;
+#[doc = "DEVEPTIMR_BLK_MODE register accessor: an alias for `Reg<DEVEPTIMR_BLK_MODE_SPEC>`"]
+pub type DEVEPTIMR_BLK_MODE = crate::Reg<deveptimr_blk_mode::DEVEPTIMR_BLK_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Mask Register"]
-pub mod usbhs_deveptimr_blk_mode;
-#[doc = "USBHS_DEVEPTIMR_INTRPT_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIMR_INTRPT_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIMR_INTRPT_MODE =
-    crate::Reg<usbhs_deveptimr_intrpt_mode::USBHS_DEVEPTIMR_INTRPT_MODE_SPEC>;
+pub mod deveptimr_blk_mode;
+#[doc = "DEVEPTIMR_INTRPT_MODE register accessor: an alias for `Reg<DEVEPTIMR_INTRPT_MODE_SPEC>`"]
+pub type DEVEPTIMR_INTRPT_MODE = crate::Reg<deveptimr_intrpt_mode::DEVEPTIMR_INTRPT_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Mask Register"]
-pub mod usbhs_deveptimr_intrpt_mode;
-#[doc = "USBHS_DEVEPTIER_CTRL_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIER_CTRL_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIER_CTRL_MODE =
-    crate::Reg<usbhs_deveptier_ctrl_mode::USBHS_DEVEPTIER_CTRL_MODE_SPEC>;
+pub mod deveptimr_intrpt_mode;
+#[doc = "DEVEPTIER_CTRL_MODE register accessor: an alias for `Reg<DEVEPTIER_CTRL_MODE_SPEC>`"]
+pub type DEVEPTIER_CTRL_MODE = crate::Reg<deveptier_ctrl_mode::DEVEPTIER_CTRL_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Enable Register"]
-pub mod usbhs_deveptier_ctrl_mode;
-#[doc = "USBHS_DEVEPTIER_ISO_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIER_ISO_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIER_ISO_MODE =
-    crate::Reg<usbhs_deveptier_iso_mode::USBHS_DEVEPTIER_ISO_MODE_SPEC>;
+pub mod deveptier_ctrl_mode;
+#[doc = "DEVEPTIER_ISO_MODE register accessor: an alias for `Reg<DEVEPTIER_ISO_MODE_SPEC>`"]
+pub type DEVEPTIER_ISO_MODE = crate::Reg<deveptier_iso_mode::DEVEPTIER_ISO_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Enable Register"]
-pub mod usbhs_deveptier_iso_mode;
-#[doc = "USBHS_DEVEPTIER_BLK_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIER_BLK_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIER_BLK_MODE =
-    crate::Reg<usbhs_deveptier_blk_mode::USBHS_DEVEPTIER_BLK_MODE_SPEC>;
+pub mod deveptier_iso_mode;
+#[doc = "DEVEPTIER_BLK_MODE register accessor: an alias for `Reg<DEVEPTIER_BLK_MODE_SPEC>`"]
+pub type DEVEPTIER_BLK_MODE = crate::Reg<deveptier_blk_mode::DEVEPTIER_BLK_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Enable Register"]
-pub mod usbhs_deveptier_blk_mode;
-#[doc = "USBHS_DEVEPTIER_INTRPT_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIER_INTRPT_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIER_INTRPT_MODE =
-    crate::Reg<usbhs_deveptier_intrpt_mode::USBHS_DEVEPTIER_INTRPT_MODE_SPEC>;
+pub mod deveptier_blk_mode;
+#[doc = "DEVEPTIER_INTRPT_MODE register accessor: an alias for `Reg<DEVEPTIER_INTRPT_MODE_SPEC>`"]
+pub type DEVEPTIER_INTRPT_MODE = crate::Reg<deveptier_intrpt_mode::DEVEPTIER_INTRPT_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Enable Register"]
-pub mod usbhs_deveptier_intrpt_mode;
-#[doc = "USBHS_DEVEPTIDR_CTRL_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIDR_CTRL_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIDR_CTRL_MODE =
-    crate::Reg<usbhs_deveptidr_ctrl_mode::USBHS_DEVEPTIDR_CTRL_MODE_SPEC>;
+pub mod deveptier_intrpt_mode;
+#[doc = "DEVEPTIDR_CTRL_MODE register accessor: an alias for `Reg<DEVEPTIDR_CTRL_MODE_SPEC>`"]
+pub type DEVEPTIDR_CTRL_MODE = crate::Reg<deveptidr_ctrl_mode::DEVEPTIDR_CTRL_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Disable Register"]
-pub mod usbhs_deveptidr_ctrl_mode;
-#[doc = "USBHS_DEVEPTIDR_ISO_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIDR_ISO_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIDR_ISO_MODE =
-    crate::Reg<usbhs_deveptidr_iso_mode::USBHS_DEVEPTIDR_ISO_MODE_SPEC>;
+pub mod deveptidr_ctrl_mode;
+#[doc = "DEVEPTIDR_ISO_MODE register accessor: an alias for `Reg<DEVEPTIDR_ISO_MODE_SPEC>`"]
+pub type DEVEPTIDR_ISO_MODE = crate::Reg<deveptidr_iso_mode::DEVEPTIDR_ISO_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Disable Register"]
-pub mod usbhs_deveptidr_iso_mode;
-#[doc = "USBHS_DEVEPTIDR_BLK_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIDR_BLK_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIDR_BLK_MODE =
-    crate::Reg<usbhs_deveptidr_blk_mode::USBHS_DEVEPTIDR_BLK_MODE_SPEC>;
+pub mod deveptidr_iso_mode;
+#[doc = "DEVEPTIDR_BLK_MODE register accessor: an alias for `Reg<DEVEPTIDR_BLK_MODE_SPEC>`"]
+pub type DEVEPTIDR_BLK_MODE = crate::Reg<deveptidr_blk_mode::DEVEPTIDR_BLK_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Disable Register"]
-pub mod usbhs_deveptidr_blk_mode;
-#[doc = "USBHS_DEVEPTIDR_INTRPT_MODE register accessor: an alias for `Reg<USBHS_DEVEPTIDR_INTRPT_MODE_SPEC>`"]
-pub type USBHS_DEVEPTIDR_INTRPT_MODE =
-    crate::Reg<usbhs_deveptidr_intrpt_mode::USBHS_DEVEPTIDR_INTRPT_MODE_SPEC>;
+pub mod deveptidr_blk_mode;
+#[doc = "DEVEPTIDR_INTRPT_MODE register accessor: an alias for `Reg<DEVEPTIDR_INTRPT_MODE_SPEC>`"]
+pub type DEVEPTIDR_INTRPT_MODE = crate::Reg<deveptidr_intrpt_mode::DEVEPTIDR_INTRPT_MODE_SPEC>;
 #[doc = "Device Endpoint Interrupt Disable Register"]
-pub mod usbhs_deveptidr_intrpt_mode;
-#[doc = "USBHS_HSTCTRL register accessor: an alias for `Reg<USBHS_HSTCTRL_SPEC>`"]
-pub type USBHS_HSTCTRL = crate::Reg<usbhs_hstctrl::USBHS_HSTCTRL_SPEC>;
+pub mod deveptidr_intrpt_mode;
+#[doc = "HSTCTRL register accessor: an alias for `Reg<HSTCTRL_SPEC>`"]
+pub type HSTCTRL = crate::Reg<hstctrl::HSTCTRL_SPEC>;
 #[doc = "Host General Control Register"]
-pub mod usbhs_hstctrl;
-#[doc = "USBHS_HSTISR register accessor: an alias for `Reg<USBHS_HSTISR_SPEC>`"]
-pub type USBHS_HSTISR = crate::Reg<usbhs_hstisr::USBHS_HSTISR_SPEC>;
+pub mod hstctrl;
+#[doc = "HSTISR register accessor: an alias for `Reg<HSTISR_SPEC>`"]
+pub type HSTISR = crate::Reg<hstisr::HSTISR_SPEC>;
 #[doc = "Host Global Interrupt Status Register"]
-pub mod usbhs_hstisr;
-#[doc = "USBHS_HSTICR register accessor: an alias for `Reg<USBHS_HSTICR_SPEC>`"]
-pub type USBHS_HSTICR = crate::Reg<usbhs_hsticr::USBHS_HSTICR_SPEC>;
+pub mod hstisr;
+#[doc = "HSTICR register accessor: an alias for `Reg<HSTICR_SPEC>`"]
+pub type HSTICR = crate::Reg<hsticr::HSTICR_SPEC>;
 #[doc = "Host Global Interrupt Clear Register"]
-pub mod usbhs_hsticr;
-#[doc = "USBHS_HSTIFR register accessor: an alias for `Reg<USBHS_HSTIFR_SPEC>`"]
-pub type USBHS_HSTIFR = crate::Reg<usbhs_hstifr::USBHS_HSTIFR_SPEC>;
+pub mod hsticr;
+#[doc = "HSTIFR register accessor: an alias for `Reg<HSTIFR_SPEC>`"]
+pub type HSTIFR = crate::Reg<hstifr::HSTIFR_SPEC>;
 #[doc = "Host Global Interrupt Set Register"]
-pub mod usbhs_hstifr;
-#[doc = "USBHS_HSTIMR register accessor: an alias for `Reg<USBHS_HSTIMR_SPEC>`"]
-pub type USBHS_HSTIMR = crate::Reg<usbhs_hstimr::USBHS_HSTIMR_SPEC>;
+pub mod hstifr;
+#[doc = "HSTIMR register accessor: an alias for `Reg<HSTIMR_SPEC>`"]
+pub type HSTIMR = crate::Reg<hstimr::HSTIMR_SPEC>;
 #[doc = "Host Global Interrupt Mask Register"]
-pub mod usbhs_hstimr;
-#[doc = "USBHS_HSTIDR register accessor: an alias for `Reg<USBHS_HSTIDR_SPEC>`"]
-pub type USBHS_HSTIDR = crate::Reg<usbhs_hstidr::USBHS_HSTIDR_SPEC>;
+pub mod hstimr;
+#[doc = "HSTIDR register accessor: an alias for `Reg<HSTIDR_SPEC>`"]
+pub type HSTIDR = crate::Reg<hstidr::HSTIDR_SPEC>;
 #[doc = "Host Global Interrupt Disable Register"]
-pub mod usbhs_hstidr;
-#[doc = "USBHS_HSTIER register accessor: an alias for `Reg<USBHS_HSTIER_SPEC>`"]
-pub type USBHS_HSTIER = crate::Reg<usbhs_hstier::USBHS_HSTIER_SPEC>;
+pub mod hstidr;
+#[doc = "HSTIER register accessor: an alias for `Reg<HSTIER_SPEC>`"]
+pub type HSTIER = crate::Reg<hstier::HSTIER_SPEC>;
 #[doc = "Host Global Interrupt Enable Register"]
-pub mod usbhs_hstier;
-#[doc = "USBHS_HSTPIP register accessor: an alias for `Reg<USBHS_HSTPIP_SPEC>`"]
-pub type USBHS_HSTPIP = crate::Reg<usbhs_hstpip::USBHS_HSTPIP_SPEC>;
+pub mod hstier;
+#[doc = "HSTPIP register accessor: an alias for `Reg<HSTPIP_SPEC>`"]
+pub type HSTPIP = crate::Reg<hstpip::HSTPIP_SPEC>;
 #[doc = "Host Pipe Register"]
-pub mod usbhs_hstpip;
-#[doc = "USBHS_HSTFNUM register accessor: an alias for `Reg<USBHS_HSTFNUM_SPEC>`"]
-pub type USBHS_HSTFNUM = crate::Reg<usbhs_hstfnum::USBHS_HSTFNUM_SPEC>;
+pub mod hstpip;
+#[doc = "HSTFNUM register accessor: an alias for `Reg<HSTFNUM_SPEC>`"]
+pub type HSTFNUM = crate::Reg<hstfnum::HSTFNUM_SPEC>;
 #[doc = "Host Frame Number Register"]
-pub mod usbhs_hstfnum;
-#[doc = "USBHS_HSTADDR1 register accessor: an alias for `Reg<USBHS_HSTADDR1_SPEC>`"]
-pub type USBHS_HSTADDR1 = crate::Reg<usbhs_hstaddr1::USBHS_HSTADDR1_SPEC>;
+pub mod hstfnum;
+#[doc = "HSTADDR1 register accessor: an alias for `Reg<HSTADDR1_SPEC>`"]
+pub type HSTADDR1 = crate::Reg<hstaddr1::HSTADDR1_SPEC>;
 #[doc = "Host Address 1 Register"]
-pub mod usbhs_hstaddr1;
-#[doc = "USBHS_HSTADDR2 register accessor: an alias for `Reg<USBHS_HSTADDR2_SPEC>`"]
-pub type USBHS_HSTADDR2 = crate::Reg<usbhs_hstaddr2::USBHS_HSTADDR2_SPEC>;
+pub mod hstaddr1;
+#[doc = "HSTADDR2 register accessor: an alias for `Reg<HSTADDR2_SPEC>`"]
+pub type HSTADDR2 = crate::Reg<hstaddr2::HSTADDR2_SPEC>;
 #[doc = "Host Address 2 Register"]
-pub mod usbhs_hstaddr2;
-#[doc = "USBHS_HSTADDR3 register accessor: an alias for `Reg<USBHS_HSTADDR3_SPEC>`"]
-pub type USBHS_HSTADDR3 = crate::Reg<usbhs_hstaddr3::USBHS_HSTADDR3_SPEC>;
+pub mod hstaddr2;
+#[doc = "HSTADDR3 register accessor: an alias for `Reg<HSTADDR3_SPEC>`"]
+pub type HSTADDR3 = crate::Reg<hstaddr3::HSTADDR3_SPEC>;
 #[doc = "Host Address 3 Register"]
-pub mod usbhs_hstaddr3;
-#[doc = "USBHS_HSTPIPCFG register accessor: an alias for `Reg<USBHS_HSTPIPCFG_SPEC>`"]
-pub type USBHS_HSTPIPCFG = crate::Reg<usbhs_hstpipcfg::USBHS_HSTPIPCFG_SPEC>;
+pub mod hstaddr3;
+#[doc = "HSTPIPCFG register accessor: an alias for `Reg<HSTPIPCFG_SPEC>`"]
+pub type HSTPIPCFG = crate::Reg<hstpipcfg::HSTPIPCFG_SPEC>;
 #[doc = "Host Pipe Configuration Register"]
-pub mod usbhs_hstpipcfg;
-#[doc = "USBHS_HSTPIPCFG_CTRL_BULK_MODE register accessor: an alias for `Reg<USBHS_HSTPIPCFG_CTRL_BULK_MODE_SPEC>`"]
-pub type USBHS_HSTPIPCFG_CTRL_BULK_MODE =
-    crate::Reg<usbhs_hstpipcfg_ctrl_bulk_mode::USBHS_HSTPIPCFG_CTRL_BULK_MODE_SPEC>;
+pub mod hstpipcfg;
+#[doc = "HSTPIPCFG_CTRL_BULK_MODE register accessor: an alias for `Reg<HSTPIPCFG_CTRL_BULK_MODE_SPEC>`"]
+pub type HSTPIPCFG_CTRL_BULK_MODE =
+    crate::Reg<hstpipcfg_ctrl_bulk_mode::HSTPIPCFG_CTRL_BULK_MODE_SPEC>;
 #[doc = "Host Pipe Configuration Register"]
-pub mod usbhs_hstpipcfg_ctrl_bulk_mode;
-#[doc = "USBHS_HSTPIPISR_CTRL_MODE register accessor: an alias for `Reg<USBHS_HSTPIPISR_CTRL_MODE_SPEC>`"]
-pub type USBHS_HSTPIPISR_CTRL_MODE =
-    crate::Reg<usbhs_hstpipisr_ctrl_mode::USBHS_HSTPIPISR_CTRL_MODE_SPEC>;
+pub mod hstpipcfg_ctrl_bulk_mode;
+#[doc = "HSTPIPISR_CTRL_MODE register accessor: an alias for `Reg<HSTPIPISR_CTRL_MODE_SPEC>`"]
+pub type HSTPIPISR_CTRL_MODE = crate::Reg<hstpipisr_ctrl_mode::HSTPIPISR_CTRL_MODE_SPEC>;
 #[doc = "Host Pipe Status Register"]
-pub mod usbhs_hstpipisr_ctrl_mode;
-#[doc = "USBHS_HSTPIPISR_ISO_MODE register accessor: an alias for `Reg<USBHS_HSTPIPISR_ISO_MODE_SPEC>`"]
-pub type USBHS_HSTPIPISR_ISO_MODE =
-    crate::Reg<usbhs_hstpipisr_iso_mode::USBHS_HSTPIPISR_ISO_MODE_SPEC>;
+pub mod hstpipisr_ctrl_mode;
+#[doc = "HSTPIPISR_ISO_MODE register accessor: an alias for `Reg<HSTPIPISR_ISO_MODE_SPEC>`"]
+pub type HSTPIPISR_ISO_MODE = crate::Reg<hstpipisr_iso_mode::HSTPIPISR_ISO_MODE_SPEC>;
 #[doc = "Host Pipe Status Register"]
-pub mod usbhs_hstpipisr_iso_mode;
-#[doc = "USBHS_HSTPIPISR_BLK_MODE register accessor: an alias for `Reg<USBHS_HSTPIPISR_BLK_MODE_SPEC>`"]
-pub type USBHS_HSTPIPISR_BLK_MODE =
-    crate::Reg<usbhs_hstpipisr_blk_mode::USBHS_HSTPIPISR_BLK_MODE_SPEC>;
+pub mod hstpipisr_iso_mode;
+#[doc = "HSTPIPISR_BLK_MODE register accessor: an alias for `Reg<HSTPIPISR_BLK_MODE_SPEC>`"]
+pub type HSTPIPISR_BLK_MODE = crate::Reg<hstpipisr_blk_mode::HSTPIPISR_BLK_MODE_SPEC>;
 #[doc = "Host Pipe Status Register"]
-pub mod usbhs_hstpipisr_blk_mode;
-#[doc = "USBHS_HSTPIPISR_INTRPT_MODE register accessor: an alias for `Reg<USBHS_HSTPIPISR_INTRPT_MODE_SPEC>`"]
-pub type USBHS_HSTPIPISR_INTRPT_MODE =
-    crate::Reg<usbhs_hstpipisr_intrpt_mode::USBHS_HSTPIPISR_INTRPT_MODE_SPEC>;
+pub mod hstpipisr_blk_mode;
+#[doc = "HSTPIPISR_INTRPT_MODE register accessor: an alias for `Reg<HSTPIPISR_INTRPT_MODE_SPEC>`"]
+pub type HSTPIPISR_INTRPT_MODE = crate::Reg<hstpipisr_intrpt_mode::HSTPIPISR_INTRPT_MODE_SPEC>;
 #[doc = "Host Pipe Status Register"]
-pub mod usbhs_hstpipisr_intrpt_mode;
-#[doc = "USBHS_HSTPIPICR_CTRL_MODE register accessor: an alias for `Reg<USBHS_HSTPIPICR_CTRL_MODE_SPEC>`"]
-pub type USBHS_HSTPIPICR_CTRL_MODE =
-    crate::Reg<usbhs_hstpipicr_ctrl_mode::USBHS_HSTPIPICR_CTRL_MODE_SPEC>;
+pub mod hstpipisr_intrpt_mode;
+#[doc = "HSTPIPICR_CTRL_MODE register accessor: an alias for `Reg<HSTPIPICR_CTRL_MODE_SPEC>`"]
+pub type HSTPIPICR_CTRL_MODE = crate::Reg<hstpipicr_ctrl_mode::HSTPIPICR_CTRL_MODE_SPEC>;
 #[doc = "Host Pipe Clear Register"]
-pub mod usbhs_hstpipicr_ctrl_mode;
-#[doc = "USBHS_HSTPIPICR_ISO_MODE register accessor: an alias for `Reg<USBHS_HSTPIPICR_ISO_MODE_SPEC>`"]
-pub type USBHS_HSTPIPICR_ISO_MODE =
-    crate::Reg<usbhs_hstpipicr_iso_mode::USBHS_HSTPIPICR_ISO_MODE_SPEC>;
+pub mod hstpipicr_ctrl_mode;
+#[doc = "HSTPIPICR_ISO_MODE register accessor: an alias for `Reg<HSTPIPICR_ISO_MODE_SPEC>`"]
+pub type HSTPIPICR_ISO_MODE = crate::Reg<hstpipicr_iso_mode::HSTPIPICR_ISO_MODE_SPEC>;
 #[doc = "Host Pipe Clear Register"]
-pub mod usbhs_hstpipicr_iso_mode;
-#[doc = "USBHS_HSTPIPICR_BLK_MODE register accessor: an alias for `Reg<USBHS_HSTPIPICR_BLK_MODE_SPEC>`"]
-pub type USBHS_HSTPIPICR_BLK_MODE =
-    crate::Reg<usbhs_hstpipicr_blk_mode::USBHS_HSTPIPICR_BLK_MODE_SPEC>;
+pub mod hstpipicr_iso_mode;
+#[doc = "HSTPIPICR_BLK_MODE register accessor: an alias for `Reg<HSTPIPICR_BLK_MODE_SPEC>`"]
+pub type HSTPIPICR_BLK_MODE = crate::Reg<hstpipicr_blk_mode::HSTPIPICR_BLK_MODE_SPEC>;
 #[doc = "Host Pipe Clear Register"]
-pub mod usbhs_hstpipicr_blk_mode;
-#[doc = "USBHS_HSTPIPICR_INTRPT_MODE register accessor: an alias for `Reg<USBHS_HSTPIPICR_INTRPT_MODE_SPEC>`"]
-pub type USBHS_HSTPIPICR_INTRPT_MODE =
-    crate::Reg<usbhs_hstpipicr_intrpt_mode::USBHS_HSTPIPICR_INTRPT_MODE_SPEC>;
+pub mod hstpipicr_blk_mode;
+#[doc = "HSTPIPICR_INTRPT_MODE register accessor: an alias for `Reg<HSTPIPICR_INTRPT_MODE_SPEC>`"]
+pub type HSTPIPICR_INTRPT_MODE = crate::Reg<hstpipicr_intrpt_mode::HSTPIPICR_INTRPT_MODE_SPEC>;
 #[doc = "Host Pipe Clear Register"]
-pub mod usbhs_hstpipicr_intrpt_mode;
-#[doc = "USBHS_HSTPIPIFR_CTRL_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIFR_CTRL_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIFR_CTRL_MODE =
-    crate::Reg<usbhs_hstpipifr_ctrl_mode::USBHS_HSTPIPIFR_CTRL_MODE_SPEC>;
+pub mod hstpipicr_intrpt_mode;
+#[doc = "HSTPIPIFR_CTRL_MODE register accessor: an alias for `Reg<HSTPIPIFR_CTRL_MODE_SPEC>`"]
+pub type HSTPIPIFR_CTRL_MODE = crate::Reg<hstpipifr_ctrl_mode::HSTPIPIFR_CTRL_MODE_SPEC>;
 #[doc = "Host Pipe Set Register"]
-pub mod usbhs_hstpipifr_ctrl_mode;
-#[doc = "USBHS_HSTPIPIFR_ISO_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIFR_ISO_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIFR_ISO_MODE =
-    crate::Reg<usbhs_hstpipifr_iso_mode::USBHS_HSTPIPIFR_ISO_MODE_SPEC>;
+pub mod hstpipifr_ctrl_mode;
+#[doc = "HSTPIPIFR_ISO_MODE register accessor: an alias for `Reg<HSTPIPIFR_ISO_MODE_SPEC>`"]
+pub type HSTPIPIFR_ISO_MODE = crate::Reg<hstpipifr_iso_mode::HSTPIPIFR_ISO_MODE_SPEC>;
 #[doc = "Host Pipe Set Register"]
-pub mod usbhs_hstpipifr_iso_mode;
-#[doc = "USBHS_HSTPIPIFR_BLK_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIFR_BLK_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIFR_BLK_MODE =
-    crate::Reg<usbhs_hstpipifr_blk_mode::USBHS_HSTPIPIFR_BLK_MODE_SPEC>;
+pub mod hstpipifr_iso_mode;
+#[doc = "HSTPIPIFR_BLK_MODE register accessor: an alias for `Reg<HSTPIPIFR_BLK_MODE_SPEC>`"]
+pub type HSTPIPIFR_BLK_MODE = crate::Reg<hstpipifr_blk_mode::HSTPIPIFR_BLK_MODE_SPEC>;
 #[doc = "Host Pipe Set Register"]
-pub mod usbhs_hstpipifr_blk_mode;
-#[doc = "USBHS_HSTPIPIFR_INTRPT_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIFR_INTRPT_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIFR_INTRPT_MODE =
-    crate::Reg<usbhs_hstpipifr_intrpt_mode::USBHS_HSTPIPIFR_INTRPT_MODE_SPEC>;
+pub mod hstpipifr_blk_mode;
+#[doc = "HSTPIPIFR_INTRPT_MODE register accessor: an alias for `Reg<HSTPIPIFR_INTRPT_MODE_SPEC>`"]
+pub type HSTPIPIFR_INTRPT_MODE = crate::Reg<hstpipifr_intrpt_mode::HSTPIPIFR_INTRPT_MODE_SPEC>;
 #[doc = "Host Pipe Set Register"]
-pub mod usbhs_hstpipifr_intrpt_mode;
-#[doc = "USBHS_HSTPIPIMR_CTRL_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIMR_CTRL_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIMR_CTRL_MODE =
-    crate::Reg<usbhs_hstpipimr_ctrl_mode::USBHS_HSTPIPIMR_CTRL_MODE_SPEC>;
+pub mod hstpipifr_intrpt_mode;
+#[doc = "HSTPIPIMR_CTRL_MODE register accessor: an alias for `Reg<HSTPIPIMR_CTRL_MODE_SPEC>`"]
+pub type HSTPIPIMR_CTRL_MODE = crate::Reg<hstpipimr_ctrl_mode::HSTPIPIMR_CTRL_MODE_SPEC>;
 #[doc = "Host Pipe Mask Register"]
-pub mod usbhs_hstpipimr_ctrl_mode;
-#[doc = "USBHS_HSTPIPIMR_ISO_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIMR_ISO_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIMR_ISO_MODE =
-    crate::Reg<usbhs_hstpipimr_iso_mode::USBHS_HSTPIPIMR_ISO_MODE_SPEC>;
+pub mod hstpipimr_ctrl_mode;
+#[doc = "HSTPIPIMR_ISO_MODE register accessor: an alias for `Reg<HSTPIPIMR_ISO_MODE_SPEC>`"]
+pub type HSTPIPIMR_ISO_MODE = crate::Reg<hstpipimr_iso_mode::HSTPIPIMR_ISO_MODE_SPEC>;
 #[doc = "Host Pipe Mask Register"]
-pub mod usbhs_hstpipimr_iso_mode;
-#[doc = "USBHS_HSTPIPIMR_BLK_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIMR_BLK_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIMR_BLK_MODE =
-    crate::Reg<usbhs_hstpipimr_blk_mode::USBHS_HSTPIPIMR_BLK_MODE_SPEC>;
+pub mod hstpipimr_iso_mode;
+#[doc = "HSTPIPIMR_BLK_MODE register accessor: an alias for `Reg<HSTPIPIMR_BLK_MODE_SPEC>`"]
+pub type HSTPIPIMR_BLK_MODE = crate::Reg<hstpipimr_blk_mode::HSTPIPIMR_BLK_MODE_SPEC>;
 #[doc = "Host Pipe Mask Register"]
-pub mod usbhs_hstpipimr_blk_mode;
-#[doc = "USBHS_HSTPIPIMR_INTRPT_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIMR_INTRPT_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIMR_INTRPT_MODE =
-    crate::Reg<usbhs_hstpipimr_intrpt_mode::USBHS_HSTPIPIMR_INTRPT_MODE_SPEC>;
+pub mod hstpipimr_blk_mode;
+#[doc = "HSTPIPIMR_INTRPT_MODE register accessor: an alias for `Reg<HSTPIPIMR_INTRPT_MODE_SPEC>`"]
+pub type HSTPIPIMR_INTRPT_MODE = crate::Reg<hstpipimr_intrpt_mode::HSTPIPIMR_INTRPT_MODE_SPEC>;
 #[doc = "Host Pipe Mask Register"]
-pub mod usbhs_hstpipimr_intrpt_mode;
-#[doc = "USBHS_HSTPIPIER_CTRL_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIER_CTRL_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIER_CTRL_MODE =
-    crate::Reg<usbhs_hstpipier_ctrl_mode::USBHS_HSTPIPIER_CTRL_MODE_SPEC>;
+pub mod hstpipimr_intrpt_mode;
+#[doc = "HSTPIPIER_CTRL_MODE register accessor: an alias for `Reg<HSTPIPIER_CTRL_MODE_SPEC>`"]
+pub type HSTPIPIER_CTRL_MODE = crate::Reg<hstpipier_ctrl_mode::HSTPIPIER_CTRL_MODE_SPEC>;
 #[doc = "Host Pipe Enable Register"]
-pub mod usbhs_hstpipier_ctrl_mode;
-#[doc = "USBHS_HSTPIPIER_ISO_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIER_ISO_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIER_ISO_MODE =
-    crate::Reg<usbhs_hstpipier_iso_mode::USBHS_HSTPIPIER_ISO_MODE_SPEC>;
+pub mod hstpipier_ctrl_mode;
+#[doc = "HSTPIPIER_ISO_MODE register accessor: an alias for `Reg<HSTPIPIER_ISO_MODE_SPEC>`"]
+pub type HSTPIPIER_ISO_MODE = crate::Reg<hstpipier_iso_mode::HSTPIPIER_ISO_MODE_SPEC>;
 #[doc = "Host Pipe Enable Register"]
-pub mod usbhs_hstpipier_iso_mode;
-#[doc = "USBHS_HSTPIPIER_BLK_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIER_BLK_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIER_BLK_MODE =
-    crate::Reg<usbhs_hstpipier_blk_mode::USBHS_HSTPIPIER_BLK_MODE_SPEC>;
+pub mod hstpipier_iso_mode;
+#[doc = "HSTPIPIER_BLK_MODE register accessor: an alias for `Reg<HSTPIPIER_BLK_MODE_SPEC>`"]
+pub type HSTPIPIER_BLK_MODE = crate::Reg<hstpipier_blk_mode::HSTPIPIER_BLK_MODE_SPEC>;
 #[doc = "Host Pipe Enable Register"]
-pub mod usbhs_hstpipier_blk_mode;
-#[doc = "USBHS_HSTPIPIER_INTRPT_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIER_INTRPT_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIER_INTRPT_MODE =
-    crate::Reg<usbhs_hstpipier_intrpt_mode::USBHS_HSTPIPIER_INTRPT_MODE_SPEC>;
+pub mod hstpipier_blk_mode;
+#[doc = "HSTPIPIER_INTRPT_MODE register accessor: an alias for `Reg<HSTPIPIER_INTRPT_MODE_SPEC>`"]
+pub type HSTPIPIER_INTRPT_MODE = crate::Reg<hstpipier_intrpt_mode::HSTPIPIER_INTRPT_MODE_SPEC>;
 #[doc = "Host Pipe Enable Register"]
-pub mod usbhs_hstpipier_intrpt_mode;
-#[doc = "USBHS_HSTPIPIDR_CTRL_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIDR_CTRL_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIDR_CTRL_MODE =
-    crate::Reg<usbhs_hstpipidr_ctrl_mode::USBHS_HSTPIPIDR_CTRL_MODE_SPEC>;
+pub mod hstpipier_intrpt_mode;
+#[doc = "HSTPIPIDR_CTRL_MODE register accessor: an alias for `Reg<HSTPIPIDR_CTRL_MODE_SPEC>`"]
+pub type HSTPIPIDR_CTRL_MODE = crate::Reg<hstpipidr_ctrl_mode::HSTPIPIDR_CTRL_MODE_SPEC>;
 #[doc = "Host Pipe Disable Register"]
-pub mod usbhs_hstpipidr_ctrl_mode;
-#[doc = "USBHS_HSTPIPIDR_ISO_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIDR_ISO_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIDR_ISO_MODE =
-    crate::Reg<usbhs_hstpipidr_iso_mode::USBHS_HSTPIPIDR_ISO_MODE_SPEC>;
+pub mod hstpipidr_ctrl_mode;
+#[doc = "HSTPIPIDR_ISO_MODE register accessor: an alias for `Reg<HSTPIPIDR_ISO_MODE_SPEC>`"]
+pub type HSTPIPIDR_ISO_MODE = crate::Reg<hstpipidr_iso_mode::HSTPIPIDR_ISO_MODE_SPEC>;
 #[doc = "Host Pipe Disable Register"]
-pub mod usbhs_hstpipidr_iso_mode;
-#[doc = "USBHS_HSTPIPIDR_BLK_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIDR_BLK_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIDR_BLK_MODE =
-    crate::Reg<usbhs_hstpipidr_blk_mode::USBHS_HSTPIPIDR_BLK_MODE_SPEC>;
+pub mod hstpipidr_iso_mode;
+#[doc = "HSTPIPIDR_BLK_MODE register accessor: an alias for `Reg<HSTPIPIDR_BLK_MODE_SPEC>`"]
+pub type HSTPIPIDR_BLK_MODE = crate::Reg<hstpipidr_blk_mode::HSTPIPIDR_BLK_MODE_SPEC>;
 #[doc = "Host Pipe Disable Register"]
-pub mod usbhs_hstpipidr_blk_mode;
-#[doc = "USBHS_HSTPIPIDR_INTRPT_MODE register accessor: an alias for `Reg<USBHS_HSTPIPIDR_INTRPT_MODE_SPEC>`"]
-pub type USBHS_HSTPIPIDR_INTRPT_MODE =
-    crate::Reg<usbhs_hstpipidr_intrpt_mode::USBHS_HSTPIPIDR_INTRPT_MODE_SPEC>;
+pub mod hstpipidr_blk_mode;
+#[doc = "HSTPIPIDR_INTRPT_MODE register accessor: an alias for `Reg<HSTPIPIDR_INTRPT_MODE_SPEC>`"]
+pub type HSTPIPIDR_INTRPT_MODE = crate::Reg<hstpipidr_intrpt_mode::HSTPIPIDR_INTRPT_MODE_SPEC>;
 #[doc = "Host Pipe Disable Register"]
-pub mod usbhs_hstpipidr_intrpt_mode;
-#[doc = "USBHS_HSTPIPINRQ register accessor: an alias for `Reg<USBHS_HSTPIPINRQ_SPEC>`"]
-pub type USBHS_HSTPIPINRQ = crate::Reg<usbhs_hstpipinrq::USBHS_HSTPIPINRQ_SPEC>;
+pub mod hstpipidr_intrpt_mode;
+#[doc = "HSTPIPINRQ register accessor: an alias for `Reg<HSTPIPINRQ_SPEC>`"]
+pub type HSTPIPINRQ = crate::Reg<hstpipinrq::HSTPIPINRQ_SPEC>;
 #[doc = "Host Pipe IN Request Register"]
-pub mod usbhs_hstpipinrq;
-#[doc = "USBHS_HSTPIPERR register accessor: an alias for `Reg<USBHS_HSTPIPERR_SPEC>`"]
-pub type USBHS_HSTPIPERR = crate::Reg<usbhs_hstpiperr::USBHS_HSTPIPERR_SPEC>;
+pub mod hstpipinrq;
+#[doc = "HSTPIPERR register accessor: an alias for `Reg<HSTPIPERR_SPEC>`"]
+pub type HSTPIPERR = crate::Reg<hstpiperr::HSTPIPERR_SPEC>;
 #[doc = "Host Pipe Error Register"]
-pub mod usbhs_hstpiperr;
-#[doc = "USBHS_CTRL register accessor: an alias for `Reg<USBHS_CTRL_SPEC>`"]
-pub type USBHS_CTRL = crate::Reg<usbhs_ctrl::USBHS_CTRL_SPEC>;
+pub mod hstpiperr;
+#[doc = "CTRL register accessor: an alias for `Reg<CTRL_SPEC>`"]
+pub type CTRL = crate::Reg<ctrl::CTRL_SPEC>;
 #[doc = "General Control Register"]
-pub mod usbhs_ctrl;
-#[doc = "USBHS_SR register accessor: an alias for `Reg<USBHS_SR_SPEC>`"]
-pub type USBHS_SR = crate::Reg<usbhs_sr::USBHS_SR_SPEC>;
+pub mod ctrl;
+#[doc = "SR register accessor: an alias for `Reg<SR_SPEC>`"]
+pub type SR = crate::Reg<sr::SR_SPEC>;
 #[doc = "General Status Register"]
-pub mod usbhs_sr;
-#[doc = "USBHS_SCR register accessor: an alias for `Reg<USBHS_SCR_SPEC>`"]
-pub type USBHS_SCR = crate::Reg<usbhs_scr::USBHS_SCR_SPEC>;
+pub mod sr;
+#[doc = "SCR register accessor: an alias for `Reg<SCR_SPEC>`"]
+pub type SCR = crate::Reg<scr::SCR_SPEC>;
 #[doc = "General Status Clear Register"]
-pub mod usbhs_scr;
-#[doc = "USBHS_SFR register accessor: an alias for `Reg<USBHS_SFR_SPEC>`"]
-pub type USBHS_SFR = crate::Reg<usbhs_sfr::USBHS_SFR_SPEC>;
+pub mod scr;
+#[doc = "SFR register accessor: an alias for `Reg<SFR_SPEC>`"]
+pub type SFR = crate::Reg<sfr::SFR_SPEC>;
 #[doc = "General Status Set Register"]
-pub mod usbhs_sfr;
+pub mod sfr;

@@ -1,32 +1,32 @@
-#[doc = "PWM_CMR register accessor: an alias for `Reg<PWM_CMR_SPEC>`"]
-pub type PWM_CMR = crate::Reg<pwm_cmr::PWM_CMR_SPEC>;
+#[doc = "CMR register accessor: an alias for `Reg<CMR_SPEC>`"]
+pub type CMR = crate::Reg<cmr::CMR_SPEC>;
 #[doc = "PWM Channel Mode Register (ch_num = 0)"]
-pub mod pwm_cmr;
-#[doc = "PWM_CDTY register accessor: an alias for `Reg<PWM_CDTY_SPEC>`"]
-pub type PWM_CDTY = crate::Reg<pwm_cdty::PWM_CDTY_SPEC>;
+pub mod cmr;
+#[doc = "CDTY register accessor: an alias for `Reg<CDTY_SPEC>`"]
+pub type CDTY = crate::Reg<cdty::CDTY_SPEC>;
 #[doc = "PWM Channel Duty Cycle Register (ch_num = 0)"]
-pub mod pwm_cdty;
-#[doc = "PWM_CDTYUPD register accessor: an alias for `Reg<PWM_CDTYUPD_SPEC>`"]
-pub type PWM_CDTYUPD = crate::Reg<pwm_cdtyupd::PWM_CDTYUPD_SPEC>;
+pub mod cdty;
+#[doc = "CDTYUPD register accessor: an alias for `Reg<CDTYUPD_SPEC>`"]
+pub type CDTYUPD = crate::Reg<cdtyupd::CDTYUPD_SPEC>;
 #[doc = "PWM Channel Duty Cycle Update Register (ch_num = 0)"]
-pub mod pwm_cdtyupd;
-#[doc = "PWM_CPRD register accessor: an alias for `Reg<PWM_CPRD_SPEC>`"]
-pub type PWM_CPRD = crate::Reg<pwm_cprd::PWM_CPRD_SPEC>;
+pub mod cdtyupd;
+#[doc = "CPRD register accessor: an alias for `Reg<CPRD_SPEC>`"]
+pub type CPRD = crate::Reg<cprd::CPRD_SPEC>;
 #[doc = "PWM Channel Period Register (ch_num = 0)"]
-pub mod pwm_cprd;
-#[doc = "PWM_CPRDUPD register accessor: an alias for `Reg<PWM_CPRDUPD_SPEC>`"]
-pub type PWM_CPRDUPD = crate::Reg<pwm_cprdupd::PWM_CPRDUPD_SPEC>;
+pub mod cprd;
+#[doc = "CPRDUPD register accessor: an alias for `Reg<CPRDUPD_SPEC>`"]
+pub type CPRDUPD = crate::Reg<cprdupd::CPRDUPD_SPEC>;
 #[doc = "PWM Channel Period Update Register (ch_num = 0)"]
-pub mod pwm_cprdupd;
-#[doc = "PWM_CCNT register accessor: an alias for `Reg<PWM_CCNT_SPEC>`"]
-pub type PWM_CCNT = crate::Reg<pwm_ccnt::PWM_CCNT_SPEC>;
+pub mod cprdupd;
+#[doc = "CCNT register accessor: an alias for `Reg<CCNT_SPEC>`"]
+pub type CCNT = crate::Reg<ccnt::CCNT_SPEC>;
 #[doc = "PWM Channel Counter Register (ch_num = 0)"]
-pub mod pwm_ccnt;
-#[doc = "PWM_DT register accessor: an alias for `Reg<PWM_DT_SPEC>`"]
-pub type PWM_DT = crate::Reg<pwm_dt::PWM_DT_SPEC>;
+pub mod ccnt;
+#[doc = "DT register accessor: an alias for `Reg<DT_SPEC>`"]
+pub type DT = crate::Reg<dt::DT_SPEC>;
 #[doc = "PWM Channel Dead Time Register (ch_num = 0)"]
-pub mod pwm_dt;
-#[doc = "PWM_DTUPD register accessor: an alias for `Reg<PWM_DTUPD_SPEC>`"]
-pub type PWM_DTUPD = crate::Reg<pwm_dtupd::PWM_DTUPD_SPEC>;
+pub mod dt;
+#[doc = "DTUPD register accessor: an alias for `Reg<DTUPD_SPEC>`"]
+pub type DTUPD = crate::Reg<dtupd::DTUPD_SPEC>;
 #[doc = "PWM Channel Dead Time Update Register (ch_num = 0)"]
-pub mod pwm_dtupd;
+pub mod dtupd;

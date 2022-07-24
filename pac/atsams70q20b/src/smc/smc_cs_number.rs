@@ -1,16 +1,16 @@
-#[doc = "SMC_SETUP register accessor: an alias for `Reg<SMC_SETUP_SPEC>`"]
-pub type SMC_SETUP = crate::Reg<smc_setup::SMC_SETUP_SPEC>;
+#[doc = "SETUP register accessor: an alias for `Reg<SETUP_SPEC>`"]
+pub type SETUP = crate::Reg<setup::SETUP_SPEC>;
 #[doc = "SMC Setup Register"]
-pub mod smc_setup;
-#[doc = "SMC_PULSE register accessor: an alias for `Reg<SMC_PULSE_SPEC>`"]
-pub type SMC_PULSE = crate::Reg<smc_pulse::SMC_PULSE_SPEC>;
+pub mod setup;
+#[doc = "PULSE register accessor: an alias for `Reg<PULSE_SPEC>`"]
+pub type PULSE = crate::Reg<pulse::PULSE_SPEC>;
 #[doc = "SMC Pulse Register"]
-pub mod smc_pulse;
-#[doc = "SMC_CYCLE register accessor: an alias for `Reg<SMC_CYCLE_SPEC>`"]
-pub type SMC_CYCLE = crate::Reg<smc_cycle::SMC_CYCLE_SPEC>;
+pub mod pulse;
+#[doc = "CYCLE register accessor: an alias for `Reg<CYCLE_SPEC>`"]
+pub type CYCLE = crate::Reg<cycle::CYCLE_SPEC>;
 #[doc = "SMC Cycle Register"]
-pub mod smc_cycle;
-#[doc = "SMC_MODE register accessor: an alias for `Reg<SMC_MODE_SPEC>`"]
-pub type SMC_MODE = crate::Reg<smc_mode::SMC_MODE_SPEC>;
+pub mod cycle;
+#[doc = "MODE register accessor: an alias for `Reg<MODE_SPEC>`"]
+pub type MODE = crate::Reg<mode::MODE_SPEC>;
 #[doc = "SMC Mode Register"]
-pub mod smc_mode;
+pub mod mode;

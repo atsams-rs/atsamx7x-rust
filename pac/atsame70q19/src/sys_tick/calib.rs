@@ -14,20 +14,7 @@ impl From<crate::R<CALIB_SPEC>> for R {
     }
 }
 #[doc = "Field `TENMS` reader - Reload value to use for 10ms timing"]
-pub struct TENMS_R(crate::FieldReader<u32, u32>);
-impl TENMS_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: u32) -> Self {
-        TENMS_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for TENMS_R {
-    type Target = crate::FieldReader<u32, u32>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type TENMS_R = crate::FieldReader<u32, u32>;
 #[doc = "Indicates whether the TENMS value is exact\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SKEW_A {
@@ -43,13 +30,9 @@ impl From<SKEW_A> for bool {
     }
 }
 #[doc = "Field `SKEW` reader - Indicates whether the TENMS value is exact"]
-pub struct SKEW_R(crate::FieldReader<bool, SKEW_A>);
+pub type SKEW_R = crate::BitReader<SKEW_A>;
 impl SKEW_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        SKEW_R(crate::FieldReader::new(bits))
-    }
-    #[doc = r"Get enumerated values variant"]
+    #[doc = "Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> SKEW_A {
         match self.bits {
@@ -60,19 +43,12 @@ impl SKEW_R {
     #[doc = "Checks if the value of the field is `VALUE_0`"]
     #[inline(always)]
     pub fn is_value_0(&self) -> bool {
-        **self == SKEW_A::VALUE_0
+        *self == SKEW_A::VALUE_0
     }
     #[doc = "Checks if the value of the field is `VALUE_1`"]
     #[inline(always)]
     pub fn is_value_1(&self) -> bool {
-        **self == SKEW_A::VALUE_1
-    }
-}
-impl core::ops::Deref for SKEW_R {
-    type Target = crate::FieldReader<bool, SKEW_A>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
+        *self == SKEW_A::VALUE_1
     }
 }
 #[doc = "Indicates whether the device provides a reference clock to the processor\n\nValue on reset: 0"]
@@ -90,13 +66,9 @@ impl From<NOREF_A> for bool {
     }
 }
 #[doc = "Field `NOREF` reader - Indicates whether the device provides a reference clock to the processor"]
-pub struct NOREF_R(crate::FieldReader<bool, NOREF_A>);
+pub type NOREF_R = crate::BitReader<NOREF_A>;
 impl NOREF_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        NOREF_R(crate::FieldReader::new(bits))
-    }
-    #[doc = r"Get enumerated values variant"]
+    #[doc = "Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> NOREF_A {
         match self.bits {
@@ -107,19 +79,12 @@ impl NOREF_R {
     #[doc = "Checks if the value of the field is `VALUE_0`"]
     #[inline(always)]
     pub fn is_value_0(&self) -> bool {
-        **self == NOREF_A::VALUE_0
+        *self == NOREF_A::VALUE_0
     }
     #[doc = "Checks if the value of the field is `VALUE_1`"]
     #[inline(always)]
     pub fn is_value_1(&self) -> bool {
-        **self == NOREF_A::VALUE_1
-    }
-}
-impl core::ops::Deref for NOREF_R {
-    type Target = crate::FieldReader<bool, NOREF_A>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
+        *self == NOREF_A::VALUE_1
     }
 }
 impl R {
@@ -131,12 +96,12 @@ impl R {
     #[doc = "Bit 30 - Indicates whether the TENMS value is exact"]
     #[inline(always)]
     pub fn skew(&self) -> SKEW_R {
-        SKEW_R::new(((self.bits >> 30) & 0x01) != 0)
+        SKEW_R::new(((self.bits >> 30) & 1) != 0)
     }
     #[doc = "Bit 31 - Indicates whether the device provides a reference clock to the processor"]
     #[inline(always)]
     pub fn noref(&self) -> NOREF_R {
-        NOREF_R::new(((self.bits >> 31) & 0x01) != 0)
+        NOREF_R::new(((self.bits >> 31) & 1) != 0)
     }
 }
 #[doc = "Calibration Value Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [calib](index.html) module"]

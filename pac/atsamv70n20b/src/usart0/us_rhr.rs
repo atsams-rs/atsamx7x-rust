@@ -14,35 +14,9 @@ impl From<crate::R<US_RHR_SPEC>> for R {
     }
 }
 #[doc = "Field `RXCHR` reader - Received Character"]
-pub struct RXCHR_R(crate::FieldReader<u16, u16>);
-impl RXCHR_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: u16) -> Self {
-        RXCHR_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for RXCHR_R {
-    type Target = crate::FieldReader<u16, u16>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type RXCHR_R = crate::FieldReader<u16, u16>;
 #[doc = "Field `RXSYNH` reader - Received Sync"]
-pub struct RXSYNH_R(crate::FieldReader<bool, bool>);
-impl RXSYNH_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        RXSYNH_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for RXSYNH_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type RXSYNH_R = crate::BitReader<bool>;
 impl R {
     #[doc = "Bits 0:8 - Received Character"]
     #[inline(always)]
@@ -52,7 +26,7 @@ impl R {
     #[doc = "Bit 15 - Received Sync"]
     #[inline(always)]
     pub fn rxsynh(&self) -> RXSYNH_R {
-        RXSYNH_R::new(((self.bits >> 15) & 0x01) != 0)
+        RXSYNH_R::new(((self.bits >> 15) & 1) != 0)
     }
 }
 #[doc = "Receive Holding Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [us_rhr](index.html) module"]

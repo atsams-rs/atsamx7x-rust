@@ -35,143 +35,21 @@ impl From<crate::W<CKGR_MCFR_SPEC>> for W {
     }
 }
 #[doc = "Field `MAINF` reader - Main Clock Frequency"]
-pub struct MAINF_R(crate::FieldReader<u16, u16>);
-impl MAINF_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: u16) -> Self {
-        MAINF_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for MAINF_R {
-    type Target = crate::FieldReader<u16, u16>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type MAINF_R = crate::FieldReader<u16, u16>;
 #[doc = "Field `MAINF` writer - Main Clock Frequency"]
-pub struct MAINF_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> MAINF_W<'a> {
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0xffff) | (value as u32 & 0xffff);
-        self.w
-    }
-}
+pub type MAINF_W<'a, const O: u8> = crate::FieldWriter<'a, u32, CKGR_MCFR_SPEC, u16, u16, 16, O>;
 #[doc = "Field `MAINFRDY` reader - Main Clock Frequency Measure Ready"]
-pub struct MAINFRDY_R(crate::FieldReader<bool, bool>);
-impl MAINFRDY_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        MAINFRDY_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for MAINFRDY_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type MAINFRDY_R = crate::BitReader<bool>;
 #[doc = "Field `MAINFRDY` writer - Main Clock Frequency Measure Ready"]
-pub struct MAINFRDY_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> MAINFRDY_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 16)) | ((value as u32 & 0x01) << 16);
-        self.w
-    }
-}
+pub type MAINFRDY_W<'a, const O: u8> = crate::BitWriter<'a, u32, CKGR_MCFR_SPEC, bool, O>;
 #[doc = "Field `RCMEAS` reader - RC Oscillator Frequency Measure (write-only)"]
-pub struct RCMEAS_R(crate::FieldReader<bool, bool>);
-impl RCMEAS_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        RCMEAS_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for RCMEAS_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type RCMEAS_R = crate::BitReader<bool>;
 #[doc = "Field `RCMEAS` writer - RC Oscillator Frequency Measure (write-only)"]
-pub struct RCMEAS_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> RCMEAS_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 20)) | ((value as u32 & 0x01) << 20);
-        self.w
-    }
-}
+pub type RCMEAS_W<'a, const O: u8> = crate::BitWriter<'a, u32, CKGR_MCFR_SPEC, bool, O>;
 #[doc = "Field `CCSS` reader - Counter Clock Source Selection"]
-pub struct CCSS_R(crate::FieldReader<bool, bool>);
-impl CCSS_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        CCSS_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for CCSS_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type CCSS_R = crate::BitReader<bool>;
 #[doc = "Field `CCSS` writer - Counter Clock Source Selection"]
-pub struct CCSS_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> CCSS_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 24)) | ((value as u32 & 0x01) << 24);
-        self.w
-    }
-}
+pub type CCSS_W<'a, const O: u8> = crate::BitWriter<'a, u32, CKGR_MCFR_SPEC, bool, O>;
 impl R {
     #[doc = "Bits 0:15 - Main Clock Frequency"]
     #[inline(always)]
@@ -181,39 +59,39 @@ impl R {
     #[doc = "Bit 16 - Main Clock Frequency Measure Ready"]
     #[inline(always)]
     pub fn mainfrdy(&self) -> MAINFRDY_R {
-        MAINFRDY_R::new(((self.bits >> 16) & 0x01) != 0)
+        MAINFRDY_R::new(((self.bits >> 16) & 1) != 0)
     }
     #[doc = "Bit 20 - RC Oscillator Frequency Measure (write-only)"]
     #[inline(always)]
     pub fn rcmeas(&self) -> RCMEAS_R {
-        RCMEAS_R::new(((self.bits >> 20) & 0x01) != 0)
+        RCMEAS_R::new(((self.bits >> 20) & 1) != 0)
     }
     #[doc = "Bit 24 - Counter Clock Source Selection"]
     #[inline(always)]
     pub fn ccss(&self) -> CCSS_R {
-        CCSS_R::new(((self.bits >> 24) & 0x01) != 0)
+        CCSS_R::new(((self.bits >> 24) & 1) != 0)
     }
 }
 impl W {
     #[doc = "Bits 0:15 - Main Clock Frequency"]
     #[inline(always)]
-    pub fn mainf(&mut self) -> MAINF_W {
-        MAINF_W { w: self }
+    pub fn mainf(&mut self) -> MAINF_W<0> {
+        MAINF_W::new(self)
     }
     #[doc = "Bit 16 - Main Clock Frequency Measure Ready"]
     #[inline(always)]
-    pub fn mainfrdy(&mut self) -> MAINFRDY_W {
-        MAINFRDY_W { w: self }
+    pub fn mainfrdy(&mut self) -> MAINFRDY_W<16> {
+        MAINFRDY_W::new(self)
     }
     #[doc = "Bit 20 - RC Oscillator Frequency Measure (write-only)"]
     #[inline(always)]
-    pub fn rcmeas(&mut self) -> RCMEAS_W {
-        RCMEAS_W { w: self }
+    pub fn rcmeas(&mut self) -> RCMEAS_W<20> {
+        RCMEAS_W::new(self)
     }
     #[doc = "Bit 24 - Counter Clock Source Selection"]
     #[inline(always)]
-    pub fn ccss(&mut self) -> CCSS_W {
-        CCSS_W { w: self }
+    pub fn ccss(&mut self) -> CCSS_W<24> {
+        CCSS_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

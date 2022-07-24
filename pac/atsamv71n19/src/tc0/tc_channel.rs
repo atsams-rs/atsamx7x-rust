@@ -1,52 +1,52 @@
-#[doc = "TC_CCR register accessor: an alias for `Reg<TC_CCR_SPEC>`"]
-pub type TC_CCR = crate::Reg<tc_ccr::TC_CCR_SPEC>;
+#[doc = "CCR register accessor: an alias for `Reg<CCR_SPEC>`"]
+pub type CCR = crate::Reg<ccr::CCR_SPEC>;
 #[doc = "Channel Control Register (channel = 0)"]
-pub mod tc_ccr;
-#[doc = "TC_CMR register accessor: an alias for `Reg<TC_CMR_SPEC>`"]
-pub type TC_CMR = crate::Reg<tc_cmr::TC_CMR_SPEC>;
+pub mod ccr;
+#[doc = "CMR register accessor: an alias for `Reg<CMR_SPEC>`"]
+pub type CMR = crate::Reg<cmr::CMR_SPEC>;
 #[doc = "Channel Mode Register (channel = 0)"]
-pub mod tc_cmr;
-#[doc = "TC_SMMR register accessor: an alias for `Reg<TC_SMMR_SPEC>`"]
-pub type TC_SMMR = crate::Reg<tc_smmr::TC_SMMR_SPEC>;
+pub mod cmr;
+#[doc = "SMMR register accessor: an alias for `Reg<SMMR_SPEC>`"]
+pub type SMMR = crate::Reg<smmr::SMMR_SPEC>;
 #[doc = "Stepper Motor Mode Register (channel = 0)"]
-pub mod tc_smmr;
-#[doc = "TC_RAB register accessor: an alias for `Reg<TC_RAB_SPEC>`"]
-pub type TC_RAB = crate::Reg<tc_rab::TC_RAB_SPEC>;
+pub mod smmr;
+#[doc = "RAB register accessor: an alias for `Reg<RAB_SPEC>`"]
+pub type RAB = crate::Reg<rab::RAB_SPEC>;
 #[doc = "Register AB (channel = 0)"]
-pub mod tc_rab;
-#[doc = "TC_CV register accessor: an alias for `Reg<TC_CV_SPEC>`"]
-pub type TC_CV = crate::Reg<tc_cv::TC_CV_SPEC>;
+pub mod rab;
+#[doc = "CV register accessor: an alias for `Reg<CV_SPEC>`"]
+pub type CV = crate::Reg<cv::CV_SPEC>;
 #[doc = "Counter Value (channel = 0)"]
-pub mod tc_cv;
-#[doc = "TC_RA register accessor: an alias for `Reg<TC_RA_SPEC>`"]
-pub type TC_RA = crate::Reg<tc_ra::TC_RA_SPEC>;
+pub mod cv;
+#[doc = "RA register accessor: an alias for `Reg<RA_SPEC>`"]
+pub type RA = crate::Reg<ra::RA_SPEC>;
 #[doc = "Register A (channel = 0)"]
-pub mod tc_ra;
-#[doc = "TC_RB register accessor: an alias for `Reg<TC_RB_SPEC>`"]
-pub type TC_RB = crate::Reg<tc_rb::TC_RB_SPEC>;
+pub mod ra;
+#[doc = "RB register accessor: an alias for `Reg<RB_SPEC>`"]
+pub type RB = crate::Reg<rb::RB_SPEC>;
 #[doc = "Register B (channel = 0)"]
-pub mod tc_rb;
-#[doc = "TC_RC register accessor: an alias for `Reg<TC_RC_SPEC>`"]
-pub type TC_RC = crate::Reg<tc_rc::TC_RC_SPEC>;
+pub mod rb;
+#[doc = "RC register accessor: an alias for `Reg<RC_SPEC>`"]
+pub type RC = crate::Reg<rc::RC_SPEC>;
 #[doc = "Register C (channel = 0)"]
-pub mod tc_rc;
-#[doc = "TC_SR register accessor: an alias for `Reg<TC_SR_SPEC>`"]
-pub type TC_SR = crate::Reg<tc_sr::TC_SR_SPEC>;
+pub mod rc;
+#[doc = "SR register accessor: an alias for `Reg<SR_SPEC>`"]
+pub type SR = crate::Reg<sr::SR_SPEC>;
 #[doc = "Status Register (channel = 0)"]
-pub mod tc_sr;
-#[doc = "TC_IER register accessor: an alias for `Reg<TC_IER_SPEC>`"]
-pub type TC_IER = crate::Reg<tc_ier::TC_IER_SPEC>;
+pub mod sr;
+#[doc = "IER register accessor: an alias for `Reg<IER_SPEC>`"]
+pub type IER = crate::Reg<ier::IER_SPEC>;
 #[doc = "Interrupt Enable Register (channel = 0)"]
-pub mod tc_ier;
-#[doc = "TC_IDR register accessor: an alias for `Reg<TC_IDR_SPEC>`"]
-pub type TC_IDR = crate::Reg<tc_idr::TC_IDR_SPEC>;
+pub mod ier;
+#[doc = "IDR register accessor: an alias for `Reg<IDR_SPEC>`"]
+pub type IDR = crate::Reg<idr::IDR_SPEC>;
 #[doc = "Interrupt Disable Register (channel = 0)"]
-pub mod tc_idr;
-#[doc = "TC_IMR register accessor: an alias for `Reg<TC_IMR_SPEC>`"]
-pub type TC_IMR = crate::Reg<tc_imr::TC_IMR_SPEC>;
+pub mod idr;
+#[doc = "IMR register accessor: an alias for `Reg<IMR_SPEC>`"]
+pub type IMR = crate::Reg<imr::IMR_SPEC>;
 #[doc = "Interrupt Mask Register (channel = 0)"]
-pub mod tc_imr;
-#[doc = "TC_EMR register accessor: an alias for `Reg<TC_EMR_SPEC>`"]
-pub type TC_EMR = crate::Reg<tc_emr::TC_EMR_SPEC>;
+pub mod imr;
+#[doc = "EMR register accessor: an alias for `Reg<EMR_SPEC>`"]
+pub type EMR = crate::Reg<emr::EMR_SPEC>;
 #[doc = "Extended Mode Register (channel = 0)"]
-pub mod tc_emr;
+pub mod emr;

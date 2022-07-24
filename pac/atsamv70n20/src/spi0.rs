@@ -2,71 +2,71 @@
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - Control Register"]
-    pub spi_cr: crate::Reg<spi_cr::SPI_CR_SPEC>,
+    pub cr: crate::Reg<cr::CR_SPEC>,
     #[doc = "0x04 - Mode Register"]
-    pub spi_mr: crate::Reg<spi_mr::SPI_MR_SPEC>,
+    pub mr: crate::Reg<mr::MR_SPEC>,
     #[doc = "0x08 - Receive Data Register"]
-    pub spi_rdr: crate::Reg<spi_rdr::SPI_RDR_SPEC>,
+    pub rdr: crate::Reg<rdr::RDR_SPEC>,
     #[doc = "0x0c - Transmit Data Register"]
-    pub spi_tdr: crate::Reg<spi_tdr::SPI_TDR_SPEC>,
+    pub tdr: crate::Reg<tdr::TDR_SPEC>,
     #[doc = "0x10 - Status Register"]
-    pub spi_sr: crate::Reg<spi_sr::SPI_SR_SPEC>,
+    pub sr: crate::Reg<sr::SR_SPEC>,
     #[doc = "0x14 - Interrupt Enable Register"]
-    pub spi_ier: crate::Reg<spi_ier::SPI_IER_SPEC>,
+    pub ier: crate::Reg<ier::IER_SPEC>,
     #[doc = "0x18 - Interrupt Disable Register"]
-    pub spi_idr: crate::Reg<spi_idr::SPI_IDR_SPEC>,
+    pub idr: crate::Reg<idr::IDR_SPEC>,
     #[doc = "0x1c - Interrupt Mask Register"]
-    pub spi_imr: crate::Reg<spi_imr::SPI_IMR_SPEC>,
+    pub imr: crate::Reg<imr::IMR_SPEC>,
     _reserved8: [u8; 0x10],
     #[doc = "0x30..0x40 - Chip Select Register (CS_number = 0) 0"]
-    pub spi_csr: [crate::Reg<spi_csr::SPI_CSR_SPEC>; 4],
+    pub csr: [crate::Reg<csr::CSR_SPEC>; 4],
     _reserved9: [u8; 0xa4],
     #[doc = "0xe4 - Write Protection Mode Register"]
-    pub spi_wpmr: crate::Reg<spi_wpmr::SPI_WPMR_SPEC>,
+    pub wpmr: crate::Reg<wpmr::WPMR_SPEC>,
     #[doc = "0xe8 - Write Protection Status Register"]
-    pub spi_wpsr: crate::Reg<spi_wpsr::SPI_WPSR_SPEC>,
+    pub wpsr: crate::Reg<wpsr::WPSR_SPEC>,
 }
-#[doc = "SPI_CR register accessor: an alias for `Reg<SPI_CR_SPEC>`"]
-pub type SPI_CR = crate::Reg<spi_cr::SPI_CR_SPEC>;
+#[doc = "CR register accessor: an alias for `Reg<CR_SPEC>`"]
+pub type CR = crate::Reg<cr::CR_SPEC>;
 #[doc = "Control Register"]
-pub mod spi_cr;
-#[doc = "SPI_MR register accessor: an alias for `Reg<SPI_MR_SPEC>`"]
-pub type SPI_MR = crate::Reg<spi_mr::SPI_MR_SPEC>;
+pub mod cr;
+#[doc = "MR register accessor: an alias for `Reg<MR_SPEC>`"]
+pub type MR = crate::Reg<mr::MR_SPEC>;
 #[doc = "Mode Register"]
-pub mod spi_mr;
-#[doc = "SPI_RDR register accessor: an alias for `Reg<SPI_RDR_SPEC>`"]
-pub type SPI_RDR = crate::Reg<spi_rdr::SPI_RDR_SPEC>;
+pub mod mr;
+#[doc = "RDR register accessor: an alias for `Reg<RDR_SPEC>`"]
+pub type RDR = crate::Reg<rdr::RDR_SPEC>;
 #[doc = "Receive Data Register"]
-pub mod spi_rdr;
-#[doc = "SPI_TDR register accessor: an alias for `Reg<SPI_TDR_SPEC>`"]
-pub type SPI_TDR = crate::Reg<spi_tdr::SPI_TDR_SPEC>;
+pub mod rdr;
+#[doc = "TDR register accessor: an alias for `Reg<TDR_SPEC>`"]
+pub type TDR = crate::Reg<tdr::TDR_SPEC>;
 #[doc = "Transmit Data Register"]
-pub mod spi_tdr;
-#[doc = "SPI_SR register accessor: an alias for `Reg<SPI_SR_SPEC>`"]
-pub type SPI_SR = crate::Reg<spi_sr::SPI_SR_SPEC>;
+pub mod tdr;
+#[doc = "SR register accessor: an alias for `Reg<SR_SPEC>`"]
+pub type SR = crate::Reg<sr::SR_SPEC>;
 #[doc = "Status Register"]
-pub mod spi_sr;
-#[doc = "SPI_IER register accessor: an alias for `Reg<SPI_IER_SPEC>`"]
-pub type SPI_IER = crate::Reg<spi_ier::SPI_IER_SPEC>;
+pub mod sr;
+#[doc = "IER register accessor: an alias for `Reg<IER_SPEC>`"]
+pub type IER = crate::Reg<ier::IER_SPEC>;
 #[doc = "Interrupt Enable Register"]
-pub mod spi_ier;
-#[doc = "SPI_IDR register accessor: an alias for `Reg<SPI_IDR_SPEC>`"]
-pub type SPI_IDR = crate::Reg<spi_idr::SPI_IDR_SPEC>;
+pub mod ier;
+#[doc = "IDR register accessor: an alias for `Reg<IDR_SPEC>`"]
+pub type IDR = crate::Reg<idr::IDR_SPEC>;
 #[doc = "Interrupt Disable Register"]
-pub mod spi_idr;
-#[doc = "SPI_IMR register accessor: an alias for `Reg<SPI_IMR_SPEC>`"]
-pub type SPI_IMR = crate::Reg<spi_imr::SPI_IMR_SPEC>;
+pub mod idr;
+#[doc = "IMR register accessor: an alias for `Reg<IMR_SPEC>`"]
+pub type IMR = crate::Reg<imr::IMR_SPEC>;
 #[doc = "Interrupt Mask Register"]
-pub mod spi_imr;
-#[doc = "SPI_CSR register accessor: an alias for `Reg<SPI_CSR_SPEC>`"]
-pub type SPI_CSR = crate::Reg<spi_csr::SPI_CSR_SPEC>;
+pub mod imr;
+#[doc = "CSR register accessor: an alias for `Reg<CSR_SPEC>`"]
+pub type CSR = crate::Reg<csr::CSR_SPEC>;
 #[doc = "Chip Select Register (CS_number = 0) 0"]
-pub mod spi_csr;
-#[doc = "SPI_WPMR register accessor: an alias for `Reg<SPI_WPMR_SPEC>`"]
-pub type SPI_WPMR = crate::Reg<spi_wpmr::SPI_WPMR_SPEC>;
+pub mod csr;
+#[doc = "WPMR register accessor: an alias for `Reg<WPMR_SPEC>`"]
+pub type WPMR = crate::Reg<wpmr::WPMR_SPEC>;
 #[doc = "Write Protection Mode Register"]
-pub mod spi_wpmr;
-#[doc = "SPI_WPSR register accessor: an alias for `Reg<SPI_WPSR_SPEC>`"]
-pub type SPI_WPSR = crate::Reg<spi_wpsr::SPI_WPSR_SPEC>;
+pub mod wpmr;
+#[doc = "WPSR register accessor: an alias for `Reg<WPSR_SPEC>`"]
+pub type WPSR = crate::Reg<wpsr::WPSR_SPEC>;
 #[doc = "Write Protection Status Register"]
-pub mod spi_wpsr;
+pub mod wpsr;

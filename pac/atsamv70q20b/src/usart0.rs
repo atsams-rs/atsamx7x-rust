@@ -102,16 +102,6 @@ impl RegisterBlock {
     }
     #[doc = "0x08 - Interrupt Enable Register"]
     #[inline(always)]
-    pub fn us_ier_lon_spi_mode(
-        &self,
-    ) -> &crate::Reg<us_ier_lon_spi_mode::US_IER_LON_SPI_MODE_SPEC> {
-        unsafe {
-            &*(((self as *const Self) as *const u8).add(8usize)
-                as *const crate::Reg<us_ier_lon_spi_mode::US_IER_LON_SPI_MODE_SPEC>)
-        }
-    }
-    #[doc = "0x08 - Interrupt Enable Register"]
-    #[inline(always)]
     pub fn us_ier_lon_mode(&self) -> &crate::Reg<us_ier_lon_mode::US_IER_LON_MODE_SPEC> {
         unsafe {
             &*(((self as *const Self) as *const u8).add(8usize)
@@ -136,30 +126,10 @@ impl RegisterBlock {
     }
     #[doc = "0x08 - Interrupt Enable Register"]
     #[inline(always)]
-    pub fn us_ier_usart_lin_mode(
-        &self,
-    ) -> &crate::Reg<us_ier_usart_lin_mode::US_IER_USART_LIN_MODE_SPEC> {
-        unsafe {
-            &*(((self as *const Self) as *const u8).add(8usize)
-                as *const crate::Reg<us_ier_usart_lin_mode::US_IER_USART_LIN_MODE_SPEC>)
-        }
-    }
-    #[doc = "0x08 - Interrupt Enable Register"]
-    #[inline(always)]
     pub fn us_ier_usart_mode(&self) -> &crate::Reg<us_ier_usart_mode::US_IER_USART_MODE_SPEC> {
         unsafe {
             &*(((self as *const Self) as *const u8).add(8usize)
                 as *const crate::Reg<us_ier_usart_mode::US_IER_USART_MODE_SPEC>)
-        }
-    }
-    #[doc = "0x0c - Interrupt Disable Register"]
-    #[inline(always)]
-    pub fn us_idr_lon_spi_mode(
-        &self,
-    ) -> &crate::Reg<us_idr_lon_spi_mode::US_IDR_LON_SPI_MODE_SPEC> {
-        unsafe {
-            &*(((self as *const Self) as *const u8).add(12usize)
-                as *const crate::Reg<us_idr_lon_spi_mode::US_IDR_LON_SPI_MODE_SPEC>)
         }
     }
     #[doc = "0x0c - Interrupt Disable Register"]
@@ -188,30 +158,10 @@ impl RegisterBlock {
     }
     #[doc = "0x0c - Interrupt Disable Register"]
     #[inline(always)]
-    pub fn us_idr_usart_lin_mode(
-        &self,
-    ) -> &crate::Reg<us_idr_usart_lin_mode::US_IDR_USART_LIN_MODE_SPEC> {
-        unsafe {
-            &*(((self as *const Self) as *const u8).add(12usize)
-                as *const crate::Reg<us_idr_usart_lin_mode::US_IDR_USART_LIN_MODE_SPEC>)
-        }
-    }
-    #[doc = "0x0c - Interrupt Disable Register"]
-    #[inline(always)]
     pub fn us_idr_usart_mode(&self) -> &crate::Reg<us_idr_usart_mode::US_IDR_USART_MODE_SPEC> {
         unsafe {
             &*(((self as *const Self) as *const u8).add(12usize)
                 as *const crate::Reg<us_idr_usart_mode::US_IDR_USART_MODE_SPEC>)
-        }
-    }
-    #[doc = "0x10 - Interrupt Mask Register"]
-    #[inline(always)]
-    pub fn us_imr_lon_spi_mode(
-        &self,
-    ) -> &crate::Reg<us_imr_lon_spi_mode::US_IMR_LON_SPI_MODE_SPEC> {
-        unsafe {
-            &*(((self as *const Self) as *const u8).add(16usize)
-                as *const crate::Reg<us_imr_lon_spi_mode::US_IMR_LON_SPI_MODE_SPEC>)
         }
     }
     #[doc = "0x10 - Interrupt Mask Register"]
@@ -240,30 +190,10 @@ impl RegisterBlock {
     }
     #[doc = "0x10 - Interrupt Mask Register"]
     #[inline(always)]
-    pub fn us_imr_usart_lin_mode(
-        &self,
-    ) -> &crate::Reg<us_imr_usart_lin_mode::US_IMR_USART_LIN_MODE_SPEC> {
-        unsafe {
-            &*(((self as *const Self) as *const u8).add(16usize)
-                as *const crate::Reg<us_imr_usart_lin_mode::US_IMR_USART_LIN_MODE_SPEC>)
-        }
-    }
-    #[doc = "0x10 - Interrupt Mask Register"]
-    #[inline(always)]
     pub fn us_imr_usart_mode(&self) -> &crate::Reg<us_imr_usart_mode::US_IMR_USART_MODE_SPEC> {
         unsafe {
             &*(((self as *const Self) as *const u8).add(16usize)
                 as *const crate::Reg<us_imr_usart_mode::US_IMR_USART_MODE_SPEC>)
-        }
-    }
-    #[doc = "0x14 - Channel Status Register"]
-    #[inline(always)]
-    pub fn us_csr_lon_spi_mode(
-        &self,
-    ) -> &crate::Reg<us_csr_lon_spi_mode::US_CSR_LON_SPI_MODE_SPEC> {
-        unsafe {
-            &*(((self as *const Self) as *const u8).add(20usize)
-                as *const crate::Reg<us_csr_lon_spi_mode::US_CSR_LON_SPI_MODE_SPEC>)
         }
     }
     #[doc = "0x14 - Channel Status Register"]
@@ -288,16 +218,6 @@ impl RegisterBlock {
         unsafe {
             &*(((self as *const Self) as *const u8).add(20usize)
                 as *const crate::Reg<us_csr_spi_mode::US_CSR_SPI_MODE_SPEC>)
-        }
-    }
-    #[doc = "0x14 - Channel Status Register"]
-    #[inline(always)]
-    pub fn us_csr_usart_lin_mode(
-        &self,
-    ) -> &crate::Reg<us_csr_usart_lin_mode::US_CSR_USART_LIN_MODE_SPEC> {
-        unsafe {
-            &*(((self as *const Self) as *const u8).add(20usize)
-                as *const crate::Reg<us_csr_usart_lin_mode::US_CSR_USART_LIN_MODE_SPEC>)
         }
     }
     #[doc = "0x14 - Channel Status Register"]
@@ -365,10 +285,6 @@ pub mod us_mr_spi_mode;
 pub type US_IER_USART_MODE = crate::Reg<us_ier_usart_mode::US_IER_USART_MODE_SPEC>;
 #[doc = "Interrupt Enable Register"]
 pub mod us_ier_usart_mode;
-#[doc = "US_IER_USART_LIN_MODE register accessor: an alias for `Reg<US_IER_USART_LIN_MODE_SPEC>`"]
-pub type US_IER_USART_LIN_MODE = crate::Reg<us_ier_usart_lin_mode::US_IER_USART_LIN_MODE_SPEC>;
-#[doc = "Interrupt Enable Register"]
-pub mod us_ier_usart_lin_mode;
 #[doc = "US_IER_SPI_MODE register accessor: an alias for `Reg<US_IER_SPI_MODE_SPEC>`"]
 pub type US_IER_SPI_MODE = crate::Reg<us_ier_spi_mode::US_IER_SPI_MODE_SPEC>;
 #[doc = "Interrupt Enable Register"]
@@ -381,18 +297,10 @@ pub mod us_ier_lin_mode;
 pub type US_IER_LON_MODE = crate::Reg<us_ier_lon_mode::US_IER_LON_MODE_SPEC>;
 #[doc = "Interrupt Enable Register"]
 pub mod us_ier_lon_mode;
-#[doc = "US_IER_LON_SPI_MODE register accessor: an alias for `Reg<US_IER_LON_SPI_MODE_SPEC>`"]
-pub type US_IER_LON_SPI_MODE = crate::Reg<us_ier_lon_spi_mode::US_IER_LON_SPI_MODE_SPEC>;
-#[doc = "Interrupt Enable Register"]
-pub mod us_ier_lon_spi_mode;
 #[doc = "US_IDR_USART_MODE register accessor: an alias for `Reg<US_IDR_USART_MODE_SPEC>`"]
 pub type US_IDR_USART_MODE = crate::Reg<us_idr_usart_mode::US_IDR_USART_MODE_SPEC>;
 #[doc = "Interrupt Disable Register"]
 pub mod us_idr_usart_mode;
-#[doc = "US_IDR_USART_LIN_MODE register accessor: an alias for `Reg<US_IDR_USART_LIN_MODE_SPEC>`"]
-pub type US_IDR_USART_LIN_MODE = crate::Reg<us_idr_usart_lin_mode::US_IDR_USART_LIN_MODE_SPEC>;
-#[doc = "Interrupt Disable Register"]
-pub mod us_idr_usart_lin_mode;
 #[doc = "US_IDR_SPI_MODE register accessor: an alias for `Reg<US_IDR_SPI_MODE_SPEC>`"]
 pub type US_IDR_SPI_MODE = crate::Reg<us_idr_spi_mode::US_IDR_SPI_MODE_SPEC>;
 #[doc = "Interrupt Disable Register"]
@@ -405,18 +313,10 @@ pub mod us_idr_lin_mode;
 pub type US_IDR_LON_MODE = crate::Reg<us_idr_lon_mode::US_IDR_LON_MODE_SPEC>;
 #[doc = "Interrupt Disable Register"]
 pub mod us_idr_lon_mode;
-#[doc = "US_IDR_LON_SPI_MODE register accessor: an alias for `Reg<US_IDR_LON_SPI_MODE_SPEC>`"]
-pub type US_IDR_LON_SPI_MODE = crate::Reg<us_idr_lon_spi_mode::US_IDR_LON_SPI_MODE_SPEC>;
-#[doc = "Interrupt Disable Register"]
-pub mod us_idr_lon_spi_mode;
 #[doc = "US_IMR_USART_MODE register accessor: an alias for `Reg<US_IMR_USART_MODE_SPEC>`"]
 pub type US_IMR_USART_MODE = crate::Reg<us_imr_usart_mode::US_IMR_USART_MODE_SPEC>;
 #[doc = "Interrupt Mask Register"]
 pub mod us_imr_usart_mode;
-#[doc = "US_IMR_USART_LIN_MODE register accessor: an alias for `Reg<US_IMR_USART_LIN_MODE_SPEC>`"]
-pub type US_IMR_USART_LIN_MODE = crate::Reg<us_imr_usart_lin_mode::US_IMR_USART_LIN_MODE_SPEC>;
-#[doc = "Interrupt Mask Register"]
-pub mod us_imr_usart_lin_mode;
 #[doc = "US_IMR_SPI_MODE register accessor: an alias for `Reg<US_IMR_SPI_MODE_SPEC>`"]
 pub type US_IMR_SPI_MODE = crate::Reg<us_imr_spi_mode::US_IMR_SPI_MODE_SPEC>;
 #[doc = "Interrupt Mask Register"]
@@ -429,18 +329,10 @@ pub mod us_imr_lin_mode;
 pub type US_IMR_LON_MODE = crate::Reg<us_imr_lon_mode::US_IMR_LON_MODE_SPEC>;
 #[doc = "Interrupt Mask Register"]
 pub mod us_imr_lon_mode;
-#[doc = "US_IMR_LON_SPI_MODE register accessor: an alias for `Reg<US_IMR_LON_SPI_MODE_SPEC>`"]
-pub type US_IMR_LON_SPI_MODE = crate::Reg<us_imr_lon_spi_mode::US_IMR_LON_SPI_MODE_SPEC>;
-#[doc = "Interrupt Mask Register"]
-pub mod us_imr_lon_spi_mode;
 #[doc = "US_CSR_USART_MODE register accessor: an alias for `Reg<US_CSR_USART_MODE_SPEC>`"]
 pub type US_CSR_USART_MODE = crate::Reg<us_csr_usart_mode::US_CSR_USART_MODE_SPEC>;
 #[doc = "Channel Status Register"]
 pub mod us_csr_usart_mode;
-#[doc = "US_CSR_USART_LIN_MODE register accessor: an alias for `Reg<US_CSR_USART_LIN_MODE_SPEC>`"]
-pub type US_CSR_USART_LIN_MODE = crate::Reg<us_csr_usart_lin_mode::US_CSR_USART_LIN_MODE_SPEC>;
-#[doc = "Channel Status Register"]
-pub mod us_csr_usart_lin_mode;
 #[doc = "US_CSR_SPI_MODE register accessor: an alias for `Reg<US_CSR_SPI_MODE_SPEC>`"]
 pub type US_CSR_SPI_MODE = crate::Reg<us_csr_spi_mode::US_CSR_SPI_MODE_SPEC>;
 #[doc = "Channel Status Register"]
@@ -453,10 +345,6 @@ pub mod us_csr_lin_mode;
 pub type US_CSR_LON_MODE = crate::Reg<us_csr_lon_mode::US_CSR_LON_MODE_SPEC>;
 #[doc = "Channel Status Register"]
 pub mod us_csr_lon_mode;
-#[doc = "US_CSR_LON_SPI_MODE register accessor: an alias for `Reg<US_CSR_LON_SPI_MODE_SPEC>`"]
-pub type US_CSR_LON_SPI_MODE = crate::Reg<us_csr_lon_spi_mode::US_CSR_LON_SPI_MODE_SPEC>;
-#[doc = "Channel Status Register"]
-pub mod us_csr_lon_spi_mode;
 #[doc = "US_RHR register accessor: an alias for `Reg<US_RHR_SPEC>`"]
 pub type US_RHR = crate::Reg<us_rhr::US_RHR_SPEC>;
 #[doc = "Receive Holding Register"]

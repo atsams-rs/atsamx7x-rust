@@ -35,32 +35,10 @@ impl From<crate::W<US_TTGR_LON_MODE_SPEC>> for W {
     }
 }
 #[doc = "Field `PCYCLE` reader - LON PCYCLE Length"]
-pub struct PCYCLE_R(crate::FieldReader<u32, u32>);
-impl PCYCLE_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: u32) -> Self {
-        PCYCLE_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for PCYCLE_R {
-    type Target = crate::FieldReader<u32, u32>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type PCYCLE_R = crate::FieldReader<u32, u32>;
 #[doc = "Field `PCYCLE` writer - LON PCYCLE Length"]
-pub struct PCYCLE_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> PCYCLE_W<'a> {
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub unsafe fn bits(self, value: u32) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x00ff_ffff) | (value as u32 & 0x00ff_ffff);
-        self.w
-    }
-}
+pub type PCYCLE_W<'a, const O: u8> =
+    crate::FieldWriter<'a, u32, US_TTGR_LON_MODE_SPEC, u32, u32, 24, O>;
 impl R {
     #[doc = "Bits 0:23 - LON PCYCLE Length"]
     #[inline(always)]
@@ -71,8 +49,8 @@ impl R {
 impl W {
     #[doc = "Bits 0:23 - LON PCYCLE Length"]
     #[inline(always)]
-    pub fn pcycle(&mut self) -> PCYCLE_W {
-        PCYCLE_W { w: self }
+    pub fn pcycle(&mut self) -> PCYCLE_W<0> {
+        PCYCLE_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

@@ -35,32 +35,10 @@ impl From<crate::W<US_FIDI_LON_MODE_SPEC>> for W {
     }
 }
 #[doc = "Field `BETA2` reader - LON BETA2 Length"]
-pub struct BETA2_R(crate::FieldReader<u32, u32>);
-impl BETA2_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: u32) -> Self {
-        BETA2_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for BETA2_R {
-    type Target = crate::FieldReader<u32, u32>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type BETA2_R = crate::FieldReader<u32, u32>;
 #[doc = "Field `BETA2` writer - LON BETA2 Length"]
-pub struct BETA2_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> BETA2_W<'a> {
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub unsafe fn bits(self, value: u32) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x00ff_ffff) | (value as u32 & 0x00ff_ffff);
-        self.w
-    }
-}
+pub type BETA2_W<'a, const O: u8> =
+    crate::FieldWriter<'a, u32, US_FIDI_LON_MODE_SPEC, u32, u32, 24, O>;
 impl R {
     #[doc = "Bits 0:23 - LON BETA2 Length"]
     #[inline(always)]
@@ -71,8 +49,8 @@ impl R {
 impl W {
     #[doc = "Bits 0:23 - LON BETA2 Length"]
     #[inline(always)]
-    pub fn beta2(&mut self) -> BETA2_W {
-        BETA2_W { w: self }
+    pub fn beta2(&mut self) -> BETA2_W<0> {
+        BETA2_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]
