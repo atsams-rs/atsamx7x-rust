@@ -189,7 +189,9 @@ impl Tokens {
         }
     }
 
-    #[doc(hidden)]
+    /// Consume all [`Clock`] [`Token`]s and yield the clock hierarchy
+    /// configuration present when the system has been powered on or
+    /// reset.
     pub fn por_state(self, efc: &mut crate::efc::Efc) -> (SlowClock<InternalRC>, HostClock) {
         let slck = self.slck.configure_internal();
         let mainck = self.mainck.configure_internal(InternalRcFreq::_12_MHZ);
