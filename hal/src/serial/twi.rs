@@ -276,6 +276,7 @@ macro_rules! impl_twi {
                         }
                     }
                 }
+                $( #[$cfg] )?
                 pub use [<$Twi:lower _impl>]::*;
             )+
         }

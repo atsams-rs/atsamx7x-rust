@@ -22,6 +22,12 @@ same70n21b:
     - cd hal
     - cargo check --features same70n21b,unproven
 
+same70j21b:
+  stage: HAL
+  script:
+    - cd hal
+    - cargo check --features same70j21b,unproven
+
 e70:
   stage: examples
   script:
