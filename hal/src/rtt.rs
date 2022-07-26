@@ -15,22 +15,37 @@ via [`Rtt::new_8192Hz`].
 
 # Usage example
 
-```
-let mut pmc = Pmc::new(ctx.device.PMC, &ctx.device.WDT.into());
-let slck = pmc.get_slck(ctx.device.SUPC, SlowCkSource::ExternalNormal);
-```
-and
-```
-let mono: Monotonic<100> = Rtt::new(ctx.device.RTT, &slck, 100.Hz()).into_monotonic();
+```no_run
+# use atsamx7x_hal as hal;
+# use hal::pio::*;
+# use hal::clocks::*;
+# use hal::efc::*;
+# use hal::rtt::*;
+# use hal::fugit::RateExtU32;
+# use rtic_monotonic::*;
+# let pac = hal::target_device::Peripherals::take().unwrap();
+# let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
+
+let mono: Mono<100> = Rtt::new(pac.RTT, &slck, 100.Hz()).unwrap().into_monotonic();
 ```
 or
-```
+```no_run
+# use atsamx7x_hal as hal;
+# use hal::pio::*;
+# use hal::clocks::*;
+# use hal::efc::*;
+# use hal::rtt::*;
+# use hal::fugit::RateExtU32;
+# use rtic_monotonic::Monotonic;
+# let pac = hal::target_device::Peripherals::take().unwrap();
+# let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
+
 use hal::ehal::{blocking::delay::DelayMs, timer::{CountDown, Cancel}};
 
-let mut timer: Monotonic<100> = Rtt::new(ctx.device.RTT, &slck, 100.Hz()).into_timer();
+let mut timer: Timer<100> = Rtt::new(pac.RTT, &slck, 100.Hz()).unwrap().into_timer();
 timer.delay_ms(100);
 timer.start(10.secs());
-timer.restart();
+timer.reset();
 // or
 timer.cancel().unwrap();
 // and when it is no longer needed
@@ -60,8 +75,16 @@ pub enum RttError {
     PrescalerOverflow,
     /// Type-level and run-time-level frequency information does not
     /// match. [`Rtt::new`] can be called as follows:
-    /// ```
-    /// let rtt: Rtt<100> = Rtt::new(RTT, &clk, 100.Hz()).unwrap();
+    /// ```no_run
+    /// # use atsamx7x_hal as hal;
+    /// # use hal::pio::*;
+    /// # use hal::clocks::*;
+    /// # use hal::efc::*;
+    /// # use hal::rtt::*;
+    /// # use hal::fugit::RateExtU32;
+    /// # let pac = hal::target_device::Peripherals::take().unwrap();
+    /// # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
+    /// let rtt: Rtt<100> = Rtt::new(pac.RTT, &slck, 100.Hz()).unwrap();
     /// ```
     FrequencyMismatch,
 }

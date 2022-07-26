@@ -9,65 +9,52 @@ extensively tested, and should be considered unstable at the moment.
 
 # Example usage
 
-```
-let mut pmc = Pmc::new(ctx.device.PMC, &ctx.device.WDT.into());
-let mainck = pmc
-    .get_mainck(MainCkSource::ExternalNormal(12.MHz()))
-    .unwrap();
-let upllck = pmc.get_upllck(&mainck, ctx.device.UTMI).unwrap();
-let upllckdiv = pmc.get_upllckdiv(&upllck, UpllDivider::Div2);
-pmc.get_hclk(
-    HostClockConfig {
-        pres: MckPrescaler::CLK_2,
-        div: MckDivider::EQ_PCK,
-    },
-    &upllckdiv,
-    &mut Efc::new(ctx.device.EFC, VddioLevel::V3),
-)
-.unwrap();
+```no_run
+# use atsamx7x_hal as hal;
+# use hal::pio::*;
+# use hal::clocks::*;
+# use hal::efc::*;
+# use hal::usb::*;
+# use hal::fugit::RateExtU32;
+# let pac = hal::target_device::Peripherals::take().unwrap();
+# let clocks = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into());
+# let slck = clocks.slck.configure_external_normal();
+# let mainck = clocks
+#     .mainck
+#     .configure_external_normal(12.MHz())
+#     .unwrap();
+# let pllack = clocks
+#     .pllack
+#     .configure(&mainck, PllaConfig { div: 1, mult: 12 })
+#     .unwrap();
+# let upllck = clocks.upllck.configure(&mainck).unwrap();
+# let upllckdiv = clocks.upllckdiv.configure(&upllck, UpllDivider::Div2);
+#
+# // configure the processor and peripheral clocks
+# let mut efc = Efc::new(pac.EFC, VddioLevel::V3);
+# let (hclk, mut mck) = HostClockController::new(clocks.hclk, clocks.mck)
+#     .configure(
+#         &upllckdiv,
+#         &mut efc,
+#         HostClockConfig {
+#             pres: HccPrescaler::Div1,
+#             div: MckDivider::Div1,
+#         },
+#     )
+#     .unwrap();
+use usb_device::prelude::*;
 
-let usb_alloc = unsafe {
-    USB_ALLOCATOR = Some(
-        hal::usb::Usb::new(ctx.device.USBHS, &mut pmc, &upllck).into_usb_allocator(),
-    );
-    USB_ALLOCATOR.as_ref().unwrap()
-};
-
-let serial = SerialPort::new(&usb_alloc);
-let usb_dev = UsbDeviceBuilder::new(&usb_alloc, UsbVidPid(0x16c0, 0x27dd))
+let usb_alloc = Usb::new(pac.USBHS, &mut mck, &upllck).into_usb_allocator();
+let mut usb_dev = UsbDeviceBuilder::new(&usb_alloc, UsbVidPid(0x16c0, 0x27dd))
     .manufacturer("Fake company")
     .product("Serial port")
     .serial_number("TEST")
-    .device_class(USB_CLASS_CDC)
     .max_packet_size_0(64) // makes control transfers 8x faster
     .build();
 
-let mut buf = [0u8; 64];
-
 loop {
-    if !usb_dev.poll(&mut [serial]) {
+    if !usb_dev.poll(&mut []) {
         continue;
-    }
-
-    let count = match serial.read(&mut buf) {
-        Ok(count) => count,
-        Err(UsbError::WouldBlock) => {
-            // No data received
-            continue;
-        }
-        Err(e) => {
-            // read error
-            continue;
-        }
-    };
-
-    match serial.write(&buf[..count]) {
-        Ok(count) => {
-            // echoed back count bytes
-        }
-        Err(e) => {
-            // write error
-        }
     }
 }
 ```

@@ -94,8 +94,8 @@ let (hclk, mck) = HostClockController::new(clocks.hclk, clocks.mck)
         &pllack,
         &mut efc,
         HostClockConfig {
-            pres: MckPrescaler::CLK_1,
-            div: MckDivider::EQ_PCK,
+            pres: HccPrescaler::Div1,
+            div: MckDivider::Div1,
         },
     )
     .unwrap();
@@ -187,6 +187,28 @@ impl Tokens {
             mck: Token::new(),
             pcks: PckTokens::new(),
         }
+    }
+
+    /// Consume all [`Clock`] [`Token`]s and yield the clock hierarchy
+    /// configuration present when the system has been powered on or
+    /// reset.
+    pub fn por_state(self, efc: &mut crate::efc::Efc) -> (SlowClock<InternalRC>, HostClock) {
+        let slck = self.slck.configure_internal();
+        let mainck = self.mainck.configure_internal(InternalRcFreq::_12_MHZ);
+
+        // configure the processor and peripheral clocks
+        let (_hclk, mck) = HostClockController::new(self.hclk, self.mck)
+            .configure(
+                &mainck,
+                efc,
+                HostClockConfig {
+                    pres: HccPrescaler::Div1,
+                    div: MckDivider::Div1,
+                },
+            )
+            .unwrap();
+
+        (slck, mck)
     }
 }
 

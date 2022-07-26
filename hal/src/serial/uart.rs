@@ -1,49 +1,67 @@
-//! Serial Communication (UART)
-//! ---
-//!
-//! This module contains the abstractions for the device's UART
-//! peripheral, by use of the [`Uart`] abstraction. The UART only
-//! supports 8-bit words with a single stop bit, but supports five
-//! parity options:
-//!
-//! - [`ParityMode::Even`],
-//! - [`ParityMode::Odd`],
-//! - [`ParityMode::Space`],
-//! - [`ParityMode::Mark`], or
-//! - [`ParityMode::None`],
-//!
-//! # Example usage
-//!
-//! ```no_run
-//! use crate::{pio::*, pmc::*, serial::uart::*};
-//!
-//! let ctx = crate::target_device::Peripherals::take().unwrap();
-//! let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC, &ctx.device.WDT.into());
-//! // Get main clock
-//! let mainck = pmc
-//!     .get_mainck(MainCkSource::ExternalBypass(Megahertz::from_raw(12)))
-//!     .unwrap();
-//! let upllck = pmc.get_upllck(&mainck, &mut ctx.device.UTMI).unwrap();
-//! let upllckdiv = pmc.get_upllckdiv(&upllck, UpllDivider::Div2);
-//! let pck: Pck<Pck4> = pmc.get_pck(&upllckdiv, 100 - 1);
-//!
-//! let banka = BankA::new(ctx.device.PIOA, &mut pmc, BankConfiguration::default());
-//!
-//! let tx = banka.pa10.into_peripheral::<A>();
-//! let rx = banka.pa9.into_peripheral::<A>();
-//! let mut uart = Uart::new_uart0(
-//!     ctx.device.UART0,
-//!     (tx, rx),
-//!     UartConfiguration::params_8n1(115_200.bps()).mode(ChannelMode::LOCAL_LOOPBACK),
-//!     &mut pmc,
-//!     &pck,
-//! )
-//! .unwrap();
-//! uart.listen(Event::RxReady);
-//!
-//! uart.bwrite(0xff).unwrap();
-//! assert_eq!(uart.read().unwrap(), 0xff);
-//! ```
+/*!
+Serial Communication (UART)
+---
+
+This module contains the abstractions for the device's UART
+peripheral, by use of the [`Uart`] abstraction. The UART only
+supports 8-bit words with a single stop bit, but supports five
+parity options:
+
+- [`ParityMode::Even`],
+- [`ParityMode::Odd`],
+- [`ParityMode::Space`],
+- [`ParityMode::Mark`], or
+- [`ParityMode::None`],
+
+# Example usage
+
+```no_run
+# use atsamx7x_hal as hal;
+# use hal::pio::*;
+# use hal::clocks::*;
+# use hal::efc::*;
+# use hal::serial::uart::*;
+# use hal::serial::ExtU32 as _;
+# use hal::fugit::{ExtU32, RateExtU32};
+# let pac = hal::target_device::Peripherals::take().unwrap();
+let clocks = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into());
+let slck = clocks.slck.configure_external_normal();
+let mainck = clocks
+    .mainck
+    .configure_external_normal(12.MHz())
+    .unwrap();
+let mut efc = Efc::new(pac.EFC, VddioLevel::V3);
+let (_hclk, mut mck) = HostClockController::new(clocks.hclk, clocks.mck)
+    .configure(
+        &mainck,
+        &mut efc,
+        HostClockConfig {
+            pres: HccPrescaler::Div1,
+            div: MckDivider::Div1,
+        },
+    )
+    .unwrap();
+let pck: Pck<Pck4> = clocks.pcks.pck4.configure(&mainck, 1);
+
+let banka = BankA::new(pac.PIOA, &mut mck, &slck, BankConfiguration::default());
+let tx = banka.pa10.into_peripheral::<A>();
+let rx = banka.pa9.into_peripheral::<A>();
+
+let mut uart = Uart::new_uart0(
+    pac.UART0,
+    (tx, rx),
+    UartConfiguration::default(115_200.bps()),
+    PeripheralClock::Other(&mut mck, &pck),
+)
+.unwrap();
+uart.listen(Event::RxReady);
+
+use hal::ehal::serial::{Read, Write};
+
+uart.write(0xff).unwrap();
+assert_eq!(uart.read().unwrap(), 0xff);
+```
+*/
 
 use crate::clocks::{Clock, HostClock, Pck, Pck4, PeripheralClock, PeripheralIdentifier};
 use crate::ehal::{self, blocking};

@@ -15,30 +15,12 @@ Examples for most implemented peripherals [can be found in the git repository, u
 After system start, the device's wathdog is active, and will trigger a
 system reset after about ~15 seconds. Additionally, before any work
 can be done, the clock hierarchy must be configured, because it is
-upstream of all other peripherals. Below is a clock hierarchy
-configuration example that also disabled the watchdog.
+upstream of all other peripherals. Refer to [`clocks`].
 
-```
-let mut efc = Efc::new(ctx.device.EFC, VddioLevel::V3);
-
-let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC, &ctx.device.WDT.into());
-let mainck = pmc
-    .get_mainck(MainCkSource::InternalRC(MainRcFreq::_12_MHZ))
-    .unwrap();
-let (hclk, mck) = pmc
-    .get_hclk(
-        HostClockConfig {
-            pres: MckPrescaler::CLK_1,
-            div: MckDivider::EQ_PCK,
-        },
-        &mainck,
-        &mut efc,
-    )
-    .unwrap();
-```
+[`clock`]: crate::clocks
 */
 
-#![no_std]
+#![cfg_attr(not(test), no_std)]
 #![deny(rustdoc::broken_intra_doc_links)]
 #![deny(rustdoc::private_intra_doc_links)]
 #![deny(missing_docs)]

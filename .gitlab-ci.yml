@@ -9,6 +9,19 @@ stages:
 default:
   before_script:
     - rustup show
+    - export CARGO_TARGET_DIR="$(pwd)/target"
+    - echo "$CARGO_TARGET_DIR"
+    - mkdir -p cargo-home
+    - export CARGO_HOME="$(pwd)/cargo-home"
+    - echo "$CARGO_HOME"
+  cache:
+    key: "$CI_PROJECT_PATH_SLUG"
+    paths:
+      - target/
+      - cargo-home/bin/
+      - cargo-home/registry/index/
+      - cargo-home/registry/cache/
+      - cargo-home/git/db/
 
 samv71q21b:
   stage: HAL
@@ -69,3 +82,10 @@ docs:
   script:
     - cd hal
     - cargo doc --features samv71q21b,unproven --no-deps
+
+doc tests:
+  stage: docs
+  needs: ["samv71q21b"]
+  script:
+    - cd hal
+    - cargo test --doc --features samv71q21b,unproven --target x86_64-unknown-linux-gnu
