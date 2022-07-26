@@ -69,10 +69,10 @@ client.write(b"Hello").unwrap();
 */
 
 use super::Bps;
+use crate::clocks::{Clock, HostClock, PeripheralIdentifier};
 use crate::ehal::blocking;
 use crate::fugit::{ExtU32, NanosDurationU32 as NanosDuration};
 use crate::pio::*;
-use crate::pmc::{HostClock, PeripheralIdentifier, Pmc};
 #[cfg(feature = "pins-144")]
 use crate::target_device::SPI1;
 use crate::target_device::{spi0::spi_tdr::PCS_AW as HwChipSelect, spi0::RegisterBlock, SPI0};
@@ -233,8 +233,8 @@ impl<M: SpiMeta> Spi<M> {
         unsafe { &*M::REG }
     }
 
-    fn new(pmc: &mut Pmc, cfg: SpiConfiguration) -> Result<Self, SpiError> {
-        pmc.enable_peripherals(&[M::PID]).unwrap();
+    fn new(mck: &mut HostClock, cfg: SpiConfiguration) -> Result<Self, SpiError> {
+        mck.enable_peripheral(M::PID);
 
         let mut spi = Spi {
             meta: PhantomData,
@@ -523,8 +523,8 @@ macro_rules! impl_spi {
                             _spi: [<$Spi:upper>],
                             _pins: (impl [<$Spi SpckPin>], impl [<$Spi MosiPin>], impl [<$Spi MisoPin>]),
                             cfg: SpiConfiguration,
-                            pmc: &mut Pmc) -> Result<Self, SpiError> {
-                            Self::new(pmc, cfg)
+                            mck: &mut HostClock) -> Result<Self, SpiError> {
+                            Self::new(mck, cfg)
                         }
 
                         /// Selects the client connected to the given

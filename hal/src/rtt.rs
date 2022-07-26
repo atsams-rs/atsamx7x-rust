@@ -38,8 +38,8 @@ timer.disable();
 ```
 */
 
+use crate::clocks::{Clock, SlowClock, SlowClockSource};
 use crate::ehal::{blocking::delay, timer};
-use crate::pmc::SlowClock;
 use crate::target_device::{rtt::rtt_sr::R as StatusRegister, RTT};
 pub use fugit::{ExtU32, RateExtU32};
 use fugit::{
@@ -98,7 +98,7 @@ impl Rtt<1> {
     ///
     /// This [`Rtt`] will overflow after 136 years.
     #[allow(non_snake_case)]
-    pub fn new_1Hz(rtt: RTT, clk: &SlowClock) -> Self {
+    pub fn new_1Hz<S: SlowClockSource>(rtt: RTT, clk: &SlowClock<S>) -> Self {
         // NOTE(unwrap): 1Hz is a valid frequency.
         Self::new(rtt, clk, 1.Hz()).unwrap()
     }
@@ -111,7 +111,7 @@ impl Rtt<8192> {
     ///
     /// This [`Rtt`] will overflow after 145 hours.
     #[allow(non_snake_case)]
-    pub fn new_8192Hz(rtt: RTT, clk: &SlowClock) -> Self {
+    pub fn new_8192Hz<S: SlowClockSource>(rtt: RTT, clk: &SlowClock<S>) -> Self {
         // NOTE(unwrap): 8192Hz is a valid frequency.
         Self::new(rtt, clk, 8192.Hz()).unwrap()
     }
@@ -135,7 +135,11 @@ impl<const FREQ_HZ: u32> Rtt<FREQ_HZ> {
     }
 
     /// Configure the [`Rtt`] at a tick-rate of `freq`Hz.
-    pub fn new(rtt: RTT, clk: &SlowClock, freq: Hertz) -> Result<Self, RttError> {
+    pub fn new<S: SlowClockSource>(
+        rtt: RTT,
+        clk: &SlowClock<S>,
+        freq: Hertz,
+    ) -> Result<Self, RttError> {
         if FREQ_HZ != freq.to_Hz() {
             return Err(RttError::FrequencyMismatch);
         }

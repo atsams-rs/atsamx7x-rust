@@ -8,6 +8,8 @@ use panic_rtt_target as _;
 mod app {
     use atsamx7x_hal as hal;
     use cortex_m::prelude::*;
+    use hal::clocks::*;
+    use hal::efc::*;
     use hal::fugit::ExtU32 as OtherExtU32;
     use hal::fugit::RateExtU32;
     use hal::nb::block;
@@ -30,33 +32,37 @@ mod app {
         rtt_init_print!();
         rprintln!("init");
 
-        let mut efc = {
-            use hal::efc::{Efc, VddioLevel};
-            Efc::new(ctx.device.EFC, VddioLevel::V3)
-        };
-        use hal::pmc::{HostClockConfig, MainCkSource, MckDivider, MckPrescaler};
-
-        // Disable the watchdog.
-        let wd = hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
-
-        let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC, &wd);
-        // Get main clock
-        let mainck = pmc
-            .get_mainck(MainCkSource::ExternalNormal(12.MHz()))
-            .unwrap();
-        let (_, hclk) = pmc
-            .get_hclk(
-                HostClockConfig {
-                    pres: MckPrescaler::CLK_1,
-                    div: MckDivider::EQ_PCK,
-                },
+        let clocks = Tokens::new(
+            (ctx.device.PMC, ctx.device.SUPC, ctx.device.UTMI),
+            &ctx.device.WDT.into(),
+        );
+        let slck = clocks.slck.configure_external_normal();
+        let mainck = clocks.mainck.configure_external_normal(12.MHz()).unwrap();
+        let (_hclk, mut mck) = HostClockController::new(clocks.hclk, clocks.mck)
+            .configure(
                 &mainck,
-                &mut efc,
+                &mut Efc::new(ctx.device.EFC, VddioLevel::V3),
+                HostClockConfig {
+                    pres: HccPrescaler::Div1,
+                    div: MckDivider::Div1,
+                },
             )
             .unwrap();
+
         // configure pin banks
-        let bankd = BankD::new(ctx.device.PIOD, &mut pmc, BankConfiguration::default());
-        let bankb = BankB::new(ctx.device.PIOB, &mut pmc, BankConfiguration::default());
+        let bankb = hal::pio::BankB::new(
+            ctx.device.PIOB,
+            &mut mck,
+            &slck,
+            BankConfiguration::default(),
+        );
+        let bankd = hal::pio::BankD::new(
+            ctx.device.PIOD,
+            &mut mck,
+            &slck,
+            BankConfiguration::default(),
+        );
+
         // configure pins in to alternate modes
         let miso = bankd.pd20.into_peripheral();
         let pck = bankd.pd22.into_peripheral();
@@ -68,7 +74,7 @@ mod app {
             ctx.device.SPI0,
             (pck, mosi, miso),
             SpiConfiguration::default().test_mode(true),
-            &mut pmc,
+            &mut mck,
         )
         .unwrap();
 
@@ -76,7 +82,7 @@ mod app {
             &pcs0,
             ClientConfiguration::default(115_200.bps(), hal::ehal::spi::MODE_0)
                 .delay_before_clock_edge(830.nanos()),
-            &hclk,
+            &mck,
         )
         .unwrap();
 

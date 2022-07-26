@@ -45,9 +45,9 @@
 //! assert_eq!(uart.read().unwrap(), 0xff);
 //! ```
 
+use crate::clocks::{Clock, HostClock, Pck, Pck4, PeripheralClock, PeripheralIdentifier};
 use crate::ehal::{self, blocking};
 use crate::pio::*;
-use crate::pmc::{Hertz, HostClock, Pck, Pck4, PeripheralIdentifier, Pmc};
 use crate::serial::Bps;
 use crate::target_device::uart0::uart_mr::{
     CHMODE_A as ChannelModeInner, PAR_A as ParityModeInner,
@@ -180,26 +180,17 @@ pub enum UartError {
 }
 
 /// A valid input clock for the [`Uart`].
-pub trait UartClock {
+pub trait UartClock: Clock {
     /// C.f. §47.6.2
     const BRSRCCK: bool;
-
-    /// Returns the frequency of the [`UartClock`].
-    fn freq(&self) -> Hertz;
 }
+
 impl UartClock for HostClock {
     const BRSRCCK: bool = false;
-
-    fn freq(&self) -> Hertz {
-        self.freq()
-    }
 }
+
 impl UartClock for Pck<Pck4> {
     const BRSRCCK: bool = true;
-
-    fn freq(&self) -> Hertz {
-        self.freq()
-    }
 }
 
 /// Transmit component of a [`Uart`]
@@ -293,18 +284,26 @@ impl<M: UartMeta> Uart<M> {
     }
 
     fn new<C: UartClock>(
-        pmc: &mut Pmc,
-        clk: &C,
+        clk: PeripheralClock<C>,
         conf: UartConfiguration,
     ) -> Result<Self, UartError> {
-        pmc.enable_peripherals(&[M::PID]).unwrap();
-
         let mut uart = Self {
             meta: PhantomData,
             tx: Tx { meta: PhantomData },
             rx: Rx { meta: PhantomData },
         };
-        uart.apply_config(clk, conf)?;
+
+        match clk {
+            PeripheralClock::Host(mck) => {
+                mck.enable_peripheral(M::PID);
+                uart.apply_config(mck, conf)?;
+            }
+            PeripheralClock::Other(mck, clk) => {
+                mck.enable_peripheral(M::PID);
+                uart.apply_config(clk, conf)?;
+            }
+        };
+
         Ok(uart)
     }
 
@@ -427,13 +426,13 @@ macro_rules! impl_uart {
 
                     impl Uart<$Uart> {
                         #[doc = "Create a new [`Uart`] from a [`" [<$Uart:upper>] "`], associated [`Pin`]s, and valid [`UartClock`]."]
-                        pub fn [<new_ $Uart:lower>] (
+                        pub fn [<new_ $Uart:lower>]<C: UartClock>(
                             _uart: [<$Uart:upper>],
                             _pins: (impl [<$Uart TxPin>], impl [<$Uart RxPin>]),
                             conf: UartConfiguration,
-                            pmc: &mut Pmc,
-                            clk: &impl UartClock) -> Result<Self, UartError> {
-                            Self::new(pmc, clk, conf)
+                            clk: PeripheralClock<C>,
+                        ) -> Result<Self, UartError> {
+                            Self::new(clk, conf)
                         }
                     }
                 }

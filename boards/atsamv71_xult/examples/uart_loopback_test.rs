@@ -7,10 +7,11 @@ use panic_rtt_target as _;
 #[rtic::app(device = atsamx7x_hal::target_device, peripherals = true, dispatchers = [IXC])]
 mod app {
     use atsamx7x_hal as hal;
+    use hal::clocks::*;
+    use hal::efc::*;
     use hal::ehal::prelude::*;
     use hal::fugit::RateExtU32;
     use hal::pio::*;
-    use hal::pmc::*;
     use hal::serial::{uart::*, ExtU32};
     use heapless::String;
     use rtt_target::{rprint, rprintln, rtt_init_print};
@@ -30,16 +31,30 @@ mod app {
         rtt_init_print!();
         rprintln!("init");
 
-        let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC, &ctx.device.WDT.into());
-        // Get main clock
-        let mainck = pmc
-            .get_mainck(MainCkSource::ExternalNormal(12.MHz()))
+        let clocks = Tokens::new(
+            (ctx.device.PMC, ctx.device.SUPC, ctx.device.UTMI),
+            &ctx.device.WDT.into(),
+        );
+        let slck = clocks.slck.configure_external_normal();
+        let mainck = clocks.mainck.configure_external_normal(12.MHz()).unwrap();
+        let pck: Pck<Pck4> = clocks.pcks.pck4.configure(&mainck, 1);
+        let (_hclk, mut mck) = HostClockController::new(clocks.hclk, clocks.mck)
+            .configure(
+                &mainck,
+                &mut Efc::new(ctx.device.EFC, VddioLevel::V3),
+                HostClockConfig {
+                    pres: HccPrescaler::Div1,
+                    div: MckDivider::Div1,
+                },
+            )
             .unwrap();
-        let upllck = pmc.get_upllck(&mainck, ctx.device.UTMI).unwrap();
-        let upllckdiv = pmc.get_upllckdiv(&upllck, UpllDivider::Div2);
-        let pck: Pck<Pck4> = pmc.get_pck(&upllckdiv, 100 - 1);
 
-        let banka = BankA::new(ctx.device.PIOA, &mut pmc, BankConfiguration::default());
+        let banka = hal::pio::BankA::new(
+            ctx.device.PIOA,
+            &mut mck,
+            &slck,
+            BankConfiguration::default(),
+        );
 
         let tx = banka.pa10.into_peripheral();
         let rx = banka.pa9.into_peripheral();
@@ -47,8 +62,7 @@ mod app {
             ctx.device.UART0,
             (tx, rx),
             UartConfiguration::default(115_200.bps()).mode(ChannelMode::LocalLoopback),
-            &mut pmc,
-            &pck,
+            PeripheralClock::Other(&mut mck, &pck),
         )
         .unwrap();
         uart.listen(Event::RxReady);

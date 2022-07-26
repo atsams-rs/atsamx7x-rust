@@ -41,9 +41,9 @@
 //! twi.write_read(0x0, &[0b1000_0000], &mut buffer).unwrap();
 //! ```
 
+use crate::clocks::{Clock, Hertz, HostClock, PeripheralIdentifier};
 use crate::ehal::blocking;
 use crate::pio::*;
-use crate::pmc::{Hertz, HostClock, PeripheralIdentifier, Pmc};
 #[cfg(not(feature = "pins-64"))]
 use crate::target_device::TWIHS2;
 use crate::target_device::{
@@ -92,11 +92,11 @@ impl<M: TwiMeta> Twi<M> {
         unsafe { &*M::REG }
     }
 
-    fn new(pmc: &mut Pmc, clk: &HostClock, conf: I2cConfiguration) -> Result<Self, TwiError> {
-        pmc.enable_peripherals(&[M::PID]).unwrap();
+    fn new(mck: &mut HostClock, conf: I2cConfiguration) -> Result<Self, TwiError> {
+        mck.enable_peripheral(M::PID);
 
         let mut twi = Self { meta: PhantomData };
-        twi.apply_config(clk, conf)?;
+        twi.apply_config(mck, conf)?;
         Ok(twi)
     }
 
@@ -270,9 +270,9 @@ macro_rules! impl_twi {
                             _twi: [<$Twi:upper>],
                             _pins: (impl [<$Twi ClockPin>], impl [<$Twi DataPin>]),
                             conf: I2cConfiguration,
-                            pmc: &mut Pmc,
-                            clk: &HostClock) -> Result<Self, TwiError> {
-                            Self::new(pmc, clk, conf)
+                            mck: &mut HostClock,
+                        ) -> Result<Self, TwiError> {
+                            Self::new(mck, conf)
                         }
                     }
                 }
