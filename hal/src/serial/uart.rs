@@ -51,8 +51,7 @@ let mut uart = Uart::new_uart0(
     pac.UART0,
     (tx, rx),
     UartConfiguration::default(115_200.bps()),
-    &mut mck,
-    &pck,
+    PeripheralClock::Other(&mut mck, &pck),
 )
 .unwrap();
 uart.listen(Event::RxReady);
@@ -64,7 +63,7 @@ assert_eq!(uart.read().unwrap(), 0xff);
 ```
 */
 
-use crate::clocks::{Clock, HostClock, Pck, Pck4, PeripheralIdentifier};
+use crate::clocks::{Clock, HostClock, Pck, Pck4, PeripheralClock, PeripheralIdentifier};
 use crate::ehal::{self, blocking};
 use crate::pio::*;
 use crate::serial::Bps;
@@ -203,9 +202,11 @@ pub trait UartClock: Clock {
     /// C.f. §47.6.2
     const BRSRCCK: bool;
 }
+
 impl UartClock for HostClock {
     const BRSRCCK: bool = false;
 }
+
 impl UartClock for Pck<Pck4> {
     const BRSRCCK: bool = true;
 }
@@ -301,18 +302,26 @@ impl<M: UartMeta> Uart<M> {
     }
 
     fn new<C: UartClock>(
-        mck: &mut HostClock,
-        clk: &C,
+        clk: PeripheralClock<C>,
         conf: UartConfiguration,
     ) -> Result<Self, UartError> {
-        mck.enable_peripheral(M::PID);
-
         let mut uart = Self {
             meta: PhantomData,
             tx: Tx { meta: PhantomData },
             rx: Rx { meta: PhantomData },
         };
-        uart.apply_config(clk, conf)?;
+
+        match clk {
+            PeripheralClock::Host(mck) => {
+                mck.enable_peripheral(M::PID);
+                uart.apply_config(mck, conf)?;
+            }
+            PeripheralClock::Other(mck, clk) => {
+                mck.enable_peripheral(M::PID);
+                uart.apply_config(clk, conf)?;
+            }
+        };
+
         Ok(uart)
     }
 
@@ -435,13 +444,13 @@ macro_rules! impl_uart {
 
                     impl Uart<$Uart> {
                         #[doc = "Create a new [`Uart`] from a [`" [<$Uart:upper>] "`], associated [`Pin`]s, and valid [`UartClock`]."]
-                        pub fn [<new_ $Uart:lower>] (
+                        pub fn [<new_ $Uart:lower>]<C: UartClock>(
                             _uart: [<$Uart:upper>],
                             _pins: (impl [<$Uart TxPin>], impl [<$Uart RxPin>]),
                             conf: UartConfiguration,
-                            mck: &mut HostClock,
-                            clk: &impl UartClock) -> Result<Self, UartError> {
-                            Self::new(mck, clk, conf)
+                            clk: PeripheralClock<C>,
+                        ) -> Result<Self, UartError> {
+                            Self::new(clk, conf)
                         }
                     }
                 }

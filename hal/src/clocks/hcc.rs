@@ -148,8 +148,6 @@ impl HostClockController {
                     .modify(|_, w| w.pres().variant(pres.into()));
                 while self.pmc().pmc_sr.read().mckrdy().bit_is_clear() {}
 
-                // XXX: Not a part of the RPS: is it a noop? Or is
-                // MDIV static?
                 self.pmc()
                     .pmc_mckr
                     .modify(|_, w| w.mdiv().variant(div.into()));

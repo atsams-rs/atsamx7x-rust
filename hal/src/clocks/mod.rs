@@ -100,7 +100,7 @@ let (hclk, mck) = HostClockController::new(clocks.hclk, clocks.mck)
     )
     .unwrap();
 ```
- */
+*/
 
 use crate::target_device::{pmc, supc, utmi, PMC, SUPC, UTMI};
 use crate::watchdog::{Disabled, Watchdog};
@@ -425,6 +425,14 @@ impl PeripheralIdentifier {
                 | GMAC_Q5
         )
     }
+}
+
+/// Wrapper around a clock that drives a peripheral.
+pub enum PeripheralClock<'hcc, 'c, C: Clock> {
+    /// The peripheral is driven by the [`HostClock`].
+    Host(&'hcc mut HostClock),
+    /// The peripheral is driven by [`Clock`].
+    Other(&'hcc mut HostClock, &'c C),
 }
 
 mod hcc;

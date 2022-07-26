@@ -62,8 +62,7 @@ mod app {
             ctx.device.UART0,
             (tx, rx),
             UartConfiguration::default(115_200.bps()).mode(ChannelMode::LocalLoopback),
-            &mut mck,
-            &pck,
+            PeripheralClock::Other(&mut mck, &pck),
         )
         .unwrap();
         uart.listen(Event::RxReady);
