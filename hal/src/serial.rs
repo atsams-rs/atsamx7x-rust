@@ -151,10 +151,10 @@ impl ehal::serial::Write<u8> for Serial<UART3> {
 }
 
 fn write_uart(regs: &UARTRegisterBlock, word: u8) -> nb::Result<(), Error> {
-    if regs.uart_sr.read().txempty().bit_is_clear() {
+    if regs.sr.read().txempty().bit_is_clear() {
         Err(nb::Error::WouldBlock)
     } else {
-        regs.uart_thr.write(|w| unsafe { w.txchr().bits(word) });
+        regs.thr.write(|w| unsafe { w.txchr().bits(word) });
         Ok(())
     }
 }
@@ -170,7 +170,7 @@ fn write_usart(regs: &USARTRegisterBlock, word: u8) -> nb::Result<(), Error> {
 }
 
 fn flush_uart(regs: &UARTRegisterBlock) -> nb::Result<(), Error> {
-    if regs.uart_sr.read().txempty().bit_is_clear() {
+    if regs.sr.read().txempty().bit_is_clear() {
         Err(nb::Error::WouldBlock)
     } else {
         Ok(())
