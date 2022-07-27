@@ -88,6 +88,7 @@ use strum::FromRepr;
 
 /// Available parity modes
 #[allow(missing_docs)]
+#[derive(Clone, Copy)]
 pub enum ParityMode {
     Even,
     Odd,
@@ -111,6 +112,7 @@ impl From<ParityMode> for ParityModeInner {
 }
 
 /// Available channel modes
+#[derive(Clone, Copy)]
 pub enum ChannelMode {
     /// Normal operation.
     Normal,
@@ -148,6 +150,7 @@ pub trait UartMeta {
 }
 
 /// [`Uart`] configuration
+#[derive(Clone, Copy)]
 pub struct UartConfiguration {
     /// Baud rate that the [`Uart`] communicates at.
     pub baud_rate: Bps,
