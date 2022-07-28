@@ -13,6 +13,8 @@ parity options:
 - [`ParityMode::Mark`], or
 - [`ParityMode::None`],
 
+Interrupt event management is handled by the [`event system`](crate::event_system)
+
 # Example usage
 
 ```no_run
@@ -20,6 +22,7 @@ parity options:
 # use hal::pio::*;
 # use hal::clocks::*;
 # use hal::efc::*;
+# use hal::event_system::*;
 # use hal::serial::uart::*;
 # use hal::serial::ExtU32 as _;
 # use hal::fugit::{ExtU32, RateExtU32};
@@ -81,6 +84,7 @@ use core::marker::PhantomData;
 
 use nb;
 use paste::paste;
+use strum::FromRepr;
 
 /// Available parity modes
 #[allow(missing_docs)]
@@ -271,13 +275,17 @@ pub struct Uart<M: UartMeta> {
 }
 
 /// Interrupt events of the [`Uart`].
+///
+/// C.f. §47.6.6
+#[derive(Clone, Copy, FromRepr)]
+#[repr(u32)]
 pub enum Event {
-    /// The next word can be sent.
-    TxReady,
     /// A new word has been received.
-    RxReady,
+    RxReady = 1 << 0,
+    /// The next word can be sent.
+    TxReady = 1 << 1,
     /// All previous words have been serialized.
-    TxEmpty,
+    TxEmpty = 1 << 9,
 }
 
 impl<M: UartMeta> Uart<M> {
@@ -378,9 +386,27 @@ impl<M: UartMeta> Uart<M> {
 
         self.apply_config(clk, conf).map_err(nb::Error::Other)
     }
+    /// Split the [`Uart`] into two separate [`Tx`] and [`Rx`]
+    /// components.
+    pub fn split(self) -> (Tx<M>, Rx<M>) {
+        (self.tx, self.rx)
+    }
+}
 
-    /// Listen to a [`Uart`] interrupt event.
-    pub fn listen(&mut self, event: Event) {
+impl TryFrom<u32> for Event {
+    type Error = ();
+    fn try_from(value: u32) -> Result<Self, ()> {
+        match Self::from_repr(value) {
+            Some(val) => Ok(val),
+            _ => Err(()),
+        }
+    }
+}
+
+impl<M: UartMeta> crate::event_system::EventHandler for Uart<M> {
+    type EventSource = Event;
+
+    fn listen(&mut self, event: Self::EventSource) {
         self.reg().uart_ier.write(|w| match event {
             Event::TxReady => w.txrdy().set_bit(),
             Event::RxReady => w.rxrdy().set_bit(),
@@ -388,8 +414,7 @@ impl<M: UartMeta> Uart<M> {
         });
     }
 
-    /// Do not listen to a [`Uart`] interrupt event.
-    pub fn unlisten(&mut self, event: Event) {
+    fn unlisten(&mut self, event: Self::EventSource) {
         self.reg().uart_idr.write(|w| match event {
             Event::TxReady => w.txrdy().set_bit(),
             Event::RxReady => w.rxrdy().set_bit(),
@@ -397,10 +422,8 @@ impl<M: UartMeta> Uart<M> {
         });
     }
 
-    /// Split the [`Uart`] into two separate [`Tx`] and [`Rx`]
-    /// components.
-    pub fn split(self) -> (Tx<M>, Rx<M>) {
-        (self.tx, self.rx)
+    fn irq(&mut self) -> u32 {
+        self.reg().uart_imr.read().bits() & self.reg().uart_sr.read().bits()
     }
 }
 

@@ -33,6 +33,7 @@ usb-device = "0.2.8"
 bit-iter = "1"
 rtic-monotonic = "1"
 void = { version = "1", default-features = false }
+strum = { version = "0.24.1", default-features = false, features = ["derive"]}
 
 atsame70j19  = { version = "0.21.0", path = "../pac/atsame70j19", optional = true }
 atsame70j19b = { version = "0.21.0", path = "../pac/atsame70j19b", optional = true }

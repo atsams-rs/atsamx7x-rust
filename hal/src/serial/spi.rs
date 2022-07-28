@@ -11,6 +11,8 @@ When an [`Spi`] has been created, a bus client is selected via
 [`Spi::select`], returning a [`Client`], upon which `embedded-hal`
 trais are implemented.
 
+Interrupt event management is handled by the [`event system`](crate::event_system)
+
 # Example usage
 
 ```no_run
@@ -66,9 +68,9 @@ use crate::pio::*;
 use crate::target_device::SPI1;
 use crate::target_device::{spi0::spi_tdr::PCS_AW as HwChipSelect, spi0::RegisterBlock, SPI0};
 use crate::{ehal, nb};
-use ehal::spi::Mode;
-
 use core::marker::PhantomData;
+use ehal::spi::Mode;
+use strum::FromRepr;
 
 use paste::*;
 
@@ -103,22 +105,25 @@ impl ChipSelect for HwChipSelect {
 }
 
 /// Possible [`Spi`] hardware events.
-#[derive(Clone, Copy, Debug)]
+///
+/// C.f. §41.8.5
+#[derive(Clone, Copy, Debug, FromRepr)]
+#[repr(u32)]
 pub enum Event {
     /// Receive Data Register Full Interrupt
-    Rdrf,
+    Rdrf = 1 << 0,
     /// SPI Transmit Data Register Empty Interrupt
-    Tdre,
+    Tdre = 1 << 1,
     /// Mode Fault Error Interrupt
-    Modf,
+    Modf = 1 << 2,
     /// Overrun Error Interrupt
-    Ovres,
+    Ovres = 1 << 3,
     /// NSS Rising Interrupt
-    Nssr,
+    Nssr = 1 << 8,
     /// Transmission Registers Empty Interrupt
-    Txempty,
+    Txempty = 1 << 9,
     /// Underrun Error Interrupt
-    Undes,
+    Undes = 1 << 10,
 }
 
 /// Metadata for a [`Spi`] peripheral.
@@ -362,32 +367,6 @@ impl<M: SpiMeta> Spi<M> {
 
         Ok(())
     }
-
-    /// Listen for a [`Spi`] interrupt  [`Event`].
-    pub fn listen(&mut self, event: Event) {
-        self.reg().spi_ier.write(|w| match event {
-            Event::Rdrf => w.rdrf().set_bit(),
-            Event::Tdre => w.tdre().set_bit(),
-            Event::Modf => w.modf().set_bit(),
-            Event::Ovres => w.ovres().set_bit(),
-            Event::Nssr => w.nssr().set_bit(),
-            Event::Txempty => w.txempty().set_bit(),
-            Event::Undes => w.undes().set_bit(),
-        });
-    }
-
-    /// Stop listening for a [`Spi`] interrupt [`Event`].
-    pub fn unlisten(&mut self, event: Event) {
-        self.reg().spi_idr.write(|w| match event {
-            Event::Rdrf => w.rdrf().set_bit(),
-            Event::Tdre => w.tdre().set_bit(),
-            Event::Modf => w.modf().set_bit(),
-            Event::Ovres => w.ovres().set_bit(),
-            Event::Nssr => w.nssr().set_bit(),
-            Event::Txempty => w.txempty().set_bit(),
-            Event::Undes => w.undes().set_bit(),
-        });
-    }
 }
 
 /// A selected [`Spi`] bus client.
@@ -441,6 +420,45 @@ impl<'spi, M: SpiMeta> Client<'spi, M> {
         }
 
         Ok(words)
+    }
+}
+
+impl TryFrom<u32> for Event {
+    type Error = ();
+    fn try_from(value: u32) -> Result<Self, ()> {
+        match Self::from_repr(value) {
+            Some(val) => Ok(val),
+            _ => Err(()),
+        }
+    }
+}
+
+impl<M: SpiMeta> crate::event_system::EventHandler for Spi<M> {
+    type EventSource = Event;
+    fn listen(&mut self, event: Self::EventSource) {
+        self.reg().spi_ier.write(|w| match event {
+            Event::Rdrf => w.rdrf().set_bit(),
+            Event::Tdre => w.tdre().set_bit(),
+            Event::Modf => w.modf().set_bit(),
+            Event::Ovres => w.ovres().set_bit(),
+            Event::Nssr => w.nssr().set_bit(),
+            Event::Txempty => w.txempty().set_bit(),
+            Event::Undes => w.undes().set_bit(),
+        });
+    }
+    fn unlisten(&mut self, event: Self::EventSource) {
+        self.reg().spi_idr.write(|w| match event {
+            Event::Rdrf => w.rdrf().set_bit(),
+            Event::Tdre => w.tdre().set_bit(),
+            Event::Modf => w.modf().set_bit(),
+            Event::Ovres => w.ovres().set_bit(),
+            Event::Nssr => w.nssr().set_bit(),
+            Event::Txempty => w.txempty().set_bit(),
+            Event::Undes => w.undes().set_bit(),
+        });
+    }
+    fn irq(&mut self) -> u32 {
+        self.reg().spi_imr.read().bits() & self.reg().spi_sr.read().bits()
     }
 }
 

@@ -14,17 +14,14 @@ mod app {
     use hal::fugit::RateExtU32;
     use hal::pio::*;
     use hal::serial::{uart::*, ExtU32};
-    use heapless::String;
-    use rtt_target::{rprint, rprintln, rtt_init_print};
+    use rtt_target::{rprintln, rtt_init_print};
 
     #[shared]
     struct Shared {}
 
     #[local]
     struct Local {
-        tx: Tx<Uart0>,
-        rx: Rx<Uart0>,
-        buf: String<32>,
+        uart: Uart<Uart0>,
     }
 
     #[init]
@@ -66,43 +63,30 @@ mod app {
             PeripheralClock::Other(&mut mck, &pck),
         )
         .unwrap();
-        uart.listen(Event::RxReady);
-        let (tx, rx) = uart.split();
-
-        (
-            Shared {},
-            Local {
-                rx,
-                tx,
-                buf: String::new(),
-            },
-            init::Monotonics(),
-        )
+        uart.listen_slice(&[Event::RxReady, Event::TxReady]);
+        (Shared {}, Local { uart }, init::Monotonics())
     }
 
-    #[task(binds=UART0, local = [rx, buf], priority = 2)]
-    fn rx(ctx: rx::Context) {
-        let rx::LocalResources { rx, buf } = ctx.local;
-
-        let ch = rx.read().unwrap() as char;
-        buf.push(ch).unwrap();
-
-        if ch == '\n' {
-            rprint!("{}", buf.as_str());
-            buf.clear();
+    #[task(binds=UART0, local = [uart], priority = 2)]
+    fn uart(ctx: uart::Context) {
+        use hal::serial::uart::Event::*;
+        let uart::LocalResources { uart } = ctx.local;
+        for event in uart.events() {
+            match event {
+                RxReady => {
+                    rprintln!("{}", uart.read().unwrap() as char);
+                }
+                TxReady | TxEmpty => {
+                    uart.write(48).unwrap();
+                }
+            }
         }
-    }
-
-    #[task(local= [tx], priority = 1)]
-    fn tx(ctx: tx::Context, msg: &'static str) {
-        ctx.local.tx.bwrite_all(msg.as_bytes()).unwrap();
     }
 
     #[idle]
     fn idle(_: idle::Context) -> ! {
         loop {
-            tx::spawn("Hello world!\n").unwrap();
-            cortex_m::asm::delay(12_000_000);
+            cortex_m::asm::nop();
         }
     }
 }
