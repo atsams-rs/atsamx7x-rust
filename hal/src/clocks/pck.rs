@@ -44,16 +44,16 @@ pub struct PckTokens {
 }
 
 impl PckTokens {
-    pub(crate) fn new() -> Self {
+    pub(crate) fn default() -> Self {
         Self {
-            pck0: Token::new(),
-            pck1: Token::new(),
-            pck2: Token::new(),
-            pck3: Token::new(),
-            pck4: Token::new(),
-            pck5: Token::new(),
-            pck6: Token::new(),
-            pck7: Token::new(),
+            pck0: Token::default(),
+            pck1: Token::default(),
+            pck2: Token::default(),
+            pck3: Token::default(),
+            pck4: Token::default(),
+            pck5: Token::default(),
+            pck6: Token::default(),
+            pck7: Token::default(),
         }
     }
 }

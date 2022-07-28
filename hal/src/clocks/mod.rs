@@ -102,6 +102,7 @@ let (hclk, mck) = HostClockController::new(clocks.hclk, clocks.mck)
 ```
 */
 
+use crate::generics::Token;
 use crate::target_device::{pmc, supc, utmi, PMC, SUPC, UTMI};
 use crate::watchdog::{Disabled, Watchdog};
 
@@ -150,14 +151,6 @@ unsafe trait RegisterAccess {
     }
 }
 
-/// A [`Clock`] singleton that is consumed on configuration.
-pub struct Token<C: Clock>(PhantomData<C>);
-impl<C: Clock> Token<C> {
-    pub(crate) fn new() -> Self {
-        Self(PhantomData)
-    }
-}
-
 // Safe: RegisterBlock owner is consumed during Tokens creation
 unsafe impl<C: Clock> RegisterAccess for Token<C> {}
 
@@ -178,14 +171,14 @@ impl Tokens {
     /// Create the set of all [`Clock`] [`Token`]s.
     pub fn new(_clocks: (PMC, SUPC, UTMI), _wd: &Watchdog<Disabled>) -> Self {
         Self {
-            slck: Token::new(),
-            mainck: Token::new(),
-            pllack: Token::new(),
-            upllck: Token::new(),
-            upllckdiv: Token::new(),
-            hclk: Token::new(),
-            mck: Token::new(),
-            pcks: PckTokens::new(),
+            slck: Token::default(),
+            mainck: Token::default(),
+            pllack: Token::default(),
+            upllck: Token::default(),
+            upllckdiv: Token::default(),
+            hclk: Token::default(),
+            mck: Token::default(),
+            pcks: PckTokens::default(),
         }
     }
 
