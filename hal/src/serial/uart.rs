@@ -286,6 +286,18 @@ pub enum Event {
     TxReady = 1 << 1,
     /// All previous words have been serialized.
     TxEmpty = 1 << 9,
+    /// Rx buffer overrun error.
+    ///
+    /// Cleared by calling [`clear_errors`](Uart::clear_errors)
+    Ovre = 1 << 5,
+    /// Framing error.
+    ///
+    /// Cleared by calling [`clear_errors`](Uart::clear_errors)
+    Frame = 1 << 6,
+    /// Parity error.
+    ///
+    /// Cleared by calling [`clear_errors`](Uart::clear_errors)
+    Pare = 1 << 7,
 }
 
 impl<M: UartMeta> Uart<M> {
@@ -411,6 +423,9 @@ impl<M: UartMeta> crate::event_system::EventHandler for Uart<M> {
             Event::TxReady => w.txrdy().set_bit(),
             Event::RxReady => w.rxrdy().set_bit(),
             Event::TxEmpty => w.txempty().set_bit(),
+            Event::Ovre => w.ovre().set_bit(),
+            Event::Frame => w.frame().set_bit(),
+            Event::Pare => w.pare().set_bit(),
         });
     }
 
@@ -419,6 +434,9 @@ impl<M: UartMeta> crate::event_system::EventHandler for Uart<M> {
             Event::TxReady => w.txrdy().set_bit(),
             Event::RxReady => w.rxrdy().set_bit(),
             Event::TxEmpty => w.txempty().set_bit(),
+            Event::Ovre => w.ovre().set_bit(),
+            Event::Frame => w.frame().set_bit(),
+            Event::Pare => w.pare().set_bit(),
         });
     }
 
