@@ -79,6 +79,9 @@ mod app {
                 TxReady | TxEmpty => {
                     uart.write(48).unwrap();
                 }
+                Ovre | Frame | Pare => {
+                    uart.clear_errors();
+                }
             }
         }
     }

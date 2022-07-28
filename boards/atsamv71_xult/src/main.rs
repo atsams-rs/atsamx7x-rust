@@ -1,7 +1,7 @@
 #![no_std]
 #![no_main]
 
-use panic_halt as _;
+use panic_rtt_target as _;
 
 #[rtic::app(device = atsamx7x_hal::target_device, peripherals = true, dispatchers = [IXC])]
 mod app {
