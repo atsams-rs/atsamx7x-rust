@@ -173,8 +173,6 @@ pub mod clocks;
 #[cfg(feature = "rev-b")]
 pub mod efc;
 #[cfg(feature = "rev-b")]
-pub mod event_system;
-#[cfg(feature = "rev-b")]
 pub mod generics;
 #[cfg(feature = "rev-b")]
 pub mod pio;

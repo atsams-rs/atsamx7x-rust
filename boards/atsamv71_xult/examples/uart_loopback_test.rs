@@ -10,8 +10,8 @@ mod app {
     use hal::clocks::*;
     use hal::efc::*;
     use hal::ehal::prelude::*;
-    use hal::event_system::*;
     use hal::fugit::RateExtU32;
+    use hal::generics::events::*;
     use hal::pio::*;
     use hal::serial::{uart::*, ExtU32};
     use heapless::String;
