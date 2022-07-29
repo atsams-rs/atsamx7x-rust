@@ -134,6 +134,11 @@ pub trait Clock {
     fn freq(&self) -> Hertz;
 }
 
+/// Interface for accessing hardware registers.
+///
+/// # Safety
+///
+/// Implementors of this trait modify hardware.
 unsafe trait RegisterAccess {
     #[inline(always)]
     fn pmc(&self) -> &pmc::RegisterBlock {
