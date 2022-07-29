@@ -83,12 +83,12 @@ pub struct Spi<M: UsartMeta, SpiRole> {
 impl<M: UsartMeta, R: SpiRole> RegisterAccess<M> for Spi<M, R> {}
 
 impl<M: UsartMeta, R: SpiRole> Spi<M, R> {
-    pub(crate) fn new(usart: &Usart<M>, cfg: SpiConfig) -> Result<Self, UsartError> {
+    pub(crate) fn new(mck: &HostClock, cfg: SpiConfig) -> Result<Self, UsartError> {
         // Ensure a valid prescaler can be calculated
         let pres = {
             // USART does not seem to support oversampling in SPI mode.
             const NO_OVERSAMPLING: bool = false;
-            let pres = usart.calc_pres(cfg.bitrate, NO_OVERSAMPLING)?;
+            let pres = Usart::<M>::calc_pres(mck.freq(), cfg.bitrate, NO_OVERSAMPLING)?;
 
             // C.f. §46.6.8.2
             const SPI_MIN_PRESCALER: u16 = 6;

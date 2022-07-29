@@ -70,6 +70,7 @@ mod app {
             .spi_host
             .configure(
                 &usart,
+                &mck,
                 SpiConfig {
                     bitrate: 115_200.bps(),
                     mode: MODE_0,
@@ -78,7 +79,7 @@ mod app {
             .unwrap();
         let mut uart = handles
             .uart
-            .configure(&usart, UartConfiguration::default(115_200.bps()))
+            .configure(&usart, &mck, UartConfiguration::default(115_200.bps()))
             .unwrap();
 
         usart.listen(Event::RxReady);

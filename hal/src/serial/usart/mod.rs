@@ -50,6 +50,7 @@ let (handles, mut usart) = Usart::new_usart0(
 // SPI handle in host mode.
 let mut spi = handles.spi_host.configure(
     &usart,
+    &mck,
     SpiConfig {
         bitrate: 115_200.bps(),
         mode: MODE_0,
@@ -58,6 +59,7 @@ let mut spi = handles.spi_host.configure(
 // Do the same for a UART handle.
 let mut uart = handles.uart.configure(
     &usart,
+    &mck,
     UartConfiguration::default(115_200.bps()),
 ).unwrap();
 
@@ -256,35 +258,46 @@ impl<M: UsartMeta> Token<Uart<M>> {
     pub fn configure(
         self,
         usart: &Usart<M>,
+        mck: &HostClock,
         cfg: UartConfiguration,
     ) -> Result<Uart<M>, UsartError> {
         if !usart.uart.supported {
             return Err(UsartError::InvalidMode);
         }
 
-        Uart::new(usart, cfg)
+        Uart::new(mck, cfg)
     }
 }
 
 impl<M: UsartMeta> Token<Spi<M, Host>> {
     /// Consume the [`Token`] in favour of a [`Spi`].
-    pub fn configure(self, usart: &Usart<M>, cfg: SpiConfig) -> Result<Spi<M, Host>, UsartError> {
+    pub fn configure(
+        self,
+        usart: &Usart<M>,
+        mck: &HostClock,
+        cfg: SpiConfig,
+    ) -> Result<Spi<M, Host>, UsartError> {
         if !usart.spi.supported_host {
             return Err(UsartError::InvalidMode);
         }
 
-        Spi::new(usart, cfg)
+        Spi::new(mck, cfg)
     }
 }
 
 impl<M: UsartMeta> Token<Spi<M, Client>> {
     /// Consume the [`Token`] in favour of a [`Spi`].
-    pub fn configure(self, usart: &Usart<M>, cfg: SpiConfig) -> Result<Spi<M, Client>, UsartError> {
+    pub fn configure(
+        self,
+        usart: &Usart<M>,
+        mck: &HostClock,
+        cfg: SpiConfig,
+    ) -> Result<Spi<M, Client>, UsartError> {
         if !usart.spi.supported_client {
             return Err(UsartError::InvalidMode);
         }
 
-        Spi::new(usart, cfg)
+        Spi::new(mck, cfg)
     }
 }
 
@@ -293,8 +306,6 @@ pub struct Usart<M: UsartMeta> {
     _meta: PhantomData<M>,
     spi: SpiContext,
     uart: UartContext,
-    // The clock freq, kept in memory since the user needs to re configure the usart on the fly
-    freq: Hertz,
 }
 
 impl<M: UsartMeta> RegisterAccess<M> for Usart<M> {}
@@ -311,7 +322,6 @@ impl<M: UsartMeta> Usart<M> {
             uart: UartContext {
                 supported: Pins::UART_MODE_POSSIBLE,
             },
-            freq: mck.freq(),
         };
 
         let handles = UsartHandles {
@@ -404,7 +414,7 @@ impl<M: UsartMeta> Usart<M> {
 
     /// Calculate the [`Usart`] prescaler as per §46.6.1.1
     fn calc_pres(
-        &self,
+        freq: Hertz,
         baud_rate: crate::serial::Bps,
         oversample: bool,
     ) -> Result<u16, UsartError> {
@@ -412,7 +422,7 @@ impl<M: UsartMeta> Usart<M> {
         const MIN_OVERSAMPLE: u32 = 8;
         let oversample_factor = MIN_OVERSAMPLE * if oversample { 2 } else { 1 };
 
-        let pres: u16 = (self.freq / baud_rate.0 / oversample_factor)
+        let pres: u16 = (freq / baud_rate.0 / oversample_factor)
             .try_into()
             .map_err(|_| UsartError::PrescalerOverflow)?;
         if pres == 0 {

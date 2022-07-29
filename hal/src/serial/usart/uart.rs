@@ -56,9 +56,9 @@ impl<M: UsartMeta> RegisterAccess<M> for Uart<M> {}
 
 impl<M: UsartMeta> Uart<M> {
     /// Crate level since it is used by [`Usart`]
-    pub(crate) fn new(usart: &Usart<M>, cfg: UartConfiguration) -> Result<Uart<M>, UsartError> {
+    pub(crate) fn new(mck: &HostClock, cfg: UartConfiguration) -> Result<Uart<M>, UsartError> {
         // Ensure a valid prescaler can be calculated
-        let pres = usart.calc_pres(cfg.baud_rate, cfg.oversample)?;
+        let pres = Usart::<M>::calc_pres(mck.freq(), cfg.baud_rate, cfg.oversample)?;
 
         Ok(Self {
             cfg,
