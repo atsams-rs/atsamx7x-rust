@@ -50,6 +50,7 @@ let (handles, mut usart) = Usart::new_usart0(
 // SPI handle in host mode.
 let mut spi = handles.spi_host.configure(
     &usart,
+    &mck,
     SpiConfig {
         bitrate: 115_200.bps(),
         mode: MODE_0,
@@ -58,6 +59,7 @@ let mut spi = handles.spi_host.configure(
 // Do the same for a UART handle.
 let mut uart = handles.uart.configure(
     &usart,
+    &mck,
     UartConfiguration::default(115_200.bps()),
 ).unwrap();
 
@@ -67,19 +69,19 @@ usart.listen(Event::RxReady);
 const PAYLOAD: u8 = b'x';
 
 // Enter UART mode and send/receive a payload.
-usart.enter_mode(&uart).unwrap();
+usart.enter_mode(&uart);
 uart.write(PAYLOAD).unwrap();
 let _ = uart.read().unwrap();
 
 // Repeat for SPI mode.
-usart.enter_mode(&spi).unwrap();
+usart.enter_mode(&spi);
 spi.send(PAYLOAD).unwrap();
 let _ = spi.read().unwrap();
 ```
  */
 
 pub use super::uart::{ChannelMode, ParityMode, UartConfiguration};
-use crate::clocks::{Clock, Hertz, HostClock, PeripheralIdentifier};
+use crate::clocks::{Clock, Hertz, HostClock, Pck, Pck4, PeripheralIdentifier};
 use crate::generics::Token;
 use crate::pio::*;
 use crate::serial::Bps;
@@ -88,7 +90,8 @@ use crate::target_device::USART2;
 use crate::target_device::{
     usart0::us_mr_usart_mode::CHMODE_A as HwChannelMode,
     usart0::us_mr_usart_mode::PAR_A as HwParityMode,
-    usart0::us_mr_usart_mode::USART_MODE_A as HwUsartMode, usart0::RegisterBlock, USART0, USART1,
+    usart0::us_mr_usart_mode::USART_MODE_A as HwUsartMode,
+    usart0::us_mr_usart_mode::USCLKS_A as UsartClockSource, usart0::RegisterBlock, USART0, USART1,
 };
 
 use core::marker::PhantomData;
@@ -162,11 +165,24 @@ pub trait UsartHandle<M: UsartMeta> {
     /// The mode of the handle.
     const MODE: UsartMode;
 
-    /// Resets the internal state machines and buffers for the [`UsartMode`].
+    /// Resets the internal state machines and buffers for the
+    /// [`UsartMode`].
+    ///
+    /// # Safety
+    ///
+    /// This function modifies the [`Usart`] hardware, and is called
+    /// by [`Usart::enter_mode`]. It should not be called directly.
     unsafe fn reset(&self, usart: &mut Usart<M>);
 
-    /// Configures the [`Usart`] to operate in the target [`UsartMode`] handle.
-    unsafe fn configure(&self, usart: &mut Usart<M>) -> Result<Prescaler, UsartError>;
+    /// Configures the [`Usart`] to operate in the target
+    /// [`UsartMode`] handle, and returns the mode's required
+    /// prescaler.
+    ///
+    /// # Safety
+    ///
+    /// This function modifies the [`Usart`] hardware, and is called
+    /// by [`Usart::enter_mode`]. It should not be called directly.
+    unsafe fn configure(&self, usart: &mut Usart<M>) -> Prescaler;
 }
 
 trait RegisterAccess<M: UsartMeta> {
@@ -248,40 +264,65 @@ pub struct UsartHandles<M: UsartMeta> {
     pub spi_client: Token<Spi<M, Client>>,
 }
 
+/// Valid clocks for the [`Usart`] in [`Uart`] mode.
+pub trait UsartUartClock: Clock {
+    /// Hardware identifier of the [`Clock`].
+    const SRC: UsartClockSource;
+}
+
+impl UsartUartClock for HostClock {
+    const SRC: UsartClockSource = UsartClockSource::MCK;
+}
+
+impl UsartUartClock for Pck<Pck4> {
+    const SRC: UsartClockSource = UsartClockSource::PCK;
+}
+
 impl<M: UsartMeta> Token<Uart<M>> {
     /// Consume the [`Token`] in favour of a [`Uart`].
     pub fn configure(
         self,
         usart: &Usart<M>,
+        clk: &impl UsartUartClock,
         cfg: UartConfiguration,
     ) -> Result<Uart<M>, UsartError> {
         if !usart.uart.supported {
             return Err(UsartError::InvalidMode);
         }
 
-        Ok(Uart::new(cfg))
+        Uart::new(clk, cfg)
     }
 }
 
 impl<M: UsartMeta> Token<Spi<M, Host>> {
     /// Consume the [`Token`] in favour of a [`Spi`].
-    pub fn configure(self, usart: &Usart<M>, cfg: SpiConfig) -> Result<Spi<M, Host>, UsartError> {
+    pub fn configure(
+        self,
+        usart: &Usart<M>,
+        mck: &HostClock,
+        cfg: SpiConfig,
+    ) -> Result<Spi<M, Host>, UsartError> {
         if !usart.spi.supported_host {
             return Err(UsartError::InvalidMode);
         }
 
-        Ok(Spi::new(cfg))
+        Spi::new(mck, cfg)
     }
 }
 
 impl<M: UsartMeta> Token<Spi<M, Client>> {
     /// Consume the [`Token`] in favour of a [`Spi`].
-    pub fn configure(self, usart: &Usart<M>, cfg: SpiConfig) -> Result<Spi<M, Client>, UsartError> {
+    pub fn configure(
+        self,
+        usart: &Usart<M>,
+        mck: &HostClock,
+        cfg: SpiConfig,
+    ) -> Result<Spi<M, Client>, UsartError> {
         if !usart.spi.supported_client {
             return Err(UsartError::InvalidMode);
         }
 
-        Ok(Spi::new(cfg))
+        Spi::new(mck, cfg)
     }
 }
 
@@ -290,8 +331,6 @@ pub struct Usart<M: UsartMeta> {
     _meta: PhantomData<M>,
     spi: SpiContext,
     uart: UartContext,
-    // The clock freq, kept in memory since the user needs to re configure the usart on the fly
-    freq: Hertz,
 }
 
 impl<M: UsartMeta> RegisterAccess<M> for Usart<M> {}
@@ -308,7 +347,6 @@ impl<M: UsartMeta> Usart<M> {
             uart: UartContext {
                 supported: Pins::UART_MODE_POSSIBLE,
             },
-            freq: mck.freq(),
         };
 
         let handles = UsartHandles {
@@ -342,14 +380,14 @@ impl From<HwUsartMode> for UsartMode {
 
 impl<M: UsartMeta> Usart<M> {
     /// Configures the [`Usart`] to work in a specified [`UsartMode`]
-    pub fn enter_mode<H: UsartHandle<M>>(&mut self, mode: &H) -> Result<(), UsartError> {
+    pub fn enter_mode<H: UsartHandle<M>>(&mut self, mode: &H) {
         // NOTE: Safe: this function can only be called after a
         // successful as_*, meaning that we do not need to check for
         // support again.
 
         if self.mode() == H::MODE {
             // Already in the requested mode
-            return Ok(());
+            return;
         }
 
         self.disable();
@@ -364,13 +402,11 @@ impl<M: UsartMeta> Usart<M> {
             w
         });
 
-        let pres = unsafe { mode.configure(self)? };
+        let pres = unsafe { mode.configure(self) };
         self.reg().us_brgr.write(|w| unsafe { w.cd().bits(pres) });
 
         self.clear_errors();
         self.enable();
-
-        Ok(())
     }
 
     /// Return the current operating mode of the [`Usart`].
@@ -403,7 +439,7 @@ impl<M: UsartMeta> Usart<M> {
 
     /// Calculate the [`Usart`] prescaler as per §46.6.1.1
     fn calc_pres(
-        &self,
+        freq: Hertz,
         baud_rate: crate::serial::Bps,
         oversample: bool,
     ) -> Result<u16, UsartError> {
@@ -411,7 +447,7 @@ impl<M: UsartMeta> Usart<M> {
         const MIN_OVERSAMPLE: u32 = 8;
         let oversample_factor = MIN_OVERSAMPLE * if oversample { 2 } else { 1 };
 
-        let pres: u16 = (self.freq / baud_rate.0 / oversample_factor)
+        let pres: u16 = (freq / baud_rate.0 / oversample_factor)
             .try_into()
             .map_err(|_| UsartError::PrescalerOverflow)?;
         if pres == 0 {

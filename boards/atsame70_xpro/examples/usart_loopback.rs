@@ -70,6 +70,7 @@ mod app {
             .spi_host
             .configure(
                 &usart,
+                &mck,
                 SpiConfig {
                     bitrate: 115_200.bps(),
                     mode: MODE_0,
@@ -78,12 +79,12 @@ mod app {
             .unwrap();
         let mut uart = handles
             .uart
-            .configure(&usart, UartConfiguration::default(115_200.bps()))
+            .configure(&usart, &mck, UartConfiguration::default(115_200.bps()))
             .unwrap();
 
         usart.listen(Event::RxReady);
 
-        usart.enter_mode(&uart).unwrap();
+        usart.enter_mode(&uart);
         uart.write(PAYLOAD).unwrap();
 
         *ctx.local.usart = Some(usart);
@@ -103,12 +104,12 @@ mod app {
             match mode {
                 UsartMode::Uart => {
                     assert_eq!(uart.read(), Ok(PAYLOAD));
-                    usart.enter_mode(spi).unwrap();
+                    usart.enter_mode(spi);
                     spi.send(PAYLOAD).unwrap();
                 }
                 UsartMode::Spi(SpiMode::Host) => {
                     assert_eq!(spi.read(), Ok(PAYLOAD));
-                    usart.enter_mode(uart).unwrap();
+                    usart.enter_mode(uart);
                     uart.write(PAYLOAD).unwrap();
                 }
                 _ => unreachable!(),
