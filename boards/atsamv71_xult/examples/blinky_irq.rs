@@ -5,7 +5,7 @@
 
 use panic_rtt_target as _;
 
-#[rtic::app(device = hal::target_device, peripherals = true, dispatchers = [UART0])]
+#[rtic::app(device = hal::pac, peripherals = true, dispatchers = [UART0])]
 mod app {
     use atsamx7x_hal as hal;
     use hal::clocks::*;

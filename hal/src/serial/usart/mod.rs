@@ -28,7 +28,7 @@ Mode support depends on what [`Pin`]s that are available for the
 # use hal::serial::usart::*;
 # use hal::serial::ExtU32 as _;
 # use hal::fugit::{ExtU32, RateExtU32};
-# let pac = hal::target_device::Peripherals::take().unwrap();
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 use hal::generics::events::EventHandler;
 use hal::ehal::serial::{Read, Write};
@@ -83,16 +83,16 @@ let _ = spi.read().unwrap();
 pub use super::uart::{ChannelMode, ParityMode, UartConfiguration};
 use crate::clocks::{Clock, Hertz, HostClock, Pck, Pck4, PeripheralIdentifier};
 use crate::generics::Token;
-use crate::pio::*;
-use crate::serial::Bps;
 #[cfg(not(feature = "pins-64"))]
-use crate::target_device::USART2;
-use crate::target_device::{
+use crate::pac::USART2;
+use crate::pac::{
     usart0::us_mr_usart_mode::CHMODE_A as HwChannelMode,
     usart0::us_mr_usart_mode::PAR_A as HwParityMode,
     usart0::us_mr_usart_mode::USART_MODE_A as HwUsartMode,
     usart0::us_mr_usart_mode::USCLKS_A as UsartClockSource, usart0::RegisterBlock, USART0, USART1,
 };
+use crate::pio::*;
+use crate::serial::Bps;
 
 use core::marker::PhantomData;
 

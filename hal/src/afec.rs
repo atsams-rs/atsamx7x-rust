@@ -20,7 +20,7 @@ This implementation presumes that VREFP is 3.3V.
 # use hal::efc::*;
 # use hal::afec::*;
 # use hal::fugit::RateExtU32;
-# let pac = hal::target_device::Peripherals::take().unwrap();
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 
 let banka = BankA::new(pac.PIOA, &mut mck, &slck, BankConfiguration::default());
@@ -34,8 +34,8 @@ let voltage: f32 = afec.read(&mut pin).unwrap();
 
 use crate::clocks::{Clock, HostClock, PeripheralIdentifier};
 use crate::ehal::adc;
+use crate::pac::{afec0::RegisterBlock, AFEC0, AFEC1};
 use crate::pio::*;
-use crate::target_device::{afec0::RegisterBlock, AFEC0, AFEC1};
 
 use core::convert::Infallible;
 use core::marker::PhantomData;

@@ -15,7 +15,7 @@ impl Clock for UpllDivClock {
 impl Token<UpllClock> {
     /// Configures UPLLCK
     pub fn configure(self, source: &impl UpllSource) -> Result<UpllClock, ClockError> {
-        use crate::target_device::utmi::utmi_cktrim::FREQ_A as FREQ;
+        use crate::pac::utmi::utmi_cktrim::FREQ_A as FREQ;
 
         let freq = match source.freq().to_MHz() {
             12 => FREQ::XTAL12,

@@ -16,7 +16,7 @@ implemented.
 # use hal::efc::*;
 # use hal::serial::twi::*;
 # use hal::fugit::RateExtU32;
-# let pac = hal::target_device::Peripherals::take().unwrap();
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 let banka = BankA::new(pac.PIOA, &mut mck, &slck, BankConfiguration::default());
 
@@ -40,13 +40,13 @@ twi.write_read(0x0, &[0b1000_0000], &mut buffer).unwrap();
 
 use crate::clocks::{Clock, Hertz, HostClock, PeripheralIdentifier};
 use crate::ehal::blocking;
-use crate::pio::*;
 #[cfg(not(feature = "pins-64"))]
-use crate::target_device::TWIHS2;
-use crate::target_device::{
+use crate::pac::TWIHS2;
+use crate::pac::{
     twihs0::{twihs_sr::R as StatusRegister, RegisterBlock},
     TWIHS0, TWIHS1,
 };
+use crate::pio::*;
 use core::marker::PhantomData;
 
 use paste::paste;
