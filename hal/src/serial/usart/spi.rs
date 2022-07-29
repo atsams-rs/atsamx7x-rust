@@ -75,6 +75,7 @@ pub struct SpiConfig {
 /// This Spi abstraction implements the embedded hal [spi](`ehal::spi`) traits
 pub struct Spi<M: UsartMeta, SpiRole> {
     cfg: SpiConfig,
+    pres: Prescaler,
     _meta: PhantomData<M>,
     _role: PhantomData<SpiRole>,
 }
@@ -82,12 +83,28 @@ pub struct Spi<M: UsartMeta, SpiRole> {
 impl<M: UsartMeta, R: SpiRole> RegisterAccess<M> for Spi<M, R> {}
 
 impl<M: UsartMeta, R: SpiRole> Spi<M, R> {
-    pub(crate) fn new(cfg: SpiConfig) -> Self {
-        Self {
+    pub(crate) fn new(usart: &Usart<M>, cfg: SpiConfig) -> Result<Self, UsartError> {
+        // Ensure a valid prescaler can be calculated
+        let pres = {
+            // USART does not seem to support oversampling in SPI mode.
+            const NO_OVERSAMPLING: bool = false;
+            let pres = usart.calc_pres(cfg.bitrate, NO_OVERSAMPLING)?;
+
+            // C.f. §46.6.8.2
+            const SPI_MIN_PRESCALER: u16 = 6;
+            if pres < SPI_MIN_PRESCALER {
+                return Err(SpiError::PrescalerUnderflow.into());
+            }
+
+            pres
+        };
+
+        Ok(Self {
             cfg,
+            pres,
             _meta: PhantomData,
             _role: PhantomData,
-        }
+        })
     }
 }
 
@@ -99,21 +116,7 @@ impl<'usart, M: UsartMeta, R: SpiRole> UsartHandle<M> for Spi<M, R> {
         usart.reg().us_mr_spi_mode().reset();
     }
 
-    unsafe fn configure(&self, usart: &mut Usart<M>) -> Result<Prescaler, UsartError> {
-        let pres = {
-            // USART does not seem to support oversampling in SPI mode.
-            const NO_OVERSAMPLING: bool = false;
-            let pres = usart.calc_pres(self.cfg.bitrate, NO_OVERSAMPLING)?;
-
-            // C.f. §46.6.8.2
-            const SPI_MIN_PRESCALER: u16 = 6;
-            if pres < SPI_MIN_PRESCALER {
-                return Err(SpiError::PrescalerUnderflow.into());
-            }
-
-            pres
-        };
-
+    unsafe fn configure(&self, usart: &mut Usart<M>) -> Prescaler {
         usart.reg().us_mr_spi_mode().write(|w| {
             match R::ROLE {
                 SpiMode::Host => {
@@ -144,7 +147,7 @@ impl<'usart, M: UsartMeta, R: SpiRole> UsartHandle<M> for Spi<M, R> {
             w
         });
 
-        Ok(pres)
+        self.pres
     }
 }
 

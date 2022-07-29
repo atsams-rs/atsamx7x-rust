@@ -67,12 +67,12 @@ usart.listen(Event::RxReady);
 const PAYLOAD: u8 = b'x';
 
 // Enter UART mode and send/receive a payload.
-usart.enter_mode(&uart).unwrap();
+usart.enter_mode(&uart);
 uart.write(PAYLOAD).unwrap();
 let _ = uart.read().unwrap();
 
 // Repeat for SPI mode.
-usart.enter_mode(&spi).unwrap();
+usart.enter_mode(&spi);
 spi.send(PAYLOAD).unwrap();
 let _ = spi.read().unwrap();
 ```
@@ -162,11 +162,14 @@ pub trait UsartHandle<M: UsartMeta> {
     /// The mode of the handle.
     const MODE: UsartMode;
 
-    /// Resets the internal state machines and buffers for the [`UsartMode`].
+    /// Resets the internal state machines and buffers for the
+    /// [`UsartMode`].
     unsafe fn reset(&self, usart: &mut Usart<M>);
 
-    /// Configures the [`Usart`] to operate in the target [`UsartMode`] handle.
-    unsafe fn configure(&self, usart: &mut Usart<M>) -> Result<Prescaler, UsartError>;
+    /// Configures the [`Usart`] to operate in the target
+    /// [`UsartMode`] handle, and returns the mode's required
+    /// prescaler.
+    unsafe fn configure(&self, usart: &mut Usart<M>) -> Prescaler;
 }
 
 trait RegisterAccess<M: UsartMeta> {
@@ -259,7 +262,7 @@ impl<M: UsartMeta> Token<Uart<M>> {
             return Err(UsartError::InvalidMode);
         }
 
-        Ok(Uart::new(cfg))
+        Uart::new(usart, cfg)
     }
 }
 
@@ -270,7 +273,7 @@ impl<M: UsartMeta> Token<Spi<M, Host>> {
             return Err(UsartError::InvalidMode);
         }
 
-        Ok(Spi::new(cfg))
+        Spi::new(usart, cfg)
     }
 }
 
@@ -281,7 +284,7 @@ impl<M: UsartMeta> Token<Spi<M, Client>> {
             return Err(UsartError::InvalidMode);
         }
 
-        Ok(Spi::new(cfg))
+        Spi::new(usart, cfg)
     }
 }
 
@@ -342,14 +345,14 @@ impl From<HwUsartMode> for UsartMode {
 
 impl<M: UsartMeta> Usart<M> {
     /// Configures the [`Usart`] to work in a specified [`UsartMode`]
-    pub fn enter_mode<H: UsartHandle<M>>(&mut self, mode: &H) -> Result<(), UsartError> {
+    pub fn enter_mode<H: UsartHandle<M>>(&mut self, mode: &H) {
         // NOTE: Safe: this function can only be called after a
         // successful as_*, meaning that we do not need to check for
         // support again.
 
         if self.mode() == H::MODE {
             // Already in the requested mode
-            return Ok(());
+            return;
         }
 
         self.disable();
@@ -364,13 +367,11 @@ impl<M: UsartMeta> Usart<M> {
             w
         });
 
-        let pres = unsafe { mode.configure(self)? };
+        let pres = unsafe { mode.configure(self) };
         self.reg().us_brgr.write(|w| unsafe { w.cd().bits(pres) });
 
         self.clear_errors();
         self.enable();
-
-        Ok(())
     }
 
     /// Return the current operating mode of the [`Usart`].

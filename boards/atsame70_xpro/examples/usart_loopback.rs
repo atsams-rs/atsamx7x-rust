@@ -83,7 +83,7 @@ mod app {
 
         usart.listen(Event::RxReady);
 
-        usart.enter_mode(&uart).unwrap();
+        usart.enter_mode(&uart);
         uart.write(PAYLOAD).unwrap();
 
         *ctx.local.usart = Some(usart);
@@ -103,12 +103,12 @@ mod app {
             match mode {
                 UsartMode::Uart => {
                     assert_eq!(uart.read(), Ok(PAYLOAD));
-                    usart.enter_mode(spi).unwrap();
+                    usart.enter_mode(spi);
                     spi.send(PAYLOAD).unwrap();
                 }
                 UsartMode::Spi(SpiMode::Host) => {
                     assert_eq!(spi.read(), Ok(PAYLOAD));
-                    usart.enter_mode(uart).unwrap();
+                    usart.enter_mode(uart);
                     uart.write(PAYLOAD).unwrap();
                 }
                 _ => unreachable!(),
