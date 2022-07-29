@@ -13,7 +13,7 @@ parity options:
 - [`ParityMode::Mark`], or
 - [`ParityMode::None`],
 
-Interrupt event management is handled by the [`event system`](crate::event_system)
+Interrupt event management is handled by the [`event system`](crate::generics::events).
 
 # Example usage
 
@@ -22,7 +22,7 @@ Interrupt event management is handled by the [`event system`](crate::event_syste
 # use hal::pio::*;
 # use hal::clocks::*;
 # use hal::efc::*;
-# use hal::event_system::*;
+# use hal::generics::events::*;
 # use hal::serial::uart::*;
 # use hal::serial::ExtU32 as _;
 # use hal::fugit::{ExtU32, RateExtU32};
@@ -88,6 +88,7 @@ use strum::FromRepr;
 
 /// Available parity modes
 #[allow(missing_docs)]
+#[derive(Clone, Copy)]
 pub enum ParityMode {
     Even,
     Odd,
@@ -111,6 +112,7 @@ impl From<ParityMode> for ParityModeInner {
 }
 
 /// Available channel modes
+#[derive(Clone, Copy)]
 pub enum ChannelMode {
     /// Normal operation.
     Normal,
@@ -148,6 +150,7 @@ pub trait UartMeta {
 }
 
 /// [`Uart`] configuration
+#[derive(Clone, Copy)]
 pub struct UartConfiguration {
     /// Baud rate that the [`Uart`] communicates at.
     pub baud_rate: Bps,
@@ -415,7 +418,7 @@ impl TryFrom<u32> for Event {
     }
 }
 
-impl<M: UartMeta> crate::event_system::EventHandler for Uart<M> {
+impl<M: UartMeta> crate::generics::events::EventHandler for Uart<M> {
     type EventSource = Event;
 
     fn listen(&mut self, event: Self::EventSource) {

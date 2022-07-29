@@ -11,7 +11,7 @@ When an [`Spi`] has been created, a bus client is selected via
 [`Spi::select`], returning a [`Client`], upon which `embedded-hal`
 trais are implemented.
 
-Interrupt event management is handled by the [`event system`](crate::event_system)
+Interrupt event management is handled by the [`event system`](crate::generics::events).
 
 # Example usage
 
@@ -433,7 +433,7 @@ impl TryFrom<u32> for Event {
     }
 }
 
-impl<M: SpiMeta> crate::event_system::EventHandler for Spi<M> {
+impl<M: SpiMeta> crate::generics::events::EventHandler for Spi<M> {
     type EventSource = Event;
     fn listen(&mut self, event: Self::EventSource) {
         self.reg().spi_ier.write(|w| match event {

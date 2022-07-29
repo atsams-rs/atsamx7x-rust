@@ -49,6 +49,7 @@ version = "0.1.0"
 dependencies = [
  "atsamv71q21b",
  "bit-iter",
+ "cfg-if",
  "cortex-m",
  "embedded-hal",
  "fugit",
