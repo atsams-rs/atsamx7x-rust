@@ -66,11 +66,10 @@ fmt:
 
 clippy:
   stage: lint
-  allow_failure: true
   needs: ["samv71q21b"]
   script:
     - cd hal
-    - cargo clippy --no-deps --features samv71q21b,unproven
+    - cargo clippy --no-deps --features samv71q21b,unproven -- --deny warnings
     - cd ../boards/atsame70_xpro
     - cargo clippy --examples --no-deps
     - cd ../atsamv71_xult

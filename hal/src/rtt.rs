@@ -246,7 +246,7 @@ impl<const FREQ_HZ: u32> Rtt<FREQ_HZ> {
             rtt.rtt.rtt_ar.write(|w| unsafe {
                 // Note: interrupt is triggered when ALMV + 1 is reached.
                 // Subtract one to trigger AT `tick` value
-                w.bits(tick.checked_sub(1).unwrap_or(0))
+                w.bits(tick.saturating_sub(1))
             });
         });
     }
