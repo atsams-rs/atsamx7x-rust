@@ -108,7 +108,7 @@ impl<M: UsartMeta, R: SpiRole> Spi<M, R> {
     }
 }
 
-impl<'usart, M: UsartMeta, R: SpiRole> UsartHandle<M> for Spi<M, R> {
+impl<M: UsartMeta, R: SpiRole> UsartHandle<M> for Spi<M, R> {
     const MODE: UsartMode = UsartMode::Spi(R::ROLE);
 
     #[inline(always)]

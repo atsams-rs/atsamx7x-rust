@@ -167,11 +167,21 @@ pub trait UsartHandle<M: UsartMeta> {
 
     /// Resets the internal state machines and buffers for the
     /// [`UsartMode`].
+    ///
+    /// # Safety
+    ///
+    /// This function modifies the [`Usart`] hardware, and is called
+    /// by [`Usart::enter_mode`]. It should not be called directly.
     unsafe fn reset(&self, usart: &mut Usart<M>);
 
     /// Configures the [`Usart`] to operate in the target
     /// [`UsartMode`] handle, and returns the mode's required
     /// prescaler.
+    ///
+    /// # Safety
+    ///
+    /// This function modifies the [`Usart`] hardware, and is called
+    /// by [`Usart::enter_mode`]. It should not be called directly.
     unsafe fn configure(&self, usart: &mut Usart<M>) -> Prescaler;
 }
 
