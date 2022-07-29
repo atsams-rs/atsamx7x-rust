@@ -48,6 +48,7 @@ impl<M: UsartMeta> RegisterAccess<M> for Rx<M> {}
 /// This Uart implementation implements the embedded hal [`serial`](ehal::serial) traits
 pub struct Uart<M: UsartMeta> {
     cfg: UartConfiguration,
+    usclks: UsartClockSource,
     pres: Prescaler,
     _meta: PhantomData<M>,
 }
@@ -56,12 +57,16 @@ impl<M: UsartMeta> RegisterAccess<M> for Uart<M> {}
 
 impl<M: UsartMeta> Uart<M> {
     /// Crate level since it is used by [`Usart`]
-    pub(crate) fn new(mck: &HostClock, cfg: UartConfiguration) -> Result<Uart<M>, UsartError> {
+    pub(crate) fn new<C: UsartUartClock>(
+        clk: &C,
+        cfg: UartConfiguration,
+    ) -> Result<Uart<M>, UsartError> {
         // Ensure a valid prescaler can be calculated
-        let pres = Usart::<M>::calc_pres(mck.freq(), cfg.baud_rate, cfg.oversample)?;
+        let pres = Usart::<M>::calc_pres(clk.freq(), cfg.baud_rate, cfg.oversample)?;
 
         Ok(Self {
             cfg,
+            usclks: C::SRC,
             pres,
             _meta: PhantomData,
         })
@@ -84,7 +89,7 @@ impl<M: UsartMeta> UsartHandle<M> for Uart<M> {
 
     unsafe fn configure(&self, usart: &mut Usart<M>) -> Prescaler {
         usart.reg().us_mr_usart_mode().write(|w| {
-            w.usclks().mck();
+            w.usclks().variant(self.usclks);
             w.clko().clear_bit(); // Do not drive the clk pin
             w.usart_mode().normal();
             w.sync().clear_bit(); // Uart mode

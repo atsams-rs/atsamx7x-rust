@@ -81,7 +81,7 @@ let _ = spi.read().unwrap();
  */
 
 pub use super::uart::{ChannelMode, ParityMode, UartConfiguration};
-use crate::clocks::{Clock, Hertz, HostClock, PeripheralIdentifier};
+use crate::clocks::{Clock, Hertz, HostClock, Pck, Pck4, PeripheralIdentifier};
 use crate::generics::Token;
 use crate::pio::*;
 use crate::serial::Bps;
@@ -90,7 +90,8 @@ use crate::target_device::USART2;
 use crate::target_device::{
     usart0::us_mr_usart_mode::CHMODE_A as HwChannelMode,
     usart0::us_mr_usart_mode::PAR_A as HwParityMode,
-    usart0::us_mr_usart_mode::USART_MODE_A as HwUsartMode, usart0::RegisterBlock, USART0, USART1,
+    usart0::us_mr_usart_mode::USART_MODE_A as HwUsartMode,
+    usart0::us_mr_usart_mode::USCLKS_A as UsartClockSource, usart0::RegisterBlock, USART0, USART1,
 };
 
 use core::marker::PhantomData;
@@ -253,19 +254,33 @@ pub struct UsartHandles<M: UsartMeta> {
     pub spi_client: Token<Spi<M, Client>>,
 }
 
+/// Valid clocks for the [`Usart`] in [`Uart`] mode.
+pub trait UsartUartClock: Clock {
+    /// Hardware identifier of the [`Clock`].
+    const SRC: UsartClockSource;
+}
+
+impl UsartUartClock for HostClock {
+    const SRC: UsartClockSource = UsartClockSource::MCK;
+}
+
+impl UsartUartClock for Pck<Pck4> {
+    const SRC: UsartClockSource = UsartClockSource::PCK;
+}
+
 impl<M: UsartMeta> Token<Uart<M>> {
     /// Consume the [`Token`] in favour of a [`Uart`].
     pub fn configure(
         self,
         usart: &Usart<M>,
-        mck: &HostClock,
+        clk: &impl UsartUartClock,
         cfg: UartConfiguration,
     ) -> Result<Uart<M>, UsartError> {
         if !usart.uart.supported {
             return Err(UsartError::InvalidMode);
         }
 
-        Uart::new(mck, cfg)
+        Uart::new(clk, cfg)
     }
 }
 
