@@ -1,4 +1,4 @@
-use crate::target_device::pioa::RegisterBlock;
+use crate::pac::pioa::RegisterBlock;
 
 use super::dynpin::*;
 

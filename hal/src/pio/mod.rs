@@ -15,8 +15,8 @@ corresponding interrupt (e.g. [the `PIOA` interrupt] for [`PIOA`],
 minimum debounce durations. That is, all [`Pin`]s in a bank share
 the same debounce configuration.
 
-[the `PIOA` interrupt]: crate::target_device::Interrupt::PIOA
-[the `PIOB` interrupt]: crate::target_device::Interrupt::PIOB
+[the `PIOA` interrupt]: crate::pac::Interrupt::PIOA
+[the `PIOB` interrupt]: crate::pac::Interrupt::PIOB
 
 # Pins
 
@@ -72,8 +72,8 @@ HAL-level. However, it applies some enforcement to ensure that
 [`Pin`] interrupts are not ignored; refer to
 [`BankInterrupts::iter`].
 
-[ISR]: crate::target_device::pioa::pio_isr
-[IMR]: crate::target_device::pioa::pio_imr
+[ISR]: crate::pac::pioa::pio_isr
+[IMR]: crate::pac::pioa::pio_imr
 
 # Example
 
@@ -86,7 +86,7 @@ The below example configures [`Pin<PA11, Input>`] to trigger on
 # use hal::pio::*;
 # use hal::clocks::*;
 # use hal::efc::*;
-# let pac = hal::target_device::Peripherals::take().unwrap();
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 
 let banka = BankA::new(
@@ -106,7 +106,7 @@ let led = bankb.pb8.into_output();
 ```
 */
 
-use crate::target_device::{
+use crate::pac::{
     // All PIO banks below use the same register block definition.
     pioa::RegisterBlock,
 
@@ -116,7 +116,7 @@ use crate::target_device::{
     PIOD,
 };
 #[cfg(feature = "pins-144")]
-use crate::target_device::{PIOC, PIOE};
+use crate::pac::{PIOC, PIOE};
 
 pub mod pin;
 pub use pin::*;

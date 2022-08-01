@@ -5,7 +5,7 @@
 
 use panic_halt as _;
 
-#[rtic::app(device = hal::target_device, peripherals = true, dispatchers = [PIOB])]
+#[rtic::app(device = hal::pac, peripherals = true, dispatchers = [PIOB])]
 mod app {
     use atsamx7x_hal as hal;
     use hal::clocks::*;

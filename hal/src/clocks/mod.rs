@@ -28,7 +28,7 @@ For example, if we want to configure the [`MainClock`]:
 use atsamx7x_hal as hal;
 use hal::fugit::RateExtU32;
 
-let pac = hal::target_device::Peripherals::take().unwrap();
+let pac = hal::pac::Peripherals::take().unwrap();
 let clocks = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into());
 let mainck = clocks
     .mainck
@@ -44,7 +44,7 @@ again, compilation will fail:
 # use atsamx7x_hal as hal;
 # use hal::fugit::RateExtU32;
 #
-# let pac = hal::target_device::Peripherals::take().unwrap();
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let clocks = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into());
 # let mainck = clocks
 #     .mainck
@@ -72,7 +72,7 @@ use hal::efc::{Efc, VddioLevel};
 use hal::fugit::RateExtU32;
 
 // configure the clock hierarchy
-let pac = hal::target_device::Peripherals::take().unwrap();
+let pac = hal::pac::Peripherals::take().unwrap();
 let clocks = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into());
 let slck = clocks.slck.configure_external_normal();
 let mainck = clocks
@@ -103,7 +103,7 @@ let (hclk, mck) = HostClockController::new(clocks.hclk, clocks.mck)
 */
 
 use crate::generics::Token;
-use crate::target_device::{pmc, supc, utmi, PMC, SUPC, UTMI};
+use crate::pac::{pmc, supc, utmi, PMC, SUPC, UTMI};
 use crate::watchdog::{Disabled, Watchdog};
 
 use core::marker::PhantomData;

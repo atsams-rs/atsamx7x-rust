@@ -1,7 +1,7 @@
 use super::*;
 
 /// Main "RC" oscillator frequency selection.
-pub use crate::target_device::pmc::ckgr_mor::MOSCRCF_A as InternalRcFreq;
+pub use crate::pac::pmc::ckgr_mor::MOSCRCF_A as InternalRcFreq;
 
 /// The source of the [`MainClock`].
 ///

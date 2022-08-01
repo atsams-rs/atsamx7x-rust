@@ -1,7 +1,7 @@
 //! Flash controller configuration
 
 use crate::clocks::{ClockError, Megahertz};
-use crate::target_device::EFC;
+use crate::pac::EFC;
 
 /// The voltage which drives the MCU.
 ///

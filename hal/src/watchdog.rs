@@ -1,5 +1,5 @@
 //! Watchdog timer configuration.
-use crate::target_device::WDT;
+use crate::pac::WDT;
 
 use core::marker::PhantomData;
 

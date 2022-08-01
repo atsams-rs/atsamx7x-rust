@@ -1,5 +1,5 @@
 use super::*;
-use crate::target_device::pmc::pmc_pck::CSS_A as PCK_CSS;
+use crate::pac::pmc::pmc_pck::CSS_A as PCK_CSS;
 
 impl<I: PckId> Clock for Pck<I> {
     fn freq(&self) -> Hertz {

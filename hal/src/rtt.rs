@@ -23,7 +23,7 @@ via [`Rtt::new_8192Hz`].
 # use hal::rtt::*;
 # use hal::fugit::RateExtU32;
 # use rtic_monotonic::*;
-# let pac = hal::target_device::Peripherals::take().unwrap();
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 
 let mono: Mono<100> = Rtt::new(pac.RTT, &slck, 100.Hz()).unwrap().into_monotonic();
@@ -37,7 +37,7 @@ or
 # use hal::rtt::*;
 # use hal::fugit::RateExtU32;
 # use rtic_monotonic::Monotonic;
-# let pac = hal::target_device::Peripherals::take().unwrap();
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 
 use hal::ehal::{blocking::delay::DelayMs, timer::{CountDown, Cancel}};
@@ -55,7 +55,7 @@ timer.disable();
 
 use crate::clocks::{Clock, SlowClock, SlowClockSource};
 use crate::ehal::{blocking::delay, timer};
-use crate::target_device::{rtt::rtt_sr::R as StatusRegister, RTT};
+use crate::pac::{rtt::rtt_sr::R as StatusRegister, RTT};
 pub use fugit::{ExtU32, RateExtU32};
 use fugit::{
     HertzU32 as Hertz, MicrosDurationU32 as MicrosDuration, MillisDurationU32 as MillisDuration,
@@ -82,7 +82,7 @@ pub enum RttError {
     /// # use hal::efc::*;
     /// # use hal::rtt::*;
     /// # use hal::fugit::RateExtU32;
-    /// # let pac = hal::target_device::Peripherals::take().unwrap();
+    /// # let pac = hal::pac::Peripherals::take().unwrap();
     /// # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
     /// let rtt: Rtt<100> = Rtt::new(pac.RTT, &slck, 100.Hz()).unwrap();
     /// ```

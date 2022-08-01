@@ -23,7 +23,7 @@ Interrupt event management is handled by the [`event system`](crate::generics::e
 # use hal::serial::spi::*;
 # use hal::serial::ExtU32 as _;
 # use hal::fugit::ExtU32;
-# let pac = hal::target_device::Peripherals::take().unwrap();
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 
 let bankd = BankD::new(pac.PIOD, &mut mck, &slck, BankConfiguration::default());
@@ -63,10 +63,10 @@ use super::Bps;
 use crate::clocks::{Clock, HostClock, PeripheralIdentifier};
 use crate::ehal::blocking;
 use crate::fugit::{ExtU32, NanosDurationU32 as NanosDuration};
-use crate::pio::*;
 #[cfg(feature = "pins-144")]
-use crate::target_device::SPI1;
-use crate::target_device::{spi0::spi_tdr::PCS_AW as HwChipSelect, spi0::RegisterBlock, SPI0};
+use crate::pac::SPI1;
+use crate::pac::{spi0::spi_tdr::PCS_AW as HwChipSelect, spi0::RegisterBlock, SPI0};
+use crate::pio::*;
 use crate::{ehal, nb};
 use core::marker::PhantomData;
 use ehal::spi::Mode;

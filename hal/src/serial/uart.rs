@@ -26,7 +26,7 @@ Interrupt event management is handled by the [`event system`](crate::generics::e
 # use hal::serial::uart::*;
 # use hal::serial::ExtU32 as _;
 # use hal::fugit::{ExtU32, RateExtU32};
-# let pac = hal::target_device::Peripherals::take().unwrap();
+# let pac = hal::pac::Peripherals::take().unwrap();
 let clocks = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into());
 let slck = clocks.slck.configure_external_normal();
 let mainck = clocks
@@ -68,17 +68,15 @@ assert_eq!(uart.read().unwrap(), 0xff);
 
 use crate::clocks::{Clock, HostClock, Pck, Pck4, PeripheralClock, PeripheralIdentifier};
 use crate::ehal::{self, blocking};
-use crate::pio::*;
-use crate::serial::Bps;
-use crate::target_device::uart0::uart_mr::{
-    CHMODE_A as ChannelModeInner, PAR_A as ParityModeInner,
-};
-use crate::target_device::{uart0::RegisterBlock, UART0, UART1, UART2};
+use crate::pac::uart0::uart_mr::{CHMODE_A as ChannelModeInner, PAR_A as ParityModeInner};
+use crate::pac::{uart0::RegisterBlock, UART0, UART1, UART2};
 #[cfg(all(
     any(feature = "e70", feature = "s70", feature = "v71"),
     any(feature = "pins-100", feature = "pins-144")
 ))]
-use crate::target_device::{UART3, UART4};
+use crate::pac::{UART3, UART4};
+use crate::pio::*;
+use crate::serial::Bps;
 
 use core::marker::PhantomData;
 

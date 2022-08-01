@@ -1,8 +1,8 @@
 use super::*;
 use crate::efc::Efc;
-use crate::target_device::pmc::pmc_mckr::CSS_A as HCC_CSS;
-use crate::target_device::pmc::pmc_mckr::MDIV_A as MCK_DIV;
-use crate::target_device::pmc::pmc_mckr::PRES_A as HCC_PRES;
+use crate::pac::pmc::pmc_mckr::CSS_A as HCC_CSS;
+use crate::pac::pmc::pmc_mckr::MDIV_A as MCK_DIV;
+use crate::pac::pmc::pmc_mckr::PRES_A as HCC_PRES;
 
 /// Common [`HostClock`] and [`ProcessorClock`] prescaler.
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]

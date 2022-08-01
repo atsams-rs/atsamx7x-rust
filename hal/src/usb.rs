@@ -16,7 +16,7 @@ extensively tested, and should be considered unstable at the moment.
 # use hal::efc::*;
 # use hal::usb::*;
 # use hal::fugit::RateExtU32;
-# let pac = hal::target_device::Peripherals::take().unwrap();
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let clocks = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into());
 # let slck = clocks.slck.configure_external_normal();
 # let mainck = clocks
@@ -61,7 +61,7 @@ loop {
  */
 
 use crate::clocks::{HostClock, PeripheralIdentifier, UpllClock};
-use crate::target_device::{usbhs::RegisterBlock, USBHS};
+use crate::pac::{usbhs::RegisterBlock, USBHS};
 
 use core::cell::UnsafeCell;
 
