@@ -15,11 +15,12 @@ panic-rtt-target = { version = "0.1.2", features = ["cortex-m"] }
 rtt-target = { version = "0.3.1", features = ["cortex-m"] }
 usbd-serial = "0.1.1"
 heapless = "0.7"
+smoltcp = { version = "0.8.0", default-features = false, features = ["medium-ethernet", "medium-ip", "proto-ipv4", "socket-raw", "socket-tcp", "socket-dhcpv4"] }
 
 [dependencies.atsamx7x-hal]
 version = "0.3.0"
 path = "../../hal"
-features = ["same70q21b-rt", "unproven"]
+features = ["same70n21b-rt", "unproven"]
 
 [profile.dev]
 debug = true
