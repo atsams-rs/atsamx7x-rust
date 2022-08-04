@@ -18,6 +18,11 @@ can be done, the clock hierarchy must be configured, because it is
 upstream of all other peripherals. Refer to [`clocks`].
 
 [`clock`]: crate::clocks
+
+# References
+
+Any and all references to figures, pages and sections in this crate (both in documentation and source) refer to the complete datasheet of the SAM E70/S70/V70/V71 family of MCUs.
+The datasheet (DS60001527F) is available via [Microchip](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU32/ProductDocuments/DataSheets/SAM-E70-S70-V70-V71-Family-Data-Sheet-DS60001527.pdf) (fetched 2022-08-04).
 */
 
 #![cfg_attr(not(test), no_std)]
