@@ -1,4 +1,8 @@
 use core::{cell::UnsafeCell, ptr::NonNull, ops::{Deref, DerefMut}, marker::PhantomData};
+use paste::*;
+use crate::pmc::{HostClock, PeripheralIdentifier, Pmc};
+use crate::target_device::gmac::RegisterBlock;
+use crate::pio::*;
 
 use crate::target_device::{GMAC, generic::Reg, gmac::{gmac_idrpq::GMAC_IDRPQ_SPEC, gmac_isrpq::GMAC_ISRPQ_SPEC}};
 use smoltcp::phy::{Device, RxToken, TxToken, DeviceCapabilities, Medium, ChecksumCapabilities, Checksum};
@@ -17,6 +21,22 @@ static TX_BUF_DESCS: [TxBufferDescriptor; NUM_TX_BUFS] = [TX_BUF_DESC_DEFAULT; N
 static TX_BUFS: [TxBuffer; NUM_TX_BUFS] = [TX_BUF_DEFAULT; NUM_TX_BUFS];
 
 static UNUSED_TX_BUF_DESC: TxBufferDescriptor = TX_BUF_DESC_DEFAULT;
+
+pub trait GmacMeta {
+    const REG: *const RegisterBlock;
+    const PID: PeripheralIdentifier;
+}
+
+pub trait GmacPins {
+
+}
+
+#[derive(Debug)]
+pub enum GmacError {
+
+}
+
+pub struct GmacConfiguration { }
 
 
 pub struct GmacRxToken<'a> {
@@ -211,20 +231,44 @@ impl WriteFrame {
         unsafe { self.dropper(len) };
     }
 }
+impl GmacPins for () {
+    
+}
 
 impl Gmac {
     // TODO: Mark safe when possible.
-    pub unsafe fn new(periph: GMAC) -> Self {
-        // defmt::println!("WARNING: Don't forget! We rely on configuration elsewhere for pins and stuff.");
-        Self {
-            periph,
+    // pub unsafe fn new(periph: GMAC) -> Self {
+    //     // defmt::println!("WARNING: Don't forget! We rely on configuration elsewhere for pins and stuff.");
+    //     Self {
+    //         periph,
+    //         next_tx_idx: 0,
+    //         last_txgo: false,
+    //         last_bna: false,
+    //         last_stat_poll: 0,
+    //     }
+    // }
+    // #[inline]
+    // fn reg(&self) -> &RegisterBlock {
+    //     unsafe { &*self::REG }
+    // }
+
+    pub fn  new_gmac<Pins: GmacPins>(gmac: GMAC, _pins: Pins, cfg: GmacConfiguration, pmc: &mut Pmc) -> Result<Self, GmacError> {
+        Self::new(gmac, pmc, cfg)
+    }
+
+
+    fn new(gmac: GMAC, pmc: &mut Pmc, cfg: GmacConfiguration) -> Result<Self,GmacError> {
+        pmc.enable_peripherals(&[PeripheralIdentifier::GMAC]).unwrap();
+        let mut gmac = Gmac {
+            periph: gmac,
             next_tx_idx: 0,
             last_txgo: false,
             last_bna: false,
             last_stat_poll: 0,
-        }
-    }
+        };
 
+        Ok(gmac)
+    }
 
     pub fn read_frame(&mut self) -> Option<ReadFrame> {
         // Scan through the read frames, and attempt to find one marked as "used"
@@ -813,6 +857,162 @@ impl TxBufferDescriptor {
         }
     }
 }
+
+macro_rules! impl_gmac_pins {
+    (
+        $(
+            $( #[$cfg:meta] )?
+            $Gmac:ident: {
+                GTXCK: [ $GtxckType:ty ],
+                GTXEN: [ $GtxenType:ty ],
+                GTX3: [ $Gtx3Type:ty ],
+                GTX2: [ $Gtx2Type:ty ],
+                GTX1: [ $Gtx1Type:ty ],
+                GTX0: [ $Gtx0Type:ty ],
+                GTXER: [ $GtxerType:ty ],
+                GRXCK: [ $GrxckType:ty ],
+                GRXDV: [ $GrxdvType:ty ],
+                GRX3: [ $Grx3Type:ty ],
+                GRX2: [ $Grx2Type:ty ],
+                GRX1: [ $Grx1Type:ty ],
+                GRX0: [ $Grx0Type:ty ],
+                GRXER: [ $GrxerType:ty ],
+                GCRS: [ $GcrsType:ty ],
+                GCOL: [ $GcolType:ty ],
+                GMDC: [ $GmdcType:ty ],
+                GMDIO: [ $GmdioType:ty ],
+            },
+        )+
+    ) => {
+        paste! {
+            $(
+                $( #[$cfg] )?
+                mod [<$Gmac:lower _impl>] {
+                    use super::*;
+
+                    #[doc = "Trait that identifies valid GTXCK [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac GtxckPin>] {}
+                    #[doc = "Trait that identifies valid GTXEN [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac GtxenPin>] {}
+                    #[doc = "Trait that identifies valid GTX3 [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac Gtx3Pin>] {}
+                    #[doc = "Trait that identifies valid GTX2 [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac Gtx2Pin>] {}
+                    #[doc = "Trait that identifies valid GTX1 [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac Gtx1Pin>] {}
+                    #[doc = "Trait that identifies valid GTX0 [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac Gtx0Pin>] {}
+                    #[doc = "Trait that identifies valid GTXER [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac GtxerPin>] {}
+                    #[doc = "Trait that identifies valid GRXCK [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac GrxckPin>] {}
+                    #[doc = "Trait that identifies valid GRXDV [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac GrxdvPin>] {}
+                    #[doc = "Trait that identifies valid GRX3 [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac Grx3Pin>] {}
+                    #[doc = "Trait that identifies valid GRX2 [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac Grx2Pin>] {}
+                    #[doc = "Trait that identifies valid GRX1 [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac Grx1Pin>] {}
+                    #[doc = "Trait that identifies valid GRX0 [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac Grx0Pin>] {}
+                    #[doc = "Trait that identifies valid GRXER [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac GrxerPin>] {}
+                    #[doc = "Trait that identifies valid GCRS [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac GcrsPin>] {}
+                    #[doc = "Trait that identifies valid GCOL [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac GcolPin>] {}
+                    #[doc = "Trait that identifies valid GMDC [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac GmdcPin>] {}
+                    #[doc = "Trait that identifies valid GMDIO [`Pin`]s for [`" [<$Gmac:upper>] "`]."]
+                    pub trait [<$Gmac GmdioPin>] {}
+                    
+                    impl [<$Gmac GtxckPin>] for $GtxckType {}
+                    impl [<$Gmac GtxenPin>] for $GtxenType {}
+                    impl [<$Gmac Gtx3Pin>] for $Gtx3Type {}
+                    impl [<$Gmac Gtx2Pin>] for $Gtx2Type {}
+                    impl [<$Gmac Gtx1Pin>] for $Gtx1Type {}
+                    impl [<$Gmac Gtx0Pin>] for $Gtx0Type {}
+                    impl [<$Gmac GtxerPin>] for $GtxerType {}
+                    impl [<$Gmac GrxckPin>] for $GrxckType {}
+                    impl [<$Gmac GrxdvPin>] for $GrxdvType {}
+                    impl [<$Gmac Grx3Pin>] for $Grx3Type {}
+                    impl [<$Gmac Grx2Pin>] for $Grx2Type {}
+                    impl [<$Gmac Grx1Pin>] for $Grx1Type {}
+                    impl [<$Gmac Grx0Pin>] for $Grx0Type {}
+                    impl [<$Gmac GrxerPin>] for $GrxerType {}
+                    impl [<$Gmac GcrsPin>] for $GcrsType {}
+                    impl [<$Gmac GcolPin>] for $GcolType {}
+                    impl [<$Gmac GmdcPin>] for $GmdcType {}
+                    impl [<$Gmac GmdioPin>] for $GmdioType {}
+
+                    impl [<GmacPins>] for (
+                        $GtxckType,                           
+                        $GtxenType,
+                        $Gtx3Type, 
+                        $Gtx2Type, 
+                        $Gtx1Type, 
+                        $Gtx0Type, 
+                        $GtxerType,
+                        $GrxckType,
+                        $GrxdvType,
+                        $Grx3Type, 
+                        $Grx2Type, 
+                        $Grx1Type, 
+                        $Grx0Type, 
+                        $GrxerType,
+                        $GcrsType, 
+                        $GcolType, 
+                        $GmdcType, 
+                        $GmdioType, 
+                    ) {}
+
+                    impl [<GmacPins>] for (
+                        $GtxckType,                           
+                        $GtxenType,
+                        $Gtx1Type, 
+                        $Gtx0Type, 
+                        $GrxdvType,
+                        $Grx1Type, 
+                        $Grx0Type, 
+                        $GrxerType,
+                        $GmdcType, 
+                        $GmdioType, 
+                    ) {}
+
+
+
+                }
+                $( #[$cfg] )?
+                    pub use [<$Gmac:lower _impl>]::*;
+            )+
+        }
+    };
+}
+
+impl_gmac_pins!(
+    Gmac: { 
+        GTXCK: [ Pin<PD0, PeripheralA> ],
+        GTXEN: [ Pin<PD1, PeripheralA> ],
+        GTX3: [ Pin<PD16, PeripheralA> ],
+        GTX2: [ Pin<PD15, PeripheralA> ],
+        GTX1: [ Pin<PD3, PeripheralA> ],
+        GTX0: [ Pin<PD2, PeripheralA> ],
+        GTXER: [ Pin<PD17, PeripheralA> ],
+        GRXCK: [ Pin<PD14, PeripheralA> ],
+        GRXDV: [ Pin<PD4, PeripheralA> ],
+        GRX3: [ Pin<PD12, PeripheralA> ],
+        GRX2: [ Pin<PD11, PeripheralA> ],
+        GRX1: [ Pin<PD6, PeripheralA> ],
+        GRX0: [ Pin<PD5, PeripheralA> ],
+        GRXER: [ Pin<PD7, PeripheralA> ],
+        GCRS: [ Pin<PD10, PeripheralA> ],
+        GCOL: [ Pin<PD13, PeripheralA> ],
+        GMDC: [ Pin<PD8, PeripheralA> ],
+        GMDIO: [ Pin<PD9, PeripheralA> ],
+        
+    },
+);
 
 #[repr(C, align(8))]
 struct TxBufferDescriptor {

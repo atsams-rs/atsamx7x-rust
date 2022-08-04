@@ -50,26 +50,30 @@ mod app {
         let mut efc = hal::efc::Efc::new(ctx.device.EFC, hal::efc::VddioLevel::V3);
         let mut pmc = hal::pmc::Pmc::new(ctx.device.PMC, &ctx.device.WDT.into());
         let slck = pmc.get_slck(ctx.device.SUPC, SlowCkSource::InternalRC);
-        pmc.enable_peripherals(&[PeripheralIdentifier::GMAC]);
 
         let bankd = hal::pio::BankD::new(ctx.device.PIOD, &mut pmc, BankConfiguration::default());
         // Configure PD[1,2,3,4,5,6,8,9,11,12,14,15,16] for ethernet
-        let _pd1:  Pin<_,Peripheral<A>> = bankd.pd1.into_peripheral();
-        let _pd2:  Pin<_,Peripheral<A>> = bankd.pd2.into_peripheral();
-        let _pd3:  Pin<_,Peripheral<A>> = bankd.pd3.into_peripheral();
-        let _pd4:  Pin<_,Peripheral<A>> = bankd.pd4.into_peripheral();
-        let _pd5:  Pin<_,Peripheral<A>> = bankd.pd5.into_peripheral();
-        let _pd6:  Pin<_,Peripheral<A>> = bankd.pd6.into_peripheral();
-        let _pd8:  Pin<_,Peripheral<A>> = bankd.pd8.into_peripheral();
-        let _pd9:  Pin<_,Peripheral<A>> = bankd.pd9.into_peripheral();
-        let _pd11: Pin<_,Peripheral<A>> = bankd.pd11.into_peripheral();
-        let _pd12: Pin<_,Peripheral<A>> = bankd.pd12.into_peripheral();
-        let _pd14: Pin<_,Peripheral<A>> = bankd.pd14.into_peripheral();
-        let _pd15: Pin<_,Peripheral<A>> = bankd.pd15.into_peripheral();
-        let _pd16: Pin<_,Peripheral<A>> = bankd.pd16.into_peripheral();
+        let txck:  Pin<_,Peripheral<A>> = bankd.pd0.into_peripheral();
+        let txen:  Pin<_,Peripheral<A>> = bankd.pd1.into_peripheral();
+        let tx0:  Pin<_,Peripheral<A>> = bankd.pd2.into_peripheral();
+        let tx1:  Pin<_,Peripheral<A>> = bankd.pd3.into_peripheral();
+        let rxdv:  Pin<_,Peripheral<A>> = bankd.pd4.into_peripheral();
+        let rx0:  Pin<_,Peripheral<A>> = bankd.pd5.into_peripheral();
+        let rx1:  Pin<_,Peripheral<A>> = bankd.pd6.into_peripheral();
+        let rxer:  Pin<_,Peripheral<A>> = bankd.pd7.into_peripheral();
+        let mdc:  Pin<_,Peripheral<A>> = bankd.pd8.into_peripheral();
+        let mdio:  Pin<_,Peripheral<A>> = bankd.pd9.into_peripheral();
+        let crs:  Pin<_,Peripheral<A>> = bankd.pd10.into_peripheral();
+        let rx2: Pin<_,Peripheral<A>> = bankd.pd11.into_peripheral();
+        let rx3: Pin<_,Peripheral<A>> = bankd.pd12.into_peripheral();
+        let col: Pin<_,Peripheral<A>> = bankd.pd13.into_peripheral();
+        let rxck: Pin<_,Peripheral<A>> = bankd.pd14.into_peripheral();
+        let tx2: Pin<_,Peripheral<A>> = bankd.pd15.into_peripheral();
+        let tx3: Pin<_,Peripheral<A>> = bankd.pd16.into_peripheral();
+        let txer: Pin<_,Peripheral<A>> = bankd.pd17.into_peripheral();
 
         let gmac = ctx.device.GMAC;
-        let mut gmac = unsafe { Gmac::new(gmac) };
+        let mut gmac = Gmac::new_gmac(gmac, (txck, txen, tx3, tx2, tx1, tx0, txer, rxck, rxdv, rx3, rx2, rx1, rx0, rxer, crs, col, mdc, mdio), GmacConfiguration{}, &mut pmc).unwrap();
         {
             // enables the peripheral clock
             // pmc.enable_periph_clk(39).unwrap();
