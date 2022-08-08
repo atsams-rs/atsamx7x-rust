@@ -102,7 +102,7 @@ button.set_interrupt(Some(InterruptType::FallingEdge));
 button.set_filter(Some(InputFilter::Debounce));
 
 let bankb = BankB::new(pac.PIOB, &mut mck, &slck, BankConfiguration::default());
-let led = bankb.pb8.into_output();
+let led = bankb.pb8.into_output(true); // or false, for an initial low state.
 ```
 */
 

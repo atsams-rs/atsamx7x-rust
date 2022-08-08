@@ -59,9 +59,6 @@ pub(in crate::pio) trait RegisterInterface {
 
     #[inline]
     fn as_output(&mut self) {
-        // set initial output state as low (0)
-        self.write_pin(false);
-
         // take pin from peripheral
         self.reg().pio_per.write(|w| unsafe { w.bits(self.mask()) });
 

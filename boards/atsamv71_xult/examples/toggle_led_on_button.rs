@@ -58,7 +58,7 @@ mod app {
         let mut button = banka.pa9.into_input(PullDir::PullUp);
         button.set_interrupt(Some(InterruptType::FallingEdge));
         button.set_filter(Some(InputFilter::Debounce));
-        let led = banka.pa23.into_output();
+        let led = banka.pa23.into_output(true);
 
         (
             Shared {},
