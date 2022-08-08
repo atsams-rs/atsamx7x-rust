@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-## [v0.2.0] 22-08-08
+## [v0.2.0] 2022-08-08
 
 ### Added
 - Nonexhaustive APIs for the following peripherals:
