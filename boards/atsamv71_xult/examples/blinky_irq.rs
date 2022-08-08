@@ -52,7 +52,7 @@ mod app {
             &slck,
             BankConfiguration::default(),
         );
-        let led = banka.pa23.into_output();
+        let led = banka.pa23.into_output(true);
 
         let mut timer = Rtt::new_8192Hz(ctx.device.RTT, &slck).into_timer();
         timer.start(1.secs());

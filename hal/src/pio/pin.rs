@@ -172,10 +172,14 @@ where
         self.into_mode()
     }
 
-    /// Configures this pin to operate as an [`Output`] [`Pin`].
+    /// Configures this pin to operate as an [`Output`] [`Pin`]. If
+    /// `bit` is `true`, the pin output is initially set high;
+    /// otherwise low.
     #[inline]
-    pub fn into_output(self) -> Pin<I, Output> {
-        self.into_mode()
+    pub fn into_output(self, bit: bool) -> Pin<I, Output> {
+        let mut pin: Pin<I, Output> = self.into_mode();
+        pin.regs.write_pin(bit);
+        pin
     }
 
     /// Configures this [`Pin`] to operate as an [`Input`] [`Pin`].

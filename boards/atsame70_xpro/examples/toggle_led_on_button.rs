@@ -60,7 +60,7 @@ mod app {
             &slck,
             BankConfiguration::default(),
         );
-        let led = bankb.pb8.into_output();
+        let led = bankb.pb8.into_output(true);
 
         (
             Shared {},

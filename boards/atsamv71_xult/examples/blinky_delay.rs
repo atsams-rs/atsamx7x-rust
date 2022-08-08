@@ -54,7 +54,7 @@ mod app {
             &slck,
             BankConfiguration::default(),
         );
-        let led = banka.pa23.into_output();
+        let led = banka.pa23.into_output(true);
 
         (Shared {}, Local { led, timer }, init::Monotonics())
     }
