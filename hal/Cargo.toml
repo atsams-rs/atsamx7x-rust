@@ -1,6 +1,6 @@
 [package]
 name = "atsamx7x-hal"
-version = "0.1.0"
+version = "0.2.0"
 authors = [
         "Viktor Sonesten <viktor.sonesten@grepit.se>",
         "Martin Mörtsell <martin.mortsell@grepit.se>",
