@@ -22,7 +22,7 @@ dependencies = [
 
 [[package]]
 name = "atsame70_xpro"
-version = "0.1.0"
+version = "0.2.1"
 dependencies = [
  "atsamx7x-hal",
  "cortex-m",
@@ -45,7 +45,7 @@ dependencies = [
 
 [[package]]
 name = "atsamx7x-hal"
-version = "0.1.0"
+version = "0.2.1"
 dependencies = [
  "atsame70q21b",
  "bit-iter",

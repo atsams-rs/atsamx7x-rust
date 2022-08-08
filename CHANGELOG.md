@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [v0.2.1] 2022-08-08
+
+### Fixed
+- `boards/`: Incorrect HAL crate version.
+
 ## [v0.2.0] 2022-08-08
 
 ### Added
@@ -33,7 +38,8 @@
 * hal: Just very simple stuff added
 * automation script in Python
 
-[Unreleased]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.2.1...HEAD
+[v0.2.1]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.1.0...v0.2.0
 [v0.1.0]: https://github.com/atsams-rs/atsamx7x-hal/compare/compare/v0.2.0...v0.1.0
 [v0.0.2]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.0.1...v0.0.2
