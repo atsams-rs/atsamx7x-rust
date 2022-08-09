@@ -55,6 +55,7 @@ timer.disable();
 
 use crate::clocks::{Clock, SlowClock, SlowClockSource};
 use crate::ehal::{blocking::delay, timer};
+use crate::generics::CountDownError;
 use crate::pac::{rtt::rtt_sr::R as StatusRegister, RTT};
 pub use fugit::{ExtU32, RateExtU32};
 use fugit::{
@@ -87,15 +88,6 @@ pub enum RttError {
     /// let rtt: Rtt<100> = Rtt::new(pac.RTT, &slck, 100.Hz()).unwrap();
     /// ```
     FrequencyMismatch,
-}
-
-/// Possible [`timer::Cancel::cancel`] errors.
-#[derive(Debug, Eq, PartialEq, Copy, Clone)]
-pub enum CountDownError {
-    /// The [`Timer`] is disabled and was thus never started.
-    Disabled,
-    /// The [`Timer`] countdown has already expired.
-    Expired,
 }
 
 /// [`RTT`] abstraction.

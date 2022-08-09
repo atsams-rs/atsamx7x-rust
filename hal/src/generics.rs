@@ -19,6 +19,15 @@ impl<T> Default for Token<T> {
     }
 }
 
+/// Possible [`crate::ehal::timer::Cancel::cancel`] errors.
+#[derive(Debug, Eq, PartialEq, Copy, Clone)]
+pub enum CountDownError {
+    /// The timer is disabled and was thus never started.
+    Disabled,
+    /// The timer countdown has already expired.
+    Expired,
+}
+
 /// Provides generic interrupt event management
 /// ---
 ///
