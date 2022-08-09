@@ -109,11 +109,11 @@ use crate::fugit::{
     MicrosDurationU32 as MicrosDuration, MillisDurationU32 as MillisDuration,
     TimerDurationU32 as Duration, TimerInstantU32 as Instant,
 };
+use crate::generics::CountDownError;
 use crate::pac::tc0::{
-    tc_channel::tc_cmr_waveform_mode::TCCLKS_A as TCCLKS, RegisterBlock,
-    TC_CHANNEL as ChannelRegisterBlock,
+    tc_channel::{tc_cmr_waveform_mode::TCCLKS_A as TCCLKS, tc_sr::R as StatusRegister},
+    RegisterBlock, TC_CHANNEL as ChannelRegisterBlock,
 };
-use crate::rtt::CountDownError;
 
 use core::marker::PhantomData;
 
@@ -147,7 +147,7 @@ pub trait TcMeta {
 ///
 /// Implementors of this trait modifies the hardware state.
 unsafe trait RegisterAccess<M: TcMeta, I: ChannelId> {
-    #[inline]
+    #[inline(always)]
     fn reg(&self) -> &RegisterBlock {
         unsafe { &*M::REG }
     }
@@ -160,6 +160,21 @@ unsafe trait RegisterAccess<M: TcMeta, I: ChannelId> {
             DynChannelId::Ch1 => &tc.tc_channel1,
             DynChannelId::Ch2 => &tc.tc_channel2,
         }
+    }
+}
+
+/// Trait for synchronizing the start of all channels in the [`Tc`].
+trait SyncChannels<M: TcMeta> {
+    /// Start the clocks of all [`Channel`]s in the [`Tc`] at the same
+    /// time. Calling this function is required if channels are
+    /// [`Channel::chain`]ed.
+    ///
+    /// # Safety
+    ///
+    /// Modifies the hardware state of all [`Channel`]s.
+    #[inline(always)]
+    unsafe fn sync_start_channels() {
+        { &*M::REG }.tc_bcr.write(|w| w.sync().set_bit());
     }
 }
 
@@ -307,6 +322,14 @@ pub enum TcError {
     },
 }
 
+enum CompareRegister {
+    #[allow(dead_code)]
+    Ra(u16),
+    #[allow(dead_code)]
+    Rb(u16),
+    Rc(u16),
+}
+
 /// A [`Tc`] [`Channel`] and its current state.
 ///
 /// An [`Inactive`] [`Channel`] can be transformed into a [`Channel`]
@@ -347,6 +370,34 @@ impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
         self.channel().tc_ccr.write(|w| w.clkdis().set_bit());
     }
 
+    /// Enable the [`Channel`]'s input clock.
+    fn enable(&mut self) {
+        self.channel().tc_ccr.write(|w| {
+            w.clkdis().clear_bit();
+            w.clken().set_bit();
+
+            w
+        });
+    }
+
+    #[inline]
+    fn set_compare(&mut self, val: CompareRegister) {
+        match val {
+            CompareRegister::Ra(v) => self
+                .channel()
+                .tc_ra
+                .write(|w| unsafe { w.ra().bits(v.into()) }),
+            CompareRegister::Rb(v) => self
+                .channel()
+                .tc_rb
+                .write(|w| unsafe { w.rb().bits(v.into()) }),
+            CompareRegister::Rc(v) => self
+                .channel()
+                .tc_rc
+                .write(|w| unsafe { w.rc().bits(v.into()) }),
+        };
+    }
+
     /// Configures the channel for waveform mode (an signal is generated).
     ///
     /// # Safety
@@ -361,6 +412,11 @@ impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
 
             w
         });
+    }
+
+    #[inline(always)]
+    fn read_status(&mut self) -> StatusRegister {
+        self.channel().tc_sr.read()
     }
 }
 impl<M: TcMeta, I: ChannelId> Channel<M, I, Inactive> {
@@ -392,7 +448,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32>
     #[allow(clippy::complexity)]
     pub fn chain<J: ChannelId, Co: ChannelClock, const DRIVER_FREQ_HZ: u32>(
         #[allow(unused_mut)] mut self,
-        driver: Channel<M, J, Generate<Co, DRIVER_FREQ_HZ>>,
+        mut driver: Channel<M, J, Generate<Co, DRIVER_FREQ_HZ>>,
     ) -> Channel<M, I, Generate<Channel<M, J, Generate<Co, DRIVER_FREQ_HZ>>, FREQ_HZ>>
     where
         Channel<M, J, Generate<Co, DRIVER_FREQ_HZ>>: ChannelClock,
@@ -472,13 +528,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32>
             .tc_idr
             .write(|w| unsafe { w.bits(u32::MAX) });
 
-        // Enable the input clock
-        driver.channel().tc_ccr.write(|w| {
-            w.clkdis().clear_bit();
-            w.clken().set_bit();
-
-            w
-        });
+        driver.enable();
 
         // Safe: both channels are consumed
         Channel::transform(self)
@@ -493,12 +543,22 @@ pub struct Monotonic<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u3
     channel: Channel<M, I, Generate<C, FREQ_HZ>>,
 }
 
+impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> SyncChannels<M>
+    for Monotonic<M, I, C, FREQ_HZ>
+{
+}
+
 /// A [`ehal::timer::CountDown`] implementation that is
 /// [`Channel::chain`]ed with a driving [`Channel`].
 ///
 /// [`ehal::timer::CountDown`]: crate::ehal::timer::CountDown
 pub struct Timer<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> {
     channel: Channel<M, I, Generate<C, FREQ_HZ>>,
+}
+
+impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> SyncChannels<M>
+    for Timer<M, I, C, FREQ_HZ>
+{
 }
 
 impl<M: TcMeta, I, J, C: ChannelClock, const DRIVER_FREQ_HZ: u32, const FREQ_HZ: u32>
@@ -521,7 +581,7 @@ where
         // integer.
         //
         // Safe: driver was consumed in Channel::chain.
-        let driver = unsafe { Channel::<M, J, _>::new::<Generate<C, DRIVER_FREQ_HZ>>() };
+        let mut driver = unsafe { Channel::<M, J, _>::new::<Generate<C, DRIVER_FREQ_HZ>>() };
         // The 16-bit counter is incremented only at each positive
         // input clock edge. When chaining channels, this then results
         // in a static /2 prescaler. Refer to §50.6.2.
@@ -539,10 +599,7 @@ where
                 wanted: freq,
             });
         }
-        driver
-            .channel()
-            .tc_rc
-            .write(|w| unsafe { w.rc().bits(pres.into()) });
+        driver.set_compare(CompareRegister::Rc(pres));
 
         // Configure self
         self.channel().tc_cmr_waveform_mode().modify(|_, w| {
@@ -722,35 +779,25 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> timer::CountD
     where
         T: Into<Self::Time>,
     {
-        let ticks = duration.into().ticks();
-        if ticks > u16::MAX.into() {
-            // Internal 16-bit counter must be extended in software to
-            // 32-bit.
-            todo!()
+        let ticks: u16 = duration
+            .into()
+            .ticks()
+            .try_into()
+            .unwrap_or_else(|_| panic!());
+
+        self.channel.set_compare(CompareRegister::Rc(ticks));
+        self.channel.enable();
+
+        unsafe {
+            Self::sync_start_channels();
         }
 
-        self.channel
-            .channel()
-            .tc_rc
-            .write(|w| unsafe { w.rc().bits(ticks) });
-
-        // Enable input clock
-        self.channel.channel().tc_ccr.write(|w| {
-            w.clkdis().clear_bit();
-            w.clken().set_bit();
-
-            w
-        });
-
-        // SYNC (software trigger all channels); required when channels are chained.
-        self.channel.reg().tc_bcr.write(|w| w.sync().set_bit());
-
         // Wait until the clock is enabled.
-        while self.channel.channel().tc_sr.read().clksta().bit_is_clear() {}
+        while self.channel.read_status().clksta().bit_is_clear() {}
     }
 
     fn wait(&mut self) -> nb::Result<(), void::Void> {
-        if self.channel.channel().tc_sr.read().cpcs().bit_is_clear() {
+        if self.channel.read_status().cpcs().bit_is_clear() {
             Err(nb::Error::WouldBlock)
         } else {
             Ok(())
@@ -764,9 +811,10 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> timer::Cancel
     type Error = CountDownError;
 
     fn cancel(&mut self) -> Result<(), Self::Error> {
-        if self.channel.channel().tc_sr.read().clksta().bit_is_clear() {
+        let status = self.channel.read_status();
+        if status.clksta().bit_is_clear() {
             return Err(Self::Error::Disabled);
-        } else if self.channel.channel().tc_sr.read().cpcs().bit_is_set() {
+        } else if status.cpcs().bit_is_set() {
             return Err(Self::Error::Expired);
         }
 
@@ -805,19 +853,11 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> rtic_monotoni
 
     /// Resets the counter to zero and start the clock.
     unsafe fn reset(&mut self) {
-        // Enable input clock
-        self.channel.channel().tc_ccr.write(|w| {
-            w.clkdis().clear_bit();
-            w.clken().set_bit();
-
-            w
-        });
-
-        // SYNC (software trigger all channels); required when channels are chained.
-        self.channel.reg().tc_bcr.write(|w| w.sync().set_bit());
+        self.channel.enable();
+        Self::sync_start_channels();
 
         // Wait until the clock is enabled.
-        while self.channel.channel().tc_sr.read().clksta().bit_is_clear() {}
+        while self.channel.read_status().clksta().bit_is_clear() {}
     }
 
     #[inline(always)]
@@ -827,22 +867,24 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> rtic_monotoni
 
     #[inline(always)]
     fn set_compare(&mut self, instant: Self::Instant) {
-        let ticks = instant.duration_since_epoch().ticks();
-        if ticks > u16::MAX.into() {
-            // Internal 16-bit counter must be extended in software to
-            // 32-bit.
-            todo!()
-        }
+        let ticks: u16 = instant
+            .duration_since_epoch()
+            .ticks()
+            .try_into()
+            .unwrap_or_else(|_| {
+                // Internal 16-bit counter must be extended in software to
+                // 32/48-bit.
+                //
+                // Refer to <https://git.grepit.se/embedded-rust/atsamx7x-hal/-/issues/38>.
+                todo!()
+            });
 
-        self.channel
-            .channel()
-            .tc_rc
-            .write(|w| unsafe { w.rc().bits(ticks) });
+        self.channel.set_compare(CompareRegister::Rc(ticks));
     }
 
     #[inline(always)]
     fn clear_compare_flag(&mut self) {
-        self.channel.channel().tc_sr.read();
+        self.channel.read_status();
     }
 
     #[inline(always)]
