@@ -6,14 +6,17 @@ The [`Tc`] is a peripheral that contain three [`Channel`]s. Each [`Channel`] can
 In [`Generate`], PWM signals can be emitted on connected [`Pin`]s, drive another [`Channel`] via [`Channel::chain`], and provide delay/scheduling primitives.
 In `Capture`, a [`Channel`] can measure frequencies/intervals, count events, decode quadrature signals, etc.
 
-In the present implementation, only scheduling primitives are exploited for [`Channel::chain`]ed [`Channel`]s in order to acquire an [`rtic_monotonic::Monotonic`].
+In the present implementation, only scheduling primitives are exploited for [`Channel::chain`]ed [`Channel`]s in order to acquire [`rtic_monotonic::Monotonic`] and [`ehal::timer::CountDown`] implementations.
 If a [`Pin`] is configured out-of-band to correspond to a [`Channel`] I/O, an output clock signal may be observed, but any input edges are ignored.
 
 Refer to §50 for a full description on the capabilities offered by a [`Tc`].
 
 [`Pin`]: crate::pio::Pin
+[`ehal::timer::Countdown`]: crate::ehal::timer::CountDown
 
 # Example usage
+
+### Create a [`rtic_monotonic::Monotonic`]
 
 ```no_run
 # use atsamx7x_hal as hal;
@@ -38,6 +41,39 @@ let mono: Monotonic<Tc0, Ch1, Channel<Tc0, Ch0, Generate<HostClock, 12_000_000>>
     .chain(driver)
     .into_monotonic()
     .unwrap();
+```
+
+### Create a [`ehal::timer::CountDown`]
+
+```no_run
+# use atsamx7x_hal as hal;
+# use hal::pio::*;
+# use hal::clocks::*;
+# use hal::efc::*;
+# use hal::tc::*;
+# let pac = hal::pac::Peripherals::take().unwrap();
+# let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
+let tc = Tc::new_tc0(pac.TC0, &mut mck);
+let driver = tc
+    .channel_0
+    .generate::<12_000_000>(&mck)
+.unwrap();
+
+use hal::ehal::timer::{CountDown, Cancel};
+use hal::ehal::blocking::delay::DelayMs;
+
+// Create a Timer with a frequency of 100Hz.
+let mut timer: Timer<Tc0, Ch1, Channel<Tc0, Ch0, Generate<HostClock, 12_000_000>>, 100> = tc
+    .channel_1
+    .generate::<12_000_000>(&mck)
+    .unwrap()
+    .chain(driver)
+    .into_timer()
+.unwrap();
+
+timer.start(100.millis());
+timer.cancel().unwrap();
+timer.delay_ms(100);
 ```
 
 # Interrupt bindings
@@ -66,11 +102,18 @@ interrupt:
 */
 
 use crate::clocks::{Clock, Hertz, HostClock, PeripheralIdentifier};
-use crate::fugit::{TimerDurationU32 as Duration, TimerInstantU32 as Instant};
+use crate::ehal::blocking::delay;
+use crate::ehal::timer;
+pub use crate::fugit::{ExtU32, RateExtU32};
+use crate::fugit::{
+    MicrosDurationU32 as MicrosDuration, MillisDurationU32 as MillisDuration,
+    TimerDurationU32 as Duration, TimerInstantU32 as Instant,
+};
 use crate::pac::tc0::{
     tc_channel::tc_cmr_waveform_mode::TCCLKS_A as TCCLKS, RegisterBlock,
     TC_CHANNEL as ChannelRegisterBlock,
 };
+use crate::rtt::CountDownError;
 
 use core::marker::PhantomData;
 
@@ -450,6 +493,14 @@ pub struct Monotonic<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u3
     channel: Channel<M, I, Generate<C, FREQ_HZ>>,
 }
 
+/// A [`ehal::timer::CountDown`] implementation that is
+/// [`Channel::chain`]ed with a driving [`Channel`].
+///
+/// [`ehal::timer::CountDown`]: crate::ehal::timer::CountDown
+pub struct Timer<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> {
+    channel: Channel<M, I, Generate<C, FREQ_HZ>>,
+}
+
 impl<M: TcMeta, I, J, C: ChannelClock, const DRIVER_FREQ_HZ: u32, const FREQ_HZ: u32>
     Channel<M, I, Generate<Channel<M, J, Generate<C, DRIVER_FREQ_HZ>>, FREQ_HZ>>
 where
@@ -551,6 +602,30 @@ where
             channel: Channel::transform(self),
         })
     }
+
+    /// Transform the [`Channel`] into a [`timer::CountDown`]
+    /// implementation with a frequency of `TIMER_FREQ_HZ`Hz.
+    #[allow(clippy::complexity)]
+    pub fn into_timer<const TIMER_FREQ_HZ: u32>(
+        self,
+    ) -> Result<Timer<M, I, Channel<M, J, Generate<C, DRIVER_FREQ_HZ>>, TIMER_FREQ_HZ>, TcError>
+    {
+        let mono = self.into_monotonic::<TIMER_FREQ_HZ>()?;
+
+        // Disable the input clock on an RC compare. This gives us a
+        // oneshot timer.
+        mono.channel
+            .channel()
+            .tc_cmr_waveform_mode()
+            .modify(|_, w| w.cpcdis().set_bit());
+
+        // XXX: we let IER.CPCS be set which allows the user to bind a
+        // task for when the timer reaches "zero" (RC).
+
+        Ok(Timer {
+            channel: mono.channel,
+        })
+    }
 }
 
 /// A Timer Counter (TC) peripheral, containing three [`Channel`]s.
@@ -637,6 +712,90 @@ impl_tc!(
     Tc2,
     Tc3,
 );
+
+impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> timer::CountDown
+    for Timer<M, I, C, FREQ_HZ>
+{
+    type Time = Duration<FREQ_HZ>;
+
+    fn start<T>(&mut self, duration: T)
+    where
+        T: Into<Self::Time>,
+    {
+        let ticks = duration.into().ticks();
+        if ticks > u16::MAX.into() {
+            // Internal 16-bit counter must be extended in software to
+            // 32-bit.
+            todo!()
+        }
+
+        self.channel
+            .channel()
+            .tc_rc
+            .write(|w| unsafe { w.rc().bits(ticks) });
+
+        // Enable input clock
+        self.channel.channel().tc_ccr.write(|w| {
+            w.clkdis().clear_bit();
+            w.clken().set_bit();
+
+            w
+        });
+
+        // SYNC (software trigger all channels); required when channels are chained.
+        self.channel.reg().tc_bcr.write(|w| w.sync().set_bit());
+
+        // Wait until the clock is enabled.
+        while self.channel.channel().tc_sr.read().clksta().bit_is_clear() {}
+    }
+
+    fn wait(&mut self) -> nb::Result<(), void::Void> {
+        if self.channel.channel().tc_sr.read().cpcs().bit_is_clear() {
+            Err(nb::Error::WouldBlock)
+        } else {
+            Ok(())
+        }
+    }
+}
+
+impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> timer::Cancel
+    for Timer<M, I, C, FREQ_HZ>
+{
+    type Error = CountDownError;
+
+    fn cancel(&mut self) -> Result<(), Self::Error> {
+        if self.channel.channel().tc_sr.read().clksta().bit_is_clear() {
+            return Err(Self::Error::Disabled);
+        } else if self.channel.channel().tc_sr.read().cpcs().bit_is_set() {
+            return Err(Self::Error::Expired);
+        }
+
+        self.channel.disable();
+        Ok(())
+    }
+}
+
+impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> delay::DelayUs<u32>
+    for Timer<M, I, C, FREQ_HZ>
+{
+    fn delay_us(&mut self, us: u32) {
+        use timer::CountDown;
+
+        self.start(MicrosDuration::from_ticks(us).convert());
+        nb::block!(self.wait()).unwrap()
+    }
+}
+
+impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> delay::DelayMs<u32>
+    for Timer<M, I, C, FREQ_HZ>
+{
+    fn delay_ms(&mut self, ms: u32) {
+        use timer::CountDown;
+
+        self.start(MillisDuration::from_ticks(ms).convert());
+        nb::block!(self.wait()).unwrap()
+    }
+}
 
 impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> rtic_monotonic::Monotonic
     for Monotonic<M, I, C, FREQ_HZ>
