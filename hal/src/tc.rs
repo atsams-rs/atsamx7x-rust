@@ -76,6 +76,55 @@ timer.cancel().unwrap();
 timer.delay_ms(100);
 ```
 
+# [`Monotonic`]/[`Timer`] life-times and limitations
+
+The "life-time" of a [`Channel`] is here defined as the time until its internal 16-bit counter overflows, after which its dependant type may behave differently.
+
+A [`Channel`] is driven by the [`HostClock`] or another [`Channel`]. The maximum life-time of the former (if [`HostClock`] is clocked as 12MHz) is
+```
+const STATIC_HOSTCLOCK_DIVIDER: u32 = 128;
+assert_eq!(
+    1 as f32
+        / (12_000_000 as f32 / STATIC_HOSTCLOCK_DIVIDER as f32 / (u16::MAX as u32 - 1) as f32),
+    0.6990293 /* seconds */
+);
+```
+Logically, [`Monotonic`] is not implemented for such a [`Channel`]: a scheduler that is not strictly monotonically increasing for longer than 700ms is not very useful.
+
+For the latter, which is [`Channel::chain`]ed, the driving [`Channel`]'s prescaler is used to generate a clock signal for the downstream [`Channel`].
+The maximum life-time for this [`Channel`] is instead
+```
+const STATIC_HOSTCLOCK_DIVIDER: u32 = 128;
+const MAXIMUM_PRESCALER: u32 = u16::MAX as u32 - 1;
+assert_eq!(
+    1 as f32
+        / (12_000_000 as f32
+            / STATIC_HOSTCLOCK_DIVIDER as f32
+            / MAXIMUM_PRESCALER as f32
+            / MAXIMUM_PRESCALER as f32),
+    45810.19 /* seconds */
+);
+```
+With a life-time of a bit over 12h, a [`Monotonic`] implementation is more logical.
+
+Of course, life-time is balanced with the accuracy (frequency) of the [`Monotonic`]/[`Timer`].
+A higher frequency leads to a lower life-time, but a lower frequency may result in real-time deadlines being missed: if a frequency of 1Hz is used, and a task is scheduled for the 1.5s mark, it will not be executed until the 2s mark.
+
+To calculate the life-time of a channel, use the following formula:
+```ignore
+1 / (12_000_000 / STATIC_HOSTCLOCK_DIVIDER / FREQ / MAXIMUM_PRESCALER) = LIFE_TIME /* in seconds */
+```
+For example, at 100Hz, the life-time is ~70 seconds.
+
+Calculating the required frequency for a particular use-case is left as an exercise for the reader.
+
+## Scheduling in RTIC with an overflowing [`Monotonic`]
+
+In RTIC, when a [`rtic_monotonic::Monotonic`] implementation's hardware counter overflows, the scheduler transforms to a semi-monotonic scheduler.
+While it will otherwise operate as per usual, the forward-schedulability is halved.
+For example, with a ~70s life-time [`Channel`] it is possible to schedule events up to 70s into the future from system start.
+When the scheduler eventually overflows, it will only be possible to schedule events up to 35s into the future.
+
 # Interrupt bindings
 
 Each of the 12 [`Channel`]s has its own interrupt vector. However, in
