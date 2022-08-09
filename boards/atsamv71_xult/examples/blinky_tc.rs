@@ -58,12 +58,9 @@ mod app {
 
         let tc = Tc::new_tc0(ctx.device.TC0, &mut mck);
         let mono = {
-            let driver = tc
-                .channel_0
-                .generate::<HostClock, 12_000_000>(&mck)
-                .unwrap();
+            let driver = tc.channel_0.generate::<12_000_000>(&mck).unwrap();
             tc.channel_1
-                .generate::<HostClock, 12_000_000>(&mck)
+                .generate::<12_000_000>(&mck)
                 .unwrap()
                 .chain(driver)
                 .into_monotonic()

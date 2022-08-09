@@ -26,14 +26,14 @@ Refer to §50 for a full description on the capabilities offered by a [`Tc`].
 let tc = Tc::new_tc0(pac.TC0, &mut mck);
 let driver = tc
     .channel_0
-    .generate::<HostClock, 12_000_000>(&mck)
+    .generate::<12_000_000>(&mck)
 .unwrap();
 
 // Create a Monotonic with a frequency of 1Hz.
 // This Monotonic will overflow after approximately 18.2 hours.
 let mono: Monotonic<Tc0, Ch1, Channel<Tc0, Ch0, Generate<HostClock, 12_000_000>>, 1> = tc
     .channel_1
-    .generate::<HostClock, 12_000_000>(&mck)
+    .generate::<12_000_000>(&mck)
     .unwrap()
     .chain(driver)
     .into_monotonic()
@@ -66,11 +66,11 @@ interrupt:
 */
 
 use crate::clocks::{Clock, Hertz, HostClock, PeripheralIdentifier};
+use crate::fugit::{TimerDurationU32 as Duration, TimerInstantU32 as Instant};
 use crate::pac::tc0::{
     tc_channel::tc_cmr_waveform_mode::TCCLKS_A as TCCLKS, RegisterBlock,
     TC_CHANNEL as ChannelRegisterBlock,
 };
-use crate::fugit::{TimerDurationU32 as Duration, TimerInstantU32 as Instant};
 
 use core::marker::PhantomData;
 
@@ -253,7 +253,7 @@ pub enum TcError {
     /// # let pac = hal::pac::Peripherals::take().unwrap();
     /// # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
     /// let tc = Tc::new_tc0(pac.TC0, &mut mck);
-    /// let ch = tc.channel_0.generate::<HostClock, 15_000_000>(&mck).unwrap();
+    /// let ch = tc.channel_0.generate::<15_000_000>(&mck).unwrap();
     /// ```
     /// is incorrect: a [`HostClock`] can only be clocked at 12MHz, 8MHz, or 4MHz.
     InputClockFreqMismatch {
@@ -322,19 +322,19 @@ impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
 }
 impl<M: TcMeta, I: ChannelId> Channel<M, I, Inactive> {
     /// Transform the [`Channel`] into one that [`Generate`]s a
-    /// signal, driven by a [`ChannelClock`].
-    pub fn generate<C: ChannelClock, const FREQ_HZ: u32>(
+    /// signal, driven by the [`HostClock`].
+    pub fn generate<const FREQ_HZ: u32>(
         #[allow(unused_mut)] mut self,
-        clk: &C,
+        mck: &HostClock,
     ) -> Result<Channel<M, I, Generate<HostClock, FREQ_HZ>>, TcError> {
         let expected = Hertz::from_raw(FREQ_HZ);
-        let actual = Clock::freq(clk);
+        let actual = Clock::freq(mck);
         if actual != expected {
             return Err(TcError::InputClockFreqMismatch { expected, actual });
         }
 
         unsafe {
-            self.generate_inner(clk);
+            self.generate_inner(mck);
         }
 
         Ok(Channel::transform(self))
@@ -466,7 +466,8 @@ where
     {
         let freq = Hertz::from_raw(MONO_FREQ_HZ);
 
-        // Configure driver prescaler, rounding up.
+        // Configure driver prescaler, rounding to the closest
+        // integer.
         //
         // Safe: driver was consumed in Channel::chain.
         let driver = unsafe { Channel::<M, J, _>::new::<Generate<C, DRIVER_FREQ_HZ>>() };
