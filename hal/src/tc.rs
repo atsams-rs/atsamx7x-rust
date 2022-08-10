@@ -822,6 +822,12 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> timer::CountD
 {
     type Time = Duration<FREQ_HZ>;
 
+    /// Starts a new count-down.
+    ///
+    /// # Panics
+    ///
+    /// This function will panic if `duration` cannot be represented
+    /// by a [`u16`].
     fn start<T>(&mut self, duration: T)
     where
         T: Into<Self::Time>,
@@ -913,6 +919,12 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> rtic_monotoni
         Self::Instant::from_ticks(self.channel.channel().tc_cv.read().cv().bits())
     }
 
+    /// Set the compare valu of the timer interrupt.
+    ///
+    /// # Panics
+    ///
+    /// This function will panic if `instant` cannot be represented by
+    /// a [`16`].
     #[inline(always)]
     fn set_compare(&mut self, instant: Self::Instant) {
         let ticks: u16 = instant
