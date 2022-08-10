@@ -6,7 +6,7 @@ The [`Tc`] is a peripheral that contain three [`Channel`]s. Each [`Channel`] can
 In [`Generate`], PWM signals can be emitted on connected [`Pin`]s, drive another [`Channel`] via [`Channel::chain`], and provide delay/scheduling primitives.
 In `Capture`, a [`Channel`] can measure frequencies/intervals, count events, decode quadrature signals, etc.
 
-In the present implementation, only scheduling primitives are exploited for [`Channel::chain`]ed [`Channel`]s in order to acquire [`rtic_monotonic::Monotonic`] and [`ehal::timer::CountDown`] implementations.
+In the present implementation, only scheduling primitives are exploited for [`Channel::chain`]ed [`Channel`]s in order to acquire 32-bit [`rtic_monotonic::Monotonic`] and [`ehal::timer::CountDown`] implementations.
 If a [`Pin`] is configured out-of-band to correspond to a [`Channel`] I/O, an output clock signal may be observed, but any input edges are ignored.
 
 Refer to §50 for a full description on the capabilities offered by a [`Tc`].
@@ -33,7 +33,6 @@ let driver = tc
 .unwrap();
 
 // Create a Monotonic with a frequency of 1Hz.
-// This Monotonic will overflow after approximately 18.2 hours.
 let mono: Monotonic<Tc0, Ch1, Channel<Tc0, Ch0, Generate<HostClock, 12_000_000>>, 1> = tc
     .channel_1
     .generate::<12_000_000>(&mck)
@@ -85,8 +84,8 @@ A [`Channel`] is driven by the [`HostClock`] or another [`Channel`]. The maximum
 const STATIC_HOSTCLOCK_DIVIDER: u32 = 128;
 assert_eq!(
     1 as f32
-        / (12_000_000 as f32 / STATIC_HOSTCLOCK_DIVIDER as f32 / (u16::MAX as u32 - 1) as f32),
-    0.6990293 /* seconds */
+        / (12_000_000 as f32 / STATIC_HOSTCLOCK_DIVIDER as f32 / u16::MAX as f32),
+    0.69904 /* seconds */
 );
 ```
 Logically, [`Monotonic`] is not implemented for such a [`Channel`]: a scheduler that is not strictly monotonically increasing for longer than 700ms is not very useful.
@@ -95,28 +94,35 @@ For the latter, which is [`Channel::chain`]ed, the driving [`Channel`]'s prescal
 The maximum life-time for this [`Channel`] is instead
 ```
 const STATIC_HOSTCLOCK_DIVIDER: u32 = 128;
-const MAXIMUM_PRESCALER: u32 = u16::MAX as u32 - 1;
+const FEEDBACK_PRESCALER: u32 = 2;
+const MAXIMUM_PRESCALER: u32 = u16::MAX as u32;
 assert_eq!(
     1 as f32
         / (12_000_000 as f32
             / STATIC_HOSTCLOCK_DIVIDER as f32
             / MAXIMUM_PRESCALER as f32
+            / FEEDBACK_PRESCALER as f32
             / MAXIMUM_PRESCALER as f32),
-    45810.19 /* seconds */
+    91623.17 /* seconds */
 );
 ```
-With a life-time of a bit over 12h, a [`Monotonic`] implementation is more logical.
+With a life-time of a bit over 25h, a [`Monotonic`] implementation is more logical.
+To further remove life-time concerns, the [`Monotonic`] extends the underlying [`Channel`] to 32-bits, but see also the next section.
 
 Of course, life-time is balanced with the accuracy (frequency) of the [`Monotonic`]/[`Timer`].
 A higher frequency leads to a lower life-time, but a lower frequency may result in real-time deadlines being missed: if a frequency of 1Hz is used, and a task is scheduled for the 1.5s mark, it will not be executed until the 2s mark.
 
-To calculate the life-time of a channel, use the following formula:
+To calculate the life-time of a [`Monotonic`], use the following formula:
 ```ignore
-1 / (12_000_000 / STATIC_HOSTCLOCK_DIVIDER / FREQ / MAXIMUM_PRESCALER) = LIFE_TIME /* in seconds */
+LIFE_TIME = (1 / FREQ) * u32::MAX
 ```
-For example, at 100Hz, the life-time is ~70 seconds.
+For example, at 100Hz, the life-time is ~1.3 years.
 
 Calculating the required frequency for a particular use-case is left as an exercise for the reader.
+
+## [`Monotonic`] clock drift
+
+In the present implementation of [`Monotonic`], clock drift is induced when the internal 16-bit counter overflows.
 
 ## Scheduling in RTIC with an overflowing [`Monotonic`]
 
@@ -591,10 +597,15 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32>
 
 /// A monotonically increasing clock that is [`Channel::chain`]ed with
 /// a driving [`Channel`]. Implemented using the [`Channel`]s 16-bit
-/// counter. The lowest frequency of this clock if 1Hz, which
-/// corresponds to a life-time of approximately 18.2 hours.
+/// counter and extended to 32-bits.
 pub struct Monotonic<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> {
     channel: Channel<M, I, Generate<C, FREQ_HZ>>,
+    /// Software extension of the channel's internal 16-bit counter,
+    /// for a total of 32 bits.
+    msb: u16,
+    /// The last IRQ status of the channel. Used to track overflow
+    /// events.
+    status: Option<StatusRegister>,
 }
 
 impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> SyncChannels<M>
@@ -714,6 +725,8 @@ where
 
         Ok(Monotonic {
             channel: Channel::transform(self),
+            msb: 0,
+            status: None,
         })
     }
 
@@ -915,6 +928,8 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> rtic_monotoni
     type Instant = Instant<FREQ_HZ>;
     type Duration = Duration<FREQ_HZ>;
 
+    const DISABLE_INTERRUPT_ON_EMPTY_QUEUE: bool = false;
+
     /// Resets the counter to zero and start the clock.
     unsafe fn reset(&mut self) {
         self.channel.enable();
@@ -926,39 +941,50 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> rtic_monotoni
 
     #[inline(always)]
     fn now(&mut self) -> Self::Instant {
-        Self::Instant::from_ticks(self.channel.channel().tc_cv.read().cv().bits())
+        Self::Instant::from_ticks(
+            ((self.msb as u32) << u16::BITS) | self.channel.channel().tc_cv.read().cv().bits(),
+        )
     }
 
-    /// Set the compare valu of the timer interrupt.
-    ///
-    /// # Panics
-    ///
-    /// This function will panic if `instant` cannot be represented by
-    /// a [`16`].
     #[inline(always)]
     fn set_compare(&mut self, instant: Self::Instant) {
-        let ticks: u16 = instant
-            .duration_since_epoch()
-            .ticks()
+        // Mask out the 16 LSBs.
+        let ticks: u16 = (instant.duration_since_epoch().ticks() & u16::MAX as u32)
             .try_into()
-            .unwrap_or_else(|_| {
-                // Internal 16-bit counter must be extended in software to
-                // 32/48-bit.
-                //
-                // Refer to <https://git.grepit.se/embedded-rust/atsamx7x-hal/-/issues/38>.
-                todo!()
-            });
+            .unwrap();
 
         self.channel.set_compare(CompareRegister::Rc(ticks));
     }
 
     #[inline(always)]
     fn clear_compare_flag(&mut self) {
-        self.channel.read_status();
+        self.status = Some(self.channel.read_status());
     }
 
     #[inline(always)]
     fn zero() -> Self::Instant {
         Self::Instant::from_ticks(0)
+    }
+
+    #[inline(always)]
+    fn on_interrupt(&mut self) {
+        if let Some(status) = &self.status {
+            if status.covfs().bit_is_set() {
+                self.msb = self.msb.wrapping_add(1);
+
+                // Reset the channel counter such that set comparisons
+                // are not missed, causing a catastrophic clock drift
+                // of the full 16-bit life-time.
+                //
+                // XXX clock drift is still induced here, but is
+                // significantly lower (exact drift depends on clock
+                // frequency; not yet calculated).
+                //
+                // TODO null clock drift by compensating RC value?
+                // Refer to
+                // <https://git.grepit.se/embedded-rust/atsamx7x-hal/-/issues/39>.
+                self.channel.channel().tc_ccr.write(|w| w.swtrg().set_bit());
+            }
+        }
     }
 }
