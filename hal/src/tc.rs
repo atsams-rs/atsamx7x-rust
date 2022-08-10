@@ -691,8 +691,6 @@ where
             w.cpcdis().clear_bit();
             w.cpcstop().clear_bit();
             // Do not gate the clock by an external signal.
-            //
-            // TODO: burst with driver clock?
             w.burst().none();
             // Do not invert the clock
             w.clki().clear_bit();
@@ -828,11 +826,12 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> timer::CountD
     where
         T: Into<Self::Time>,
     {
-        let ticks: u16 = duration
-            .into()
-            .ticks()
-            .try_into()
-            .unwrap_or_else(|_| panic!());
+        let ticks: u16 = duration.into().ticks().try_into().unwrap_or_else(|_| {
+            // We cannot compare values outside of the 16-bit
+            // range. We also cannot extend the counter, nor can
+            // we report an error to the user in this trait.
+            panic!()
+        });
 
         self.channel.set_compare(CompareRegister::Rc(ticks));
         self.channel.enable();
