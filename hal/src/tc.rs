@@ -320,7 +320,8 @@ impl<C: ChannelClock, const FREQ_HZ: u32> ChannelState for Generate<C, FREQ_HZ> 
 
 /// Possible [`Channel`] configuration errors.
 ///
-/// For [`TcError::PrescalerOverflow`] and [`TcError::PrescalerNoop`], the prescaler is calculated via
+/// For [`TcError::PrescalerOverflow`] and
+/// [`TcError::PrescalerInvalid`], the prescaler is calculated via
 ///
 /// ```no_run
 /// # fn func() -> Result<(), <u16 as TryFrom<u32>>::Error> {
@@ -332,17 +333,21 @@ impl<C: ChannelClock, const FREQ_HZ: u32> ChannelState for Generate<C, FREQ_HZ> 
 /// ```
 #[derive(Debug, PartialEq, Clone, Copy, Eq)]
 pub enum TcError {
-    /// Calculated prescaler does not fit in a [`u16`]. Increase the
-    /// wanted frequency.
+    /// Calculated prescaler does not fit in a [`u16`].
+    ///
+    /// Solution: increase the wanted frequency.
     PrescalerOverflow {
         /// The [`Channel`] input frequency.
         input: Hertz,
         /// The wanted [`Channel`] output frequency.
         wanted: Hertz,
     },
-    /// Calculated prescaler is zero, which would noop the channel's
-    /// function. Decrease the wanted frequency.
-    PrescalerNoop {
+    /// Calculated prescaler is below 2. A prescaler of 0 would noop
+    /// the channel's clock generation functionality, but a prescaler
+    /// of 1 would yield half of the expected frequency.
+    ///
+    /// Solution: decrease the wanted frequency.
+    PrescalerInvalid {
         /// The [`Channel`] input frequency.
         input: Hertz,
         /// The wanted [`Channel`] output frequency.
@@ -642,8 +647,13 @@ where
                 input: Hertz::from_raw(input_freq as u32),
                 wanted: freq,
             })?;
-        if pres == 0 {
-            return Err(TcError::PrescalerNoop {
+        // From experimentation: a prescaler of 0 would noop the
+        // clock, but a prescaler of 1 would yield a clock that is
+        // half of what is requested. With a minimum prescaler of 2
+        // the clock has an expected frequency.
+        const MINIMUM_ACCURATE_PRESCALER: u16 = 2;
+        if pres < MINIMUM_ACCURATE_PRESCALER {
+            return Err(TcError::PrescalerInvalid {
                 input: Hertz::from_raw(input_freq as u32),
                 wanted: freq,
             });
