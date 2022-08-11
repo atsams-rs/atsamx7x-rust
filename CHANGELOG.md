@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+### Added
+- [`Monotonic`](https://docs.rs/rtic-monotonic/1.0.0/rtic_monotonic/trait.Monotonic.html), [`ehal::timer::{Countdown,Cancel}`](https://docs.rs/embedded-hal/0.2.7/embedded_hal/timer/index.html), and [`ehal::blocking::delay::Delay{Ms,Us}`](https://docs.rs/embedded-hal/0.2.7/embedded_hal/blocking/delay/index.html) implementations based upon chained Timer Counter channels.
+- `boards/atsamv71_xult/examples`:
+  - `blinky_tc`: blinks a LED by use of a `tc::Monotonic`; and
+  - `blinky_tc_irq`: blinks a LED by use of a `tc::Timer`.
+
 ## [v0.2.1] 2022-08-08
 
 ### Fixed

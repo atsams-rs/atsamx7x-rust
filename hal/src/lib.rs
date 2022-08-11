@@ -186,6 +186,8 @@ pub mod rtt;
 #[cfg(feature = "rev-b")]
 pub mod serial;
 #[cfg(feature = "rev-b")]
+pub mod tc;
+#[cfg(feature = "rev-b")]
 pub mod usb;
 #[cfg(feature = "rev-b")]
 pub mod watchdog;
