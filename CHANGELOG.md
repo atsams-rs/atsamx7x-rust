@@ -8,6 +8,12 @@
   - `blinky_tc`: blinks a LED by use of a `tc::Monotonic`; and
   - `blinky_tc_irq`: blinks a LED by use of a `tc::Timer`.
 
+### Fixed
+- `Pck::configure` now records its output frequency correctly.
+
+### Changed
+- `Pck::configure` now takes a `u16` prescaler instead of a `u8`, and returns `Err(PckError)` if the prescaler cannot be applied.
+
 ## [v0.2.1] 2022-08-08
 
 ### Fixed

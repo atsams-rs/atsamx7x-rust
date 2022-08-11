@@ -44,7 +44,7 @@ let (_hclk, mut mck) = HostClockController::new(clocks.hclk, clocks.mck)
         },
     )
     .unwrap();
-let pck: Pck<Pck4> = clocks.pcks.pck4.configure(&mainck, 1);
+let pck: Pck<Pck4> = clocks.pcks.pck4.configure(&mainck, 1).unwrap();
 
 let banka = BankA::new(pac.PIOA, &mut mck, &slck, BankConfiguration::default());
 let tx = banka.pa10.into_peripheral::<A>();
