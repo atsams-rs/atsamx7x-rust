@@ -396,31 +396,6 @@ impl<M: UartMeta> Uart<M> {
         Ok(())
     }
 
-    /// Reconfigure the [`Uart`] with a new configuration.
-    ///
-    /// # Errors
-    ///
-    /// Return [`nb::Error::WouldBlock`] if the [`Uart`] is currently
-    /// transmitting data. Returns an [`UartError`] if the requested
-    /// baud rate cannot be applied.
-    pub fn reconfigure<C: UartClock>(
-        &mut self,
-        clk: &C,
-        conf: UartConfiguration,
-    ) -> nb::Result<(), UartError> {
-        if self.reg().uart_sr.read().txempty().bit_is_clear() {
-            return Err(nb::Error::WouldBlock);
-        }
-
-        // disable the uart
-        self.reg().uart_cr.write(|w| {
-            w.rxdis().set_bit();
-            w.txdis().set_bit();
-            w
-        });
-
-        self.apply_config(clk, conf).map_err(nb::Error::Other)
-    }
     /// Split the [`Uart`] into two separate [`Tx`] and [`Rx`]
     /// components.
     pub fn split(self) -> (Tx<M>, Rx<M>) {

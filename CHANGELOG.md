@@ -12,6 +12,7 @@
 
 ### Removed
 - `serial::Uart::UartError::BaudRateNotInRange` error.
+- `serial::Uart::reconfigure`, which did not exhaustively error check input parameters.
 
 ### Fixed
 - `Pck::configure` now records its output frequency correctly.
