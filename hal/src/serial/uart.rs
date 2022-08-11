@@ -68,6 +68,7 @@ assert_eq!(uart.read().unwrap(), 0xff);
 
 use crate::clocks::{Clock, HostClock, Pck, Pck4, PeripheralClock, PeripheralIdentifier};
 use crate::ehal::{self, blocking};
+use crate::fugit::HertzU32 as Hertz;
 use crate::pac::uart0::uart_mr::{CHMODE_A as ChannelModeInner, PAR_A as ParityModeInner};
 use crate::pac::{uart0::RegisterBlock, UART0, UART1, UART2};
 #[cfg(all(
@@ -196,10 +197,22 @@ impl UartConfiguration {
 #[derive(Debug, Eq, PartialEq, Clone)]
 /// Possible [`Uart`] errors
 pub enum UartError {
-    /// An impossible baud rate was requested.
-    BaudRateNotInRange,
+    /// The prescaler was calculated to 0, which would noop the
+    /// [`Uart`].
+    PrescalerUnderflow,
     /// The calculated prescaler does not fit in a [`u16`].
     PrescalerOverflow,
+    /// [`HostClock`] is not at least three times higher than the
+    /// baud-rate generating [`Pck`]. The [`Uart`] would be
+    /// incorrectly configured.
+    ///
+    /// Solution: decrease the frequency of the input [`Pck`].
+    InvalidPck {
+        /// The frequency of the [`HostClock`].
+        mck: Hertz,
+        /// The frequency of the [`Pck`].
+        pck: Hertz,
+    },
 }
 
 /// A valid input clock for the [`Uart`].
@@ -307,19 +320,18 @@ impl<M: UartMeta> Uart<M> {
     }
 
     fn calc_prescaler(baud_rate: Bps, clk: &impl UartClock) -> Result<u16, UartError> {
-        // ensure requested baud rate is valid: not zero nor below
-        // allowed minimum nor above possible maximum; c.f. §47.5.1
+        // Round the prescaler to closest value
         const STATIC_PRESCALER: u32 = 16;
-        if baud_rate.0.to_Hz() == 0
-            || clk.freq() / (STATIC_PRESCALER * u16::MAX as u32) > baud_rate.0
-            || clk.freq() / STATIC_PRESCALER < baud_rate.0
-        {
-            return Err(UartError::BaudRateNotInRange);
+        let pres = clk.freq().raw() as f32 / (STATIC_PRESCALER as f32 * baud_rate.0.raw() as f32);
+        let pres = ((pres + 0.5) as u32)
+            .try_into()
+            .map_err(|_| UartError::PrescalerOverflow)?;
+
+        if pres == 0 {
+            return Err(UartError::PrescalerUnderflow);
         }
 
-        (clk.freq() / (STATIC_PRESCALER * baud_rate.0))
-            .try_into()
-            .map_err(|_| UartError::PrescalerOverflow)
+        Ok(pres)
     }
 
     fn new<C: UartClock>(
@@ -337,9 +349,19 @@ impl<M: UartMeta> Uart<M> {
                 mck.enable_peripheral(M::PID);
                 uart.apply_config(mck, conf)?;
             }
-            PeripheralClock::Other(mck, clk) => {
+            PeripheralClock::Other(mck, pck) => {
+                // MCK must be at least three times faster than the
+                // PCK.
+                const PCK_MCK_FACTOR: u32 = 3;
+                if mck.freq() < pck.freq() * PCK_MCK_FACTOR {
+                    return Err(UartError::InvalidPck {
+                        mck: mck.freq(),
+                        pck: pck.freq(),
+                    });
+                }
+
                 mck.enable_peripheral(M::PID);
-                uart.apply_config(clk, conf)?;
+                uart.apply_config(pck, conf)?;
             }
         };
 
