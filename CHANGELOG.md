@@ -7,6 +7,20 @@
 - `boards/atsamv71_xult/examples`:
   - `blinky_tc`: blinks a LED by use of a `tc::Monotonic`; and
   - `blinky_tc_irq`: blinks a LED by use of a `tc::Timer`.
+- `serial::Uart::UartError::PrescalerUnderflow` error.
+- `serial::Uart::UartError::InvalidPck` error.
+
+### Removed
+- `serial::Uart::UartError::BaudRateNotInRange` error.
+- `serial::Uart::reconfigure`, which did not exhaustively error check input parameters.
+
+### Fixed
+- `Pck::configure` now records its output frequency correctly.
+- `Uart::{new,reconfigure}`: now rounds the calculated prescaler to the closest value instead of rounding down.
+- `Uart::new`: now returns `Err(UartError::InvalidPck)` if the baud-rate generating `Pck` is not at least three times slow than the peripheral clock (`HostClock`).
+
+### Changed
+- `Pck::configure` now takes a `u16` prescaler instead of a `u8`, and returns `Err(PckError)` if the prescaler cannot be applied.
 
 ## [v0.2.1] 2022-08-08
 

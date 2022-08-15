@@ -85,7 +85,7 @@ let pllack = clocks
     .unwrap();
 let upllck = clocks.upllck.configure(&mainck).unwrap();
 let upllckdiv = clocks.upllckdiv.configure(&upllck, UpllDivider::Div2);
-let pck: Pck<Pck4> = clocks.pcks.pck4.configure(&mainck, 1);
+let pck: Pck<Pck4> = clocks.pcks.pck4.configure(&mainck, 1).unwrap();
 
 // configure the processor and peripheral clocks
 let mut efc = Efc::new(pac.EFC, VddioLevel::V3);

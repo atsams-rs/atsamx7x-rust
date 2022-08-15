@@ -38,7 +38,7 @@ mod app {
         );
         let slck = clocks.slck.configure_external_normal();
         let mainck = clocks.mainck.configure_external_normal(12.MHz()).unwrap();
-        let pck: Pck<Pck4> = clocks.pcks.pck4.configure(&mainck, 1);
+        let pck: Pck<Pck4> = clocks.pcks.pck4.configure(&mainck, 1).unwrap();
         let (_hclk, mut mck) = HostClockController::new(clocks.hclk, clocks.mck)
             .configure(
                 &mainck,

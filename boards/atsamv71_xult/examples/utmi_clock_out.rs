@@ -32,7 +32,7 @@ mod app {
         let slck = clocks.slck.configure_external_normal();
         let upllck = clocks.upllck.configure(&mainck).unwrap();
         let upllckdiv = clocks.upllckdiv.configure(&upllck, UpllDivider::Div2);
-        let _pck2: Pck<Pck2> = clocks.pcks.pck2.configure(&upllckdiv, 100 - 1); // @ 2.4MHz
+        let _pck2: Pck<Pck2> = clocks.pcks.pck2.configure(&upllckdiv, 100).unwrap(); // @ 2.4MHz
         let (_hclk, mut mck) = HostClockController::new(clocks.hclk, clocks.mck)
             .configure(
                 &upllckdiv,
