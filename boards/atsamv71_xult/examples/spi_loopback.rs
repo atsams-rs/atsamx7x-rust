@@ -15,7 +15,7 @@ mod app {
     use hal::nb::block;
     use hal::pio::*;
     use hal::serial::spi::*;
-    use hal::serial::ExtU32;
+    use hal::serial::ExtBpsU32;
     use rtt_target::{rprintln, rtt_init_print};
 
     #[shared]

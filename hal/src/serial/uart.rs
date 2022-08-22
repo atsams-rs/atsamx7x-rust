@@ -24,7 +24,7 @@ Interrupt event management is handled by the [`event system`](crate::generics::e
 # use hal::efc::*;
 # use hal::generics::events::*;
 # use hal::serial::uart::*;
-# use hal::serial::ExtU32 as _;
+# use hal::serial::ExtBpsU32;
 # use hal::fugit::{ExtU32, RateExtU32};
 # let pac = hal::pac::Peripherals::take().unwrap();
 let clocks = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into());

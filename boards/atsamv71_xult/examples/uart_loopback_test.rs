@@ -13,7 +13,7 @@ mod app {
     use hal::fugit::RateExtU32;
     use hal::generics::events::*;
     use hal::pio::*;
-    use hal::serial::{uart::*, ExtU32};
+    use hal::serial::{uart::*, ExtBpsU32};
     use heapless::String;
     use rtt_target::{rprint, rprintln, rtt_init_print};
 

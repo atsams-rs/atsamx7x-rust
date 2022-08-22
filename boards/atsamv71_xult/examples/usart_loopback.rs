@@ -14,7 +14,7 @@ mod app {
     use hal::fugit::RateExtU32;
     use hal::generics::events::EventHandler;
     use hal::pio::*;
-    use hal::serial::{usart::*, ExtU32};
+    use hal::serial::{usart::*, ExtBpsU32};
     use rtt_target::{rprint, rprintln, rtt_init_print};
 
     const PAYLOAD: u8 = b'x';
