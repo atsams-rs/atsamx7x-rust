@@ -9,6 +9,7 @@
   - `blinky_tc_irq`: blinks a LED by use of a `tc::Timer`.
 - `serial::Uart::UartError::PrescalerUnderflow` error.
 - `serial::Uart::UartError::InvalidPck` error.
+- `pwm` module: allows frequencies and duty-rates to be independently set for each `pwm::Channel`, with help from `ehal::PwmPin`.
 
 ### Removed
 - `serial::Uart::UartError::BaudRateNotInRange` error.

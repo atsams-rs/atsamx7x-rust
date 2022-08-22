@@ -182,6 +182,8 @@ pub mod generics;
 #[cfg(feature = "rev-b")]
 pub mod pio;
 #[cfg(feature = "rev-b")]
+pub mod pwm;
+#[cfg(feature = "rev-b")]
 pub mod rtt;
 #[cfg(feature = "rev-b")]
 pub mod serial;
