@@ -80,12 +80,9 @@ mod app {
     #[task(binds = PIOA, local = [irq, led])]
     fn pioa(ctx: pioa::Context) {
         for pin in ctx.local.irq.iter() {
-            match pin {
-                9 => {
-                    ctx.local.led.toggle().unwrap();
-                    rprintln!("button pressed, LED0 toggled");
-                }
-                _ => {}
+            if pin == 9 {
+                ctx.local.led.toggle().unwrap();
+                rprintln!("button pressed, LED0 toggled");
             }
         }
     }

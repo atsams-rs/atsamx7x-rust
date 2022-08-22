@@ -19,6 +19,7 @@
 - `Pck::configure` now records its output frequency correctly.
 - `Uart::{new,reconfigure}`: now rounds the calculated prescaler to the closest value instead of rounding down.
 - `Uart::new`: now returns `Err(UartError::InvalidPck)` if the baud-rate generating `Pck` is not at least three times slow than the peripheral clock (`HostClock`).
+- Clippy warnings in `boards/*/examples/*`.
 
 ### Changed
 - `Pck::configure` now takes a `u16` prescaler instead of a `u8`, and returns `Err(PckError)` if the prescaler cannot be applied.
