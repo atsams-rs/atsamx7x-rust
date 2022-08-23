@@ -7,13 +7,13 @@ use crate::fugit::{HertzU32 as Hertz, RateExtU32};
 pub struct Bps(pub(crate) Hertz);
 
 /// [`u32`] type extension that adds convenience methods
-pub trait ExtU32 {
+pub trait ExtBpsU32 {
     /// Creates a bit-per-second ([`Bps`]) representation from a
     /// [`u32`].
     fn bps(self) -> Bps;
 }
 
-impl ExtU32 for u32 {
+impl ExtBpsU32 for u32 {
     fn bps(self) -> Bps {
         Bps(self.Hz())
     }

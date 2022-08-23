@@ -26,7 +26,7 @@ Mode support depends on what [`Pin`]s that are available for the
 # use hal::efc::*;
 # use hal::generics::events::*;
 # use hal::serial::usart::*;
-# use hal::serial::ExtU32 as _;
+# use hal::serial::ExtBpsU32;
 # use hal::fugit::{ExtU32, RateExtU32};
 # let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));

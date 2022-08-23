@@ -21,7 +21,7 @@ Interrupt event management is handled by the [`event system`](crate::generics::e
 # use hal::clocks::*;
 # use hal::efc::*;
 # use hal::serial::spi::*;
-# use hal::serial::ExtU32 as _;
+# use hal::serial::ExtBpsU32;
 # use hal::fugit::ExtU32;
 # let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
