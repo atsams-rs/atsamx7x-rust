@@ -9,6 +9,7 @@
   - `blinky_tc_irq`: blinks a LED by use of a `tc::Timer`.
 - `serial::Uart::UartError::PrescalerUnderflow` error.
 - `serial::Uart::UartError::InvalidPck` error.
+- `pwm` module: allows frequencies and duty-rates to be independently set for each `pwm::Channel`, with help from `ehal::PwmPin`.
 
 ### Removed
 - `serial::Uart::UartError::BaudRateNotInRange` error.
@@ -18,6 +19,7 @@
 - `Pck::configure` now records its output frequency correctly.
 - `Uart::{new,reconfigure}`: now rounds the calculated prescaler to the closest value instead of rounding down.
 - `Uart::new`: now returns `Err(UartError::InvalidPck)` if the baud-rate generating `Pck` is not at least three times slow than the peripheral clock (`HostClock`).
+- Clippy warnings in `boards/*/examples/*`.
 
 ### Changed
 - `Pck::configure` now takes a `u16` prescaler instead of a `u8`, and returns `Err(PckError)` if the prescaler cannot be applied.

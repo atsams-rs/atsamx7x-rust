@@ -1,33 +1,33 @@
-//! Toggles the board's LED0 (located next to SW0r) on SW0 button
-//! press.
+//! Outputs a square wave on a pwm channel
 #![no_std]
 #![no_main]
 
 use panic_rtt_target as _;
 
-#[rtic::app(device = hal::pac, peripherals = true, dispatchers = [PIOB])]
+#[rtic::app(device = hal::pac, peripherals = true)]
 mod app {
     use atsamx7x_hal as hal;
     use hal::clocks::*;
     use hal::efc::*;
-    use hal::ehal::digital::v2::ToggleableOutputPin;
+    use hal::ehal::PwmPin;
     use hal::fugit::RateExtU32;
     use hal::pio::*;
-    use rtt_target::{rprintln, rtt_init_print};
+    use hal::pwm::*;
+    use rtt_target::{rprint, rprintln, rtt_init_print};
+
+    #[monotonic(binds = RTT, default = true)]
+    type MyMono = hal::rtt::Mono<1>;
 
     #[shared]
     struct Shared {}
 
     #[local]
-    struct Local {
-        led: Pin<PA23, Output>,
-        irq: BankInterrupts<A>,
-    }
+    struct Local {}
 
     #[init]
     fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
         rtt_init_print!();
-        rprintln!("init");
+        rprint!("init...");
 
         let clocks = Tokens::new(
             (ctx.device.PMC, ctx.device.SUPC, ctx.device.UTMI),
@@ -50,40 +50,34 @@ mod app {
             ctx.device.PIOA,
             &mut mck,
             &slck,
-            BankConfiguration {
-                min_debounce_duration: hal::fugit::MillisDurationU32::from_ticks(50).convert(),
-            },
+            BankConfiguration::default(),
         );
 
-        let mut button = banka.pa9.into_input(PullDir::PullUp);
-        button.set_interrupt(Some(InterruptType::FallingEdge));
-        button.set_filter(Some(InputFilter::Debounce));
-        let led = banka.pa23.into_output(true);
+        let pwmh = banka.pa0.into_peripheral();
+        let pwml = banka.pa19.into_peripheral();
+        let pwm = Pwm::new_pwm0(ctx.device.PWM0, &mut mck);
 
-        (
-            Shared {},
-            Local {
-                led,
-                irq: banka.interrupts,
-            },
-            init::Monotonics(),
-        )
+        let mono = hal::rtt::Rtt::new_1Hz(ctx.device.RTT, &slck).into_monotonic();
+
+        let mut ch = pwm.ch0.configure(ChannelConfiguration {
+            freq: 30.kHz(),
+            duty: Percentage::try_from(0.1).unwrap(),
+            invert: false,
+        });
+        ch.output_on(pwmh);
+        ch.output_on(pwml);
+        ch.enable();
+        ch.set_duty(Percentage::try_from(0.5).unwrap());
+        ch.set_freq(2.kHz());
+        rprintln!(" done!");
+
+        (Shared {}, Local {}, init::Monotonics(mono))
     }
 
     #[idle]
     fn idle(_: idle::Context) -> ! {
         loop {
             cortex_m::asm::nop();
-        }
-    }
-
-    #[task(binds = PIOA, local = [irq, led])]
-    fn pioa(ctx: pioa::Context) {
-        for pin in ctx.local.irq.iter() {
-            if pin == 9 {
-                ctx.local.led.toggle().unwrap();
-                rprintln!("button pressed, LED0 toggled");
-            }
         }
     }
 }
