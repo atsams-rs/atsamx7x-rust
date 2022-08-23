@@ -2,12 +2,9 @@
 Timer Counter (TC)
 ---
 
-The [`Tc`] is a peripheral that contain three [`Channel`]s. Each [`Channel`] can [`Generate`] or `Capture` a signal.
+The [`Tc`] is a peripheral that contain three [`Channel`]s. Each [`Channel`] can [`Generate`] or [`Capture`] a signal.
 In [`Generate`], PWM signals can be emitted on connected [`Pin`]s, drive another [`Channel`] via [`Channel::chain`], and provide delay/scheduling primitives.
-In `Capture`, a [`Channel`] can measure frequencies/intervals, count events, decode quadrature signals, etc.
-
-In the present implementation, only scheduling primitives are exploited for [`Channel::chain`]ed [`Channel`]s in order to acquire 32-bit [`rtic_monotonic::Monotonic`] and [`ehal::timer::CountDown`] implementations.
-If a [`Pin`] is configured out-of-band to correspond to a [`Channel`] I/O, an output clock signal may be observed, but any input edges are ignored.
+In [`Capture`], a [`Channel`] can measure frequencies on an [`ChannelInputPin<_, _, A>`].
 
 Refer to §50 for a full description on the capabilities offered by a [`Tc`].
 
@@ -15,6 +12,39 @@ Refer to §50 for a full description on the capabilities offered by a [`Tc`].
 [`ehal::timer::Countdown`]: crate::ehal::timer::CountDown
 
 # Example usage
+
+### Sampling a [`ChannelInputPin<_, _, A>`] frequency
+
+```no_run
+# use atsamx7x_hal as hal;
+# use hal::pio::*;
+# use hal::clocks::*;
+# use hal::efc::*;
+# use hal::tc::*;
+# use hal::fugit::ExtU32;
+# let pac = hal::pac::Peripherals::take().unwrap();
+# let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
+let banka = hal::pio::BankA::new(
+    pac.PIOA,
+    &mut mck,
+    &slck,
+    BankConfiguration::default(),
+);
+let ioa = banka.pa0.into_peripheral();
+
+let tc = Tc::new_tc0(pac.TC0, &mut mck);
+let mut counter = tc
+    .channel_0
+    .capture::<{12_000_000 / 128}>(&mck, ioa)
+    .unwrap()
+    .into_freq_measure(CounterConfiguration {
+        sampling: CaptureSamplingRatio::Eight,
+        leading_criteria: CaptureMode::Rising,
+        trailing_criteria: CaptureMode::Rising,
+    });
+
+counter.sample_freq(100.millis());
+```
 
 ### Create a [`rtic_monotonic::Monotonic`]
 
@@ -162,13 +192,18 @@ use crate::ehal::timer;
 pub use crate::fugit::{ExtU32, RateExtU32};
 use crate::fugit::{
     MicrosDurationU32 as MicrosDuration, MillisDurationU32 as MillisDuration,
-    TimerDurationU32 as Duration, TimerInstantU32 as Instant,
+    NanosDurationU32 as NanosDuration, TimerDurationU32 as Duration, TimerInstantU32 as Instant,
 };
 use crate::generics::CountDownError;
 use crate::pac::tc0::{
-    tc_channel::{tc_cmr_waveform_mode::TCCLKS_A as TCCLKS, tc_sr::R as StatusRegister},
+    tc_channel::{
+        tc_cmr_capture_mode::{LDRA_A, LDRB_A, SBSMPLR_A},
+        tc_cmr_waveform_mode::TCCLKS_A as TCCLKS,
+        tc_sr::R as StatusRegister,
+    },
     RegisterBlock, TC_CHANNEL as ChannelRegisterBlock,
 };
+use crate::pio::*;
 
 use core::marker::PhantomData;
 
@@ -321,8 +356,12 @@ pub trait ChannelState {}
 pub enum Inactive {}
 /// The [`Channel`] is active and is generating a signal, with an input clock of `FREQ_HZ`Hz.
 pub struct Generate<C: ChannelClock, const FREQ_HZ: u32>(PhantomData<C>);
+/// The [`Channel`] is active and is capturing input signals.
+pub struct Capture<C: ChannelClock, const FREQ_HZ: u32>(PhantomData<C>);
+
 impl ChannelState for Inactive {}
 impl<C: ChannelClock, const FREQ_HZ: u32> ChannelState for Generate<C, FREQ_HZ> {}
+impl<C: ChannelClock, const FREQ_HZ: u32> ChannelState for Capture<C, FREQ_HZ> {}
 
 /// Possible [`Channel`] configuration errors.
 ///
@@ -440,6 +479,17 @@ impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
         });
     }
 
+    /// Reset the [`Channel`]s counter and start its input clock.
+    fn reset_enable(&mut self) {
+        self.channel().tc_ccr.write(|w| {
+            w.clkdis().clear_bit();
+            w.clken().set_bit();
+            w.swtrg().set_bit();
+
+            w
+        });
+    }
+
     #[inline]
     fn set_compare(&mut self, val: CompareRegister) {
         match val {
@@ -495,6 +545,32 @@ impl<M: TcMeta, I: ChannelId> Channel<M, I, Inactive> {
         unsafe {
             self.generate_inner(mck);
         }
+
+        Ok(Channel::transform(self))
+    }
+
+    /// Transforms the [`Channel`] into an input [`Capture`]
+    /// [`Channel`], using a [`ChannelInputPin<_, _, A>`].
+    pub fn capture<const FREQ_HZ: u32>(
+        #[allow(unused_mut)] mut self,
+        mck: &HostClock,
+        _input: impl ChannelInputPin<M, I, A>,
+    ) -> Result<Channel<M, I, Capture<HostClock, FREQ_HZ>>, TcError> {
+        let expected = Hertz::from_raw(FREQ_HZ);
+        let actual = Clock::freq(mck) / <HostClock as ChannelClock>::SOURCE.prescaler();
+        if actual != expected {
+            return Err(TcError::InputClockFreqMismatch { expected, actual });
+        }
+
+        // NOTE: we write to WAVEFORM because of TCCLKS type variant
+        // limitations, but it has the same effct as writing these
+        // registers to CAPTURE.
+        self.channel().tc_cmr_waveform_mode().modify(|_, w| {
+            w.wave().clear_bit();
+            w.tcclks().variant(<HostClock as ChannelClock>::SOURCE.0);
+
+            w
+        });
 
         Ok(Channel::transform(self))
     }
@@ -624,6 +700,219 @@ pub struct Timer<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> {
 impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> SyncChannels<M>
     for Timer<M, I, C, FREQ_HZ>
 {
+}
+
+/// Abstraction that counts events occuring on a [`ChannelInputPin<_, _, A>`].
+pub struct Counter<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> {
+    channel: Channel<M, I, Capture<C, FREQ_HZ>>,
+}
+
+impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> Counter<M, I, C, FREQ_HZ> {
+    /// Sample the frequency on the previously specified
+    /// [`ChannelInputPin<_, _, A>`] using the previously specified
+    /// event criteria.
+    ///
+    /// # Timeout
+    ///
+    /// If the [`Counter`] did not sample the specified events within
+    /// `timeout`, a [`CounterError::Timeout`] is returned.
+    pub fn sample_freq(
+        &mut self,
+        timeout: fugit::Duration<u32, 1, FREQ_HZ>,
+    ) -> Result<Hertz, CounterError> {
+        // Ensure any previous state is cleared.
+        self.channel.read_status();
+
+        // Load RC compare value with timeout.
+        let ticks: u16 = timeout
+            .ticks()
+            .try_into()
+            .map_err(|_| CounterError::TimeoutOverflow {
+                wanted: timeout.convert(),
+                maximum: fugit::Duration::<u32, 1, FREQ_HZ>::from_ticks(u16::MAX.into()).convert(),
+            })?;
+        self.channel.set_compare(CompareRegister::Rc(ticks));
+
+        self.channel.reset_enable();
+
+        let mut loaded = [false, false];
+        while loaded.iter().any(|f| !f) {
+            let sr = self.channel.read_status();
+
+            if sr.cpcs().bit_is_set() {
+                // NOTE: timeout, no edges where sampled
+                return Err(CounterError::Timeout);
+            }
+
+            // Has RA/RB loaded?
+            if sr.ldras().bit_is_set() {
+                loaded[0] = true;
+            }
+            if sr.ldrbs().bit_is_set() {
+                loaded[1] = true;
+            }
+        }
+
+        // Both edges have been sampled: calculate measured frequency.
+        let ra = self.channel.channel().tc_ra.read().ra().bits();
+        let rb = self.channel.channel().tc_rb.read().rb().bits();
+
+        // Read-back the sampling ratio
+        let ratio = self
+            .channel
+            .channel()
+            .tc_cmr_capture_mode()
+            .read()
+            .sbsmplr()
+            .variant()
+            .map(|v| v.multiplier())
+            .unwrap();
+
+        Ok(
+            fugit::Duration::<u32, 1, FREQ_HZ>::from_ticks(rb.saturating_sub(ra))
+                .try_into_rate()
+                .unwrap_or(Hertz::from_raw(0))
+                * ratio,
+        )
+    }
+}
+
+/// Capture modes for external input
+#[derive(Debug, Clone, Copy)]
+pub enum CaptureMode {
+    /// Capture rising edges
+    Rising,
+    /// Capture falling edges
+    Falling,
+    /// Capture rising and falling edges
+    Either,
+}
+
+impl From<CaptureMode> for LDRA_A {
+    fn from(mode: CaptureMode) -> Self {
+        match mode {
+            CaptureMode::Rising => Self::RISING,
+            CaptureMode::Falling => Self::FALLING,
+            CaptureMode::Either => Self::EDGE,
+        }
+    }
+}
+
+impl From<CaptureMode> for LDRB_A {
+    fn from(mode: CaptureMode) -> Self {
+        match mode {
+            CaptureMode::Rising => Self::RISING,
+            CaptureMode::Falling => Self::FALLING,
+            CaptureMode::Either => Self::EDGE,
+        }
+    }
+}
+
+impl From<CaptureSamplingRatio> for SBSMPLR_A {
+    fn from(ratio: CaptureSamplingRatio) -> Self {
+        match ratio {
+            CaptureSamplingRatio::One => Self::ONE,
+            CaptureSamplingRatio::Two => Self::HALF,
+            CaptureSamplingRatio::Four => Self::FOURTH,
+            CaptureSamplingRatio::Eight => Self::EIGHTH,
+            CaptureSamplingRatio::Sixteen => Self::SIXTEENTH,
+        }
+    }
+}
+
+trait CaptureSamplingRatioMultiplier {
+    fn multiplier(&self) -> u32;
+}
+
+impl CaptureSamplingRatioMultiplier for SBSMPLR_A {
+    fn multiplier(&self) -> u32 {
+        match self {
+            Self::ONE => 1,
+            Self::HALF => 2,
+            Self::FOURTH => 4,
+            Self::EIGHTH => 8,
+            Self::SIXTEENTH => 16,
+        }
+    }
+}
+
+/// Possible [`Counter`] errors.
+#[derive(Debug)]
+pub enum CounterError {
+    /// The specified timeout is too large and cannot be handled by
+    /// hardware.
+    TimeoutOverflow {
+        /// The specified timeout.
+        wanted: NanosDuration,
+        /// The maximum possible timeout.
+        maximum: NanosDuration,
+    },
+    /// Timeout was reached before [`Counter`] could sample the
+    /// specified events.
+    Timeout,
+}
+
+/// Possible [`ChannelInputPin<_, _, A>`] input sampling ratios:
+/// denotes how many [`CaptureMode`] events should be sampled before
+/// the criteria is fulfilled.
+#[allow(missing_docs)]
+pub enum CaptureSamplingRatio {
+    One,
+    Two,
+    Four,
+    Eight,
+    Sixteen,
+}
+
+/// [`Counter`] configuration, describing how the signal on
+/// [`ChannelInputPin<_, _, A>`] should be handled.
+pub struct CounterConfiguration {
+    /// The sampling ratio of the input signal.
+    pub sampling: CaptureSamplingRatio,
+    /// The starting event: the [`Counter`] starts counting internal
+    /// clock ticks from this event.
+    pub leading_criteria: CaptureMode,
+    /// The ending event: the [`Counter`] stops counting internal
+    /// clock ticks from this event.
+    pub trailing_criteria: CaptureMode,
+}
+
+impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32>
+    Channel<M, I, Capture<C, FREQ_HZ>>
+{
+    /// Transform the [`Channel`] into a [`Counter`] implementation
+    /// that can measure frequencies.
+    pub fn into_freq_measure(self, cfg: CounterConfiguration) -> Counter<M, I, C, FREQ_HZ> {
+        self.channel().tc_cmr_capture_mode().modify(|_, w| {
+            w.ldra().variant(cfg.leading_criteria.into());
+            w.ldrb().variant(cfg.trailing_criteria.into());
+            w.sbsmplr().variant(cfg.sampling.into());
+
+            // stop/disable clock on RB load; this allows us to read
+            // our one-shot measurements without race conditions.
+            w.ldbdis().set_bit();
+            w.ldbstop().set_bit();
+
+            // RC compare no effect on counter/clock
+            w.cpctrg().clear_bit();
+            // use TIOBx as external trigger
+            w.abetrg().clear_bit();
+            // clock not gated by external signal
+            w.etrgedg().none();
+
+            w.burst().none();
+
+            // increment counter on rising clock edge
+            w.clki().clear_bit();
+
+            w
+        });
+
+        // disable all interrupts
+        self.channel().tc_idr.write(|w| unsafe { w.bits(u32::MAX) });
+
+        Counter { channel: self }
+    }
 }
 
 impl<M: TcMeta, I, J, C: ChannelClock, const DRIVER_FREQ_HZ: u32, const FREQ_HZ: u32>
@@ -789,11 +1078,38 @@ impl<M: TcMeta> Tc<M> {
     }
 }
 
+/// Denotes whether a [`Pin`] is a `TIOAx` or `TIOBx` pin.
+pub trait PinIdentifier {}
+/// Denotes that the [`Pin`] is a `TIOAx` pin.
+pub enum A {}
+/// Denotes that the [`Pin`] is a `TIOBx` pin.
+pub enum B {}
+impl PinIdentifier for A {}
+impl PinIdentifier for B {}
+
+/// [`Pin`] that acts as an input for a [`Channel`].
+pub trait ChannelInputPin<M: TcMeta, I: ChannelId, P: PinIdentifier> {}
+#[doc(hidden)]
+pub trait ChannelOutputPin<M: TcMeta, I: ChannelId, P: PinIdentifier> {}
+#[doc(hidden)]
+pub trait ChannelClockPin<M: TcMeta, I: ChannelId> {}
+
 macro_rules! impl_tc {
     (
         $(
             $( #[$cfg:meta] )?
-            $Tc:ident,
+            $Tc:ident: {
+                $(
+                    $Ch:ident: {
+                        $( #[$cfgAPin:meta] )?
+                        TIOA: $APin:ty,
+                        $( #[$cfgBPin:meta] )?
+                        TIOB: $BPin:ty,
+                        $( #[$cfgClkPin:meta] )?
+                        TCLK: $ClkPin:ty,
+                    },
+                )+
+            },
         )+
     ) => {
         paste! {
@@ -815,6 +1131,19 @@ macro_rules! impl_tc {
                         ];
                     }
 
+                    $(
+                            $( #[$cfgAPin] )?
+                            impl ChannelInputPin<$Tc, $Ch, A> for $APin {}
+                            $( #[$cfgAPin] )?
+                            impl ChannelOutputPin<$Tc, $Ch, A> for $APin {}
+                            $( #[$cfgBPin] )?
+                            impl ChannelInputPin<$Tc, $Ch, B> for $BPin {}
+                            $( #[$cfgBPin] )?
+                            impl ChannelOutputPin<$Tc, $Ch, B> for $BPin {}
+                            $( #[$cfgClkPin] )?
+                            impl ChannelClockPin<$Tc, $Ch> for $ClkPin {}
+                    )+
+
                     impl Tc<$Tc> {
                         #[doc = "Create a new [`Tc`] from a [`" [<$Tc:upper>] "`]."]
                         pub fn [<new_ $Tc:lower>](
@@ -834,10 +1163,141 @@ macro_rules! impl_tc {
 
 #[rustfmt::skip]
 impl_tc!(
-    Tc0,
-    Tc1,
-    Tc2,
-    Tc3,
+    Tc0: {
+        Ch0: {
+            // TIOA0
+            #[cfg(not(feature = "pins-64"))]
+            TIOA: Pin<PA0, PeripheralB>,
+            // TIOB0
+            #[cfg(not(feature = "pins-64"))]
+            TIOB: Pin<PA1, PeripheralB>,
+            // TCLK0
+            TCLK: Pin<PA4, PeripheralB>,
+        },
+        Ch1: {
+            // TIOA1
+            #[cfg(not(feature = "pins-64"))]
+            TIOA: Pin<PA15, PeripheralB>,
+            // TIOB1
+            #[cfg(not(feature = "pins-64"))]
+            TIOB: Pin<PA16, PeripheralB>,
+            // TCLK1
+            #[cfg(not(feature = "pins-64"))]
+            TCLK: Pin<PA28, PeripheralB>,
+        },
+        Ch2: {
+            // TIOA2
+            #[cfg(not(feature = "pins-64"))]
+            TIOA: Pin<PA26, PeripheralB>,
+            // TIOB2
+            TIOB: Pin<PA27, PeripheralB>,
+            // TCLK2
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PA29, PeripheralB>,
+        },
+    },
+    Tc1: {
+        Ch0: {
+            // TIOA3
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PC23, PeripheralB>,
+            // TIOB3
+            #[cfg(feature = "pins-144")]
+            TIOB: Pin<PC24, PeripheralB>,
+            // TCLK3
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PC25, PeripheralB>,
+        },
+        Ch1: {
+            // TIOA4
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PC26, PeripheralB>,
+            // TIOB4
+            #[cfg(feature = "pins-144")]
+            TIOB: Pin<PC27, PeripheralB>,
+            // TCLK4
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PC28, PeripheralB>,
+        },
+        Ch2: {
+            // TIOA5
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PC29, PeripheralB>,
+            // TIOB5
+            #[cfg(feature = "pins-144")]
+            TIOB: Pin<PC30, PeripheralB>,
+            // TCLK5
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PC31, PeripheralB>,
+        },
+    },
+    Tc2: {
+        Ch0: {
+            // TIOA6
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PC5, PeripheralB>,
+            // TIOB6
+            #[cfg(feature = "pins-144")]
+            TIOB: Pin<PC6, PeripheralB>,
+            // TCLK6
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PC7, PeripheralB>,
+        },
+        Ch1: {
+            // TIOA7
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PC8, PeripheralB>,
+            // TIOB7
+            #[cfg(feature = "pins-144")]
+            TIOB: Pin<PC9, PeripheralB>,
+            // TCLK7
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PC10, PeripheralB>,
+        },
+        Ch2: {
+            // TIOA8
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PC11, PeripheralB>,
+            #[cfg(feature = "pins-144")]
+            // TIOB8
+            TIOB: Pin<PC12, PeripheralB>,
+            // TCLK8
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PC14, PeripheralB>,
+        },
+    },
+    Tc3: {
+        Ch0: {
+            // TIOA9
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PE0, PeripheralB>,
+            // TIOB9
+            #[cfg(feature = "pins-144")]
+            TIOB: Pin<PE1, PeripheralB>,
+            // TCLK9
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PE2, PeripheralB>,
+        },
+        Ch1: {
+            // TIOA10
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PE3, PeripheralB>,
+            // TIOB10
+            #[cfg(feature = "pins-144")]
+            TIOB: Pin<PE4, PeripheralB>,
+            // TCLK10
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PE5, PeripheralB>,
+        },
+        Ch2: {
+            // TIOA11
+            TIOA: Pin<PD21, PeripheralC>,
+            // TIOB11
+            TIOB: Pin<PD22, PeripheralC>,
+            // TCLK11
+            TCLK: Pin<PD24, PeripheralC>,
+        },
+    },
 );
 
 impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> timer::CountDown
