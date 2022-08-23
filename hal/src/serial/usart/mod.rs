@@ -124,7 +124,7 @@ impl From<ParityMode> for HwParityMode {
 }
 
 /// Possible [`Usart`] modes.
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum UsartMode {
     /// The [`Usart`] is operating in [`Spi`] mode.
     Spi(SpiMode),
@@ -135,7 +135,7 @@ pub enum UsartMode {
 /// [`Usart`] interrupt events.
 ///
 /// For [`u32`] representation, C.f. §46.7.5 and §46.7.6.
-#[derive(Clone, Copy, Debug, PartialEq, FromRepr)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, FromRepr)]
 #[repr(u32)]
 pub enum Event {
     /// A word has been received and is available to read.
@@ -212,7 +212,7 @@ trait RegisterAccess<M: UsartMeta> {
 }
 
 /// Possible [`Usart`] errors.
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Eq, PartialEq)]
 pub enum UsartError {
     /// The calculated prescaler does not fit in a [`u16`].
     PrescalerOverflow,
