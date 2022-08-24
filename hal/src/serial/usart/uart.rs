@@ -10,7 +10,7 @@ use super::*;
 use crate::ehal::{self, blocking};
 
 /// Possible [Uart] errors
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Eq, PartialEq)]
 pub enum UartError {
     /// A frame's stop bit was read as zero.
     Framing,

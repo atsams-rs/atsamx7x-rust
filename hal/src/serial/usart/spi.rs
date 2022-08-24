@@ -11,7 +11,7 @@ pub use crate::ehal::spi::*;
 use crate::ehal::{self, blocking};
 
 /// Possible [`Spi`]  errors.
-#[derive(Debug, Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq)]
 pub enum SpiError {
     /// The next word was received by the [`Usart`] before the
     /// previous one was [`Spi::read`].
@@ -33,7 +33,7 @@ impl From<SpiError> for UsartError {
 }
 
 /// Possible [`Spi`] modes.
-#[derive(Debug, PartialEq, Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Clone, Copy)]
 pub enum SpiMode {
     /// Denotes Host mode for the [`Spi`]
     Host,
@@ -60,7 +60,7 @@ impl SpiRole for Client {
 }
 
 /// Holds configuration information for the [`Spi`]
-#[derive(PartialEq)]
+#[derive(Eq, PartialEq)]
 pub struct SpiConfig {
     /// In [`Host`] mode: the communication bitrate to the bus client.
     /// Ignored in [`Client`] mode.
