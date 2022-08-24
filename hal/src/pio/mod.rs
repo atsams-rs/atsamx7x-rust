@@ -104,6 +104,19 @@ button.set_filter(Some(InputFilter::Debounce));
 let bankb = BankB::new(pac.PIOB, &mut mck, &slck, BankConfiguration::default());
 let led = bankb.pb8.into_output(true); // or false, for an initial low state.
 ```
+
+# System [`Pin`]s
+
+On reset the following [`Pin`]s:
+
+- [`Pin<PB4, _>`];
+- [`Pin<PB5, _>`];
+- [`Pin<PB6, _>`];
+- [`Pin<PB7, _>`]; and
+- [`Pin<PB12, _>`]
+
+are in "system I/O mode" where they provide debug, trace, and flash-erase functionality.
+By default, trying to configure these pins yield no effect, but can  be enabled via the `reconfigurable-system-pins` feature.
 */
 
 use crate::pac::{

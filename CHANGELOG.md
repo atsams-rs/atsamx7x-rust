@@ -11,6 +11,7 @@
 - `serial::Uart::UartError::InvalidPck` error.
 - `pwm` module: allows frequencies and duty-rates to be independently set for each `pwm::Channel`, with help from `ehal::PwmPin`.
 - `hal/rust-toolchain.toml` that pins `rustc` (and relevant components/targets) to MSRV 1.63.0.
+- Crate feature: `reconfigurable-system-pins`; see below.
 
 ### Removed
 - `serial::Uart::UartError::BaudRateNotInRange` error.
@@ -21,6 +22,7 @@
 - `Uart::{new,reconfigure}`: now rounds the calculated prescaler to the closest value instead of rounding down.
 - `Uart::new`: now returns `Err(UartError::InvalidPck)` if the baud-rate generating `Pck` is not at least three times slow than the peripheral clock (`HostClock`).
 - Clippy warnings in `boards/*/examples/*`.
+- The special-on-reset pins `PB4/5/6/7/12` are now switched from their alternate modes (ERASE, TCK/SWCLK, TMS/SWDIO, TDO/TRACESWO, TDI, respectively) to a regular PIO pin upon a `Pin::into_{mode,peripheral,input,output}`, if the `reconfigurable-system-pins` feature is enabled.
 
 ### Changed
 - `Pck::configure` now takes a `u16` prescaler instead of a `u8`, and returns `Err(PckError)` if the prescaler cannot be applied.
