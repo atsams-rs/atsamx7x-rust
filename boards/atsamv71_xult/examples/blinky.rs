@@ -3,19 +3,19 @@
 #![no_main]
 
 use panic_rtt_target as _;
-
+// use panic_halt as _;
 #[rtic::app(device = hal::pac, peripherals = true, dispatchers = [UART0])]
 mod app {
     use atsamx7x_hal as hal;
     use hal::clocks::*;
-    use hal::efc::*;
+    use hal::efc::{Efc, VddioLevel};
     use hal::ehal::digital::v2::ToggleableOutputPin;
     use hal::pio::*;
     use hal::rtt::*;
     use rtt_target::{rprintln, rtt_init_print};
 
-    #[monotonic(binds = RTT, default = true)]
-    type MyMono = Mono<8192>;
+    // #[monotonic(binds = RTT, default = true)]
+    // type MyMono = Mono<8192>;
 
     #[shared]
     struct Shared {}
@@ -28,6 +28,7 @@ mod app {
     #[init]
     fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
         rtt_init_print!();
+        rprintln!("Init");
 
         let clocks = Tokens::new(
             (ctx.device.PMC, ctx.device.SUPC, ctx.device.UTMI),
@@ -54,17 +55,21 @@ mod app {
         );
         let led = banka.pa23.into_output(true);
 
-        let mono = Rtt::new_8192Hz(ctx.device.RTT, &slck).into_monotonic();
+        // let mono = Rtt::new_8192Hz(ctx.device.RTT, &slck).into_monotonic();
 
-        toggle_led::spawn().unwrap();
+        // toggle_led::spawn().unwrap();
 
-        (Shared {}, Local { led }, init::Monotonics(mono))
+        (Shared {}, Local { led }, init::Monotonics())
     }
 
-    #[task(local = [led])]
-    fn toggle_led(ctx: toggle_led::Context) {
+    #[idle(local = [led])]
+    fn idle(ctx: idle::Context)-> ! {
+        rprintln!("Idle");
         ctx.local.led.toggle().unwrap();
-        rprintln!("LED0 toggled");
-        toggle_led::spawn_after(1.secs()).unwrap();
+        loop {
+            rprintln!("Loop");
+            ctx.local.led.toggle().unwrap();
+            cortex_m::asm::delay(2000000);
+        }
     }
 }
