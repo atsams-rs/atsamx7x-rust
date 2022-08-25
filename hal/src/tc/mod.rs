@@ -2,12 +2,9 @@
 Timer Counter (TC)
 ---
 
-The [`Tc`] is a peripheral that contain three [`Channel`]s. Each [`Channel`] can [`Generate`] or `Capture` a signal.
+The [`Tc`] is a peripheral that contain three [`Channel`]s. Each [`Channel`] can [`Generate`] or [`Capture`] a signal.
 In [`Generate`], PWM signals can be emitted on connected [`Pin`]s, drive another [`Channel`] via [`Channel::chain`], and provide delay/scheduling primitives.
-In `Capture`, a [`Channel`] can measure frequencies/intervals, count events, decode quadrature signals, etc.
-
-In the present implementation, only scheduling primitives are exploited for [`Channel::chain`]ed [`Channel`]s in order to acquire 32-bit [`rtic_monotonic::Monotonic`] and [`ehal::timer::CountDown`] implementations.
-If a [`Pin`] is configured out-of-band to correspond to a [`Channel`] I/O, an output clock signal may be observed, but any input edges are ignored.
+In [`Capture`], a [`Channel`] can measure frequencies on an [`ChannelInputPin<_, _, A>`].
 
 Refer to §50 for a full description on the capabilities offered by a [`Tc`].
 
@@ -15,6 +12,39 @@ Refer to §50 for a full description on the capabilities offered by a [`Tc`].
 [`ehal::timer::Countdown`]: crate::ehal::timer::CountDown
 
 # Example usage
+
+### Sampling a [`ChannelInputPin<_, _, A>`] frequency
+
+```no_run
+# use atsamx7x_hal as hal;
+# use hal::pio::*;
+# use hal::clocks::*;
+# use hal::efc::*;
+# use hal::tc::*;
+# use hal::fugit::ExtU32;
+# let pac = hal::pac::Peripherals::take().unwrap();
+# let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
+let banka = hal::pio::BankA::new(
+    pac.PIOA,
+    &mut mck,
+    &slck,
+    BankConfiguration::default(),
+);
+let ioa = banka.pa0.into_peripheral();
+
+let tc = Tc::new_tc0(pac.TC0, &mut mck);
+let mut counter = tc
+    .channel_0
+    .capture::<{12_000_000 / 128}>(&mck, ioa)
+    .unwrap()
+    .into_freq_measure(CounterConfiguration {
+        sampling: CaptureSamplingRatio::Eight,
+        leading_criteria: CaptureMode::Rising,
+        trailing_criteria: CaptureMode::Rising,
+    });
+
+counter.sample_freq(100.millis());
+```
 
 ### Create a [`rtic_monotonic::Monotonic`]
 
@@ -166,9 +196,14 @@ use crate::fugit::{
 };
 use crate::generics::CountDownError;
 use crate::pac::tc0::{
-    tc_channel::{tc_cmr_waveform_mode::TCCLKS_A as TCCLKS, tc_sr::R as StatusRegister},
+    tc_channel::{
+        tc_cmr_capture_mode::{LDRA_A, LDRB_A, SBSMPLR_A},
+        tc_cmr_waveform_mode::TCCLKS_A as TCCLKS,
+        tc_sr::R as StatusRegister,
+    },
     RegisterBlock, TC_CHANNEL as ChannelRegisterBlock,
 };
+use crate::pio::*;
 
 use core::marker::PhantomData;
 
@@ -321,8 +356,12 @@ pub trait ChannelState {}
 pub enum Inactive {}
 /// The [`Channel`] is active and is generating a signal, with an input clock of `FREQ_HZ`Hz.
 pub struct Generate<C: ChannelClock, const FREQ_HZ: u32>(PhantomData<C>);
+/// The [`Channel`] is active and is capturing input signals.
+pub struct Capture<C: ChannelClock, const FREQ_HZ: u32>(PhantomData<C>);
+
 impl ChannelState for Inactive {}
 impl<C: ChannelClock, const FREQ_HZ: u32> ChannelState for Generate<C, FREQ_HZ> {}
+impl<C: ChannelClock, const FREQ_HZ: u32> ChannelState for Capture<C, FREQ_HZ> {}
 
 /// Possible [`Channel`] configuration errors.
 ///
@@ -440,6 +479,17 @@ impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
         });
     }
 
+    /// Reset the [`Channel`]s counter and start its input clock.
+    fn reset_enable(&mut self) {
+        self.channel().tc_ccr.write(|w| {
+            w.clkdis().clear_bit();
+            w.clken().set_bit();
+            w.swtrg().set_bit();
+
+            w
+        });
+    }
+
     #[inline]
     fn set_compare(&mut self, val: CompareRegister) {
         match val {
@@ -479,6 +529,7 @@ impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
         self.channel().tc_sr.read()
     }
 }
+
 impl<M: TcMeta, I: ChannelId> Channel<M, I, Inactive> {
     /// Transform the [`Channel`] into one that [`Generate`]s a
     /// signal, driven by the [`HostClock`].
@@ -498,260 +549,31 @@ impl<M: TcMeta, I: ChannelId> Channel<M, I, Inactive> {
 
         Ok(Channel::transform(self))
     }
-}
-impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32>
-    Channel<M, I, Generate<C, FREQ_HZ>>
-{
-    /// Transform the [`Channel`] into one driven (chained) by another
-    /// [`Channel`], using the output clock of `driver` an an input
-    /// clock.
-    #[allow(clippy::complexity)]
-    pub fn chain<J: ChannelId, Co: ChannelClock, const DRIVER_FREQ_HZ: u32>(
+
+    /// Transforms the [`Channel`] into an input [`Capture`]
+    /// [`Channel`], using a [`ChannelInputPin<_, _, A>`].
+    pub fn capture<const FREQ_HZ: u32>(
         #[allow(unused_mut)] mut self,
-        mut driver: Channel<M, J, Generate<Co, DRIVER_FREQ_HZ>>,
-    ) -> Channel<M, I, Generate<Channel<M, J, Generate<Co, DRIVER_FREQ_HZ>>, FREQ_HZ>>
-    where
-        Channel<M, J, Generate<Co, DRIVER_FREQ_HZ>>: ChannelClock,
-        Self: ChannelClock,
-    {
-        // Self is generated by an "internal clock", which is defined
-        // within itself. Specifying &driver here, as one would
-        // perhaps except, would instead generate the clock from that
-        // channel's "external clock": HostClock. In the next
-        // statement, the two channels are connected.
-        unsafe {
-            self.generate_inner(&self);
+        mck: &HostClock,
+        _input: impl ChannelInputPin<M, I, A>,
+    ) -> Result<Channel<M, I, Capture<HostClock, FREQ_HZ>>, TcError> {
+        let expected = Hertz::from_raw(FREQ_HZ);
+        let actual = Clock::freq(mck) / <HostClock as ChannelClock>::SOURCE.prescaler();
+        if actual != expected {
+            return Err(TcError::InputClockFreqMismatch { expected, actual });
         }
 
-        // Connect driver TIOA output to self's input
-        self.reg().tc_bmr.modify(|_, w| {
-            let tcxcs = I::DYN.external_feedback_field(&J::DYN);
-            match I::DYN {
-                DynChannelId::Ch0 => unsafe { w.tc0xc0s().bits(tcxcs) },
-                DynChannelId::Ch1 => unsafe { w.tc1xc1s().bits(tcxcs) },
-                DynChannelId::Ch2 => unsafe { w.tc2xc2s().bits(tcxcs) },
-            };
-
-            w
-        });
-
-        // Configure driving channel
-        driver.channel().tc_cmr_waveform_mode().modify(|_, w| {
-            // noop effects on TIOB, TIOA toggles on RC compare match
-            //
-            // NOTE: RA and RB compare match affects TIOA and
-            // TIOB, respectively. RC compare match affects TIOA
-            // and/or TIOB.
-            //
-            // noop TIOB on software trigger
-            w.bswtrg().none();
-            // XXX clear TIOA on software trigger
-            w.aswtrg().clear();
-            // noop on external event
-            w.beevt().none();
-            w.aeevt().none();
-            // no TIOB effect on RC compare match
-            w.bcpc().none();
-            // XXX TIOA toggle on RC compare match
-            w.acpc().toggle();
-            // no effect on RA/RB match
-            w.bcpb().none();
-            w.acpa().none();
-
-            // Use TIOB as external event, but disable triggers:
-            // does not reset counter or start its clock.
-            //
-            // As a side-effect, TIOB is now an input and does not
-            // generate a waveform and subsequently no IRQs.
-            w.eevt().tiob();
-            w.eevtedg().none();
-            w.enetrg().clear_bit();
-
-            // Increment counter to RC, then reset it
-            w.wavsel().up_rc();
-
-            // Input clock configuration (c.f. Fig. 50-3):
-            //
-            // Do not disable/stop clock when counter reaches RC.
-            w.cpcdis().clear_bit();
-            w.cpcstop().clear_bit();
-            // Do not gate the clock by an external signal.
-            w.burst().none();
-            // Do not invert the clock
-            w.clki().clear_bit();
-
-            w
-        });
-        // disable any IRQs
-        driver
-            .channel()
-            .tc_idr
-            .write(|w| unsafe { w.bits(u32::MAX) });
-
-        driver.enable();
-
-        // Safe: both channels are consumed
-        Channel::transform(self)
-    }
-}
-
-/// A monotonically increasing clock that is [`Channel::chain`]ed with
-/// a driving [`Channel`]. Implemented using the [`Channel`]s 16-bit
-/// counter and extended to 32-bits.
-pub struct Monotonic<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> {
-    channel: Channel<M, I, Generate<C, FREQ_HZ>>,
-    /// Software extension of the channel's internal 16-bit counter,
-    /// for a total of 32 bits.
-    msb: u16,
-    /// The last IRQ status of the channel. Used to track overflow
-    /// events.
-    status: Option<StatusRegister>,
-}
-
-impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> SyncChannels<M>
-    for Monotonic<M, I, C, FREQ_HZ>
-{
-}
-
-/// A [`ehal::timer::CountDown`] implementation that is
-/// [`Channel::chain`]ed with a driving [`Channel`].
-///
-/// [`ehal::timer::CountDown`]: crate::ehal::timer::CountDown
-pub struct Timer<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> {
-    channel: Channel<M, I, Generate<C, FREQ_HZ>>,
-}
-
-impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> SyncChannels<M>
-    for Timer<M, I, C, FREQ_HZ>
-{
-}
-
-impl<M: TcMeta, I, J, C: ChannelClock, const DRIVER_FREQ_HZ: u32, const FREQ_HZ: u32>
-    Channel<M, I, Generate<Channel<M, J, Generate<C, DRIVER_FREQ_HZ>>, FREQ_HZ>>
-where
-    I: ChannelId,
-    J: ChannelId,
-    Channel<M, J, Generate<C, DRIVER_FREQ_HZ>>: ChannelClock,
-{
-    /// Transform the [`Channel`] into a [`rtic_monotonic::Monotonic`]
-    /// implementation with a frequency of `MONO_FREQ_HZ`Hz.
-    #[allow(clippy::complexity)]
-    pub fn into_monotonic<const MONO_FREQ_HZ: u32>(
-        self,
-    ) -> Result<Monotonic<M, I, Channel<M, J, Generate<C, DRIVER_FREQ_HZ>>, MONO_FREQ_HZ>, TcError>
-    {
-        let freq = Hertz::from_raw(MONO_FREQ_HZ);
-
-        // Configure driver prescaler, rounding to the closest
-        // integer.
-        //
-        // Safe: driver was consumed in Channel::chain.
-        let mut driver = unsafe { Channel::<M, J, _>::new::<Generate<C, DRIVER_FREQ_HZ>>() };
-        // The 16-bit counter is incremented only at each positive
-        // input clock edge. When chaining channels, this then results
-        // in a static /2 prescaler. Refer to §50.6.2.
-        const FEEDBACK_PRESCALER: u32 = 2;
-        let input_freq = ChannelClock::freq(&driver).raw() as f32 / FEEDBACK_PRESCALER as f32;
-        let pres: u16 = ((input_freq / freq.raw() as f32 + 0.5) as u32)
-            .try_into()
-            .map_err(|_| TcError::PrescalerOverflow {
-                input: Hertz::from_raw(input_freq as u32),
-                wanted: freq,
-            })?;
-        // From experimentation: a prescaler of 0 would noop the
-        // clock, but a prescaler of 1 would yield a clock that is
-        // half of what is requested. With a minimum prescaler of 2
-        // the clock has an expected frequency.
-        const MINIMUM_ACCURATE_PRESCALER: u16 = 2;
-        if pres < MINIMUM_ACCURATE_PRESCALER {
-            return Err(TcError::PrescalerInvalid {
-                input: Hertz::from_raw(input_freq as u32),
-                wanted: freq,
-            });
-        }
-        driver.set_compare(CompareRegister::Rc(pres));
-
-        // Configure self
+        // NOTE: we write to WAVEFORM because of TCCLKS type variant
+        // limitations, but it has the same effct as writing these
+        // registers to CAPTURE.
         self.channel().tc_cmr_waveform_mode().modify(|_, w| {
-            // noop effects on TIOA/TIOB
-            //
-            // NOTE: RA and RB compare match affects TIOA and
-            // TIOB, respectively. RC compare match affects TIOA
-            // and/or TIOB.
-            //
-            // noop on software trigger
-            w.bswtrg().none();
-            w.aswtrg().none();
-            // noop on external event
-            w.beevt().none();
-            w.aeevt().none();
-            // no effect on RC compare match
-            w.bcpc().none();
-            w.acpc().none();
-            // no effect on RA/RB match
-            w.bcpb().none();
-            w.acpa().none();
-
-            // Use TIOB as external event, but disable triggers:
-            // does not reset counter or start its clock.
-            //
-            // As a side-effect, TIOB is now an input and does not
-            // generate a waveform and subsequently no IRQs.
-            w.eevt().tiob();
-            w.eevtedg().none();
-            w.enetrg().clear_bit();
-
-            // Increment the counter from 0 to u16::MAX. Do not
-            // reset when RC is reached, and disallow counting
-            // down.
-            w.wavsel().up();
-
-            // Input clock configuration (c.f. Fig. 50-3):
-            //
-            // Do not disable/stop clock when counter reaches RC.
-            w.cpcdis().clear_bit();
-            w.cpcstop().clear_bit();
-            // Do not gate the clock by an external signal.
-            w.burst().none();
-            // Do not invert the clock
-            w.clki().clear_bit();
+            w.wave().clear_bit();
+            w.tcclks().variant(<HostClock as ChannelClock>::SOURCE.0);
 
             w
         });
 
-        // Enable interrupt on RC compare match
-        self.channel().tc_idr.write(|w| unsafe { w.bits(u32::MAX) });
-        self.channel().tc_ier.write(|w| w.cpcs().set_bit());
-
-        Ok(Monotonic {
-            channel: Channel::transform(self),
-            msb: 0,
-            status: None,
-        })
-    }
-
-    /// Transform the [`Channel`] into a [`timer::CountDown`]
-    /// implementation with a frequency of `TIMER_FREQ_HZ`Hz.
-    #[allow(clippy::complexity)]
-    pub fn into_timer<const TIMER_FREQ_HZ: u32>(
-        self,
-    ) -> Result<Timer<M, I, Channel<M, J, Generate<C, DRIVER_FREQ_HZ>>, TIMER_FREQ_HZ>, TcError>
-    {
-        let mono = self.into_monotonic::<TIMER_FREQ_HZ>()?;
-
-        // Disable the input clock on an RC compare. This gives us a
-        // oneshot timer.
-        mono.channel
-            .channel()
-            .tc_cmr_waveform_mode()
-            .modify(|_, w| w.cpcdis().set_bit());
-
-        // XXX: we let IER.CPCS be set which allows the user to bind a
-        // task for when the timer reaches "zero" (RC).
-
-        Ok(Timer {
-            channel: mono.channel,
-        })
+        Ok(Channel::transform(self))
     }
 }
 
@@ -789,11 +611,38 @@ impl<M: TcMeta> Tc<M> {
     }
 }
 
+/// Denotes whether a [`Pin`] is a `TIOAx` or `TIOBx` pin.
+pub trait PinIdentifier {}
+/// Denotes that the [`Pin`] is a `TIOAx` pin.
+pub enum A {}
+/// Denotes that the [`Pin`] is a `TIOBx` pin.
+pub enum B {}
+impl PinIdentifier for A {}
+impl PinIdentifier for B {}
+
+/// [`Pin`] that acts as an input for a [`Channel`].
+pub trait ChannelInputPin<M: TcMeta, I: ChannelId, P: PinIdentifier> {}
+#[doc(hidden)]
+pub trait ChannelOutputPin<M: TcMeta, I: ChannelId, P: PinIdentifier> {}
+#[doc(hidden)]
+pub trait ChannelClockPin<M: TcMeta, I: ChannelId> {}
+
 macro_rules! impl_tc {
     (
         $(
             $( #[$cfg:meta] )?
-            $Tc:ident,
+            $Tc:ident: {
+                $(
+                    $Ch:ident: {
+                        $( #[$cfgAPin:meta] )?
+                        TIOA: $APin:ty,
+                        $( #[$cfgBPin:meta] )?
+                        TIOB: $BPin:ty,
+                        $( #[$cfgClkPin:meta] )?
+                        TCLK: $ClkPin:ty,
+                    },
+                )+
+            },
         )+
     ) => {
         paste! {
@@ -815,6 +664,19 @@ macro_rules! impl_tc {
                         ];
                     }
 
+                    $(
+                            $( #[$cfgAPin] )?
+                            impl ChannelInputPin<$Tc, $Ch, A> for $APin {}
+                            $( #[$cfgAPin] )?
+                            impl ChannelOutputPin<$Tc, $Ch, A> for $APin {}
+                            $( #[$cfgBPin] )?
+                            impl ChannelInputPin<$Tc, $Ch, B> for $BPin {}
+                            $( #[$cfgBPin] )?
+                            impl ChannelOutputPin<$Tc, $Ch, B> for $BPin {}
+                            $( #[$cfgClkPin] )?
+                            impl ChannelClockPin<$Tc, $Ch> for $ClkPin {}
+                    )+
+
                     impl Tc<$Tc> {
                         #[doc = "Create a new [`Tc`] from a [`" [<$Tc:upper>] "`]."]
                         pub fn [<new_ $Tc:lower>](
@@ -834,157 +696,144 @@ macro_rules! impl_tc {
 
 #[rustfmt::skip]
 impl_tc!(
-    Tc0,
-    Tc1,
-    Tc2,
-    Tc3,
+    Tc0: {
+        Ch0: {
+            // TIOA0
+            #[cfg(not(feature = "pins-64"))]
+            TIOA: Pin<PA0, PeripheralB>,
+            // TIOB0
+            #[cfg(not(feature = "pins-64"))]
+            TIOB: Pin<PA1, PeripheralB>,
+            // TCLK0
+            TCLK: Pin<PA4, PeripheralB>,
+        },
+        Ch1: {
+            // TIOA1
+            #[cfg(not(feature = "pins-64"))]
+            TIOA: Pin<PA15, PeripheralB>,
+            // TIOB1
+            #[cfg(not(feature = "pins-64"))]
+            TIOB: Pin<PA16, PeripheralB>,
+            // TCLK1
+            #[cfg(not(feature = "pins-64"))]
+            TCLK: Pin<PA28, PeripheralB>,
+        },
+        Ch2: {
+            // TIOA2
+            #[cfg(not(feature = "pins-64"))]
+            TIOA: Pin<PA26, PeripheralB>,
+            // TIOB2
+            TIOB: Pin<PA27, PeripheralB>,
+            // TCLK2
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PA29, PeripheralB>,
+        },
+    },
+    Tc1: {
+        Ch0: {
+            // TIOA3
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PC23, PeripheralB>,
+            // TIOB3
+            #[cfg(feature = "pins-144")]
+            TIOB: Pin<PC24, PeripheralB>,
+            // TCLK3
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PC25, PeripheralB>,
+        },
+        Ch1: {
+            // TIOA4
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PC26, PeripheralB>,
+            // TIOB4
+            #[cfg(feature = "pins-144")]
+            TIOB: Pin<PC27, PeripheralB>,
+            // TCLK4
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PC28, PeripheralB>,
+        },
+        Ch2: {
+            // TIOA5
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PC29, PeripheralB>,
+            // TIOB5
+            #[cfg(feature = "pins-144")]
+            TIOB: Pin<PC30, PeripheralB>,
+            // TCLK5
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PC31, PeripheralB>,
+        },
+    },
+    Tc2: {
+        Ch0: {
+            // TIOA6
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PC5, PeripheralB>,
+            // TIOB6
+            #[cfg(feature = "pins-144")]
+            TIOB: Pin<PC6, PeripheralB>,
+            // TCLK6
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PC7, PeripheralB>,
+        },
+        Ch1: {
+            // TIOA7
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PC8, PeripheralB>,
+            // TIOB7
+            #[cfg(feature = "pins-144")]
+            TIOB: Pin<PC9, PeripheralB>,
+            // TCLK7
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PC10, PeripheralB>,
+        },
+        Ch2: {
+            // TIOA8
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PC11, PeripheralB>,
+            #[cfg(feature = "pins-144")]
+            // TIOB8
+            TIOB: Pin<PC12, PeripheralB>,
+            // TCLK8
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PC14, PeripheralB>,
+        },
+    },
+    Tc3: {
+        Ch0: {
+            // TIOA9
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PE0, PeripheralB>,
+            // TIOB9
+            #[cfg(feature = "pins-144")]
+            TIOB: Pin<PE1, PeripheralB>,
+            // TCLK9
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PE2, PeripheralB>,
+        },
+        Ch1: {
+            // TIOA10
+            #[cfg(feature = "pins-144")]
+            TIOA: Pin<PE3, PeripheralB>,
+            // TIOB10
+            #[cfg(feature = "pins-144")]
+            TIOB: Pin<PE4, PeripheralB>,
+            // TCLK10
+            #[cfg(feature = "pins-144")]
+            TCLK: Pin<PE5, PeripheralB>,
+        },
+        Ch2: {
+            // TIOA11
+            TIOA: Pin<PD21, PeripheralC>,
+            // TIOB11
+            TIOB: Pin<PD22, PeripheralC>,
+            // TCLK11
+            TCLK: Pin<PD24, PeripheralC>,
+        },
+    },
 );
 
-impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> timer::CountDown
-    for Timer<M, I, C, FREQ_HZ>
-{
-    type Time = Duration<FREQ_HZ>;
-
-    /// Starts a new count-down.
-    ///
-    /// # Panics
-    ///
-    /// This function will panic if `duration` cannot be represented
-    /// by a [`u16`].
-    fn start<T>(&mut self, duration: T)
-    where
-        T: Into<Self::Time>,
-    {
-        let ticks: u16 = duration.into().ticks().try_into().unwrap_or_else(|_| {
-            // We cannot compare values outside of the 16-bit
-            // range. We also cannot extend the counter, nor can
-            // we report an error to the user in this trait.
-            panic!()
-        });
-
-        self.channel.set_compare(CompareRegister::Rc(ticks));
-        self.channel.enable();
-
-        unsafe {
-            Self::sync_start_channels();
-        }
-
-        // Wait until the clock is enabled.
-        while self.channel.read_status().clksta().bit_is_clear() {}
-    }
-
-    fn wait(&mut self) -> nb::Result<(), void::Void> {
-        if self.channel.read_status().cpcs().bit_is_clear() {
-            Err(nb::Error::WouldBlock)
-        } else {
-            Ok(())
-        }
-    }
-}
-
-impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> timer::Cancel
-    for Timer<M, I, C, FREQ_HZ>
-{
-    type Error = CountDownError;
-
-    fn cancel(&mut self) -> Result<(), Self::Error> {
-        let status = self.channel.read_status();
-        if status.clksta().bit_is_clear() {
-            return Err(Self::Error::Disabled);
-        } else if status.cpcs().bit_is_set() {
-            return Err(Self::Error::Expired);
-        }
-
-        self.channel.disable();
-        Ok(())
-    }
-}
-
-impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> delay::DelayUs<u32>
-    for Timer<M, I, C, FREQ_HZ>
-{
-    fn delay_us(&mut self, us: u32) {
-        use timer::CountDown;
-
-        self.start(MicrosDuration::from_ticks(us).convert());
-        nb::block!(self.wait()).unwrap()
-    }
-}
-
-impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> delay::DelayMs<u32>
-    for Timer<M, I, C, FREQ_HZ>
-{
-    fn delay_ms(&mut self, ms: u32) {
-        use timer::CountDown;
-
-        self.start(MillisDuration::from_ticks(ms).convert());
-        nb::block!(self.wait()).unwrap()
-    }
-}
-
-impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> rtic_monotonic::Monotonic
-    for Monotonic<M, I, C, FREQ_HZ>
-{
-    type Instant = Instant<FREQ_HZ>;
-    type Duration = Duration<FREQ_HZ>;
-
-    const DISABLE_INTERRUPT_ON_EMPTY_QUEUE: bool = false;
-
-    /// Resets the counter to zero and start the clock.
-    unsafe fn reset(&mut self) {
-        self.channel.enable();
-        Self::sync_start_channels();
-
-        // Wait until the clock is enabled.
-        while self.channel.read_status().clksta().bit_is_clear() {}
-    }
-
-    #[inline(always)]
-    fn now(&mut self) -> Self::Instant {
-        Self::Instant::from_ticks(
-            ((self.msb as u32) << u16::BITS) | self.channel.channel().tc_cv.read().cv().bits(),
-        )
-    }
-
-    #[inline(always)]
-    fn set_compare(&mut self, instant: Self::Instant) {
-        // Mask out the 16 LSBs.
-        let ticks: u16 = (instant.duration_since_epoch().ticks() & u16::MAX as u32)
-            .try_into()
-            .unwrap();
-
-        self.channel.set_compare(CompareRegister::Rc(ticks));
-    }
-
-    #[inline(always)]
-    fn clear_compare_flag(&mut self) {
-        self.status = Some(self.channel.read_status());
-    }
-
-    #[inline(always)]
-    fn zero() -> Self::Instant {
-        Self::Instant::from_ticks(0)
-    }
-
-    #[inline(always)]
-    fn on_interrupt(&mut self) {
-        if let Some(status) = &self.status {
-            if status.covfs().bit_is_set() {
-                self.msb = self.msb.wrapping_add(1);
-
-                // Reset the channel counter such that set comparisons
-                // are not missed, causing a catastrophic clock drift
-                // of the full 16-bit life-time.
-                //
-                // XXX clock drift is still induced here, but is
-                // significantly lower (exact drift depends on clock
-                // frequency; not yet calculated).
-                //
-                // TODO null clock drift by compensating RC value?
-                // Refer to
-                // <https://git.grepit.se/embedded-rust/atsamx7x-hal/-/issues/39>.
-                self.channel.channel().tc_ccr.write(|w| w.swtrg().set_bit());
-            }
-        }
-    }
-}
+mod generate;
+pub use generate::*;
+mod capture;
+pub use capture::*;
