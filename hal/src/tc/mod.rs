@@ -192,7 +192,7 @@ use crate::ehal::timer;
 pub use crate::fugit::{ExtU32, RateExtU32};
 use crate::fugit::{
     MicrosDurationU32 as MicrosDuration, MillisDurationU32 as MillisDuration,
-    NanosDurationU32 as NanosDuration, TimerDurationU32 as Duration, TimerInstantU32 as Instant,
+    TimerDurationU32 as Duration, TimerInstantU32 as Instant,
 };
 use crate::generics::CountDownError;
 use crate::pac::tc0::{

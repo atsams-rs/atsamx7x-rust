@@ -17,7 +17,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> Counter<M, I,
     pub fn sample_freq(
         &mut self,
         timeout: fugit::Duration<u32, 1, FREQ_HZ>,
-    ) -> Result<Hertz, CounterError> {
+    ) -> Result<Hertz, CounterError<FREQ_HZ>> {
         // Ensure any previous state is cleared.
         self.channel.read_status();
 
@@ -136,14 +136,14 @@ impl CaptureSamplingRatioMultiplier for SBSMPLR_A {
 
 /// Possible [`Counter`] errors.
 #[derive(Debug)]
-pub enum CounterError {
+pub enum CounterError<const FREQ_HZ: u32> {
     /// The specified timeout is too large and cannot be handled by
     /// hardware.
     TimeoutOverflow {
         /// The specified timeout.
-        wanted: NanosDuration,
+        wanted: fugit::Duration<u32, 1, FREQ_HZ>,
         /// The maximum possible timeout.
-        maximum: NanosDuration,
+        maximum: fugit::Duration<u32, 1, FREQ_HZ>,
     },
     /// Timeout was reached before [`Counter`] could sample the
     /// specified events.
