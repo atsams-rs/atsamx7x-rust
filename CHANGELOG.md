@@ -12,6 +12,7 @@
 - `pwm` module: allows frequencies and duty-rates to be independently set for each `pwm::Channel`, with help from `ehal::PwmPin`.
 - `hal/rust-toolchain.toml` that pins `rustc` (and relevant components/targets) to MSRV 1.63.0.
 - Crate feature: `reconfigurable-system-pins`; see below.
+- CI job that enforces `CHANGELOG.md` additions, unless the MR is labeled `skip-changelog`.
 
 ### Removed
 - `serial::Uart::UartError::BaudRateNotInRange` error.

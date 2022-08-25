@@ -201,7 +201,7 @@ impl<M: PwmMeta, I: ChannelId> Channel<M, I> {
                     }
                 })
                 .unwrap();
-            let idx = prescalers.count() - ridx;
+            let idx = prescalers.count() - ridx - 1;
 
             self.reg()
                 .pwm_cmr
