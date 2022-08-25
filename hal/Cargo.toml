@@ -124,6 +124,7 @@ device-selected = []
 
 unproven = ["embedded-hal/unproven"]
 usart-spi-host-without-select = []
+reconfigurable-system-pins = []
 
 same70j19  = ["atsame70j19", "e70", "pins-64", "flash-512K", "rev-a"]
 same70j19-rt = ["same70j19", "atsame70j19/rt"]

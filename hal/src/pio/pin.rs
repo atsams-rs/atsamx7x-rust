@@ -156,6 +156,25 @@ where
     /// Convert the pin to the requested [`PinMode`].
     #[inline]
     pub fn into_mode<N: PinMode>(mut self) -> Pin<I, N> {
+        // On reset, PB4/5/6/7/12 have special functions after reset,
+        // and the bus matrix must be modified to use these pins are
+        // regular (and functional) PIO pins.
+        //
+        // Refer to §19.4.7.
+        #[cfg(feature = "reconfigurable-system-pins")]
+        if I::DYN.bank == DynBank::B {
+            if let pin @ (4..=7 | 12) = I::DYN.num {
+                use crate::pac::{matrix::RegisterBlock, MATRIX};
+                const MATRIX: *const RegisterBlock = MATRIX::ptr();
+
+                unsafe {
+                    let matrix = &*MATRIX;
+                    let mask = 1 << pin;
+                    matrix.ccfg_sysio.modify(|_, w| w.bits(mask));
+                }
+            }
+        }
+
         if N::DYN != M::DYN {
             self.regs.change_mode::<N>();
         }
