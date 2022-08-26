@@ -4,6 +4,8 @@ image: "registry.git.grepit.se/embedded-rust/atsamx7x-hal"
 workflow:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_REF_NAME =~ /^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.x/ # e.g. v0.2.x
 
 stages:
   - HAL
@@ -96,7 +98,9 @@ doc tests:
 
 changelog:
   stage: docs
+  cache: [] # do not fetch/update cache
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS !~ /^skip-changelog.*/
   script:
+    - echo $CI_MERGE_REQUEST_LABELS
     - git diff --name-only ${CI_MERGE_REQUEST_DIFF_BASE_SHA}...HEAD | grep CHANGELOG.md
