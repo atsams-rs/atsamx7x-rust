@@ -1,6 +1,6 @@
 [package]
 name = "atsamv71_xult"
-version = "0.2.1"
+version = "0.3.0"
 edition = "2021"
 authors = [
     "Viktor Sonesten <viktor.sonesten@grepit.se>"
@@ -17,7 +17,7 @@ usbd-serial = "0.1.1"
 dwt-systick-monotonic = "1.0.0"
 
 [dependencies.atsamx7x-hal]
-version = "0.2.0"
+version = "0.3.0"
 path = "../../hal"
 features = ["samv71q21b-rt", "unproven"]
 

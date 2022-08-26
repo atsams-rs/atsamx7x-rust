@@ -598,7 +598,7 @@ dependencies = [
 
 [[package]]
 name = "atsamx7x-hal"
-version = "0.2.1"
+version = "0.3.0"
 dependencies = [
  "atsame70j19",
  "atsame70j19b",
