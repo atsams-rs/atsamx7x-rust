@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [v0.3.0] 2022-08-26
+
 ### Added
 - `tc` module: abstrations of Timer Counter channels:
   - `tc::Generate` channels: [`Monotonic`](https://docs.rs/rtic-monotonic/1.0.0/rtic_monotonic/trait.Monotonic.html), [`ehal::timer::{Countdown,Cancel}`](https://docs.rs/embedded-hal/0.2.7/embedded_hal/timer/index.html), and [`ehal::blocking::delay::Delay{Ms,Us}`](https://docs.rs/embedded-hal/0.2.7/embedded_hal/blocking/delay/index.html) implementations.
@@ -67,7 +69,8 @@
 * hal: Just very simple stuff added
 * automation script in Python
 
-[Unreleased]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.3.0...HEAD
+[v0.3.0]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.2.1...v0.3.0
 [v0.2.1]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.1.0...v0.2.0
 [v0.1.0]: https://github.com/atsams-rs/atsamx7x-hal/compare/compare/v0.2.0...v0.1.0
