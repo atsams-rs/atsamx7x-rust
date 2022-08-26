@@ -55,6 +55,10 @@ impl generics::Sealed for Input {}
 pub enum Output {}
 impl generics::Sealed for Output {}
 
+/// Type indicating that the [`Pin`] is an open drain
+pub enum OpenDrain {}
+impl generics::Sealed for OpenDrain {}
+
 //================================================================================
 // Peripheral configurations
 //================================================================================
@@ -115,6 +119,10 @@ impl<C: PeripheralConfig> PinMode for Peripheral<C> {
 
 impl PinMode for Output {
     const DYN: DynPinMode = DynPinMode::Output;
+}
+
+impl PinMode for OpenDrain {
+    const DYN: DynPinMode = DynPinMode::OpenDrain;
 }
 
 impl PinMode for Input {
@@ -204,6 +212,15 @@ where
     pub fn into_output(self, bit: bool) -> Pin<I, Output> {
         let mut pin: Pin<I, Output> = self.into_mode();
         pin.regs.write_pin(bit);
+        pin
+    }
+
+    /// Configures tis pin to operate as an [`OpenDrain`] [`Pin`].
+    #[inline]
+    pub fn into_opendrain(self, cfg: PullDir) -> Pin<I, OpenDrain> {
+        let mut pin: Pin<I, OpenDrain> = self.into_mode();
+        pin.set_pull_dir(cfg);
+
         pin
     }
 
@@ -419,6 +436,25 @@ where
     #[inline]
     fn set_low(&mut self) -> Result<(), Self::Error> {
         self._set_low();
+        Ok(())
+    }
+}
+
+impl<I> OutputPin for Pin<I, OpenDrain>
+where
+    I: PinId,
+{
+    type Error = Infallible;
+
+    #[inline]
+    fn set_high(&mut self) -> Result<(), Self::Error> {
+        self.set_pull_dir(PullDir::PullUp);
+        Ok(())
+    }
+
+    #[inline]
+    fn set_low(&mut self) -> Result<(), Self::Error> {
+        self.set_pull_dir(PullDir::Floating);
         Ok(())
     }
 }

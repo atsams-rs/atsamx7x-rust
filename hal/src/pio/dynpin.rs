@@ -73,6 +73,7 @@ pub enum DynPinMode {
     Reset,
     Peripheral(DynPeripheral),
     Output,
+    OpenDrain,
     Input,
 }
 

@@ -7,6 +7,7 @@
 - [Integration](https://crates.io/crates/mcan-core) with the
 [`mcan`](https://crates.io/crates/mcan) crate.
 - Implementation of blocking::i2c::Transactional trait from [embedded-hal](https://crates.io/crates/embedded-hal) for TWI device.
+- PIO: open-drain/multi-driver support
 
 ### Changed
 
