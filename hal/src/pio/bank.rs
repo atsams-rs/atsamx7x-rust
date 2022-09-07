@@ -4,13 +4,16 @@ use core::marker::PhantomData;
 use fugit::NanosDurationU32 as NanosDuration;
 
 use super::*;
-use crate::clocks::{Clock, HostClock, PeripheralIdentifier, SlowClock, SlowClockSource};
+use crate::{
+    clocks::{Clock, HostClock, PeripheralIdentifier, SlowClock, SlowClockSource},
+    generics,
+};
 
 use paste::paste;
 
 /// Type-level enum for [`Pin`] banks
 #[allow(missing_docs)]
-pub trait PinBank: Sealed {
+pub trait PinBank: generics::Sealed {
     const DYN: DynBank;
 }
 
@@ -186,7 +189,7 @@ macro_rules! pin_id {
         paste! {
             #[doc = "Pin ID representing pin " $Id]
             pub enum $Id {}
-            impl Sealed for $Id {}
+            impl generics::Sealed for $Id {}
             impl PinId for $Id {
                 const DYN: DynPinId = DynPinId {
                     bank: DynBank::$Bank,

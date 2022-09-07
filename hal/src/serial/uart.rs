@@ -76,8 +76,8 @@ use crate::pac::{uart0::RegisterBlock, UART0, UART1, UART2};
     any(feature = "pins-100", feature = "pins-144")
 ))]
 use crate::pac::{UART3, UART4};
-use crate::pio::*;
 use crate::serial::Bps;
+use crate::{generics, pio::*};
 
 use core::marker::PhantomData;
 
@@ -143,7 +143,7 @@ impl From<ChannelMode> for ChannelModeInner {
 
 /// Metadata for a UART peripheral
 #[allow(missing_docs)]
-pub trait UartMeta {
+pub trait UartMeta: generics::Sealed {
     const REG: *const RegisterBlock;
     const PID: PeripheralIdentifier;
 }
@@ -287,6 +287,7 @@ pub struct Uart<M: UartMeta> {
     tx: Tx<M>,
     rx: Rx<M>,
 }
+impl<M> generics::Sealed for Uart<M> where M: UartMeta {}
 
 /// Interrupt events of the [`Uart`].
 ///
@@ -466,9 +467,9 @@ macro_rules! impl_uart {
                     pub enum $Uart {}
 
                     #[doc = "Type-level variant denoting a valid trasmit [`Pin`] for [`" [<$Uart:upper>] "`]."]
-                    pub trait [<$Uart TxPin>] {}
+                    pub trait [<$Uart TxPin>]: generics::Sealed {}
                     #[doc = "Type-level variant denoting a valid receive [`Pin`] for [`" [<$Uart:upper>] "`]."]
-                    pub trait [<$Uart RxPin>] {}
+                    pub trait [<$Uart RxPin>]: generics::Sealed {}
 
                     $(
                         $( #[$cfg2] )?
@@ -476,6 +477,7 @@ macro_rules! impl_uart {
                     )+
                     impl [<$Uart RxPin>] for $RxPin {}
 
+                    impl generics::Sealed for $Uart {}
                     impl UartMeta for $Uart {
                         const REG: *const RegisterBlock = [<$Uart:upper>]::ptr();
                         const PID: PeripheralIdentifier = PeripheralIdentifier::[<$Uart:upper>];

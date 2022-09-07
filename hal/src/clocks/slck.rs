@@ -3,7 +3,7 @@ use super::*;
 /// The source of the [`MainClock`].
 ///
 /// Refer to §23.4.2 and §60.2.1.
-pub trait SlowClockSource {}
+pub trait SlowClockSource: generics::Sealed {}
 
 impl SlowClockSource for InternalRC {}
 impl SlowClockSource for ExternalNormal {}
@@ -14,6 +14,7 @@ impl SlowClockSource for ExternalBypass {}
 pub struct SlowClock<S: SlowClockSource> {
     source: PhantomData<S>,
 }
+impl<S> generics::Sealed for SlowClock<S> where S: SlowClockSource {}
 
 impl<S: SlowClockSource> SlowClock<S> {
     pub(crate) const FREQ: Hertz = Hertz::from_raw(32_768);

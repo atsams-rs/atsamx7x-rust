@@ -57,3 +57,4 @@ pub struct PllaConfig {
 pub struct PllaClock {
     freq: Hertz,
 }
+impl generics::Sealed for PllaClock {}

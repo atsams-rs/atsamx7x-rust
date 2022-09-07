@@ -1,10 +1,10 @@
 //! Watchdog timer configuration.
-use crate::pac::WDT;
+use crate::{generics, pac::WDT};
 
 use core::marker::PhantomData;
 
 /// The state of the [`Watchdog`].
-pub trait WatchdogState {}
+pub trait WatchdogState: generics::Sealed {}
 
 /// The [`Watchdog`] is disabled.
 pub enum Disabled {}
@@ -12,7 +12,9 @@ pub enum Disabled {}
 /// trigger a system reset ~15 seconds from system start.
 pub enum Reset {}
 
+impl generics::Sealed for Disabled {}
 impl WatchdogState for Disabled {}
+impl generics::Sealed for Reset {}
 impl WatchdogState for Reset {}
 
 /// [`WDT`] abstraction.

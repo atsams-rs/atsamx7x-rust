@@ -35,7 +35,7 @@ let voltage: f32 = afec.read(&mut pin).unwrap();
 use crate::clocks::{Clock, HostClock, PeripheralIdentifier};
 use crate::ehal::adc;
 use crate::pac::{afec0::RegisterBlock, AFEC0, AFEC1};
-use crate::pio::*;
+use crate::{generics, pio::*};
 
 use core::convert::Infallible;
 use core::marker::PhantomData;
@@ -125,15 +125,17 @@ impl_channel_pins!(
 
 /// Metadata for an AFEC peripheral
 #[allow(missing_docs)]
-pub trait AfecMeta {
+pub trait AfecMeta: generics::Sealed {
     const REG: *const RegisterBlock;
     const PID: PeripheralIdentifier;
 }
 
 /// Type-level enum denoting [`AFEC0`]
 pub enum Afec0 {}
+impl generics::Sealed for Afec0 {}
 /// Type-level enum denoting [`AFEC1`]
 pub enum Afec1 {}
+impl generics::Sealed for Afec1 {}
 
 impl AfecMeta for Afec0 {
     const REG: *const RegisterBlock = AFEC0::ptr();

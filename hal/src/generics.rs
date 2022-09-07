@@ -28,6 +28,13 @@ pub enum CountDownError {
     Expired,
 }
 
+pub(crate) mod private {
+    /// Supertrait for all public traits in this HAL. Disallows a downstream crate to provide potentially unsound trait implementations.
+    /// Refer to <https://rust-lang.github.io/api-guidelines/future-proofing.html#sealed-traits-protect-against-downstream-implementations-c-sealed>.
+    pub trait Sealed {}
+}
+pub(crate) use private::Sealed;
+
 /// Provides generic interrupt event management
 /// ---
 ///
@@ -93,7 +100,7 @@ pub mod events {
     ///
     /// This exposes methods for [`listening`](EventHandler::listen)/[`unlistening`](EventHandler::unlisten) to single or multiple event sources at once.
     /// It also exposes the [`EventHandler::events`] method that allows for differentiation between event sources.
-    pub trait EventHandler {
+    pub trait EventHandler: super::Sealed {
         /// The event enum used for [`listening`](EventHandler::listen), [`unlistening`](EventHandler::unlisten)
         /// as well as [`differentiating between interrupts`](EventHandler::events)
         type EventSource: Clone + Copy + TryFrom<u32>;

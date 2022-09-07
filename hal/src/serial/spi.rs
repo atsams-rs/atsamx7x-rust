@@ -66,8 +66,8 @@ use crate::fugit::{ExtU32, NanosDurationU32 as NanosDuration};
 #[cfg(feature = "pins-144")]
 use crate::pac::SPI1;
 use crate::pac::{spi0::spi_tdr::PCS_AW as HwChipSelect, spi0::RegisterBlock, SPI0};
-use crate::pio::*;
 use crate::{ehal, nb};
+use crate::{generics, pio::*};
 use core::marker::PhantomData;
 use ehal::spi::Mode;
 use strum::FromRepr;
@@ -128,7 +128,7 @@ pub enum Event {
 
 /// Metadata for a [`Spi`] peripheral.
 #[allow(missing_docs)]
-pub trait SpiMeta {
+pub trait SpiMeta: generics::Sealed {
     const REG: *const RegisterBlock;
     const PID: PeripheralIdentifier;
 }
@@ -220,6 +220,7 @@ pub struct Spi<M: SpiMeta> {
     meta: PhantomData<M>,
     cs_configured: [bool; 4],
 }
+impl<M: SpiMeta> generics::Sealed for Spi<M> {}
 
 impl<M: SpiMeta> Spi<M> {
     #[inline]
@@ -495,13 +496,13 @@ macro_rules! impl_spi {
                     use super::*;
 
                     #[doc = "Trait that identifies valid MOSI [`Pin`]s for [`" [<$Spi:upper>] "`]."]
-                    pub trait [<$Spi MosiPin>] {}
+                    pub trait [<$Spi MosiPin>]: generics::Sealed {}
                     #[doc = "Trait that identifies valid MISO [`Pin`]s for [`" [<$Spi:upper>] "`]."]
-                    pub trait [<$Spi MisoPin>] {}
+                    pub trait [<$Spi MisoPin>]: generics::Sealed {}
                     #[doc = "Trait that identifies valid SPCK [`Pin`]s for [`" [<$Spi:upper>] "`]."]
-                    pub trait [<$Spi SpckPin>] {}
+                    pub trait [<$Spi SpckPin>]: generics::Sealed {}
                     #[doc = "Trait that identifies valid NPCS [`Pin`]s for [`" [<$Spi:upper>] "`]."]
-                    pub trait [<$Spi NpCsPin>] {
+                    pub trait [<$Spi NpCsPin>]: generics::Sealed {
                         /// Hardware identifier for this NPCS (select) pin.
                         const CS: HwChipSelect;
                     }
@@ -518,7 +519,7 @@ macro_rules! impl_spi {
                     #[doc = "Type-level variant denoting [`" [<$Spi:upper>] "`]."]
                     pub enum $Spi {}
 
-
+                    impl generics::Sealed for $Spi {}
                     impl SpiMeta for $Spi {
                         const REG: *const RegisterBlock = [<$Spi:upper>]::ptr();
                         const PID: PeripheralIdentifier = PeripheralIdentifier::[<$Spi:upper>];
