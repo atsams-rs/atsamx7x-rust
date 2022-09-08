@@ -1,7 +1,7 @@
 use super::*;
 
 /// Main "RC" oscillator frequency selection.
-pub use crate::pac::pmc::ckgr_mor::MOSCRCF_A as InternalRcFreq;
+pub use crate::pac::pmc::ckgr_mor::MOSCRCFSELECT_A as InternalRcFreq;
 
 /// The source of the [`MainClock`].
 ///
@@ -41,7 +41,7 @@ impl Token<MainClock<InternalRC>> {
         // first table, second row)
 
         // Wait until clock is stable.
-        while self.pmc().pmc_sr.read().moscrcs().bit_is_clear() {}
+        while self.pmc().sr.read().moscrcs().bit_is_clear() {}
 
         let freq = Megahertz::from_raw(match freq {
             InternalRcFreq::_4_MHZ => 4,
@@ -76,7 +76,7 @@ impl Token<MainClock<InternalRC>> {
             }
             w
         });
-        while self.pmc().pmc_sr.read().moscxts().bit_is_clear() {}
+        while self.pmc().sr.read().moscxts().bit_is_clear() {}
 
         // Switch over to the main oscillator.
         self.pmc().ckgr_mor.modify(|_, w| {
@@ -84,7 +84,7 @@ impl Token<MainClock<InternalRC>> {
             w.moscsel().set_bit();
             w
         });
-        while self.pmc().pmc_sr.read().moscsels().bit_is_clear() {}
+        while self.pmc().sr.read().moscsels().bit_is_clear() {}
 
         // TODO check MAINCK frequency (§31.17; step 5).
 
@@ -116,7 +116,7 @@ impl Token<MainClock<InternalRC>> {
         });
 
         // Wait until oscillator is stable.
-        while self.pmc().pmc_sr.read().moscxts().bit_is_clear() {}
+        while self.pmc().sr.read().moscxts().bit_is_clear() {}
 
         // Switch over to the external clock.
         self.pmc().ckgr_mor.modify(|_, w| {
@@ -124,7 +124,7 @@ impl Token<MainClock<InternalRC>> {
             w.moscsel().set_bit();
             w
         });
-        while self.pmc().pmc_sr.read().moscsels().bit_is_clear() {}
+        while self.pmc().sr.read().moscsels().bit_is_clear() {}
 
         Ok(MainClock {
             freq,

@@ -55,14 +55,14 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> Counter<M, I,
         }
 
         // Both edges have been sampled: calculate measured frequency.
-        let ra = self.channel.channel().tc_ra.read().ra().bits();
-        let rb = self.channel.channel().tc_rb.read().rb().bits();
+        let ra = self.channel.channel().ra.read().ra().bits();
+        let rb = self.channel.channel().rb.read().rb().bits();
 
         // Read-back the sampling ratio
         let ratio = self
             .channel
             .channel()
-            .tc_cmr_capture_mode()
+            .cmr_capture_mode()
             .read()
             .sbsmplr()
             .variant()
@@ -89,7 +89,7 @@ pub enum CaptureMode {
     Either,
 }
 
-impl From<CaptureMode> for LDRA_A {
+impl From<CaptureMode> for LDRASELECT_A {
     fn from(mode: CaptureMode) -> Self {
         match mode {
             CaptureMode::Rising => Self::RISING,
@@ -99,7 +99,7 @@ impl From<CaptureMode> for LDRA_A {
     }
 }
 
-impl From<CaptureMode> for LDRB_A {
+impl From<CaptureMode> for LDRBSELECT_A {
     fn from(mode: CaptureMode) -> Self {
         match mode {
             CaptureMode::Rising => Self::RISING,
@@ -109,7 +109,7 @@ impl From<CaptureMode> for LDRB_A {
     }
 }
 
-impl From<CaptureSamplingRatio> for SBSMPLR_A {
+impl From<CaptureSamplingRatio> for SBSMPLRSELECT_A {
     fn from(ratio: CaptureSamplingRatio) -> Self {
         match ratio {
             CaptureSamplingRatio::One => Self::ONE,
@@ -125,7 +125,7 @@ trait CaptureSamplingRatioMultiplier {
     fn multiplier(&self) -> u32;
 }
 
-impl CaptureSamplingRatioMultiplier for SBSMPLR_A {
+impl CaptureSamplingRatioMultiplier for SBSMPLRSELECT_A {
     fn multiplier(&self) -> u32 {
         match self {
             Self::ONE => 1,
@@ -196,7 +196,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32>
     /// Transform the [`Channel`] into a [`Counter`] implementation
     /// that can measure frequencies.
     pub fn into_freq_measure(self, cfg: CounterConfiguration) -> Counter<M, I, C, FREQ_HZ> {
-        self.channel().tc_cmr_capture_mode().modify(|_, w| {
+        self.channel().cmr_capture_mode().modify(|_, w| {
             w.ldra().variant(cfg.leading_criteria.into());
             w.ldrb().variant(cfg.trailing_criteria.into());
             w.sbsmplr().variant(cfg.sampling.into());
@@ -222,7 +222,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32>
         });
 
         // disable all interrupts
-        self.channel().tc_idr.write(|w| unsafe { w.bits(u32::MAX) });
+        self.channel().idr.write(|w| unsafe { w.bits(u32::MAX) });
 
         Counter { channel: self }
     }

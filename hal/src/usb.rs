@@ -176,7 +176,7 @@ impl Inner {
 
     #[inline(always)]
     fn enable_endpoint(&self, ep: usize) {
-        self.reg().usbhs_devept.modify(|_, w| match ep {
+        self.reg().devept.modify(|_, w| match ep {
             0 => w.epen0().set_bit(),
             1 => w.epen1().set_bit(),
             2 => w.epen2().set_bit(),
@@ -193,7 +193,7 @@ impl Inner {
 
     #[inline(always)]
     fn enable_endpoint_interrupt(&self, ep: usize) {
-        self.reg().usbhs_devier.write(|w| match ep {
+        self.reg().devier.write(|w| match ep {
             0 => w.pep_0().set_bit(),
             1 => w.pep_1().set_bit(),
             2 => w.pep_2().set_bit(),
@@ -246,7 +246,7 @@ impl Inner {
             // Enable the endpoint and apply common endpoint
             // configuration.
             self.enable_endpoint(ep);
-            self.reg().usbhs_deveptcfg[ep].write(|w| {
+            self.reg().deveptcfg[ep].write(|w| {
                 match conf.max_packet_size {
                     0..=8 => w.epsize()._8_byte(),
                     9..=16 => w.epsize()._16_byte(),
@@ -269,22 +269,22 @@ impl Inner {
             });
 
             // setup RSTDTS, STALLRQC
-            self.reg().usbhs_deveptier_ctrl_mode()[ep].write(|w| w.rstdts().set_bit());
-            self.reg().usbhs_deveptidr_ctrl_mode()[ep].write(|w| w.stallrqc().set_bit());
+            self.reg().deveptier_ctrl_mode()[ep].write(|w| w.rstdts().set_bit());
+            self.reg().deveptidr_ctrl_mode()[ep].write(|w| w.stallrqc().set_bit());
 
             if ep != 0 {
                 // Configure endpoint direction.
-                self.reg().usbhs_deveptcfg[ep]
+                self.reg().deveptcfg[ep]
                     .modify(|_, w| w.epdir().bit(conf.ep_dir == UsbDirection::In));
             }
 
             // Check if endpoint configuration was successful
-            if self.reg().usbhs_deveptisr_ctrl_mode()[ep]
+            if self.reg().deveptisr_ctrl_mode()[ep]
                 .read()
                 .cfgok()
                 .bit_is_set()
             {
-                self.reg().usbhs_deveptier_ctrl_mode()[ep].write(|w| w.rxstpes().set_bit());
+                self.reg().deveptier_ctrl_mode()[ep].write(|w| w.rxstpes().set_bit());
                 self.enable_endpoint_interrupt(ep);
             } else {
                 todo!("endpoint configuration failed");
@@ -294,7 +294,7 @@ impl Inner {
 
     fn enable(&mut self) {
         // enable the peripheral and enter device mode
-        self.reg().usbhs_ctrl.write(|w| {
+        self.reg().ctrl.write(|w| {
             w.usbe().set_bit();
             w.uimod().set_bit();
 
@@ -307,16 +307,14 @@ impl Inner {
         });
 
         // wait until clock stable
-        while self.reg().usbhs_sr.read().clkusable().bit_is_clear() {}
+        while self.reg().sr.read().clkusable().bit_is_clear() {}
 
         // Force full-speed: automatic reset switch to high-speed
         // yields protocol errors.
-        self.reg()
-            .usbhs_devctrl
-            .modify(|_, w| w.spdconf().forced_fs());
+        self.reg().devctrl.modify(|_, w| w.spdconf().forced_fs());
 
         // enable interrupts
-        self.reg().usbhs_devier.write(|w| {
+        self.reg().devier.write(|w| {
             w.eorstes().set_bit();
             w.suspes().set_bit();
             w.wakeupes().set_bit();
@@ -328,19 +326,17 @@ impl Inner {
         });
 
         // Clear any transient interrupts
-        self.reg().usbhs_devicr.write(|w| {
+        self.reg().devicr.write(|w| {
             w.eorstc().set_bit();
             w.sofc().set_bit();
             w.wakeupc().set_bit()
         });
 
         // attach the device
-        self.reg()
-            .usbhs_devctrl
-            .modify(|_, w| w.detach().clear_bit());
+        self.reg().devctrl.modify(|_, w| w.detach().clear_bit());
 
         // un-freeze the clock
-        self.reg().usbhs_ctrl.modify(|_, w| w.frzclk().clear_bit());
+        self.reg().ctrl.modify(|_, w| w.frzclk().clear_bit());
     }
 
     /// Resets: the internal state machines of the endpoints,
@@ -353,7 +349,7 @@ impl Inner {
 
         // First, initiate the reset sequence by setting all bits, and
         // finalize the sequence by clearing all bits. C.f. §39.7.12.
-        self.reg().usbhs_devept.modify(|_, w| {
+        self.reg().devept.modify(|_, w| {
             w.eprst1().set_bit();
             w.eprst2().set_bit();
             w.eprst3().set_bit();
@@ -365,7 +361,7 @@ impl Inner {
             w.eprst9().set_bit();
             w
         });
-        self.reg().usbhs_devept.modify(|_, w| {
+        self.reg().devept.modify(|_, w| {
             w.eprst1().clear_bit();
             w.eprst2().clear_bit();
             w.eprst3().clear_bit();
@@ -407,7 +403,7 @@ impl Inner {
     fn set_device_address(&mut self, addr: u8) {
         // Set the address in hardware, but do not enable it. This is
         // done in poll() on an TXINI.
-        self.reg().usbhs_devctrl.modify(|_, w| {
+        self.reg().devctrl.modify(|_, w| {
             unsafe {
                 w.uadd().bits(addr);
             }
@@ -418,12 +414,12 @@ impl Inner {
     }
 
     fn poll(&mut self) -> PollResult {
-        let dev_isr = self.reg().usbhs_devisr.read();
+        let dev_isr = self.reg().devisr.read();
 
         if dev_isr.eorst().bit_is_set() {
             // EORST - End of Reset, ack the interrupt and notify
             // stack.
-            self.reg().usbhs_devicr.write(|w| w.eorstc().set_bit());
+            self.reg().devicr.write(|w| w.eorstc().set_bit());
             return PollResult::Reset;
         }
 
@@ -435,7 +431,7 @@ impl Inner {
         const DEVISR_PEPS_MASK: u32 = 0x3ff000;
         const DEVISR_PEPS_OFFSET: u8 = 12;
         for ep in BitIter::from((dev_isr.bits() & DEVISR_PEPS_MASK) >> DEVISR_PEPS_OFFSET) {
-            let sr = self.reg().usbhs_deveptisr_ctrl_mode()[ep as usize].read();
+            let sr = self.reg().deveptisr_ctrl_mode()[ep as usize].read();
 
             // SETUP packet?
             if sr.rxstpi().bit_is_set() {
@@ -451,7 +447,7 @@ impl Inner {
             if sr.txini().bit_is_set() {
                 if self.set_address {
                     // commit the new address
-                    self.reg().usbhs_devctrl.modify(|_, w| w.adden().set_bit());
+                    self.reg().devctrl.modify(|_, w| w.adden().set_bit());
                     self.set_address = false;
                 }
 
@@ -478,18 +474,18 @@ impl Inner {
 
         if ep == 0 {
             // clear TXINI to send the package
-            self.reg().usbhs_devepticr_ctrl_mode()[0].write(|w| w.txinic().set_bit());
+            self.reg().devepticr_ctrl_mode()[0].write(|w| w.txinic().set_bit());
             // enable TXINI interrupt
-            self.reg().usbhs_deveptier_ctrl_mode()[0].write(|w| w.txines().set_bit());
+            self.reg().deveptier_ctrl_mode()[0].write(|w| w.txines().set_bit());
             // enable RXOUTI interrupt
-            self.reg().usbhs_deveptier_ctrl_mode()[0].write(|w| w.rxoutes().set_bit());
+            self.reg().deveptier_ctrl_mode()[0].write(|w| w.rxoutes().set_bit());
         } else {
             // Clear the FIFO control send the package.
-            self.reg().usbhs_deveptidr_ctrl_mode()[ep].write(|w| w.fifoconc().set_bit());
+            self.reg().deveptidr_ctrl_mode()[ep].write(|w| w.fifoconc().set_bit());
 
             // clear TXINI to send the package
             // XXX required?
-            self.reg().usbhs_devepticr_ctrl_mode()[ep].write(|w| w.txinic().set_bit());
+            self.reg().devepticr_ctrl_mode()[ep].write(|w| w.txinic().set_bit());
         }
 
         // assume all fit in one transfer
@@ -499,10 +495,7 @@ impl Inner {
     fn read(&self, ep_addr: EndpointAddress, buf: &mut [u8]) -> UsbResult<usize> {
         let ep = ep_addr.index();
         let len = core::cmp::min(
-            self.reg().usbhs_deveptisr_ctrl_mode()[ep]
-                .read()
-                .byct()
-                .bits() as usize,
+            self.reg().deveptisr_ctrl_mode()[ep].read().byct().bits() as usize,
             buf.len(),
         );
 
@@ -512,18 +505,18 @@ impl Inner {
             // control endpoints
 
             // Clear RXSTPI interrupt, and make FIFO available
-            self.reg().usbhs_devepticr_ctrl_mode()[0].write(|w| w.rxstpic().set_bit());
+            self.reg().devepticr_ctrl_mode()[0].write(|w| w.rxstpic().set_bit());
 
             // Clear RXOUTI
-            self.reg().usbhs_devepticr_ctrl_mode()[0].write(|w| w.rxoutic().set_bit());
+            self.reg().devepticr_ctrl_mode()[0].write(|w| w.rxoutic().set_bit());
         } else {
             // Other Endpoints
 
             // Clear the FIFO control flag to receive more data.
-            self.reg().usbhs_deveptidr_ctrl_mode()[ep].write(|w| w.fifoconc().set_bit());
+            self.reg().deveptidr_ctrl_mode()[ep].write(|w| w.fifoconc().set_bit());
 
             // Clear RXOUTI
-            self.reg().usbhs_devepticr_ctrl_mode()[ep].write(|w| w.rxoutic().set_bit());
+            self.reg().devepticr_ctrl_mode()[ep].write(|w| w.rxoutic().set_bit());
         }
 
         Ok(len)

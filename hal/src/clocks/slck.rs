@@ -37,7 +37,7 @@ impl Token<SlowClock<InternalRC>> {
 
     /// Configure [`SlowClock`] for the [`ExternalNormal`] source.
     pub fn configure_external_normal(self) -> SlowClock<ExternalNormal> {
-        self.supc().supc_cr.write(|w| {
+        self.supc().cr.write(|w| {
             w.xtalsel().set_bit();
             w.key().passwd()
         });
@@ -49,11 +49,11 @@ impl Token<SlowClock<InternalRC>> {
 
     /// Configure [`SlowClock`] for the [`ExternalBypass`] source.
     pub fn configure_external_bypass(self) -> SlowClock<ExternalBypass> {
-        self.supc().supc_mr.modify(|_, w| {
+        self.supc().mr.modify(|_, w| {
             w.oscbypass().set_bit();
             w.key().passwd()
         });
-        self.supc().supc_cr.write(|w| {
+        self.supc().cr.write(|w| {
             w.xtalsel().set_bit();
             w.key().passwd()
         });

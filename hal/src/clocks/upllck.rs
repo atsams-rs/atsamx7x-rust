@@ -15,7 +15,7 @@ impl Clock for UpllDivClock {
 impl Token<UpllClock> {
     /// Configures UPLLCK
     pub fn configure(self, source: &impl UpllSource) -> Result<UpllClock, ClockError> {
-        use crate::pac::utmi::utmi_cktrim::FREQ_A as FREQ;
+        use crate::pac::utmi::cktrim::FREQSELECT_A as FREQ;
 
         let freq = match source.freq().to_MHz() {
             12 => FREQ::XTAL12,
@@ -24,9 +24,7 @@ impl Token<UpllClock> {
         };
 
         // Configure the UTMI PLL clock and wait for lock.
-        self.utmi()
-            .utmi_cktrim
-            .modify(|_, w| w.freq().variant(freq));
+        self.utmi().cktrim.modify(|_, w| w.freq().variant(freq));
         self.pmc().ckgr_uckr.modify(|_, w| {
             w.upllen().set_bit();
             unsafe {
@@ -34,7 +32,7 @@ impl Token<UpllClock> {
             }
             w
         });
-        while self.pmc().pmc_sr.read().locku().bit_is_clear() {}
+        while self.pmc().sr.read().locku().bit_is_clear() {}
 
         Ok(UpllClock)
     }
@@ -44,7 +42,7 @@ impl Token<UpllDivClock> {
     /// Configures UPLLCKDIV
     pub fn configure(self, source: &impl UpllDivSource, div: UpllDivider) -> UpllDivClock {
         self.pmc()
-            .pmc_mckr
+            .mckr
             .modify(|_, w| w.uplldiv2().bit(div == UpllDivider::Div2));
 
         UpllDivClock {

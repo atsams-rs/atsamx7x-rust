@@ -69,7 +69,7 @@ assert_eq!(uart.read().unwrap(), 0xff);
 use crate::clocks::{Clock, HostClock, Pck, Pck4, PeripheralClock, PeripheralIdentifier};
 use crate::ehal::{self, blocking};
 use crate::fugit::HertzU32 as Hertz;
-use crate::pac::uart0::uart_mr::{CHMODE_A as ChannelModeInner, PAR_A as ParityModeInner};
+use crate::pac::uart0::mr::{CHMODESELECT_A as ChannelModeInner, PARSELECT_A as ParityModeInner};
 use crate::pac::{uart0::RegisterBlock, UART0, UART1, UART2};
 #[cfg(all(
     any(feature = "e70", feature = "s70", feature = "v71"),
@@ -241,22 +241,22 @@ impl<M: UartMeta> Tx<M> {
 
     /// Listen for [`Event::TxReady`] interrupt events.
     pub fn listen_ready(&mut self) {
-        self.reg().uart_ier.write(|w| w.txrdy().set_bit());
+        self.reg().ier.write(|w| w.txrdy().set_bit());
     }
 
     /// Listen for [`Event::TxEmpty`] interrupt events.
     pub fn listen_idle(&mut self) {
-        self.reg().uart_ier.write(|w| w.txempty().set_bit());
+        self.reg().ier.write(|w| w.txempty().set_bit());
     }
 
     /// Do not listen for [`Event::TxReady`] interrupt events.
     pub fn unlisten_ready(&mut self) {
-        self.reg().uart_idr.write(|w| w.txrdy().set_bit());
+        self.reg().idr.write(|w| w.txrdy().set_bit());
     }
 
     /// Do not listen for [`Event::TxEmpty`] interrupt events.
     pub fn unlisten_idle(&mut self) {
-        self.reg().uart_idr.write(|w| w.txempty().set_bit());
+        self.reg().idr.write(|w| w.txempty().set_bit());
     }
 }
 
@@ -272,12 +272,12 @@ impl<M: UartMeta> Rx<M> {
 
     /// Listen for [`Event::RxReady`] interrupt events.
     pub fn listen(&mut self) {
-        self.reg().uart_ier.write(|w| w.rxrdy().set_bit());
+        self.reg().ier.write(|w| w.rxrdy().set_bit());
     }
 
     /// Do not listen for [`Event::RxReady`] interrupt events.
     pub fn unlisten(&mut self) {
-        self.reg().uart_idr.write(|w| w.rxrdy().set_bit());
+        self.reg().idr.write(|w| w.rxrdy().set_bit());
     }
 }
 
@@ -375,7 +375,7 @@ impl<M: UartMeta> Uart<M> {
         conf: UartConfiguration,
     ) -> Result<(), UartError> {
         // set clock source, parity, and recv filter
-        self.reg().uart_mr.modify(|_, w| {
+        self.reg().mr.modify(|_, w| {
             w.brsrcck().bit(C::BRSRCCK);
             w.filter().bit(conf.oversample);
             w.par().variant(conf.parity.into());
@@ -385,10 +385,10 @@ impl<M: UartMeta> Uart<M> {
 
         // find and configure baud rate prescaler
         let pres = Self::calc_prescaler(conf.baud_rate, clk)?;
-        self.reg().uart_brgr.write(|w| unsafe { w.cd().bits(pres) });
+        self.reg().brgr.write(|w| unsafe { w.cd().bits(pres) });
 
         // finalize: enable the uart
-        self.reg().uart_cr.write(|w| {
+        self.reg().cr.write(|w| {
             w.rxen().set_bit();
             w.txen().set_bit();
             w
@@ -418,7 +418,7 @@ impl<M: UartMeta> crate::generics::events::EventHandler for Uart<M> {
     type EventSource = Event;
 
     fn listen(&mut self, event: Self::EventSource) {
-        self.reg().uart_ier.write(|w| match event {
+        self.reg().ier.write(|w| match event {
             Event::TxReady => w.txrdy().set_bit(),
             Event::RxReady => w.rxrdy().set_bit(),
             Event::TxEmpty => w.txempty().set_bit(),
@@ -429,7 +429,7 @@ impl<M: UartMeta> crate::generics::events::EventHandler for Uart<M> {
     }
 
     fn unlisten(&mut self, event: Self::EventSource) {
-        self.reg().uart_idr.write(|w| match event {
+        self.reg().idr.write(|w| match event {
             Event::TxReady => w.txrdy().set_bit(),
             Event::RxReady => w.rxrdy().set_bit(),
             Event::TxEmpty => w.txempty().set_bit(),
@@ -440,7 +440,7 @@ impl<M: UartMeta> crate::generics::events::EventHandler for Uart<M> {
     }
 
     fn irq(&mut self) -> u32 {
-        self.reg().uart_imr.read().bits() & self.reg().uart_sr.read().bits()
+        self.reg().imr.read().bits() & self.reg().sr.read().bits()
     }
 }
 
@@ -577,11 +577,11 @@ macro_rules! impl_read {
                 /// for [`UartReadError::Overrun`]. If no errors are detected, the
                 /// received word is returned.
                 fn read(&mut self) -> nb::Result<u8, Self::Error> {
-                    if self.reg().uart_sr.read().rxrdy().bit_is_clear() {
+                    if self.reg().sr.read().rxrdy().bit_is_clear() {
                         return Err(nb::Error::WouldBlock);
                     }
 
-                    let sr = self.reg().uart_sr.read();
+                    let sr = self.reg().sr.read();
                     if sr.ovre().bit_is_set() {
                         return Err(nb::Error::Other(UartReadError::Overrun));
                     } else if sr.pare().bit_is_set() {
@@ -590,7 +590,7 @@ macro_rules! impl_read {
                         return Err(nb::Error::Other(UartReadError::Framing));
                     }
 
-                    let read = self.reg().uart_rhr.read().rxchr().bits();
+                    let read = self.reg().rhr.read().rxchr().bits();
                     Ok(read)
                 }
             }
@@ -599,7 +599,7 @@ macro_rules! impl_read {
                 /// Clear the [`UartReadError`] flags in hardware.
                 #[inline(always)]
                 pub fn clear_errors(&mut self) {
-                    self.reg().uart_cr.write(|w| w.rststa().set_bit());
+                    self.reg().cr.write(|w| w.rststa().set_bit());
                 }
             }
         )+
@@ -619,17 +619,17 @@ macro_rules! impl_write {
                 /// Returns [`nb::Error::WouldBlock`] if the last word has yet to
                 /// be processed.
                 fn write(&mut self, byte: u8) -> nb::Result<(), Self::Error> {
-                    if self.reg().uart_sr.read().txrdy().bit_is_clear() {
+                    if self.reg().sr.read().txrdy().bit_is_clear() {
                         return Err(nb::Error::WouldBlock);
                     }
                     self.reg()
-                        .uart_thr
+                        .thr
                         .write(|w| unsafe { w.txchr().bits(byte) });
                     Ok(())
                 }
 
                 fn flush(&mut self) -> nb::Result<(), Self::Error> {
-                    if self.reg().uart_sr.read().txempty().bit_is_clear() {
+                    if self.reg().sr.read().txempty().bit_is_clear() {
                         Err(nb::Error::WouldBlock)
                     } else {
                         Ok(())
