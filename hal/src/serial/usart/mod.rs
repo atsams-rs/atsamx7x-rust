@@ -86,10 +86,11 @@ use crate::generics::{self, Token};
 #[cfg(not(feature = "pins-64"))]
 use crate::pac::USART2;
 use crate::pac::{
-    usart0::us_mr_usart_mode::CHMODE_A as HwChannelMode,
-    usart0::us_mr_usart_mode::PAR_A as HwParityMode,
-    usart0::us_mr_usart_mode::USART_MODE_A as HwUsartMode,
-    usart0::us_mr_usart_mode::USCLKS_A as UsartClockSource, usart0::RegisterBlock, USART0, USART1,
+    usart0::us_mr_usart_mode::CHMODESELECT_A as HwChannelMode,
+    usart0::us_mr_usart_mode::PARSELECT_A as HwParityMode,
+    usart0::us_mr_usart_mode::USART_MODESELECT_A as HwUsartMode,
+    usart0::us_mr_usart_mode::USCLKSSELECT_A as UsartClockSource, usart0::RegisterBlock, USART0,
+    USART1,
 };
 use crate::pio::*;
 use crate::serial::Bps;

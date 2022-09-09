@@ -56,7 +56,7 @@ timer.disable();
 use crate::clocks::{Clock, SlowClock, SlowClockSource};
 use crate::ehal::{blocking::delay, timer};
 use crate::generics::CountDownError;
-use crate::pac::{rtt::rtt_sr::R as StatusRegister, RTT};
+use crate::pac::{rtt::sr::R as StatusRegister, RTT};
 pub use fugit::{ExtU32, RateExtU32};
 use fugit::{
     HertzU32 as Hertz, MicrosDurationU32 as MicrosDuration, MillisDurationU32 as MillisDuration,
@@ -167,7 +167,7 @@ impl<const FREQ_HZ: u32> Rtt<FREQ_HZ> {
             return Err(RttError::InvalidPrescaler);
         }
 
-        rtt.rtt_mr.modify(|_, w| {
+        rtt.mr.modify(|_, w| {
             // feed via prescaled 32.768kHz clock
             w.rtc1hz().clear_bit();
 
@@ -195,24 +195,24 @@ impl<const FREQ_HZ: u32> Rtt<FREQ_HZ> {
     /// if enabled.
     #[inline(always)]
     fn reset(&mut self) {
-        self.rtt.rtt_mr.modify(|_, w| w.rttrst().set_bit());
+        self.rtt.mr.modify(|_, w| w.rttrst().set_bit());
     }
 
     /// Disable the [`Rtt`].
     #[inline(always)]
     fn disable(&mut self) {
-        self.rtt.rtt_mr.modify(|_, w| w.rttdis().set_bit());
+        self.rtt.mr.modify(|_, w| w.rttdis().set_bit());
     }
 
     /// Enable the [`Rtt`].
     #[inline(always)]
     fn enable(&mut self) {
-        self.rtt.rtt_mr.modify(|_, w| w.rttdis().clear_bit());
+        self.rtt.mr.modify(|_, w| w.rttdis().clear_bit());
     }
 
     /// Returns whether the [`Rtt`] is enabled.
     fn is_enabled(&self) -> bool {
-        self.rtt.rtt_mr.read().rttdis().bit_is_clear()
+        self.rtt.mr.read().rttdis().bit_is_clear()
     }
 
     /// Read the Current Real-Time Value (CRTV)
@@ -221,7 +221,7 @@ impl<const FREQ_HZ: u32> Rtt<FREQ_HZ> {
         // CRTV can be asynchronously updated with the host clock, so
         // we must thus read the value twice for a correct value (C.f.
         // p. 230, paragraph 7).
-        let crtv = || self.rtt.rtt_vr.read().crtv().bits();
+        let crtv = || self.rtt.vr.read().crtv().bits();
         let mut prev = crtv();
         loop {
             let cur = crtv();
@@ -235,7 +235,7 @@ impl<const FREQ_HZ: u32> Rtt<FREQ_HZ> {
     fn set_alarm_tick(&mut self, tick: u32) {
         self.modify(|rtt| {
             // Set new value
-            rtt.rtt.rtt_ar.write(|w| unsafe {
+            rtt.rtt.ar.write(|w| unsafe {
                 // Note: interrupt is triggered when ALMV + 1 is reached.
                 // Subtract one to trigger AT `tick` value
                 w.bits(tick.saturating_sub(1))
@@ -249,14 +249,14 @@ impl<const FREQ_HZ: u32> Rtt<FREQ_HZ> {
     /// (and clearing the flags as a side-effect).
     fn modify<F: FnOnce(&mut Self)>(&mut self, f: F) -> StatusRegister {
         // Disable interrupt before changing/clearing the alarm.
-        self.rtt.rtt_mr.modify(|_r, w| w.almien().clear_bit());
+        self.rtt.mr.modify(|_r, w| w.almien().clear_bit());
 
         // Clear the alarm and execute calling code
-        let sr = self.rtt.rtt_sr.read();
+        let sr = self.rtt.sr.read();
         f(self);
 
         // Re-enable alarm interrupt
-        self.rtt.rtt_mr.modify(|_r, w| w.almien().set_bit());
+        self.rtt.mr.modify(|_r, w| w.almien().set_bit());
         sr
     }
 

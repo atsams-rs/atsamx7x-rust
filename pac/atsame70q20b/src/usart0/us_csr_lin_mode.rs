@@ -14,365 +14,131 @@ impl From<crate::R<US_CSR_LIN_MODE_SPEC>> for R {
     }
 }
 #[doc = "Field `RXRDY` reader - Receiver Ready (cleared by reading US_RHR)"]
-pub struct RXRDY_R(crate::FieldReader<bool, bool>);
-impl RXRDY_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        RXRDY_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for RXRDY_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type RXRDY_R = crate::BitReader<bool>;
 #[doc = "Field `TXRDY` reader - Transmitter Ready (cleared by writing US_THR)"]
-pub struct TXRDY_R(crate::FieldReader<bool, bool>);
-impl TXRDY_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        TXRDY_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for TXRDY_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type TXRDY_R = crate::BitReader<bool>;
 #[doc = "Field `OVRE` reader - Overrun Error (cleared by writing a one to bit US_CR.RSTSTA)"]
-pub struct OVRE_R(crate::FieldReader<bool, bool>);
-impl OVRE_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        OVRE_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for OVRE_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type OVRE_R = crate::BitReader<bool>;
+#[doc = "Field `FRAME` reader - Framing Error (cleared by writing a one to bit US_CR.RSTSTA)"]
+pub type FRAME_R = crate::BitReader<bool>;
+#[doc = "Field `PARE` reader - Parity Error (cleared by writing a one to bit US_CR.RSTSTA)"]
+pub type PARE_R = crate::BitReader<bool>;
+#[doc = "Field `TIMEOUT` reader - Receiver Timeout (cleared by writing a one to bit US_CR.STTTO)"]
+pub type TIMEOUT_R = crate::BitReader<bool>;
 #[doc = "Field `TXEMPTY` reader - Transmitter Empty (cleared by writing US_THR)"]
-pub struct TXEMPTY_R(crate::FieldReader<bool, bool>);
-impl TXEMPTY_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        TXEMPTY_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for TXEMPTY_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-#[doc = "Field `RIIC` reader - Ring Indicator Input Change Flag (cleared on read)"]
-pub struct RIIC_R(crate::FieldReader<bool, bool>);
-impl RIIC_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        RIIC_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for RIIC_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-#[doc = "Field `DSRIC` reader - Data Set Ready Input Change Flag (cleared on read)"]
-pub struct DSRIC_R(crate::FieldReader<bool, bool>);
-impl DSRIC_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        DSRIC_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for DSRIC_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-#[doc = "Field `DCDIC` reader - Data Carrier Detect Input Change Flag (cleared on read)"]
-pub struct DCDIC_R(crate::FieldReader<bool, bool>);
-impl DCDIC_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        DCDIC_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for DCDIC_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type TXEMPTY_R = crate::BitReader<bool>;
 #[doc = "Field `LINBK` reader - LIN Break Sent or LIN Break Received"]
-pub struct LINBK_R(crate::FieldReader<bool, bool>);
-impl LINBK_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        LINBK_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for LINBK_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type LINBK_R = crate::BitReader<bool>;
 #[doc = "Field `LINID` reader - LIN Identifier Sent or LIN Identifier Received"]
-pub struct LINID_R(crate::FieldReader<bool, bool>);
-impl LINID_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        LINID_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for LINID_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type LINID_R = crate::BitReader<bool>;
 #[doc = "Field `LINTC` reader - LIN Transfer Completed"]
-pub struct LINTC_R(crate::FieldReader<bool, bool>);
-impl LINTC_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        LINTC_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for LINTC_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type LINTC_R = crate::BitReader<bool>;
 #[doc = "Field `LINBLS` reader - LIN Bus Line Status"]
-pub struct LINBLS_R(crate::FieldReader<bool, bool>);
-impl LINBLS_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        LINBLS_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for LINBLS_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type LINBLS_R = crate::BitReader<bool>;
 #[doc = "Field `LINBE` reader - LIN Bus Error"]
-pub struct LINBE_R(crate::FieldReader<bool, bool>);
-impl LINBE_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        LINBE_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for LINBE_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type LINBE_R = crate::BitReader<bool>;
 #[doc = "Field `LINISFE` reader - LIN Inconsistent Synch Field Error"]
-pub struct LINISFE_R(crate::FieldReader<bool, bool>);
-impl LINISFE_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        LINISFE_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for LINISFE_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type LINISFE_R = crate::BitReader<bool>;
 #[doc = "Field `LINIPE` reader - LIN Identifier Parity Error"]
-pub struct LINIPE_R(crate::FieldReader<bool, bool>);
-impl LINIPE_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        LINIPE_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for LINIPE_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type LINIPE_R = crate::BitReader<bool>;
 #[doc = "Field `LINCE` reader - LIN Checksum Error"]
-pub struct LINCE_R(crate::FieldReader<bool, bool>);
-impl LINCE_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        LINCE_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for LINCE_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type LINCE_R = crate::BitReader<bool>;
 #[doc = "Field `LINSNRE` reader - LIN Slave Not Responding Error Interrupt Mask"]
-pub struct LINSNRE_R(crate::FieldReader<bool, bool>);
-impl LINSNRE_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        LINSNRE_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for LINSNRE_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type LINSNRE_R = crate::BitReader<bool>;
 #[doc = "Field `LINSTE` reader - LIN Synch Tolerance Error"]
-pub struct LINSTE_R(crate::FieldReader<bool, bool>);
-impl LINSTE_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        LINSTE_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for LINSTE_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type LINSTE_R = crate::BitReader<bool>;
 #[doc = "Field `LINHTE` reader - LIN Header Timeout Error"]
-pub struct LINHTE_R(crate::FieldReader<bool, bool>);
-impl LINHTE_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        LINHTE_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for LINHTE_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type LINHTE_R = crate::BitReader<bool>;
 impl R {
     #[doc = "Bit 0 - Receiver Ready (cleared by reading US_RHR)"]
     #[inline(always)]
     pub fn rxrdy(&self) -> RXRDY_R {
-        RXRDY_R::new((self.bits & 0x01) != 0)
+        RXRDY_R::new((self.bits & 1) != 0)
     }
     #[doc = "Bit 1 - Transmitter Ready (cleared by writing US_THR)"]
     #[inline(always)]
     pub fn txrdy(&self) -> TXRDY_R {
-        TXRDY_R::new(((self.bits >> 1) & 0x01) != 0)
+        TXRDY_R::new(((self.bits >> 1) & 1) != 0)
     }
     #[doc = "Bit 5 - Overrun Error (cleared by writing a one to bit US_CR.RSTSTA)"]
     #[inline(always)]
     pub fn ovre(&self) -> OVRE_R {
-        OVRE_R::new(((self.bits >> 5) & 0x01) != 0)
+        OVRE_R::new(((self.bits >> 5) & 1) != 0)
+    }
+    #[doc = "Bit 6 - Framing Error (cleared by writing a one to bit US_CR.RSTSTA)"]
+    #[inline(always)]
+    pub fn frame(&self) -> FRAME_R {
+        FRAME_R::new(((self.bits >> 6) & 1) != 0)
+    }
+    #[doc = "Bit 7 - Parity Error (cleared by writing a one to bit US_CR.RSTSTA)"]
+    #[inline(always)]
+    pub fn pare(&self) -> PARE_R {
+        PARE_R::new(((self.bits >> 7) & 1) != 0)
+    }
+    #[doc = "Bit 8 - Receiver Timeout (cleared by writing a one to bit US_CR.STTTO)"]
+    #[inline(always)]
+    pub fn timeout(&self) -> TIMEOUT_R {
+        TIMEOUT_R::new(((self.bits >> 8) & 1) != 0)
     }
     #[doc = "Bit 9 - Transmitter Empty (cleared by writing US_THR)"]
     #[inline(always)]
     pub fn txempty(&self) -> TXEMPTY_R {
-        TXEMPTY_R::new(((self.bits >> 9) & 0x01) != 0)
-    }
-    #[doc = "Bit 16 - Ring Indicator Input Change Flag (cleared on read)"]
-    #[inline(always)]
-    pub fn riic(&self) -> RIIC_R {
-        RIIC_R::new(((self.bits >> 16) & 0x01) != 0)
-    }
-    #[doc = "Bit 17 - Data Set Ready Input Change Flag (cleared on read)"]
-    #[inline(always)]
-    pub fn dsric(&self) -> DSRIC_R {
-        DSRIC_R::new(((self.bits >> 17) & 0x01) != 0)
-    }
-    #[doc = "Bit 18 - Data Carrier Detect Input Change Flag (cleared on read)"]
-    #[inline(always)]
-    pub fn dcdic(&self) -> DCDIC_R {
-        DCDIC_R::new(((self.bits >> 18) & 0x01) != 0)
+        TXEMPTY_R::new(((self.bits >> 9) & 1) != 0)
     }
     #[doc = "Bit 13 - LIN Break Sent or LIN Break Received"]
     #[inline(always)]
     pub fn linbk(&self) -> LINBK_R {
-        LINBK_R::new(((self.bits >> 13) & 0x01) != 0)
+        LINBK_R::new(((self.bits >> 13) & 1) != 0)
     }
     #[doc = "Bit 14 - LIN Identifier Sent or LIN Identifier Received"]
     #[inline(always)]
     pub fn linid(&self) -> LINID_R {
-        LINID_R::new(((self.bits >> 14) & 0x01) != 0)
+        LINID_R::new(((self.bits >> 14) & 1) != 0)
     }
     #[doc = "Bit 15 - LIN Transfer Completed"]
     #[inline(always)]
     pub fn lintc(&self) -> LINTC_R {
-        LINTC_R::new(((self.bits >> 15) & 0x01) != 0)
+        LINTC_R::new(((self.bits >> 15) & 1) != 0)
     }
     #[doc = "Bit 23 - LIN Bus Line Status"]
     #[inline(always)]
     pub fn linbls(&self) -> LINBLS_R {
-        LINBLS_R::new(((self.bits >> 23) & 0x01) != 0)
+        LINBLS_R::new(((self.bits >> 23) & 1) != 0)
     }
     #[doc = "Bit 25 - LIN Bus Error"]
     #[inline(always)]
     pub fn linbe(&self) -> LINBE_R {
-        LINBE_R::new(((self.bits >> 25) & 0x01) != 0)
+        LINBE_R::new(((self.bits >> 25) & 1) != 0)
     }
     #[doc = "Bit 26 - LIN Inconsistent Synch Field Error"]
     #[inline(always)]
     pub fn linisfe(&self) -> LINISFE_R {
-        LINISFE_R::new(((self.bits >> 26) & 0x01) != 0)
+        LINISFE_R::new(((self.bits >> 26) & 1) != 0)
     }
     #[doc = "Bit 27 - LIN Identifier Parity Error"]
     #[inline(always)]
     pub fn linipe(&self) -> LINIPE_R {
-        LINIPE_R::new(((self.bits >> 27) & 0x01) != 0)
+        LINIPE_R::new(((self.bits >> 27) & 1) != 0)
     }
     #[doc = "Bit 28 - LIN Checksum Error"]
     #[inline(always)]
     pub fn lince(&self) -> LINCE_R {
-        LINCE_R::new(((self.bits >> 28) & 0x01) != 0)
+        LINCE_R::new(((self.bits >> 28) & 1) != 0)
     }
     #[doc = "Bit 29 - LIN Slave Not Responding Error Interrupt Mask"]
     #[inline(always)]
     pub fn linsnre(&self) -> LINSNRE_R {
-        LINSNRE_R::new(((self.bits >> 29) & 0x01) != 0)
+        LINSNRE_R::new(((self.bits >> 29) & 1) != 0)
     }
     #[doc = "Bit 30 - LIN Synch Tolerance Error"]
     #[inline(always)]
     pub fn linste(&self) -> LINSTE_R {
-        LINSTE_R::new(((self.bits >> 30) & 0x01) != 0)
+        LINSTE_R::new(((self.bits >> 30) & 1) != 0)
     }
     #[doc = "Bit 31 - LIN Header Timeout Error"]
     #[inline(always)]
     pub fn linhte(&self) -> LINHTE_R {
-        LINHTE_R::new(((self.bits >> 31) & 0x01) != 0)
+        LINHTE_R::new(((self.bits >> 31) & 1) != 0)
     }
 }
 #[doc = "Channel Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [us_csr_lin_mode](index.html) module"]

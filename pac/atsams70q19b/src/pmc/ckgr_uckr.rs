@@ -35,74 +35,18 @@ impl From<crate::W<CKGR_UCKR_SPEC>> for W {
     }
 }
 #[doc = "Field `UPLLEN` reader - UTMI PLL Enable"]
-pub struct UPLLEN_R(crate::FieldReader<bool, bool>);
-impl UPLLEN_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        UPLLEN_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for UPLLEN_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type UPLLEN_R = crate::BitReader<bool>;
 #[doc = "Field `UPLLEN` writer - UTMI PLL Enable"]
-pub struct UPLLEN_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> UPLLEN_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 16)) | ((value as u32 & 0x01) << 16);
-        self.w
-    }
-}
+pub type UPLLEN_W<'a, const O: u8> = crate::BitWriter<'a, u32, CKGR_UCKR_SPEC, bool, O>;
 #[doc = "Field `UPLLCOUNT` reader - UTMI PLL Start-up Time"]
-pub struct UPLLCOUNT_R(crate::FieldReader<u8, u8>);
-impl UPLLCOUNT_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: u8) -> Self {
-        UPLLCOUNT_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for UPLLCOUNT_R {
-    type Target = crate::FieldReader<u8, u8>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type UPLLCOUNT_R = crate::FieldReader<u8, u8>;
 #[doc = "Field `UPLLCOUNT` writer - UTMI PLL Start-up Time"]
-pub struct UPLLCOUNT_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> UPLLCOUNT_W<'a> {
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x0f << 20)) | ((value as u32 & 0x0f) << 20);
-        self.w
-    }
-}
+pub type UPLLCOUNT_W<'a, const O: u8> = crate::FieldWriter<'a, u32, CKGR_UCKR_SPEC, u8, u8, 4, O>;
 impl R {
     #[doc = "Bit 16 - UTMI PLL Enable"]
     #[inline(always)]
     pub fn upllen(&self) -> UPLLEN_R {
-        UPLLEN_R::new(((self.bits >> 16) & 0x01) != 0)
+        UPLLEN_R::new(((self.bits >> 16) & 1) != 0)
     }
     #[doc = "Bits 20:23 - UTMI PLL Start-up Time"]
     #[inline(always)]
@@ -113,13 +57,13 @@ impl R {
 impl W {
     #[doc = "Bit 16 - UTMI PLL Enable"]
     #[inline(always)]
-    pub fn upllen(&mut self) -> UPLLEN_W {
-        UPLLEN_W { w: self }
+    pub fn upllen(&mut self) -> UPLLEN_W<16> {
+        UPLLEN_W::new(self)
     }
     #[doc = "Bits 20:23 - UTMI PLL Start-up Time"]
     #[inline(always)]
-    pub fn upllcount(&mut self) -> UPLLCOUNT_W {
-        UPLLCOUNT_W { w: self }
+    pub fn upllcount(&mut self) -> UPLLCOUNT_W<20> {
+        UPLLCOUNT_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

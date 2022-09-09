@@ -139,7 +139,7 @@ impl<M: PwmMeta, I: ChannelId> Channel<M, I> {
     /// emitting signal. Otherwise `false`.
     pub fn is_enabled(&self) -> bool {
         let mask = 1 << I::DYN;
-        <Self as RegisterAccess<M>>::reg(self).pwm_sr.read().bits() & mask != 0
+        <Self as RegisterAccess<M>>::reg(self).sr.read().bits() & mask != 0
     }
 
     /// Apply a wanted [`Channel`] frequency in hardware.
@@ -164,7 +164,7 @@ impl<M: PwmMeta, I: ChannelId> Channel<M, I> {
 
         if self.is_enabled() {
             // Divider from divider mux
-            let div = match self.reg().pwm_cmr.read().cpre().bits() {
+            let div = match self.reg().cmr.read().cpre().bits() {
                 11 => panic!("PWM clock generator A is not supported"),
                 12 => panic!("PWM clock generator B is not supported"),
                 exp => 2u32.pow(exp.into()),
@@ -177,7 +177,7 @@ impl<M: PwmMeta, I: ChannelId> Channel<M, I> {
 
             // Update buffer register for period
             self.reg()
-                .pwm_cprdupd
+                .cprdupd
                 .write(|w| unsafe { w.cprdupd().bits(cprd.into()) });
 
             // Update buffer register for compare value
@@ -204,10 +204,10 @@ impl<M: PwmMeta, I: ChannelId> Channel<M, I> {
             let idx = prescalers.count() - ridx - 1;
 
             self.reg()
-                .pwm_cmr
+                .cmr
                 .modify(|_, w| unsafe { w.cpre().bits(idx.try_into().unwrap()) });
             self.reg()
-                .pwm_cprd
+                .cprd
                 .modify(|_, w| unsafe { w.cprd().bits(pres / div) });
         };
     }
@@ -217,16 +217,16 @@ impl<M: PwmMeta, I: ChannelId> Channel<M, I> {
     /// hardware yet.
     fn apply_duty(&mut self, duty: Percentage, max: Option<u32>) {
         // New maximum value/period
-        let max = max.unwrap_or_else(|| self.reg().pwm_cprd.read().cprd().bits());
+        let max = max.unwrap_or_else(|| self.reg().cprd.read().cprd().bits());
         let cdty = (duty.0 * max as f32 + 0.5) as u16;
 
         if self.is_enabled() {
             self.reg()
-                .pwm_cdtyupd
+                .cdtyupd
                 .write(|w| unsafe { w.cdtyupd().bits(cdty.into()) });
         } else {
             self.reg()
-                .pwm_cdty
+                .cdty
                 .modify(|_, w| unsafe { w.cdty().bits(cdty.into()) });
         }
 
@@ -237,7 +237,7 @@ impl<M: PwmMeta, I: ChannelId> Channel<M, I> {
     /// a given frequency and duty rate. Does not start the
     /// [`Channel`].
     pub fn configure(mut self, cfg: ChannelConfiguration) -> Self {
-        self.reg().pwm_cmr.modify(|_, w| {
+        self.reg().cmr.modify(|_, w| {
             // center-align, one event per period (end of period)
             w.calg().set_bit();
             w.ces().clear_bit();
@@ -315,7 +315,7 @@ impl<M: PwmMeta> Pwm<M> {
 
     fn unlock(&mut self) {
         // Unlock user interface as per §51.6.6.1
-        self.reg().pwm_wpcr.write(|w| {
+        self.reg().wpcr.write(|w| {
             w.wpkey().passwd();
             w.wpcmd().disable_sw_prot();
             w.wprg0().set_bit();
@@ -328,7 +328,7 @@ impl<M: PwmMeta> Pwm<M> {
             w
         });
         // Ensure write protection is disabled for all registers.
-        debug_assert_eq!(self.reg().pwm_wpsr.read().bits() & 0xffff, 0);
+        debug_assert_eq!(self.reg().wpsr.read().bits() & 0xffff, 0);
     }
 }
 
@@ -672,7 +672,7 @@ impl<M: PwmMeta, I: ChannelId> PwmPin for Channel<M, I> {
     fn disable(&mut self) {
         let pwm = <Self as RegisterAccess<M>>::reg(self);
         let mask = 1 << I::DYN;
-        pwm.pwm_dis.write(|w| unsafe { w.bits(mask) });
+        pwm.dis.write(|w| unsafe { w.bits(mask) });
         while self.is_enabled() {}
     }
 
@@ -680,14 +680,14 @@ impl<M: PwmMeta, I: ChannelId> PwmPin for Channel<M, I> {
     fn enable(&mut self) {
         let pwm = <Self as RegisterAccess<M>>::reg(self);
         let mask = 1 << I::DYN;
-        pwm.pwm_ena.write(|w| unsafe { w.bits(mask) });
+        pwm.ena.write(|w| unsafe { w.bits(mask) });
         while !self.is_enabled() {}
     }
 
     /// Returns the duty rate of the [`Channel`].
     fn get_duty(&self) -> Self::Duty {
-        let period = self.reg().pwm_cprd.read().cprd().bits();
-        let duty = self.reg().pwm_cdty.read().cdty().bits();
+        let period = self.reg().cprd.read().cprd().bits();
+        let duty = self.reg().cdty.read().cdty().bits();
 
         // Configuring duty and period required setting valid values for
         // Percentages, should never fail

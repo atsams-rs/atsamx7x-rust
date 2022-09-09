@@ -20,248 +20,68 @@ impl From<crate::W<US_CR_LIN_MODE_SPEC>> for W {
     }
 }
 #[doc = "Field `RSTRX` writer - Reset Receiver"]
-pub struct RSTRX_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> RSTRX_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
-        self.w
-    }
-}
+pub type RSTRX_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_CR_LIN_MODE_SPEC, bool, O>;
 #[doc = "Field `RSTTX` writer - Reset Transmitter"]
-pub struct RSTTX_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> RSTTX_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
-        self.w
-    }
-}
+pub type RSTTX_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_CR_LIN_MODE_SPEC, bool, O>;
 #[doc = "Field `RXEN` writer - Receiver Enable"]
-pub struct RXEN_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> RXEN_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
-        self.w
-    }
-}
+pub type RXEN_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_CR_LIN_MODE_SPEC, bool, O>;
 #[doc = "Field `RXDIS` writer - Receiver Disable"]
-pub struct RXDIS_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> RXDIS_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
-        self.w
-    }
-}
+pub type RXDIS_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_CR_LIN_MODE_SPEC, bool, O>;
 #[doc = "Field `TXEN` writer - Transmitter Enable"]
-pub struct TXEN_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> TXEN_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
-        self.w
-    }
-}
+pub type TXEN_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_CR_LIN_MODE_SPEC, bool, O>;
 #[doc = "Field `TXDIS` writer - Transmitter Disable"]
-pub struct TXDIS_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> TXDIS_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 7)) | ((value as u32 & 0x01) << 7);
-        self.w
-    }
-}
+pub type TXDIS_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_CR_LIN_MODE_SPEC, bool, O>;
 #[doc = "Field `RSTSTA` writer - Reset Status Bits"]
-pub struct RSTSTA_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> RSTSTA_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 8)) | ((value as u32 & 0x01) << 8);
-        self.w
-    }
-}
+pub type RSTSTA_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_CR_LIN_MODE_SPEC, bool, O>;
 #[doc = "Field `LINABT` writer - Abort LIN Transmission"]
-pub struct LINABT_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> LINABT_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 20)) | ((value as u32 & 0x01) << 20);
-        self.w
-    }
-}
+pub type LINABT_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_CR_LIN_MODE_SPEC, bool, O>;
 #[doc = "Field `LINWKUP` writer - Send LIN Wakeup Signal"]
-pub struct LINWKUP_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> LINWKUP_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 21)) | ((value as u32 & 0x01) << 21);
-        self.w
-    }
-}
+pub type LINWKUP_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_CR_LIN_MODE_SPEC, bool, O>;
 impl W {
     #[doc = "Bit 2 - Reset Receiver"]
     #[inline(always)]
-    pub fn rstrx(&mut self) -> RSTRX_W {
-        RSTRX_W { w: self }
+    pub fn rstrx(&mut self) -> RSTRX_W<2> {
+        RSTRX_W::new(self)
     }
     #[doc = "Bit 3 - Reset Transmitter"]
     #[inline(always)]
-    pub fn rsttx(&mut self) -> RSTTX_W {
-        RSTTX_W { w: self }
+    pub fn rsttx(&mut self) -> RSTTX_W<3> {
+        RSTTX_W::new(self)
     }
     #[doc = "Bit 4 - Receiver Enable"]
     #[inline(always)]
-    pub fn rxen(&mut self) -> RXEN_W {
-        RXEN_W { w: self }
+    pub fn rxen(&mut self) -> RXEN_W<4> {
+        RXEN_W::new(self)
     }
     #[doc = "Bit 5 - Receiver Disable"]
     #[inline(always)]
-    pub fn rxdis(&mut self) -> RXDIS_W {
-        RXDIS_W { w: self }
+    pub fn rxdis(&mut self) -> RXDIS_W<5> {
+        RXDIS_W::new(self)
     }
     #[doc = "Bit 6 - Transmitter Enable"]
     #[inline(always)]
-    pub fn txen(&mut self) -> TXEN_W {
-        TXEN_W { w: self }
+    pub fn txen(&mut self) -> TXEN_W<6> {
+        TXEN_W::new(self)
     }
     #[doc = "Bit 7 - Transmitter Disable"]
     #[inline(always)]
-    pub fn txdis(&mut self) -> TXDIS_W {
-        TXDIS_W { w: self }
+    pub fn txdis(&mut self) -> TXDIS_W<7> {
+        TXDIS_W::new(self)
     }
     #[doc = "Bit 8 - Reset Status Bits"]
     #[inline(always)]
-    pub fn rststa(&mut self) -> RSTSTA_W {
-        RSTSTA_W { w: self }
+    pub fn rststa(&mut self) -> RSTSTA_W<8> {
+        RSTSTA_W::new(self)
     }
     #[doc = "Bit 20 - Abort LIN Transmission"]
     #[inline(always)]
-    pub fn linabt(&mut self) -> LINABT_W {
-        LINABT_W { w: self }
+    pub fn linabt(&mut self) -> LINABT_W<20> {
+        LINABT_W::new(self)
     }
     #[doc = "Bit 21 - Send LIN Wakeup Signal"]
     #[inline(always)]
-    pub fn linwkup(&mut self) -> LINWKUP_W {
-        LINWKUP_W { w: self }
+    pub fn linwkup(&mut self) -> LINWKUP_W<21> {
+        LINWKUP_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

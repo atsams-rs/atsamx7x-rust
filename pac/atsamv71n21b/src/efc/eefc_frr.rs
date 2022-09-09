@@ -14,20 +14,7 @@ impl From<crate::R<EEFC_FRR_SPEC>> for R {
     }
 }
 #[doc = "Field `FVALUE` reader - Flash Result Value"]
-pub struct FVALUE_R(crate::FieldReader<u32, u32>);
-impl FVALUE_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: u32) -> Self {
-        FVALUE_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for FVALUE_R {
-    type Target = crate::FieldReader<u32, u32>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type FVALUE_R = crate::FieldReader<u32, u32>;
 impl R {
     #[doc = "Bits 0:31 - Flash Result Value"]
     #[inline(always)]

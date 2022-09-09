@@ -65,7 +65,7 @@ use crate::ehal::blocking;
 use crate::fugit::{ExtU32, NanosDurationU32 as NanosDuration};
 #[cfg(feature = "pins-144")]
 use crate::pac::SPI1;
-use crate::pac::{spi0::spi_tdr::PCS_AW as HwChipSelect, spi0::RegisterBlock, SPI0};
+use crate::pac::{spi0::tdr::PCSSELECT_AW as HwChipSelect, spi0::RegisterBlock, SPI0};
 use crate::{ehal, nb};
 use crate::{generics, pio::*};
 use core::marker::PhantomData;
@@ -243,14 +243,14 @@ impl<M: SpiMeta> Spi<M> {
     /// Reconfigure the [`Spi`] with a new [`SpiConfiguration`].
     pub fn reconfigure(&mut self, cfg: SpiConfiguration) -> Result<(), SpiError> {
         // Disable the spi and software reset it into a known state.
-        self.reg().spi_cr.write(|w| {
+        self.reg().cr.write(|w| {
             w.spien().clear_bit();
             w.spidis().set_bit()
         });
-        self.reg().spi_cr.write(|w| w.swrst().set_bit());
+        self.reg().cr.write(|w| w.swrst().set_bit());
 
         // configure SPI mode
-        self.reg().spi_mr.modify(|_, w| {
+        self.reg().mr.modify(|_, w| {
             // enter master/host mode
             w.mstr().set_bit();
 
@@ -274,7 +274,7 @@ impl<M: SpiMeta> Spi<M> {
             w
         });
 
-        self.reg().spi_cr.write(|w| {
+        self.reg().cr.write(|w| {
             w.spidis().clear_bit();
             w.spien().set_bit();
             w
@@ -337,7 +337,7 @@ impl<M: SpiMeta> Spi<M> {
 
         let cs = cs.as_index();
 
-        self.reg().spi_csr[cs].modify(|_, w| {
+        self.reg().csr[cs].modify(|_, w| {
             unsafe {
                 w.scbr().bits(scbr);
                 w.dlybs().bits(dlybs);
@@ -437,7 +437,7 @@ impl TryFrom<u32> for Event {
 impl<M: SpiMeta> crate::generics::events::EventHandler for Spi<M> {
     type EventSource = Event;
     fn listen(&mut self, event: Self::EventSource) {
-        self.reg().spi_ier.write(|w| match event {
+        self.reg().ier.write(|w| match event {
             Event::Rdrf => w.rdrf().set_bit(),
             Event::Tdre => w.tdre().set_bit(),
             Event::Modf => w.modf().set_bit(),
@@ -448,7 +448,7 @@ impl<M: SpiMeta> crate::generics::events::EventHandler for Spi<M> {
         });
     }
     fn unlisten(&mut self, event: Self::EventSource) {
-        self.reg().spi_idr.write(|w| match event {
+        self.reg().idr.write(|w| match event {
             Event::Rdrf => w.rdrf().set_bit(),
             Event::Tdre => w.tdre().set_bit(),
             Event::Modf => w.modf().set_bit(),
@@ -459,7 +459,7 @@ impl<M: SpiMeta> crate::generics::events::EventHandler for Spi<M> {
         });
     }
     fn irq(&mut self) -> u32 {
-        self.reg().spi_imr.read().bits() & self.reg().spi_sr.read().bits()
+        self.reg().imr.read().bits() & self.reg().sr.read().bits()
     }
 }
 
@@ -597,14 +597,14 @@ impl<'spi, M: SpiMeta> ehal::spi::FullDuplex<u8> for Client<'spi, M> {
     type Error = SpiError;
 
     fn read(&mut self) -> nb::Result<u8, Self::Error> {
-        let sr = self.reg().spi_sr.read();
+        let sr = self.reg().sr.read();
         if sr.rdrf().bit_is_clear() {
             return Err(nb::Error::WouldBlock);
         } else if sr.ovres().bit_is_set() {
             return Err(nb::Error::Other(SpiError::Overrun));
         }
 
-        Ok(self.reg().spi_rdr.read().rd().bits().try_into().unwrap())
+        Ok(self.reg().rdr.read().rd().bits().try_into().unwrap())
     }
 
     /// Sends a word to the client.
@@ -613,14 +613,14 @@ impl<'spi, M: SpiMeta> ehal::spi::FullDuplex<u8> for Client<'spi, M> {
     /// is deasserted after this word has been transferred. Otherwise
     /// the select line remains asserted.
     fn send(&mut self, word: u8) -> nb::Result<(), Self::Error> {
-        let sr = self.reg().spi_sr.read();
+        let sr = self.reg().sr.read();
         if sr.tdre().bit_is_clear() {
             return Err(nb::Error::WouldBlock);
         } else if sr.ovres().bit_is_set() {
             return Err(nb::Error::Other(SpiError::Overrun));
         }
 
-        self.reg().spi_tdr.write(|w| {
+        self.reg().tdr.write(|w| {
             unsafe {
                 w.td().bits(word as u16);
             }

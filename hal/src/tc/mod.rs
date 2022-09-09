@@ -197,9 +197,9 @@ use crate::fugit::{
 use crate::generics::{self, CountDownError};
 use crate::pac::tc0::{
     tc_channel::{
-        tc_cmr_capture_mode::{LDRA_A, LDRB_A, SBSMPLR_A},
-        tc_cmr_waveform_mode::TCCLKS_A as TCCLKS,
-        tc_sr::R as StatusRegister,
+        cmr_capture_mode::{LDRASELECT_A, LDRBSELECT_A, SBSMPLRSELECT_A},
+        cmr_waveform_mode::TCCLKSSELECT_A as TCCLKS,
+        sr::R as StatusRegister,
     },
     RegisterBlock, TC_CHANNEL as ChannelRegisterBlock,
 };
@@ -264,7 +264,7 @@ trait SyncChannels<M: TcMeta> {
     /// Modifies the hardware state of all [`Channel`]s.
     #[inline(always)]
     unsafe fn sync_start_channels() {
-        { &*M::REG }.tc_bcr.write(|w| w.sync().set_bit());
+        { &*M::REG }.bcr.write(|w| w.sync().set_bit());
     }
 }
 
@@ -470,12 +470,12 @@ impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
 
     /// Disable the [`Channel`]'s input clock.
     fn disable(&mut self) {
-        self.channel().tc_ccr.write(|w| w.clkdis().set_bit());
+        self.channel().ccr.write(|w| w.clkdis().set_bit());
     }
 
     /// Enable the [`Channel`]'s input clock.
     fn enable(&mut self) {
-        self.channel().tc_ccr.write(|w| {
+        self.channel().ccr.write(|w| {
             w.clkdis().clear_bit();
             w.clken().set_bit();
 
@@ -485,7 +485,7 @@ impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
 
     /// Reset the [`Channel`]s counter and start its input clock.
     fn reset_enable(&mut self) {
-        self.channel().tc_ccr.write(|w| {
+        self.channel().ccr.write(|w| {
             w.clkdis().clear_bit();
             w.clken().set_bit();
             w.swtrg().set_bit();
@@ -499,15 +499,15 @@ impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
         match val {
             CompareRegister::Ra(v) => self
                 .channel()
-                .tc_ra
+                .ra
                 .write(|w| unsafe { w.ra().bits(v.into()) }),
             CompareRegister::Rb(v) => self
                 .channel()
-                .tc_rb
+                .rb
                 .write(|w| unsafe { w.rb().bits(v.into()) }),
             CompareRegister::Rc(v) => self
                 .channel()
-                .tc_rc
+                .rc
                 .write(|w| unsafe { w.rc().bits(v.into()) }),
         };
     }
@@ -520,7 +520,7 @@ impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
     /// state between [`Inactive`] and [`Generate`]. A subsequent call
     /// to [`Channel::tranform`] to [`Generate`] should be performed.
     unsafe fn generate_inner<C: ChannelClock>(&self, _clk: &C) {
-        self.channel().tc_cmr_waveform_mode().modify(|_, w| {
+        self.channel().cmr_waveform_mode().modify(|_, w| {
             w.wave().set_bit();
             w.tcclks().variant(C::SOURCE.0);
 
@@ -530,7 +530,7 @@ impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
 
     #[inline(always)]
     fn read_status(&mut self) -> StatusRegister {
-        self.channel().tc_sr.read()
+        self.channel().sr.read()
     }
 }
 
@@ -570,7 +570,7 @@ impl<M: TcMeta, I: ChannelId> Channel<M, I, Inactive> {
         // NOTE: we write to WAVEFORM because of TCCLKS type variant
         // limitations, but it has the same effct as writing these
         // registers to CAPTURE.
-        self.channel().tc_cmr_waveform_mode().modify(|_, w| {
+        self.channel().cmr_waveform_mode().modify(|_, w| {
             w.wave().clear_bit();
             w.tcclks().variant(<HostClock as ChannelClock>::SOURCE.0);
 

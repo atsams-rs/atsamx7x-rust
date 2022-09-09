@@ -2,76 +2,70 @@
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00..0x34 - Master Configuration Register 0"]
-    pub matrix_mcfg: [crate::Reg<matrix_mcfg::MATRIX_MCFG_SPEC>; 13],
+    pub mcfg: [MCFG; 13],
     _reserved1: [u8; 0x0c],
     #[doc = "0x40..0x64 - Slave Configuration Register 0"]
-    pub matrix_scfg: [crate::Reg<matrix_scfg::MATRIX_SCFG_SPEC>; 9],
+    pub scfg: [SCFG; 9],
     _reserved2: [u8; 0x1c],
     #[doc = "0x80..0xc8 - Priority Register A for Slave 0"]
     pub matrix_pr: [MATRIX_PR; 9],
     _reserved3: [u8; 0x38],
     #[doc = "0x100 - Master Remap Control Register"]
-    pub matrix_mrcr: crate::Reg<matrix_mrcr::MATRIX_MRCR_SPEC>,
+    pub mrcr: MRCR,
     _reserved4: [u8; 0x10],
     #[doc = "0x114 - System I/O Configuration Register"]
-    pub ccfg_sysio: crate::Reg<ccfg_sysio::CCFG_SYSIO_SPEC>,
+    pub ccfg_sysio: CCFG_SYSIO,
     #[doc = "0x118 - Peripheral Clock Configuration Register"]
-    pub ccfg_pccr: crate::Reg<ccfg_pccr::CCFG_PCCR_SPEC>,
+    pub ccfg_pccr: CCFG_PCCR,
     #[doc = "0x11c - Dynamic Clock Gating Register"]
-    pub ccfg_dynckg: crate::Reg<ccfg_dynckg::CCFG_DYNCKG_SPEC>,
+    pub ccfg_dynckg: CCFG_DYNCKG,
     _reserved7: [u8; 0x04],
     #[doc = "0x124 - SMC NAND Flash Chip Select Configuration Register"]
-    pub ccfg_smcnfcs: crate::Reg<ccfg_smcnfcs::CCFG_SMCNFCS_SPEC>,
+    pub ccfg_smcnfcs: CCFG_SMCNFCS,
     _reserved8: [u8; 0xbc],
     #[doc = "0x1e4 - Write Protection Mode Register"]
-    pub matrix_wpmr: crate::Reg<matrix_wpmr::MATRIX_WPMR_SPEC>,
+    pub wpmr: WPMR,
     #[doc = "0x1e8 - Write Protection Status Register"]
-    pub matrix_wpsr: crate::Reg<matrix_wpsr::MATRIX_WPSR_SPEC>,
+    pub wpsr: WPSR,
 }
-#[doc = r"Register block"]
-#[repr(C)]
-pub struct MATRIX_PR {
-    #[doc = "0x00 - Priority Register A for Slave 0"]
-    pub matrix_pras: crate::Reg<self::matrix_pr::matrix_pras::MATRIX_PRAS_SPEC>,
-    #[doc = "0x04 - Priority Register B for Slave 0"]
-    pub matrix_prbs: crate::Reg<self::matrix_pr::matrix_prbs::MATRIX_PRBS_SPEC>,
-}
-#[doc = r"Register block"]
+#[doc = "MCFG (rw) register accessor: an alias for `Reg<MCFG_SPEC>`"]
+pub type MCFG = crate::Reg<mcfg::MCFG_SPEC>;
+#[doc = "Master Configuration Register 0"]
+pub mod mcfg;
+#[doc = "SCFG (rw) register accessor: an alias for `Reg<SCFG_SPEC>`"]
+pub type SCFG = crate::Reg<scfg::SCFG_SPEC>;
+#[doc = "Slave Configuration Register 0"]
+pub mod scfg;
+#[doc = "Priority Register A for Slave 0"]
+pub use matrix_pr::MATRIX_PR;
+#[doc = r"Cluster"]
 #[doc = "Priority Register A for Slave 0"]
 pub mod matrix_pr;
-#[doc = "MATRIX_MCFG register accessor: an alias for `Reg<MATRIX_MCFG_SPEC>`"]
-pub type MATRIX_MCFG = crate::Reg<matrix_mcfg::MATRIX_MCFG_SPEC>;
-#[doc = "Master Configuration Register 0"]
-pub mod matrix_mcfg;
-#[doc = "MATRIX_SCFG register accessor: an alias for `Reg<MATRIX_SCFG_SPEC>`"]
-pub type MATRIX_SCFG = crate::Reg<matrix_scfg::MATRIX_SCFG_SPEC>;
-#[doc = "Slave Configuration Register 0"]
-pub mod matrix_scfg;
-#[doc = "MATRIX_MRCR register accessor: an alias for `Reg<MATRIX_MRCR_SPEC>`"]
-pub type MATRIX_MRCR = crate::Reg<matrix_mrcr::MATRIX_MRCR_SPEC>;
+#[doc = "MRCR (rw) register accessor: an alias for `Reg<MRCR_SPEC>`"]
+pub type MRCR = crate::Reg<mrcr::MRCR_SPEC>;
 #[doc = "Master Remap Control Register"]
-pub mod matrix_mrcr;
-#[doc = "CCFG_SYSIO register accessor: an alias for `Reg<CCFG_SYSIO_SPEC>`"]
+pub mod mrcr;
+#[doc = "CCFG_SYSIO (rw) register accessor: an alias for `Reg<CCFG_SYSIO_SPEC>`"]
 pub type CCFG_SYSIO = crate::Reg<ccfg_sysio::CCFG_SYSIO_SPEC>;
 #[doc = "System I/O Configuration Register"]
 pub mod ccfg_sysio;
-#[doc = "CCFG_PCCR register accessor: an alias for `Reg<CCFG_PCCR_SPEC>`"]
+#[doc = "CCFG_PCCR (rw) register accessor: an alias for `Reg<CCFG_PCCR_SPEC>`"]
 pub type CCFG_PCCR = crate::Reg<ccfg_pccr::CCFG_PCCR_SPEC>;
 #[doc = "Peripheral Clock Configuration Register"]
 pub mod ccfg_pccr;
-#[doc = "CCFG_DYNCKG register accessor: an alias for `Reg<CCFG_DYNCKG_SPEC>`"]
+#[doc = "CCFG_DYNCKG (rw) register accessor: an alias for `Reg<CCFG_DYNCKG_SPEC>`"]
 pub type CCFG_DYNCKG = crate::Reg<ccfg_dynckg::CCFG_DYNCKG_SPEC>;
 #[doc = "Dynamic Clock Gating Register"]
 pub mod ccfg_dynckg;
-#[doc = "CCFG_SMCNFCS register accessor: an alias for `Reg<CCFG_SMCNFCS_SPEC>`"]
+#[doc = "CCFG_SMCNFCS (rw) register accessor: an alias for `Reg<CCFG_SMCNFCS_SPEC>`"]
 pub type CCFG_SMCNFCS = crate::Reg<ccfg_smcnfcs::CCFG_SMCNFCS_SPEC>;
 #[doc = "SMC NAND Flash Chip Select Configuration Register"]
 pub mod ccfg_smcnfcs;
-#[doc = "MATRIX_WPMR register accessor: an alias for `Reg<MATRIX_WPMR_SPEC>`"]
-pub type MATRIX_WPMR = crate::Reg<matrix_wpmr::MATRIX_WPMR_SPEC>;
+#[doc = "WPMR (rw) register accessor: an alias for `Reg<WPMR_SPEC>`"]
+pub type WPMR = crate::Reg<wpmr::WPMR_SPEC>;
 #[doc = "Write Protection Mode Register"]
-pub mod matrix_wpmr;
-#[doc = "MATRIX_WPSR register accessor: an alias for `Reg<MATRIX_WPSR_SPEC>`"]
-pub type MATRIX_WPSR = crate::Reg<matrix_wpsr::MATRIX_WPSR_SPEC>;
+pub mod wpmr;
+#[doc = "WPSR (r) register accessor: an alias for `Reg<WPSR_SPEC>`"]
+pub type WPSR = crate::Reg<wpsr::WPSR_SPEC>;
 #[doc = "Write Protection Status Register"]
-pub mod matrix_wpsr;
+pub mod wpsr;

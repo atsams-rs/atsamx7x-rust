@@ -44,7 +44,7 @@ use crate::generics;
 #[cfg(not(feature = "pins-64"))]
 use crate::pac::TWIHS2;
 use crate::pac::{
-    twihs0::{twihs_sr::R as StatusRegister, RegisterBlock},
+    twihs0::{sr::R as StatusRegister, RegisterBlock},
     TWIHS0, TWIHS1,
 };
 use crate::pio::*;
@@ -127,7 +127,7 @@ impl<M: TwiMeta> Twi<M> {
             .ok_or(TwiError::ImpossibleFreq)?;
 
         // configure clock
-        self.reg().twihs_cwgr.write(|w| unsafe {
+        self.reg().cwgr.write(|w| unsafe {
             w.ckdiv().bits(ckdiv);
             w.chdiv().bits(div);
             w.cldiv().bits(div);
@@ -140,7 +140,7 @@ impl<M: TwiMeta> Twi<M> {
         });
 
         // Disable client mode, enable host mode
-        self.reg().twihs_cr.write(|w| {
+        self.reg().cr.write(|w| {
             w.svdis().set_bit();
             w.msen().set_bit();
             w
@@ -152,7 +152,7 @@ impl<M: TwiMeta> Twi<M> {
     /// Configure client device address and read/write operation.
     #[inline]
     fn setup_transaction(&mut self, address: u8, action: TwiAction) {
-        self.reg().twihs_mmr.modify(|_, w| {
+        self.reg().mmr.modify(|_, w| {
             unsafe {
                 w.dadr().bits(address);
             }
@@ -164,10 +164,8 @@ impl<M: TwiMeta> Twi<M> {
     /// Write `buffer` onto the bus.
     fn write(&mut self, buffer: &[u8]) -> Result<(), TwiError> {
         for byte in buffer {
-            self.reg()
-                .twihs_thr
-                .write(|w| unsafe { w.txdata().bits(*byte) });
-            while self.poll_status(|sr| sr.txrdy().bit_is_clear())? {}
+            self.reg().thr.write(|w| unsafe { w.txdata().bits(*byte) });
+            while self.poll_status(|sr: &StatusRegister| sr.txrdy().bit_is_clear())? {}
         }
 
         Ok(())
@@ -178,11 +176,11 @@ impl<M: TwiMeta> Twi<M> {
         let last_index = buffer.len() - 1;
         for (i, byte) in buffer.iter_mut().enumerate() {
             if i == last_index {
-                self.reg().twihs_cr.write(|w| w.stop().set_bit());
+                self.reg().cr.write(|w| w.stop().set_bit());
             }
 
-            while self.poll_status(|sr| sr.rxrdy().bit_is_clear())? {}
-            *byte = self.reg().twihs_rhr.read().rxdata().bits();
+            while self.poll_status(|sr: &StatusRegister| sr.rxrdy().bit_is_clear())? {}
+            *byte = self.reg().rhr.read().rxdata().bits();
         }
 
         Ok(())
@@ -190,7 +188,7 @@ impl<M: TwiMeta> Twi<M> {
 
     #[inline]
     fn start_transaction(&mut self) {
-        self.reg().twihs_cr.write(|w| w.start().set_bit());
+        self.reg().cr.write(|w| w.start().set_bit());
     }
 
     #[inline]
@@ -201,10 +199,10 @@ impl<M: TwiMeta> Twi<M> {
     #[inline]
     fn finalize_transaction(&mut self, action: TwiAction) -> Result<(), TwiError> {
         if action == TwiAction::Write {
-            self.reg().twihs_cr.write(|w| w.stop().set_bit());
+            self.reg().cr.write(|w| w.stop().set_bit());
         }
 
-        while self.poll_status(|sr| sr.txcomp().bit_is_clear())? {}
+        while self.poll_status(|sr: &StatusRegister| sr.txcomp().bit_is_clear())? {}
         Ok(())
     }
 
@@ -212,7 +210,7 @@ impl<M: TwiMeta> Twi<M> {
     /// `F` after first checking the peripheral's error flags.
     #[inline]
     fn poll_status<F: FnOnce(&StatusRegister) -> bool>(&mut self, f: F) -> Result<bool, TwiError> {
-        let sr = self.reg().twihs_sr.read();
+        let sr = self.reg().sr.read();
         if sr.ovre().bit_is_set() {
             return Err(TwiError::Overrun);
         } else if sr.unre().bit_is_set() {

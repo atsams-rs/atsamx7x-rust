@@ -35,7 +35,7 @@ impl Token<PllaClock> {
             }
             w
         });
-        while self.pmc().pmc_sr.read().locka().bit_is_clear() {}
+        while self.pmc().sr.read().locka().bit_is_clear() {}
 
         Ok(PllaClock {
             freq: (source.freq().convert() / div as u32) * mult as u32,

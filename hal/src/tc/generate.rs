@@ -25,7 +25,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32>
         }
 
         // Connect driver TIOA output to self's input
-        self.reg().tc_bmr.modify(|_, w| {
+        self.reg().bmr.modify(|_, w| {
             let tcxcs = I::DYN.external_feedback_field(&J::DYN);
             match I::DYN {
                 DynChannelId::Ch0 => unsafe { w.tc0xc0s().bits(tcxcs) },
@@ -37,7 +37,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32>
         });
 
         // Configure driving channel
-        driver.channel().tc_cmr_waveform_mode().modify(|_, w| {
+        driver.channel().cmr_waveform_mode().modify(|_, w| {
             // noop effects on TIOB, TIOA toggles on RC compare match
             //
             // NOTE: RA and RB compare match affects TIOA and
@@ -84,10 +84,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32>
             w
         });
         // disable any IRQs
-        driver
-            .channel()
-            .tc_idr
-            .write(|w| unsafe { w.bits(u32::MAX) });
+        driver.channel().idr.write(|w| unsafe { w.bits(u32::MAX) });
 
         driver.enable();
 
@@ -173,7 +170,7 @@ where
         driver.set_compare(CompareRegister::Rc(pres));
 
         // Configure self
-        self.channel().tc_cmr_waveform_mode().modify(|_, w| {
+        self.channel().cmr_waveform_mode().modify(|_, w| {
             // noop effects on TIOA/TIOB
             //
             // NOTE: RA and RB compare match affects TIOA and
@@ -221,8 +218,8 @@ where
         });
 
         // Enable interrupt on RC compare match
-        self.channel().tc_idr.write(|w| unsafe { w.bits(u32::MAX) });
-        self.channel().tc_ier.write(|w| w.cpcs().set_bit());
+        self.channel().idr.write(|w| unsafe { w.bits(u32::MAX) });
+        self.channel().ier.write(|w| w.cpcs().set_bit());
 
         Ok(Monotonic {
             channel: Channel::transform(self),
@@ -244,7 +241,7 @@ where
         // oneshot timer.
         mono.channel
             .channel()
-            .tc_cmr_waveform_mode()
+            .cmr_waveform_mode()
             .modify(|_, w| w.cpcdis().set_bit());
 
         // XXX: we let IER.CPCS be set which allows the user to bind a
@@ -358,7 +355,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> rtic_monotoni
     #[inline(always)]
     fn now(&mut self) -> Self::Instant {
         Self::Instant::from_ticks(
-            ((self.msb as u32) << u16::BITS) | self.channel.channel().tc_cv.read().cv().bits(),
+            ((self.msb as u32) << u16::BITS) | self.channel.channel().cv.read().cv().bits(),
         )
     }
 
@@ -399,7 +396,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> rtic_monotoni
                 // TODO null clock drift by compensating RC value?
                 // Refer to
                 // <https://git.grepit.se/embedded-rust/atsamx7x-hal/-/issues/39>.
-                self.channel.channel().tc_ccr.write(|w| w.swtrg().set_bit());
+                self.channel.channel().ccr.write(|w| w.swtrg().set_bit());
             }
         }
     }

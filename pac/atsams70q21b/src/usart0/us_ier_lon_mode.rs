@@ -20,302 +20,89 @@ impl From<crate::W<US_IER_LON_MODE_SPEC>> for W {
     }
 }
 #[doc = "Field `RXRDY` writer - RXRDY Interrupt Enable"]
-pub struct RXRDY_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> RXRDY_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
-        self.w
-    }
-}
+pub type RXRDY_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_IER_LON_MODE_SPEC, bool, O>;
 #[doc = "Field `TXRDY` writer - TXRDY Interrupt Enable"]
-pub struct TXRDY_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> TXRDY_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
-        self.w
-    }
-}
+pub type TXRDY_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_IER_LON_MODE_SPEC, bool, O>;
 #[doc = "Field `OVRE` writer - Overrun Error Interrupt Enable"]
-pub struct OVRE_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> OVRE_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
-        self.w
-    }
-}
-#[doc = "Field `TXEMPTY` writer - TXEMPTY Interrupt Enable"]
-pub struct TXEMPTY_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> TXEMPTY_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 9)) | ((value as u32 & 0x01) << 9);
-        self.w
-    }
-}
+pub type OVRE_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_IER_LON_MODE_SPEC, bool, O>;
 #[doc = "Field `LSFE` writer - LON Short Frame Error Interrupt Enable"]
-pub struct LSFE_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> LSFE_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
-        self.w
-    }
-}
+pub type LSFE_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_IER_LON_MODE_SPEC, bool, O>;
 #[doc = "Field `LCRCE` writer - LON CRC Error Interrupt Enable"]
-pub struct LCRCE_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> LCRCE_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 7)) | ((value as u32 & 0x01) << 7);
-        self.w
-    }
-}
+pub type LCRCE_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_IER_LON_MODE_SPEC, bool, O>;
+#[doc = "Field `TXEMPTY` writer - TXEMPTY Interrupt Enable"]
+pub type TXEMPTY_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_IER_LON_MODE_SPEC, bool, O>;
+#[doc = "Field `UNRE` writer - Underrun Error Interrupt Enable"]
+pub type UNRE_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_IER_LON_MODE_SPEC, bool, O>;
 #[doc = "Field `LTXD` writer - LON Transmission Done Interrupt Enable"]
-pub struct LTXD_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> LTXD_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 24)) | ((value as u32 & 0x01) << 24);
-        self.w
-    }
-}
+pub type LTXD_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_IER_LON_MODE_SPEC, bool, O>;
 #[doc = "Field `LCOL` writer - LON Collision Interrupt Enable"]
-pub struct LCOL_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> LCOL_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 25)) | ((value as u32 & 0x01) << 25);
-        self.w
-    }
-}
+pub type LCOL_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_IER_LON_MODE_SPEC, bool, O>;
 #[doc = "Field `LFET` writer - LON Frame Early Termination Interrupt Enable"]
-pub struct LFET_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> LFET_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 26)) | ((value as u32 & 0x01) << 26);
-        self.w
-    }
-}
+pub type LFET_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_IER_LON_MODE_SPEC, bool, O>;
 #[doc = "Field `LRXD` writer - LON Reception Done Interrupt Enable"]
-pub struct LRXD_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> LRXD_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 27)) | ((value as u32 & 0x01) << 27);
-        self.w
-    }
-}
+pub type LRXD_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_IER_LON_MODE_SPEC, bool, O>;
 #[doc = "Field `LBLOVFE` writer - LON Backlog Overflow Error Interrupt Enable"]
-pub struct LBLOVFE_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> LBLOVFE_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 28)) | ((value as u32 & 0x01) << 28);
-        self.w
-    }
-}
+pub type LBLOVFE_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_IER_LON_MODE_SPEC, bool, O>;
 impl W {
     #[doc = "Bit 0 - RXRDY Interrupt Enable"]
     #[inline(always)]
-    pub fn rxrdy(&mut self) -> RXRDY_W {
-        RXRDY_W { w: self }
+    pub fn rxrdy(&mut self) -> RXRDY_W<0> {
+        RXRDY_W::new(self)
     }
     #[doc = "Bit 1 - TXRDY Interrupt Enable"]
     #[inline(always)]
-    pub fn txrdy(&mut self) -> TXRDY_W {
-        TXRDY_W { w: self }
+    pub fn txrdy(&mut self) -> TXRDY_W<1> {
+        TXRDY_W::new(self)
     }
     #[doc = "Bit 5 - Overrun Error Interrupt Enable"]
     #[inline(always)]
-    pub fn ovre(&mut self) -> OVRE_W {
-        OVRE_W { w: self }
-    }
-    #[doc = "Bit 9 - TXEMPTY Interrupt Enable"]
-    #[inline(always)]
-    pub fn txempty(&mut self) -> TXEMPTY_W {
-        TXEMPTY_W { w: self }
+    pub fn ovre(&mut self) -> OVRE_W<5> {
+        OVRE_W::new(self)
     }
     #[doc = "Bit 6 - LON Short Frame Error Interrupt Enable"]
     #[inline(always)]
-    pub fn lsfe(&mut self) -> LSFE_W {
-        LSFE_W { w: self }
+    pub fn lsfe(&mut self) -> LSFE_W<6> {
+        LSFE_W::new(self)
     }
     #[doc = "Bit 7 - LON CRC Error Interrupt Enable"]
     #[inline(always)]
-    pub fn lcrce(&mut self) -> LCRCE_W {
-        LCRCE_W { w: self }
+    pub fn lcrce(&mut self) -> LCRCE_W<7> {
+        LCRCE_W::new(self)
+    }
+    #[doc = "Bit 9 - TXEMPTY Interrupt Enable"]
+    #[inline(always)]
+    pub fn txempty(&mut self) -> TXEMPTY_W<9> {
+        TXEMPTY_W::new(self)
+    }
+    #[doc = "Bit 10 - Underrun Error Interrupt Enable"]
+    #[inline(always)]
+    pub fn unre(&mut self) -> UNRE_W<10> {
+        UNRE_W::new(self)
     }
     #[doc = "Bit 24 - LON Transmission Done Interrupt Enable"]
     #[inline(always)]
-    pub fn ltxd(&mut self) -> LTXD_W {
-        LTXD_W { w: self }
+    pub fn ltxd(&mut self) -> LTXD_W<24> {
+        LTXD_W::new(self)
     }
     #[doc = "Bit 25 - LON Collision Interrupt Enable"]
     #[inline(always)]
-    pub fn lcol(&mut self) -> LCOL_W {
-        LCOL_W { w: self }
+    pub fn lcol(&mut self) -> LCOL_W<25> {
+        LCOL_W::new(self)
     }
     #[doc = "Bit 26 - LON Frame Early Termination Interrupt Enable"]
     #[inline(always)]
-    pub fn lfet(&mut self) -> LFET_W {
-        LFET_W { w: self }
+    pub fn lfet(&mut self) -> LFET_W<26> {
+        LFET_W::new(self)
     }
     #[doc = "Bit 27 - LON Reception Done Interrupt Enable"]
     #[inline(always)]
-    pub fn lrxd(&mut self) -> LRXD_W {
-        LRXD_W { w: self }
+    pub fn lrxd(&mut self) -> LRXD_W<27> {
+        LRXD_W::new(self)
     }
     #[doc = "Bit 28 - LON Backlog Overflow Error Interrupt Enable"]
     #[inline(always)]
-    pub fn lblovfe(&mut self) -> LBLOVFE_W {
-        LBLOVFE_W { w: self }
+    pub fn lblovfe(&mut self) -> LBLOVFE_W<28> {
+        LBLOVFE_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

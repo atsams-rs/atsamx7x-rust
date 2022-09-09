@@ -20,49 +20,19 @@ impl From<crate::W<US_THR_SPEC>> for W {
     }
 }
 #[doc = "Field `TXCHR` writer - Character to be Transmitted"]
-pub struct TXCHR_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> TXCHR_W<'a> {
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub unsafe fn bits(self, value: u16) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01ff) | (value as u32 & 0x01ff);
-        self.w
-    }
-}
+pub type TXCHR_W<'a, const O: u8> = crate::FieldWriter<'a, u32, US_THR_SPEC, u16, u16, 9, O>;
 #[doc = "Field `TXSYNH` writer - Sync Field to be Transmitted"]
-pub struct TXSYNH_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> TXSYNH_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 15)) | ((value as u32 & 0x01) << 15);
-        self.w
-    }
-}
+pub type TXSYNH_W<'a, const O: u8> = crate::BitWriter<'a, u32, US_THR_SPEC, bool, O>;
 impl W {
     #[doc = "Bits 0:8 - Character to be Transmitted"]
     #[inline(always)]
-    pub fn txchr(&mut self) -> TXCHR_W {
-        TXCHR_W { w: self }
+    pub fn txchr(&mut self) -> TXCHR_W<0> {
+        TXCHR_W::new(self)
     }
     #[doc = "Bit 15 - Sync Field to be Transmitted"]
     #[inline(always)]
-    pub fn txsynh(&mut self) -> TXSYNH_W {
-        TXSYNH_W { w: self }
+    pub fn txsynh(&mut self) -> TXSYNH_W<15> {
+        TXSYNH_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

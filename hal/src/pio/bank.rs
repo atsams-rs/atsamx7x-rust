@@ -70,7 +70,7 @@ impl<B: PinBank> BankInterrupts<B> {
             // interrupts that have been explicitly enabled and
             // detected an event, thus triggering the corresponding
             // PIOA/B/C/D/E device interrupt.
-            reg.pio_isr.read().bits() & reg.pio_imr.read().bits()
+            reg.isr.read().bits() & reg.imr.read().bits()
         })
     }
 }
@@ -177,7 +177,7 @@ trait Bank {
         let div = min_duration / (2 * slck);
         let div: u16 = div.clamp(0, u16::MAX.into()) as u16;
 
-        self.reg().pio_scdr.write(|w| unsafe {
+        self.reg().scdr.write(|w| unsafe {
             // NOTE: hardware adds 1 to written value
             w.div().bits(div.checked_sub(1).unwrap_or(div))
         });

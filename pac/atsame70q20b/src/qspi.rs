@@ -2,102 +2,102 @@
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - Control Register"]
-    pub qspi_cr: crate::Reg<qspi_cr::QSPI_CR_SPEC>,
+    pub cr: CR,
     #[doc = "0x04 - Mode Register"]
-    pub qspi_mr: crate::Reg<qspi_mr::QSPI_MR_SPEC>,
+    pub mr: MR,
     #[doc = "0x08 - Receive Data Register"]
-    pub qspi_rdr: crate::Reg<qspi_rdr::QSPI_RDR_SPEC>,
+    pub rdr: RDR,
     #[doc = "0x0c - Transmit Data Register"]
-    pub qspi_tdr: crate::Reg<qspi_tdr::QSPI_TDR_SPEC>,
+    pub tdr: TDR,
     #[doc = "0x10 - Status Register"]
-    pub qspi_sr: crate::Reg<qspi_sr::QSPI_SR_SPEC>,
+    pub sr: SR,
     #[doc = "0x14 - Interrupt Enable Register"]
-    pub qspi_ier: crate::Reg<qspi_ier::QSPI_IER_SPEC>,
+    pub ier: IER,
     #[doc = "0x18 - Interrupt Disable Register"]
-    pub qspi_idr: crate::Reg<qspi_idr::QSPI_IDR_SPEC>,
+    pub idr: IDR,
     #[doc = "0x1c - Interrupt Mask Register"]
-    pub qspi_imr: crate::Reg<qspi_imr::QSPI_IMR_SPEC>,
+    pub imr: IMR,
     #[doc = "0x20 - Serial Clock Register"]
-    pub qspi_scr: crate::Reg<qspi_scr::QSPI_SCR_SPEC>,
+    pub scr: SCR,
     _reserved9: [u8; 0x0c],
     #[doc = "0x30 - Instruction Address Register"]
-    pub qspi_iar: crate::Reg<qspi_iar::QSPI_IAR_SPEC>,
+    pub iar: IAR,
     #[doc = "0x34 - Instruction Code Register"]
-    pub qspi_icr: crate::Reg<qspi_icr::QSPI_ICR_SPEC>,
+    pub icr: ICR,
     #[doc = "0x38 - Instruction Frame Register"]
-    pub qspi_ifr: crate::Reg<qspi_ifr::QSPI_IFR_SPEC>,
+    pub ifr: IFR,
     _reserved12: [u8; 0x04],
     #[doc = "0x40 - Scrambling Mode Register"]
-    pub qspi_smr: crate::Reg<qspi_smr::QSPI_SMR_SPEC>,
+    pub smr: SMR,
     #[doc = "0x44 - Scrambling Key Register"]
-    pub qspi_skr: crate::Reg<qspi_skr::QSPI_SKR_SPEC>,
+    pub skr: SKR,
     _reserved14: [u8; 0x9c],
     #[doc = "0xe4 - Write Protection Mode Register"]
-    pub qspi_wpmr: crate::Reg<qspi_wpmr::QSPI_WPMR_SPEC>,
+    pub wpmr: WPMR,
     #[doc = "0xe8 - Write Protection Status Register"]
-    pub qspi_wpsr: crate::Reg<qspi_wpsr::QSPI_WPSR_SPEC>,
+    pub wpsr: WPSR,
 }
-#[doc = "QSPI_CR register accessor: an alias for `Reg<QSPI_CR_SPEC>`"]
-pub type QSPI_CR = crate::Reg<qspi_cr::QSPI_CR_SPEC>;
+#[doc = "CR (w) register accessor: an alias for `Reg<CR_SPEC>`"]
+pub type CR = crate::Reg<cr::CR_SPEC>;
 #[doc = "Control Register"]
-pub mod qspi_cr;
-#[doc = "QSPI_MR register accessor: an alias for `Reg<QSPI_MR_SPEC>`"]
-pub type QSPI_MR = crate::Reg<qspi_mr::QSPI_MR_SPEC>;
+pub mod cr;
+#[doc = "MR (rw) register accessor: an alias for `Reg<MR_SPEC>`"]
+pub type MR = crate::Reg<mr::MR_SPEC>;
 #[doc = "Mode Register"]
-pub mod qspi_mr;
-#[doc = "QSPI_RDR register accessor: an alias for `Reg<QSPI_RDR_SPEC>`"]
-pub type QSPI_RDR = crate::Reg<qspi_rdr::QSPI_RDR_SPEC>;
+pub mod mr;
+#[doc = "RDR (r) register accessor: an alias for `Reg<RDR_SPEC>`"]
+pub type RDR = crate::Reg<rdr::RDR_SPEC>;
 #[doc = "Receive Data Register"]
-pub mod qspi_rdr;
-#[doc = "QSPI_TDR register accessor: an alias for `Reg<QSPI_TDR_SPEC>`"]
-pub type QSPI_TDR = crate::Reg<qspi_tdr::QSPI_TDR_SPEC>;
+pub mod rdr;
+#[doc = "TDR (w) register accessor: an alias for `Reg<TDR_SPEC>`"]
+pub type TDR = crate::Reg<tdr::TDR_SPEC>;
 #[doc = "Transmit Data Register"]
-pub mod qspi_tdr;
-#[doc = "QSPI_SR register accessor: an alias for `Reg<QSPI_SR_SPEC>`"]
-pub type QSPI_SR = crate::Reg<qspi_sr::QSPI_SR_SPEC>;
+pub mod tdr;
+#[doc = "SR (r) register accessor: an alias for `Reg<SR_SPEC>`"]
+pub type SR = crate::Reg<sr::SR_SPEC>;
 #[doc = "Status Register"]
-pub mod qspi_sr;
-#[doc = "QSPI_IER register accessor: an alias for `Reg<QSPI_IER_SPEC>`"]
-pub type QSPI_IER = crate::Reg<qspi_ier::QSPI_IER_SPEC>;
+pub mod sr;
+#[doc = "IER (w) register accessor: an alias for `Reg<IER_SPEC>`"]
+pub type IER = crate::Reg<ier::IER_SPEC>;
 #[doc = "Interrupt Enable Register"]
-pub mod qspi_ier;
-#[doc = "QSPI_IDR register accessor: an alias for `Reg<QSPI_IDR_SPEC>`"]
-pub type QSPI_IDR = crate::Reg<qspi_idr::QSPI_IDR_SPEC>;
+pub mod ier;
+#[doc = "IDR (w) register accessor: an alias for `Reg<IDR_SPEC>`"]
+pub type IDR = crate::Reg<idr::IDR_SPEC>;
 #[doc = "Interrupt Disable Register"]
-pub mod qspi_idr;
-#[doc = "QSPI_IMR register accessor: an alias for `Reg<QSPI_IMR_SPEC>`"]
-pub type QSPI_IMR = crate::Reg<qspi_imr::QSPI_IMR_SPEC>;
+pub mod idr;
+#[doc = "IMR (r) register accessor: an alias for `Reg<IMR_SPEC>`"]
+pub type IMR = crate::Reg<imr::IMR_SPEC>;
 #[doc = "Interrupt Mask Register"]
-pub mod qspi_imr;
-#[doc = "QSPI_SCR register accessor: an alias for `Reg<QSPI_SCR_SPEC>`"]
-pub type QSPI_SCR = crate::Reg<qspi_scr::QSPI_SCR_SPEC>;
+pub mod imr;
+#[doc = "SCR (rw) register accessor: an alias for `Reg<SCR_SPEC>`"]
+pub type SCR = crate::Reg<scr::SCR_SPEC>;
 #[doc = "Serial Clock Register"]
-pub mod qspi_scr;
-#[doc = "QSPI_IAR register accessor: an alias for `Reg<QSPI_IAR_SPEC>`"]
-pub type QSPI_IAR = crate::Reg<qspi_iar::QSPI_IAR_SPEC>;
+pub mod scr;
+#[doc = "IAR (rw) register accessor: an alias for `Reg<IAR_SPEC>`"]
+pub type IAR = crate::Reg<iar::IAR_SPEC>;
 #[doc = "Instruction Address Register"]
-pub mod qspi_iar;
-#[doc = "QSPI_ICR register accessor: an alias for `Reg<QSPI_ICR_SPEC>`"]
-pub type QSPI_ICR = crate::Reg<qspi_icr::QSPI_ICR_SPEC>;
+pub mod iar;
+#[doc = "ICR (rw) register accessor: an alias for `Reg<ICR_SPEC>`"]
+pub type ICR = crate::Reg<icr::ICR_SPEC>;
 #[doc = "Instruction Code Register"]
-pub mod qspi_icr;
-#[doc = "QSPI_IFR register accessor: an alias for `Reg<QSPI_IFR_SPEC>`"]
-pub type QSPI_IFR = crate::Reg<qspi_ifr::QSPI_IFR_SPEC>;
+pub mod icr;
+#[doc = "IFR (rw) register accessor: an alias for `Reg<IFR_SPEC>`"]
+pub type IFR = crate::Reg<ifr::IFR_SPEC>;
 #[doc = "Instruction Frame Register"]
-pub mod qspi_ifr;
-#[doc = "QSPI_SMR register accessor: an alias for `Reg<QSPI_SMR_SPEC>`"]
-pub type QSPI_SMR = crate::Reg<qspi_smr::QSPI_SMR_SPEC>;
+pub mod ifr;
+#[doc = "SMR (rw) register accessor: an alias for `Reg<SMR_SPEC>`"]
+pub type SMR = crate::Reg<smr::SMR_SPEC>;
 #[doc = "Scrambling Mode Register"]
-pub mod qspi_smr;
-#[doc = "QSPI_SKR register accessor: an alias for `Reg<QSPI_SKR_SPEC>`"]
-pub type QSPI_SKR = crate::Reg<qspi_skr::QSPI_SKR_SPEC>;
+pub mod smr;
+#[doc = "SKR (w) register accessor: an alias for `Reg<SKR_SPEC>`"]
+pub type SKR = crate::Reg<skr::SKR_SPEC>;
 #[doc = "Scrambling Key Register"]
-pub mod qspi_skr;
-#[doc = "QSPI_WPMR register accessor: an alias for `Reg<QSPI_WPMR_SPEC>`"]
-pub type QSPI_WPMR = crate::Reg<qspi_wpmr::QSPI_WPMR_SPEC>;
+pub mod skr;
+#[doc = "WPMR (rw) register accessor: an alias for `Reg<WPMR_SPEC>`"]
+pub type WPMR = crate::Reg<wpmr::WPMR_SPEC>;
 #[doc = "Write Protection Mode Register"]
-pub mod qspi_wpmr;
-#[doc = "QSPI_WPSR register accessor: an alias for `Reg<QSPI_WPSR_SPEC>`"]
-pub type QSPI_WPSR = crate::Reg<qspi_wpsr::QSPI_WPSR_SPEC>;
+pub mod wpmr;
+#[doc = "WPSR (r) register accessor: an alias for `Reg<WPSR_SPEC>`"]
+pub type WPSR = crate::Reg<wpsr::WPSR_SPEC>;
 #[doc = "Write Protection Status Register"]
-pub mod qspi_wpsr;
+pub mod wpsr;

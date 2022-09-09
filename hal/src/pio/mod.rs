@@ -72,8 +72,8 @@ HAL-level. However, it applies some enforcement to ensure that
 [`Pin`] interrupts are not ignored; refer to
 [`BankInterrupts::iter`].
 
-[ISR]: crate::pac::pioa::pio_isr
-[IMR]: crate::pac::pioa::pio_imr
+[ISR]: crate::pac::pioa::isr
+[IMR]: crate::pac::pioa::imr
 
 # Example
 
