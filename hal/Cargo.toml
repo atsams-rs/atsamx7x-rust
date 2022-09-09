@@ -1,7 +1,9 @@
 [package]
 name = "atsamx7x-hal"
 version = "0.3.0"
+# in no particular order
 authors = [
+        "Michal Fita <michal.fita@gmail.com>",
         "Viktor Sonesten <viktor.sonesten@grepit.se>",
         "Martin Mörtsell <martin.mortsell@grepit.se>",
         "Ivar Jönsson <ivar.jonsson@grepit.se>",
@@ -19,7 +21,7 @@ keywords = [
     "embedded-hal",
     "hal"
 ]
-repository = "https://git.grepit.se/embedded-rust/atsamx7x-hal"
+repository = "https://github.com/atsams-rs/atsamx7x-rust"
 readme = "README.md"
 edition = "2021"
 
