@@ -7,6 +7,10 @@
 - [Sealed](https://rust-lang.github.io/api-guidelines/future-proofing.html#sealed-traits-protect-against-downstream-implementations-c-sealed) all HAL-internal traits to disallow potentially unsound downstream trait implementations.
 - Regenerated PACs with `svd2rust 0.25.1` using up-to-date (2022-05-18) SVDs. These SVDs are now vendored in this repository, instead of using a submodule.
 
+### Removed
+
+- Unused auxiliary script `hal/build.sh`.
+
 ## [v0.3.0] 2022-08-26
 
 ### Added
