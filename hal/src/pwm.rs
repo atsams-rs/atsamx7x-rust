@@ -56,7 +56,7 @@ use crate::pac::{
     pwm0::{RegisterBlock, PWM_CH_NUM as ChannelRegister},
     PWM0, PWM1,
 };
-use crate::pio::*;
+use crate::{generics, pio::*};
 
 use paste::paste;
 
@@ -68,7 +68,7 @@ pub enum PwmError {
 }
 
 /// Hardware metadata for a PWM.
-pub trait PwmMeta {
+pub trait PwmMeta: generics::Sealed {
     #[doc(hidden)]
     const REG: *const RegisterBlock;
     #[doc(hidden)]
@@ -333,7 +333,7 @@ impl<M: PwmMeta> Pwm<M> {
 }
 
 /// Run-time [`Channel`] identifier.
-pub trait ChannelId {
+pub trait ChannelId: generics::Sealed {
     #[doc(hidden)]
     const DYN: usize;
 }
@@ -344,6 +344,7 @@ macro_rules! impl_ch {
             $(
                 /// [`Channel`] identifier.
                 pub enum [<Ch $Num>] {}
+                impl generics::Sealed for [<Ch $Num>] {}
                 impl ChannelId for [<Ch $Num>] {
                     const DYN: usize = $Num;
                 }
@@ -354,7 +355,7 @@ macro_rules! impl_ch {
 impl_ch!(0, 1, 2, 3);
 
 /// Valid signal emission pin for a given [`Channel`].
-pub trait ChannelPin<M: PwmMeta, I: ChannelId> {}
+pub trait ChannelPin<M: PwmMeta, I: ChannelId>: generics::Sealed {}
 #[doc(hidden)]
 pub trait ChannelPinHigh<M: PwmMeta, I: ChannelId>: ChannelPin<M, I> {}
 #[doc(hidden)]
@@ -397,6 +398,7 @@ macro_rules! impl_pwm {
                     #[doc = "Identifier for [`" [<$Pwm:upper>] "`]."]
                     pub enum $Pwm {}
 
+                    impl generics::Sealed for $Pwm {}
                     impl PwmMeta for $Pwm {
                         const REG: *const RegisterBlock = [<$Pwm:upper>]::ptr();
                         const PID: PeripheralIdentifier = PeripheralIdentifier::[<$Pwm:upper>];

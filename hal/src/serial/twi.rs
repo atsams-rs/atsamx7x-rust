@@ -40,6 +40,7 @@ twi.write_read(0x0, &[0b1000_0000], &mut buffer).unwrap();
 
 use crate::clocks::{Clock, Hertz, HostClock, PeripheralIdentifier};
 use crate::ehal::blocking;
+use crate::generics;
 #[cfg(not(feature = "pins-64"))]
 use crate::pac::TWIHS2;
 use crate::pac::{
@@ -47,13 +48,14 @@ use crate::pac::{
     TWIHS0, TWIHS1,
 };
 use crate::pio::*;
+
 use core::marker::PhantomData;
 
 use paste::paste;
 
 /// [`Twi`] metadata
 #[allow(missing_docs)]
-pub trait TwiMeta {
+pub trait TwiMeta: generics::Sealed {
     const REG: *const RegisterBlock;
     const PID: PeripheralIdentifier;
 }
@@ -249,13 +251,14 @@ macro_rules! impl_twi {
                     pub enum $Twi {}
 
                     #[doc = "Type-level variant denoting a valid data [`Pin`] for [`" [<$Twi:upper>] "`]."]
-                    pub trait [<$Twi DataPin>] {}
+                    pub trait [<$Twi DataPin>]: generics::Sealed {}
                     #[doc = "Type-level variant denoting a valid clock [`Pin`] for [`" [<$Twi:upper>] "`]."]
-                    pub trait [<$Twi ClockPin>] {}
+                    pub trait [<$Twi ClockPin>]: generics::Sealed {}
 
                     impl [<$Twi DataPin>] for $DataPin {}
                     impl [<$Twi ClockPin>] for $ClockPin {}
 
+                    impl generics::Sealed for $Twi {}
                     impl TwiMeta for $Twi {
                         const REG: *const RegisterBlock = [<$Twi:upper>]::ptr();
                         const PID: PeripheralIdentifier = PeripheralIdentifier::[<$Twi:upper>];

@@ -52,6 +52,7 @@ pub struct Uart<M: UsartMeta> {
     pres: Prescaler,
     _meta: PhantomData<M>,
 }
+impl<M: UsartMeta> generics::Sealed for Uart<M> {}
 
 impl<M: UsartMeta> RegisterAccess<M> for Uart<M> {}
 

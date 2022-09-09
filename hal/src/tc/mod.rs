@@ -194,7 +194,7 @@ use crate::fugit::{
     MicrosDurationU32 as MicrosDuration, MillisDurationU32 as MillisDuration,
     TimerDurationU32 as Duration, TimerInstantU32 as Instant,
 };
-use crate::generics::CountDownError;
+use crate::generics::{self, CountDownError};
 use crate::pac::tc0::{
     tc_channel::{
         tc_cmr_capture_mode::{LDRA_A, LDRB_A, SBSMPLR_A},
@@ -351,7 +351,7 @@ impl ChannelId for Ch2 {
 }
 
 /// The current state of the [`Channel`].
-pub trait ChannelState {}
+pub trait ChannelState: generics::Sealed {}
 /// The [`Channel`] is inactive and does not generate a signal.
 pub enum Inactive {}
 /// The [`Channel`] is active and is generating a signal, with an input clock of `FREQ_HZ`Hz.
@@ -359,8 +359,11 @@ pub struct Generate<C: ChannelClock, const FREQ_HZ: u32>(PhantomData<C>);
 /// The [`Channel`] is active and is capturing input signals.
 pub struct Capture<C: ChannelClock, const FREQ_HZ: u32>(PhantomData<C>);
 
+impl generics::Sealed for Inactive {}
 impl ChannelState for Inactive {}
+impl<C: ChannelClock, const FREQ_HZ: u32> generics::Sealed for Generate<C, FREQ_HZ> {}
 impl<C: ChannelClock, const FREQ_HZ: u32> ChannelState for Generate<C, FREQ_HZ> {}
+impl<C: ChannelClock, const FREQ_HZ: u32> generics::Sealed for Capture<C, FREQ_HZ> {}
 impl<C: ChannelClock, const FREQ_HZ: u32> ChannelState for Capture<C, FREQ_HZ> {}
 
 /// Possible [`Channel`] configuration errors.
@@ -440,6 +443,7 @@ pub struct Channel<M: TcMeta, I: ChannelId, S: ChannelState> {
     _meta: PhantomData<M>,
     _state: PhantomData<S>,
 }
+impl<M: TcMeta, I: ChannelId, S: ChannelState> generics::Sealed for Channel<M, I, S> {}
 unsafe impl<M: TcMeta, I: ChannelId, S: ChannelState> RegisterAccess<M, I> for Channel<M, I, S> {}
 impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
     /// Create a new [`Channel`].
@@ -612,20 +616,22 @@ impl<M: TcMeta> Tc<M> {
 }
 
 /// Denotes whether a [`Pin`] is a `TIOAx` or `TIOBx` pin.
-pub trait PinIdentifier {}
+pub trait PinIdentifier: generics::Sealed {}
 /// Denotes that the [`Pin`] is a `TIOAx` pin.
 pub enum A {}
 /// Denotes that the [`Pin`] is a `TIOBx` pin.
 pub enum B {}
+impl generics::Sealed for A {}
 impl PinIdentifier for A {}
+impl generics::Sealed for B {}
 impl PinIdentifier for B {}
 
 /// [`Pin`] that acts as an input for a [`Channel`].
-pub trait ChannelInputPin<M: TcMeta, I: ChannelId, P: PinIdentifier> {}
+pub trait ChannelInputPin<M: TcMeta, I: ChannelId, P: PinIdentifier>: generics::Sealed {}
 #[doc(hidden)]
-pub trait ChannelOutputPin<M: TcMeta, I: ChannelId, P: PinIdentifier> {}
+pub trait ChannelOutputPin<M: TcMeta, I: ChannelId, P: PinIdentifier>: generics::Sealed {}
 #[doc(hidden)]
-pub trait ChannelClockPin<M: TcMeta, I: ChannelId> {}
+pub trait ChannelClockPin<M: TcMeta, I: ChannelId>: generics::Sealed {}
 
 macro_rules! impl_tc {
     (

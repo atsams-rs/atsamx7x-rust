@@ -119,6 +119,7 @@ are in "system I/O mode" where they provide debug, trace, and flash-erase functi
 By default, trying to configure these pins yield no effect, but can  be enabled via the `reconfigurable-system-pins` feature.
 */
 
+use crate::generics;
 use crate::pac::{
     // All PIO banks below use the same register block definition.
     pioa::RegisterBlock,
@@ -144,11 +145,6 @@ mod reg;
 
 use paste::paste;
 
-/// Root trait used to mark traits with an exhaustive set of
-/// implementations.
-#[doc(hidden)]
-pub trait Sealed {}
-
 macro_rules! selector {
     (
         $(
@@ -161,7 +157,7 @@ macro_rules! selector {
                     doc = "Multi-purpose type-level variant of [`PeripheralConfig`] (for alternative [`Peripheral`] function " $Letter ") and [`PinBank`]."
                 ]
                 pub enum $Letter {}
-                impl Sealed for $Letter {}
+                impl generics::Sealed for $Letter {}
             )+
         }
     }

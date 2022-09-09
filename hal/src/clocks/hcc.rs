@@ -65,11 +65,13 @@ impl From<MckDivider> for MCK_DIV {
 pub struct HostClock {
     freq: Hertz,
 }
+impl generics::Sealed for HostClock {}
 
 /// HCLK, driven by the same clock as [`HostClock`].
 pub struct ProcessorClock {
     freq: Hertz,
 }
+impl generics::Sealed for ProcessorClock {}
 
 /// [`HostClock`] and [`ProcessorClock`] prescaler and divider configuration.
 ///

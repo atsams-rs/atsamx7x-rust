@@ -102,7 +102,7 @@ let (hclk, mck) = HostClockController::new(clocks.hclk, clocks.mck)
 ```
 */
 
-use crate::generics::Token;
+use crate::generics::{self, Token};
 use crate::pac::{pmc, supc, utmi, PMC, SUPC, UTMI};
 use crate::watchdog::{Disabled, Watchdog};
 
@@ -113,14 +113,17 @@ use paste::paste;
 /// Internal "Main RC" (for [`MainClock`]) or "Slow RC" (for
 /// [`SlowClock`]) oscillator.
 pub enum InternalRC {}
+impl generics::Sealed for InternalRC {}
 /// External crystal powered by the MCU that is connected to XIN and
 /// XOUT (for [`MainClock`]) or XIN32 and XOUT32 (for [`SlowClock`]).
 pub enum ExternalNormal {}
+impl generics::Sealed for ExternalNormal {}
 /// External clock signal connected to XIN, XOUT potentially
 /// unconnected (for [`MainClock`]); or XIN32, XOUT32 potentially
 /// unconnected (for [`SlowClock`]). Bypasses the oscillator otherwise
 /// used when using [`ExternalNormal`].
 pub enum ExternalBypass {}
+impl generics::Sealed for ExternalBypass {}
 
 /// Time to wait until an observed clock is stable, from the
 /// perpective of SLCK (@ 32.768KHz).
@@ -129,7 +132,7 @@ pub enum ExternalBypass {}
 const COMMON_WAIT_UNTIL_STABLE_62_MILLISECS: u8 = u8::MAX;
 
 /// A generic device clock.
-pub trait Clock {
+pub trait Clock: generics::Sealed {
     /// Returns the (calculated) frequency of this clock.
     fn freq(&self) -> Hertz;
 }

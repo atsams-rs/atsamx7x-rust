@@ -71,6 +71,7 @@ pub enum UpllDivider {
 /// UPLLCK, driven by [`MainClock<ExternalNormal>`] or
 /// [`MainClock<ExternalBypass>`].
 pub struct UpllClock;
+impl generics::Sealed for UpllClock {}
 
 impl UpllClock {
     pub(crate) const FREQ: Megahertz = Megahertz::from_raw(480);
@@ -80,6 +81,7 @@ impl UpllClock {
 pub struct UpllDivClock {
     freq: Megahertz,
 }
+impl generics::Sealed for UpllDivClock {}
 
 /// The source of the [`UpllDivClock`].
 pub trait UpllDivSource: Clock {}

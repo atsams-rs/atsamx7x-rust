@@ -47,14 +47,16 @@ pub enum Host {}
 pub enum Client {}
 
 /// Type marker for the role of the [`Spi`].
-pub trait SpiRole {
+pub trait SpiRole: generics::Sealed {
     /// The roll of the [`Spi`] in the current configuration
     const ROLE: SpiMode;
 }
 
+impl generics::Sealed for Host {}
 impl SpiRole for Host {
     const ROLE: SpiMode = SpiMode::Host;
 }
+impl generics::Sealed for Client {}
 impl SpiRole for Client {
     const ROLE: SpiMode = SpiMode::Client;
 }
@@ -79,6 +81,7 @@ pub struct Spi<M: UsartMeta, SpiRole> {
     _meta: PhantomData<M>,
     _role: PhantomData<SpiRole>,
 }
+impl<M: UsartMeta, R: SpiRole> generics::Sealed for Spi<M, R> {}
 
 impl<M: UsartMeta, R: SpiRole> RegisterAccess<M> for Spi<M, R> {}
 

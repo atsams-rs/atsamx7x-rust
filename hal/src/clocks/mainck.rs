@@ -6,7 +6,7 @@ pub use crate::pac::pmc::ckgr_mor::MOSCRCF_A as InternalRcFreq;
 /// The source of the [`MainClock`].
 ///
 /// Refer to §60.2.1.
-pub trait MainClockSource {}
+pub trait MainClockSource: generics::Sealed {}
 
 impl MainClockSource for InternalRC {}
 impl MainClockSource for ExternalNormal {}
@@ -18,6 +18,7 @@ pub struct MainClock<S: MainClockSource> {
     freq: Megahertz,
     source: PhantomData<S>,
 }
+impl<S> generics::Sealed for MainClock<S> where S: MainClockSource {}
 
 impl<S: MainClockSource> Clock for MainClock<S> {
     fn freq(&self) -> Hertz {

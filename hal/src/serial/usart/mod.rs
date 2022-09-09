@@ -82,7 +82,7 @@ let _ = spi.read().unwrap();
 
 pub use super::uart::{ChannelMode, ParityMode, UartConfiguration};
 use crate::clocks::{Clock, Hertz, HostClock, Pck, Pck4, PeripheralIdentifier};
-use crate::generics::Token;
+use crate::generics::{self, Token};
 #[cfg(not(feature = "pins-64"))]
 use crate::pac::USART2;
 use crate::pac::{
@@ -161,7 +161,7 @@ impl TryFrom<u32> for Event {
 type Prescaler = u16;
 
 /// Configuration procedures for entering an [`UsartMode`].
-pub trait UsartHandle<M: UsartMeta> {
+pub trait UsartHandle<M: UsartMeta>: generics::Sealed {
     /// The mode of the handle.
     const MODE: UsartMode;
 
@@ -228,14 +228,14 @@ pub enum UsartError {
 
 /// Peripheral metadata for the [`Usart`].
 #[allow(missing_docs)]
-pub trait UsartMeta {
+pub trait UsartMeta: generics::Sealed {
     const REG: *const RegisterBlock;
     const PID: PeripheralIdentifier;
 }
 /// A trait denotation of valid [pins](`crate::pio::Pin`) that can be used to configure the [`Usart`].
 ///
 /// *note* that different pin configurations allow for different modes of operation ( [`spi`], [`uart`] )
-pub trait UsartPins {
+pub trait UsartPins: generics::Sealed {
     /// Denotes wether the set of pins allows for setting the [`Usart`] in [`spi`] host mode.
     const SPI_HOST_MODE_POSSIBLE: bool;
     /// Denotes wether the set of pins allows for setting the [`Usart`] in [`spi`] device mode.
@@ -332,6 +332,7 @@ pub struct Usart<M: UsartMeta> {
     spi: SpiContext,
     uart: UartContext,
 }
+impl<M: UsartMeta> generics::Sealed for Usart<M> {}
 
 impl<M: UsartMeta> RegisterAccess<M> for Usart<M> {}
 
@@ -498,6 +499,7 @@ macro_rules! impl_pins {
 - SPI_HOST : " [<$SpiHostModePossible>] "\n
 - SPI_DEVICE : " [<$SpiDeviceModePossible>] "\n
 - UART : " [<$UartModePossible>] ""]
+                impl generics::Sealed for $Pins {}
                 impl [<$Usart Pins>] for $Pins {}
 
                 impl UsartPins for $Pins {
@@ -542,6 +544,7 @@ macro_rules! impl_usart {
                     #[doc = "Type-level variant denoting [`" [<$Usart:upper>] "`]."]
                     pub enum $Usart {}
 
+                    impl generics::Sealed for $Usart {}
                     impl UsartMeta for $Usart {
                         const REG: *const RegisterBlock = [<$Usart:upper>]::ptr();
                         const PID: PeripheralIdentifier = PeripheralIdentifier::[<$Usart:upper>];

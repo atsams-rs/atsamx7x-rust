@@ -74,7 +74,7 @@ impl PckTokens {
 }
 
 /// [`Pck`] identifier.
-pub trait PckId {
+pub trait PckId: generics::Sealed {
     #[doc(hidden)]
     const ID: u8;
 }
@@ -85,6 +85,7 @@ macro_rules! impl_pck {
             $(
                 #[doc = "Identifier for PCK" $Id "."]
                 pub enum [<Pck $Id>] {}
+                impl generics::Sealed for [<Pck $Id>] {}
                 impl PckId for [<Pck $Id>] {
                     const ID: u8 = $Id;
                 }
@@ -100,6 +101,7 @@ pub struct Pck<I: PckId> {
     id: PhantomData<I>,
     freq: Hertz,
 }
+impl<I> generics::Sealed for Pck<I> where I: PckId {}
 
 #[doc(hidden)]
 pub trait PckSource: Clock {

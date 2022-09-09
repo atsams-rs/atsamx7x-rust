@@ -45,22 +45,22 @@ impl<I: PinId> Registers<I> {
 
 /// Type indicating that the [`Pin`] is in reset
 pub enum Reset {}
-impl Sealed for Reset {}
+impl generics::Sealed for Reset {}
 
 /// Type indicating that the [`Pin`] is an input
 pub enum Input {}
-impl Sealed for Input {}
+impl generics::Sealed for Input {}
 
 /// Type indicating that the [`Pin`] is an output
 pub enum Output {}
-impl Sealed for Output {}
+impl generics::Sealed for Output {}
 
 //================================================================================
 // Peripheral configurations
 //================================================================================
 
 /// Type-level enum for alternate peripheral function configurations
-pub trait PeripheralConfig: Sealed {
+pub trait PeripheralConfig: generics::Sealed {
     /// Corresponding [`DynPeripheral`](super::DynPeripheral)
     const DYN: DynPeripheral;
 }
@@ -93,7 +93,7 @@ pub struct Peripheral<C: PeripheralConfig> {
     cfg: PhantomData<C>,
 }
 
-impl<C: PeripheralConfig> Sealed for Peripheral<C> {}
+impl<C: PeripheralConfig> generics::Sealed for Peripheral<C> {}
 
 //================================================================================
 // Pin modes
@@ -101,7 +101,7 @@ impl<C: PeripheralConfig> Sealed for Peripheral<C> {}
 
 /// Type-level enum representing [`Pin`] modes
 #[allow(missing_docs)]
-pub trait PinMode: Sealed {
+pub trait PinMode: generics::Sealed {
     const DYN: DynPinMode;
 }
 
@@ -126,7 +126,7 @@ impl PinMode for Input {
 //================================================================================
 
 #[allow(missing_docs)]
-pub trait PinId: Sealed {
+pub trait PinId: generics::Sealed {
     const DYN: DynPinId;
 }
 
@@ -138,6 +138,12 @@ where
 {
     pub(in crate::pio) regs: Registers<I>,
     mode: PhantomData<M>,
+}
+impl<I, M> generics::Sealed for Pin<I, M>
+where
+    I: PinId,
+    M: PinMode,
+{
 }
 
 impl<I, M> Pin<I, M>
