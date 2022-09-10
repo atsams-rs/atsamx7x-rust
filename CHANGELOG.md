@@ -14,6 +14,7 @@
 ### Removed
 
 - Unused auxiliary script `hal/build.sh`.
+- Deprecated `.ci/` configuration files and Gitlab CI.
 
 ### Fixed
 
