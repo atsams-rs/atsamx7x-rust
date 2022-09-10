@@ -1,0 +1,21 @@
+name: Formatting
+on: [push, pull_request]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rust (thumbv7em)
+        run: rustup show
+      - run: |
+          set -xeu
+          cargo fmt --package atsamx7x-hal -- --check
+          for manifest in $(find ./boards -type f -iname Cargo.toml); do
+            pushd $(dirname $manifest)
+            cargo fmt -- --check
+            popd
+          done

@@ -1,0 +1,89 @@
+name: HAL
+on: [push, pull_request]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - id: pacs
+        run: echo "::set-output name=pac_matrix::$(ls ./pac --indicator-style=none | cut -c 3- | jq -ncR '[inputs]')"
+      - id: boards
+        run: echo "::set-output name=board_matrix::$(ls ./boards --indicator-style=none | jq -ncR '[inputs]')"
+    outputs:
+      pac_matrix: ${{ steps.pacs.outputs.pac_matrix }}
+      board_matrix: ${{ steps.boards.outputs.board_matrix }}
+
+  build:
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pac: ${{ fromJson(needs.setup.outputs.pac_matrix) }}
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - name: Install Rust (thumbv7em)
+        run: rustup show
+      - name: Build HAL for ${{ matrix.pac }}
+        run: |
+          cargo check --package atsamx7x-hal --features ${{ matrix.pac }},unproven
+
+  board-examples:
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        board: ${{ fromJson(needs.setup.outputs.board_matrix) }}
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - name: Install Rust (thumbv7em)
+        run: rustup show
+      - name: Build boards/${{ matrix.board }}/examples/*
+        run: |
+          cd boards/${{ matrix.board }}
+          cargo check --examples
+
+  clippy-hal:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - name: Install Rust (thumbv7em)
+        run: rustup show
+      - name: Lint HAL
+        run: cargo clippy --package atsamx7x-hal --no-deps --features samv71q21b,unproven -- --deny warnings
+
+  clippy-examples:
+    needs: [setup, build, board-examples]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        board: ${{ fromJson(needs.setup.outputs.board_matrix) }}
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - name: Install Rust (thumbv7em)
+        run: rustup show
+      - name: Lint boards/${{ matrix.board }}/examples/*
+        run: |
+          cd boards/${{ matrix.board }}
+          cargo clippy --examples --no-deps -- --deny warnings
+
+  docs:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - name: Install Rust (thumbv7em)
+        run: rustup show
+      - name: Build HAL documentation
+        run: cargo doc --package atsamx7x-hal --no-deps --features samv71q21b,unproven
+      - name: Build HAL doc tests
+        run: cargo test --package atsamx7x-hal --doc --features samv71q21b,unproven --target x86_64-unknown-linux-gnu
+
+

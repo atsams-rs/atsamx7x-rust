@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- GitHub CI.
+
 ### Changed
 
 - [Sealed](https://rust-lang.github.io/api-guidelines/future-proofing.html#sealed-traits-protect-against-downstream-implementations-c-sealed) all HAL-internal traits to disallow potentially unsound downstream trait implementations.
