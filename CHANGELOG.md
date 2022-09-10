@@ -11,6 +11,10 @@
 
 - Unused auxiliary script `hal/build.sh`.
 
+### Fixed
+
+- HAL build when targeting `sams70n19b`.
+
 ## [v0.3.0] 2022-08-26
 
 ### Added
