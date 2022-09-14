@@ -171,25 +171,25 @@ pub use atsamv71q21 as pac;
 #[cfg(feature = "samv71q21b")]
 pub use atsamv71q21b as pac;
 
-#[cfg(feature = "rev-b")]
+#[cfg(feature = "device-selected")]
 pub mod afec;
-#[cfg(feature = "rev-b")]
+#[cfg(feature = "device-selected")]
 pub mod clocks;
-#[cfg(feature = "rev-b")]
+#[cfg(feature = "device-selected")]
 pub mod efc;
-#[cfg(feature = "rev-b")]
+#[cfg(feature = "device-selected")]
 pub mod generics;
-#[cfg(feature = "rev-b")]
+#[cfg(feature = "device-selected")]
 pub mod pio;
-#[cfg(feature = "rev-b")]
+#[cfg(feature = "device-selected")]
 pub mod pwm;
-#[cfg(feature = "rev-b")]
+#[cfg(feature = "device-selected")]
 pub mod rtt;
-#[cfg(feature = "rev-b")]
+#[cfg(feature = "device-selected")]
 pub mod serial;
-#[cfg(feature = "rev-b")]
+#[cfg(feature = "device-selected")]
 pub mod tc;
-#[cfg(feature = "rev-b")]
+#[cfg(feature = "device-selected")]
 pub mod usb;
-#[cfg(feature = "rev-b")]
+#[cfg(feature = "device-selected")]
 pub mod watchdog;
