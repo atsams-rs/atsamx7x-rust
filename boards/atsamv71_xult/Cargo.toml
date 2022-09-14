@@ -5,7 +5,7 @@ edition = "2021"
 authors = [
     "Viktor Sonesten <viktor.sonesten@grepit.se>"
 ]
-license = "0BSD"
+license = "MIT OR Apache-2.0"
 
 [dependencies]
 cortex-m-rtic = "1.0"

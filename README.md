@@ -38,7 +38,7 @@ Refer to the [SAM V71 Xplained Ulta README](boards/atsamv71_xult/README.md).
 
 License
 ---
-All source code (including code snippets) is licensed under either of
+All source code in this repository is licensed under either of
 
 Apache License, Version 2.0 ([LICENSE-APACHE](./LICENSE-APACHE) or https://www.apache.org/licenses/LICENSE-2.0)
 MIT license ([LICENSE-MIT](./LICENSE-MIT) or https://opensource.org/licenses/MIT)

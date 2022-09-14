@@ -8,6 +8,7 @@ authors = [
         "Martin Mörtsell <martin.mortsell@grepit.se>",
         "Ivar Jönsson <ivar.jonsson@grepit.se>",
 ]
+license = "MIT OR Apache-2.0"
 description = "HAL and peripheral access API for ATSAME70, ATSAMS70, ATSAMV70, and ATSAMV71 microcontrollers"
 categories = [
     "embedded",
