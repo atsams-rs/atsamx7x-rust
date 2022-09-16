@@ -35,32 +35,9 @@ impl From<crate::W<US_ICDIFF_SPEC>> for W {
     }
 }
 #[doc = "Field `ICDIFF` reader - IC Differentiator Number"]
-pub struct ICDIFF_R(crate::FieldReader<u8, u8>);
-impl ICDIFF_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: u8) -> Self {
-        ICDIFF_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for ICDIFF_R {
-    type Target = crate::FieldReader<u8, u8>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type ICDIFF_R = crate::FieldReader<u8, u8>;
 #[doc = "Field `ICDIFF` writer - IC Differentiator Number"]
-pub struct ICDIFF_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> ICDIFF_W<'a> {
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x0f) | (value as u32 & 0x0f);
-        self.w
-    }
-}
+pub type ICDIFF_W<'a, const O: u8> = crate::FieldWriter<'a, u32, US_ICDIFF_SPEC, u8, u8, 4, O>;
 impl R {
     #[doc = "Bits 0:3 - IC Differentiator Number"]
     #[inline(always)]
@@ -71,8 +48,8 @@ impl R {
 impl W {
     #[doc = "Bits 0:3 - IC Differentiator Number"]
     #[inline(always)]
-    pub fn icdiff(&mut self) -> ICDIFF_W {
-        ICDIFF_W { w: self }
+    pub fn icdiff(&mut self) -> ICDIFF_W<0> {
+        ICDIFF_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

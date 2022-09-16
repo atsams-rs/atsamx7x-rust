@@ -2,100 +2,100 @@
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - Control Register"]
-    pub aes_cr: crate::Reg<aes_cr::AES_CR_SPEC>,
+    pub cr: CR,
     #[doc = "0x04 - Mode Register"]
-    pub aes_mr: crate::Reg<aes_mr::AES_MR_SPEC>,
+    pub mr: MR,
     _reserved2: [u8; 0x08],
     #[doc = "0x10 - Interrupt Enable Register"]
-    pub aes_ier: crate::Reg<aes_ier::AES_IER_SPEC>,
+    pub ier: IER,
     #[doc = "0x14 - Interrupt Disable Register"]
-    pub aes_idr: crate::Reg<aes_idr::AES_IDR_SPEC>,
+    pub idr: IDR,
     #[doc = "0x18 - Interrupt Mask Register"]
-    pub aes_imr: crate::Reg<aes_imr::AES_IMR_SPEC>,
+    pub imr: IMR,
     #[doc = "0x1c - Interrupt Status Register"]
-    pub aes_isr: crate::Reg<aes_isr::AES_ISR_SPEC>,
+    pub isr: ISR,
     #[doc = "0x20..0x40 - Key Word Register"]
-    pub aes_keywr: [crate::Reg<aes_keywr::AES_KEYWR_SPEC>; 8],
+    pub keywr: [KEYWR; 8],
     #[doc = "0x40..0x50 - Input Data Register"]
-    pub aes_idatar: [crate::Reg<aes_idatar::AES_IDATAR_SPEC>; 4],
+    pub idatar: [IDATAR; 4],
     #[doc = "0x50..0x60 - Output Data Register"]
-    pub aes_odatar: [crate::Reg<aes_odatar::AES_ODATAR_SPEC>; 4],
+    pub odatar: [ODATAR; 4],
     #[doc = "0x60..0x70 - Initialization Vector Register"]
-    pub aes_ivr: [crate::Reg<aes_ivr::AES_IVR_SPEC>; 4],
+    pub ivr: [IVR; 4],
     #[doc = "0x70 - Additional Authenticated Data Length Register"]
-    pub aes_aadlenr: crate::Reg<aes_aadlenr::AES_AADLENR_SPEC>,
+    pub aadlenr: AADLENR,
     #[doc = "0x74 - Plaintext/Ciphertext Length Register"]
-    pub aes_clenr: crate::Reg<aes_clenr::AES_CLENR_SPEC>,
+    pub clenr: CLENR,
     #[doc = "0x78..0x88 - GCM Intermediate Hash Word Register"]
-    pub aes_ghashr: [crate::Reg<aes_ghashr::AES_GHASHR_SPEC>; 4],
+    pub ghashr: [GHASHR; 4],
     #[doc = "0x88..0x98 - GCM Authentication Tag Word Register"]
-    pub aes_tagr: [crate::Reg<aes_tagr::AES_TAGR_SPEC>; 4],
+    pub tagr: [TAGR; 4],
     #[doc = "0x98 - GCM Encryption Counter Value Register"]
-    pub aes_ctrr: crate::Reg<aes_ctrr::AES_CTRR_SPEC>,
+    pub ctrr: CTRR,
     #[doc = "0x9c..0xac - GCM H Word Register"]
-    pub aes_gcmhr: [crate::Reg<aes_gcmhr::AES_GCMHR_SPEC>; 4],
+    pub gcmhr: [GCMHR; 4],
 }
-#[doc = "AES_CR register accessor: an alias for `Reg<AES_CR_SPEC>`"]
-pub type AES_CR = crate::Reg<aes_cr::AES_CR_SPEC>;
+#[doc = "CR (w) register accessor: an alias for `Reg<CR_SPEC>`"]
+pub type CR = crate::Reg<cr::CR_SPEC>;
 #[doc = "Control Register"]
-pub mod aes_cr;
-#[doc = "AES_MR register accessor: an alias for `Reg<AES_MR_SPEC>`"]
-pub type AES_MR = crate::Reg<aes_mr::AES_MR_SPEC>;
+pub mod cr;
+#[doc = "MR (rw) register accessor: an alias for `Reg<MR_SPEC>`"]
+pub type MR = crate::Reg<mr::MR_SPEC>;
 #[doc = "Mode Register"]
-pub mod aes_mr;
-#[doc = "AES_IER register accessor: an alias for `Reg<AES_IER_SPEC>`"]
-pub type AES_IER = crate::Reg<aes_ier::AES_IER_SPEC>;
+pub mod mr;
+#[doc = "IER (w) register accessor: an alias for `Reg<IER_SPEC>`"]
+pub type IER = crate::Reg<ier::IER_SPEC>;
 #[doc = "Interrupt Enable Register"]
-pub mod aes_ier;
-#[doc = "AES_IDR register accessor: an alias for `Reg<AES_IDR_SPEC>`"]
-pub type AES_IDR = crate::Reg<aes_idr::AES_IDR_SPEC>;
+pub mod ier;
+#[doc = "IDR (w) register accessor: an alias for `Reg<IDR_SPEC>`"]
+pub type IDR = crate::Reg<idr::IDR_SPEC>;
 #[doc = "Interrupt Disable Register"]
-pub mod aes_idr;
-#[doc = "AES_IMR register accessor: an alias for `Reg<AES_IMR_SPEC>`"]
-pub type AES_IMR = crate::Reg<aes_imr::AES_IMR_SPEC>;
+pub mod idr;
+#[doc = "IMR (r) register accessor: an alias for `Reg<IMR_SPEC>`"]
+pub type IMR = crate::Reg<imr::IMR_SPEC>;
 #[doc = "Interrupt Mask Register"]
-pub mod aes_imr;
-#[doc = "AES_ISR register accessor: an alias for `Reg<AES_ISR_SPEC>`"]
-pub type AES_ISR = crate::Reg<aes_isr::AES_ISR_SPEC>;
+pub mod imr;
+#[doc = "ISR (r) register accessor: an alias for `Reg<ISR_SPEC>`"]
+pub type ISR = crate::Reg<isr::ISR_SPEC>;
 #[doc = "Interrupt Status Register"]
-pub mod aes_isr;
-#[doc = "AES_KEYWR register accessor: an alias for `Reg<AES_KEYWR_SPEC>`"]
-pub type AES_KEYWR = crate::Reg<aes_keywr::AES_KEYWR_SPEC>;
+pub mod isr;
+#[doc = "KEYWR (w) register accessor: an alias for `Reg<KEYWR_SPEC>`"]
+pub type KEYWR = crate::Reg<keywr::KEYWR_SPEC>;
 #[doc = "Key Word Register"]
-pub mod aes_keywr;
-#[doc = "AES_IDATAR register accessor: an alias for `Reg<AES_IDATAR_SPEC>`"]
-pub type AES_IDATAR = crate::Reg<aes_idatar::AES_IDATAR_SPEC>;
+pub mod keywr;
+#[doc = "IDATAR (w) register accessor: an alias for `Reg<IDATAR_SPEC>`"]
+pub type IDATAR = crate::Reg<idatar::IDATAR_SPEC>;
 #[doc = "Input Data Register"]
-pub mod aes_idatar;
-#[doc = "AES_ODATAR register accessor: an alias for `Reg<AES_ODATAR_SPEC>`"]
-pub type AES_ODATAR = crate::Reg<aes_odatar::AES_ODATAR_SPEC>;
+pub mod idatar;
+#[doc = "ODATAR (r) register accessor: an alias for `Reg<ODATAR_SPEC>`"]
+pub type ODATAR = crate::Reg<odatar::ODATAR_SPEC>;
 #[doc = "Output Data Register"]
-pub mod aes_odatar;
-#[doc = "AES_IVR register accessor: an alias for `Reg<AES_IVR_SPEC>`"]
-pub type AES_IVR = crate::Reg<aes_ivr::AES_IVR_SPEC>;
+pub mod odatar;
+#[doc = "IVR (w) register accessor: an alias for `Reg<IVR_SPEC>`"]
+pub type IVR = crate::Reg<ivr::IVR_SPEC>;
 #[doc = "Initialization Vector Register"]
-pub mod aes_ivr;
-#[doc = "AES_AADLENR register accessor: an alias for `Reg<AES_AADLENR_SPEC>`"]
-pub type AES_AADLENR = crate::Reg<aes_aadlenr::AES_AADLENR_SPEC>;
+pub mod ivr;
+#[doc = "AADLENR (rw) register accessor: an alias for `Reg<AADLENR_SPEC>`"]
+pub type AADLENR = crate::Reg<aadlenr::AADLENR_SPEC>;
 #[doc = "Additional Authenticated Data Length Register"]
-pub mod aes_aadlenr;
-#[doc = "AES_CLENR register accessor: an alias for `Reg<AES_CLENR_SPEC>`"]
-pub type AES_CLENR = crate::Reg<aes_clenr::AES_CLENR_SPEC>;
+pub mod aadlenr;
+#[doc = "CLENR (rw) register accessor: an alias for `Reg<CLENR_SPEC>`"]
+pub type CLENR = crate::Reg<clenr::CLENR_SPEC>;
 #[doc = "Plaintext/Ciphertext Length Register"]
-pub mod aes_clenr;
-#[doc = "AES_GHASHR register accessor: an alias for `Reg<AES_GHASHR_SPEC>`"]
-pub type AES_GHASHR = crate::Reg<aes_ghashr::AES_GHASHR_SPEC>;
+pub mod clenr;
+#[doc = "GHASHR (rw) register accessor: an alias for `Reg<GHASHR_SPEC>`"]
+pub type GHASHR = crate::Reg<ghashr::GHASHR_SPEC>;
 #[doc = "GCM Intermediate Hash Word Register"]
-pub mod aes_ghashr;
-#[doc = "AES_TAGR register accessor: an alias for `Reg<AES_TAGR_SPEC>`"]
-pub type AES_TAGR = crate::Reg<aes_tagr::AES_TAGR_SPEC>;
+pub mod ghashr;
+#[doc = "TAGR (r) register accessor: an alias for `Reg<TAGR_SPEC>`"]
+pub type TAGR = crate::Reg<tagr::TAGR_SPEC>;
 #[doc = "GCM Authentication Tag Word Register"]
-pub mod aes_tagr;
-#[doc = "AES_CTRR register accessor: an alias for `Reg<AES_CTRR_SPEC>`"]
-pub type AES_CTRR = crate::Reg<aes_ctrr::AES_CTRR_SPEC>;
+pub mod tagr;
+#[doc = "CTRR (r) register accessor: an alias for `Reg<CTRR_SPEC>`"]
+pub type CTRR = crate::Reg<ctrr::CTRR_SPEC>;
 #[doc = "GCM Encryption Counter Value Register"]
-pub mod aes_ctrr;
-#[doc = "AES_GCMHR register accessor: an alias for `Reg<AES_GCMHR_SPEC>`"]
-pub type AES_GCMHR = crate::Reg<aes_gcmhr::AES_GCMHR_SPEC>;
+pub mod ctrr;
+#[doc = "GCMHR (rw) register accessor: an alias for `Reg<GCMHR_SPEC>`"]
+pub type GCMHR = crate::Reg<gcmhr::GCMHR_SPEC>;
 #[doc = "GCM H Word Register"]
-pub mod aes_gcmhr;
+pub mod gcmhr;

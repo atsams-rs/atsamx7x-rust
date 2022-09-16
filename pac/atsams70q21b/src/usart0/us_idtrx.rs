@@ -35,32 +35,9 @@ impl From<crate::W<US_IDTRX_SPEC>> for W {
     }
 }
 #[doc = "Field `IDTRX` reader - LON Indeterminate Time after Reception (comm_type = 1 mode only)"]
-pub struct IDTRX_R(crate::FieldReader<u32, u32>);
-impl IDTRX_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: u32) -> Self {
-        IDTRX_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for IDTRX_R {
-    type Target = crate::FieldReader<u32, u32>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type IDTRX_R = crate::FieldReader<u32, u32>;
 #[doc = "Field `IDTRX` writer - LON Indeterminate Time after Reception (comm_type = 1 mode only)"]
-pub struct IDTRX_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> IDTRX_W<'a> {
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub unsafe fn bits(self, value: u32) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x00ff_ffff) | (value as u32 & 0x00ff_ffff);
-        self.w
-    }
-}
+pub type IDTRX_W<'a, const O: u8> = crate::FieldWriter<'a, u32, US_IDTRX_SPEC, u32, u32, 24, O>;
 impl R {
     #[doc = "Bits 0:23 - LON Indeterminate Time after Reception (comm_type = 1 mode only)"]
     #[inline(always)]
@@ -71,8 +48,8 @@ impl R {
 impl W {
     #[doc = "Bits 0:23 - LON Indeterminate Time after Reception (comm_type = 1 mode only)"]
     #[inline(always)]
-    pub fn idtrx(&mut self) -> IDTRX_W {
-        IDTRX_W { w: self }
+    pub fn idtrx(&mut self) -> IDTRX_W<0> {
+        IDTRX_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

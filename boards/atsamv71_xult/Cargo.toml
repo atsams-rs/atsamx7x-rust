@@ -1,0 +1,31 @@
+[package]
+name = "atsamv71_xult"
+version = "0.3.0"
+edition = "2021"
+authors = [
+    "Viktor Sonesten <viktor.sonesten@grepit.se>"
+]
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+cortex-m-rtic = "1.0"
+cortex-m = "0.7"
+panic-rtt-target = { version = "0.1.2", features = ["cortex-m"] }
+rtt-target = { version = "0.3.1", features = ["cortex-m"] }
+heapless = "0.7"
+usbd-serial = "0.1.1"
+dwt-systick-monotonic = "1.0.0"
+
+[dependencies.atsamx7x-hal]
+version = "0.3.0"
+path = "../../hal"
+features = ["samv71q21b-rt", "unproven"]
+
+[profile.dev]
+debug = true
+lto = true
+
+[profile.release]
+codegen-units = 1
+debug = true
+lto = true

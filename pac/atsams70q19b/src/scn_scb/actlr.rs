@@ -35,464 +35,88 @@ impl From<crate::W<ACTLR_SPEC>> for W {
     }
 }
 #[doc = "Field `DISFOLD` reader - Disables folding of IT instructions"]
-pub struct DISFOLD_R(crate::FieldReader<bool, bool>);
-impl DISFOLD_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        DISFOLD_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for DISFOLD_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type DISFOLD_R = crate::BitReader<bool>;
 #[doc = "Field `DISFOLD` writer - Disables folding of IT instructions"]
-pub struct DISFOLD_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> DISFOLD_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
-        self.w
-    }
-}
+pub type DISFOLD_W<'a, const O: u8> = crate::BitWriter<'a, u32, ACTLR_SPEC, bool, O>;
 #[doc = "Field `FPEXCODIS` reader - Disables FPU exception outputs"]
-pub struct FPEXCODIS_R(crate::FieldReader<bool, bool>);
-impl FPEXCODIS_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        FPEXCODIS_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for FPEXCODIS_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type FPEXCODIS_R = crate::BitReader<bool>;
 #[doc = "Field `FPEXCODIS` writer - Disables FPU exception outputs"]
-pub struct FPEXCODIS_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> FPEXCODIS_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 10)) | ((value as u32 & 0x01) << 10);
-        self.w
-    }
-}
+pub type FPEXCODIS_W<'a, const O: u8> = crate::BitWriter<'a, u32, ACTLR_SPEC, bool, O>;
 #[doc = "Field `DISRAMODE` reader - Disables dynamic read allocate mode for Write-Back Write-Allocate memory regions"]
-pub struct DISRAMODE_R(crate::FieldReader<bool, bool>);
-impl DISRAMODE_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        DISRAMODE_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for DISRAMODE_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type DISRAMODE_R = crate::BitReader<bool>;
 #[doc = "Field `DISRAMODE` writer - Disables dynamic read allocate mode for Write-Back Write-Allocate memory regions"]
-pub struct DISRAMODE_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> DISRAMODE_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 11)) | ((value as u32 & 0x01) << 11);
-        self.w
-    }
-}
+pub type DISRAMODE_W<'a, const O: u8> = crate::BitWriter<'a, u32, ACTLR_SPEC, bool, O>;
 #[doc = "Field `DISITMATBFLUSH` reader - Disables ITM and DWT ATB flush"]
-pub struct DISITMATBFLUSH_R(crate::FieldReader<bool, bool>);
-impl DISITMATBFLUSH_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        DISITMATBFLUSH_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for DISITMATBFLUSH_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type DISITMATBFLUSH_R = crate::BitReader<bool>;
 #[doc = "Field `DISITMATBFLUSH` writer - Disables ITM and DWT ATB flush"]
-pub struct DISITMATBFLUSH_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> DISITMATBFLUSH_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 12)) | ((value as u32 & 0x01) << 12);
-        self.w
-    }
-}
+pub type DISITMATBFLUSH_W<'a, const O: u8> = crate::BitWriter<'a, u32, ACTLR_SPEC, bool, O>;
 #[doc = "Field `DISBTACREAD` reader - "]
-pub struct DISBTACREAD_R(crate::FieldReader<bool, bool>);
-impl DISBTACREAD_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        DISBTACREAD_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for DISBTACREAD_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type DISBTACREAD_R = crate::BitReader<bool>;
 #[doc = "Field `DISBTACREAD` writer - "]
-pub struct DISBTACREAD_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> DISBTACREAD_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 13)) | ((value as u32 & 0x01) << 13);
-        self.w
-    }
-}
+pub type DISBTACREAD_W<'a, const O: u8> = crate::BitWriter<'a, u32, ACTLR_SPEC, bool, O>;
 #[doc = "Field `DISBTACALLOC` reader - "]
-pub struct DISBTACALLOC_R(crate::FieldReader<bool, bool>);
-impl DISBTACALLOC_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        DISBTACALLOC_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for DISBTACALLOC_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type DISBTACALLOC_R = crate::BitReader<bool>;
 #[doc = "Field `DISBTACALLOC` writer - "]
-pub struct DISBTACALLOC_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> DISBTACALLOC_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 14)) | ((value as u32 & 0x01) << 14);
-        self.w
-    }
-}
+pub type DISBTACALLOC_W<'a, const O: u8> = crate::BitWriter<'a, u32, ACTLR_SPEC, bool, O>;
 #[doc = "Field `DISCRITAXIRUR` reader - "]
-pub struct DISCRITAXIRUR_R(crate::FieldReader<bool, bool>);
-impl DISCRITAXIRUR_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        DISCRITAXIRUR_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for DISCRITAXIRUR_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type DISCRITAXIRUR_R = crate::BitReader<bool>;
 #[doc = "Field `DISCRITAXIRUR` writer - "]
-pub struct DISCRITAXIRUR_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> DISCRITAXIRUR_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 15)) | ((value as u32 & 0x01) << 15);
-        self.w
-    }
-}
+pub type DISCRITAXIRUR_W<'a, const O: u8> = crate::BitWriter<'a, u32, ACTLR_SPEC, bool, O>;
 #[doc = "Field `DISDI` reader - "]
-pub struct DISDI_R(crate::FieldReader<u8, u8>);
-impl DISDI_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: u8) -> Self {
-        DISDI_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for DISDI_R {
-    type Target = crate::FieldReader<u8, u8>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type DISDI_R = crate::FieldReader<u8, u8>;
 #[doc = "Field `DISDI` writer - "]
-pub struct DISDI_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> DISDI_W<'a> {
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x1f << 16)) | ((value as u32 & 0x1f) << 16);
-        self.w
-    }
-}
+pub type DISDI_W<'a, const O: u8> = crate::FieldWriter<'a, u32, ACTLR_SPEC, u8, u8, 5, O>;
 #[doc = "Field `DISISSCH1` reader - "]
-pub struct DISISSCH1_R(crate::FieldReader<u8, u8>);
-impl DISISSCH1_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: u8) -> Self {
-        DISISSCH1_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for DISISSCH1_R {
-    type Target = crate::FieldReader<u8, u8>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type DISISSCH1_R = crate::FieldReader<u8, u8>;
 #[doc = "Field `DISISSCH1` writer - "]
-pub struct DISISSCH1_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> DISISSCH1_W<'a> {
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x1f << 21)) | ((value as u32 & 0x1f) << 21);
-        self.w
-    }
-}
+pub type DISISSCH1_W<'a, const O: u8> = crate::FieldWriter<'a, u32, ACTLR_SPEC, u8, u8, 5, O>;
 #[doc = "Field `DISDYNADD` reader - Disables dynamic allocation of ADD and SUB instructions"]
-pub struct DISDYNADD_R(crate::FieldReader<bool, bool>);
-impl DISDYNADD_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        DISDYNADD_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for DISDYNADD_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type DISDYNADD_R = crate::BitReader<bool>;
 #[doc = "Field `DISDYNADD` writer - Disables dynamic allocation of ADD and SUB instructions"]
-pub struct DISDYNADD_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> DISDYNADD_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 26)) | ((value as u32 & 0x01) << 26);
-        self.w
-    }
-}
+pub type DISDYNADD_W<'a, const O: u8> = crate::BitWriter<'a, u32, ACTLR_SPEC, bool, O>;
 #[doc = "Field `DISCRITAXIRUW` reader - Disable critical AXI read-under-write"]
-pub struct DISCRITAXIRUW_R(crate::FieldReader<bool, bool>);
-impl DISCRITAXIRUW_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        DISCRITAXIRUW_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for DISCRITAXIRUW_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type DISCRITAXIRUW_R = crate::BitReader<bool>;
 #[doc = "Field `DISCRITAXIRUW` writer - Disable critical AXI read-under-write"]
-pub struct DISCRITAXIRUW_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> DISCRITAXIRUW_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 27)) | ((value as u32 & 0x01) << 27);
-        self.w
-    }
-}
+pub type DISCRITAXIRUW_W<'a, const O: u8> = crate::BitWriter<'a, u32, ACTLR_SPEC, bool, O>;
 #[doc = "Field `DISFPUISSOPT` reader - Disables dynamic allocation of ADD and SUB instructions"]
-pub struct DISFPUISSOPT_R(crate::FieldReader<bool, bool>);
-impl DISFPUISSOPT_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        DISFPUISSOPT_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for DISFPUISSOPT_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type DISFPUISSOPT_R = crate::BitReader<bool>;
 #[doc = "Field `DISFPUISSOPT` writer - Disables dynamic allocation of ADD and SUB instructions"]
-pub struct DISFPUISSOPT_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> DISFPUISSOPT_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 28)) | ((value as u32 & 0x01) << 28);
-        self.w
-    }
-}
+pub type DISFPUISSOPT_W<'a, const O: u8> = crate::BitWriter<'a, u32, ACTLR_SPEC, bool, O>;
 impl R {
     #[doc = "Bit 2 - Disables folding of IT instructions"]
     #[inline(always)]
     pub fn disfold(&self) -> DISFOLD_R {
-        DISFOLD_R::new(((self.bits >> 2) & 0x01) != 0)
+        DISFOLD_R::new(((self.bits >> 2) & 1) != 0)
     }
     #[doc = "Bit 10 - Disables FPU exception outputs"]
     #[inline(always)]
     pub fn fpexcodis(&self) -> FPEXCODIS_R {
-        FPEXCODIS_R::new(((self.bits >> 10) & 0x01) != 0)
+        FPEXCODIS_R::new(((self.bits >> 10) & 1) != 0)
     }
     #[doc = "Bit 11 - Disables dynamic read allocate mode for Write-Back Write-Allocate memory regions"]
     #[inline(always)]
     pub fn disramode(&self) -> DISRAMODE_R {
-        DISRAMODE_R::new(((self.bits >> 11) & 0x01) != 0)
+        DISRAMODE_R::new(((self.bits >> 11) & 1) != 0)
     }
     #[doc = "Bit 12 - Disables ITM and DWT ATB flush"]
     #[inline(always)]
     pub fn disitmatbflush(&self) -> DISITMATBFLUSH_R {
-        DISITMATBFLUSH_R::new(((self.bits >> 12) & 0x01) != 0)
+        DISITMATBFLUSH_R::new(((self.bits >> 12) & 1) != 0)
     }
     #[doc = "Bit 13"]
     #[inline(always)]
     pub fn disbtacread(&self) -> DISBTACREAD_R {
-        DISBTACREAD_R::new(((self.bits >> 13) & 0x01) != 0)
+        DISBTACREAD_R::new(((self.bits >> 13) & 1) != 0)
     }
     #[doc = "Bit 14"]
     #[inline(always)]
     pub fn disbtacalloc(&self) -> DISBTACALLOC_R {
-        DISBTACALLOC_R::new(((self.bits >> 14) & 0x01) != 0)
+        DISBTACALLOC_R::new(((self.bits >> 14) & 1) != 0)
     }
     #[doc = "Bit 15"]
     #[inline(always)]
     pub fn discritaxirur(&self) -> DISCRITAXIRUR_R {
-        DISCRITAXIRUR_R::new(((self.bits >> 15) & 0x01) != 0)
+        DISCRITAXIRUR_R::new(((self.bits >> 15) & 1) != 0)
     }
     #[doc = "Bits 16:20"]
     #[inline(always)]
@@ -507,79 +131,79 @@ impl R {
     #[doc = "Bit 26 - Disables dynamic allocation of ADD and SUB instructions"]
     #[inline(always)]
     pub fn disdynadd(&self) -> DISDYNADD_R {
-        DISDYNADD_R::new(((self.bits >> 26) & 0x01) != 0)
+        DISDYNADD_R::new(((self.bits >> 26) & 1) != 0)
     }
     #[doc = "Bit 27 - Disable critical AXI read-under-write"]
     #[inline(always)]
     pub fn discritaxiruw(&self) -> DISCRITAXIRUW_R {
-        DISCRITAXIRUW_R::new(((self.bits >> 27) & 0x01) != 0)
+        DISCRITAXIRUW_R::new(((self.bits >> 27) & 1) != 0)
     }
     #[doc = "Bit 28 - Disables dynamic allocation of ADD and SUB instructions"]
     #[inline(always)]
     pub fn disfpuissopt(&self) -> DISFPUISSOPT_R {
-        DISFPUISSOPT_R::new(((self.bits >> 28) & 0x01) != 0)
+        DISFPUISSOPT_R::new(((self.bits >> 28) & 1) != 0)
     }
 }
 impl W {
     #[doc = "Bit 2 - Disables folding of IT instructions"]
     #[inline(always)]
-    pub fn disfold(&mut self) -> DISFOLD_W {
-        DISFOLD_W { w: self }
+    pub fn disfold(&mut self) -> DISFOLD_W<2> {
+        DISFOLD_W::new(self)
     }
     #[doc = "Bit 10 - Disables FPU exception outputs"]
     #[inline(always)]
-    pub fn fpexcodis(&mut self) -> FPEXCODIS_W {
-        FPEXCODIS_W { w: self }
+    pub fn fpexcodis(&mut self) -> FPEXCODIS_W<10> {
+        FPEXCODIS_W::new(self)
     }
     #[doc = "Bit 11 - Disables dynamic read allocate mode for Write-Back Write-Allocate memory regions"]
     #[inline(always)]
-    pub fn disramode(&mut self) -> DISRAMODE_W {
-        DISRAMODE_W { w: self }
+    pub fn disramode(&mut self) -> DISRAMODE_W<11> {
+        DISRAMODE_W::new(self)
     }
     #[doc = "Bit 12 - Disables ITM and DWT ATB flush"]
     #[inline(always)]
-    pub fn disitmatbflush(&mut self) -> DISITMATBFLUSH_W {
-        DISITMATBFLUSH_W { w: self }
+    pub fn disitmatbflush(&mut self) -> DISITMATBFLUSH_W<12> {
+        DISITMATBFLUSH_W::new(self)
     }
     #[doc = "Bit 13"]
     #[inline(always)]
-    pub fn disbtacread(&mut self) -> DISBTACREAD_W {
-        DISBTACREAD_W { w: self }
+    pub fn disbtacread(&mut self) -> DISBTACREAD_W<13> {
+        DISBTACREAD_W::new(self)
     }
     #[doc = "Bit 14"]
     #[inline(always)]
-    pub fn disbtacalloc(&mut self) -> DISBTACALLOC_W {
-        DISBTACALLOC_W { w: self }
+    pub fn disbtacalloc(&mut self) -> DISBTACALLOC_W<14> {
+        DISBTACALLOC_W::new(self)
     }
     #[doc = "Bit 15"]
     #[inline(always)]
-    pub fn discritaxirur(&mut self) -> DISCRITAXIRUR_W {
-        DISCRITAXIRUR_W { w: self }
+    pub fn discritaxirur(&mut self) -> DISCRITAXIRUR_W<15> {
+        DISCRITAXIRUR_W::new(self)
     }
     #[doc = "Bits 16:20"]
     #[inline(always)]
-    pub fn disdi(&mut self) -> DISDI_W {
-        DISDI_W { w: self }
+    pub fn disdi(&mut self) -> DISDI_W<16> {
+        DISDI_W::new(self)
     }
     #[doc = "Bits 21:25"]
     #[inline(always)]
-    pub fn disissch1(&mut self) -> DISISSCH1_W {
-        DISISSCH1_W { w: self }
+    pub fn disissch1(&mut self) -> DISISSCH1_W<21> {
+        DISISSCH1_W::new(self)
     }
     #[doc = "Bit 26 - Disables dynamic allocation of ADD and SUB instructions"]
     #[inline(always)]
-    pub fn disdynadd(&mut self) -> DISDYNADD_W {
-        DISDYNADD_W { w: self }
+    pub fn disdynadd(&mut self) -> DISDYNADD_W<26> {
+        DISDYNADD_W::new(self)
     }
     #[doc = "Bit 27 - Disable critical AXI read-under-write"]
     #[inline(always)]
-    pub fn discritaxiruw(&mut self) -> DISCRITAXIRUW_W {
-        DISCRITAXIRUW_W { w: self }
+    pub fn discritaxiruw(&mut self) -> DISCRITAXIRUW_W<27> {
+        DISCRITAXIRUW_W::new(self)
     }
     #[doc = "Bit 28 - Disables dynamic allocation of ADD and SUB instructions"]
     #[inline(always)]
-    pub fn disfpuissopt(&mut self) -> DISFPUISSOPT_W {
-        DISFPUISSOPT_W { w: self }
+    pub fn disfpuissopt(&mut self) -> DISFPUISSOPT_W<28> {
+        DISFPUISSOPT_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

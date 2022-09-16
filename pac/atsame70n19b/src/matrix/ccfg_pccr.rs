@@ -35,148 +35,49 @@ impl From<crate::W<CCFG_PCCR_SPEC>> for W {
     }
 }
 #[doc = "Field `TC0CC` reader - TC0 Clock Configuration"]
-pub struct TC0CC_R(crate::FieldReader<bool, bool>);
-impl TC0CC_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        TC0CC_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for TC0CC_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type TC0CC_R = crate::BitReader<bool>;
 #[doc = "Field `TC0CC` writer - TC0 Clock Configuration"]
-pub struct TC0CC_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> TC0CC_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 20)) | ((value as u32 & 0x01) << 20);
-        self.w
-    }
-}
+pub type TC0CC_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCFG_PCCR_SPEC, bool, O>;
 #[doc = "Field `I2SC0CC` reader - I2SC0 Clock Configuration"]
-pub struct I2SC0CC_R(crate::FieldReader<bool, bool>);
-impl I2SC0CC_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        I2SC0CC_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for I2SC0CC_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type I2SC0CC_R = crate::BitReader<bool>;
 #[doc = "Field `I2SC0CC` writer - I2SC0 Clock Configuration"]
-pub struct I2SC0CC_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> I2SC0CC_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 21)) | ((value as u32 & 0x01) << 21);
-        self.w
-    }
-}
+pub type I2SC0CC_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCFG_PCCR_SPEC, bool, O>;
 #[doc = "Field `I2SC1CC` reader - I2SC1 Clock Configuration"]
-pub struct I2SC1CC_R(crate::FieldReader<bool, bool>);
-impl I2SC1CC_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        I2SC1CC_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for I2SC1CC_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type I2SC1CC_R = crate::BitReader<bool>;
 #[doc = "Field `I2SC1CC` writer - I2SC1 Clock Configuration"]
-pub struct I2SC1CC_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> I2SC1CC_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 22)) | ((value as u32 & 0x01) << 22);
-        self.w
-    }
-}
+pub type I2SC1CC_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCFG_PCCR_SPEC, bool, O>;
 impl R {
     #[doc = "Bit 20 - TC0 Clock Configuration"]
     #[inline(always)]
     pub fn tc0cc(&self) -> TC0CC_R {
-        TC0CC_R::new(((self.bits >> 20) & 0x01) != 0)
+        TC0CC_R::new(((self.bits >> 20) & 1) != 0)
     }
     #[doc = "Bit 21 - I2SC0 Clock Configuration"]
     #[inline(always)]
     pub fn i2sc0cc(&self) -> I2SC0CC_R {
-        I2SC0CC_R::new(((self.bits >> 21) & 0x01) != 0)
+        I2SC0CC_R::new(((self.bits >> 21) & 1) != 0)
     }
     #[doc = "Bit 22 - I2SC1 Clock Configuration"]
     #[inline(always)]
     pub fn i2sc1cc(&self) -> I2SC1CC_R {
-        I2SC1CC_R::new(((self.bits >> 22) & 0x01) != 0)
+        I2SC1CC_R::new(((self.bits >> 22) & 1) != 0)
     }
 }
 impl W {
     #[doc = "Bit 20 - TC0 Clock Configuration"]
     #[inline(always)]
-    pub fn tc0cc(&mut self) -> TC0CC_W {
-        TC0CC_W { w: self }
+    pub fn tc0cc(&mut self) -> TC0CC_W<20> {
+        TC0CC_W::new(self)
     }
     #[doc = "Bit 21 - I2SC0 Clock Configuration"]
     #[inline(always)]
-    pub fn i2sc0cc(&mut self) -> I2SC0CC_W {
-        I2SC0CC_W { w: self }
+    pub fn i2sc0cc(&mut self) -> I2SC0CC_W<21> {
+        I2SC0CC_W::new(self)
     }
     #[doc = "Bit 22 - I2SC1 Clock Configuration"]
     #[inline(always)]
-    pub fn i2sc1cc(&mut self) -> I2SC1CC_W {
-        I2SC1CC_W { w: self }
+    pub fn i2sc1cc(&mut self) -> I2SC1CC_W<22> {
+        I2SC1CC_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

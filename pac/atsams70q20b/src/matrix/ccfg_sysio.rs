@@ -35,242 +35,77 @@ impl From<crate::W<CCFG_SYSIO_SPEC>> for W {
     }
 }
 #[doc = "Field `SYSIO4` reader - PB4 or TDI Assignment"]
-pub struct SYSIO4_R(crate::FieldReader<bool, bool>);
-impl SYSIO4_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        SYSIO4_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for SYSIO4_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type SYSIO4_R = crate::BitReader<bool>;
 #[doc = "Field `SYSIO4` writer - PB4 or TDI Assignment"]
-pub struct SYSIO4_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> SYSIO4_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
-        self.w
-    }
-}
+pub type SYSIO4_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCFG_SYSIO_SPEC, bool, O>;
 #[doc = "Field `SYSIO5` reader - PB5 or TDO/TRACESWO Assignment"]
-pub struct SYSIO5_R(crate::FieldReader<bool, bool>);
-impl SYSIO5_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        SYSIO5_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for SYSIO5_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type SYSIO5_R = crate::BitReader<bool>;
 #[doc = "Field `SYSIO5` writer - PB5 or TDO/TRACESWO Assignment"]
-pub struct SYSIO5_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> SYSIO5_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
-        self.w
-    }
-}
+pub type SYSIO5_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCFG_SYSIO_SPEC, bool, O>;
 #[doc = "Field `SYSIO6` reader - PB6 or TMS/SWDIO Assignment"]
-pub struct SYSIO6_R(crate::FieldReader<bool, bool>);
-impl SYSIO6_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        SYSIO6_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for SYSIO6_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type SYSIO6_R = crate::BitReader<bool>;
 #[doc = "Field `SYSIO6` writer - PB6 or TMS/SWDIO Assignment"]
-pub struct SYSIO6_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> SYSIO6_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
-        self.w
-    }
-}
+pub type SYSIO6_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCFG_SYSIO_SPEC, bool, O>;
 #[doc = "Field `SYSIO7` reader - PB7 or TCK/SWCLK Assignment"]
-pub struct SYSIO7_R(crate::FieldReader<bool, bool>);
-impl SYSIO7_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        SYSIO7_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for SYSIO7_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type SYSIO7_R = crate::BitReader<bool>;
 #[doc = "Field `SYSIO7` writer - PB7 or TCK/SWCLK Assignment"]
-pub struct SYSIO7_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> SYSIO7_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 7)) | ((value as u32 & 0x01) << 7);
-        self.w
-    }
-}
+pub type SYSIO7_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCFG_SYSIO_SPEC, bool, O>;
 #[doc = "Field `SYSIO12` reader - PB12 or ERASE Assignment"]
-pub struct SYSIO12_R(crate::FieldReader<bool, bool>);
-impl SYSIO12_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        SYSIO12_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for SYSIO12_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type SYSIO12_R = crate::BitReader<bool>;
 #[doc = "Field `SYSIO12` writer - PB12 or ERASE Assignment"]
-pub struct SYSIO12_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> SYSIO12_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 12)) | ((value as u32 & 0x01) << 12);
-        self.w
-    }
-}
+pub type SYSIO12_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCFG_SYSIO_SPEC, bool, O>;
 impl R {
     #[doc = "Bit 4 - PB4 or TDI Assignment"]
     #[inline(always)]
     pub fn sysio4(&self) -> SYSIO4_R {
-        SYSIO4_R::new(((self.bits >> 4) & 0x01) != 0)
+        SYSIO4_R::new(((self.bits >> 4) & 1) != 0)
     }
     #[doc = "Bit 5 - PB5 or TDO/TRACESWO Assignment"]
     #[inline(always)]
     pub fn sysio5(&self) -> SYSIO5_R {
-        SYSIO5_R::new(((self.bits >> 5) & 0x01) != 0)
+        SYSIO5_R::new(((self.bits >> 5) & 1) != 0)
     }
     #[doc = "Bit 6 - PB6 or TMS/SWDIO Assignment"]
     #[inline(always)]
     pub fn sysio6(&self) -> SYSIO6_R {
-        SYSIO6_R::new(((self.bits >> 6) & 0x01) != 0)
+        SYSIO6_R::new(((self.bits >> 6) & 1) != 0)
     }
     #[doc = "Bit 7 - PB7 or TCK/SWCLK Assignment"]
     #[inline(always)]
     pub fn sysio7(&self) -> SYSIO7_R {
-        SYSIO7_R::new(((self.bits >> 7) & 0x01) != 0)
+        SYSIO7_R::new(((self.bits >> 7) & 1) != 0)
     }
     #[doc = "Bit 12 - PB12 or ERASE Assignment"]
     #[inline(always)]
     pub fn sysio12(&self) -> SYSIO12_R {
-        SYSIO12_R::new(((self.bits >> 12) & 0x01) != 0)
+        SYSIO12_R::new(((self.bits >> 12) & 1) != 0)
     }
 }
 impl W {
     #[doc = "Bit 4 - PB4 or TDI Assignment"]
     #[inline(always)]
-    pub fn sysio4(&mut self) -> SYSIO4_W {
-        SYSIO4_W { w: self }
+    pub fn sysio4(&mut self) -> SYSIO4_W<4> {
+        SYSIO4_W::new(self)
     }
     #[doc = "Bit 5 - PB5 or TDO/TRACESWO Assignment"]
     #[inline(always)]
-    pub fn sysio5(&mut self) -> SYSIO5_W {
-        SYSIO5_W { w: self }
+    pub fn sysio5(&mut self) -> SYSIO5_W<5> {
+        SYSIO5_W::new(self)
     }
     #[doc = "Bit 6 - PB6 or TMS/SWDIO Assignment"]
     #[inline(always)]
-    pub fn sysio6(&mut self) -> SYSIO6_W {
-        SYSIO6_W { w: self }
+    pub fn sysio6(&mut self) -> SYSIO6_W<6> {
+        SYSIO6_W::new(self)
     }
     #[doc = "Bit 7 - PB7 or TCK/SWCLK Assignment"]
     #[inline(always)]
-    pub fn sysio7(&mut self) -> SYSIO7_W {
-        SYSIO7_W { w: self }
+    pub fn sysio7(&mut self) -> SYSIO7_W<7> {
+        SYSIO7_W::new(self)
     }
     #[doc = "Bit 12 - PB12 or ERASE Assignment"]
     #[inline(always)]
-    pub fn sysio12(&mut self) -> SYSIO12_W {
-        SYSIO12_W { w: self }
+    pub fn sysio12(&mut self) -> SYSIO12_W<12> {
+        SYSIO12_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

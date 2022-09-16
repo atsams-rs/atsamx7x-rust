@@ -35,242 +35,63 @@ impl From<crate::W<CCFG_SMCNFCS_SPEC>> for W {
     }
 }
 #[doc = "Field `SMC_NFCS0` reader - SMC NAND Flash Chip Select 0 Assignment"]
-pub struct SMC_NFCS0_R(crate::FieldReader<bool, bool>);
-impl SMC_NFCS0_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        SMC_NFCS0_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for SMC_NFCS0_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type SMC_NFCS0_R = crate::BitReader<bool>;
 #[doc = "Field `SMC_NFCS0` writer - SMC NAND Flash Chip Select 0 Assignment"]
-pub struct SMC_NFCS0_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> SMC_NFCS0_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
-        self.w
-    }
-}
+pub type SMC_NFCS0_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCFG_SMCNFCS_SPEC, bool, O>;
 #[doc = "Field `SMC_NFCS1` reader - SMC NAND Flash Chip Select 1 Assignment"]
-pub struct SMC_NFCS1_R(crate::FieldReader<bool, bool>);
-impl SMC_NFCS1_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        SMC_NFCS1_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for SMC_NFCS1_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type SMC_NFCS1_R = crate::BitReader<bool>;
 #[doc = "Field `SMC_NFCS1` writer - SMC NAND Flash Chip Select 1 Assignment"]
-pub struct SMC_NFCS1_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> SMC_NFCS1_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
-        self.w
-    }
-}
+pub type SMC_NFCS1_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCFG_SMCNFCS_SPEC, bool, O>;
 #[doc = "Field `SMC_NFCS2` reader - SMC NAND Flash Chip Select 2 Assignment"]
-pub struct SMC_NFCS2_R(crate::FieldReader<bool, bool>);
-impl SMC_NFCS2_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        SMC_NFCS2_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for SMC_NFCS2_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type SMC_NFCS2_R = crate::BitReader<bool>;
 #[doc = "Field `SMC_NFCS2` writer - SMC NAND Flash Chip Select 2 Assignment"]
-pub struct SMC_NFCS2_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> SMC_NFCS2_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
-        self.w
-    }
-}
+pub type SMC_NFCS2_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCFG_SMCNFCS_SPEC, bool, O>;
 #[doc = "Field `SMC_NFCS3` reader - SMC NAND Flash Chip Select 3 Assignment"]
-pub struct SMC_NFCS3_R(crate::FieldReader<bool, bool>);
-impl SMC_NFCS3_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        SMC_NFCS3_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for SMC_NFCS3_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type SMC_NFCS3_R = crate::BitReader<bool>;
 #[doc = "Field `SMC_NFCS3` writer - SMC NAND Flash Chip Select 3 Assignment"]
-pub struct SMC_NFCS3_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> SMC_NFCS3_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
-        self.w
-    }
-}
-#[doc = "Field `SDRAMEN` reader - SDRAM Enable"]
-pub struct SDRAMEN_R(crate::FieldReader<bool, bool>);
-impl SDRAMEN_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        SDRAMEN_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for SDRAMEN_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-#[doc = "Field `SDRAMEN` writer - SDRAM Enable"]
-pub struct SDRAMEN_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> SDRAMEN_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
-        self.w
-    }
-}
+pub type SMC_NFCS3_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCFG_SMCNFCS_SPEC, bool, O>;
 impl R {
     #[doc = "Bit 0 - SMC NAND Flash Chip Select 0 Assignment"]
     #[inline(always)]
     pub fn smc_nfcs0(&self) -> SMC_NFCS0_R {
-        SMC_NFCS0_R::new((self.bits & 0x01) != 0)
+        SMC_NFCS0_R::new((self.bits & 1) != 0)
     }
     #[doc = "Bit 1 - SMC NAND Flash Chip Select 1 Assignment"]
     #[inline(always)]
     pub fn smc_nfcs1(&self) -> SMC_NFCS1_R {
-        SMC_NFCS1_R::new(((self.bits >> 1) & 0x01) != 0)
+        SMC_NFCS1_R::new(((self.bits >> 1) & 1) != 0)
     }
     #[doc = "Bit 2 - SMC NAND Flash Chip Select 2 Assignment"]
     #[inline(always)]
     pub fn smc_nfcs2(&self) -> SMC_NFCS2_R {
-        SMC_NFCS2_R::new(((self.bits >> 2) & 0x01) != 0)
+        SMC_NFCS2_R::new(((self.bits >> 2) & 1) != 0)
     }
     #[doc = "Bit 3 - SMC NAND Flash Chip Select 3 Assignment"]
     #[inline(always)]
     pub fn smc_nfcs3(&self) -> SMC_NFCS3_R {
-        SMC_NFCS3_R::new(((self.bits >> 3) & 0x01) != 0)
-    }
-    #[doc = "Bit 4 - SDRAM Enable"]
-    #[inline(always)]
-    pub fn sdramen(&self) -> SDRAMEN_R {
-        SDRAMEN_R::new(((self.bits >> 4) & 0x01) != 0)
+        SMC_NFCS3_R::new(((self.bits >> 3) & 1) != 0)
     }
 }
 impl W {
     #[doc = "Bit 0 - SMC NAND Flash Chip Select 0 Assignment"]
     #[inline(always)]
-    pub fn smc_nfcs0(&mut self) -> SMC_NFCS0_W {
-        SMC_NFCS0_W { w: self }
+    pub fn smc_nfcs0(&mut self) -> SMC_NFCS0_W<0> {
+        SMC_NFCS0_W::new(self)
     }
     #[doc = "Bit 1 - SMC NAND Flash Chip Select 1 Assignment"]
     #[inline(always)]
-    pub fn smc_nfcs1(&mut self) -> SMC_NFCS1_W {
-        SMC_NFCS1_W { w: self }
+    pub fn smc_nfcs1(&mut self) -> SMC_NFCS1_W<1> {
+        SMC_NFCS1_W::new(self)
     }
     #[doc = "Bit 2 - SMC NAND Flash Chip Select 2 Assignment"]
     #[inline(always)]
-    pub fn smc_nfcs2(&mut self) -> SMC_NFCS2_W {
-        SMC_NFCS2_W { w: self }
+    pub fn smc_nfcs2(&mut self) -> SMC_NFCS2_W<2> {
+        SMC_NFCS2_W::new(self)
     }
     #[doc = "Bit 3 - SMC NAND Flash Chip Select 3 Assignment"]
     #[inline(always)]
-    pub fn smc_nfcs3(&mut self) -> SMC_NFCS3_W {
-        SMC_NFCS3_W { w: self }
-    }
-    #[doc = "Bit 4 - SDRAM Enable"]
-    #[inline(always)]
-    pub fn sdramen(&mut self) -> SDRAMEN_W {
-        SDRAMEN_W { w: self }
+    pub fn smc_nfcs3(&mut self) -> SMC_NFCS3_W<3> {
+        SMC_NFCS3_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

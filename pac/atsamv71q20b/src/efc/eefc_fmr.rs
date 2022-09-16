@@ -35,148 +35,26 @@ impl From<crate::W<EEFC_FMR_SPEC>> for W {
     }
 }
 #[doc = "Field `FRDY` reader - Flash Ready Interrupt Enable"]
-pub struct FRDY_R(crate::FieldReader<bool, bool>);
-impl FRDY_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        FRDY_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for FRDY_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type FRDY_R = crate::BitReader<bool>;
 #[doc = "Field `FRDY` writer - Flash Ready Interrupt Enable"]
-pub struct FRDY_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> FRDY_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
-        self.w
-    }
-}
+pub type FRDY_W<'a, const O: u8> = crate::BitWriter<'a, u32, EEFC_FMR_SPEC, bool, O>;
 #[doc = "Field `FWS` reader - Flash Wait State"]
-pub struct FWS_R(crate::FieldReader<u8, u8>);
-impl FWS_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: u8) -> Self {
-        FWS_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for FWS_R {
-    type Target = crate::FieldReader<u8, u8>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type FWS_R = crate::FieldReader<u8, u8>;
 #[doc = "Field `FWS` writer - Flash Wait State"]
-pub struct FWS_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> FWS_W<'a> {
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x0f << 8)) | ((value as u32 & 0x0f) << 8);
-        self.w
-    }
-}
+pub type FWS_W<'a, const O: u8> = crate::FieldWriter<'a, u32, EEFC_FMR_SPEC, u8, u8, 4, O>;
 #[doc = "Field `SCOD` reader - Sequential Code Optimization Disable"]
-pub struct SCOD_R(crate::FieldReader<bool, bool>);
-impl SCOD_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        SCOD_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for SCOD_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type SCOD_R = crate::BitReader<bool>;
 #[doc = "Field `SCOD` writer - Sequential Code Optimization Disable"]
-pub struct SCOD_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> SCOD_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 16)) | ((value as u32 & 0x01) << 16);
-        self.w
-    }
-}
+pub type SCOD_W<'a, const O: u8> = crate::BitWriter<'a, u32, EEFC_FMR_SPEC, bool, O>;
 #[doc = "Field `CLOE` reader - Code Loop Optimization Enable"]
-pub struct CLOE_R(crate::FieldReader<bool, bool>);
-impl CLOE_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        CLOE_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for CLOE_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type CLOE_R = crate::BitReader<bool>;
 #[doc = "Field `CLOE` writer - Code Loop Optimization Enable"]
-pub struct CLOE_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> CLOE_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 26)) | ((value as u32 & 0x01) << 26);
-        self.w
-    }
-}
+pub type CLOE_W<'a, const O: u8> = crate::BitWriter<'a, u32, EEFC_FMR_SPEC, bool, O>;
 impl R {
     #[doc = "Bit 0 - Flash Ready Interrupt Enable"]
     #[inline(always)]
     pub fn frdy(&self) -> FRDY_R {
-        FRDY_R::new((self.bits & 0x01) != 0)
+        FRDY_R::new((self.bits & 1) != 0)
     }
     #[doc = "Bits 8:11 - Flash Wait State"]
     #[inline(always)]
@@ -186,34 +64,34 @@ impl R {
     #[doc = "Bit 16 - Sequential Code Optimization Disable"]
     #[inline(always)]
     pub fn scod(&self) -> SCOD_R {
-        SCOD_R::new(((self.bits >> 16) & 0x01) != 0)
+        SCOD_R::new(((self.bits >> 16) & 1) != 0)
     }
     #[doc = "Bit 26 - Code Loop Optimization Enable"]
     #[inline(always)]
     pub fn cloe(&self) -> CLOE_R {
-        CLOE_R::new(((self.bits >> 26) & 0x01) != 0)
+        CLOE_R::new(((self.bits >> 26) & 1) != 0)
     }
 }
 impl W {
     #[doc = "Bit 0 - Flash Ready Interrupt Enable"]
     #[inline(always)]
-    pub fn frdy(&mut self) -> FRDY_W {
-        FRDY_W { w: self }
+    pub fn frdy(&mut self) -> FRDY_W<0> {
+        FRDY_W::new(self)
     }
     #[doc = "Bits 8:11 - Flash Wait State"]
     #[inline(always)]
-    pub fn fws(&mut self) -> FWS_W {
-        FWS_W { w: self }
+    pub fn fws(&mut self) -> FWS_W<8> {
+        FWS_W::new(self)
     }
     #[doc = "Bit 16 - Sequential Code Optimization Disable"]
     #[inline(always)]
-    pub fn scod(&mut self) -> SCOD_W {
-        SCOD_W { w: self }
+    pub fn scod(&mut self) -> SCOD_W<16> {
+        SCOD_W::new(self)
     }
     #[doc = "Bit 26 - Code Loop Optimization Enable"]
     #[inline(always)]
-    pub fn cloe(&mut self) -> CLOE_W {
-        CLOE_W { w: self }
+    pub fn cloe(&mut self) -> CLOE_W<26> {
+        CLOE_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

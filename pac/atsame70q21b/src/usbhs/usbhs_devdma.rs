@@ -1,16 +1,28 @@
-#[doc = "USBHS_DEVDMANXTDSC register accessor: an alias for `Reg<USBHS_DEVDMANXTDSC_SPEC>`"]
-pub type USBHS_DEVDMANXTDSC = crate::Reg<usbhs_devdmanxtdsc::USBHS_DEVDMANXTDSC_SPEC>;
+#[doc = r"Register block"]
+#[repr(C)]
+pub struct USBHS_DEVDMA {
+    #[doc = "0x00 - Device DMA Channel Next Descriptor Address Register"]
+    pub devdmanxtdsc: DEVDMANXTDSC,
+    #[doc = "0x04 - Device DMA Channel Address Register"]
+    pub devdmaaddress: DEVDMAADDRESS,
+    #[doc = "0x08 - Device DMA Channel Control Register"]
+    pub devdmacontrol: DEVDMACONTROL,
+    #[doc = "0x0c - Device DMA Channel Status Register"]
+    pub devdmastatus: DEVDMASTATUS,
+}
+#[doc = "DEVDMANXTDSC (rw) register accessor: an alias for `Reg<DEVDMANXTDSC_SPEC>`"]
+pub type DEVDMANXTDSC = crate::Reg<devdmanxtdsc::DEVDMANXTDSC_SPEC>;
 #[doc = "Device DMA Channel Next Descriptor Address Register"]
-pub mod usbhs_devdmanxtdsc;
-#[doc = "USBHS_DEVDMAADDRESS register accessor: an alias for `Reg<USBHS_DEVDMAADDRESS_SPEC>`"]
-pub type USBHS_DEVDMAADDRESS = crate::Reg<usbhs_devdmaaddress::USBHS_DEVDMAADDRESS_SPEC>;
+pub mod devdmanxtdsc;
+#[doc = "DEVDMAADDRESS (rw) register accessor: an alias for `Reg<DEVDMAADDRESS_SPEC>`"]
+pub type DEVDMAADDRESS = crate::Reg<devdmaaddress::DEVDMAADDRESS_SPEC>;
 #[doc = "Device DMA Channel Address Register"]
-pub mod usbhs_devdmaaddress;
-#[doc = "USBHS_DEVDMACONTROL register accessor: an alias for `Reg<USBHS_DEVDMACONTROL_SPEC>`"]
-pub type USBHS_DEVDMACONTROL = crate::Reg<usbhs_devdmacontrol::USBHS_DEVDMACONTROL_SPEC>;
+pub mod devdmaaddress;
+#[doc = "DEVDMACONTROL (rw) register accessor: an alias for `Reg<DEVDMACONTROL_SPEC>`"]
+pub type DEVDMACONTROL = crate::Reg<devdmacontrol::DEVDMACONTROL_SPEC>;
 #[doc = "Device DMA Channel Control Register"]
-pub mod usbhs_devdmacontrol;
-#[doc = "USBHS_DEVDMASTATUS register accessor: an alias for `Reg<USBHS_DEVDMASTATUS_SPEC>`"]
-pub type USBHS_DEVDMASTATUS = crate::Reg<usbhs_devdmastatus::USBHS_DEVDMASTATUS_SPEC>;
+pub mod devdmacontrol;
+#[doc = "DEVDMASTATUS (rw) register accessor: an alias for `Reg<DEVDMASTATUS_SPEC>`"]
+pub type DEVDMASTATUS = crate::Reg<devdmastatus::DEVDMASTATUS_SPEC>;
 #[doc = "Device DMA Channel Status Register"]
-pub mod usbhs_devdmastatus;
+pub mod devdmastatus;

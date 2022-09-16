@@ -1,0 +1,94 @@
+#[doc = "Register `PRBS` reader"]
+pub struct R(crate::R<PRBS_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<PRBS_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<PRBS_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<PRBS_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `PRBS` writer"]
+pub struct W(crate::W<PRBS_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<PRBS_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<PRBS_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<PRBS_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `M8PR` reader - Master 8 Priority"]
+pub type M8PR_R = crate::FieldReader<u8, u8>;
+#[doc = "Field `M8PR` writer - Master 8 Priority"]
+pub type M8PR_W<'a, const O: u8> = crate::FieldWriter<'a, u32, PRBS_SPEC, u8, u8, 2, O>;
+#[doc = "Field `M12PR` reader - Master 12 Priority"]
+pub type M12PR_R = crate::FieldReader<u8, u8>;
+#[doc = "Field `M12PR` writer - Master 12 Priority"]
+pub type M12PR_W<'a, const O: u8> = crate::FieldWriter<'a, u32, PRBS_SPEC, u8, u8, 2, O>;
+impl R {
+    #[doc = "Bits 0:1 - Master 8 Priority"]
+    #[inline(always)]
+    pub fn m8pr(&self) -> M8PR_R {
+        M8PR_R::new((self.bits & 3) as u8)
+    }
+    #[doc = "Bits 16:17 - Master 12 Priority"]
+    #[inline(always)]
+    pub fn m12pr(&self) -> M12PR_R {
+        M12PR_R::new(((self.bits >> 16) & 3) as u8)
+    }
+}
+impl W {
+    #[doc = "Bits 0:1 - Master 8 Priority"]
+    #[inline(always)]
+    pub fn m8pr(&mut self) -> M8PR_W<0> {
+        M8PR_W::new(self)
+    }
+    #[doc = "Bits 16:17 - Master 12 Priority"]
+    #[inline(always)]
+    pub fn m12pr(&mut self) -> M12PR_W<16> {
+        M12PR_W::new(self)
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Priority Register B for Slave 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [prbs](index.html) module"]
+pub struct PRBS_SPEC;
+impl crate::RegisterSpec for PRBS_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [prbs::R](R) reader structure"]
+impl crate::Readable for PRBS_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [prbs::W](W) writer structure"]
+impl crate::Writable for PRBS_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets PRBS to value 0"]
+impl crate::Resettable for PRBS_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
+    }
+}

@@ -51,7 +51,6 @@ PROVIDE(XDMAC = DefaultHandler);
 PROVIDE(ISI = DefaultHandler);
 PROVIDE(PWM1 = DefaultHandler);
 PROVIDE(FPU = DefaultHandler);
-PROVIDE(SDRAMC = DefaultHandler);
 PROVIDE(RSWDT = DefaultHandler);
 PROVIDE(CCW = DefaultHandler);
 PROVIDE(CCF = DefaultHandler);

@@ -2,21 +2,21 @@
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - Control Register"]
-    pub rstc_cr: crate::Reg<rstc_cr::RSTC_CR_SPEC>,
+    pub cr: CR,
     #[doc = "0x04 - Status Register"]
-    pub rstc_sr: crate::Reg<rstc_sr::RSTC_SR_SPEC>,
+    pub sr: SR,
     #[doc = "0x08 - Mode Register"]
-    pub rstc_mr: crate::Reg<rstc_mr::RSTC_MR_SPEC>,
+    pub mr: MR,
 }
-#[doc = "RSTC_CR register accessor: an alias for `Reg<RSTC_CR_SPEC>`"]
-pub type RSTC_CR = crate::Reg<rstc_cr::RSTC_CR_SPEC>;
+#[doc = "CR (w) register accessor: an alias for `Reg<CR_SPEC>`"]
+pub type CR = crate::Reg<cr::CR_SPEC>;
 #[doc = "Control Register"]
-pub mod rstc_cr;
-#[doc = "RSTC_SR register accessor: an alias for `Reg<RSTC_SR_SPEC>`"]
-pub type RSTC_SR = crate::Reg<rstc_sr::RSTC_SR_SPEC>;
+pub mod cr;
+#[doc = "SR (r) register accessor: an alias for `Reg<SR_SPEC>`"]
+pub type SR = crate::Reg<sr::SR_SPEC>;
 #[doc = "Status Register"]
-pub mod rstc_sr;
-#[doc = "RSTC_MR register accessor: an alias for `Reg<RSTC_MR_SPEC>`"]
-pub type RSTC_MR = crate::Reg<rstc_mr::RSTC_MR_SPEC>;
+pub mod sr;
+#[doc = "MR (rw) register accessor: an alias for `Reg<MR_SPEC>`"]
+pub type MR = crate::Reg<mr::MR_SPEC>;
 #[doc = "Mode Register"]
-pub mod rstc_mr;
+pub mod mr;

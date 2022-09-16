@@ -35,148 +35,49 @@ impl From<crate::W<CCFG_DYNCKG_SPEC>> for W {
     }
 }
 #[doc = "Field `MATCKG` reader - MATRIX Dynamic Clock Gating"]
-pub struct MATCKG_R(crate::FieldReader<bool, bool>);
-impl MATCKG_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        MATCKG_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for MATCKG_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type MATCKG_R = crate::BitReader<bool>;
 #[doc = "Field `MATCKG` writer - MATRIX Dynamic Clock Gating"]
-pub struct MATCKG_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> MATCKG_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
-        self.w
-    }
-}
+pub type MATCKG_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCFG_DYNCKG_SPEC, bool, O>;
 #[doc = "Field `BRIDCKG` reader - Bridge Dynamic Clock Gating Enable"]
-pub struct BRIDCKG_R(crate::FieldReader<bool, bool>);
-impl BRIDCKG_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        BRIDCKG_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for BRIDCKG_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type BRIDCKG_R = crate::BitReader<bool>;
 #[doc = "Field `BRIDCKG` writer - Bridge Dynamic Clock Gating Enable"]
-pub struct BRIDCKG_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> BRIDCKG_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
-        self.w
-    }
-}
+pub type BRIDCKG_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCFG_DYNCKG_SPEC, bool, O>;
 #[doc = "Field `EFCCKG` reader - EFC Dynamic Clock Gating Enable"]
-pub struct EFCCKG_R(crate::FieldReader<bool, bool>);
-impl EFCCKG_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: bool) -> Self {
-        EFCCKG_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for EFCCKG_R {
-    type Target = crate::FieldReader<bool, bool>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type EFCCKG_R = crate::BitReader<bool>;
 #[doc = "Field `EFCCKG` writer - EFC Dynamic Clock Gating Enable"]
-pub struct EFCCKG_W<'a> {
-    w: &'a mut W,
-}
-impl<'a> EFCCKG_W<'a> {
-    #[doc = r"Sets the field bit"]
-    #[inline(always)]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r"Clears the field bit"]
-    #[inline(always)]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r"Writes raw bits to the field"]
-    #[inline(always)]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
-        self.w
-    }
-}
+pub type EFCCKG_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCFG_DYNCKG_SPEC, bool, O>;
 impl R {
     #[doc = "Bit 0 - MATRIX Dynamic Clock Gating"]
     #[inline(always)]
     pub fn matckg(&self) -> MATCKG_R {
-        MATCKG_R::new((self.bits & 0x01) != 0)
+        MATCKG_R::new((self.bits & 1) != 0)
     }
     #[doc = "Bit 1 - Bridge Dynamic Clock Gating Enable"]
     #[inline(always)]
     pub fn bridckg(&self) -> BRIDCKG_R {
-        BRIDCKG_R::new(((self.bits >> 1) & 0x01) != 0)
+        BRIDCKG_R::new(((self.bits >> 1) & 1) != 0)
     }
     #[doc = "Bit 2 - EFC Dynamic Clock Gating Enable"]
     #[inline(always)]
     pub fn efcckg(&self) -> EFCCKG_R {
-        EFCCKG_R::new(((self.bits >> 2) & 0x01) != 0)
+        EFCCKG_R::new(((self.bits >> 2) & 1) != 0)
     }
 }
 impl W {
     #[doc = "Bit 0 - MATRIX Dynamic Clock Gating"]
     #[inline(always)]
-    pub fn matckg(&mut self) -> MATCKG_W {
-        MATCKG_W { w: self }
+    pub fn matckg(&mut self) -> MATCKG_W<0> {
+        MATCKG_W::new(self)
     }
     #[doc = "Bit 1 - Bridge Dynamic Clock Gating Enable"]
     #[inline(always)]
-    pub fn bridckg(&mut self) -> BRIDCKG_W {
-        BRIDCKG_W { w: self }
+    pub fn bridckg(&mut self) -> BRIDCKG_W<1> {
+        BRIDCKG_W::new(self)
     }
     #[doc = "Bit 2 - EFC Dynamic Clock Gating Enable"]
     #[inline(always)]
-    pub fn efcckg(&mut self) -> EFCCKG_W {
-        EFCCKG_W { w: self }
+    pub fn efcckg(&mut self) -> EFCCKG_W<2> {
+        EFCCKG_W::new(self)
     }
     #[doc = "Writes raw bits to the register."]
     #[inline(always)]

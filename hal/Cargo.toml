@@ -1,7 +1,14 @@
 [package]
 name = "atsamx7x-hal"
-version = "0.1.1"
-authors = ["Michal Fita <michal.fita@gmail.com>", "Viktor Sonesten <viktor.sonesten@grepit.se>"]
+version = "0.3.0"
+# in no particular order
+authors = [
+        "Michal Fita <michal.fita@gmail.com>",
+        "Viktor Sonesten <viktor.sonesten@grepit.se>",
+        "Martin Mörtsell <martin.mortsell@grepit.se>",
+        "Ivar Jönsson <ivar.jonsson@grepit.se>",
+]
+license = "MIT OR Apache-2.0"
 description = "HAL and peripheral access API for ATSAME70, ATSAMS70, ATSAMV70, and ATSAMV71 microcontrollers"
 categories = [
     "embedded",
@@ -15,86 +22,61 @@ keywords = [
     "embedded-hal",
     "hal"
 ]
-license = "0BSD"
 repository = "https://github.com/atsams-rs/atsamx7x-rust"
 readme = "README.md"
 edition = "2021"
 
 [dependencies]
-cortex-m = "0.7.5"
-embedded-hal = { version = "0.2.7", features = ["unproven"] }
-nb = "0.1.3"
+cortex-m = "0.7"
+embedded-hal = { version = "0.2.7" }
+nb = "1"
+fugit = "0.3.5"
+paste = "1"
+usb-device = "0.2.8"
+bit-iter = "1"
+rtic-monotonic = "1"
+void = { version = "1", default-features = false }
+strum = { version = "0.24.1", default-features = false, features = ["derive"]}
+cfg-if = "1"
 
-atsame70j19  = { version = "0.21.0", path = "../pac/atsame70j19", optional = true }
-atsame70j19b = { version = "0.21.0", path = "../pac/atsame70j19b", optional = true }
-atsame70j20  = { version = "0.21.0", path = "../pac/atsame70j20", optional = true }
-atsame70j20b = { version = "0.21.0", path = "../pac/atsame70j20b", optional = true }
-atsame70j21  = { version = "0.21.0", path = "../pac/atsame70j21", optional = true }
-atsame70j21b = { version = "0.21.0", path = "../pac/atsame70j21b", optional = true }
-atsame70n19  = { version = "0.21.0", path = "../pac/atsame70n19", optional = true }
-atsame70n19b = { version = "0.21.0", path = "../pac/atsame70n19b", optional = true }
-atsame70n20  = { version = "0.21.0", path = "../pac/atsame70n20", optional = true }
-atsame70n20b = { version = "0.21.0", path = "../pac/atsame70n20b", optional = true }
-atsame70n21  = { version = "0.21.0", path = "../pac/atsame70n21", optional = true }
-atsame70n21b = { version = "0.21.0", path = "../pac/atsame70n21b", optional = true }
-atsame70q19  = { version = "0.21.0", path = "../pac/atsame70q19", optional = true }
-atsame70q19b = { version = "0.21.0", path = "../pac/atsame70q19b", optional = true }
-atsame70q20  = { version = "0.21.0", path = "../pac/atsame70q20", optional = true }
-atsame70q20b = { version = "0.21.0", path = "../pac/atsame70q20b", optional = true }
-atsame70q21  = { version = "0.21.0", path = "../pac/atsame70q21", optional = true }
-atsame70q21b = { version = "0.21.0", path = "../pac/atsame70q21b", optional = true }
-atsams70j19  = { version = "0.21.0", path = "../pac/atsams70j19", optional = true }
-atsams70j19b = { version = "0.21.0", path = "../pac/atsams70j19b", optional = true }
-atsams70j20  = { version = "0.21.0", path = "../pac/atsams70j20", optional = true }
-atsams70j20b = { version = "0.21.0", path = "../pac/atsams70j20b", optional = true }
-atsams70j21  = { version = "0.21.0", path = "../pac/atsams70j21", optional = true }
-atsams70j21b = { version = "0.21.0", path = "../pac/atsams70j21b", optional = true }
-atsams70n19  = { version = "0.21.0", path = "../pac/atsams70n19", optional = true }
-atsams70n19b = { version = "0.21.0", path = "../pac/atsams70n19b", optional = true }
-atsams70n20  = { version = "0.21.0", path = "../pac/atsams70n20", optional = true }
-atsams70n20b = { version = "0.21.0", path = "../pac/atsams70n20b", optional = true }
-atsams70n21  = { version = "0.21.0", path = "../pac/atsams70n21", optional = true }
-atsams70n21b = { version = "0.21.0", path = "../pac/atsams70n21b", optional = true }
-atsams70q19  = { version = "0.21.0", path = "../pac/atsams70q19", optional = true }
-atsams70q19b = { version = "0.21.0", path = "../pac/atsams70q19b", optional = true }
-atsams70q20  = { version = "0.21.0", path = "../pac/atsams70q20", optional = true }
-atsams70q20b = { version = "0.21.0", path = "../pac/atsams70q20b", optional = true }
-atsams70q21  = { version = "0.21.0", path = "../pac/atsams70q21", optional = true }
-atsams70q21b = { version = "0.21.0", path = "../pac/atsams70q21b", optional = true }
-atsamv70j19  = { version = "0.21.0", path = "../pac/atsamv70j19", optional = true }
-atsamv70j19b = { version = "0.21.0", path = "../pac/atsamv70j19b", optional = true }
-atsamv70j20  = { version = "0.21.0", path = "../pac/atsamv70j20", optional = true }
-atsamv70j20b = { version = "0.21.0", path = "../pac/atsamv70j20b", optional = true }
-atsamv70n19  = { version = "0.21.0", path = "../pac/atsamv70n19", optional = true }
-atsamv70n19b = { version = "0.21.0", path = "../pac/atsamv70n19b", optional = true }
-atsamv70n20  = { version = "0.21.0", path = "../pac/atsamv70n20", optional = true }
-atsamv70n20b = { version = "0.21.0", path = "../pac/atsamv70n20b", optional = true }
-atsamv70q19  = { version = "0.21.0", path = "../pac/atsamv70q19", optional = true }
-atsamv70q19b = { version = "0.21.0", path = "../pac/atsamv70q19b", optional = true }
-atsamv70q20  = { version = "0.21.0", path = "../pac/atsamv70q20", optional = true }
-atsamv70q20b = { version = "0.21.0", path = "../pac/atsamv70q20b", optional = true }
-atsamv71j19  = { version = "0.21.0", path = "../pac/atsamv71j19", optional = true }
-atsamv71j19b = { version = "0.21.0", path = "../pac/atsamv71j19b", optional = true }
-atsamv71j20  = { version = "0.21.0", path = "../pac/atsamv71j20", optional = true }
-atsamv71j20b = { version = "0.21.0", path = "../pac/atsamv71j20b", optional = true }
-atsamv71j21  = { version = "0.21.0", path = "../pac/atsamv71j21", optional = true }
-atsamv71j21b = { version = "0.21.0", path = "../pac/atsamv71j21b", optional = true }
-atsamv71n19  = { version = "0.21.0", path = "../pac/atsamv71n19", optional = true }
-atsamv71n19b = { version = "0.21.0", path = "../pac/atsamv71n19b", optional = true }
-atsamv71n20  = { version = "0.21.0", path = "../pac/atsamv71n20", optional = true }
-atsamv71n20b = { version = "0.21.0", path = "../pac/atsamv71n20b", optional = true }
-atsamv71n21  = { version = "0.21.0", path = "../pac/atsamv71n21", optional = true }
-atsamv71n21b = { version = "0.21.0", path = "../pac/atsamv71n21b", optional = true }
-atsamv71q19  = { version = "0.21.0", path = "../pac/atsamv71q19", optional = true }
-atsamv71q19b = { version = "0.21.0", path = "../pac/atsamv71q19b", optional = true }
-atsamv71q20  = { version = "0.21.0", path = "../pac/atsamv71q20", optional = true }
-atsamv71q20b = { version = "0.21.0", path = "../pac/atsamv71q20b", optional = true }
-atsamv71q21  = { version = "0.21.0", path = "../pac/atsamv71q21", optional = true }
-atsamv71q21b = { version = "0.21.0", path = "../pac/atsamv71q21b", optional = true }
+atsame70j19b = { version = "0.25.0", path = "../pac/atsame70j19b", optional = true }
+atsame70j20b = { version = "0.25.0", path = "../pac/atsame70j20b", optional = true }
+atsame70j21b = { version = "0.25.0", path = "../pac/atsame70j21b", optional = true }
+atsame70n19b = { version = "0.25.0", path = "../pac/atsame70n19b", optional = true }
+atsame70n20b = { version = "0.25.0", path = "../pac/atsame70n20b", optional = true }
+atsame70n21b = { version = "0.25.0", path = "../pac/atsame70n21b", optional = true }
+atsame70q19b = { version = "0.25.0", path = "../pac/atsame70q19b", optional = true }
+atsame70q20b = { version = "0.25.0", path = "../pac/atsame70q20b", optional = true }
+atsame70q21b = { version = "0.25.0", path = "../pac/atsame70q21b", optional = true }
+atsams70j19b = { version = "0.25.0", path = "../pac/atsams70j19b", optional = true }
+atsams70j20b = { version = "0.25.0", path = "../pac/atsams70j20b", optional = true }
+atsams70j21b = { version = "0.25.0", path = "../pac/atsams70j21b", optional = true }
+atsams70n19b = { version = "0.25.0", path = "../pac/atsams70n19b", optional = true }
+atsams70n20b = { version = "0.25.0", path = "../pac/atsams70n20b", optional = true }
+atsams70n21b = { version = "0.25.0", path = "../pac/atsams70n21b", optional = true }
+atsams70q19b = { version = "0.25.0", path = "../pac/atsams70q19b", optional = true }
+atsams70q20b = { version = "0.25.0", path = "../pac/atsams70q20b", optional = true }
+atsams70q21b = { version = "0.25.0", path = "../pac/atsams70q21b", optional = true }
+atsamv70j19b = { version = "0.25.0", path = "../pac/atsamv70j19b", optional = true }
+atsamv70j20b = { version = "0.25.0", path = "../pac/atsamv70j20b", optional = true }
+atsamv70n19b = { version = "0.25.0", path = "../pac/atsamv70n19b", optional = true }
+atsamv70n20b = { version = "0.25.0", path = "../pac/atsamv70n20b", optional = true }
+atsamv70q19b = { version = "0.25.0", path = "../pac/atsamv70q19b", optional = true }
+atsamv70q20b = { version = "0.25.0", path = "../pac/atsamv70q20b", optional = true }
+atsamv71j19b = { version = "0.25.0", path = "../pac/atsamv71j19b", optional = true }
+atsamv71j20b = { version = "0.25.0", path = "../pac/atsamv71j20b", optional = true }
+atsamv71j21b = { version = "0.25.0", path = "../pac/atsamv71j21b", optional = true }
+atsamv71n19b = { version = "0.25.0", path = "../pac/atsamv71n19b", optional = true }
+atsamv71n20b = { version = "0.25.0", path = "../pac/atsamv71n20b", optional = true }
+atsamv71n21b = { version = "0.25.0", path = "../pac/atsamv71n21b", optional = true }
+atsamv71q19b = { version = "0.25.0", path = "../pac/atsamv71q19b", optional = true }
+atsamv71q20b = { version = "0.25.0", path = "../pac/atsamv71q20b", optional = true }
+atsamv71q21b = { version = "0.25.0", path = "../pac/atsamv71q21b", optional = true }
 
 [features]
 # Internal-only feature flags; do not set directly.
 # Refer to §2 in the data sheet.
+## Refer to §2.
 v71 = []
 v70 = []
 e70 = []
@@ -105,142 +87,79 @@ pins-144 = []   # Q variants
 flash-2M = []   # "21"-suffix
 flash-1M = []   # "20"-suffix
 flash-512K = [] # "19"-suffix
-rev-a = []                  # No suffix after flash memory density number
-rev-b = ["device-selected"] # "b"-suffix
+
 device-selected = []
 
-same70j19  = ["atsame70j19", "e70", "pins-64", "flash-512K", "rev-a"]
-same70j19-rt = ["same70j19", "atsame70j19/rt"]
-same70j19b = ["atsame70j19b", "e70", "pins-64", "flash-512K", "rev-b"]
+unproven = ["embedded-hal/unproven"]
+usart-spi-host-without-select = []
+reconfigurable-system-pins = []
+
+same70j19b = ["atsame70j19b", "e70", "pins-64", "flash-512K", "device-selected"]
 same70j19b-rt = ["same70j19b", "atsame70j19b/rt"]
-same70j20  = ["atsame70j20", "e70", "pins-64", "flash-1M", "rev-a"]
-same70j20-rt = ["same70j20", "atsame70j20/rt"]
-same70j20b = ["atsame70j20b", "e70", "pins-64", "flash-1M", "rev-b"]
+same70j20b = ["atsame70j20b", "e70", "pins-64", "flash-1M", "device-selected"]
 same70j20b-rt = ["same70j20b", "atsame70j20b/rt"]
-same70j21  = ["atsame70j21", "e70", "pins-64", "flash-2M", "rev-a"]
-same70j21-rt = ["same70j21", "atsame70j21/rt"]
-same70j21b = ["atsame70j21b", "e70", "pins-64", "flash-2M", "rev-b"]
+same70j21b = ["atsame70j21b", "e70", "pins-64", "flash-2M", "device-selected"]
 same70j21b-rt = ["same70j21b", "atsame70j21b/rt"]
-same70n19  = ["atsame70n19", "e70", "pins-100", "flash-512K", "rev-a"]
-same70n19-rt = ["same70n19", "atsame70n19/rt"]
-same70n19b = ["atsame70n19b", "e70", "pins-100", "flash-512K", "rev-b"]
+same70n19b = ["atsame70n19b", "e70", "pins-100", "flash-512K", "device-selected"]
 same70n19b-rt = ["same70n19b", "atsame70n19b/rt"]
-same70n20  = ["atsame70n20", "e70", "pins-100", "flash-1M", "rev-a"]
-same70n20-rt = ["same70n20", "atsame70n20/rt"]
-same70n20b = ["atsame70n20b", "e70", "pins-100", "flash-1M", "rev-b"]
+same70n20b = ["atsame70n20b", "e70", "pins-100", "flash-1M", "device-selected"]
 same70n20b-rt = ["same70n20b", "atsame70n20b/rt"]
-same70n21  = ["atsame70n21", "e70", "pins-100", "flash-2M", "rev-a"]
-same70n21-rt = ["same70n21", "atsame70n21/rt"]
-same70n21b = ["atsame70n21b", "e70", "pins-100", "flash-2M", "rev-b"]
+same70n21b = ["atsame70n21b", "e70", "pins-100", "flash-2M", "device-selected"]
 same70n21b-rt = ["same70n21b", "atsame70n21b/rt"]
-same70q19  = ["atsame70q19", "e70", "pins-144", "flash-512K", "rev-a"]
-same70q19-rt = ["same70q19", "atsame70q19/rt"]
-same70q19b = ["atsame70q19b", "e70", "pins-144", "flash-512K", "rev-b"]
+same70q19b = ["atsame70q19b", "e70", "pins-144", "flash-512K", "device-selected"]
 same70q19b-rt = ["same70q19b", "atsame70q19b/rt"]
-same70q20  = ["atsame70q20", "e70", "pins-144", "flash-1M", "rev-a"]
-same70q20-rt = ["same70q20", "atsame70q20/rt"]
-same70q20b = ["atsame70q20b", "e70", "pins-144", "flash-1M", "rev-b"]
+same70q20b = ["atsame70q20b", "e70", "pins-144", "flash-1M", "device-selected"]
 same70q20b-rt = ["same70q20b", "atsame70q20b/rt"]
-same70q21  = ["atsame70q21", "e70", "pins-144", "flash-2M", "rev-a"]
-same70q21-rt = ["same70q21", "atsame70q21/rt"]
-same70q21b = ["atsame70q21b", "e70", "pins-144", "flash-2M", "rev-b"]
+same70q21b = ["atsame70q21b", "e70", "pins-144", "flash-2M", "device-selected"]
 same70q21b-rt = ["same70q21b", "atsame70q21b/rt"]
 
-sams70j19  = ["atsams70j19", "s70", "pins-64", "flash-512K", "rev-a"]
-sams70j19-rt = ["sams70j19", "atsams70j19/rt"]
-sams70j19b = ["atsams70j19b", "s70", "pins-64", "flash-512K", "rev-b"]
+sams70j19b = ["atsams70j19b", "s70", "pins-64", "flash-512K", "device-selected"]
 sams70j19b-rt = ["sams70j19b", "atsams70j19b/rt"]
-sams70j20  = ["atsams70j20", "s70", "pins-64", "flash-1M", "rev-a"]
-sams70j20-rt = ["sams70j20", "atsams70j20/rt"]
-sams70j20b = ["atsams70j20b", "s70", "pins-64", "flash-1M", "rev-b"]
+sams70j20b = ["atsams70j20b", "s70", "pins-64", "flash-1M", "device-selected"]
 sams70j20b-rt = ["sams70j20b", "atsams70j20b/rt"]
-sams70j21  = ["atsams70j21", "s70", "pins-64", "flash-2M", "rev-a"]
-sams70j21-rt = ["sams70j21", "atsams70j21/rt"]
-sams70j21b = ["atsams70j21b", "s70", "pins-64", "flash-2M", "rev-b"]
+sams70j21b = ["atsams70j21b", "s70", "pins-64", "flash-2M", "device-selected"]
 sams70j21b-rt = ["sams70j21b", "atsams70j21b/rt"]
-sams70n19  = ["atsams70n19", "s70", "pins-100", "flash-512K", "rev-a"]
-sams70n19-rt = ["sams70n19", "atsams70n19/rt"]
-sams70n19b = ["atsams70n19b", "s70", "pins-100", "flash-512K", "rev-a"]
+sams70n19b = ["atsams70n19b", "s70", "pins-100", "flash-512K", "device-selected"]
 sams70n19b-rt = ["sams70n19b", "atsams70n19b/rt"]
-sams70n20  = ["atsams70n20", "s70", "pins-100", "flash-1M", "rev-a"]
-sams70n20-rt = ["sams70n20", "atsams70n20/rt"]
-sams70n20b = ["atsams70n20b", "s70", "pins-100", "flash-1M", "rev-b"]
+sams70n20b = ["atsams70n20b", "s70", "pins-100", "flash-1M", "device-selected"]
 sams70n20b-rt = ["sams70n20b", "atsams70n20b/rt"]
-sams70n21  = ["atsams70n21", "s70", "pins-100", "flash-2M", "rev-a"]
-sams70n21-rt = ["sams70n21", "atsams70n21/rt"]
-sams70n21b = ["atsams70n21b", "s70", "pins-100", "flash-2M", "rev-b"]
+sams70n21b = ["atsams70n21b", "s70", "pins-100", "flash-2M", "device-selected"]
 sams70n21b-rt = ["sams70n21b", "atsams70n21b/rt"]
-sams70q19  = ["atsams70q19", "s70", "pins-144", "flash-512K", "rev-a"]
-sams70q19-rt = ["sams70q19", "atsams70q19/rt"]
-sams70q19b = ["atsams70q19b", "s70", "pins-144", "flash-512K", "rev-b"]
+sams70q19b = ["atsams70q19b", "s70", "pins-144", "flash-512K", "device-selected"]
 sams70q19b-rt = ["sams70q19b", "atsams70q19b/rt"]
-sams70q20  = ["atsams70q20", "s70", "pins-144", "flash-1M", "rev-a"]
-sams70q20-rt = ["sams70q20", "atsams70q20/rt"]
-sams70q20b = ["atsams70q20b", "s70", "pins-144", "flash-1M", "rev-b"]
+sams70q20b = ["atsams70q20b", "s70", "pins-144", "flash-1M", "device-selected"]
 sams70q20b-rt = ["sams70q20b", "atsams70q20b/rt"]
-sams70q21  = ["atsams70q21", "s70", "pins-144", "flash-2M", "rev-a"]
-sams70q21-rt = ["sams70q21", "atsams70q21/rt"]
-sams70q21b = ["atsams70q21b", "s70", "pins-144", "flash-2M", "rev-b"]
+sams70q21b = ["atsams70q21b", "s70", "pins-144", "flash-2M", "device-selected"]
 sams70q21b-rt = ["sams70q21b", "atsams70q21b/rt"]
 
-samv70j19 = ["atsamv70j19", "v70", "pins-64", "flash-512K", "rev-a"]
-samv70j19-rt = ["samv70j19", "atsamv70j19/rt"]
-samv70j19b = ["atsamv70j19b", "v70", "pins-64", "flash-512K", "rev-b"]
+samv70j19b = ["atsamv70j19b", "v70", "pins-64", "flash-512K", "device-selected"]
 samv70j19b-rt = ["samv70j19b", "atsamv70j19b/rt"]
-samv70j20 = ["atsamv70j20", "v70", "pins-64", "flash-1M", "rev-a"]
-samv70j20-rt = ["samv70j20", "atsamv70j20/rt"]
-samv70j20b = ["atsamv70j20b", "v70", "pins-64", "flash-1M", "rev-b"]
+samv70j20b = ["atsamv70j20b", "v70", "pins-64", "flash-1M", "device-selected"]
 samv70j20b-rt = ["samv70j20b", "atsamv70j20b/rt"]
-samv70n19 = ["atsamv70n19", "v70", "pins-100", "flash-512K", "rev-a"]
-samv70n19-rt = ["samv70n19", "atsamv70n19/rt"]
-samv70n19b = ["atsamv70n19b", "v70", "pins-100", "flash-512K", "rev-b"]
+samv70n19b = ["atsamv70n19b", "v70", "pins-100", "flash-512K", "device-selected"]
 samv70n19b-rt = ["samv70n19b", "atsamv70n19b/rt"]
-samv70n20 = ["atsamv70n20", "v70", "pins-100", "flash-1M", "rev-a"]
-samv70n20-rt = ["samv70n20", "atsamv70n20/rt"]
-samv70n20b = ["atsamv70n20b", "v70", "pins-100", "flash-1M", "rev-b"]
+samv70n20b = ["atsamv70n20b", "v70", "pins-100", "flash-1M", "device-selected"]
 samv70n20b-rt = ["samv70n20b", "atsamv70n20b/rt"]
-samv70q19 = ["atsamv70q19", "v70", "pins-144", "flash-512K", "rev-a"]
-samv70q19-rt = ["samv70q19", "atsamv70q19/rt"]
-samv70q19b = ["atsamv70q19b", "v70", "pins-144", "flash-512K", "rev-b"]
+samv70q19b = ["atsamv70q19b", "v70", "pins-144", "flash-512K", "device-selected"]
 samv70q19b-rt = ["samv70q19b", "atsamv70q19b/rt"]
-samv70q20 = ["atsamv70q20", "v70", "pins-144", "flash-1M", "rev-a"]
-samv70q20-rt = ["samv70q20", "atsamv70q20/rt"]
-samv70q20b = ["atsamv70q20b", "v70", "pins-144", "flash-1M", "rev-b"]
+samv70q20b = ["atsamv70q20b", "v70", "pins-144", "flash-1M", "device-selected"]
 samv70q20b-rt = ["samv70q20b", "atsamv70q20b/rt"]
 
-samv71j19  = ["atsamv71j19", "v71", "pins-64", "flash-512K", "rev-a"]
-samv71j19-rt = ["samv71j19", "atsamv71j19/rt"]
-samv71j19b = ["atsamv71j19b", "v71", "pins-64", "flash-512K", "rev-b"]
+samv71j19b = ["atsamv71j19b", "v71", "pins-64", "flash-512K", "device-selected"]
 samv71j19b-rt = ["samv71j19b", "atsamv71j19b/rt"]
-samv71j20  = ["atsamv71j20", "v71", "pins-64", "flash-1M", "rev-a"]
-samv71j20-rt = ["samv71j20", "atsamv71j20/rt"]
-samv71j20b = ["atsamv71j20b", "v71", "pins-64", "flash-1M", "rev-b"]
+samv71j20b = ["atsamv71j20b", "v71", "pins-64", "flash-1M", "device-selected"]
 samv71j20b-rt = ["samv71j20b", "atsamv71j20b/rt"]
-samv71j21  = ["atsamv71j21", "v71", "pins-64", "flash-2M", "rev-a"]
-samv71j21-rt = ["samv71j21", "atsamv71j21/rt"]
-samv71j21b = ["atsamv71j21b", "v71", "pins-64", "flash-2M", "rev-b"]
+samv71j21b = ["atsamv71j21b", "v71", "pins-64", "flash-2M", "device-selected"]
 samv71j21b-rt = ["samv71j21b", "atsamv71j21b/rt"]
-samv71n19  = ["atsamv71n19", "v71", "pins-100", "flash-512K", "rev-a"]
-samv71n19-rt = ["samv71n19", "atsamv71n19/rt"]
-samv71n19b = ["atsamv71n19b", "v71", "pins-100", "flash-512K", "rev-b"]
+samv71n19b = ["atsamv71n19b", "v71", "pins-100", "flash-512K", "device-selected"]
 samv71n19b-rt = ["samv71n19b", "atsamv71n19b/rt"]
-samv71n20  = ["atsamv71n20", "v71", "pins-100", "flash-1M", "rev-a"]
-samv71n20-rt = ["samv71n20", "atsamv71n20/rt"]
-samv71n20b = ["atsamv71n20b", "v71", "pins-100", "flash-1M", "rev-b"]
+samv71n20b = ["atsamv71n20b", "v71", "pins-100", "flash-1M", "device-selected"]
 samv71n20b-rt = ["samv71n20b", "atsamv71n20b/rt"]
-samv71n21  = ["atsamv71n21", "v71", "pins-100", "flash-2M", "rev-a"]
-samv71n21-rt = ["samv71n21", "atsamv71n21/rt"]
-samv71n21b = ["atsamv71n21b", "v71", "pins-100", "flash-2M", "rev-b"]
+samv71n21b = ["atsamv71n21b", "v71", "pins-100", "flash-2M", "device-selected"]
 samv71n21b-rt = ["samv71n21b", "atsamv71n21b/rt"]
-samv71q19  = ["atsamv71q19", "v71", "pins-144", "flash-512K", "rev-a"]
-samv71q19-rt = ["samv71q19", "atsamv71q19/rt"]
-samv71q19b = ["atsamv71q19b", "v71", "pins-144", "flash-512K", "rev-b"]
+samv71q19b = ["atsamv71q19b", "v71", "pins-144", "flash-512K", "device-selected"]
 samv71q19b-rt = ["samv71q19b", "atsamv71q19b/rt"]
-samv71q20  = ["atsamv71q20", "v71", "pins-144", "flash-1M", "rev-a"]
-samv71q20-rt = ["samv71q20", "atsamv71q20/rt"]
-samv71q20b = ["atsamv71q20b", "v71", "pins-144", "flash-1M", "rev-b"]
+samv71q20b = ["atsamv71q20b", "v71", "pins-144", "flash-1M", "device-selected"]
 samv71q20b-rt = ["samv71q20b", "atsamv71q20b/rt"]
-samv71q21  = ["atsamv71q21", "v71", "pins-144", "flash-2M", "rev-a"]
-samv71q21-rt = ["samv71q21", "atsamv71q21/rt"]
-samv71q21b = ["atsamv71q21b", "v71", "pins-144", "flash-2M", "rev-b"]
+samv71q21b = ["atsamv71q21b", "v71", "pins-144", "flash-2M", "device-selected"]
 samv71q21b-rt = ["samv71q21b", "atsamv71q21b/rt"]

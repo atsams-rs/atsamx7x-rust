@@ -14,20 +14,7 @@ impl From<crate::R<US_NER_SPEC>> for R {
     }
 }
 #[doc = "Field `NB_ERRORS` reader - Number of Errors"]
-pub struct NB_ERRORS_R(crate::FieldReader<u8, u8>);
-impl NB_ERRORS_R {
-    #[inline(always)]
-    pub(crate) fn new(bits: u8) -> Self {
-        NB_ERRORS_R(crate::FieldReader::new(bits))
-    }
-}
-impl core::ops::Deref for NB_ERRORS_R {
-    type Target = crate::FieldReader<u8, u8>;
-    #[inline(always)]
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
+pub type NB_ERRORS_R = crate::FieldReader<u8, u8>;
 impl R {
     #[doc = "Bits 0:7 - Number of Errors"]
     #[inline(always)]

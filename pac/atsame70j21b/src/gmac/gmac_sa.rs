@@ -1,8 +1,16 @@
-#[doc = "GMAC_SAB register accessor: an alias for `Reg<GMAC_SAB_SPEC>`"]
-pub type GMAC_SAB = crate::Reg<gmac_sab::GMAC_SAB_SPEC>;
+#[doc = r"Register block"]
+#[repr(C)]
+pub struct GMAC_SA {
+    #[doc = "0x00 - Specific Address 1 Bottom Register"]
+    pub sab: SAB,
+    #[doc = "0x04 - Specific Address 1 Top Register"]
+    pub sat: SAT,
+}
+#[doc = "SAB (rw) register accessor: an alias for `Reg<SAB_SPEC>`"]
+pub type SAB = crate::Reg<sab::SAB_SPEC>;
 #[doc = "Specific Address 1 Bottom Register"]
-pub mod gmac_sab;
-#[doc = "GMAC_SAT register accessor: an alias for `Reg<GMAC_SAT_SPEC>`"]
-pub type GMAC_SAT = crate::Reg<gmac_sat::GMAC_SAT_SPEC>;
+pub mod sab;
+#[doc = "SAT (rw) register accessor: an alias for `Reg<SAT_SPEC>`"]
+pub type SAT = crate::Reg<sat::SAT_SPEC>;
 #[doc = "Specific Address 1 Top Register"]
-pub mod gmac_sat;
+pub mod sat;

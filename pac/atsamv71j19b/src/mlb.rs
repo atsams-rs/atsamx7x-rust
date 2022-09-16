@@ -2,121 +2,121 @@
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - MediaLB Control 0 Register"]
-    pub mlb_mlbc0: crate::Reg<mlb_mlbc0::MLB_MLBC0_SPEC>,
+    pub mlbc0: MLBC0,
     _reserved1: [u8; 0x08],
     #[doc = "0x0c - MediaLB Channel Status 0 Register"]
-    pub mlb_ms0: crate::Reg<mlb_ms0::MLB_MS0_SPEC>,
+    pub ms0: MS0,
     _reserved2: [u8; 0x04],
     #[doc = "0x14 - MediaLB Channel Status1 Register"]
-    pub mlb_ms1: crate::Reg<mlb_ms1::MLB_MS1_SPEC>,
+    pub ms1: MS1,
     _reserved3: [u8; 0x08],
     #[doc = "0x20 - MediaLB System Status Register"]
-    pub mlb_mss: crate::Reg<mlb_mss::MLB_MSS_SPEC>,
+    pub mss: MSS,
     #[doc = "0x24 - MediaLB System Data Register"]
-    pub mlb_msd: crate::Reg<mlb_msd::MLB_MSD_SPEC>,
+    pub msd: MSD,
     _reserved5: [u8; 0x04],
     #[doc = "0x2c - MediaLB Interrupt Enable Register"]
-    pub mlb_mien: crate::Reg<mlb_mien::MLB_MIEN_SPEC>,
+    pub mien: MIEN,
     _reserved6: [u8; 0x0c],
     #[doc = "0x3c - MediaLB Control 1 Register"]
-    pub mlb_mlbc1: crate::Reg<mlb_mlbc1::MLB_MLBC1_SPEC>,
+    pub mlbc1: MLBC1,
     _reserved7: [u8; 0x40],
     #[doc = "0x80 - HBI Control Register"]
-    pub mlb_hctl: crate::Reg<mlb_hctl::MLB_HCTL_SPEC>,
+    pub hctl: HCTL,
     _reserved8: [u8; 0x04],
     #[doc = "0x88..0x90 - HBI Channel Mask 0 Register 0"]
-    pub mlb_hcmr: [crate::Reg<mlb_hcmr::MLB_HCMR_SPEC>; 2],
+    pub hcmr: [HCMR; 2],
     #[doc = "0x90..0x98 - HBI Channel Error 0 Register 0"]
-    pub mlb_hcer: [crate::Reg<mlb_hcer::MLB_HCER_SPEC>; 2],
+    pub hcer: [HCER; 2],
     #[doc = "0x98..0xa0 - HBI Channel Busy 0 Register 0"]
-    pub mlb_hcbr: [crate::Reg<mlb_hcbr::MLB_HCBR_SPEC>; 2],
+    pub hcbr: [HCBR; 2],
     _reserved11: [u8; 0x20],
     #[doc = "0xc0..0xd0 - MIF Data 0 Register 0"]
-    pub mlb_mdat: [crate::Reg<mlb_mdat::MLB_MDAT_SPEC>; 4],
+    pub mdat: [MDAT; 4],
     #[doc = "0xd0..0xe0 - MIF Data Write Enable 0 Register 0"]
-    pub mlb_mdwe: [crate::Reg<mlb_mdwe::MLB_MDWE_SPEC>; 4],
+    pub mdwe: [MDWE; 4],
     #[doc = "0xe0 - MIF Control Register"]
-    pub mlb_mctl: crate::Reg<mlb_mctl::MLB_MCTL_SPEC>,
+    pub mctl: MCTL,
     #[doc = "0xe4 - MIF Address Register"]
-    pub mlb_madr: crate::Reg<mlb_madr::MLB_MADR_SPEC>,
+    pub madr: MADR,
     _reserved15: [u8; 0x02d8],
     #[doc = "0x3c0 - AHB Control Register"]
-    pub mlb_actl: crate::Reg<mlb_actl::MLB_ACTL_SPEC>,
+    pub actl: ACTL,
     _reserved16: [u8; 0x0c],
     #[doc = "0x3d0..0x3d8 - AHB Channel Status 0 Register 0"]
-    pub mlb_acsr: [crate::Reg<mlb_acsr::MLB_ACSR_SPEC>; 2],
+    pub acsr: [ACSR; 2],
     #[doc = "0x3d8..0x3e0 - AHB Channel Mask 0 Register 0"]
-    pub mlb_acmr: [crate::Reg<mlb_acmr::MLB_ACMR_SPEC>; 2],
+    pub acmr: [ACMR; 2],
 }
-#[doc = "MLB_MLBC0 register accessor: an alias for `Reg<MLB_MLBC0_SPEC>`"]
-pub type MLB_MLBC0 = crate::Reg<mlb_mlbc0::MLB_MLBC0_SPEC>;
+#[doc = "MLBC0 (rw) register accessor: an alias for `Reg<MLBC0_SPEC>`"]
+pub type MLBC0 = crate::Reg<mlbc0::MLBC0_SPEC>;
 #[doc = "MediaLB Control 0 Register"]
-pub mod mlb_mlbc0;
-#[doc = "MLB_MS0 register accessor: an alias for `Reg<MLB_MS0_SPEC>`"]
-pub type MLB_MS0 = crate::Reg<mlb_ms0::MLB_MS0_SPEC>;
+pub mod mlbc0;
+#[doc = "MS0 (rw) register accessor: an alias for `Reg<MS0_SPEC>`"]
+pub type MS0 = crate::Reg<ms0::MS0_SPEC>;
 #[doc = "MediaLB Channel Status 0 Register"]
-pub mod mlb_ms0;
-#[doc = "MLB_MS1 register accessor: an alias for `Reg<MLB_MS1_SPEC>`"]
-pub type MLB_MS1 = crate::Reg<mlb_ms1::MLB_MS1_SPEC>;
+pub mod ms0;
+#[doc = "MS1 (rw) register accessor: an alias for `Reg<MS1_SPEC>`"]
+pub type MS1 = crate::Reg<ms1::MS1_SPEC>;
 #[doc = "MediaLB Channel Status1 Register"]
-pub mod mlb_ms1;
-#[doc = "MLB_MSS register accessor: an alias for `Reg<MLB_MSS_SPEC>`"]
-pub type MLB_MSS = crate::Reg<mlb_mss::MLB_MSS_SPEC>;
+pub mod ms1;
+#[doc = "MSS (rw) register accessor: an alias for `Reg<MSS_SPEC>`"]
+pub type MSS = crate::Reg<mss::MSS_SPEC>;
 #[doc = "MediaLB System Status Register"]
-pub mod mlb_mss;
-#[doc = "MLB_MSD register accessor: an alias for `Reg<MLB_MSD_SPEC>`"]
-pub type MLB_MSD = crate::Reg<mlb_msd::MLB_MSD_SPEC>;
+pub mod mss;
+#[doc = "MSD (r) register accessor: an alias for `Reg<MSD_SPEC>`"]
+pub type MSD = crate::Reg<msd::MSD_SPEC>;
 #[doc = "MediaLB System Data Register"]
-pub mod mlb_msd;
-#[doc = "MLB_MIEN register accessor: an alias for `Reg<MLB_MIEN_SPEC>`"]
-pub type MLB_MIEN = crate::Reg<mlb_mien::MLB_MIEN_SPEC>;
+pub mod msd;
+#[doc = "MIEN (rw) register accessor: an alias for `Reg<MIEN_SPEC>`"]
+pub type MIEN = crate::Reg<mien::MIEN_SPEC>;
 #[doc = "MediaLB Interrupt Enable Register"]
-pub mod mlb_mien;
-#[doc = "MLB_MLBC1 register accessor: an alias for `Reg<MLB_MLBC1_SPEC>`"]
-pub type MLB_MLBC1 = crate::Reg<mlb_mlbc1::MLB_MLBC1_SPEC>;
+pub mod mien;
+#[doc = "MLBC1 (rw) register accessor: an alias for `Reg<MLBC1_SPEC>`"]
+pub type MLBC1 = crate::Reg<mlbc1::MLBC1_SPEC>;
 #[doc = "MediaLB Control 1 Register"]
-pub mod mlb_mlbc1;
-#[doc = "MLB_HCTL register accessor: an alias for `Reg<MLB_HCTL_SPEC>`"]
-pub type MLB_HCTL = crate::Reg<mlb_hctl::MLB_HCTL_SPEC>;
+pub mod mlbc1;
+#[doc = "HCTL (rw) register accessor: an alias for `Reg<HCTL_SPEC>`"]
+pub type HCTL = crate::Reg<hctl::HCTL_SPEC>;
 #[doc = "HBI Control Register"]
-pub mod mlb_hctl;
-#[doc = "MLB_HCMR register accessor: an alias for `Reg<MLB_HCMR_SPEC>`"]
-pub type MLB_HCMR = crate::Reg<mlb_hcmr::MLB_HCMR_SPEC>;
+pub mod hctl;
+#[doc = "HCMR (rw) register accessor: an alias for `Reg<HCMR_SPEC>`"]
+pub type HCMR = crate::Reg<hcmr::HCMR_SPEC>;
 #[doc = "HBI Channel Mask 0 Register 0"]
-pub mod mlb_hcmr;
-#[doc = "MLB_HCER register accessor: an alias for `Reg<MLB_HCER_SPEC>`"]
-pub type MLB_HCER = crate::Reg<mlb_hcer::MLB_HCER_SPEC>;
+pub mod hcmr;
+#[doc = "HCER (r) register accessor: an alias for `Reg<HCER_SPEC>`"]
+pub type HCER = crate::Reg<hcer::HCER_SPEC>;
 #[doc = "HBI Channel Error 0 Register 0"]
-pub mod mlb_hcer;
-#[doc = "MLB_HCBR register accessor: an alias for `Reg<MLB_HCBR_SPEC>`"]
-pub type MLB_HCBR = crate::Reg<mlb_hcbr::MLB_HCBR_SPEC>;
+pub mod hcer;
+#[doc = "HCBR (r) register accessor: an alias for `Reg<HCBR_SPEC>`"]
+pub type HCBR = crate::Reg<hcbr::HCBR_SPEC>;
 #[doc = "HBI Channel Busy 0 Register 0"]
-pub mod mlb_hcbr;
-#[doc = "MLB_MDAT register accessor: an alias for `Reg<MLB_MDAT_SPEC>`"]
-pub type MLB_MDAT = crate::Reg<mlb_mdat::MLB_MDAT_SPEC>;
+pub mod hcbr;
+#[doc = "MDAT (rw) register accessor: an alias for `Reg<MDAT_SPEC>`"]
+pub type MDAT = crate::Reg<mdat::MDAT_SPEC>;
 #[doc = "MIF Data 0 Register 0"]
-pub mod mlb_mdat;
-#[doc = "MLB_MDWE register accessor: an alias for `Reg<MLB_MDWE_SPEC>`"]
-pub type MLB_MDWE = crate::Reg<mlb_mdwe::MLB_MDWE_SPEC>;
+pub mod mdat;
+#[doc = "MDWE (rw) register accessor: an alias for `Reg<MDWE_SPEC>`"]
+pub type MDWE = crate::Reg<mdwe::MDWE_SPEC>;
 #[doc = "MIF Data Write Enable 0 Register 0"]
-pub mod mlb_mdwe;
-#[doc = "MLB_MCTL register accessor: an alias for `Reg<MLB_MCTL_SPEC>`"]
-pub type MLB_MCTL = crate::Reg<mlb_mctl::MLB_MCTL_SPEC>;
+pub mod mdwe;
+#[doc = "MCTL (rw) register accessor: an alias for `Reg<MCTL_SPEC>`"]
+pub type MCTL = crate::Reg<mctl::MCTL_SPEC>;
 #[doc = "MIF Control Register"]
-pub mod mlb_mctl;
-#[doc = "MLB_MADR register accessor: an alias for `Reg<MLB_MADR_SPEC>`"]
-pub type MLB_MADR = crate::Reg<mlb_madr::MLB_MADR_SPEC>;
+pub mod mctl;
+#[doc = "MADR (rw) register accessor: an alias for `Reg<MADR_SPEC>`"]
+pub type MADR = crate::Reg<madr::MADR_SPEC>;
 #[doc = "MIF Address Register"]
-pub mod mlb_madr;
-#[doc = "MLB_ACTL register accessor: an alias for `Reg<MLB_ACTL_SPEC>`"]
-pub type MLB_ACTL = crate::Reg<mlb_actl::MLB_ACTL_SPEC>;
+pub mod madr;
+#[doc = "ACTL (rw) register accessor: an alias for `Reg<ACTL_SPEC>`"]
+pub type ACTL = crate::Reg<actl::ACTL_SPEC>;
 #[doc = "AHB Control Register"]
-pub mod mlb_actl;
-#[doc = "MLB_ACSR register accessor: an alias for `Reg<MLB_ACSR_SPEC>`"]
-pub type MLB_ACSR = crate::Reg<mlb_acsr::MLB_ACSR_SPEC>;
+pub mod actl;
+#[doc = "ACSR (rw) register accessor: an alias for `Reg<ACSR_SPEC>`"]
+pub type ACSR = crate::Reg<acsr::ACSR_SPEC>;
 #[doc = "AHB Channel Status 0 Register 0"]
-pub mod mlb_acsr;
-#[doc = "MLB_ACMR register accessor: an alias for `Reg<MLB_ACMR_SPEC>`"]
-pub type MLB_ACMR = crate::Reg<mlb_acmr::MLB_ACMR_SPEC>;
+pub mod acsr;
+#[doc = "ACMR (rw) register accessor: an alias for `Reg<ACMR_SPEC>`"]
+pub type ACMR = crate::Reg<acmr::ACMR_SPEC>;
 #[doc = "AHB Channel Mask 0 Register 0"]
-pub mod mlb_acmr;
+pub mod acmr;

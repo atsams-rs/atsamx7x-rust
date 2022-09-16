@@ -2,21 +2,21 @@
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - Control Register"]
-    pub wdt_cr: crate::Reg<wdt_cr::WDT_CR_SPEC>,
+    pub cr: CR,
     #[doc = "0x04 - Mode Register"]
-    pub wdt_mr: crate::Reg<wdt_mr::WDT_MR_SPEC>,
+    pub mr: MR,
     #[doc = "0x08 - Status Register"]
-    pub wdt_sr: crate::Reg<wdt_sr::WDT_SR_SPEC>,
+    pub sr: SR,
 }
-#[doc = "WDT_CR register accessor: an alias for `Reg<WDT_CR_SPEC>`"]
-pub type WDT_CR = crate::Reg<wdt_cr::WDT_CR_SPEC>;
+#[doc = "CR (w) register accessor: an alias for `Reg<CR_SPEC>`"]
+pub type CR = crate::Reg<cr::CR_SPEC>;
 #[doc = "Control Register"]
-pub mod wdt_cr;
-#[doc = "WDT_MR register accessor: an alias for `Reg<WDT_MR_SPEC>`"]
-pub type WDT_MR = crate::Reg<wdt_mr::WDT_MR_SPEC>;
+pub mod cr;
+#[doc = "MR (rw) register accessor: an alias for `Reg<MR_SPEC>`"]
+pub type MR = crate::Reg<mr::MR_SPEC>;
 #[doc = "Mode Register"]
-pub mod wdt_mr;
-#[doc = "WDT_SR register accessor: an alias for `Reg<WDT_SR_SPEC>`"]
-pub type WDT_SR = crate::Reg<wdt_sr::WDT_SR_SPEC>;
+pub mod mr;
+#[doc = "SR (r) register accessor: an alias for `Reg<SR_SPEC>`"]
+pub type SR = crate::Reg<sr::SR_SPEC>;
 #[doc = "Status Register"]
-pub mod wdt_sr;
+pub mod sr;
