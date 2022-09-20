@@ -1,10 +1,11 @@
 use core::{cell::UnsafeCell, ptr::NonNull, ops::{Deref, DerefMut}, marker::PhantomData};
 use paste::*;
-use crate::pmc::{HostClock, PeripheralIdentifier, Pmc};
-use crate::target_device::gmac::RegisterBlock;
+use crate::clocks::*;
+use crate::pac::gmac::RegisterBlock;
 use crate::pio::*;
+use core::sync::atomic::{fence, compiler_fence, Ordering};
 
-use crate::target_device::{GMAC, generic::Reg, gmac::{gmac_idrpq::GMAC_IDRPQ_SPEC, gmac_isrpq::GMAC_ISRPQ_SPEC}};
+use crate::pac::{GMAC, generic::Reg, gmac::{idrpq::IDRPQ_SPEC, isrpq::ISRPQ_SPEC}};
 use smoltcp::phy::{Device, RxToken, TxToken, DeviceCapabilities, Medium, ChecksumCapabilities, Checksum};
 
 
@@ -200,6 +201,7 @@ impl Drop for ReadFrame {
 
 impl WriteFrame {
     unsafe fn dropper(&mut self, len: usize) {
+        compiler_fence(Ordering::SeqCst);
         let desc = { self.desc.as_ref() };
         let old_w1 = desc.get_word_1();
         let wrap_bit = old_w1 & 0x4000_0000;
@@ -218,10 +220,11 @@ impl WriteFrame {
         desc.set_word_1(new_w1);
         self.was_sent = true;
 
+        fence(Ordering::SeqCst);
         // yolo
         {
             let gmac = &*GMAC::ptr();
-            gmac.gmac_ncr.modify(|_r, w| {
+            gmac.ncr.modify(|_r, w| {
                 w.tstart().set_bit()
             });
         }
@@ -252,13 +255,13 @@ impl Gmac {
     //     unsafe { &*self::REG }
     // }
 
-    pub fn  new_gmac<Pins: GmacPins>(gmac: GMAC, _pins: Pins, cfg: GmacConfiguration, pmc: &mut Pmc) -> Result<Self, GmacError> {
-        Self::new(gmac, pmc, cfg)
+    pub fn  new_gmac<Pins: GmacPins>(gmac: GMAC, _pins: Pins, cfg: GmacConfiguration, clk: &mut HostClock) -> Result<Self, GmacError> {
+        Self::new(gmac, clk, cfg)
     }
 
 
-    fn new(gmac: GMAC, pmc: &mut Pmc, cfg: GmacConfiguration) -> Result<Self,GmacError> {
-        pmc.enable_peripherals(&[PeripheralIdentifier::GMAC]).unwrap();
+    fn new(gmac: GMAC, pmc: &mut HostClock, cfg: GmacConfiguration) -> Result<Self,GmacError> {
+        pmc.enable_peripheral(PeripheralIdentifier::GMAC);
         let mut gmac = Gmac {
             periph: gmac,
             next_tx_idx: 0,
@@ -272,6 +275,7 @@ impl Gmac {
 
     pub fn read_frame(&mut self) -> Option<ReadFrame> {
         // Scan through the read frames, and attempt to find one marked as "used"
+        compiler_fence(Ordering::SeqCst);
         RX_BUF_DESCS.iter().find_map(|desc| {
             let w0 = desc.get_word_0();
             let addr = w0 & 0xFFFF_FFFC;
@@ -281,6 +285,8 @@ impl Gmac {
                 // Erase address, but leave 'ready' and potentially 'last' bit set.
                 desc.set_word_0(w0 & 0x0000_0003);
                 let len = (desc.get_word_1() & 0x0000_0FFF) as usize;
+
+                fence(Ordering::SeqCst);
 
                 let desc_addr = NonNull::new(desc.words.get().cast())?;
                 let buf_addr = NonNull::new(addr as *const [u8; RX_BUF_SIZE] as *mut [u8; RX_BUF_SIZE])?;
@@ -292,7 +298,7 @@ impl Gmac {
     }
 
     pub fn alloc_write_frame(&mut self) -> Option<WriteFrame> {
-        // let tsr = self.periph.gmac_tsr.read().bits();
+        // let tsr = self.periph.tsr.read().bits();
         // defmt::println!("TSR: {=u32:08x}", tsr);
 
         let desc = &TX_BUF_DESCS[self.next_tx_idx];
@@ -321,23 +327,23 @@ impl Gmac {
     }
 
     fn miim_mgmt_port_enable(&mut self) {
-        self.periph.gmac_ncr.modify(|_r, w| {
+        self.periph.ncr.modify(|_r, w| {
             w.mpe().set_bit()
         });
     }
 
     fn miim_mgmt_port_disable(&mut self) {
-        self.periph.gmac_ncr.modify(|_r, w| {
+        self.periph.ncr.modify(|_r, w| {
             w.mpe().clear_bit()
         });
     }
 
     fn miim_is_busy(&mut self) -> bool {
-        self.periph.gmac_nsr.read().idle().bit_is_clear()
+        self.periph.nsr.read().idle().bit_is_clear()
     }
 
     fn miim_write_data(&mut self, reg_idx: u8, op_data: u16) {
-        self.periph.gmac_man.write(|w| {
+        self.periph.man.write(|w| {
             w.wzo().clear_bit();
             w.cltto().set_bit();
             unsafe {
@@ -353,7 +359,7 @@ impl Gmac {
     }
 
     fn miim_start_read(&mut self, reg_idx: u8) {
-        self.periph.gmac_man.write(|w| {
+        self.periph.man.write(|w| {
             w.wzo().clear_bit();
             w.cltto().set_bit();
             unsafe {
@@ -369,7 +375,7 @@ impl Gmac {
     }
 
     fn miim_read_data_get(&mut self) -> u16 {
-        self.periph.gmac_man.read().data().bits()
+        self.periph.man.read().data().bits()
     }
 
     pub fn miim_post_setup(&mut self) {
@@ -379,7 +385,7 @@ impl Gmac {
         self.miim_mgmt_port_enable();
 
         // defmt::println!("Waiting for miim idle...");
-        let val = self.periph.gmac_nsr.read().bits();
+        let val = self.periph.nsr.read().bits();
         // defmt::println!("{=u32:08X}", val);
         while self.miim_is_busy() { }
 
@@ -418,7 +424,7 @@ impl Gmac {
         // GMAC_REGS->GMAC_NCR &= ~GMAC_NCR_TXEN_Msk;
         // //disable Rx
         // GMAC_REGS->GMAC_NCR &= ~GMAC_NCR_RXEN_Msk;
-        self.periph.gmac_ncr.modify(|_r, w| {
+        self.periph.ncr.modify(|_r, w| {
             w.txen().clear_bit();
             w.rxen().clear_bit();
             w
@@ -430,7 +436,7 @@ impl Gmac {
 
         // //disable all GMAC interrupts for QUEUE 0
         // GMAC_REGS->GMAC_IDR = GMAC_INT_ALL;
-        self.periph.gmac_idr.write(|w| unsafe { w.bits(0xFFFF_FFFF) });
+        self.periph.idr.write(|w| unsafe { w.bits(0xFFFF_FFFF) });
 
         // //disable all GMAC interrupts for QUEUE 1
         // GMAC_REGS->GMAC_IDRPQ[0] = GMAC_INT_ALL;
@@ -443,18 +449,18 @@ impl Gmac {
         // //disable all GMAC interrupts for QUEUE 5
         // GMAC_REGS->GMAC_IDRPQ[4] = GMAC_INT_ALL;
         for i in 0..5 {
-            self.periph.gmac_idrpq[i].write(|w| unsafe { w.bits(0xFFFF_FFFF) });
+            self.periph.idrpq[i].write(|w| unsafe { w.bits(0xFFFF_FFFF) });
         }
 
         // //Clear statistics register
         // GMAC_REGS->GMAC_NCR |=  GMAC_NCR_CLRSTAT_Msk;
-        self.periph.gmac_ncr.modify(|_r, w| {
+        self.periph.ncr.modify(|_r, w| {
             w.clrstat().set_bit()
         });
 
         // //Clear RX Status
         // GMAC_REGS->GMAC_RSR =  GMAC_RSR_RXOVR_Msk | GMAC_RSR_REC_Msk | GMAC_RSR_BNA_Msk  | GMAC_RSR_HNO_Msk;
-        self.periph.gmac_rsr.write(|w| {
+        self.periph.rsr.write(|w| {
             w.rxovr().set_bit();
             w.rec().set_bit();
             w.bna().set_bit();
@@ -465,7 +471,7 @@ impl Gmac {
         // //Clear TX Status
         // GMAC_REGS->GMAC_TSR = GMAC_TSR_UBR_Msk  | GMAC_TSR_COL_Msk  | GMAC_TSR_RLE_Msk | GMAC_TSR_TXGO_Msk |
         //                                         GMAC_TSR_TFC_Msk  | GMAC_TSR_TXCOMP_Msk  | GMAC_TSR_HRESP_Msk;
-        self.periph.gmac_tsr.write(|w| {
+        self.periph.tsr.write(|w| {
             w.ubr().set_bit();
             w.col().set_bit();
             w.rle().set_bit();
@@ -478,7 +484,7 @@ impl Gmac {
 
         // //Clear all GMAC Interrupt status
         // GMAC_REGS->GMAC_ISR;
-        let _ = self.periph.gmac_isr.read().bits();
+        let _ = self.periph.isr.read().bits();
 
         // GMAC_REGS->GMAC_ISRPQ[0] ;
         // GMAC_REGS->GMAC_ISRPQ[1] ;
@@ -486,7 +492,7 @@ impl Gmac {
         // GMAC_REGS->GMAC_ISRPQ[3] ;
         // GMAC_REGS->GMAC_ISRPQ[4] ;
         for i in 0..5 {
-            let _ = self.periph.gmac_isrpq[i].read().bits();
+            let _ = self.periph.isrpq[i].read().bits();
         }
 
         // //Set network configurations like speed, full duplex, copy all frames, no broadcast,
@@ -496,7 +502,7 @@ impl Gmac {
         // {
         //     GMAC_REGS->GMAC_NCFGR |= GMAC_NCFGR_RXCOEN_Msk;
         // }
-        self.periph.gmac_ncfgr.write(|w| {
+        self.periph.ncfgr.write(|w| {
             w.spd().set_bit();
             w.fd().set_bit();
             unsafe {
@@ -535,7 +541,7 @@ impl Gmac {
         //  0  1  2  3  4  5
         // 04:91:62:01:02:03
 
-        self.periph.gmac_sa1.gmac_sab.write(|w| unsafe {
+        self.periph.gmac_sa[0].sab.write(|w| unsafe {
             let bottom: u32 = {
                 (0x01 << 24) |
                 (0x62 << 16) |
@@ -544,7 +550,7 @@ impl Gmac {
             };
             w.addr().bits(bottom)
         });
-        self.periph.gmac_sa1.gmac_sat.write(|w| unsafe {
+        self.periph.gmac_sa[0].sat.write(|w| unsafe {
             let top: u16 = {
                 (0x03 << 8) |
                 0x02
@@ -560,7 +566,7 @@ impl Gmac {
         //     GMAC_REGS->GMAC_UR = GMAC_UR_RMII(1); //initial mode set as MII
 
         // We have an RMII Phy.
-        self.periph.gmac_ur.write(|w| {
+        self.periph.ur.write(|w| {
             // 0 => RMII
             // 1 => MII
             w.rmii().clear_bit()
@@ -569,8 +575,8 @@ impl Gmac {
         // DRV_PIC32CGMAC_LibRxFilterHash_Calculate
         //
         // Note: Set to all 1's to accept all multi-cast addresses
-        self.periph.gmac_hrb.write(|w| unsafe { w.addr().bits(0xFFFF_FFFF) });
-        self.periph.gmac_hrt.write(|w| unsafe { w.addr().bits(0xFFFF_FFFF) });
+        self.periph.hrb.write(|w| unsafe { w.addr().bits(0xFFFF_FFFF) });
+        self.periph.hrt.write(|w| unsafe { w.addr().bits(0xFFFF_FFFF) });
 
         // _DRV_GMAC_MacToEthFilter
         //
@@ -612,7 +618,7 @@ impl Gmac {
         // TODO: I *think* I need to set DCFGR.DRBS = (1024 / 64) = 16 = 0x10
         // This is done "later" in DRV_PIC32CGMAC_LibInitTransfer
 
-        self.periph.gmac_rbqb.write(|w| unsafe {
+        self.periph.rbqb.write(|w| unsafe {
             // Take the buffer descriptor pointer...
             let desc_ptr: *const RxBufferDescriptor = RX_BUF_DESCS.as_ptr();
             let desc_wrd_raw: u32 = desc_ptr as u32;
@@ -655,7 +661,7 @@ impl Gmac {
             last.set_word_1(word_1);
         }
 
-        self.periph.gmac_tbqb.write(|w| unsafe {
+        self.periph.tbqb.write(|w| unsafe {
             // Take the buffer descriptor pointer...
             let desc_ptr: *const TxBufferDescriptor = TX_BUF_DESCS.as_ptr();
             let desc_wrd_raw: u32 = desc_ptr as u32;
@@ -668,7 +674,7 @@ impl Gmac {
         });
 
         // Note! We need to stub out the prio queues
-        for buf in self.periph.gmac_tbqbapq.iter() {
+        for buf in self.periph.tbqbapq.iter() {
             // Take the buffer descriptor pointer...
             let desc_ptr: *const TxBufferDescriptor = &UNUSED_TX_BUF_DESC;
             let desc_wrd_raw: u32 = desc_ptr as u32;
@@ -684,7 +690,7 @@ impl Gmac {
         let drbs = (RX_BUF_SIZE / 64).min(255) as u8;
         // defmt::assert_ne!(drbs, 0, "Invalid RX Buffer size!");
 
-        self.periph.gmac_dcfgr.write(|w| {
+        self.periph.dcfgr.write(|w| {
             // ? - DMA Discard Receive Packets
             //
             // 0 - Received packets are stored in the SRAM based packet buffer until next AHB buffer
@@ -719,7 +725,7 @@ impl Gmac {
         // DRV_PIC32CGMAC_LibSysInt_Enable
 
         // DRV_PIC32CGMAC_LibTransferEnable
-        self.periph.gmac_ncr.modify(|_r, w| {
+        self.periph.ncr.modify(|_r, w| {
             w.txen().set_bit();
             w.rxen().set_bit();
             w.westat().set_bit();

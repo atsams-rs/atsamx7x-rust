@@ -193,5 +193,5 @@ pub mod tc;
 pub mod usb;
 #[cfg(feature = "device-selected")]
 pub mod watchdog;
-#[cfg(feature = "rev-b")]
+#[cfg(feature = "device-selected")]
 pub mod gmac;
