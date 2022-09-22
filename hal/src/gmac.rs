@@ -9,6 +9,8 @@ use crate::pac::{GMAC, generic::Reg, gmac::{idrpq::IDRPQ_SPEC, isrpq::ISRPQ_SPEC
 use smoltcp::phy::{Device, RxToken, TxToken, DeviceCapabilities, Medium, ChecksumCapabilities, Checksum};
 
 // TODO this should not be hard coded
+// I would suggest syntax similar to heapless::Vec, where the size is specified in the type, e.g.
+// Gmac<NUM_RX_BUFS,NUM_TX_BUFS,RX_BUF_SIZE, TX_BUF_SIZE>
 const NUM_RX_BUFS: usize = 4;
 const NUM_TX_BUFS: usize = 4;
 const RX_BUF_SIZE: usize = 1024;
@@ -34,10 +36,30 @@ pub trait GmacPins {
 
 #[derive(Debug)]
 pub enum GmacError {
-
+    ClockRateError
 }
 
-pub struct GmacConfiguration { }
+pub struct GmacConfiguration {
+    speed: GmacSpeed,
+    duplex: GmacDuplex,
+    mii: GmacMii,
+    mac: [u8;6],
+}
+
+pub enum GmacSpeed {
+    _100Mbit,
+    _10Mbit,
+}
+
+pub enum GmacDuplex {
+    HalfDuplex,
+    FullDuplex,
+}
+
+pub enum GmacMii {
+    Mii,
+    Rmii,
+}
 
 
 pub struct GmacRxToken<'a> {
@@ -99,13 +121,15 @@ impl<'a> Device<'a> for Gmac {
     fn capabilities(&self) -> DeviceCapabilities {
         let mut capa = DeviceCapabilities::default();
         capa.medium = Medium::Ethernet;
-        capa.max_transmission_unit = 1024; // Is this too big?
+        capa.max_transmission_unit = 1024; // Is this too big? I think we are capable of full ethernet frames
         capa.max_burst_size = None;
 
+        // TODO The Gmac can do checksum offloading, and I believe is configured to do checksum
+        // offloading.
         let mut cksm = ChecksumCapabilities::ignored();
-        cksm.ipv4 = Checksum::None;
-        cksm.tcp = Checksum::None;
-        cksm.udp = Checksum::None;
+        cksm.ipv4 = Checksum::Both;
+        cksm.tcp = Checksum::Both;
+        cksm.udp = Checksum::Both;
         cksm.icmpv4 = Checksum::None;
 
         capa.checksum = cksm;
@@ -260,8 +284,8 @@ impl Gmac {
     }
 
 
-    fn new(gmac: GMAC, pmc: &mut HostClock, cfg: GmacConfiguration) -> Result<Self,GmacError> {
-        pmc.enable_peripheral(PeripheralIdentifier::GMAC);
+    fn new(gmac: GMAC, clk: &mut HostClock, cfg: GmacConfiguration) -> Result<Self,GmacError> {
+        clk.enable_peripheral(PeripheralIdentifier::GMAC);
         let mut gmac = Gmac {
             periph: gmac,
             next_tx_idx: 0,
@@ -273,6 +297,7 @@ impl Gmac {
         // Based on DRV_PIC32CGMAC_LibInit
         // //disable Tx
         // //disable Rx
+        // TODO Remove if we can assume reset register values
         gmac.periph.ncr.modify(|_r, w| {
             w.txen().clear_bit();
             w.rxen().clear_bit();
@@ -295,6 +320,7 @@ impl Gmac {
             gmac.periph.idrpq[i].write(|w| unsafe { w.bits(0xFFFF_FFFF) });
         }
 
+        // TODO if we can assume reset conditions, we can also skip these three register writes
         // //Clear statistics register
         gmac.periph.ncr.modify(|_r, w| {
             w.clrstat().set_bit()
@@ -330,15 +356,46 @@ impl Gmac {
 
         // //Set network configurations like speed, full duplex, copy all frames, no broadcast,
         // // pause enable, remove FCS, MDC clock
-        gmac.periph.ncfgr.write(|w| {
-            w.spd().set_bit();
-            w.fd().set_bit();
+        gmac.periph.ncfgr.modify(|_,w| {
+            match cfg.speed {
+                GmacSpeed::_100Mbit => w.spd().set_bit(),
+                GmacSpeed::_10Mbit => w.spd().clear_bit(),
+            };
+            match cfg.duplex {
+                GmacDuplex::FullDuplex => w.fd().set_bit(),
+                GmacDuplex::HalfDuplex => w.fd().clear_bit(),
+            };
+            w
+        });
+        match clk.freq().to_MHz() {
+            0..=20 => {
+                gmac.periph.ncfgr.modify(|_,w| w.clk().mck_8());
+                Ok(())
+            }
+            21..=40 => {
+                gmac.periph.ncfgr.modify(|_,w| w.clk().mck_16());
+                Ok(())
+            }
+            41..=80 => {
+                gmac.periph.ncfgr.modify(|_,w| w.clk().mck_32());
+                Ok(())
+            }
+            81..=160 => {
+                gmac.periph.ncfgr.modify(|_,w| w.clk().mck_64());
+                Ok(())
+            }
+            161..=240 => {
+                gmac.periph.ncfgr.modify(|_,w| w.clk().mck_96());
+                Ok(())
+            }
+            241.. => Err(GmacError::ClockRateError),
+        }?;
+        gmac.periph.ncfgr.modify(|_,w| {
+
             unsafe {
                 // 0 = 32-bit data bus
                 w.dbw().bits(0);
             }
-            // 4 == mck / 64
-            w.clk().mck_64();
             w.pen().set_bit();
             w.rfcs().clear_bit();
             // Note: Always enabling checksum offloading for now
@@ -362,29 +419,29 @@ impl Gmac {
 
         gmac.periph.gmac_sa[0].sab.write(|w| unsafe {
             let bottom: u32 = {
-                (0x01 << 24) |
-                (0x62 << 16) |
-                (0x91 <<  8) |
-                0x04
+                ((cfg.mac[3] as u32) << 24) |
+                ((cfg.mac[2] as u32) << 16) |
+                ((cfg.mac[1] as u32) <<  8) |
+                (cfg.mac[0] as u32)
             };
             w.addr().bits(bottom)
         });
         gmac.periph.gmac_sa[0].sat.write(|w| unsafe {
             let top: u16 = {
-                (0x03 << 8) |
-                0x02
+                ((cfg.mac[5] as u16 )<< 8) |
+                (cfg.mac[4] as u16)
             };
             w.addr().bits(top)
         });
 
-        // // MII mode config
-        // //Configure in RMII mode
-
-        // We have an RMII Phy.
+        // // MII mode config TODO Save user from mii config and pin config incompatibilities
         gmac.periph.ur.write(|w| {
             // 0 => RMII
             // 1 => MII
-            w.rmii().clear_bit()
+            match cfg.mii {
+                GmacMii::Mii => w.rmii().set_bit(),
+                GmacMii::Rmii => w.rmii().clear_bit(),
+            }
         });
 
         // DRV_PIC32CGMAC_LibRxFilterHash_Calculate
@@ -402,12 +459,7 @@ impl Gmac {
         // Let's skip priority filters for now...
 
         // DRV_PIC32CGMAC_LibRxInit
-        //
-        // This boils down to a single write to GMAC_RBQB (or GMAC_RBQBAPQ), I think this means
-        // I need to set up the receive buffers. NOTE: I think they need to be 8-byte aligned (or something?)
-        // (datasheet says 4-byte aligned...)
-        //
-        // Table 38-2 describes "Receive Buffer Descriptor Entry"
+        // This boils down to a single write to GMAC_RBQB (or GMAC_RBQBAPQ), I think this means I need to set up the receive buffers. NOTE: I think they need to be 8-byte aligned (or something?) (datasheet says 4-byte aligned...) Table 38-2 describes "Receive Buffer Descriptor Entry"
         unsafe {
             // Set the receive buffer addresses in the upper word
             for (desc, buf) in RX_BUF_DESCS.iter().zip(RX_BUFS.iter()) {
@@ -498,6 +550,7 @@ impl Gmac {
         }
 
         // DRV_PIC32CGMAC_LibInitTransfer
+        // TODO DMA buffer and RX buffer do not need to be the same size.
         let drbs = (RX_BUF_SIZE / 64).min(255) as u8;
 
         gmac.periph.dcfgr.write(|w| {
@@ -510,6 +563,7 @@ impl Gmac {
             // no AHB resource is available.
             //
             // TODO: Example code sets this, so let's do that for now.
+            // TODO: Probs clear it
             w.ddrp().set_bit();
             unsafe {
                 // DRBS is defined in multiples of 64-bytes
@@ -627,6 +681,7 @@ impl Gmac {
         });
     }
 
+    // TODO: Should miim_read be consolidated into a single function?
     fn miim_start_read(&mut self, reg_idx: u8) {
         self.periph.man.write(|w| {
             w.wzo().clear_bit();
