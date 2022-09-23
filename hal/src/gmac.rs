@@ -40,10 +40,10 @@ pub enum GmacError {
 }
 
 pub struct GmacConfiguration {
-    speed: GmacSpeed,
-    duplex: GmacDuplex,
-    mii: GmacMii,
-    mac: [u8;6],
+    pub speed: GmacSpeed,
+    pub duplex: GmacDuplex,
+    pub mii : GmacMii,
+    pub mac: [u8;6],
 }
 
 pub enum GmacSpeed {
@@ -551,6 +551,7 @@ impl Gmac {
 
         // DRV_PIC32CGMAC_LibInitTransfer
         // TODO DMA buffer and RX buffer do not need to be the same size.
+        // Yes they do. 38.7.1.2
         let drbs = (RX_BUF_SIZE / 64).min(255) as u8;
 
         gmac.periph.dcfgr.write(|w| {
