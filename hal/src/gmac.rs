@@ -3,6 +3,7 @@ use crate::pac::gmac::RegisterBlock;
 use crate::pio::*;
 use core::sync::atomic::{compiler_fence, fence, Ordering};
 use core::{
+    assert,
     cell::UnsafeCell,
     marker::PhantomData,
     ops::{Deref, DerefMut},
@@ -18,23 +19,18 @@ use crate::pac::{
 use smoltcp::phy::{
     Checksum, ChecksumCapabilities, Device, DeviceCapabilities, Medium, RxToken, TxToken,
 };
+use heapless::Vec;
 
 // TODO this should not be hard coded
 // I would suggest syntax similar to heapless::Vec, where the size is specified in the type, e.g.
 // Gmac<NUM_RX_BUFS,NUM_TX_BUFS,RX_BUF_SIZE, TX_BUF_SIZE>
-const NUM_RX_BUFS: usize = 4;
-const NUM_TX_BUFS: usize = 4;
-const RX_BUF_SIZE: usize = 1024;
-const TX_BUF_SIZE: usize = 1024;
+// const NUM_RX_BUFS: usize = 4;
+// const NUM_TX_BUFS: usize = 4;
+// const RX_BUF_SIZE: usize = 1024;
+// const TX_BUF_SIZE: usize = 1024;
 
 // TODO: This needs a specific linker section (probably)
 // Todo: UnsafeCell?
-static RX_BUF_DESCS: [RxBufferDescriptor; NUM_RX_BUFS] = [RX_BUF_DESC_DEFAULT; NUM_RX_BUFS];
-static RX_BUFS: [RxBuffer; NUM_RX_BUFS] = [RX_BUF_DEFAULT; NUM_RX_BUFS];
-static TX_BUF_DESCS: [TxBufferDescriptor; NUM_TX_BUFS] = [TX_BUF_DESC_DEFAULT; NUM_TX_BUFS];
-static TX_BUFS: [TxBuffer; NUM_TX_BUFS] = [TX_BUF_DEFAULT; NUM_TX_BUFS];
-
-static UNUSED_TX_BUF_DESC: TxBufferDescriptor = TX_BUF_DESC_DEFAULT;
 
 pub trait GmacMeta {
     const REG: *const RegisterBlock;
@@ -70,28 +66,29 @@ pub enum GmacMii {
     Rmii,
 }
 
-pub struct GmacRxToken<'a> {
-    rf: ReadFrame,
+pub struct GmacRxToken<'a, const RX_S: usize> {
+    rf: ReadFrame<RX_S>,
     _plt: PhantomData<&'a ()>,
 }
-pub struct GmacTxToken<'a> {
-    gmac: &'a mut Gmac,
+pub struct GmacTxToken<'a, const TX_N: usize, const TX_S: usize, const RX_N: usize, const RX_S: usize> {
+    gmac_buf: &'a mut  GmacBuffers<TX_N,TX_S,RX_N,RX_S>,
+    // tf: WriteFrame<TX_S>,
+    _plt: PhantomData<&'a ()>,
+    // gmac: &'a mut Gmac<'a, TX_N, TX_S, RX_N, RX_S>,
 }
 
-impl<'a> RxToken for GmacRxToken<'a> {
+impl<'a, const RX_S: usize> RxToken for GmacRxToken<'a, RX_S> {
     fn consume<R, F>(mut self, timestamp: smoltcp::time::Instant, f: F) -> smoltcp::Result<R>
     where
         F: FnOnce(&mut [u8]) -> smoltcp::Result<R>,
     {
-        // defmt::println!("RxCons: {=u32:08X}", timestamp.total_millis() as u32);
-        // defmt::trace!("RX: {=[u8]:02X}", &self.rf);
         f(self.rf.deref_mut())
     }
 }
 
-impl<'a> TxToken for GmacTxToken<'a> {
+impl<'a, const TX_N: usize, const TX_S: usize, const RX_N: usize, const RX_S: usize> TxToken for GmacTxToken<'a, TX_N, TX_S, RX_N, RX_S> {
     fn consume<R, F>(
-        self,
+        mut self,
         timestamp: smoltcp::time::Instant,
         len: usize,
         f: F,
@@ -100,7 +97,7 @@ impl<'a> TxToken for GmacTxToken<'a> {
         F: FnOnce(&mut [u8]) -> smoltcp::Result<R>,
     {
         // defmt::println!("TxCons: {=u32:08X}", timestamp.total_millis() as u32);
-        let mut tf = self.gmac.alloc_write_frame().unwrap();
+        let mut tf = self.gmac_buf.alloc_write_frame().unwrap();
         let res = f(&mut tf[..len]);
         // defmt::trace!("TX: {=[u8]:02X}", &tf[..len]);
         tf.send(len);
@@ -108,29 +105,41 @@ impl<'a> TxToken for GmacTxToken<'a> {
     }
 }
 
-impl<'a> Device<'a> for Gmac {
-    type RxToken = GmacRxToken<'a>;
-    type TxToken = GmacTxToken<'a>;
+impl<'a, const TX_N: usize, const TX_S: usize, const RX_N: usize, const RX_S: usize> Device<'a> for Gmac<'_, TX_N, TX_S, RX_N, RX_S> {
+    type RxToken = GmacRxToken<'a, RX_S>;
+    type TxToken = GmacTxToken<'a, TX_N, TX_S, RX_N, RX_S>;
 
     fn receive(&'a mut self) -> Option<(Self::RxToken, Self::TxToken)> {
         let rxf = self.read_frame()?;
+        // let txf = self.alloc_write_frame()?;
+        let mut bufs = &mut self.gmac_buffers;
         Some((
             GmacRxToken {
                 rf: rxf,
                 _plt: PhantomData,
             },
-            GmacTxToken { gmac: self },
+            GmacTxToken { 
+                // tf: txf,
+                gmac_buf: &mut self.gmac_buffers,
+                _plt: PhantomData,
+            },// gmac: self },
         ))
     }
 
     fn transmit(&'a mut self) -> Option<Self::TxToken> {
-        Some(GmacTxToken { gmac: self })
+        // let txf = self.alloc_write_frame()?;
+        // let mut bufs = self.gmac_buffers;
+        Some(GmacTxToken { 
+            // tf: txf,
+            gmac_buf: &mut self.gmac_buffers,
+            _plt: PhantomData,
+        }) // gmac: self })
     }
 
     fn capabilities(&self) -> DeviceCapabilities {
         let mut capa = DeviceCapabilities::default();
         capa.medium = Medium::Ethernet;
-        capa.max_transmission_unit = 1024; // Is this too big? I think we are capable of full ethernet frames
+        capa.max_transmission_unit = TX_S; // Is this too big? I think we are capable of full ethernet frames
         capa.max_burst_size = None;
 
         // TODO The Gmac can do checksum offloading, and I believe is configured to do checksum
@@ -146,36 +155,47 @@ impl<'a> Device<'a> for Gmac {
     }
 }
 
-pub struct Gmac {
+pub struct Gmac<'a,const TX_N: usize, const TX_S: usize, const RX_N: usize, const RX_S: usize> {
     periph: GMAC,
     next_tx_idx: usize,
     last_txgo: bool,
     last_bna: bool,
     last_stat_poll: u32,
+    // RX_BUF_DESCS:  [RxBufferDescriptor; RX_N],
+    // RX_BUFS:  [RxBuffer<RX_S>; RX_N],
+    // TX_BUF_DESCS: Vec<TxBufferDescriptor, TX_N>,
+    // TX_BUFS:  [TxBuffer<TX_S>; TX_N],
+    
+    gmac_buffers: &'a mut GmacBuffers<TX_N, TX_S, RX_N, RX_S>,
+    UNUSED_TX_BUF_DESC: TxBufferDescriptor,
 }
 
-pub struct ReadFrame {
-    bufr: NonNull<[u8; RX_BUF_SIZE]>,
+pub struct ReadFrame<const RX_S: usize> {
+    bufr: NonNull<[u8; RX_S]>,
     len: usize,
     desc: NonNull<RxBufferDescriptor>,
 }
 
-pub struct WriteFrame {
-    bufr: NonNull<[u8; TX_BUF_SIZE]>,
+pub struct WriteFrame<const TX_S: usize> {
+    bufr: NonNull<[u8; TX_S]>,
     desc: NonNull<TxBufferDescriptor>,
     was_sent: bool,
 }
 
-impl Drop for WriteFrame {
+impl<const TX_S: usize> Drop for WriteFrame<TX_S> {
     fn drop(&mut self) {
         if !self.was_sent {
-            // defmt::println!("Dropping unsent frame!");
-            unsafe { self.dropper(0) }
+            // let desc = unsafe { self.desc.as_ref() };
+            // let old_w1 = desc.get_word_1();
+            // let wrap_bit = old_w1 & 0x4000_0000;
+            // desc.set_word_1(wrap_bit | 0x8000_0000);
+
+            // unsafe { self.dropper(0) }
         }
     }
 }
 
-impl Deref for ReadFrame {
+impl<const RX_S: usize> Deref for ReadFrame<RX_S> {
     type Target = [u8];
 
     fn deref(&self) -> &Self::Target {
@@ -183,27 +203,27 @@ impl Deref for ReadFrame {
     }
 }
 
-impl DerefMut for ReadFrame {
+impl<const RX_S: usize> DerefMut for ReadFrame<RX_S> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         unsafe { core::slice::from_raw_parts_mut(self.bufr.as_ptr().cast(), self.len) }
     }
 }
 
-impl Deref for WriteFrame {
+impl<const TX_S: usize> Deref for WriteFrame<TX_S> {
     type Target = [u8];
 
     fn deref(&self) -> &Self::Target {
-        unsafe { core::slice::from_raw_parts(self.bufr.as_ptr().cast(), TX_BUF_SIZE) }
+        unsafe { core::slice::from_raw_parts(self.bufr.as_ptr().cast(), TX_S) }
     }
 }
 
-impl DerefMut for WriteFrame {
+impl<const TX_S: usize> DerefMut for WriteFrame<TX_S> {
     fn deref_mut(&mut self) -> &mut Self::Target {
-        unsafe { core::slice::from_raw_parts_mut(self.bufr.as_ptr().cast(), TX_BUF_SIZE) }
+        unsafe { core::slice::from_raw_parts_mut(self.bufr.as_ptr().cast(), TX_S) }
     }
 }
 
-impl Drop for ReadFrame {
+impl<const RX_S: usize> Drop for ReadFrame<RX_S> {
     fn drop(&mut self) {
         // On drop, we must reset the header to "free" it.
         let desc = unsafe { self.desc.as_ref() };
@@ -216,7 +236,6 @@ impl Drop for ReadFrame {
 
         let last_word = if is_last { 0x0000_0002 } else { 0x0000_0000 };
 
-        // defmt::println!("Releasing ReadFrame @ {=u32:08X}", buf_word_msk);
 
         // Note, bit 0 is ALWAYS cleared here, which marks the buffer as ready for
         // re-use by the GMAC
@@ -224,13 +243,13 @@ impl Drop for ReadFrame {
     }
 }
 
-impl WriteFrame {
+impl<const TX_S: usize> WriteFrame<TX_S> {
     unsafe fn dropper(&mut self, len: usize) {
         compiler_fence(Ordering::SeqCst);
         let desc = { self.desc.as_ref() };
         let old_w1 = desc.get_word_1();
         let wrap_bit = old_w1 & 0x4000_0000;
-        let len = len.min(TX_BUF_SIZE).min(0x3FFF) as u32;
+        let len = len.min(TX_S).min(0x3FFF) as u32;
 
         let mut new_w1 = 0;
         // Bit 31 is zeroed to mark this as "ready"
@@ -247,7 +266,7 @@ impl WriteFrame {
 
         fence(Ordering::SeqCst);
         // yolo
-        {
+        { 
             let gmac = &*GMAC::ptr();
             gmac.ncr.modify(|_r, w| w.tstart().set_bit());
         }
@@ -259,7 +278,7 @@ impl WriteFrame {
 }
 impl GmacPins for () {}
 
-impl Gmac {
+impl <'a, const TX_N: usize, const TX_S: usize, const RX_N: usize, const RX_S: usize>Gmac<'a, TX_N, TX_S, RX_N, RX_S> {
     // TODO: Mark safe when possible.
     // pub unsafe fn new(periph: GMAC) -> Self {
     //     // defmt::println!("WARNING: Don't forget! We rely on configuration elsewhere for pins and stuff.");
@@ -275,25 +294,51 @@ impl Gmac {
     // fn reg(&self) -> &RegisterBlock {
     //     unsafe { &*self::REG }
     // }
+    const RX_BUF_DEFAULT: RxBuffer<RX_S> = RxBuffer {
+        buf: UnsafeCell::new([0u8; RX_S]),
+    };
+    const TX_BUF_DEFAULT: TxBuffer<TX_S> = TxBuffer {
+        buf: UnsafeCell::new([0u8; TX_S]),
+    };
+    const TX_DESC_DEFAULT: [TxBufferDescriptor; TX_N] = [TX_BUF_DESC_DEFAULT; TX_N];
 
     pub fn new_gmac<Pins: GmacPins>(
         gmac: GMAC,
         _pins: Pins,
         cfg: GmacConfiguration,
+        bufs: &'a mut GmacBuffers<TX_N, TX_S, RX_N, RX_S>,
         clk: &mut HostClock,
     ) -> Result<Self, GmacError> {
-        Self::new(gmac, clk, cfg)
+        Self::new(gmac, clk, cfg, bufs)
     }
 
-    fn new(gmac: GMAC, clk: &mut HostClock, cfg: GmacConfiguration) -> Result<Self, GmacError> {
+    fn new(gmac: GMAC, clk: &mut HostClock, cfg: GmacConfiguration, bufs: &'a mut GmacBuffers<TX_N, TX_S, RX_N, RX_S>) -> Result<Self, GmacError> {
+        // static RX_BUF_DESCS = [RX_BUF_DESC_DEFAULT; RX_N];
+        // static RX_BUFS = [RX_BUF_DEFAULT; RX_N];
+        // static TX_BUF_DESCS = [TX_BUF_DESC_DEFAULT; TX_N];
+        // static TX_BUFS = [TX_BUF_DEFAULT; TX_N];
+    
+        //static UNUSED_TX_BUF_DESC = TX_BUF_DESC_DEFAULT;
         clk.enable_peripheral(PeripheralIdentifier::GMAC);
+        // const TX_BUF_DEFAULT: TxBuffer<TX_S> = TxBuffer {
+        //     words: UnsafeCell::new([0u8; TX_S]),
+        // };
         let mut gmac = Gmac {
             periph: gmac,
             next_tx_idx: 0,
             last_txgo: false,
             last_bna: false,
             last_stat_poll: 0,
+            gmac_buffers: bufs,
+            // RX_BUF_DESCS: [RX_BUF_DESC_DEFAULT; RX_N],
+            // RX_BUFS: [Gmac::<TX_N,TX_S,RX_N,RX_S>::RX_BUF_DEFAULT; RX_N],
+            // TX_BUF_DESCS: Vec::new(),
+            // TX_BUFS: [Gmac::<TX_N,TX_S,RX_N,RX_S>::TX_BUF_DEFAULT; TX_N],
+    
+            UNUSED_TX_BUF_DESC: TX_BUF_DESC_DEFAULT,
+            
         };
+        // while let Ok(_) = gmac.TX_BUF_DESCS.push(TX_BUF_DESC_DEFAULT) {}
 
         // Based on DRV_PIC32CGMAC_LibInit
         // //disable Tx
@@ -460,11 +505,13 @@ impl Gmac {
         // This boils down to a single write to GMAC_RBQB (or GMAC_RBQBAPQ), I think this means I need to set up the receive buffers. NOTE: I think they need to be 8-byte aligned (or something?) (datasheet says 4-byte aligned...) Table 38-2 describes "Receive Buffer Descriptor Entry"
         unsafe {
             // Set the receive buffer addresses in the upper word
-            for (desc, buf) in RX_BUF_DESCS.iter().zip(RX_BUFS.iter()) {
+            // for (desc, buf) in gmac.RX_BUF_DESCS.iter().zip(gmac.RX_BUFS.iter()) {
+            for (desc, buf) in gmac.gmac_buffers.rx_buf_desc.iter().zip(gmac.gmac_buffers.rx_buf.iter()) {
                 // Take the buffer pointer...
                 let buf_addr_ptr: *mut u8 = buf.buf.get().cast();
                 let buf_wrd_raw: u32 = buf_addr_ptr as u32;
                 let buf_wrd_msk: u32 = buf_wrd_raw & 0xFFFF_FFFC;
+                assert!(buf_wrd_raw == buf_wrd_msk);
                 // defmt::assert_eq!(buf_wrd_raw, buf_wrd_msk, "RX Buf Alignment Wrong!");
 
                 // ...and store it in the buffer descriptor
@@ -472,7 +519,8 @@ impl Gmac {
             }
 
             // This is probably UB and should be fixed...
-            let last = &RX_BUF_DESCS[NUM_RX_BUFS - 1];
+            // let last = &gmac.RX_BUF_DESCS[RX_N - 1];
+            let last = &gmac.gmac_buffers.rx_buf_desc[RX_N - 1];
             let mut word_0 = last.get_word_0();
 
             // Mark as last buffer
@@ -485,9 +533,11 @@ impl Gmac {
 
         gmac.periph.rbqb.write(|w| unsafe {
             // Take the buffer descriptor pointer...
-            let desc_ptr: *const RxBufferDescriptor = RX_BUF_DESCS.as_ptr();
+            // let desc_ptr: *const RxBufferDescriptor = gmac.RX_BUF_DESCS.as_ptr();
+            let desc_ptr: *const RxBufferDescriptor = gmac.gmac_buffers.rx_buf_desc.as_ptr();
             let desc_wrd_raw: u32 = desc_ptr as u32;
             let desc_wrd_msk: u32 = desc_wrd_raw & 0xFFFF_FFFC;
+                assert!(desc_wrd_raw == desc_wrd_msk);
 
             // ... and store it in the RBQB register
             w.bits(desc_wrd_msk)
@@ -500,11 +550,13 @@ impl Gmac {
         // Table 38-3 describes "Transmit Buffer Descriptor Entry"
         unsafe {
             // Set the transmit buffer addresses in the upper word
-            for (desc, buf) in TX_BUF_DESCS.iter().zip(TX_BUFS.iter()) {
+            // for (desc, buf) in gmac.TX_BUF_DESCS.iter().zip(gmac.TX_BUFS.iter()) {
+            for (desc, buf) in gmac.gmac_buffers.tx_buf_desc.iter().zip(gmac.gmac_buffers.tx_buf.iter()) {
                 // Take the buffer pointer...
                 let buf_addr_ptr: *mut u8 = buf.buf.get().cast();
                 let buf_wrd_raw: u32 = buf_addr_ptr as u32;
                 let buf_wrd_msk: u32 = buf_wrd_raw & 0xFFFF_FFFC;
+                assert!(buf_wrd_raw == buf_wrd_msk);
 
                 // ...and store it in the buffer descriptor
                 desc.set_word_0(buf_wrd_msk);
@@ -515,7 +567,7 @@ impl Gmac {
             }
 
             // This is probably UB and should be fixed...
-            let last = &TX_BUF_DESCS[NUM_TX_BUFS - 1];
+            let last = &(gmac.gmac_buffers.tx_buf_desc[TX_N - 1]);
             let mut word_1 = last.get_word_1();
 
             // Mark as wrap buffer
@@ -525,9 +577,11 @@ impl Gmac {
 
         gmac.periph.tbqb.write(|w| unsafe {
             // Take the buffer descriptor pointer...
-            let desc_ptr: *const TxBufferDescriptor = TX_BUF_DESCS.as_ptr();
+            // let desc_ptr: *const TxBufferDescriptor = gmac.TX_BUF_DESCS.as_ptr();
+            let desc_ptr: *const TxBufferDescriptor = gmac.gmac_buffers.tx_buf_desc.as_ptr();
             let desc_wrd_raw: u32 = desc_ptr as u32;
             let desc_wrd_msk: u32 = desc_wrd_raw & 0xFFFF_FFFC;
+                assert!(desc_wrd_raw == desc_wrd_msk);
 
             // ... and store it in the TBQB register
             w.bits(desc_wrd_msk)
@@ -536,9 +590,10 @@ impl Gmac {
         // Note! We need to stub out the prio queues
         for buf in gmac.periph.tbqbapq.iter() {
             // Take the buffer descriptor pointer...
-            let desc_ptr: *const TxBufferDescriptor = &UNUSED_TX_BUF_DESC;
+            let desc_ptr: *const TxBufferDescriptor = &(gmac.UNUSED_TX_BUF_DESC);
             let desc_wrd_raw: u32 = desc_ptr as u32;
             let desc_wrd_msk: u32 = desc_wrd_raw & 0xFFFF_FFFC;
+                assert!(desc_wrd_raw == desc_wrd_msk);
 
             // ... and store it in the TBQB register
             buf.write(|w| unsafe { w.bits(desc_wrd_msk) });
@@ -547,7 +602,7 @@ impl Gmac {
         // DRV_PIC32CGMAC_LibInitTransfer
         // TODO DMA buffer and RX buffer do not need to be the same size.
         // Yes they do. 38.7.1.2
-        let drbs = (RX_BUF_SIZE / 64).min(255) as u8;
+        let drbs = (RX_S / 64).min(255) as u8;
 
         gmac.periph.dcfgr.write(|w| {
             // ? - DMA Discard Receive Packets
@@ -591,10 +646,11 @@ impl Gmac {
         Ok(gmac)
     }
 
-    pub fn read_frame(&mut self) -> Option<ReadFrame> {
+    pub fn read_frame(&mut self) -> Option<ReadFrame<RX_S>> {
         // Scan through the read frames, and attempt to find one marked as "used"
         compiler_fence(Ordering::SeqCst);
-        RX_BUF_DESCS.iter().find_map(|desc| {
+        // self.RX_BUF_DESCS.iter().find_map(|desc| {
+        self.gmac_buffers.rx_buf_desc.iter().find_map(|desc| {
             let w0 = desc.get_word_0();
             let addr = w0 & 0xFFFF_FFFC;
             let ready = (w0 & 0x0000_0001) != 0;
@@ -608,7 +664,7 @@ impl Gmac {
 
                 let desc_addr = NonNull::new(desc.words.get().cast())?;
                 let buf_addr =
-                    NonNull::new(addr as *const [u8; RX_BUF_SIZE] as *mut [u8; RX_BUF_SIZE])?;
+                    NonNull::new(addr as *const [u8; RX_S] as *mut [u8; RX_S])?;
                 Some(ReadFrame {
                     bufr: buf_addr,
                     len,
@@ -620,34 +676,74 @@ impl Gmac {
         })
     }
 
-    pub fn alloc_write_frame(&mut self) -> Option<WriteFrame> {
-        // let tsr = self.periph.tsr.read().bits();
-        // defmt::println!("TSR: {=u32:08x}", tsr);
+    // pub fn alloc_write_frame(&mut self) -> Option<WriteFrame<TX_S>> {
+    //     let tsr = self.periph.tsr.read().bits();
+    //     // defmt::println!("TSR: {=u32:08x}", tsr);
 
-        let desc = &TX_BUF_DESCS[self.next_tx_idx];
-        let w1 = desc.get_word_1();
+    //     // Find the index that tsr is pointing to
+    //     let mut cur_idx = 0;
+    //     // let desc = &(self.TX_BUF_DESCS[self.next_tx_idx]);
+    //     for i in 0..TX_N {
+    //         let desc = &(self.gmac_buffers.tx_buf_desc[i]);
+    //         let w0 = desc.get_word_0();
+    //         if w0 == tsr  {
+    //             cur_idx = i;
+    //         }
+    //     }
+    //     
+    //     let mut free_idx = None;
+    //     // Find the next available index
+    //     for i in 0..TX_N {
+    //         let desc = &(self.gmac_buffers.tx_buf_desc[(cur_idx + i) % TX_N]);
+    //         let w1 = desc.get_word_1();
+    //         if (w1 & 0x8000_0000) != 0 {
+    //             free_idx = Some(i);
+    //             break;
+    //         }
 
-        // Is this packet ready to be used by software?
-        let ready = (w1 & 0x8000_0000) != 0;
-        if !ready {
-            return None;
-        }
+    //     }
 
-        // Yes, it is. Clear out old status registers, but leave the used (and wrap) bit set.
-        // Also update the "next index".
-        let wrap_bit = w1 & 0x4000_0000;
-        desc.set_word_1(0x8000_0000 | wrap_bit);
+    //     // let cur_idx = self.next_tx_idx;
 
-        let cur_idx = self.next_tx_idx;
+    //     // self.next_tx_idx = (cur_idx + 1) % TX_N;
 
-        self.next_tx_idx = (cur_idx + 1) % NUM_TX_BUFS;
+    //     // // Is this packet ready to be used by software?
+    //     // let ready = (w1 & 0x8000_0000) != 0;
+    //     // if !ready {
+    //     //     return None;
+    //     // }
+    //     if let Some(idx) = free_idx {
+    //         let desc = &(self.gmac_buffers.tx_buf_desc[idx]);
+    //         let w1 = desc.get_word_1();
+    //         let wrap_bit = w1 & 0x4000_0000;
+    //         desc.set_word_1(0x8000_0000 | wrap_bit);
+    //         Some(WriteFrame {
+    //             // bufr: NonNull::new(self.TX_BUFS[cur_idx].buf.get().cast())?,
+    //             // desc: NonNull::new(self.TX_BUF_DESCS[cur_idx].words.get().cast())?,
+    //             bufr: NonNull::new(self.gmac_buffers.tx_buf[idx].buf.get().cast())?,
+    //             desc: NonNull::new(self.gmac_buffers.tx_buf_desc[idx].words.get().cast())?,
+    //             was_sent: false,
+    //         })
+    //         
+    //     } else {
+    //         None
+    //     }
 
-        Some(WriteFrame {
-            bufr: NonNull::new(TX_BUFS[cur_idx].buf.get().cast())?,
-            desc: NonNull::new(TX_BUF_DESCS[cur_idx].words.get().cast())?,
-            was_sent: false,
-        })
-    }
+
+    //     // // Yes, it is. Clear out old status registers, but leave the used (and wrap) bit set.
+    //     // // Also update the "next index".
+    //     // let wrap_bit = w1 & 0x4000_0000;
+    //     // desc.set_word_1(0x8000_0000 | wrap_bit);
+
+
+    //     // Some(WriteFrame {
+    //     //     // bufr: NonNull::new(self.TX_BUFS[cur_idx].buf.get().cast())?,
+    //     //     // desc: NonNull::new(self.TX_BUF_DESCS[cur_idx].words.get().cast())?,
+    //     //     bufr: NonNull::new(self.gmac_buffers.tx_buf[cur_idx].buf.get().cast())?,
+    //     //     desc: NonNull::new(self.gmac_buffers.tx_buf_desc[cur_idx].words.get().cast())?,
+    //     //     was_sent: false,
+    //     // })
+    // }
 
     fn miim_mgmt_port_enable(&mut self) {
         self.periph.ncr.modify(|_r, w| w.mpe().set_bit());
@@ -1007,26 +1103,27 @@ struct TxBufferDescriptor {
 }
 
 #[repr(C, align(8))]
-struct RxBuffer {
-    buf: UnsafeCell<[u8; RX_BUF_SIZE]>,
+struct RxBuffer<const RX_S: usize> {
+    buf: UnsafeCell<[u8; RX_S]>,
 }
 
 #[repr(C, align(8))]
-struct TxBuffer {
-    buf: UnsafeCell<[u8; TX_BUF_SIZE]>,
+struct TxBuffer<const TX_S: usize> {
+    buf: UnsafeCell<[u8; TX_S]>,
 }
 
-unsafe impl Sync for RxBuffer {}
-unsafe impl Sync for TxBuffer {}
+unsafe impl<const RX_S: usize> Sync for RxBuffer<RX_S> {}
+unsafe impl<const TX_S: usize> Sync for TxBuffer<TX_S> {}
 unsafe impl Sync for RxBufferDescriptor {}
 unsafe impl Sync for TxBufferDescriptor {}
 
-const RX_BUF_DEFAULT: RxBuffer = RxBuffer {
-    buf: UnsafeCell::new([0u8; RX_BUF_SIZE]),
-};
-const TX_BUF_DEFAULT: TxBuffer = TxBuffer {
-    buf: UnsafeCell::new([0u8; TX_BUF_SIZE]),
-};
+
+// const RX_BUF_DEFAULT: RxBuffer<RX_S> = RxBuffer {
+//     buf: UnsafeCell::new([0u8; RX_S]),
+// };
+// const TX_BUF_DEFAULT: TxBuffer<TX_S> = TxBuffer {
+//     buf: UnsafeCell::new([0u8; TX_S]),
+// };
 
 const RX_BUF_DESC_DEFAULT: RxBufferDescriptor = RxBufferDescriptor {
     words: UnsafeCell::new([0u32; 2]),
@@ -1035,3 +1132,100 @@ const RX_BUF_DESC_DEFAULT: RxBufferDescriptor = RxBufferDescriptor {
 const TX_BUF_DESC_DEFAULT: TxBufferDescriptor = TxBufferDescriptor {
     words: UnsafeCell::new([0u32; 2]),
 };
+
+static gmac_buffers: GmacBuffers<4, 1024, 4, 1024> = GmacBuffers::default();
+pub struct GmacBuffers<const TX_N: usize, const TX_S: usize, const RX_N: usize, const RX_S: usize> {
+    tx_buf_desc: [TxBufferDescriptor; TX_N],
+    tx_buf: [TxBuffer<TX_S>; TX_N],
+    rx_buf_desc: [RxBufferDescriptor; RX_N],
+    rx_buf: [RxBuffer<RX_S>; RX_N],
+    next_tx_idx: usize,
+}
+
+impl <const TX_N: usize, const TX_S: usize, const RX_N: usize, const RX_S: usize> GmacBuffers<TX_N, TX_S, RX_N, RX_S> {
+    const RX_BUF_DEFAULT: RxBuffer<RX_S> = RxBuffer {
+        buf: UnsafeCell::new([0u8; RX_S]),
+    };
+    const TX_BUF_DEFAULT: TxBuffer<TX_S> = TxBuffer {
+        buf: UnsafeCell::new([0u8; TX_S]),
+    };
+
+    pub const fn default() -> Self {
+        GmacBuffers{
+            tx_buf_desc: [TX_BUF_DESC_DEFAULT;TX_N],
+            tx_buf: [GmacBuffers::<TX_N, TX_S, RX_N, RX_S>::TX_BUF_DEFAULT;TX_N],
+            rx_buf_desc: [RX_BUF_DESC_DEFAULT;RX_N],
+            rx_buf: [GmacBuffers::<TX_N, TX_S, RX_N, RX_S>::RX_BUF_DEFAULT;RX_N],
+            next_tx_idx: 0,
+        }
+
+    }
+
+    pub fn alloc_write_frame(&mut self) -> Option<WriteFrame<TX_S>> {
+        // let tsr = unsafe { 
+        //     let gmac = &*GMAC::ptr();
+        //     gmac.tsr.read().bits()
+        // };
+        // defmt::println!("TSR: {=u32:08x}", tsr);
+
+        // Find the index that tsr is pointing to
+        let mut cur_idx = 0;
+        // let desc = &(self.TX_BUF_DESCS[self.next_tx_idx]);
+        let desc = &(self.tx_buf_desc[self.next_tx_idx]);
+        let w1 = desc.get_word_1();
+        let ready =  (w1 & 0x8000_0000) != 0;
+        // for i in 0..TX_N {
+        //     let desc = &(self.tx_buf_desc[i]);
+        //     let w0 = desc.get_word_0();
+        //     if w0 == tsr  {
+        //         cur_idx = i;
+        //     }
+        // }
+        // 
+        // let mut free_idx = None;
+        // // Find the next available index
+        // for i in 0..TX_N {
+        //     let desc = &(self.tx_buf_desc[(cur_idx + i) % TX_N]);
+        //     let w1 = desc.get_word_1();
+        //     if (w1 & 0x8000_0000) != 0 {
+        //         free_idx = Some(i);
+        //         break;
+        //     }
+
+        // }
+
+
+        // Is this packet ready to be used by software?
+        let ready = (w1 & 0x8000_0000) != 0;
+        if !ready {
+            return None;
+        }
+        let cur_idx = self.next_tx_idx;
+
+        self.next_tx_idx = (cur_idx + 1) % TX_N;
+
+        Some(WriteFrame {
+            bufr: NonNull::new(self.tx_buf[cur_idx].buf.get().cast())?,
+            desc: NonNull::new(self.tx_buf_desc[cur_idx].words.get().cast())?,
+            was_sent: false,
+        })
+        // if let Some(idx) = free_idx {
+        //     let desc = &(self.tx_buf_desc[idx]);
+        //     let w1 = desc.get_word_1();
+        //     let wrap_bit = w1 & 0x4000_0000;
+        //     desc.set_word_1(0x8000_0000 | wrap_bit);
+        //     Some(WriteFrame {
+        //         // bufr: NonNull::new(self.TX_BUFS[cur_idx].buf.get().cast())?,
+        //         // desc: NonNull::new(self.TX_BUF_DESCS[cur_idx].words.get().cast())?,
+        //         bufr: NonNull::new(self.tx_buf[idx].buf.get().cast())?,
+        //         desc: NonNull::new(self.tx_buf_desc[idx].words.get().cast())?,
+        //         was_sent: false,
+        //     })
+        //     
+        // } else {
+        //     None
+        // }
+    }
+
+
+}

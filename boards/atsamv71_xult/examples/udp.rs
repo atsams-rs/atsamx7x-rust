@@ -4,6 +4,7 @@
 use core::sync::atomic::{AtomicUsize, Ordering};
 
 use panic_rtt_target as _;
+// use panic_halt as _;
 
 #[rtic::app(device = atsamx7x_hal::pac, dispatchers = [PIOA, PIOB])]
 mod app {
@@ -49,12 +50,12 @@ mod app {
     // Local resources go here
     #[local]
     struct Local {
-        iface: Interface<'static, Gmac>,
+        iface: Interface<'static, Gmac<'static,8,1024,8,1024>>,
         udp_handle: SocketHandle,
         dhcp_handle: SocketHandle,
     }
 
-    #[init]
+    #[init(local = [gmac_buffers: GmacBuffers<8,1024,8,1024> = GmacBuffers::default()])]
     fn init(mut cx: init::Context) -> (Shared, Local, init::Monotonics) {
         rtt_init_print!();
 
@@ -62,6 +63,7 @@ mod app {
         let pioa = device.PIOA;
         let piob = device.PIOB;
         let piod = device.PIOD;
+        // let gmac_buffers2 = GmacBuffers::default();
 
         rprintln!("Init");
         // unsafe {
@@ -125,9 +127,10 @@ mod app {
             GmacConfiguration {
                 speed: GmacSpeed::_100Mbit,
                 mii: GmacMii::Rmii,
-                duplex: GmacDuplex::HalfDuplex,
+                duplex: GmacDuplex::FullDuplex,
                 mac: [0x04, 0x91, 0x62, 0x01, 0x02, 0x03],
             },
+            cx.local.gmac_buffers,
             &mut hclk,
         )
         .unwrap();
@@ -274,4 +277,5 @@ mod app {
             }
         }
     }
+
 }
