@@ -4,7 +4,6 @@
 use core::sync::atomic::{AtomicUsize, Ordering};
 
 use panic_rtt_target as _;
-// use panic_halt as _;
 
 #[rtic::app(device = atsamx7x_hal::pac, dispatchers = [PIOA, PIOB])]
 mod app {
@@ -50,7 +49,7 @@ mod app {
     // Local resources go here
     #[local]
     struct Local {
-        iface: Interface<'static, Gmac<'static,8,1024,8,1024>>,
+        iface: Interface<'static, Gmac<'static, 8, 1024, 8, 1024>>,
         udp_handle: SocketHandle,
         dhcp_handle: SocketHandle,
     }
@@ -63,18 +62,9 @@ mod app {
         let pioa = device.PIOA;
         let piob = device.PIOB;
         let piod = device.PIOD;
-        // let gmac_buffers2 = GmacBuffers::default();
 
         rprintln!("Init");
-        // unsafe {
-        //     (*cortex_m::peripheral::SCB::ptr()).vtor.write(0x400000);
-        // }
-        // cortex_m::asm::dsb();
         let mut efc = hal::efc::Efc::new(device.EFC, hal::efc::VddioLevel::V3);
-        // efc.set_wait_states(96).unwrap();
-        // let mut watchdog = hal::watchdog::Watchdog::new(device.WDT);
-        // watchdog.disable();
-        //
         // Clock Configuration
         let clocks = Tokens::new((device.PMC, device.SUPC, device.UTMI), &device.WDT.into());
         let mainck = clocks.mainck.configure_external_normal(12.MHz()).unwrap();
@@ -83,8 +73,6 @@ mod app {
             .pllack
             .configure(&mainck, PllaConfig { div: 2, mult: 25 })
             .unwrap();
-        // let _pck0: Pck<Pck0> = clocks.pcks.pck0.configure(&pllack, 2);
-        // let _pck4: Pck<Pck4> = clocks.pcks.pck4.configure(&pllack, 2);
         let (mclk, mut hclk) = HostClockController::new(clocks.hclk, clocks.mck)
             .configure(
                 &pllack,
@@ -135,9 +123,6 @@ mod app {
         )
         .unwrap();
         {
-            // enables the peripheral clock
-            // pmc.enable_periph_clk(39).unwrap();
-
             rprintln!("miim_post_setup might not return");
             gmac.miim_post_setup();
             rprintln!("miim_post_setup did return, all is good.");
@@ -277,5 +262,4 @@ mod app {
             }
         }
     }
-
 }
