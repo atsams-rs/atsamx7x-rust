@@ -90,8 +90,10 @@ use crate::pac::{
     usart0::us_mr_usart_mode::PARSELECT_A as HwParityMode,
     usart0::us_mr_usart_mode::USART_MODESELECT_A as HwUsartMode,
     usart0::us_mr_usart_mode::USCLKSSELECT_A as UsartClockSource, usart0::RegisterBlock, USART0,
-    USART1,
 };
+#[cfg(feature = "reconfigurable-system-pins")]
+use crate::pac::USART1;
+
 use crate::pio::*;
 use crate::serial::Bps;
 
@@ -630,6 +632,7 @@ impl_usart!(
         CTS: [ Pin<PB2,PeripheralC> ],
         RTS: [ Pin<PB3,PeripheralC> ],
     },
+    #[cfg(feature = "reconfigurable-system-pins")]
     Usart1: {
         SCK: [
             #[cfg(not(feature = "pins-64"))]
@@ -676,6 +679,7 @@ cfg_if::cfg_if! {
                 }
             }
         );
+        #[cfg(feature = "reconfigurable-system-pins")]
         impl_pins!(
             Usart1: {
                 (/* TX */ Pin<PB4, PeripheralD>, /* RX */ Pin<PA21, PeripheralA>, /* SCK */ Pin<PA23, PeripheralA>): {

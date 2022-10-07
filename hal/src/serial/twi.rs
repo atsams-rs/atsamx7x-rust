@@ -43,9 +43,11 @@ use crate::ehal::blocking;
 use crate::generics;
 #[cfg(not(feature = "pins-64"))]
 use crate::pac::TWIHS2;
+#[cfg(feature = "reconfigurable-system-pins")]
+use crate::pac::TWIHS1;
 use crate::pac::{
     twihs0::{sr::R as StatusRegister, RegisterBlock},
-    TWIHS0, TWIHS1,
+    TWIHS0,
 };
 use crate::pio::*;
 
@@ -286,6 +288,8 @@ impl_twi!(
         DATA: Pin<PA3, PeripheralA>,
         CLOCK: Pin<PA4, PeripheralA>,
     },
+
+    #[cfg(feature = "reconfigurable-system-pins")]
     TwiHS1: {
         DATA: Pin<PB4, PeripheralA>,
         CLOCK: Pin<PB5, PeripheralA>,
