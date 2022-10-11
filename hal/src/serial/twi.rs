@@ -41,10 +41,10 @@ twi.write_read(0x0, &[0b1000_0000], &mut buffer).unwrap();
 use crate::clocks::{Clock, Hertz, HostClock, PeripheralIdentifier};
 use crate::ehal::blocking;
 use crate::generics;
-#[cfg(not(feature = "pins-64"))]
-use crate::pac::TWIHS2;
 #[cfg(feature = "reconfigurable-system-pins")]
 use crate::pac::TWIHS1;
+#[cfg(not(feature = "pins-64"))]
+use crate::pac::TWIHS2;
 use crate::pac::{
     twihs0::{sr::R as StatusRegister, RegisterBlock},
     TWIHS0,

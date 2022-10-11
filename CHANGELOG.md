@@ -19,6 +19,7 @@
 ### Fixed
 
 - HAL build when targeting `sams70n19b`.
+- reconfigurable-system-pins feature.
 
 ## [v0.3.0] 2022-08-26
 

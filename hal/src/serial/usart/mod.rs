@@ -83,6 +83,8 @@ let _ = spi.read().unwrap();
 pub use super::uart::{ChannelMode, ParityMode, UartConfiguration};
 use crate::clocks::{Clock, Hertz, HostClock, Pck, Pck4, PeripheralIdentifier};
 use crate::generics::{self, Token};
+#[cfg(feature = "reconfigurable-system-pins")]
+use crate::pac::USART1;
 #[cfg(not(feature = "pins-64"))]
 use crate::pac::USART2;
 use crate::pac::{
@@ -91,8 +93,6 @@ use crate::pac::{
     usart0::us_mr_usart_mode::USART_MODESELECT_A as HwUsartMode,
     usart0::us_mr_usart_mode::USCLKSSELECT_A as UsartClockSource, usart0::RegisterBlock, USART0,
 };
-#[cfg(feature = "reconfigurable-system-pins")]
-use crate::pac::USART1;
 
 use crate::pio::*;
 use crate::serial::Bps;
