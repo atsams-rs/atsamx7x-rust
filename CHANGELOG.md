@@ -19,7 +19,8 @@
 ### Fixed
 
 - HAL build when targeting `sams70n19b`.
-- reconfigurable-system-pins feature.
+- The special-on-reset pins `PB4/5/6/7/12` are now completely unavailable, if the `reconfigurable-system-pins` feature is not enabled.
+- `Usart<Usart1>` and `Twi<TwiHS1>` are now only available if the `reconfigurable-system-pins` feature is enabled, as they cannot obtain a valid pin configuration without it.
 
 ## [v0.3.0] 2022-08-26
 

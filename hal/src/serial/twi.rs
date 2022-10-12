@@ -7,6 +7,10 @@ feripheral, by use of the [`Twi`] abstraction. The peripheral
 supports I²C, which is also the only protocol currently
 implemented.
 
+# System [`Pin`]s
+
+[`Twi<TwiHS1>`] can only obtain a legal pin configuration with the `reconfigurable-system-pins` feature and is therefore also hidden behind said feature gate.
+
 # Example usage
 
 ```no_run

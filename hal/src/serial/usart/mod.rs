@@ -17,6 +17,10 @@ these have yet to be implemented.
 Mode support depends on what [`Pin`]s that are available for the
 [`Usart`]; refer to [`UsartPins`].
 
+# System [`Pin`]s
+
+[`Usart<Usart1>`] can only obtain a legal pin configuration with the `reconfigurable-system-pins` feature and is therefore also hidden behind said feature gate.
+
 # Example usage
 
 ```no_run
