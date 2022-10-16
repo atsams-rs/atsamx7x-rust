@@ -8,7 +8,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v2
       - id: pacs
-        run: echo "::set-output name=pac_matrix::$(ls ./pac --indicator-style=none | cut -c 3- | jq -ncR '[inputs]')"
+        run: echo "::set-output name=pac_matrix::$(ls ./pac --indicator-style=none | grep atsam | cut -c 3- | jq -ncR '[inputs]')"
       - id: boards
         run: echo "::set-output name=board_matrix::$(ls ./boards --indicator-style=none | jq -ncR '[inputs]')"
     outputs:
