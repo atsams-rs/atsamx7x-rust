@@ -6,15 +6,39 @@ set -xeu
 # PATCH tracks PATCH or svd2rust and SVD fixes (either patched in this repo or updated SVDs from Microchip): bump if svd2rust or SVDs are patched.
 version="0.25.0"
 
-# Install dependencies
-#cargo install --force --version 0.25.1 svd2rust
-#cargo install --force --version 0.10.0 form
+valid_args=$(getopt -n '$0' -o "t" --long update-tools -- "$@")
+if [[ $? -ne 0 ]]; then
+    exit 1;
+fi
 
-top=$(dirname $(realpath $0))
+eval set -- "${valid_args}"
+while [ : ]; do
+  case "$1" in
+    --update-tools)
+        echo "Installing tools required to generate PACs..."
+        # Install dependencies
+        cargo install --force --version 0.25.1 svd2rust
+        cargo install --force --version 0.10.0 form
+        ;;
+    --)
+        break
+        ;;
+  esac
+done
+
+rust2svd_version=`expr match "$(svd2rust --version)" 'svd2rust \([0-9]*.[0-9]*.[0-9]*\)'`
+
+top=$(git rev-parse --show-toplevel)
 
 expand() {
-    local template="$(cat $1)"
-    eval "echo \"${template}\""
+    template="${1}.template"
+    result="${1}"
+    sed -e "s|\${crate}|${crate}|g" \
+        -e "s|\${chip}|${chip}|g" \
+        -e "s|\${pac}|${pac}|g" \
+        -e "s|\${version}|${version}|g" \
+        -e "s|\${rust2svd_version}|${rust2svd_version}|g" \
+        "${top}/pac/templates/${template}" > ${result}
 }
 
 for svd in svd/*.svd; do
@@ -26,18 +50,19 @@ for svd in svd/*.svd; do
     mkdir -p $pac
     pushd $pac
 
-    sed -e "s|\${crate}|${crate}|g" -e "s|\${chip}|${chip}|g" -e "s|\${pac}|${pac}|g" -e "s|\${version}|${version}|g" "${top}/pac/templates/Cargo.toml.template" > Cargo.toml
-    sed -e "s|\${crate}|${crate}|g" -e "s|\${chip}|${chip}|g" -e "s|\${pac}|${pac}|g" -e "s|\${version}|${version}|g" "${top}/pac/templates/README.md.template" > README.md
+    #sed -e "s|\${crate}|${crate}|g" -e "s|\${chip}|${chip}|g" -e "s|\${pac}|${pac}|g" -e "s|\${version}|${version}|g" "${top}/pac/templates/Cargo.toml.template" > Cargo.toml
+    #sed -e "s|\${crate}|${crate}|g" -e "s|\${chip}|${chip}|g" -e "s|\${pac}|${pac}|g" -e "s|\${version}|${version}|g" "${top}/pac/templates/README.md.template" > README.md
+    expand Cargo.toml
+    expand README.md
 
     svd2rust -i "${top}/${svd}"
     rm -rf src/
-    form -i lib.rs -o src/ && rm lib.rs
+    form -i lib.rs -o src/ && rm lib.rs || true
 
     popd
 
     # Set hal/Cargo.toml for crate to VERSION
-    # TODO #?: figure out if we need this
-    # cargo add --package atsamx7x-hal --path pac/${crate}
+    cargo add --package atsamx7x-hal --path pac/${crate}
 done
 
 # Format workspace, PACs included
