@@ -50,8 +50,6 @@ for svd in svd/*.svd; do
     mkdir -p $pac
     pushd $pac
 
-    #sed -e "s|\${crate}|${crate}|g" -e "s|\${chip}|${chip}|g" -e "s|\${pac}|${pac}|g" -e "s|\${version}|${version}|g" "${top}/pac/templates/Cargo.toml.template" > Cargo.toml
-    #sed -e "s|\${crate}|${crate}|g" -e "s|\${chip}|${chip}|g" -e "s|\${pac}|${pac}|g" -e "s|\${version}|${version}|g" "${top}/pac/templates/README.md.template" > README.md
     expand Cargo.toml
     expand README.md
 
