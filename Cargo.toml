@@ -5,6 +5,7 @@ members = [
 ]
 
 exclude = [
+    "boards/",
     "pac/templates"
 ]
 
