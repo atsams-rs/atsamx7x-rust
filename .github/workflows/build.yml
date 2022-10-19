@@ -11,9 +11,12 @@ jobs:
         run: echo "::set-output name=pac_matrix::$(ls ./pac --indicator-style=none | grep atsam | cut -c 3- | jq -ncR '[inputs]')"
       - id: boards
         run: echo "::set-output name=board_matrix::$(ls ./boards --indicator-style=none | jq -ncR '[inputs]')"
+      - id: features
+        run: echo "::set-output name=feature_matrix::["reconfigurable-system-pins","usart-spi-host-without-select"]"
     outputs:
       pac_matrix: ${{ steps.pacs.outputs.pac_matrix }}
       board_matrix: ${{ steps.boards.outputs.board_matrix }}
+      feature_matrix: ${{ steps.pacs.outputs.feature_matrix }}
 
   build:
     needs: setup
@@ -29,6 +32,7 @@ jobs:
       - name: Build HAL for ${{ matrix.pac }}
         run: |
           cargo check --package atsamx7x-hal --features ${{ matrix.pac }},unproven
+          cargo check --package atsamx7x-hal --features ${{ matrix.features }},samv71q21b,unproven
 
   board-examples:
     needs: setup
@@ -55,7 +59,7 @@ jobs:
       - name: Install Rust (thumbv7em)
         run: rustup show
       - name: Lint HAL
-        run: cargo clippy --package atsamx7x-hal --no-deps --features samv71q21b,unproven -- --deny warnings
+        run: cargo clippy --package atsamx7x-hal --no-deps --features samv71q21b,unproven,reconfigurable-system-pins -- --deny warnings
 
   clippy-examples:
     needs: [setup, build, board-examples]
@@ -82,7 +86,7 @@ jobs:
       - name: Install Rust (thumbv7em)
         run: rustup show
       - name: Build HAL documentation
-        run: cargo doc --package atsamx7x-hal --no-deps --features samv71q21b,unproven
+        run: cargo doc --package atsamx7x-hal --no-deps --features samv71q21b,unproven,reconfigurable-system-pins
       - name: Build HAL doc tests
         run: cargo test --package atsamx7x-hal --doc --features samv71q21b,unproven --target x86_64-unknown-linux-gnu
 
