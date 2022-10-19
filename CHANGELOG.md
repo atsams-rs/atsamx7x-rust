@@ -2,14 +2,19 @@
 
 ## [Unreleased]
 
+## [v0.4.0] TBD
+
 ### Added
 
 - GitHub CI.
+- Templates for PACs restored, so we create both correct `Cargo.toml` and `README.md` required to publish to `crates.io`.
 
 ### Changed
 
 - [Sealed](https://rust-lang.github.io/api-guidelines/future-proofing.html#sealed-traits-protect-against-downstream-implementations-c-sealed) all HAL-internal traits to disallow potentially unsound downstream trait implementations.
 - Regenerated PACs with `svd2rust 0.25.1` using up-to-date (2022-05-18) SVDs. These SVDs are now vendored in this repository, instead of using a submodule.
+- Cargo Workspace sorted, so local builds and crate publications work.
+- Updates to `update-pacs.sh` script, moved to tools.
 
 ### Removed
 
