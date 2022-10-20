@@ -30,9 +30,21 @@ jobs:
       - name: Install Rust (thumbv7em)
         run: rustup show
       - name: Build HAL for ${{ matrix.pac }}
-        run: |
-          cargo check --package atsamx7x-hal --features ${{ matrix.pac }},unproven
-          cargo check --package atsamx7x-hal --features ${{ matrix.features }},samv71q21b,unproven
+        run: cargo check --package atsamx7x-hal --features ${{ matrix.pac }},unproven
+
+  build-features:
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        features: ${{ fromJson(needs.setup.outputs.feature_matrix) }}
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - name: Install Rust (thumbv7em)
+        run: rustup show
+      - name: Build HAL for ${{ matrix.features }}
+        run: cargo check --package atsamx7x-hal --features ${{ matrix.features }},samv71q21b,unproven
 
   board-examples:
     needs: setup
