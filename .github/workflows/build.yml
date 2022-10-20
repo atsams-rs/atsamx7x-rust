@@ -16,7 +16,7 @@ jobs:
     outputs:
       pac_matrix: ${{ steps.pacs.outputs.pac_matrix }}
       board_matrix: ${{ steps.boards.outputs.board_matrix }}
-      feature_matrix: ${{ steps.pacs.outputs.feature_matrix }}
+      feature_matrix: ${{ steps.features.outputs.feature_matrix }}
 
   build:
     needs: setup
