@@ -2,7 +2,12 @@
 
 ## [Unreleased]
 
-## [v0.4.0] TBD
+### Changed
+
+- The special-on-reset pins `PB4/5/6/7/12` are now completely unavailable, if the `reconfigurable-system-pins` feature is not enabled.
+- `Usart<Usart1>` and `Twi<TwiHS1>` are now only available if the `reconfigurable-system-pins` feature is enabled, as they cannot obtain a valid pin configuration without it.
+
+## [v0.4.0] 2022-10-19
 
 ### Added
 
@@ -24,8 +29,6 @@
 ### Fixed
 
 - HAL build when targeting `sams70n19b`.
-- The special-on-reset pins `PB4/5/6/7/12` are now completely unavailable, if the `reconfigurable-system-pins` feature is not enabled.
-- `Usart<Usart1>` and `Twi<TwiHS1>` are now only available if the `reconfigurable-system-pins` feature is enabled, as they cannot obtain a valid pin configuration without it.
 
 ## [v0.3.0] 2022-08-26
 
@@ -95,6 +98,7 @@
 * automation script in Python
 
 [Unreleased]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.3.0...HEAD
+[v0.4.0]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.3.0...0.4.0
 [v0.3.0]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.2.1...v0.3.0
 [v0.2.1]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.1.0...v0.2.0
