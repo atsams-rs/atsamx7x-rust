@@ -17,6 +17,10 @@ these have yet to be implemented.
 Mode support depends on what [`Pin`]s that are available for the
 [`Usart`]; refer to [`UsartPins`].
 
+# System [`Pin`]s
+
+[`Usart<Usart1>`] can only obtain a legal pin configuration with the `reconfigurable-system-pins` feature and is therefore also hidden behind said feature gate.
+
 # Example usage
 
 ```no_run
@@ -83,6 +87,8 @@ let _ = spi.read().unwrap();
 pub use super::uart::{ChannelMode, ParityMode, UartConfiguration};
 use crate::clocks::{Clock, Hertz, HostClock, Pck, Pck4, PeripheralIdentifier};
 use crate::generics::{self, Token};
+#[cfg(feature = "reconfigurable-system-pins")]
+use crate::pac::USART1;
 #[cfg(not(feature = "pins-64"))]
 use crate::pac::USART2;
 use crate::pac::{
@@ -90,8 +96,8 @@ use crate::pac::{
     usart0::us_mr_usart_mode::PARSELECT_A as HwParityMode,
     usart0::us_mr_usart_mode::USART_MODESELECT_A as HwUsartMode,
     usart0::us_mr_usart_mode::USCLKSSELECT_A as UsartClockSource, usart0::RegisterBlock, USART0,
-    USART1,
 };
+
 use crate::pio::*;
 use crate::serial::Bps;
 
@@ -630,6 +636,7 @@ impl_usart!(
         CTS: [ Pin<PB2,PeripheralC> ],
         RTS: [ Pin<PB3,PeripheralC> ],
     },
+    #[cfg(feature = "reconfigurable-system-pins")]
     Usart1: {
         SCK: [
             #[cfg(not(feature = "pins-64"))]
@@ -676,6 +683,7 @@ cfg_if::cfg_if! {
                 }
             }
         );
+        #[cfg(feature = "reconfigurable-system-pins")]
         impl_pins!(
             Usart1: {
                 (/* TX */ Pin<PB4, PeripheralD>, /* RX */ Pin<PA21, PeripheralA>, /* SCK */ Pin<PA23, PeripheralA>): {

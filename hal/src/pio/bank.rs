@@ -371,12 +371,17 @@ banks!(
         (PB1, 1),
         (PB2, 2),
         (PB3, 3),
+        #[cfg(feature = "reconfigurable-system-pins")]
         (PB4, 4),
+        #[cfg(feature = "reconfigurable-system-pins")]
         (PB5, 5),
+        #[cfg(feature = "reconfigurable-system-pins")]
         (PB6, 6),
+        #[cfg(feature = "reconfigurable-system-pins")]
         (PB7, 7),
         (PB8, 8),
         (PB9, 9),
+        #[cfg(feature = "reconfigurable-system-pins")]
         (PB12, 12),
         #[cfg(not(feature = "pins-64"))]
         (PB13, 13),

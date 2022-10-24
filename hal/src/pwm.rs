@@ -459,6 +459,7 @@ impl_pwm!(
                 Pin<PA1, PeripheralA>,
                 #[cfg(not(feature = "pins-64"))]
                 Pin<PA19, PeripheralB>,
+                #[cfg(feature = "reconfigurable-system-pins")]
                 Pin<PB5, PeripheralB>,
                 Pin<PD10, PeripheralB>,
                 Pin<PD24, PeripheralB>,
@@ -488,6 +489,7 @@ impl_pwm!(
                 Pin<PA20, PeripheralB>,
                 #[cfg(not(feature = "pins-64"))]
                 Pin<PA30, PeripheralA>,
+                #[cfg(feature = "reconfigurable-system-pins")]
                 Pin<PB12, PeripheralA>,
                 #[cfg(feature = "pins-144")]
                 Pin<PC1, PeripheralB>,
@@ -510,6 +512,7 @@ impl_pwm!(
                 Pin<PA13, PeripheralB>,
                 #[cfg(not(feature = "pins-64"))]
                 Pin<PA25, PeripheralB>,
+                #[cfg(feature = "reconfigurable-system-pins")]
                 Pin<PB4, PeripheralB>,
                 #[cfg(feature = "pins-144")]
                 Pin<PC19, PeripheralB>,
