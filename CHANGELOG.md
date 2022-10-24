@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- `Usart::enter_mode`: initial configuration of port as USART is now permitted.
+
 ## [v0.4.0] TBD
 
 ### Added
