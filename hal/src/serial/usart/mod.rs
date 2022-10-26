@@ -393,11 +393,6 @@ impl<M: UsartMeta> Usart<M> {
         // successful as_*, meaning that we do not need to check for
         // support again.
 
-        if self.mode() == H::MODE {
-            // Already in the requested mode
-            return;
-        }
-
         self.disable();
 
         // Wipe current config and reset target mode.
