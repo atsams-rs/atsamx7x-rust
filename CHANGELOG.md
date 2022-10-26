@@ -13,7 +13,7 @@
 
 ### Fixed
 
-## [v0.4.0] TBD
+## [v0.4.0] 2022-10-19
 
 ### Added
 
@@ -102,11 +102,12 @@
 * hal: Just very simple stuff added
 * automation script in Python
 
-[Unreleased]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.3.0...HEAD
-[v0.3.0]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.2.1...v0.3.0
-[v0.2.1]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.2.0...v0.2.1
-[v0.2.0]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.1.0...v0.2.0
-[v0.1.0]: https://github.com/atsams-rs/atsamx7x-hal/compare/compare/v0.2.0...v0.1.0
-[v0.0.2]: https://github.com/atsams-rs/atsamx7x-hal/compare/v0.0.1...v0.0.2
-[v0.0.1]: https://github.com/atsams-rs/atsamx7x-hal/compare/tree/v0.0.1
+[Unreleased]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.4.0...HEAD
+[v0.4.0]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.3.0...v0.4.0
+[v0.3.0]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.2.1...v0.3.0
+[v0.2.1]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.2.0...v0.2.1
+[v0.2.0]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.1.0...v0.2.0
+[v0.1.0]: https://github.com/atsams-rs/atsamx7x-rust/compare/compare/v0.2.0...v0.1.0
+[v0.0.2]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.0.1...v0.0.2
+[v0.0.1]: https://github.com/atsams-rs/atsamx7x-rust/compare/tree/v0.0.1
 [svd2rust]: https://github.com/rust-embedded/svd2rust
