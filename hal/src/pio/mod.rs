@@ -116,7 +116,7 @@ On reset the following [`Pin`]s:
 - [`Pin<PB12, _>`]
 
 are in "system I/O mode" where they provide debug, trace, and flash-erase functionality.
-By default, trying to configure these pins yield no effect, but can  be enabled via the `reconfigurable-system-pins` feature.
+By default, trying to configure these pins will cause a compile error, but can they be enabled via the `reconfigurable-system-pins` feature.
 */
 
 use crate::generics;

@@ -7,6 +7,10 @@ feripheral, by use of the [`Twi`] abstraction. The peripheral
 supports I²C, which is also the only protocol currently
 implemented.
 
+# System [`Pin`]s
+
+[`Twi<TwiHS1>`] can only obtain a legal pin configuration with the `reconfigurable-system-pins` feature and is therefore also hidden behind said feature gate.
+
 # Example usage
 
 ```no_run
@@ -41,11 +45,13 @@ twi.write_read(0x0, &[0b1000_0000], &mut buffer).unwrap();
 use crate::clocks::{Clock, Hertz, HostClock, PeripheralIdentifier};
 use crate::ehal::blocking;
 use crate::generics;
+#[cfg(feature = "reconfigurable-system-pins")]
+use crate::pac::TWIHS1;
 #[cfg(not(feature = "pins-64"))]
 use crate::pac::TWIHS2;
 use crate::pac::{
     twihs0::{sr::R as StatusRegister, RegisterBlock},
-    TWIHS0, TWIHS1,
+    TWIHS0,
 };
 use crate::pio::*;
 
@@ -286,6 +292,8 @@ impl_twi!(
         DATA: Pin<PA3, PeripheralA>,
         CLOCK: Pin<PA4, PeripheralA>,
     },
+
+    #[cfg(feature = "reconfigurable-system-pins")]
     TwiHS1: {
         DATA: Pin<PB4, PeripheralA>,
         CLOCK: Pin<PB5, PeripheralA>,
