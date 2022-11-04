@@ -4,7 +4,7 @@
 
 ### Added
 
-- (crate internal) Added `-D warnings` flags to workflow to help catch some documentation errors 
+- CI: `-D warnings` flags to cargo workflows.
 
 ### Changed
 
