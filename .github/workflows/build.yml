@@ -1,6 +1,10 @@
 name: HAL
 on: [push, pull_request]
 
+env:
+  RUSTDOCFLAGS: -D warnings
+  RUSTFLAGS: -D warnings
+
 jobs:
   setup:
     runs-on: ubuntu-latest
