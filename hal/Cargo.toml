@@ -163,3 +163,10 @@ samv71q20b = ["atsamv71q20b", "v71", "pins-144", "flash-1M", "device-selected"]
 samv71q20b-rt = ["samv71q20b", "atsamv71q20b/rt"]
 samv71q21b = ["atsamv71q21b", "v71", "pins-144", "flash-2M", "device-selected"]
 samv71q21b-rt = ["samv71q21b", "atsamv71q21b/rt"]
+
+[package.metadata.docs.rs]
+# docs.rs build target
+default-target = "thumbv7em-none-eabihf"
+
+# enable features to get maximum doc coverage
+features = ["samv71q21b-rt", "unproven", "usart-spi-host-without-select", "reconfigurable-system-pins"]
