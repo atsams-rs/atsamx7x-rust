@@ -166,4 +166,4 @@ samv71q21b-rt = ["samv71q21b", "atsamv71q21b/rt"]
 
 [package.metadata.docs.rs]
 # enable all possible features for docs.rs
-features = ["samv71q21b", "samv71q21b-rt", "unproven", "usart-spi-host-without-select", "reconfigurable-system-pins"]
+features = ["samv71q21b", "unproven", "usart-spi-host-without-select", "reconfigurable-system-pins"]
