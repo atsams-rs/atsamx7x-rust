@@ -4,6 +4,8 @@
 
 ### Added
 
+- CI: `-D warnings` flags to cargo workflows to catch documentation errors.
+
 ### Changed
 
 - The special-on-reset pins `PB4/5/6/7/12` are now completely unavailable, if the `reconfigurable-system-pins` feature is not enabled.
