@@ -14,6 +14,7 @@
 ### Fixed
 
 - `Usart::enter_mode`: initial configuration of port as USART is now permitted.
+- Enabled features for the `hal` docs build to fix issue publishing to `docs.rs`
 
 ## [v0.4.0] 2022-10-19
 
