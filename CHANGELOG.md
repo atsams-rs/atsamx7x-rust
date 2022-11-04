@@ -4,7 +4,7 @@
 
 ### Added
 
-- CI: `-D warnings` flags to cargo workflows.
+- CI: `-D warnings` flags to cargo workflows to catch documentation errors.
 
 ### Changed
 
