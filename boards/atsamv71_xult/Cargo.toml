@@ -17,7 +17,7 @@ usbd-serial = "0.1.1"
 dwt-systick-monotonic = "1.0.0"
 
 [dependencies.atsamx7x-hal]
-version = "0.4.0"
+version = "0.4.1"
 path = "../../hal"
 features = ["samv71q21b-rt", "unproven"]
 
