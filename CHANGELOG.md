@@ -12,8 +12,6 @@
 
 ## [v0.4.1] 2022-10-26
 
-### Added
-
 ### Changed
 
 - The special-on-reset pins `PB4/5/6/7/12` are now completely unavailable, if the `reconfigurable-system-pins` feature is not enabled.
