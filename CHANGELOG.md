@@ -4,13 +4,18 @@
 
 ### Added
 
-- CI: `-D warnings` flags to cargo workflows to catch documentation errors.
-
 ### Changed
 
 ### Removed
 
 ### Fixed
+
+## [v0.4.2] 2022-11-06
+
+### Added
+
+- CI: `-D warnings` flags to cargo workflows to catch documentation errors.
+- cargo: enable features for [docs.rs](https://docs.rs/crate/atsamx7x-hal/0.4.2) builds
 
 ## [v0.4.1] 2022-10-26
 
@@ -115,7 +120,8 @@
 * hal: Just very simple stuff added
 * automation script in Python
 
-[Unreleased]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.4.1...HEAD
+[Unreleased]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.4.2...HEAD
+[v0.4.2]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.4.1...v0.4.2
 [v0.4.1]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.4.0...v0.4.1
 [v0.4.0]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.3.0...v0.4.0
 [v0.3.0]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.2.1...v0.3.0
