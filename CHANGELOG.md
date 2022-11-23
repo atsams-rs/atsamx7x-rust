@@ -1,5 +1,10 @@
 # Changelog
 
+## [GMAC API]
+
+### Added
+- API for Gmac Peripheral
+
 ## [Unreleased]
 
 ### Added

@@ -28,7 +28,6 @@ The datasheet (DS60001527F) is available via [Microchip](https://ww1.microchip.c
 #![cfg_attr(not(test), no_std)]
 #![deny(rustdoc::broken_intra_doc_links)]
 #![deny(rustdoc::private_intra_doc_links)]
-#![deny(missing_docs)]
 #![deny(rustdoc::missing_crate_level_docs)]
 #![deny(rustdoc::invalid_codeblock_attributes)]
 #![deny(rustdoc::invalid_rust_codeblocks)]
@@ -37,6 +36,7 @@ The datasheet (DS60001527F) is available via [Microchip](https://ww1.microchip.c
 pub use embedded_hal as ehal;
 pub use fugit;
 pub use nb;
+pub use smoltcp;
 
 #[cfg(feature = "same70j19")]
 pub use atsame70j19 as pac;
@@ -193,3 +193,5 @@ pub mod tc;
 pub mod usb;
 #[cfg(feature = "device-selected")]
 pub mod watchdog;
+#[cfg(feature = "device-selected")]
+pub mod gmac;
