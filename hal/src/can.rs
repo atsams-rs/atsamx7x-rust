@@ -20,7 +20,7 @@ pub trait CanMeta: generics::Sealed + mcan_core::CanId {
     /// RAM
     ///
     /// More details at [`mcan_core::Dependencies::eligible_message_ram_start`]
-    fn eligible_message_ram_start(matrix: &crate::pac::MATRIX) -> *const ();
+    fn eligible_message_ram_start(matrix: &crate::pac::MATRIX) -> usize;
 }
 
 // TODO: It seems that not all x7x devices have both CAN instances (datasheet,
@@ -32,8 +32,8 @@ pub enum Can0 {}
 impl CanMeta for Can0 {
     const PID: PeripheralIdentifier = PeripheralIdentifier::MCAN0;
     type REG = crate::pac::MCAN0;
-    fn eligible_message_ram_start(matrix: &crate::pac::MATRIX) -> *const () {
-        ((matrix.ccfg_can0.read().can0dmaba().bits() as u32) << 16) as _
+    fn eligible_message_ram_start(matrix: &crate::pac::MATRIX) -> usize {
+        (matrix.ccfg_can0.read().can0dmaba().bits() as usize) << 16
     }
 }
 
@@ -49,8 +49,8 @@ pub enum Can1 {}
 impl CanMeta for Can1 {
     const PID: PeripheralIdentifier = PeripheralIdentifier::MCAN1;
     type REG = crate::pac::MCAN1;
-    fn eligible_message_ram_start(matrix: &crate::pac::MATRIX) -> *const () {
-        ((matrix.ccfg_sysio.read().can1dmaba().bits() as u32) << 16) as _
+    fn eligible_message_ram_start(matrix: &crate::pac::MATRIX) -> usize {
+        (matrix.ccfg_sysio.read().can1dmaba().bits() as usize) << 16
     }
 }
 
@@ -68,7 +68,7 @@ unsafe impl mcan_core::CanId for Can1 {
 pub struct Dependencies<Id: CanMeta, Rx, Tx> {
     #[allow(dead_code)]
     reg: Id::REG,
-    eligible_message_ram_start: *const (),
+    eligible_message_ram_start: usize,
     #[allow(dead_code)]
     rx: Rx,
     #[allow(dead_code)]
@@ -129,7 +129,7 @@ where
     }
 
     fn eligible_message_ram_start(&self) -> *const () {
-        self.eligible_message_ram_start
+        self.eligible_message_ram_start as _
     }
 }
 
