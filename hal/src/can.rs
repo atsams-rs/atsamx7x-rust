@@ -23,9 +23,6 @@ pub trait CanMeta: generics::Sealed + mcan_core::CanId {
     fn eligible_message_ram_start(matrix: &crate::pac::MATRIX) -> usize;
 }
 
-// TODO: It seems that not all x7x devices have both CAN instances (datasheet,
-// chapter 2: configuration summary). Extra feature-gating might be necessary
-
 /// Identity type for `MCAN0`
 pub enum Can0 {}
 
@@ -44,8 +41,10 @@ unsafe impl mcan_core::CanId for Can0 {
 }
 
 /// Identity type for `MCAN1`
+#[cfg(any(feature = "pins-100", feature = "pins-144"))]
 pub enum Can1 {}
 
+#[cfg(any(feature = "pins-100", feature = "pins-144"))]
 impl CanMeta for Can1 {
     const PID: PeripheralIdentifier = PeripheralIdentifier::MCAN1;
     type REG = crate::pac::MCAN1;
@@ -54,8 +53,10 @@ impl CanMeta for Can1 {
     }
 }
 
+#[cfg(any(feature = "pins-100", feature = "pins-144"))]
 impl generics::Sealed for Can1 {}
 
+#[cfg(any(feature = "pins-100", feature = "pins-144"))]
 unsafe impl mcan_core::CanId for Can1 {
     const ADDRESS: *const () = <Self as CanMeta>::REG::PTR as _;
 }
@@ -149,18 +150,22 @@ impl TxPin for Pin<PB2, PeripheralA> {
     type ValidFor = Can0;
 }
 
+#[cfg(feature = "pins-144")]
 impl RxPin for Pin<PC12, PeripheralC> {
     type ValidFor = Can1;
 }
 
+#[cfg(any(feature = "pins-100", feature = "pins-144"))]
 impl RxPin for Pin<PD28, PeripheralB> {
     type ValidFor = Can1;
 }
 
+#[cfg(feature = "pins-144")]
 impl TxPin for Pin<PC14, PeripheralC> {
     type ValidFor = Can1;
 }
 
+#[cfg(any(feature = "pins-100", feature = "pins-144"))]
 impl TxPin for Pin<PD12, PeripheralB> {
     type ValidFor = Can1;
 }
