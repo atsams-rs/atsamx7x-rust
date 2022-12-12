@@ -71,7 +71,7 @@ type RxFifo1 = RxFifo<
     'static,
     Fifo1,
     hal::can::Can1,
-    <Capacities as mcan::messageram::Capacities>::RxFifo0Message,
+    <Capacities as mcan::messageram::Capacities>::RxFifo1Message,
 >;
 type Tx = mcan::tx_buffers::Tx<'static, hal::can::Can1, Capacities>;
 type TxEventFifo = mcan::tx_event_fifo::TxEventFifo<'static, hal::can::Can1>;
