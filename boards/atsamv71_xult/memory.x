@@ -1,7 +1,16 @@
 MEMORY
 {
   FLASH : ORIGIN = 0x400000, LENGTH = 2M
-  RAM : ORIGIN = 0x20400000, LENGTH = 256K /* 256K or 384K; p. 54 */
+  /* Total RAM is 256K or 384K; p. 54 */
+  CAN : ORIGIN = 0x20400000, LENGTH = 64K
+  RAM : ORIGIN = 0x20410000, LENGTH = 192K
+}
+
+SECTIONS {
+  .can (NOLOAD) :
+  {
+    *(.can .can.*);
+  } > CAN
 }
 
 /* This is where the call stack will be allocated. */

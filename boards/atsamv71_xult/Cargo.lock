@@ -29,8 +29,10 @@ dependencies = [
  "cortex-m-rtic",
  "dwt-systick-monotonic",
  "heapless",
+ "mcan",
  "panic-rtt-target",
  "rtt-target",
+ "typenum",
  "usbd-serial",
 ]
 
@@ -53,6 +55,7 @@ dependencies = [
  "cortex-m",
  "embedded-hal",
  "fugit",
+ "mcan-core",
  "nb 1.0.0",
  "paste",
  "rtic-monotonic",
@@ -101,6 +104,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "46afbd2983a5d5a7bd740ccb198caf5b82f45c40c09c0eed36052d91cb92e719"
 
 [[package]]
+name = "bitfield"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2d7e60934ceec538daadb9d8432424ed043a904d8e0243f3c6446bce549a46ac"
+
+[[package]]
 name = "byteorder"
 version = "1.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -119,7 +128,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "70858629a458fdfd39f9675c4dc309411f2a3f83bede76988d81bf1a0ecee9e0"
 dependencies = [
  "bare-metal 0.2.5",
- "bitfield",
+ "bitfield 0.13.2",
  "embedded-hal",
  "volatile-register",
 ]
@@ -197,6 +206,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "embedded-can"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e9d2e857f87ac832df68fa498d18ddc679175cf3d2e4aa893988e5601baf9438"
+dependencies = [
+ "nb 1.0.0",
+]
+
+[[package]]
 name = "embedded-hal"
 version = "0.2.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -222,6 +240,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f37978dab2ca789938a83b2f8bc1ef32db6633af9051a6cd409eff72cbaaa79a"
 dependencies = [
  "paste",
+]
+
+[[package]]
+name = "generic-array"
+version = "0.14.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bff49e947297f3312447abdca79f45f4738097cc82b06e72054d2223f601f1b9"
+dependencies = [
+ "typenum",
+ "version_check",
 ]
 
 [[package]]
@@ -282,6 +310,29 @@ checksum = "435011366fe56583b16cf956f9df0095b405b82d76425bc8981c0e22e60ec4df"
 dependencies = [
  "autocfg",
  "scopeguard",
+]
+
+[[package]]
+name = "mcan"
+version = "0.1.0"
+source = "git+https://github.com/GrepitAB/mcan#bc46549361c655cc89515d51e530ae0ad94de911"
+dependencies = [
+ "bitfield 0.14.0",
+ "embedded-can",
+ "fugit",
+ "generic-array",
+ "mcan-core",
+ "nb 1.0.0",
+ "vcell",
+]
+
+[[package]]
+name = "mcan-core"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e114bcb960e2221118c6be9224580e8795fd4cdbc33fd61a7ed25eba6c1081a9"
+dependencies = [
+ "fugit",
 ]
 
 [[package]]
@@ -533,6 +584,12 @@ dependencies = [
  "quote",
  "unicode-ident",
 ]
+
+[[package]]
+name = "typenum"
+version = "1.16.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "497961ef93d974e23eb6f433eb5fe1b7930b659f06d12dec6fc44a8f554c0bba"
 
 [[package]]
 name = "ufmt-write"
