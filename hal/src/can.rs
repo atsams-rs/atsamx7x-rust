@@ -155,7 +155,7 @@ impl RxPin for Pin<PC12, PeripheralC> {
     type ValidFor = Can1;
 }
 
-#[cfg(any(feature = "pins-100", feature = "pins-144"))]
+#[cfg(feature = "pins-100")]
 impl RxPin for Pin<PD28, PeripheralB> {
     type ValidFor = Can1;
 }
