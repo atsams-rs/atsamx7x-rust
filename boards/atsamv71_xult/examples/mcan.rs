@@ -78,7 +78,7 @@ type TxEventFifo = mcan::tx_event_fifo::TxEventFifo<'static, hal::can::Can1>;
 type Aux = mcan::bus::Aux<
     'static,
     hal::can::Can1,
-    hal::can::Dependencies<hal::can::Can1, Pin<PC12, Peripheral<C>>, Pin<PC14, Peripheral<C>>>,
+    hal::can::Dependencies<hal::can::Can1, Pin<PC14, Peripheral<C>>, Pin<PC12, Peripheral<C>>>,
 >;
 
 #[rtic::app(device = hal::pac, peripherals = true, dispatchers = [PIOB])]
@@ -165,8 +165,7 @@ mod app {
             hal::can::Dependencies::<hal::can::Can1, _, _>::new(
                 ctx.device.MCAN1,
                 &ctx.device.MATRIX,
-                bankc.pc12.into_mode(),
-                bankc.pc14.into_mode(),
+                (bankc.pc14.into_mode(), bankc.pc12.into_mode()),
                 &pck5,
                 &mut mck,
             )

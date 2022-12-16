@@ -79,19 +79,17 @@ unsafe impl mcan_core::CanId for Can1 {
 ///
 /// Its construction means that all platform-specific prerequisites are in place
 /// and `mcan` abstractions are operational.
-pub struct Dependencies<Id: CanMeta, Rx, Tx> {
+pub struct Dependencies<Id: CanMeta, Tx, Rx> {
     #[allow(dead_code)]
     reg: Id::REG,
     eligible_message_ram_start: usize,
     #[allow(dead_code)]
-    rx: Rx,
-    #[allow(dead_code)]
-    tx: Tx,
+    pins: (Tx, Rx),
     host_clock_freq: HertzU32,
     can_clock_freq: HertzU32,
 }
 
-impl<Id: CanMeta, Rx, Tx> Dependencies<Id, Rx, Tx> {
+impl<Id: CanMeta, Tx, Rx> Dependencies<Id, Tx, Rx> {
     /// Create an instance of `Dependencies` struct.
     ///
     /// This struct implements [`mcan_core::Dependencies`] trait, making it
@@ -104,8 +102,7 @@ impl<Id: CanMeta, Rx, Tx> Dependencies<Id, Rx, Tx> {
     pub unsafe fn new(
         reg: Id::REG,
         matrix: &crate::pac::MATRIX,
-        rx: Rx,
-        tx: Tx,
+        pins: (Tx, Rx),
         pck: &Pck<Pck5>,
         hclk: &mut HostClock,
     ) -> Self {
@@ -120,15 +117,14 @@ impl<Id: CanMeta, Rx, Tx> Dependencies<Id, Rx, Tx> {
         Self {
             reg,
             eligible_message_ram_start: Id::eligible_message_ram_start(matrix),
-            rx,
-            tx,
+            pins,
             host_clock_freq,
             can_clock_freq,
         }
     }
 }
 
-unsafe impl<Id, Rx, Tx> mcan_core::Dependencies<Id> for Dependencies<Id, Rx, Tx>
+unsafe impl<Id, Tx, Rx> mcan_core::Dependencies<Id> for Dependencies<Id, Tx, Rx>
 where
     Id: CanMeta,
     Rx: RxPin<ValidFor = Id>,
