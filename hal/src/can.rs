@@ -1,4 +1,17 @@
-//! This module provides target specific integration with `mcan` crate.
+/*!
+This module provides target specific integration with the [`mcan`] crate.
+
+MCAN is an of-the-shelf peripheral that is synthesized and integrated
+into, among the others, (some) x7x MCUs.
+
+Instance of the  [`Dependencies`] struct is necessary in order to make `mcan`
+abstractions operational.
+
+More information regarding the `mcan` API can be found in its
+documentation.
+
+[`mcan`]: https://crates.io/crates/mcan
+*/
 
 use fugit::HertzU32;
 
