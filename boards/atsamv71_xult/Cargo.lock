@@ -314,8 +314,9 @@ dependencies = [
 
 [[package]]
 name = "mcan"
-version = "0.1.0"
-source = "git+https://github.com/GrepitAB/mcan#bc46549361c655cc89515d51e530ae0ad94de911"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ded26b87c1eb73e5a5a0c5ade21d8e66e26ae096cd0218c5b91f0f7e31cfafcf"
 dependencies = [
  "bitfield 0.14.0",
  "embedded-can",
