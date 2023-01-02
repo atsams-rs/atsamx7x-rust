@@ -4,6 +4,9 @@
 
 ### Added
 
+- [Integration](https://crates.io/crates/mcan-core) with the
+[`mcan`](https://crates.io/crates/mcan) crate.
+
 ### Changed
 
 ### Removed

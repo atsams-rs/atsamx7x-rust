@@ -38,6 +38,7 @@ rtic-monotonic = "1"
 void = { version = "1", default-features = false }
 strum = { version = "0.24.1", default-features = false, features = ["derive"]}
 cfg-if = "1"
+mcan-core = { version = "0.2", optional = true }
 
 atsame70j19b = { version = "0.25.0", path = "../pac/atsame70j19b", optional = true }
 atsame70j20b = { version = "0.25.0", path = "../pac/atsame70j20b", optional = true }
@@ -77,9 +78,9 @@ atsamv71q21b = { version = "0.25.0", path = "../pac/atsamv71q21b", optional = tr
 # Internal-only feature flags; do not set directly.
 # Refer to §2 in the data sheet.
 ## Refer to §2.
-v71 = []
-v70 = []
-e70 = []
+v71 = ["can"]
+v70 = ["can"]
+e70 = ["can"]
 s70 = []
 pins-64 = []    # J variants
 pins-100 = []   # N variants
@@ -87,6 +88,7 @@ pins-144 = []   # Q variants
 flash-2M = []   # "21"-suffix
 flash-1M = []   # "20"-suffix
 flash-512K = [] # "19"-suffix
+can = ["mcan-core"]
 
 device-selected = []
 

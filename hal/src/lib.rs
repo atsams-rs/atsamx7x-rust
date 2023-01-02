@@ -173,6 +173,8 @@ pub use atsamv71q21b as pac;
 
 #[cfg(feature = "device-selected")]
 pub mod afec;
+#[cfg(all(feature = "device-selected", feature = "can"))]
+pub mod can;
 #[cfg(feature = "device-selected")]
 pub mod clocks;
 #[cfg(feature = "device-selected")]
