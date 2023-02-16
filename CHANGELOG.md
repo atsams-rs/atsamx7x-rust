@@ -6,6 +6,9 @@
 
 - [Integration](https://crates.io/crates/mcan-core) with the
 [`mcan`](https://crates.io/crates/mcan) crate.
+- Bump up `cortex-m` and `cortex-m-rt` crate to 0.7.3 because of [rust-embedded/cortex-m#469](https://github.com/rust-embedded/cortex-m/discussions/469)
+- Bump up `svd2rust` to 2.26.0
+- Bump up `embedded-hal` to `1.0.0-alpha.9`
 
 ### Changed
 

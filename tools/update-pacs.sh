@@ -4,7 +4,7 @@ set -xeu
 # The version of the generated PACs.
 # MINOR tracks MINOR of svd2rust.
 # PATCH tracks PATCH or svd2rust and SVD fixes (either patched in this repo or updated SVDs from Microchip): bump if svd2rust or SVDs are patched.
-version="0.25.0"
+version="0.26.0"
 
 valid_args=$(getopt -n '$0' -o "t" --long update-tools -- "$@")
 if [[ $? -ne 0 ]]; then
@@ -17,7 +17,7 @@ while [ : ]; do
     --update-tools)
         echo "Installing tools required to generate PACs..."
         # Install dependencies
-        cargo install --force --version 0.25.1 svd2rust
+        cargo install --force --version 0.26.0 svd2rust
         cargo install --force --version 0.10.0 form
         ;;
     --)

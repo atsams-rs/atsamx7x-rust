@@ -38,7 +38,7 @@ dependencies = [
 
 [[package]]
 name = "atsamv71q21b"
-version = "0.25.0"
+version = "0.26.0"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
