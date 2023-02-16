@@ -37,7 +37,7 @@ impl From<crate::W<MR_SPEC>> for W {
 #[doc = "Field `TRGEN` reader - Trigger Enable"]
 pub type TRGEN_R = crate::BitReader<TRGENSELECT_A>;
 #[doc = "Trigger Enable\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TRGENSELECT_A {
     #[doc = "0: Hardware triggers are disabled. Starting a conversion is only possible by software."]
     DIS = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> TRGEN_W<'a, O> {
 #[doc = "Field `TRGSEL` reader - Trigger Selection"]
 pub type TRGSEL_R = crate::FieldReader<u8, TRGSELSELECT_A>;
 #[doc = "Trigger Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TRGSELSELECT_A {
     #[doc = "0: AFE0_ADTRG for AFEC0 / AFE1_ADTRG for AFEC1"]
@@ -204,7 +204,7 @@ impl<'a, const O: u8> TRGSEL_W<'a, O> {
 #[doc = "Field `SLEEP` reader - Sleep Mode"]
 pub type SLEEP_R = crate::BitReader<SLEEPSELECT_A>;
 #[doc = "Sleep Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum SLEEPSELECT_A {
     #[doc = "0: Normal mode: The AFE and reference voltage circuitry are kept ON between conversions."]
     NORMAL = 0,
@@ -254,7 +254,7 @@ impl<'a, const O: u8> SLEEP_W<'a, O> {
 #[doc = "Field `FWUP` reader - Fast Wake-up"]
 pub type FWUP_R = crate::BitReader<FWUPSELECT_A>;
 #[doc = "Fast Wake-up\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum FWUPSELECT_A {
     #[doc = "0: Normal Sleep mode: The sleep mode is defined by the SLEEP bit."]
     OFF = 0,
@@ -304,7 +304,7 @@ impl<'a, const O: u8> FWUP_W<'a, O> {
 #[doc = "Field `FREERUN` reader - Free Run Mode"]
 pub type FREERUN_R = crate::BitReader<FREERUNSELECT_A>;
 #[doc = "Free Run Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum FREERUNSELECT_A {
     #[doc = "0: Normal mode"]
     OFF = 0,
@@ -358,7 +358,7 @@ pub type PRESCAL_W<'a, const O: u8> = crate::FieldWriter<'a, u32, MR_SPEC, u8, u
 #[doc = "Field `STARTUP` reader - Start-up Time"]
 pub type STARTUP_R = crate::FieldReader<u8, STARTUPSELECT_A>;
 #[doc = "Start-up Time\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum STARTUPSELECT_A {
     #[doc = "0: 0 periods of AFE clock"]
@@ -605,7 +605,7 @@ pub type TRANSFER_W<'a, const O: u8> = crate::FieldWriter<'a, u32, MR_SPEC, u8, 
 #[doc = "Field `USEQ` reader - User Sequence Enable"]
 pub type USEQ_R = crate::BitReader<USEQSELECT_A>;
 #[doc = "User Sequence Enable\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum USEQSELECT_A {
     #[doc = "0: Normal mode: The controller converts channels in a simple numeric order."]
     NUM_ORDER = 0,

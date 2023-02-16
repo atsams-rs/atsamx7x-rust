@@ -37,7 +37,7 @@ impl From<crate::W<DMA_SPEC>> for W {
 #[doc = "Field `CHKSIZE` reader - DMA Channel Read and Write Chunk Size"]
 pub type CHKSIZE_R = crate::FieldReader<u8, CHKSIZESELECT_A>;
 #[doc = "DMA Channel Read and Write Chunk Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CHKSIZESELECT_A {
     #[doc = "0: 1 data available"]

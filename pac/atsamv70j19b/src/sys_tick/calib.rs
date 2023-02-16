@@ -18,7 +18,7 @@ pub type TENMS_R = crate::FieldReader<u32, u32>;
 #[doc = "Field `SKEW` reader - Indicates whether the TENMS value is exact"]
 pub type SKEW_R = crate::BitReader<SKEWSELECT_A>;
 #[doc = "Indicates whether the TENMS value is exact\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum SKEWSELECT_A {
     #[doc = "0: 10ms calibration value is exact"]
     VALUE_0 = 0,
@@ -54,7 +54,7 @@ impl SKEW_R {
 #[doc = "Field `NOREF` reader - Indicates whether the device provides a reference clock to the processor"]
 pub type NOREF_R = crate::BitReader<NOREFSELECT_A>;
 #[doc = "Indicates whether the device provides a reference clock to the processor\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum NOREFSELECT_A {
     #[doc = "0: The reference clock is provided"]
     VALUE_0 = 0,

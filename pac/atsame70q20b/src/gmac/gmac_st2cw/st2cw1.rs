@@ -41,7 +41,7 @@ pub type OFFSVAL_W<'a, const O: u8> = crate::FieldWriter<'a, u32, ST2CW1_SPEC, u
 #[doc = "Field `OFFSSTRT` reader - Ethernet Frame Offset Start"]
 pub type OFFSSTRT_R = crate::FieldReader<u8, OFFSSTRTSELECT_A>;
 #[doc = "Ethernet Frame Offset Start\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum OFFSSTRTSELECT_A {
     #[doc = "0: Offset from the start of the frame"]

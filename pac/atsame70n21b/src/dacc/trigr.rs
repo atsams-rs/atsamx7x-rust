@@ -37,7 +37,7 @@ impl From<crate::W<TRIGR_SPEC>> for W {
 #[doc = "Field `TRGEN0` reader - Trigger Enable of Channel 0"]
 pub type TRGEN0_R = crate::BitReader<TRGEN0SELECT_A>;
 #[doc = "Trigger Enable of Channel 0\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TRGEN0SELECT_A {
     #[doc = "0: External trigger mode disabled. DACC is in Free-running mode or Max speed mode."]
     DIS = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> TRGEN0_W<'a, O> {
 #[doc = "Field `TRGEN1` reader - Trigger Enable of Channel 1"]
 pub type TRGEN1_R = crate::BitReader<TRGEN1SELECT_A>;
 #[doc = "Trigger Enable of Channel 1\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TRGEN1SELECT_A {
     #[doc = "0: External trigger mode disabled. DACC is in Free-running mode or Max speed mode."]
     DIS = 0,
@@ -137,7 +137,7 @@ impl<'a, const O: u8> TRGEN1_W<'a, O> {
 #[doc = "Field `TRGSEL0` reader - Trigger Selection of Channel 0"]
 pub type TRGSEL0_R = crate::FieldReader<u8, TRGSEL0SELECT_A>;
 #[doc = "Trigger Selection of Channel 0\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TRGSEL0SELECT_A {
     #[doc = "0: DAC External Trigger Input (DATRG)"]
@@ -268,7 +268,7 @@ impl<'a, const O: u8> TRGSEL0_W<'a, O> {
 #[doc = "Field `TRGSEL1` reader - Trigger Selection of Channel 1"]
 pub type TRGSEL1_R = crate::FieldReader<u8, TRGSEL1SELECT_A>;
 #[doc = "Trigger Selection of Channel 1\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TRGSEL1SELECT_A {
     #[doc = "0: DAC External Trigger Input (DATRG)"]
@@ -399,7 +399,7 @@ impl<'a, const O: u8> TRGSEL1_W<'a, O> {
 #[doc = "Field `OSR0` reader - Over Sampling Ratio of Channel 0"]
 pub type OSR0_R = crate::FieldReader<u8, OSR0SELECT_A>;
 #[doc = "Over Sampling Ratio of Channel 0\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum OSR0SELECT_A {
     #[doc = "0: OSR = 1"]
@@ -503,7 +503,7 @@ impl<'a, const O: u8> OSR0_W<'a, O> {
 #[doc = "Field `OSR1` reader - Over Sampling Ratio of Channel 1"]
 pub type OSR1_R = crate::FieldReader<u8, OSR1SELECT_A>;
 #[doc = "Over Sampling Ratio of Channel 1\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum OSR1SELECT_A {
     #[doc = "0: OSR = 1"]

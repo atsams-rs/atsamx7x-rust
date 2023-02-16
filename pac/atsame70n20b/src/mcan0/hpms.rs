@@ -18,7 +18,7 @@ pub type BIDX_R = crate::FieldReader<u8, u8>;
 #[doc = "Field `MSI` reader - Message Storage Indicator"]
 pub type MSI_R = crate::FieldReader<u8, MSISELECT_A>;
 #[doc = "Message Storage Indicator\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum MSISELECT_A {
     #[doc = "0: No FIFO selected."]

@@ -16,7 +16,7 @@ impl From<crate::R<PSR_SPEC>> for R {
 #[doc = "Field `LEC` reader - Last Error Code (set to 111 on read)"]
 pub type LEC_R = crate::FieldReader<u8, LECSELECT_A>;
 #[doc = "Last Error Code (set to 111 on read)\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum LECSELECT_A {
     #[doc = "0: No error occurred since LEC has been reset by successful reception or transmission."]
@@ -102,7 +102,7 @@ impl LEC_R {
 #[doc = "Field `ACT` reader - Activity"]
 pub type ACT_R = crate::FieldReader<u8, ACTSELECT_A>;
 #[doc = "Activity\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum ACTSELECT_A {
     #[doc = "0: Node is synchronizing on CAN communication"]

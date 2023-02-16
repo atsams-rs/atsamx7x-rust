@@ -41,7 +41,7 @@ pub type MAXCNT_W<'a, const O: u8> = crate::FieldWriter<'a, u32, ETRG2_SPEC, u32
 #[doc = "Field `TRGMODE` reader - External Trigger Mode"]
 pub type TRGMODE_R = crate::FieldReader<u8, TRGMODESELECT_A>;
 #[doc = "External Trigger Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TRGMODESELECT_A {
     #[doc = "0: External trigger is not enabled."]
@@ -120,7 +120,7 @@ impl<'a, const O: u8> TRGMODE_W<'a, O> {
 #[doc = "Field `TRGEDGE` reader - Edge Selection"]
 pub type TRGEDGE_R = crate::BitReader<TRGEDGESELECT_A>;
 #[doc = "Edge Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TRGEDGESELECT_A {
     #[doc = "0: TRGMODE = 1: TRGINx event detection on falling edge.TRGMODE = 2, 3: TRGINx active level is 0"]
     FALLING_ZERO = 0,

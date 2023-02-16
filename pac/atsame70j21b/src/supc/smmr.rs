@@ -41,7 +41,7 @@ pub type SMTH_W<'a, const O: u8> = crate::FieldWriter<'a, u32, SMMR_SPEC, u8, u8
 #[doc = "Field `SMSMPL` reader - Supply Monitor Sampling Period"]
 pub type SMSMPL_R = crate::FieldReader<u8, SMSMPLSELECT_A>;
 #[doc = "Supply Monitor Sampling Period\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum SMSMPLSELECT_A {
     #[doc = "0: Supply Monitor disabled"]
@@ -133,7 +133,7 @@ impl<'a, const O: u8> SMSMPL_W<'a, O> {
 #[doc = "Field `SMRSTEN` reader - Supply Monitor Reset Enable"]
 pub type SMRSTEN_R = crate::BitReader<SMRSTENSELECT_A>;
 #[doc = "Supply Monitor Reset Enable\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum SMRSTENSELECT_A {
     #[doc = "0: The core reset signal vddcore_nreset is not affected when a supply monitor detection occurs."]
     NOT_ENABLE = 0,
@@ -183,7 +183,7 @@ impl<'a, const O: u8> SMRSTEN_W<'a, O> {
 #[doc = "Field `SMIEN` reader - Supply Monitor Interrupt Enable"]
 pub type SMIEN_R = crate::BitReader<SMIENSELECT_A>;
 #[doc = "Supply Monitor Interrupt Enable\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum SMIENSELECT_A {
     #[doc = "0: The SUPC interrupt signal is not affected when a supply monitor detection occurs."]
     NOT_ENABLE = 0,

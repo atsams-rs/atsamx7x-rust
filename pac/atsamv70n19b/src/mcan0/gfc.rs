@@ -37,7 +37,7 @@ impl From<crate::W<GFC_SPEC>> for W {
 #[doc = "Field `RRFE` reader - Reject Remote Frames Extended"]
 pub type RRFE_R = crate::BitReader<RRFESELECT_A>;
 #[doc = "Reject Remote Frames Extended\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum RRFESELECT_A {
     #[doc = "0: Filter remote frames with 29-bit extended IDs."]
     FILTER = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> RRFE_W<'a, O> {
 #[doc = "Field `RRFS` reader - Reject Remote Frames Standard"]
 pub type RRFS_R = crate::BitReader<RRFSSELECT_A>;
 #[doc = "Reject Remote Frames Standard\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum RRFSSELECT_A {
     #[doc = "0: Filter remote frames with 11-bit standard IDs."]
     FILTER = 0,
@@ -137,7 +137,7 @@ impl<'a, const O: u8> RRFS_W<'a, O> {
 #[doc = "Field `ANFE` reader - Accept Non-matching Frames Extended"]
 pub type ANFE_R = crate::FieldReader<u8, ANFESELECT_A>;
 #[doc = "Accept Non-matching Frames Extended\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum ANFESELECT_A {
     #[doc = "0: Accept in Rx FIFO 0"]
@@ -189,7 +189,7 @@ impl<'a, const O: u8> ANFE_W<'a, O> {
 #[doc = "Field `ANFS` reader - Accept Non-matching Frames Standard"]
 pub type ANFS_R = crate::FieldReader<u8, ANFSSELECT_A>;
 #[doc = "Accept Non-matching Frames Standard\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum ANFSSELECT_A {
     #[doc = "0: Accept in Rx FIFO 0"]

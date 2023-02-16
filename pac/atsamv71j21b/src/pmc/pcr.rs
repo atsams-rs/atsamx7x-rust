@@ -41,7 +41,7 @@ pub type PID_W<'a, const O: u8> = crate::FieldWriter<'a, u32, PCR_SPEC, u8, u8, 
 #[doc = "Field `GCLKCSS` reader - Generic Clock Source Selection"]
 pub type GCLKCSS_R = crate::FieldReader<u8, GCLKCSSSELECT_A>;
 #[doc = "Generic Clock Source Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum GCLKCSSSELECT_A {
     #[doc = "0: Slow clock is selected"]

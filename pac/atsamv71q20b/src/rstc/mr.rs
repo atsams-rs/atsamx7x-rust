@@ -49,7 +49,7 @@ pub type ERSTL_W<'a, const O: u8> = crate::FieldWriter<'a, u32, MR_SPEC, u8, u8,
 #[doc = "Field `KEY` reader - Write Access Password"]
 pub type KEY_R = crate::FieldReader<u8, KEYSELECT_A>;
 #[doc = "Write Access Password\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum KEYSELECT_A {
     #[doc = "165: Writing any other value in this field aborts the write operation.Always reads as 0."]

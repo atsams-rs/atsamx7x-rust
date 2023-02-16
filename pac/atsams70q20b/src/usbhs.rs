@@ -631,7 +631,7 @@ pub type DEVEPTIDR_INTRPT_MODE = crate::Reg<deveptidr_intrpt_mode::DEVEPTIDR_INT
 #[doc = "Device Endpoint Interrupt Disable Register"]
 pub mod deveptidr_intrpt_mode;
 #[doc = "Device DMA Channel Next Descriptor Address Register"]
-pub use usbhs_devdma::USBHS_DEVDMA;
+pub use self::usbhs_devdma::USBHS_DEVDMA;
 #[doc = r"Cluster"]
 #[doc = "Device DMA Channel Next Descriptor Address Register"]
 pub mod usbhs_devdma;
@@ -797,7 +797,7 @@ pub type HSTPIPERR = crate::Reg<hstpiperr::HSTPIPERR_SPEC>;
 #[doc = "Host Pipe Error Register"]
 pub mod hstpiperr;
 #[doc = "Host DMA Channel Next Descriptor Address Register"]
-pub use usbhs_hstdma::USBHS_HSTDMA;
+pub use self::usbhs_hstdma::USBHS_HSTDMA;
 #[doc = r"Cluster"]
 #[doc = "Host DMA Channel Next Descriptor Address Register"]
 pub mod usbhs_hstdma;

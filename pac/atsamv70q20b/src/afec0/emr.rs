@@ -37,7 +37,7 @@ impl From<crate::W<EMR_SPEC>> for W {
 #[doc = "Field `CMPMODE` reader - Comparison Mode"]
 pub type CMPMODE_R = crate::FieldReader<u8, CMPMODESELECT_A>;
 #[doc = "Comparison Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CMPMODESELECT_A {
     #[doc = "0: Generates an event when the converted data is lower than the low threshold of the window."]
@@ -128,7 +128,7 @@ pub type CMPFILTER_W<'a, const O: u8> = crate::FieldWriter<'a, u32, EMR_SPEC, u8
 #[doc = "Field `RES` reader - Resolution"]
 pub type RES_R = crate::FieldReader<u8, RESSELECT_A>;
 #[doc = "Resolution\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum RESSELECT_A {
     #[doc = "0: 12-bit resolution, AFE sample rate is maximum (no averaging)."]
@@ -227,7 +227,7 @@ pub type STM_W<'a, const O: u8> = crate::BitWriter<'a, u32, EMR_SPEC, bool, O>;
 #[doc = "Field `SIGNMODE` reader - Sign Mode"]
 pub type SIGNMODE_R = crate::FieldReader<u8, SIGNMODESELECT_A>;
 #[doc = "Sign Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum SIGNMODESELECT_A {
     #[doc = "0: Single-Ended channels: Unsigned conversions.Differential channels: Signed conversions."]

@@ -37,7 +37,7 @@ impl From<crate::W<CSR_SPEC>> for W {
 #[doc = "Field `CPOL` reader - Clock Polarity"]
 pub type CPOL_R = crate::BitReader<CPOLSELECT_A>;
 #[doc = "Clock Polarity\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum CPOLSELECT_A {
     #[doc = "0: Clock is low when inactive (CPOL=0)"]
     IDLE_LOW = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> CPOL_W<'a, O> {
 #[doc = "Field `NCPHA` reader - Clock Phase"]
 pub type NCPHA_R = crate::BitReader<NCPHASELECT_A>;
 #[doc = "Clock Phase\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum NCPHASELECT_A {
     #[doc = "1: Data is valid on clock leading edge (NCPHA=1)"]
     VALID_LEADING_EDGE = 1,
@@ -145,7 +145,7 @@ pub type CSAAT_W<'a, const O: u8> = crate::BitWriter<'a, u32, CSR_SPEC, bool, O>
 #[doc = "Field `BITS` reader - Bits Per Transfer"]
 pub type BITS_R = crate::FieldReader<u8, BITSSELECT_A>;
 #[doc = "Bits Per Transfer\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum BITSSELECT_A {
     #[doc = "0: 8 bits for transfer"]

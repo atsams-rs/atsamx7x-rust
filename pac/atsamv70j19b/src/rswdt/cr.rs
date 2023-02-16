@@ -22,7 +22,7 @@ impl From<crate::W<CR_SPEC>> for W {
 #[doc = "Field `WDRSTT` writer - Watchdog Restart"]
 pub type WDRSTT_W<'a, const O: u8> = crate::BitWriter<'a, u32, CR_SPEC, bool, O>;
 #[doc = "Password\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum KEYSELECT_AW {
     #[doc = "196: Writing any other value in this field aborts the write operation."]

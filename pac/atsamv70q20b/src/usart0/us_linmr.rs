@@ -37,7 +37,7 @@ impl From<crate::W<US_LINMR_SPEC>> for W {
 #[doc = "Field `NACT` reader - LIN Node Action"]
 pub type NACT_R = crate::FieldReader<u8, NACTSELECT_A>;
 #[doc = "LIN Node Action\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum NACTSELECT_A {
     #[doc = "0: The USART transmits the response."]

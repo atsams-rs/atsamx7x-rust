@@ -18,7 +18,7 @@ pub type RDERRI_R = crate::BitReader<bool>;
 #[doc = "Field `SPEED` reader - Speed Status (Device mode only)"]
 pub type SPEED_R = crate::FieldReader<u8, SPEEDSELECT_A>;
 #[doc = "Speed Status (Device mode only)\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum SPEEDSELECT_A {
     #[doc = "0: Full-Speed mode"]

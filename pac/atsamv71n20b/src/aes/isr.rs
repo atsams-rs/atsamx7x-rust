@@ -20,7 +20,7 @@ pub type URAD_R = crate::BitReader<bool>;
 #[doc = "Field `URAT` reader - Unspecified Register Access (cleared by writing SWRST in AES_CR)"]
 pub type URAT_R = crate::FieldReader<u8, URATSELECT_A>;
 #[doc = "Unspecified Register Access (cleared by writing SWRST in AES_CR)\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum URATSELECT_A {
     #[doc = "0: Input Data Register written during the data processing when SMOD = 0x2 mode."]

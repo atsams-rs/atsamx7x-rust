@@ -29,7 +29,7 @@ pub struct RegisterBlock {
     pub wpmr: WPMR,
 }
 #[doc = "Channel Control Register (channel = 0)"]
-pub use tc_channel::TC_CHANNEL;
+pub use self::tc_channel::TC_CHANNEL;
 #[doc = r"Cluster"]
 #[doc = "Channel Control Register (channel = 0)"]
 pub mod tc_channel;

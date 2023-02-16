@@ -37,7 +37,7 @@ impl From<crate::W<MCFG_SPEC>> for W {
 #[doc = "Field `ULBT` reader - Undefined Length Burst Type"]
 pub type ULBT_R = crate::FieldReader<u8, ULBTSELECT_A>;
 #[doc = "Undefined Length Burst Type\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum ULBTSELECT_A {
     #[doc = "0: Unlimited Length Burst-No predicted end of burst is generated, therefore INCR bursts coming from this master can only be broken if the Slave Slot Cycle Limit is reached. If the Slot Cycle Limit is not reached, the burst is normally completed by the master, at the latest, on the next AHB 1-Kbyte address boundary, allowing up to 256-beat word bursts or 128-beat double-word bursts.This value should not be used in the very particular case of a master capable of performing back-to-back undefined length bursts on a single slave, since this could indefinitely freeze the slave arbitration and thus prevent another master from accessing this slave."]

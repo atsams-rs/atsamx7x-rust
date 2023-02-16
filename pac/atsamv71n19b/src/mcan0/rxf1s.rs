@@ -26,7 +26,7 @@ pub type RF1L_R = crate::BitReader<bool>;
 #[doc = "Field `DMS` reader - Debug Message Status"]
 pub type DMS_R = crate::FieldReader<u8, DMSSELECT_A>;
 #[doc = "Debug Message Status\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum DMSSELECT_A {
     #[doc = "0: Idle state, wait for reception of debug messages, DMA request is cleared."]

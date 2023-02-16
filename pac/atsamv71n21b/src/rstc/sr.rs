@@ -18,7 +18,7 @@ pub type URSTS_R = crate::BitReader<bool>;
 #[doc = "Field `RSTTYP` reader - Reset Type"]
 pub type RSTTYP_R = crate::FieldReader<u8, RSTTYPSELECT_A>;
 #[doc = "Reset Type\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum RSTTYPSELECT_A {
     #[doc = "0: First power-up reset"]

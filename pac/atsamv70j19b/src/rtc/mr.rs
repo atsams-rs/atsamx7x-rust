@@ -57,7 +57,7 @@ pub type HIGHPPM_W<'a, const O: u8> = crate::BitWriter<'a, u32, MR_SPEC, bool, O
 #[doc = "Field `OUT0` reader - RTCOUT0 OutputSource Selection"]
 pub type OUT0_R = crate::FieldReader<u8, OUT0SELECT_A>;
 #[doc = "RTCOUT0 OutputSource Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum OUT0SELECT_A {
     #[doc = "0: No waveform, stuck at '0'"]
@@ -187,7 +187,7 @@ impl<'a, const O: u8> OUT0_W<'a, O> {
 #[doc = "Field `OUT1` reader - RTCOUT1 Output Source Selection"]
 pub type OUT1_R = crate::FieldReader<u8, OUT1SELECT_A>;
 #[doc = "RTCOUT1 Output Source Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum OUT1SELECT_A {
     #[doc = "0: No waveform, stuck at '0'"]
@@ -317,7 +317,7 @@ impl<'a, const O: u8> OUT1_W<'a, O> {
 #[doc = "Field `THIGH` reader - High Duration of the Output Pulse"]
 pub type THIGH_R = crate::FieldReader<u8, THIGHSELECT_A>;
 #[doc = "High Duration of the Output Pulse\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum THIGHSELECT_A {
     #[doc = "0: 31.2 ms"]
@@ -448,7 +448,7 @@ impl<'a, const O: u8> THIGH_W<'a, O> {
 #[doc = "Field `TPERIOD` reader - Period of the Output Pulse"]
 pub type TPERIOD_R = crate::FieldReader<u8, TPERIODSELECT_A>;
 #[doc = "Period of the Output Pulse\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TPERIODSELECT_A {
     #[doc = "0: 1 second"]

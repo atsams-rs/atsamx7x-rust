@@ -41,7 +41,7 @@ pub type ADDR_W<'a, const O: u8> = crate::FieldWriter<'a, u32, MADR_SPEC, u16, u
 #[doc = "Field `TB` reader - Target Location Bit"]
 pub type TB_R = crate::BitReader<TBSELECT_A>;
 #[doc = "Target Location Bit\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TBSELECT_A {
     #[doc = "0: Selects CTR"]
     CTR = 0,

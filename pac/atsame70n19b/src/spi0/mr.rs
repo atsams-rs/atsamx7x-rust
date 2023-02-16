@@ -37,7 +37,7 @@ impl From<crate::W<MR_SPEC>> for W {
 #[doc = "Field `MSTR` reader - Master/Slave Mode"]
 pub type MSTR_R = crate::BitReader<MSTRSELECT_A>;
 #[doc = "Master/Slave Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum MSTRSELECT_A {
     #[doc = "1: Master"]
     MASTER = 1,
@@ -107,7 +107,7 @@ pub type LLB_W<'a, const O: u8> = crate::BitWriter<'a, u32, MR_SPEC, bool, O>;
 #[doc = "Field `PCS` reader - Peripheral Chip Select"]
 pub type PCS_R = crate::FieldReader<u8, PCSSELECT_A>;
 #[doc = "Peripheral Chip Select\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum PCSSELECT_A {
     #[doc = "14: NPCS0 as Chip Select"]

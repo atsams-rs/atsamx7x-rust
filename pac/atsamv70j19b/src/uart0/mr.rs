@@ -37,7 +37,7 @@ impl From<crate::W<MR_SPEC>> for W {
 #[doc = "Field `FILTER` reader - Receiver Digital Filter"]
 pub type FILTER_R = crate::BitReader<FILTERSELECT_A>;
 #[doc = "Receiver Digital Filter\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum FILTERSELECT_A {
     #[doc = "0: UART does not filter the receive line."]
     DISABLED = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> FILTER_W<'a, O> {
 #[doc = "Field `PAR` reader - Parity Type"]
 pub type PAR_R = crate::FieldReader<u8, PARSELECT_A>;
 #[doc = "Parity Type\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum PARSELECT_A {
     #[doc = "0: Even Parity"]
@@ -178,7 +178,7 @@ impl<'a, const O: u8> PAR_W<'a, O> {
 #[doc = "Field `BRSRCCK` reader - Baud Rate Source Clock"]
 pub type BRSRCCK_R = crate::BitReader<BRSRCCKSELECT_A>;
 #[doc = "Baud Rate Source Clock\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum BRSRCCKSELECT_A {
     #[doc = "0: The baud rate is driven by the peripheral clock"]
     PERIPH_CLK = 0,
@@ -228,7 +228,7 @@ impl<'a, const O: u8> BRSRCCK_W<'a, O> {
 #[doc = "Field `CHMODE` reader - Channel Mode"]
 pub type CHMODE_R = crate::FieldReader<u8, CHMODESELECT_A>;
 #[doc = "Channel Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CHMODESELECT_A {
     #[doc = "0: Normal mode"]

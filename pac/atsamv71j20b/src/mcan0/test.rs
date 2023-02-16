@@ -37,7 +37,7 @@ impl From<crate::W<TEST_SPEC>> for W {
 #[doc = "Field `LBCK` reader - Loop Back Mode (read/write)"]
 pub type LBCK_R = crate::BitReader<LBCKSELECT_A>;
 #[doc = "Loop Back Mode (read/write)\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LBCKSELECT_A {
     #[doc = "0: Reset value. Loop Back mode is disabled."]
     DISABLED = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> LBCK_W<'a, O> {
 #[doc = "Field `TX` reader - Control of Transmit Pin (read/write)"]
 pub type TX_R = crate::FieldReader<u8, TXSELECT_A>;
 #[doc = "Control of Transmit Pin (read/write)\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TXSELECT_A {
     #[doc = "0: Reset value, CANTX controlled by the CAN Core, updated at the end of the CAN bit time."]

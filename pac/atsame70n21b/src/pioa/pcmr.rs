@@ -41,7 +41,7 @@ pub type PCEN_W<'a, const O: u8> = crate::BitWriter<'a, u32, PCMR_SPEC, bool, O>
 #[doc = "Field `DSIZE` reader - Parallel Capture Mode Data Size"]
 pub type DSIZE_R = crate::FieldReader<u8, DSIZESELECT_A>;
 #[doc = "Parallel Capture Mode Data Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum DSIZESELECT_A {
     #[doc = "0: The reception data in the PIO_PCRHR is a byte (8-bit)"]

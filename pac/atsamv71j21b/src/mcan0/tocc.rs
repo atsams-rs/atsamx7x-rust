@@ -37,7 +37,7 @@ impl From<crate::W<TOCC_SPEC>> for W {
 #[doc = "Field `ETOC` reader - Enable Timeout Counter"]
 pub type ETOC_R = crate::BitReader<ETOCSELECT_A>;
 #[doc = "Enable Timeout Counter\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ETOCSELECT_A {
     #[doc = "0: Timeout Counter disabled."]
     NO_TIMEOUT = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> ETOC_W<'a, O> {
 #[doc = "Field `TOS` reader - Timeout Select"]
 pub type TOS_R = crate::FieldReader<u8, TOSSELECT_A>;
 #[doc = "Timeout Select\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TOSSELECT_A {
     #[doc = "0: Continuous operation"]

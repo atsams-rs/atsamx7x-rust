@@ -41,7 +41,7 @@ pub type VAL1_W<'a, const O: u8> = crate::FieldWriter<'a, u32, CMPR_SPEC, u8, u8
 #[doc = "Field `CMPMODE` reader - Comparison Mode"]
 pub type CMPMODE_R = crate::BitReader<CMPMODESELECT_A>;
 #[doc = "Comparison Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum CMPMODESELECT_A {
     #[doc = "0: Any character is received and comparison function drives CMP flag."]
     FLAG_ONLY = 0,

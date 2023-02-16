@@ -37,7 +37,7 @@ impl From<crate::W<CLK_SPEC>> for W {
 #[doc = "Field `DIVA` reader - CLKA Divide Factor"]
 pub type DIVA_R = crate::FieldReader<u8, DIVASELECT_A>;
 #[doc = "CLKA Divide Factor\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum DIVASELECT_A {
     #[doc = "0: CLKA clock is turned off"]
@@ -89,7 +89,7 @@ impl<'a, const O: u8> DIVA_W<'a, O> {
 #[doc = "Field `PREA` reader - CLKA Source Clock Selection"]
 pub type PREA_R = crate::FieldReader<u8, PREASELECT_A>;
 #[doc = "CLKA Source Clock Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum PREASELECT_A {
     #[doc = "0: Peripheral clock"]
@@ -258,7 +258,7 @@ impl<'a, const O: u8> PREA_W<'a, O> {
 #[doc = "Field `DIVB` reader - CLKB Divide Factor"]
 pub type DIVB_R = crate::FieldReader<u8, DIVBSELECT_A>;
 #[doc = "CLKB Divide Factor\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum DIVBSELECT_A {
     #[doc = "0: CLKB clock is turned off"]
@@ -310,7 +310,7 @@ impl<'a, const O: u8> DIVB_W<'a, O> {
 #[doc = "Field `PREB` reader - CLKB Source Clock Selection"]
 pub type PREB_R = crate::FieldReader<u8, PREBSELECT_A>;
 #[doc = "CLKB Source Clock Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum PREBSELECT_A {
     #[doc = "0: Peripheral clock"]

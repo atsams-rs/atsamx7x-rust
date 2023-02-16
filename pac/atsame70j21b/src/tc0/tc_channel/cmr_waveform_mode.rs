@@ -37,7 +37,7 @@ impl From<crate::W<CMR_WAVEFORM_MODE_SPEC>> for W {
 #[doc = "Field `TCCLKS` reader - Clock Selection"]
 pub type TCCLKS_R = crate::FieldReader<u8, TCCLKSSELECT_A>;
 #[doc = "Clock Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TCCLKSSELECT_A {
     #[doc = "0: Clock selected: internal PCK6 clock signal (from PMC)"]
@@ -172,7 +172,7 @@ pub type CLKI_W<'a, const O: u8> = crate::BitWriter<'a, u32, CMR_WAVEFORM_MODE_S
 #[doc = "Field `BURST` reader - Burst Signal Selection"]
 pub type BURST_R = crate::FieldReader<u8, BURSTSELECT_A>;
 #[doc = "Burst Signal Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum BURSTSELECT_A {
     #[doc = "0: The clock is not gated by an external signal."]
@@ -259,7 +259,7 @@ pub type CPCDIS_W<'a, const O: u8> = crate::BitWriter<'a, u32, CMR_WAVEFORM_MODE
 #[doc = "Field `EEVTEDG` reader - External Event Edge Selection"]
 pub type EEVTEDG_R = crate::FieldReader<u8, EEVTEDGSELECT_A>;
 #[doc = "External Event Edge Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum EEVTEDGSELECT_A {
     #[doc = "0: None"]
@@ -338,7 +338,7 @@ impl<'a, const O: u8> EEVTEDG_W<'a, O> {
 #[doc = "Field `EEVT` reader - External Event Selection"]
 pub type EEVT_R = crate::FieldReader<u8, EEVTSELECT_A>;
 #[doc = "External Event Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum EEVTSELECT_A {
     #[doc = "0: TIOB"]
@@ -421,7 +421,7 @@ pub type ENETRG_W<'a, const O: u8> = crate::BitWriter<'a, u32, CMR_WAVEFORM_MODE
 #[doc = "Field `WAVSEL` reader - Waveform Selection"]
 pub type WAVSEL_R = crate::FieldReader<u8, WAVSELSELECT_A>;
 #[doc = "Waveform Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum WAVSELSELECT_A {
     #[doc = "0: UP mode without automatic trigger on RC Compare"]
@@ -504,7 +504,7 @@ pub type WAVE_W<'a, const O: u8> = crate::BitWriter<'a, u32, CMR_WAVEFORM_MODE_S
 #[doc = "Field `ACPA` reader - RA Compare Effect on TIOAx"]
 pub type ACPA_R = crate::FieldReader<u8, ACPASELECT_A>;
 #[doc = "RA Compare Effect on TIOAx\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum ACPASELECT_A {
     #[doc = "0: NONE"]
@@ -583,7 +583,7 @@ impl<'a, const O: u8> ACPA_W<'a, O> {
 #[doc = "Field `ACPC` reader - RC Compare Effect on TIOAx"]
 pub type ACPC_R = crate::FieldReader<u8, ACPCSELECT_A>;
 #[doc = "RC Compare Effect on TIOAx\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum ACPCSELECT_A {
     #[doc = "0: NONE"]
@@ -662,7 +662,7 @@ impl<'a, const O: u8> ACPC_W<'a, O> {
 #[doc = "Field `AEEVT` reader - External Event Effect on TIOAx"]
 pub type AEEVT_R = crate::FieldReader<u8, AEEVTSELECT_A>;
 #[doc = "External Event Effect on TIOAx\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum AEEVTSELECT_A {
     #[doc = "0: NONE"]
@@ -741,7 +741,7 @@ impl<'a, const O: u8> AEEVT_W<'a, O> {
 #[doc = "Field `ASWTRG` reader - Software Trigger Effect on TIOAx"]
 pub type ASWTRG_R = crate::FieldReader<u8, ASWTRGSELECT_A>;
 #[doc = "Software Trigger Effect on TIOAx\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum ASWTRGSELECT_A {
     #[doc = "0: NONE"]
@@ -820,7 +820,7 @@ impl<'a, const O: u8> ASWTRG_W<'a, O> {
 #[doc = "Field `BCPB` reader - RB Compare Effect on TIOBx"]
 pub type BCPB_R = crate::FieldReader<u8, BCPBSELECT_A>;
 #[doc = "RB Compare Effect on TIOBx\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum BCPBSELECT_A {
     #[doc = "0: NONE"]
@@ -899,7 +899,7 @@ impl<'a, const O: u8> BCPB_W<'a, O> {
 #[doc = "Field `BCPC` reader - RC Compare Effect on TIOBx"]
 pub type BCPC_R = crate::FieldReader<u8, BCPCSELECT_A>;
 #[doc = "RC Compare Effect on TIOBx\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum BCPCSELECT_A {
     #[doc = "0: NONE"]
@@ -978,7 +978,7 @@ impl<'a, const O: u8> BCPC_W<'a, O> {
 #[doc = "Field `BEEVT` reader - External Event Effect on TIOBx"]
 pub type BEEVT_R = crate::FieldReader<u8, BEEVTSELECT_A>;
 #[doc = "External Event Effect on TIOBx\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum BEEVTSELECT_A {
     #[doc = "0: NONE"]
@@ -1057,7 +1057,7 @@ impl<'a, const O: u8> BEEVT_W<'a, O> {
 #[doc = "Field `BSWTRG` reader - Software Trigger Effect on TIOBx"]
 pub type BSWTRG_R = crate::FieldReader<u8, BSWTRGSELECT_A>;
 #[doc = "Software Trigger Effect on TIOBx\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum BSWTRGSELECT_A {
     #[doc = "0: NONE"]

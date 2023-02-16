@@ -37,7 +37,7 @@ impl From<crate::W<CNDC_SPEC>> for W {
 #[doc = "Field `NDE` reader - Channel x Next Descriptor Enable"]
 pub type NDE_R = crate::BitReader<NDESELECT_A>;
 #[doc = "Channel x Next Descriptor Enable\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum NDESELECT_A {
     #[doc = "0: Descriptor fetch is disabled."]
     DSCR_FETCH_DIS = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> NDE_W<'a, O> {
 #[doc = "Field `NDSUP` reader - Channel x Next Descriptor Source Update"]
 pub type NDSUP_R = crate::BitReader<NDSUPSELECT_A>;
 #[doc = "Channel x Next Descriptor Source Update\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum NDSUPSELECT_A {
     #[doc = "0: Source parameters remain unchanged."]
     SRC_PARAMS_UNCHANGED = 0,
@@ -137,7 +137,7 @@ impl<'a, const O: u8> NDSUP_W<'a, O> {
 #[doc = "Field `NDDUP` reader - Channel x Next Descriptor Destination Update"]
 pub type NDDUP_R = crate::BitReader<NDDUPSELECT_A>;
 #[doc = "Channel x Next Descriptor Destination Update\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum NDDUPSELECT_A {
     #[doc = "0: Destination parameters remain unchanged."]
     DST_PARAMS_UNCHANGED = 0,
@@ -187,7 +187,7 @@ impl<'a, const O: u8> NDDUP_W<'a, O> {
 #[doc = "Field `NDVIEW` reader - Channel x Next Descriptor View"]
 pub type NDVIEW_R = crate::FieldReader<u8, NDVIEWSELECT_A>;
 #[doc = "Channel x Next Descriptor View\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum NDVIEWSELECT_A {
     #[doc = "0: Next Descriptor View 0"]

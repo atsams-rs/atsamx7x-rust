@@ -73,7 +73,7 @@ pub type FULL_W<'a, const O: u8> = crate::BitWriter<'a, u32, CFG1_SPEC, bool, O>
 #[doc = "Field `THMASK` reader - Threshold Mask"]
 pub type THMASK_R = crate::FieldReader<u8, THMASKSELECT_A>;
 #[doc = "Threshold Mask\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum THMASKSELECT_A {
     #[doc = "0: Only 4 beats AHB burst allowed"]

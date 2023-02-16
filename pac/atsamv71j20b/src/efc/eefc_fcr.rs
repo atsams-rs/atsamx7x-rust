@@ -20,7 +20,7 @@ impl From<crate::W<EEFC_FCR_SPEC>> for W {
     }
 }
 #[doc = "Flash Command\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum FCMDSELECT_AW {
     #[doc = "0: Get Flash descriptor"]
@@ -185,7 +185,7 @@ impl<'a, const O: u8> FCMD_W<'a, O> {
 #[doc = "Field `FARG` writer - Flash Command Argument"]
 pub type FARG_W<'a, const O: u8> = crate::FieldWriter<'a, u32, EEFC_FCR_SPEC, u16, u16, 16, O>;
 #[doc = "Flash Writing Protection Key\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum FKEYSELECT_AW {
     #[doc = "90: The 0x5A value enables the command defined by the bits of the register. If the field is written with a different value, the write is not performed and no action is started."]

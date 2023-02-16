@@ -37,7 +37,7 @@ impl From<crate::W<CMR_SPEC>> for W {
 #[doc = "Field `CPRE` reader - Channel Pre-scaler"]
 pub type CPRE_R = crate::FieldReader<u8, CPRESELECT_A>;
 #[doc = "Channel Pre-scaler\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CPRESELECT_A {
     #[doc = "0: Peripheral clock"]
@@ -232,7 +232,7 @@ impl<'a, const O: u8> CPRE_W<'a, O> {
 #[doc = "Field `CALG` reader - Channel Alignment"]
 pub type CALG_R = crate::BitReader<CALGSELECT_A>;
 #[doc = "Channel Alignment\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum CALGSELECT_A {
     #[doc = "0: Left aligned"]
     LEFT_ALIGNED = 0,
@@ -282,7 +282,7 @@ impl<'a, const O: u8> CALG_W<'a, O> {
 #[doc = "Field `CPOL` reader - Channel Polarity"]
 pub type CPOL_R = crate::BitReader<CPOLSELECT_A>;
 #[doc = "Channel Polarity\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum CPOLSELECT_A {
     #[doc = "0: Waveform starts at low level"]
     LOW_POLARITY = 0,
@@ -332,7 +332,7 @@ impl<'a, const O: u8> CPOL_W<'a, O> {
 #[doc = "Field `CES` reader - Counter Event Selection"]
 pub type CES_R = crate::BitReader<CESSELECT_A>;
 #[doc = "Counter Event Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum CESSELECT_A {
     #[doc = "0: At the end of PWM period"]
     SINGLE_EVENT = 0,
@@ -382,7 +382,7 @@ impl<'a, const O: u8> CES_W<'a, O> {
 #[doc = "Field `UPDS` reader - Update Selection"]
 pub type UPDS_R = crate::BitReader<UPDSSELECT_A>;
 #[doc = "Update Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum UPDSSELECT_A {
     #[doc = "0: At the next end of PWM period"]
     UPDATE_AT_PERIOD = 0,

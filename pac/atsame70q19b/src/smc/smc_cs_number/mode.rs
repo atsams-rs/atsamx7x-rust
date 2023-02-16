@@ -45,7 +45,7 @@ pub type WRITE_MODE_W<'a, const O: u8> = crate::BitWriter<'a, u32, MODE_SPEC, bo
 #[doc = "Field `EXNW_MODE` reader - NWAIT Mode"]
 pub type EXNW_MODE_R = crate::FieldReader<u8, EXNW_MODESELECT_A>;
 #[doc = "NWAIT Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum EXNW_MODESELECT_A {
     #[doc = "0: Disabled-The NWAIT input signal is ignored on the corresponding chip select."]
@@ -111,7 +111,7 @@ impl<'a, const O: u8> EXNW_MODE_W<'a, O> {
 #[doc = "Field `BAT` reader - Byte Access Type"]
 pub type BAT_R = crate::BitReader<BATSELECT_A>;
 #[doc = "Byte Access Type\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum BATSELECT_A {
     #[doc = "0: Byte select access type:- Write operation is controlled using NCS, NWE, NBS0, NBS1.- Read operation is controlled using NCS, NRD, NBS0, NBS1."]
     BYTE_SELECT = 0,
@@ -161,7 +161,7 @@ impl<'a, const O: u8> BAT_W<'a, O> {
 #[doc = "Field `DBW` reader - Data Bus Width"]
 pub type DBW_R = crate::BitReader<DBWSELECT_A>;
 #[doc = "Data Bus Width\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum DBWSELECT_A {
     #[doc = "0: 8-bit Data Bus"]
     _8_BIT = 0,
@@ -223,7 +223,7 @@ pub type PMEN_W<'a, const O: u8> = crate::BitWriter<'a, u32, MODE_SPEC, bool, O>
 #[doc = "Field `PS` reader - Page Size"]
 pub type PS_R = crate::FieldReader<u8, PSSELECT_A>;
 #[doc = "Page Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum PSSELECT_A {
     #[doc = "0: 4-byte page"]

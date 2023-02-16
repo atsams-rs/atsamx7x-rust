@@ -117,7 +117,7 @@ pub type LPM_W<'a, const O: u8> = crate::BitWriter<'a, u32, FSMR_SPEC, bool, O>;
 #[doc = "Field `FLPM` reader - Flash Low-power Mode"]
 pub type FLPM_R = crate::FieldReader<u8, FLPMSELECT_A>;
 #[doc = "Flash Low-power Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum FLPMSELECT_A {
     #[doc = "0: Flash is in Standby Mode when system enters Wait Mode"]

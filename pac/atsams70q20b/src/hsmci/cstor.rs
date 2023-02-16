@@ -41,7 +41,7 @@ pub type CSTOCYC_W<'a, const O: u8> = crate::FieldWriter<'a, u32, CSTOR_SPEC, u8
 #[doc = "Field `CSTOMUL` reader - Completion Signal Timeout Multiplier"]
 pub type CSTOMUL_R = crate::FieldReader<u8, CSTOMULSELECT_A>;
 #[doc = "Completion Signal Timeout Multiplier\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CSTOMULSELECT_A {
     #[doc = "0: CSTOCYC x 1"]

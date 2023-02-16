@@ -42,7 +42,7 @@ pub type ALLOC_W<'a, const O: u8> =
 #[doc = "Field `PBK` reader - Pipe Banks"]
 pub type PBK_R = crate::FieldReader<u8, PBKSELECT_A>;
 #[doc = "Pipe Banks\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum PBKSELECT_A {
     #[doc = "0: Single-bank pipe"]
@@ -108,7 +108,7 @@ impl<'a, const O: u8> PBK_W<'a, O> {
 #[doc = "Field `PSIZE` reader - Pipe Size"]
 pub type PSIZE_R = crate::FieldReader<u8, PSIZESELECT_A>;
 #[doc = "Pipe Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum PSIZESELECT_A {
     #[doc = "0: 8 bytes"]
@@ -239,7 +239,7 @@ impl<'a, const O: u8> PSIZE_W<'a, O> {
 #[doc = "Field `PTOKEN` reader - Pipe Token"]
 pub type PTOKEN_R = crate::FieldReader<u8, PTOKENSELECT_A>;
 #[doc = "Pipe Token\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum PTOKENSELECT_A {
     #[doc = "0: SETUP"]
@@ -310,7 +310,7 @@ pub type AUTOSW_W<'a, const O: u8> =
 #[doc = "Field `PTYPE` reader - Pipe Type"]
 pub type PTYPE_R = crate::FieldReader<u8, PTYPESELECT_A>;
 #[doc = "Pipe Type\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum PTYPESELECT_A {
     #[doc = "0: Control"]

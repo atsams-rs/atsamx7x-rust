@@ -37,7 +37,7 @@ impl From<crate::W<WUIR_SPEC>> for W {
 #[doc = "Field `WKUPEN0` reader - Wake-up Input Enable 0 to 0"]
 pub type WKUPEN0_R = crate::BitReader<WKUPEN0SELECT_A>;
 #[doc = "Wake-up Input Enable 0 to 0\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPEN0SELECT_A {
     #[doc = "0: The corresponding wake-up input has no wake-up effect."]
     DISABLE = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> WKUPEN0_W<'a, O> {
 #[doc = "Field `WKUPEN1` reader - Wake-up Input Enable 0 to 1"]
 pub type WKUPEN1_R = crate::BitReader<WKUPEN1SELECT_A>;
 #[doc = "Wake-up Input Enable 0 to 1\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPEN1SELECT_A {
     #[doc = "0: The corresponding wake-up input has no wake-up effect."]
     DISABLE = 0,
@@ -137,7 +137,7 @@ impl<'a, const O: u8> WKUPEN1_W<'a, O> {
 #[doc = "Field `WKUPEN2` reader - Wake-up Input Enable 0 to 2"]
 pub type WKUPEN2_R = crate::BitReader<WKUPEN2SELECT_A>;
 #[doc = "Wake-up Input Enable 0 to 2\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPEN2SELECT_A {
     #[doc = "0: The corresponding wake-up input has no wake-up effect."]
     DISABLE = 0,
@@ -187,7 +187,7 @@ impl<'a, const O: u8> WKUPEN2_W<'a, O> {
 #[doc = "Field `WKUPEN3` reader - Wake-up Input Enable 0 to 3"]
 pub type WKUPEN3_R = crate::BitReader<WKUPEN3SELECT_A>;
 #[doc = "Wake-up Input Enable 0 to 3\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPEN3SELECT_A {
     #[doc = "0: The corresponding wake-up input has no wake-up effect."]
     DISABLE = 0,
@@ -237,7 +237,7 @@ impl<'a, const O: u8> WKUPEN3_W<'a, O> {
 #[doc = "Field `WKUPEN4` reader - Wake-up Input Enable 0 to 4"]
 pub type WKUPEN4_R = crate::BitReader<WKUPEN4SELECT_A>;
 #[doc = "Wake-up Input Enable 0 to 4\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPEN4SELECT_A {
     #[doc = "0: The corresponding wake-up input has no wake-up effect."]
     DISABLE = 0,
@@ -287,7 +287,7 @@ impl<'a, const O: u8> WKUPEN4_W<'a, O> {
 #[doc = "Field `WKUPEN5` reader - Wake-up Input Enable 0 to 5"]
 pub type WKUPEN5_R = crate::BitReader<WKUPEN5SELECT_A>;
 #[doc = "Wake-up Input Enable 0 to 5\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPEN5SELECT_A {
     #[doc = "0: The corresponding wake-up input has no wake-up effect."]
     DISABLE = 0,
@@ -337,7 +337,7 @@ impl<'a, const O: u8> WKUPEN5_W<'a, O> {
 #[doc = "Field `WKUPEN6` reader - Wake-up Input Enable 0 to 6"]
 pub type WKUPEN6_R = crate::BitReader<WKUPEN6SELECT_A>;
 #[doc = "Wake-up Input Enable 0 to 6\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPEN6SELECT_A {
     #[doc = "0: The corresponding wake-up input has no wake-up effect."]
     DISABLE = 0,
@@ -387,7 +387,7 @@ impl<'a, const O: u8> WKUPEN6_W<'a, O> {
 #[doc = "Field `WKUPEN7` reader - Wake-up Input Enable 0 to 7"]
 pub type WKUPEN7_R = crate::BitReader<WKUPEN7SELECT_A>;
 #[doc = "Wake-up Input Enable 0 to 7\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPEN7SELECT_A {
     #[doc = "0: The corresponding wake-up input has no wake-up effect."]
     DISABLE = 0,
@@ -437,7 +437,7 @@ impl<'a, const O: u8> WKUPEN7_W<'a, O> {
 #[doc = "Field `WKUPEN8` reader - Wake-up Input Enable 0 to 8"]
 pub type WKUPEN8_R = crate::BitReader<WKUPEN8SELECT_A>;
 #[doc = "Wake-up Input Enable 0 to 8\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPEN8SELECT_A {
     #[doc = "0: The corresponding wake-up input has no wake-up effect."]
     DISABLE = 0,
@@ -487,7 +487,7 @@ impl<'a, const O: u8> WKUPEN8_W<'a, O> {
 #[doc = "Field `WKUPEN9` reader - Wake-up Input Enable 0 to 9"]
 pub type WKUPEN9_R = crate::BitReader<WKUPEN9SELECT_A>;
 #[doc = "Wake-up Input Enable 0 to 9\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPEN9SELECT_A {
     #[doc = "0: The corresponding wake-up input has no wake-up effect."]
     DISABLE = 0,
@@ -537,7 +537,7 @@ impl<'a, const O: u8> WKUPEN9_W<'a, O> {
 #[doc = "Field `WKUPEN10` reader - Wake-up Input Enable 0 to 10"]
 pub type WKUPEN10_R = crate::BitReader<WKUPEN10SELECT_A>;
 #[doc = "Wake-up Input Enable 0 to 10\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPEN10SELECT_A {
     #[doc = "0: The corresponding wake-up input has no wake-up effect."]
     DISABLE = 0,
@@ -587,7 +587,7 @@ impl<'a, const O: u8> WKUPEN10_W<'a, O> {
 #[doc = "Field `WKUPEN11` reader - Wake-up Input Enable 0 to 11"]
 pub type WKUPEN11_R = crate::BitReader<WKUPEN11SELECT_A>;
 #[doc = "Wake-up Input Enable 0 to 11\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPEN11SELECT_A {
     #[doc = "0: The corresponding wake-up input has no wake-up effect."]
     DISABLE = 0,
@@ -637,7 +637,7 @@ impl<'a, const O: u8> WKUPEN11_W<'a, O> {
 #[doc = "Field `WKUPEN12` reader - Wake-up Input Enable 0 to 12"]
 pub type WKUPEN12_R = crate::BitReader<WKUPEN12SELECT_A>;
 #[doc = "Wake-up Input Enable 0 to 12\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPEN12SELECT_A {
     #[doc = "0: The corresponding wake-up input has no wake-up effect."]
     DISABLE = 0,
@@ -687,7 +687,7 @@ impl<'a, const O: u8> WKUPEN12_W<'a, O> {
 #[doc = "Field `WKUPEN13` reader - Wake-up Input Enable 0 to 13"]
 pub type WKUPEN13_R = crate::BitReader<WKUPEN13SELECT_A>;
 #[doc = "Wake-up Input Enable 0 to 13\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPEN13SELECT_A {
     #[doc = "0: The corresponding wake-up input has no wake-up effect."]
     DISABLE = 0,
@@ -737,7 +737,7 @@ impl<'a, const O: u8> WKUPEN13_W<'a, O> {
 #[doc = "Field `WKUPT0` reader - Wake-up Input Type 0 to 0"]
 pub type WKUPT0_R = crate::BitReader<WKUPT0SELECT_A>;
 #[doc = "Wake-up Input Type 0 to 0\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPT0SELECT_A {
     #[doc = "0: A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     LOW = 0,
@@ -787,7 +787,7 @@ impl<'a, const O: u8> WKUPT0_W<'a, O> {
 #[doc = "Field `WKUPT1` reader - Wake-up Input Type 0 to 1"]
 pub type WKUPT1_R = crate::BitReader<WKUPT1SELECT_A>;
 #[doc = "Wake-up Input Type 0 to 1\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPT1SELECT_A {
     #[doc = "0: A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     LOW = 0,
@@ -837,7 +837,7 @@ impl<'a, const O: u8> WKUPT1_W<'a, O> {
 #[doc = "Field `WKUPT2` reader - Wake-up Input Type 0 to 2"]
 pub type WKUPT2_R = crate::BitReader<WKUPT2SELECT_A>;
 #[doc = "Wake-up Input Type 0 to 2\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPT2SELECT_A {
     #[doc = "0: A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     LOW = 0,
@@ -887,7 +887,7 @@ impl<'a, const O: u8> WKUPT2_W<'a, O> {
 #[doc = "Field `WKUPT3` reader - Wake-up Input Type 0 to 3"]
 pub type WKUPT3_R = crate::BitReader<WKUPT3SELECT_A>;
 #[doc = "Wake-up Input Type 0 to 3\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPT3SELECT_A {
     #[doc = "0: A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     LOW = 0,
@@ -937,7 +937,7 @@ impl<'a, const O: u8> WKUPT3_W<'a, O> {
 #[doc = "Field `WKUPT4` reader - Wake-up Input Type 0 to 4"]
 pub type WKUPT4_R = crate::BitReader<WKUPT4SELECT_A>;
 #[doc = "Wake-up Input Type 0 to 4\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPT4SELECT_A {
     #[doc = "0: A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     LOW = 0,
@@ -987,7 +987,7 @@ impl<'a, const O: u8> WKUPT4_W<'a, O> {
 #[doc = "Field `WKUPT5` reader - Wake-up Input Type 0 to 5"]
 pub type WKUPT5_R = crate::BitReader<WKUPT5SELECT_A>;
 #[doc = "Wake-up Input Type 0 to 5\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPT5SELECT_A {
     #[doc = "0: A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     LOW = 0,
@@ -1037,7 +1037,7 @@ impl<'a, const O: u8> WKUPT5_W<'a, O> {
 #[doc = "Field `WKUPT6` reader - Wake-up Input Type 0 to 6"]
 pub type WKUPT6_R = crate::BitReader<WKUPT6SELECT_A>;
 #[doc = "Wake-up Input Type 0 to 6\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPT6SELECT_A {
     #[doc = "0: A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     LOW = 0,
@@ -1087,7 +1087,7 @@ impl<'a, const O: u8> WKUPT6_W<'a, O> {
 #[doc = "Field `WKUPT7` reader - Wake-up Input Type 0 to 7"]
 pub type WKUPT7_R = crate::BitReader<WKUPT7SELECT_A>;
 #[doc = "Wake-up Input Type 0 to 7\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPT7SELECT_A {
     #[doc = "0: A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     LOW = 0,
@@ -1137,7 +1137,7 @@ impl<'a, const O: u8> WKUPT7_W<'a, O> {
 #[doc = "Field `WKUPT8` reader - Wake-up Input Type 0 to 8"]
 pub type WKUPT8_R = crate::BitReader<WKUPT8SELECT_A>;
 #[doc = "Wake-up Input Type 0 to 8\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPT8SELECT_A {
     #[doc = "0: A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     LOW = 0,
@@ -1187,7 +1187,7 @@ impl<'a, const O: u8> WKUPT8_W<'a, O> {
 #[doc = "Field `WKUPT9` reader - Wake-up Input Type 0 to 9"]
 pub type WKUPT9_R = crate::BitReader<WKUPT9SELECT_A>;
 #[doc = "Wake-up Input Type 0 to 9\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPT9SELECT_A {
     #[doc = "0: A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     LOW = 0,
@@ -1237,7 +1237,7 @@ impl<'a, const O: u8> WKUPT9_W<'a, O> {
 #[doc = "Field `WKUPT10` reader - Wake-up Input Type 0 to 10"]
 pub type WKUPT10_R = crate::BitReader<WKUPT10SELECT_A>;
 #[doc = "Wake-up Input Type 0 to 10\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPT10SELECT_A {
     #[doc = "0: A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     LOW = 0,
@@ -1287,7 +1287,7 @@ impl<'a, const O: u8> WKUPT10_W<'a, O> {
 #[doc = "Field `WKUPT11` reader - Wake-up Input Type 0 to 11"]
 pub type WKUPT11_R = crate::BitReader<WKUPT11SELECT_A>;
 #[doc = "Wake-up Input Type 0 to 11\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPT11SELECT_A {
     #[doc = "0: A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     LOW = 0,
@@ -1337,7 +1337,7 @@ impl<'a, const O: u8> WKUPT11_W<'a, O> {
 #[doc = "Field `WKUPT12` reader - Wake-up Input Type 0 to 12"]
 pub type WKUPT12_R = crate::BitReader<WKUPT12SELECT_A>;
 #[doc = "Wake-up Input Type 0 to 12\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPT12SELECT_A {
     #[doc = "0: A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     LOW = 0,
@@ -1387,7 +1387,7 @@ impl<'a, const O: u8> WKUPT12_W<'a, O> {
 #[doc = "Field `WKUPT13` reader - Wake-up Input Type 0 to 13"]
 pub type WKUPT13_R = crate::BitReader<WKUPT13SELECT_A>;
 #[doc = "Wake-up Input Type 0 to 13\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WKUPT13SELECT_A {
     #[doc = "0: A falling edge followed by a low level for a period defined by WKUPDBC on the corre-sponding wake-up input forces the wake-up of the core power supply."]
     LOW = 0,

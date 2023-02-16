@@ -53,7 +53,7 @@ pub type DBRP_W<'a, const O: u8> = crate::FieldWriter<'a, u32, DBTP_SPEC, u8, u8
 #[doc = "Field `TDC` reader - Transmitter Delay Compensation"]
 pub type TDC_R = crate::BitReader<TDCSELECT_A>;
 #[doc = "Transmitter Delay Compensation\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TDCSELECT_A {
     #[doc = "0: Transmitter Delay Compensation disabled."]
     DISABLED = 0,

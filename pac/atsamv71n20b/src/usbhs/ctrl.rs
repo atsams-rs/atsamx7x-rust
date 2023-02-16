@@ -57,7 +57,7 @@ pub type UID_W<'a, const O: u8> = crate::BitWriter<'a, u32, CTRL_SPEC, bool, O>;
 #[doc = "Field `UIMOD` reader - USBHS Mode"]
 pub type UIMOD_R = crate::BitReader<UIMODSELECT_A>;
 #[doc = "USBHS Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum UIMODSELECT_A {
     #[doc = "0: The module is in USB Host mode."]
     HOST = 0,

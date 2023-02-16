@@ -37,7 +37,7 @@ impl From<crate::W<US_MR_SPI_MODE_SPEC>> for W {
 #[doc = "Field `USART_MODE` reader - USART Mode of Operation"]
 pub type USART_MODE_R = crate::FieldReader<u8, USART_MODESELECT_A>;
 #[doc = "USART Mode of Operation\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum USART_MODESELECT_A {
     #[doc = "0: Normal mode"]
@@ -220,7 +220,7 @@ impl<'a, const O: u8> USART_MODE_W<'a, O> {
 #[doc = "Field `USCLKS` reader - Clock Selection"]
 pub type USCLKS_R = crate::FieldReader<u8, USCLKSSELECT_A>;
 #[doc = "Clock Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum USCLKSSELECT_A {
     #[doc = "0: Peripheral clock is selected"]
@@ -299,7 +299,7 @@ impl<'a, const O: u8> USCLKS_W<'a, O> {
 #[doc = "Field `CHRL` reader - Character Length"]
 pub type CHRL_R = crate::FieldReader<u8, CHRLSELECT_A>;
 #[doc = "Character Length\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CHRLSELECT_A {
     #[doc = "0: Character length is 5 bits"]

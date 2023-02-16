@@ -37,7 +37,7 @@ impl From<crate::W<PCK_SPEC>> for W {
 #[doc = "Field `CSS` reader - Programmable Clock Source Selection"]
 pub type CSS_R = crate::FieldReader<u8, CSSSELECT_A>;
 #[doc = "Programmable Clock Source Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CSSSELECT_A {
     #[doc = "0: SLCK is selected"]

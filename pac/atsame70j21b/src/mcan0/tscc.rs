@@ -37,7 +37,7 @@ impl From<crate::W<TSCC_SPEC>> for W {
 #[doc = "Field `TSS` reader - Timestamp Select"]
 pub type TSS_R = crate::FieldReader<u8, TSSSELECT_A>;
 #[doc = "Timestamp Select\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TSSSELECT_A {
     #[doc = "0: Timestamp counter value always 0x0000"]

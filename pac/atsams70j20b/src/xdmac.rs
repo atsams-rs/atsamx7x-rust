@@ -177,7 +177,7 @@ pub type GSWF = crate::Reg<gswf::GSWF_SPEC>;
 #[doc = "Global Channel Software Flush Request Register"]
 pub mod gswf;
 #[doc = "Channel Interrupt Enable Register"]
-pub use xdmac_chid::XDMAC_CHID;
+pub use self::xdmac_chid::XDMAC_CHID;
 #[doc = r"Cluster"]
 #[doc = "Channel Interrupt Enable Register"]
 pub mod xdmac_chid;

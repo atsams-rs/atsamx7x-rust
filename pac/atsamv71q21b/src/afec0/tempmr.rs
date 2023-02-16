@@ -41,7 +41,7 @@ pub type RTCT_W<'a, const O: u8> = crate::BitWriter<'a, u32, TEMPMR_SPEC, bool, 
 #[doc = "Field `TEMPCMPMOD` reader - Temperature Comparison Mode"]
 pub type TEMPCMPMOD_R = crate::FieldReader<u8, TEMPCMPMODSELECT_A>;
 #[doc = "Temperature Comparison Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TEMPCMPMODSELECT_A {
     #[doc = "0: Generates an event when the converted data is lower than the low threshold of the window."]

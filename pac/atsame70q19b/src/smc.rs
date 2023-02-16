@@ -17,7 +17,7 @@ pub struct RegisterBlock {
     pub wpsr: WPSR,
 }
 #[doc = "SMC Setup Register"]
-pub use smc_cs_number::SMC_CS_NUMBER;
+pub use self::smc_cs_number::SMC_CS_NUMBER;
 #[doc = r"Cluster"]
 #[doc = "SMC Setup Register"]
 pub mod smc_cs_number;

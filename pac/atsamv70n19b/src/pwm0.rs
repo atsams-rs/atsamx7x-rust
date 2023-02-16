@@ -246,12 +246,12 @@ pub type WPSR = crate::Reg<wpsr::WPSR_SPEC>;
 #[doc = "PWM Write Protection Status Register"]
 pub mod wpsr;
 #[doc = "PWM Comparison 0 Value Register"]
-pub use pwm_cmp::PWM_CMP;
+pub use self::pwm_cmp::PWM_CMP;
 #[doc = r"Cluster"]
 #[doc = "PWM Comparison 0 Value Register"]
 pub mod pwm_cmp;
 #[doc = "PWM Channel Mode Register"]
-pub use pwm_ch_num::PWM_CH_NUM;
+pub use self::pwm_ch_num::PWM_CH_NUM;
 #[doc = r"Cluster"]
 #[doc = "PWM Channel Mode Register"]
 pub mod pwm_ch_num;

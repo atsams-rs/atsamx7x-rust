@@ -49,7 +49,7 @@ pub type DMA_MODE_W<'a, const O: u8> = crate::BitWriter<'a, u32, ACTL_SPEC, bool
 #[doc = "Field `MPB` reader - DMA Packet Buffering Mode"]
 pub type MPB_R = crate::BitReader<MPBSELECT_A>;
 #[doc = "DMA Packet Buffering Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum MPBSELECT_A {
     #[doc = "0: Single-packet mode"]
     SINGLE_PACKET = 0,

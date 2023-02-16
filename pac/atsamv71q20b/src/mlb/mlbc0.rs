@@ -41,7 +41,7 @@ pub type MLBEN_W<'a, const O: u8> = crate::BitWriter<'a, u32, MLBC0_SPEC, bool, 
 #[doc = "Field `MLBCLK` reader - MLBCLK (MediaLB clock) Speed Select"]
 pub type MLBCLK_R = crate::FieldReader<u8, MLBCLKSELECT_A>;
 #[doc = "MLBCLK (MediaLB clock) Speed Select\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum MLBCLKSELECT_A {
     #[doc = "0: 256xFs (for MLBPEN = 0)"]
@@ -123,7 +123,7 @@ pub type CTLRETRY_W<'a, const O: u8> = crate::BitWriter<'a, u32, MLBC0_SPEC, boo
 #[doc = "Field `FCNT` reader - The number of frames per sub-buffer for synchronous channels"]
 pub type FCNT_R = crate::FieldReader<u8, FCNTSELECT_A>;
 #[doc = "The number of frames per sub-buffer for synchronous channels\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum FCNTSELECT_A {
     #[doc = "0: 1 frame per sub-buffer (Operation is the same as Standard mode.)"]

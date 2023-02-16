@@ -37,7 +37,7 @@ impl From<crate::W<CCCR_SPEC>> for W {
 #[doc = "Field `INIT` reader - Initialization (read/write)"]
 pub type INIT_R = crate::BitReader<INITSELECT_A>;
 #[doc = "Initialization (read/write)\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum INITSELECT_A {
     #[doc = "0: Normal operation."]
     DISABLED = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> INIT_W<'a, O> {
 #[doc = "Field `CCE` reader - Configuration Change Enable (read/write, write protection)"]
 pub type CCE_R = crate::BitReader<CCESELECT_A>;
 #[doc = "Configuration Change Enable (read/write, write protection)\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum CCESELECT_A {
     #[doc = "0: The processor has no write access to the protected configuration registers."]
     PROTECTED = 0,
@@ -137,7 +137,7 @@ impl<'a, const O: u8> CCE_W<'a, O> {
 #[doc = "Field `ASM` reader - Restricted Operation Mode (read/write, write protection against '1')"]
 pub type ASM_R = crate::BitReader<ASMSELECT_A>;
 #[doc = "Restricted Operation Mode (read/write, write protection against '1')\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ASMSELECT_A {
     #[doc = "0: Normal CAN operation."]
     NORMAL = 0,
@@ -191,7 +191,7 @@ pub type CSA_W<'a, const O: u8> = crate::BitWriter<'a, u32, CCCR_SPEC, bool, O>;
 #[doc = "Field `CSR` reader - Clock Stop Request (read/write)"]
 pub type CSR_R = crate::BitReader<CSRSELECT_A>;
 #[doc = "Clock Stop Request (read/write)\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum CSRSELECT_A {
     #[doc = "0: No clock stop is requested."]
     NO_CLOCK_STOP = 0,
@@ -241,7 +241,7 @@ impl<'a, const O: u8> CSR_W<'a, O> {
 #[doc = "Field `MON` reader - Bus Monitoring Mode (read/write, write protection against '1')"]
 pub type MON_R = crate::BitReader<MONSELECT_A>;
 #[doc = "Bus Monitoring Mode (read/write, write protection against '1')\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum MONSELECT_A {
     #[doc = "0: Bus Monitoring mode is disabled."]
     DISABLED = 0,
@@ -291,7 +291,7 @@ impl<'a, const O: u8> MON_W<'a, O> {
 #[doc = "Field `DAR` reader - Disable Automatic Retransmission (read/write, write protection)"]
 pub type DAR_R = crate::BitReader<DARSELECT_A>;
 #[doc = "Disable Automatic Retransmission (read/write, write protection)\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum DARSELECT_A {
     #[doc = "0: Automatic retransmission of messages not transmitted successfully enabled."]
     AUTO_RETX = 0,
@@ -341,7 +341,7 @@ impl<'a, const O: u8> DAR_W<'a, O> {
 #[doc = "Field `TEST` reader - Test Mode Enable (read/write, write protection against '1')"]
 pub type TEST_R = crate::BitReader<TESTSELECT_A>;
 #[doc = "Test Mode Enable (read/write, write protection against '1')\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TESTSELECT_A {
     #[doc = "0: Normal operation, MCAN_TEST register holds reset values."]
     DISABLED = 0,
@@ -391,7 +391,7 @@ impl<'a, const O: u8> TEST_W<'a, O> {
 #[doc = "Field `FDOE` reader - CAN FD Operation Enable (read/write, write protection)"]
 pub type FDOE_R = crate::BitReader<FDOESELECT_A>;
 #[doc = "CAN FD Operation Enable (read/write, write protection)\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum FDOESELECT_A {
     #[doc = "0: FD operation disabled."]
     DISABLED = 0,
@@ -441,7 +441,7 @@ impl<'a, const O: u8> FDOE_W<'a, O> {
 #[doc = "Field `BRSE` reader - Bit Rate Switching Enable (read/write, write protection)"]
 pub type BRSE_R = crate::BitReader<BRSESELECT_A>;
 #[doc = "Bit Rate Switching Enable (read/write, write protection)\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum BRSESELECT_A {
     #[doc = "0: Bit rate switching for transmissions disabled."]
     DISABLED = 0,

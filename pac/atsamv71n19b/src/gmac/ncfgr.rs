@@ -93,7 +93,7 @@ pub type RFCS_W<'a, const O: u8> = crate::BitWriter<'a, u32, NCFGR_SPEC, bool, O
 #[doc = "Field `CLK` reader - MDC CLock Division"]
 pub type CLK_R = crate::FieldReader<u8, CLKSELECT_A>;
 #[doc = "MDC CLock Division\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CLKSELECT_A {
     #[doc = "0: MCK divided by 8 (MCK up to 20 MHz)"]

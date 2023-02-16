@@ -37,7 +37,7 @@ impl From<crate::W<BMR_SPEC>> for W {
 #[doc = "Field `TC0XC0S` reader - External Clock Signal 0 Selection"]
 pub type TC0XC0S_R = crate::FieldReader<u8, TC0XC0SSELECT_A>;
 #[doc = "External Clock Signal 0 Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TC0XC0SSELECT_A {
     #[doc = "0: Signal connected to XC0: TCLK0"]
@@ -103,7 +103,7 @@ impl<'a, const O: u8> TC0XC0S_W<'a, O> {
 #[doc = "Field `TC1XC1S` reader - External Clock Signal 1 Selection"]
 pub type TC1XC1S_R = crate::FieldReader<u8, TC1XC1SSELECT_A>;
 #[doc = "External Clock Signal 1 Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TC1XC1SSELECT_A {
     #[doc = "0: Signal connected to XC1: TCLK1"]
@@ -169,7 +169,7 @@ impl<'a, const O: u8> TC1XC1S_W<'a, O> {
 #[doc = "Field `TC2XC2S` reader - External Clock Signal 2 Selection"]
 pub type TC2XC2S_R = crate::FieldReader<u8, TC2XC2SSELECT_A>;
 #[doc = "External Clock Signal 2 Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TC2XC2SSELECT_A {
     #[doc = "0: Signal connected to XC2: TCLK2"]

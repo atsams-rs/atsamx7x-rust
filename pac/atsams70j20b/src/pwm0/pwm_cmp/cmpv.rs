@@ -41,7 +41,7 @@ pub type CV_W<'a, const O: u8> = crate::FieldWriter<'a, u32, CMPV_SPEC, u32, u32
 #[doc = "Field `CVM` reader - Comparison x Value Mode"]
 pub type CVM_R = crate::BitReader<CVMSELECT_A>;
 #[doc = "Comparison x Value Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum CVMSELECT_A {
     #[doc = "0: Compare when counter is incrementing"]
     COMPARE_AT_INCREMENT = 0,

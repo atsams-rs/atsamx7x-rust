@@ -37,7 +37,7 @@ impl From<crate::W<SDCR_SPEC>> for W {
 #[doc = "Field `SDCSEL` reader - SDCard/SDIO Slot"]
 pub type SDCSEL_R = crate::FieldReader<u8, SDCSELSELECT_A>;
 #[doc = "SDCard/SDIO Slot\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum SDCSELSELECT_A {
     #[doc = "0: Slot A is selected."]
@@ -77,7 +77,7 @@ impl<'a, const O: u8> SDCSEL_W<'a, O> {
 #[doc = "Field `SDCBUS` reader - SDCard/SDIO Bus Width"]
 pub type SDCBUS_R = crate::FieldReader<u8, SDCBUSSELECT_A>;
 #[doc = "SDCard/SDIO Bus Width\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum SDCBUSSELECT_A {
     #[doc = "0: 1 bit"]

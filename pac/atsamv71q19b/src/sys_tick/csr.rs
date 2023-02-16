@@ -37,7 +37,7 @@ impl From<crate::W<CSR_SPEC>> for W {
 #[doc = "Field `ENABLE` reader - Enables the counter"]
 pub type ENABLE_R = crate::BitReader<ENABLESELECT_A>;
 #[doc = "Enables the counter\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ENABLESELECT_A {
     #[doc = "0: counter disabled"]
     VALUE_0 = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> ENABLE_W<'a, O> {
 #[doc = "Field `TICKINT` reader - Enables SysTick exception request"]
 pub type TICKINT_R = crate::BitReader<TICKINTSELECT_A>;
 #[doc = "Enables SysTick exception request\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TICKINTSELECT_A {
     #[doc = "0: counting down to 0 does not assert the SysTick exception request"]
     VALUE_0 = 0,
@@ -137,7 +137,7 @@ impl<'a, const O: u8> TICKINT_W<'a, O> {
 #[doc = "Field `CLKSOURCE` reader - Indicates the clock source"]
 pub type CLKSOURCE_R = crate::BitReader<CLKSOURCESELECT_A>;
 #[doc = "Indicates the clock source\n\nValue on reset: 1"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum CLKSOURCESELECT_A {
     #[doc = "0: external clock"]
     VALUE_0 = 0,

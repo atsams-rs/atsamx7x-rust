@@ -41,7 +41,7 @@ pub type WPEN_W<'a, const O: u8> = crate::BitWriter<'a, u32, WPMR_SPEC, bool, O>
 #[doc = "Field `WPKEY` reader - Write Protect Key"]
 pub type WPKEY_R = crate::FieldReader<u32, WPKEYSELECT_A>;
 #[doc = "Write Protect Key\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u32)]
 pub enum WPKEYSELECT_A {
     #[doc = "4473155: Writing any other value in this field aborts the write operation of bit WPEN.Always reads as 0."]

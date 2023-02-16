@@ -37,7 +37,7 @@ impl From<crate::W<CMR_CAPTURE_MODE_SPEC>> for W {
 #[doc = "Field `TCCLKS` reader - Clock Selection"]
 pub type TCCLKS_R = crate::FieldReader<u8, TCCLKSSELECT_A>;
 #[doc = "Clock Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TCCLKSSELECT_A {
     #[doc = "0: Clock selected: internal PCK6 clock signal (from PMC)"]
@@ -172,7 +172,7 @@ pub type CLKI_W<'a, const O: u8> = crate::BitWriter<'a, u32, CMR_CAPTURE_MODE_SP
 #[doc = "Field `BURST` reader - Burst Signal Selection"]
 pub type BURST_R = crate::FieldReader<u8, BURSTSELECT_A>;
 #[doc = "Burst Signal Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum BURSTSELECT_A {
     #[doc = "0: The clock is not gated by an external signal."]
@@ -259,7 +259,7 @@ pub type LDBDIS_W<'a, const O: u8> = crate::BitWriter<'a, u32, CMR_CAPTURE_MODE_
 #[doc = "Field `ETRGEDG` reader - External Trigger Edge Selection"]
 pub type ETRGEDG_R = crate::FieldReader<u8, ETRGEDGSELECT_A>;
 #[doc = "External Trigger Edge Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum ETRGEDGSELECT_A {
     #[doc = "0: The clock is not gated by an external signal."]
@@ -350,7 +350,7 @@ pub type WAVE_W<'a, const O: u8> = crate::BitWriter<'a, u32, CMR_CAPTURE_MODE_SP
 #[doc = "Field `LDRA` reader - RA Loading Edge Selection"]
 pub type LDRA_R = crate::FieldReader<u8, LDRASELECT_A>;
 #[doc = "RA Loading Edge Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum LDRASELECT_A {
     #[doc = "0: None"]
@@ -429,7 +429,7 @@ impl<'a, const O: u8> LDRA_W<'a, O> {
 #[doc = "Field `LDRB` reader - RB Loading Edge Selection"]
 pub type LDRB_R = crate::FieldReader<u8, LDRBSELECT_A>;
 #[doc = "RB Loading Edge Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum LDRBSELECT_A {
     #[doc = "0: None"]
@@ -508,7 +508,7 @@ impl<'a, const O: u8> LDRB_W<'a, O> {
 #[doc = "Field `SBSMPLR` reader - Loading Edge Subsampling Ratio"]
 pub type SBSMPLR_R = crate::FieldReader<u8, SBSMPLRSELECT_A>;
 #[doc = "Loading Edge Subsampling Ratio\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum SBSMPLRSELECT_A {
     #[doc = "0: Load a Capture Register each selected edge"]

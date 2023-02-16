@@ -41,7 +41,7 @@ pub type ALLOC_W<'a, const O: u8> = crate::BitWriter<'a, u32, DEVEPTCFG_SPEC, bo
 #[doc = "Field `EPBK` reader - Endpoint Banks"]
 pub type EPBK_R = crate::FieldReader<u8, EPBKSELECT_A>;
 #[doc = "Endpoint Banks\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum EPBKSELECT_A {
     #[doc = "0: Single-bank endpoint"]
@@ -107,7 +107,7 @@ impl<'a, const O: u8> EPBK_W<'a, O> {
 #[doc = "Field `EPSIZE` reader - Endpoint Size"]
 pub type EPSIZE_R = crate::FieldReader<u8, EPSIZESELECT_A>;
 #[doc = "Endpoint Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum EPSIZESELECT_A {
     #[doc = "0: 8 bytes"]
@@ -238,7 +238,7 @@ impl<'a, const O: u8> EPSIZE_W<'a, O> {
 #[doc = "Field `EPDIR` reader - Endpoint Direction"]
 pub type EPDIR_R = crate::BitReader<EPDIRSELECT_A>;
 #[doc = "Endpoint Direction\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum EPDIRSELECT_A {
     #[doc = "0: The endpoint direction is OUT."]
     OUT = 0,
@@ -292,7 +292,7 @@ pub type AUTOSW_W<'a, const O: u8> = crate::BitWriter<'a, u32, DEVEPTCFG_SPEC, b
 #[doc = "Field `EPTYPE` reader - Endpoint Type"]
 pub type EPTYPE_R = crate::FieldReader<u8, EPTYPESELECT_A>;
 #[doc = "Endpoint Type\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum EPTYPESELECT_A {
     #[doc = "0: Control"]
@@ -371,7 +371,7 @@ impl<'a, const O: u8> EPTYPE_W<'a, O> {
 #[doc = "Field `NBTRANS` reader - Number of transactions per microframe for isochronous endpoint"]
 pub type NBTRANS_R = crate::FieldReader<u8, NBTRANSSELECT_A>;
 #[doc = "Number of transactions per microframe for isochronous endpoint\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum NBTRANSSELECT_A {
     #[doc = "0: Reserved to endpoint that does not have the high-bandwidth isochronous capability."]

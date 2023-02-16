@@ -37,7 +37,7 @@ impl From<crate::W<MR_SPEC>> for W {
 #[doc = "Field `MAXS0` reader - Max Speed Mode for Channel 0"]
 pub type MAXS0_R = crate::BitReader<MAXS0SELECT_A>;
 #[doc = "Max Speed Mode for Channel 0\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum MAXS0SELECT_A {
     #[doc = "0: External trigger mode or Free-running mode enabled. (See TRGENx.DACC_TRIGR.)"]
     TRIG_EVENT = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> MAXS0_W<'a, O> {
 #[doc = "Field `MAXS1` reader - Max Speed Mode for Channel 1"]
 pub type MAXS1_R = crate::BitReader<MAXS1SELECT_A>;
 #[doc = "Max Speed Mode for Channel 1\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum MAXS1SELECT_A {
     #[doc = "0: External trigger mode or Free-running mode enabled. (See TRGENx.DACC_TRIGR.)"]
     TRIG_EVENT = 0,
@@ -137,7 +137,7 @@ impl<'a, const O: u8> MAXS1_W<'a, O> {
 #[doc = "Field `WORD` reader - Word Transfer Mode"]
 pub type WORD_R = crate::BitReader<WORDSELECT_A>;
 #[doc = "Word Transfer Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WORDSELECT_A {
     #[doc = "0: One data to convert is written to the FIFO per access to DACC."]
     DISABLED = 0,
@@ -191,7 +191,7 @@ pub type ZERO_W<'a, const O: u8> = crate::BitWriter<'a, u32, MR_SPEC, bool, O>;
 #[doc = "Field `DIFF` reader - Differential Mode"]
 pub type DIFF_R = crate::BitReader<DIFFSELECT_A>;
 #[doc = "Differential Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum DIFFSELECT_A {
     #[doc = "0: DAC0 and DAC1 are single-ended outputs."]
     DISABLED = 0,

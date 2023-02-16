@@ -24,7 +24,7 @@ pub type PROCRST_W<'a, const O: u8> = crate::BitWriter<'a, u32, CR_SPEC, bool, O
 #[doc = "Field `EXTRST` writer - External Reset"]
 pub type EXTRST_W<'a, const O: u8> = crate::BitWriter<'a, u32, CR_SPEC, bool, O>;
 #[doc = "System Reset Key\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum KEYSELECT_AW {
     #[doc = "165: Writing any other value in this field aborts the write operation."]

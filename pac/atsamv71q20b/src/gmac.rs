@@ -359,7 +359,7 @@ pub type HRT = crate::Reg<hrt::HRT_SPEC>;
 #[doc = "Hash Register Top"]
 pub mod hrt;
 #[doc = "Specific Address 1 Bottom Register"]
-pub use gmac_sa::GMAC_SA;
+pub use self::gmac_sa::GMAC_SA;
 #[doc = r"Cluster"]
 #[doc = "Specific Address 1 Bottom Register"]
 pub mod gmac_sa;
@@ -736,7 +736,7 @@ pub type ST2ER = crate::Reg<st2er::ST2ER_SPEC>;
 #[doc = "Screening Type 2 Ethertype Register"]
 pub mod st2er;
 #[doc = "Screening Type 2 Compare Word 0 Register"]
-pub use gmac_st2cw::GMAC_ST2CW;
+pub use self::gmac_st2cw::GMAC_ST2CW;
 #[doc = r"Cluster"]
 #[doc = "Screening Type 2 Compare Word 0 Register"]
 pub mod gmac_st2cw;

@@ -41,7 +41,7 @@ pub type TX_PL_W<'a, const O: u8> = crate::FieldWriter<'a, u32, US_MAN_SPEC, u8,
 #[doc = "Field `TX_PP` reader - Transmitter Preamble Pattern"]
 pub type TX_PP_R = crate::FieldReader<u8, TX_PPSELECT_A>;
 #[doc = "Transmitter Preamble Pattern\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TX_PPSELECT_A {
     #[doc = "0: The preamble is composed of '1's"]
@@ -128,7 +128,7 @@ pub type RX_PL_W<'a, const O: u8> = crate::FieldWriter<'a, u32, US_MAN_SPEC, u8,
 #[doc = "Field `RX_PP` reader - Receiver Preamble Pattern detected"]
 pub type RX_PP_R = crate::FieldReader<u8, RX_PPSELECT_A>;
 #[doc = "Receiver Preamble Pattern detected\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum RX_PPSELECT_A {
     #[doc = "0: The preamble is composed of '1's"]

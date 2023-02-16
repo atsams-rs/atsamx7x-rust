@@ -37,7 +37,7 @@ impl From<crate::W<RXESC_SPEC>> for W {
 #[doc = "Field `F0DS` reader - Receive FIFO 0 Data Field Size"]
 pub type F0DS_R = crate::FieldReader<u8, F0DSSELECT_A>;
 #[doc = "Receive FIFO 0 Data Field Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum F0DSSELECT_A {
     #[doc = "0: 8-byte data field"]
@@ -168,7 +168,7 @@ impl<'a, const O: u8> F0DS_W<'a, O> {
 #[doc = "Field `F1DS` reader - Receive FIFO 1 Data Field Size"]
 pub type F1DS_R = crate::FieldReader<u8, F1DSSELECT_A>;
 #[doc = "Receive FIFO 1 Data Field Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum F1DSSELECT_A {
     #[doc = "0: 8-byte data field"]
@@ -299,7 +299,7 @@ impl<'a, const O: u8> F1DS_W<'a, O> {
 #[doc = "Field `RBDS` reader - Receive Buffer Data Field Size"]
 pub type RBDS_R = crate::FieldReader<u8, RBDSSELECT_A>;
 #[doc = "Receive Buffer Data Field Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum RBDSSELECT_A {
     #[doc = "0: 8-byte data field"]

@@ -37,7 +37,7 @@ impl From<crate::W<MR_SPEC>> for W {
 #[doc = "Field `SMM` reader - Serial Memory Mode"]
 pub type SMM_R = crate::BitReader<SMMSELECT_A>;
 #[doc = "Serial Memory Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum SMMSELECT_A {
     #[doc = "0: The QSPI is in SPI mode."]
     SPI = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> SMM_W<'a, O> {
 #[doc = "Field `LLB` reader - Local Loopback Enable"]
 pub type LLB_R = crate::BitReader<LLBSELECT_A>;
 #[doc = "Local Loopback Enable\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LLBSELECT_A {
     #[doc = "0: Local loopback path disabled."]
     DISABLED = 0,
@@ -137,7 +137,7 @@ impl<'a, const O: u8> LLB_W<'a, O> {
 #[doc = "Field `WDRBT` reader - Wait Data Read Before Transfer"]
 pub type WDRBT_R = crate::BitReader<WDRBTSELECT_A>;
 #[doc = "Wait Data Read Before Transfer\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WDRBTSELECT_A {
     #[doc = "0: No effect. In SPI mode, a transfer can be initiated whatever the state of the QSPI_RDR is."]
     DISABLED = 0,
@@ -187,7 +187,7 @@ impl<'a, const O: u8> WDRBT_W<'a, O> {
 #[doc = "Field `CSMODE` reader - Chip Select Mode"]
 pub type CSMODE_R = crate::FieldReader<u8, CSMODESELECT_A>;
 #[doc = "Chip Select Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CSMODESELECT_A {
     #[doc = "0: The chip select is deasserted if QSPI_TDR.TD has not been reloaded before the end of the current transfer."]
@@ -252,7 +252,7 @@ impl<'a, const O: u8> CSMODE_W<'a, O> {
 #[doc = "Field `NBBITS` reader - Number Of Bits Per Transfer"]
 pub type NBBITS_R = crate::FieldReader<u8, NBBITSSELECT_A>;
 #[doc = "Number Of Bits Per Transfer\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum NBBITSSELECT_A {
     #[doc = "0: 8 bits for transfer"]

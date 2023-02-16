@@ -53,7 +53,7 @@ pub type RMWKUP_W<'a, const O: u8> = crate::BitWriter<'a, u32, DEVCTRL_SPEC, boo
 #[doc = "Field `SPDCONF` reader - Mode Configuration"]
 pub type SPDCONF_R = crate::FieldReader<u8, SPDCONFSELECT_A>;
 #[doc = "Mode Configuration\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum SPDCONFSELECT_A {
     #[doc = "0: The peripheral starts in Full-speed mode and performs a high-speed reset to switch to High-speed mode if the host is high-speed-capable."]

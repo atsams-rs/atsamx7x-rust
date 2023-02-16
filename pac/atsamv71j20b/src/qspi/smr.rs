@@ -37,7 +37,7 @@ impl From<crate::W<SMR_SPEC>> for W {
 #[doc = "Field `SCREN` reader - Scrambling/Unscrambling Enable"]
 pub type SCREN_R = crate::BitReader<SCRENSELECT_A>;
 #[doc = "Scrambling/Unscrambling Enable\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum SCRENSELECT_A {
     #[doc = "0: The scrambling/unscrambling is disabled."]
     DISABLED = 0,

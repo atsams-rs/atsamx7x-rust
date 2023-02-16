@@ -20,7 +20,7 @@ impl From<crate::W<CR_SPEC>> for W {
     }
 }
 #[doc = "Voltage Regulator Off\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum VROFFSELECT_AW {
     #[doc = "0: No effect."]
     NO_EFFECT = 0,
@@ -48,7 +48,7 @@ impl<'a, const O: u8> VROFF_W<'a, O> {
     }
 }
 #[doc = "Crystal Oscillator Select\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum XTALSELSELECT_AW {
     #[doc = "0: No effect."]
     NO_EFFECT = 0,
@@ -76,7 +76,7 @@ impl<'a, const O: u8> XTALSEL_W<'a, O> {
     }
 }
 #[doc = "Password\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum KEYSELECT_AW {
     #[doc = "165: Writing any other value in this field aborts the write operation."]

@@ -37,7 +37,7 @@ impl From<crate::W<IFR_SPEC>> for W {
 #[doc = "Field `WIDTH` reader - Width of Instruction Code, Address, Option Code and Data"]
 pub type WIDTH_R = crate::FieldReader<u8, WIDTHSELECT_A>;
 #[doc = "Width of Instruction Code, Address, Option Code and Data\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum WIDTHSELECT_A {
     #[doc = "0: Instruction: Single-bit SPI / Address-Option: Single-bit SPI / Data: Single-bit SPI"]
@@ -170,7 +170,7 @@ pub type DATAEN_W<'a, const O: u8> = crate::BitWriter<'a, u32, IFR_SPEC, bool, O
 #[doc = "Field `OPTL` reader - Option Code Length"]
 pub type OPTL_R = crate::FieldReader<u8, OPTLSELECT_A>;
 #[doc = "Option Code Length\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum OPTLSELECT_A {
     #[doc = "0: The option code is 1 bit long."]
@@ -249,7 +249,7 @@ impl<'a, const O: u8> OPTL_W<'a, O> {
 #[doc = "Field `ADDRL` reader - Address Length"]
 pub type ADDRL_R = crate::BitReader<ADDRLSELECT_A>;
 #[doc = "Address Length\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ADDRLSELECT_A {
     #[doc = "0: The address is 24 bits long."]
     _24_BIT = 0,
@@ -299,7 +299,7 @@ impl<'a, const O: u8> ADDRL_W<'a, O> {
 #[doc = "Field `TFRTYP` reader - Data Transfer Type"]
 pub type TFRTYP_R = crate::FieldReader<u8, TFRTYPSELECT_A>;
 #[doc = "Data Transfer Type\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TFRTYPSELECT_A {
     #[doc = "0: Read transfer from the serial memory.Scrambling is not performed.Read at random location (fetch) in the serial Flash memory is not possible."]
@@ -378,7 +378,7 @@ impl<'a, const O: u8> TFRTYP_W<'a, O> {
 #[doc = "Field `CRM` reader - Continuous Read Mode"]
 pub type CRM_R = crate::BitReader<CRMSELECT_A>;
 #[doc = "Continuous Read Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum CRMSELECT_A {
     #[doc = "0: The Continuous Read mode is disabled."]
     DISABLED = 0,

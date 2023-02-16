@@ -18,7 +18,7 @@ pub type VERSION_R = crate::FieldReader<u8, u8>;
 #[doc = "Field `EPROC` reader - Embedded Processor"]
 pub type EPROC_R = crate::FieldReader<u8, EPROCSELECT_A>;
 #[doc = "Embedded Processor\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum EPROCSELECT_A {
     #[doc = "0: Cortex-M7"]
@@ -104,7 +104,7 @@ impl EPROC_R {
 #[doc = "Field `NVPSIZ` reader - Nonvolatile Program Memory Size"]
 pub type NVPSIZ_R = crate::FieldReader<u8, NVPSIZSELECT_A>;
 #[doc = "Nonvolatile Program Memory Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum NVPSIZSELECT_A {
     #[doc = "0: None"]
@@ -214,7 +214,7 @@ impl NVPSIZ_R {
 #[doc = "Field `NVPSIZ2` reader - Second Nonvolatile Program Memory Size"]
 pub type NVPSIZ2_R = crate::FieldReader<u8, NVPSIZ2SELECT_A>;
 #[doc = "Second Nonvolatile Program Memory Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum NVPSIZ2SELECT_A {
     #[doc = "0: None"]
@@ -316,7 +316,7 @@ impl NVPSIZ2_R {
 #[doc = "Field `SRAMSIZ` reader - Internal SRAM Size"]
 pub type SRAMSIZ_R = crate::FieldReader<u8, SRAMSIZSELECT_A>;
 #[doc = "Internal SRAM Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum SRAMSIZSELECT_A {
     #[doc = "0: 48 Kbytes"]
@@ -466,7 +466,7 @@ impl SRAMSIZ_R {
 #[doc = "Field `ARCH` reader - Architecture Identifier"]
 pub type ARCH_R = crate::FieldReader<u8, ARCHSELECT_A>;
 #[doc = "Architecture Identifier\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum ARCHSELECT_A {
     #[doc = "16: SAM E70"]
@@ -520,7 +520,7 @@ impl ARCH_R {
 #[doc = "Field `NVPTYP` reader - Nonvolatile Program Memory Type"]
 pub type NVPTYP_R = crate::FieldReader<u8, NVPTYPSELECT_A>;
 #[doc = "Nonvolatile Program Memory Type\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum NVPTYPSELECT_A {
     #[doc = "0: ROM"]

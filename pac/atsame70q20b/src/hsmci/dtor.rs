@@ -41,7 +41,7 @@ pub type DTOCYC_W<'a, const O: u8> = crate::FieldWriter<'a, u32, DTOR_SPEC, u8, 
 #[doc = "Field `DTOMUL` reader - Data Timeout Multiplier"]
 pub type DTOMUL_R = crate::FieldReader<u8, DTOMULSELECT_A>;
 #[doc = "Data Timeout Multiplier\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum DTOMULSELECT_A {
     #[doc = "0: DTOCYC"]

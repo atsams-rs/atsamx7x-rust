@@ -37,7 +37,7 @@ impl From<crate::W<DCFGR_SPEC>> for W {
 #[doc = "Field `FBLDO` reader - Fixed Burst Length for DMA Data Operations:"]
 pub type FBLDO_R = crate::FieldReader<u8, FBLDOSELECT_A>;
 #[doc = "Fixed Burst Length for DMA Data Operations:\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum FBLDOSELECT_A {
     #[doc = "1: 00001: Always use SINGLE AHB bursts"]
@@ -124,7 +124,7 @@ pub type ESPA_W<'a, const O: u8> = crate::BitWriter<'a, u32, DCFGR_SPEC, bool, O
 #[doc = "Field `RXBMS` reader - Receiver Packet Buffer Memory Size Select"]
 pub type RXBMS_R = crate::FieldReader<u8, RXBMSSELECT_A>;
 #[doc = "Receiver Packet Buffer Memory Size Select\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum RXBMSSELECT_A {
     #[doc = "0: 4/8 Kbyte Memory Size"]

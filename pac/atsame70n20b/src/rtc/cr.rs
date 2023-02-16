@@ -45,7 +45,7 @@ pub type UPDCAL_W<'a, const O: u8> = crate::BitWriter<'a, u32, CR_SPEC, bool, O>
 #[doc = "Field `TIMEVSEL` reader - Time Event Selection"]
 pub type TIMEVSEL_R = crate::FieldReader<u8, TIMEVSELSELECT_A>;
 #[doc = "Time Event Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TIMEVSELSELECT_A {
     #[doc = "0: Minute change"]
@@ -124,7 +124,7 @@ impl<'a, const O: u8> TIMEVSEL_W<'a, O> {
 #[doc = "Field `CALEVSEL` reader - Calendar Event Selection"]
 pub type CALEVSEL_R = crate::FieldReader<u8, CALEVSELSELECT_A>;
 #[doc = "Calendar Event Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CALEVSELSELECT_A {
     #[doc = "0: Week change (every Monday at time 00:00:00)"]

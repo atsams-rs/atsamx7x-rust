@@ -16,7 +16,7 @@ impl From<crate::R<SR_SPEC>> for R {
 #[doc = "Field `ACKUPD` reader - Acknowledge for Update"]
 pub type ACKUPD_R = crate::BitReader<ACKUPDSELECT_A>;
 #[doc = "Acknowledge for Update\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ACKUPDSELECT_A {
     #[doc = "0: Time and calendar registers cannot be updated."]
     FREERUN = 0,
@@ -52,7 +52,7 @@ impl ACKUPD_R {
 #[doc = "Field `ALARM` reader - Alarm Flag"]
 pub type ALARM_R = crate::BitReader<ALARMSELECT_A>;
 #[doc = "Alarm Flag\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ALARMSELECT_A {
     #[doc = "0: No alarm matching condition occurred."]
     NO_ALARMEVENT = 0,
@@ -88,7 +88,7 @@ impl ALARM_R {
 #[doc = "Field `SEC` reader - Second Event"]
 pub type SEC_R = crate::BitReader<SECSELECT_A>;
 #[doc = "Second Event\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum SECSELECT_A {
     #[doc = "0: No second event has occurred since the last clear."]
     NO_SECEVENT = 0,
@@ -124,7 +124,7 @@ impl SEC_R {
 #[doc = "Field `TIMEV` reader - Time Event"]
 pub type TIMEV_R = crate::BitReader<TIMEVSELECT_A>;
 #[doc = "Time Event\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TIMEVSELECT_A {
     #[doc = "0: No time event has occurred since the last clear."]
     NO_TIMEVENT = 0,
@@ -160,7 +160,7 @@ impl TIMEV_R {
 #[doc = "Field `CALEV` reader - Calendar Event"]
 pub type CALEV_R = crate::BitReader<CALEVSELECT_A>;
 #[doc = "Calendar Event\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum CALEVSELECT_A {
     #[doc = "0: No calendar event has occurred since the last clear."]
     NO_CALEVENT = 0,
@@ -196,7 +196,7 @@ impl CALEV_R {
 #[doc = "Field `TDERR` reader - Time and/or Date Free Running Error"]
 pub type TDERR_R = crate::BitReader<TDERRSELECT_A>;
 #[doc = "Time and/or Date Free Running Error\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TDERRSELECT_A {
     #[doc = "0: The internal free running counters are carrying valid values since the last read of the Status Register (RTC_SR)."]
     CORRECT = 0,

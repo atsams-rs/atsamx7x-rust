@@ -37,7 +37,7 @@ impl From<crate::W<WUMR_SPEC>> for W {
 #[doc = "Field `SMEN` reader - Supply Monitor Wake-up Enable"]
 pub type SMEN_R = crate::BitReader<SMENSELECT_A>;
 #[doc = "Supply Monitor Wake-up Enable\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum SMENSELECT_A {
     #[doc = "0: The supply monitor detection has no wake-up effect."]
     NOT_ENABLE = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> SMEN_W<'a, O> {
 #[doc = "Field `RTTEN` reader - Real-time Timer Wake-up Enable"]
 pub type RTTEN_R = crate::BitReader<RTTENSELECT_A>;
 #[doc = "Real-time Timer Wake-up Enable\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum RTTENSELECT_A {
     #[doc = "0: The RTT alarm signal has no wake-up effect."]
     NOT_ENABLE = 0,
@@ -137,7 +137,7 @@ impl<'a, const O: u8> RTTEN_W<'a, O> {
 #[doc = "Field `RTCEN` reader - Real-time Clock Wake-up Enable"]
 pub type RTCEN_R = crate::BitReader<RTCENSELECT_A>;
 #[doc = "Real-time Clock Wake-up Enable\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum RTCENSELECT_A {
     #[doc = "0: The RTC alarm signal has no wake-up effect."]
     NOT_ENABLE = 0,
@@ -187,7 +187,7 @@ impl<'a, const O: u8> RTCEN_W<'a, O> {
 #[doc = "Field `LPDBCEN0` reader - Low-power Debouncer Enable WKUP0"]
 pub type LPDBCEN0_R = crate::BitReader<LPDBCEN0SELECT_A>;
 #[doc = "Low-power Debouncer Enable WKUP0\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LPDBCEN0SELECT_A {
     #[doc = "0: The WKUP0 input pin is not connected to the low-power debouncer."]
     NOT_ENABLE = 0,
@@ -237,7 +237,7 @@ impl<'a, const O: u8> LPDBCEN0_W<'a, O> {
 #[doc = "Field `LPDBCEN1` reader - Low-power Debouncer Enable WKUP1"]
 pub type LPDBCEN1_R = crate::BitReader<LPDBCEN1SELECT_A>;
 #[doc = "Low-power Debouncer Enable WKUP1\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LPDBCEN1SELECT_A {
     #[doc = "0: The WKUP1 input pin is not connected to the low-power debouncer."]
     NOT_ENABLE = 0,
@@ -287,7 +287,7 @@ impl<'a, const O: u8> LPDBCEN1_W<'a, O> {
 #[doc = "Field `LPDBCCLR` reader - Low-power Debouncer Clear"]
 pub type LPDBCCLR_R = crate::BitReader<LPDBCCLRSELECT_A>;
 #[doc = "Low-power Debouncer Clear\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LPDBCCLRSELECT_A {
     #[doc = "0: A low-power debounce event does not create an immediate clear on the first half of GPBR registers."]
     NOT_ENABLE = 0,
@@ -337,7 +337,7 @@ impl<'a, const O: u8> LPDBCCLR_W<'a, O> {
 #[doc = "Field `WKUPDBC` reader - Wake-up Inputs Debouncer Period"]
 pub type WKUPDBC_R = crate::FieldReader<u8, WKUPDBCSELECT_A>;
 #[doc = "Wake-up Inputs Debouncer Period\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum WKUPDBCSELECT_A {
     #[doc = "0: Immediate, no debouncing, detected active at least on one Slow Clock edge."]
@@ -442,7 +442,7 @@ impl<'a, const O: u8> WKUPDBC_W<'a, O> {
 #[doc = "Field `LPDBC` reader - Low-power Debouncer Period"]
 pub type LPDBC_R = crate::FieldReader<u8, LPDBCSELECT_A>;
 #[doc = "Low-power Debouncer Period\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum LPDBCSELECT_A {
     #[doc = "0: Disable the low-power debouncers."]

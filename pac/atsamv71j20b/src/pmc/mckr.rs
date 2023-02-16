@@ -37,7 +37,7 @@ impl From<crate::W<MCKR_SPEC>> for W {
 #[doc = "Field `CSS` reader - Master Clock Source Selection"]
 pub type CSS_R = crate::FieldReader<u8, CSSSELECT_A>;
 #[doc = "Master Clock Source Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CSSSELECT_A {
     #[doc = "0: Slow Clock is selected"]
@@ -115,7 +115,7 @@ impl<'a, const O: u8> CSS_W<'a, O> {
 #[doc = "Field `PRES` reader - Processor Clock Prescaler"]
 pub type PRES_R = crate::FieldReader<u8, PRESSELECT_A>;
 #[doc = "Processor Clock Prescaler\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum PRESSELECT_A {
     #[doc = "0: Selected clock"]
@@ -246,7 +246,7 @@ impl<'a, const O: u8> PRES_W<'a, O> {
 #[doc = "Field `MDIV` reader - Master Clock Division"]
 pub type MDIV_R = crate::FieldReader<u8, MDIVSELECT_A>;
 #[doc = "Master Clock Division\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum MDIVSELECT_A {
     #[doc = "0: Master Clock is Prescaler Output Clock divided by 1."]

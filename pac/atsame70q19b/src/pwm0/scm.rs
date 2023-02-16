@@ -53,7 +53,7 @@ pub type SYNC3_W<'a, const O: u8> = crate::BitWriter<'a, u32, SCM_SPEC, bool, O>
 #[doc = "Field `UPDM` reader - Synchronous Channels Update Mode"]
 pub type UPDM_R = crate::FieldReader<u8, UPDMSELECT_A>;
 #[doc = "Synchronous Channels Update Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum UPDMSELECT_A {
     #[doc = "0: Manual write of double buffer registers and manual update of synchronous channels"]

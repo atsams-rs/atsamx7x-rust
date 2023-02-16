@@ -37,7 +37,7 @@ impl From<crate::W<MR_SPEC>> for W {
 #[doc = "Field `SELMINUS` reader - Selection for Minus Comparator Input"]
 pub type SELMINUS_R = crate::FieldReader<u8, SELMINUSSELECT_A>;
 #[doc = "Selection for Minus Comparator Input\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum SELMINUSSELECT_A {
     #[doc = "0: Select TS"]
@@ -168,7 +168,7 @@ impl<'a, const O: u8> SELMINUS_W<'a, O> {
 #[doc = "Field `SELPLUS` reader - Selection For Plus Comparator Input"]
 pub type SELPLUS_R = crate::FieldReader<u8, SELPLUSSELECT_A>;
 #[doc = "Selection For Plus Comparator Input\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum SELPLUSSELECT_A {
     #[doc = "0: Select AFE0_AD0"]
@@ -299,7 +299,7 @@ impl<'a, const O: u8> SELPLUS_W<'a, O> {
 #[doc = "Field `ACEN` reader - Analog Comparator Enable"]
 pub type ACEN_R = crate::BitReader<ACENSELECT_A>;
 #[doc = "Analog Comparator Enable\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ACENSELECT_A {
     #[doc = "0: Analog comparator disabled."]
     DIS = 0,
@@ -349,7 +349,7 @@ impl<'a, const O: u8> ACEN_W<'a, O> {
 #[doc = "Field `EDGETYP` reader - Edge Type"]
 pub type EDGETYP_R = crate::FieldReader<u8, EDGETYPSELECT_A>;
 #[doc = "Edge Type\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum EDGETYPSELECT_A {
     #[doc = "0: Only rising edge of comparator output"]
@@ -415,7 +415,7 @@ impl<'a, const O: u8> EDGETYP_W<'a, O> {
 #[doc = "Field `INV` reader - Invert Comparator Output"]
 pub type INV_R = crate::BitReader<INVSELECT_A>;
 #[doc = "Invert Comparator Output\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum INVSELECT_A {
     #[doc = "0: Analog comparator output is directly processed."]
     DIS = 0,
@@ -465,7 +465,7 @@ impl<'a, const O: u8> INV_W<'a, O> {
 #[doc = "Field `SELFS` reader - Selection Of Fault Source"]
 pub type SELFS_R = crate::BitReader<SELFSSELECT_A>;
 #[doc = "Selection Of Fault Source\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum SELFSSELECT_A {
     #[doc = "0: The CE flag is used to drive the FAULT output."]
     CE = 0,
@@ -515,7 +515,7 @@ impl<'a, const O: u8> SELFS_W<'a, O> {
 #[doc = "Field `FE` reader - Fault Enable"]
 pub type FE_R = crate::BitReader<FESELECT_A>;
 #[doc = "Fault Enable\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum FESELECT_A {
     #[doc = "0: The FAULT output is tied to 0."]
     DIS = 0,

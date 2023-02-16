@@ -37,7 +37,7 @@ impl From<crate::W<MR_SPEC>> for W {
 #[doc = "Field `BODRSTEN` reader - Brownout Detector Reset Enable"]
 pub type BODRSTEN_R = crate::BitReader<BODRSTENSELECT_A>;
 #[doc = "Brownout Detector Reset Enable\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum BODRSTENSELECT_A {
     #[doc = "0: The core reset signal vddcore_nreset is not affected when a brownout detection occurs."]
     NOT_ENABLE = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> BODRSTEN_W<'a, O> {
 #[doc = "Field `BODDIS` reader - Brownout Detector Disable"]
 pub type BODDIS_R = crate::BitReader<BODDISSELECT_A>;
 #[doc = "Brownout Detector Disable\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum BODDISSELECT_A {
     #[doc = "0: The core brownout detector is enabled."]
     ENABLE = 0,
@@ -137,7 +137,7 @@ impl<'a, const O: u8> BODDIS_W<'a, O> {
 #[doc = "Field `ONREG` reader - Voltage Regulator Enable"]
 pub type ONREG_R = crate::BitReader<ONREGSELECT_A>;
 #[doc = "Voltage Regulator Enable\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ONREGSELECT_A {
     #[doc = "0: Internal voltage regulator is not used (external power supply is used)."]
     ONREG_UNUSED = 0,
@@ -191,7 +191,7 @@ pub type BKUPRETON_W<'a, const O: u8> = crate::BitWriter<'a, u32, MR_SPEC, bool,
 #[doc = "Field `OSCBYPASS` reader - Oscillator Bypass"]
 pub type OSCBYPASS_R = crate::BitReader<OSCBYPASSSELECT_A>;
 #[doc = "Oscillator Bypass\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum OSCBYPASSSELECT_A {
     #[doc = "0: No effect. Clock selection depends on the value of XTALSEL (SUPC_CR)."]
     NO_EFFECT = 0,
@@ -241,7 +241,7 @@ impl<'a, const O: u8> OSCBYPASS_W<'a, O> {
 #[doc = "Field `KEY` reader - Password Key"]
 pub type KEY_R = crate::FieldReader<u8, KEYSELECT_A>;
 #[doc = "Password Key\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum KEYSELECT_A {
     #[doc = "165: Writing any other value in this field aborts the write operation."]

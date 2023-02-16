@@ -22,7 +22,7 @@ impl From<crate::W<TDR_SPEC>> for W {
 #[doc = "Field `TD` writer - Transmit Data"]
 pub type TD_W<'a, const O: u8> = crate::FieldWriter<'a, u32, TDR_SPEC, u16, u16, 16, O>;
 #[doc = "Peripheral Chip Select\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum PCSSELECT_AW {
     #[doc = "14: NPCS0 as Chip Select"]

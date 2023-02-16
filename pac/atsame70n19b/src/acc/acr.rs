@@ -37,7 +37,7 @@ impl From<crate::W<ACR_SPEC>> for W {
 #[doc = "Field `ISEL` reader - Current Selection"]
 pub type ISEL_R = crate::BitReader<ISELSELECT_A>;
 #[doc = "Current Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ISELSELECT_A {
     #[doc = "0: Low-power option."]
     LOPW = 0,

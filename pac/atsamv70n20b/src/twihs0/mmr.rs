@@ -37,7 +37,7 @@ impl From<crate::W<MMR_SPEC>> for W {
 #[doc = "Field `IADRSZ` reader - Internal Device Address Size"]
 pub type IADRSZ_R = crate::FieldReader<u8, IADRSZSELECT_A>;
 #[doc = "Internal Device Address Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum IADRSZSELECT_A {
     #[doc = "0: No internal device address"]

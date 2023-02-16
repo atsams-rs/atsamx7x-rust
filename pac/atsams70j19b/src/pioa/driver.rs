@@ -37,7 +37,7 @@ impl From<crate::W<DRIVER_SPEC>> for W {
 #[doc = "Field `LINE0` reader - Drive of PIO Line 0"]
 pub type LINE0_R = crate::BitReader<LINE0SELECT_A>;
 #[doc = "Drive of PIO Line 0\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE0SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> LINE0_W<'a, O> {
 #[doc = "Field `LINE1` reader - Drive of PIO Line 1"]
 pub type LINE1_R = crate::BitReader<LINE1SELECT_A>;
 #[doc = "Drive of PIO Line 1\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE1SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -137,7 +137,7 @@ impl<'a, const O: u8> LINE1_W<'a, O> {
 #[doc = "Field `LINE2` reader - Drive of PIO Line 2"]
 pub type LINE2_R = crate::BitReader<LINE2SELECT_A>;
 #[doc = "Drive of PIO Line 2\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE2SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -187,7 +187,7 @@ impl<'a, const O: u8> LINE2_W<'a, O> {
 #[doc = "Field `LINE3` reader - Drive of PIO Line 3"]
 pub type LINE3_R = crate::BitReader<LINE3SELECT_A>;
 #[doc = "Drive of PIO Line 3\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE3SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -237,7 +237,7 @@ impl<'a, const O: u8> LINE3_W<'a, O> {
 #[doc = "Field `LINE4` reader - Drive of PIO Line 4"]
 pub type LINE4_R = crate::BitReader<LINE4SELECT_A>;
 #[doc = "Drive of PIO Line 4\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE4SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -287,7 +287,7 @@ impl<'a, const O: u8> LINE4_W<'a, O> {
 #[doc = "Field `LINE5` reader - Drive of PIO Line 5"]
 pub type LINE5_R = crate::BitReader<LINE5SELECT_A>;
 #[doc = "Drive of PIO Line 5\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE5SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -337,7 +337,7 @@ impl<'a, const O: u8> LINE5_W<'a, O> {
 #[doc = "Field `LINE6` reader - Drive of PIO Line 6"]
 pub type LINE6_R = crate::BitReader<LINE6SELECT_A>;
 #[doc = "Drive of PIO Line 6\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE6SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -387,7 +387,7 @@ impl<'a, const O: u8> LINE6_W<'a, O> {
 #[doc = "Field `LINE7` reader - Drive of PIO Line 7"]
 pub type LINE7_R = crate::BitReader<LINE7SELECT_A>;
 #[doc = "Drive of PIO Line 7\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE7SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -437,7 +437,7 @@ impl<'a, const O: u8> LINE7_W<'a, O> {
 #[doc = "Field `LINE8` reader - Drive of PIO Line 8"]
 pub type LINE8_R = crate::BitReader<LINE8SELECT_A>;
 #[doc = "Drive of PIO Line 8\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE8SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -487,7 +487,7 @@ impl<'a, const O: u8> LINE8_W<'a, O> {
 #[doc = "Field `LINE9` reader - Drive of PIO Line 9"]
 pub type LINE9_R = crate::BitReader<LINE9SELECT_A>;
 #[doc = "Drive of PIO Line 9\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE9SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -537,7 +537,7 @@ impl<'a, const O: u8> LINE9_W<'a, O> {
 #[doc = "Field `LINE10` reader - Drive of PIO Line 10"]
 pub type LINE10_R = crate::BitReader<LINE10SELECT_A>;
 #[doc = "Drive of PIO Line 10\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE10SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -587,7 +587,7 @@ impl<'a, const O: u8> LINE10_W<'a, O> {
 #[doc = "Field `LINE11` reader - Drive of PIO Line 11"]
 pub type LINE11_R = crate::BitReader<LINE11SELECT_A>;
 #[doc = "Drive of PIO Line 11\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE11SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -637,7 +637,7 @@ impl<'a, const O: u8> LINE11_W<'a, O> {
 #[doc = "Field `LINE12` reader - Drive of PIO Line 12"]
 pub type LINE12_R = crate::BitReader<LINE12SELECT_A>;
 #[doc = "Drive of PIO Line 12\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE12SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -687,7 +687,7 @@ impl<'a, const O: u8> LINE12_W<'a, O> {
 #[doc = "Field `LINE13` reader - Drive of PIO Line 13"]
 pub type LINE13_R = crate::BitReader<LINE13SELECT_A>;
 #[doc = "Drive of PIO Line 13\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE13SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -737,7 +737,7 @@ impl<'a, const O: u8> LINE13_W<'a, O> {
 #[doc = "Field `LINE14` reader - Drive of PIO Line 14"]
 pub type LINE14_R = crate::BitReader<LINE14SELECT_A>;
 #[doc = "Drive of PIO Line 14\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE14SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -787,7 +787,7 @@ impl<'a, const O: u8> LINE14_W<'a, O> {
 #[doc = "Field `LINE15` reader - Drive of PIO Line 15"]
 pub type LINE15_R = crate::BitReader<LINE15SELECT_A>;
 #[doc = "Drive of PIO Line 15\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE15SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -837,7 +837,7 @@ impl<'a, const O: u8> LINE15_W<'a, O> {
 #[doc = "Field `LINE16` reader - Drive of PIO Line 16"]
 pub type LINE16_R = crate::BitReader<LINE16SELECT_A>;
 #[doc = "Drive of PIO Line 16\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE16SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -887,7 +887,7 @@ impl<'a, const O: u8> LINE16_W<'a, O> {
 #[doc = "Field `LINE17` reader - Drive of PIO Line 17"]
 pub type LINE17_R = crate::BitReader<LINE17SELECT_A>;
 #[doc = "Drive of PIO Line 17\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE17SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -937,7 +937,7 @@ impl<'a, const O: u8> LINE17_W<'a, O> {
 #[doc = "Field `LINE18` reader - Drive of PIO Line 18"]
 pub type LINE18_R = crate::BitReader<LINE18SELECT_A>;
 #[doc = "Drive of PIO Line 18\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE18SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -987,7 +987,7 @@ impl<'a, const O: u8> LINE18_W<'a, O> {
 #[doc = "Field `LINE19` reader - Drive of PIO Line 19"]
 pub type LINE19_R = crate::BitReader<LINE19SELECT_A>;
 #[doc = "Drive of PIO Line 19\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE19SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -1037,7 +1037,7 @@ impl<'a, const O: u8> LINE19_W<'a, O> {
 #[doc = "Field `LINE20` reader - Drive of PIO Line 20"]
 pub type LINE20_R = crate::BitReader<LINE20SELECT_A>;
 #[doc = "Drive of PIO Line 20\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE20SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -1087,7 +1087,7 @@ impl<'a, const O: u8> LINE20_W<'a, O> {
 #[doc = "Field `LINE21` reader - Drive of PIO Line 21"]
 pub type LINE21_R = crate::BitReader<LINE21SELECT_A>;
 #[doc = "Drive of PIO Line 21\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE21SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -1137,7 +1137,7 @@ impl<'a, const O: u8> LINE21_W<'a, O> {
 #[doc = "Field `LINE22` reader - Drive of PIO Line 22"]
 pub type LINE22_R = crate::BitReader<LINE22SELECT_A>;
 #[doc = "Drive of PIO Line 22\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE22SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -1187,7 +1187,7 @@ impl<'a, const O: u8> LINE22_W<'a, O> {
 #[doc = "Field `LINE23` reader - Drive of PIO Line 23"]
 pub type LINE23_R = crate::BitReader<LINE23SELECT_A>;
 #[doc = "Drive of PIO Line 23\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE23SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -1237,7 +1237,7 @@ impl<'a, const O: u8> LINE23_W<'a, O> {
 #[doc = "Field `LINE24` reader - Drive of PIO Line 24"]
 pub type LINE24_R = crate::BitReader<LINE24SELECT_A>;
 #[doc = "Drive of PIO Line 24\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE24SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -1287,7 +1287,7 @@ impl<'a, const O: u8> LINE24_W<'a, O> {
 #[doc = "Field `LINE25` reader - Drive of PIO Line 25"]
 pub type LINE25_R = crate::BitReader<LINE25SELECT_A>;
 #[doc = "Drive of PIO Line 25\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE25SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -1337,7 +1337,7 @@ impl<'a, const O: u8> LINE25_W<'a, O> {
 #[doc = "Field `LINE26` reader - Drive of PIO Line 26"]
 pub type LINE26_R = crate::BitReader<LINE26SELECT_A>;
 #[doc = "Drive of PIO Line 26\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE26SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -1387,7 +1387,7 @@ impl<'a, const O: u8> LINE26_W<'a, O> {
 #[doc = "Field `LINE27` reader - Drive of PIO Line 27"]
 pub type LINE27_R = crate::BitReader<LINE27SELECT_A>;
 #[doc = "Drive of PIO Line 27\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE27SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -1437,7 +1437,7 @@ impl<'a, const O: u8> LINE27_W<'a, O> {
 #[doc = "Field `LINE28` reader - Drive of PIO Line 28"]
 pub type LINE28_R = crate::BitReader<LINE28SELECT_A>;
 #[doc = "Drive of PIO Line 28\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE28SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -1487,7 +1487,7 @@ impl<'a, const O: u8> LINE28_W<'a, O> {
 #[doc = "Field `LINE29` reader - Drive of PIO Line 29"]
 pub type LINE29_R = crate::BitReader<LINE29SELECT_A>;
 #[doc = "Drive of PIO Line 29\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE29SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -1537,7 +1537,7 @@ impl<'a, const O: u8> LINE29_W<'a, O> {
 #[doc = "Field `LINE30` reader - Drive of PIO Line 30"]
 pub type LINE30_R = crate::BitReader<LINE30SELECT_A>;
 #[doc = "Drive of PIO Line 30\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE30SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,
@@ -1587,7 +1587,7 @@ impl<'a, const O: u8> LINE30_W<'a, O> {
 #[doc = "Field `LINE31` reader - Drive of PIO Line 31"]
 pub type LINE31_R = crate::BitReader<LINE31SELECT_A>;
 #[doc = "Drive of PIO Line 31\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LINE31SELECT_A {
     #[doc = "0: Lowest drive"]
     LOW_DRIVE = 0,

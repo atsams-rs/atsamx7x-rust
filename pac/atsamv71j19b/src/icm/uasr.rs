@@ -16,7 +16,7 @@ impl From<crate::R<UASR_SPEC>> for R {
 #[doc = "Field `URAT` reader - Undefined Register Access Trace"]
 pub type URAT_R = crate::FieldReader<u8, URATSELECT_A>;
 #[doc = "Undefined Register Access Trace\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum URATSELECT_A {
     #[doc = "0: Unspecified structure member set to one detected when the descriptor is loaded."]

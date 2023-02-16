@@ -65,7 +65,7 @@ pub type IM_HSIZE_W<'a, const O: u8> = crate::FieldWriter<'a, u32, CFG2_SPEC, u1
 #[doc = "Field `YCC_SWAP` reader - YCrCb Format Swap Mode"]
 pub type YCC_SWAP_R = crate::FieldReader<u8, YCC_SWAPSELECT_A>;
 #[doc = "YCrCb Format Swap Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum YCC_SWAPSELECT_A {
     #[doc = "0: Byte 0 Cb(i)Byte 1 Y(i)Byte 2 Cr(i)Byte 3 Y(i+1)"]
@@ -144,7 +144,7 @@ impl<'a, const O: u8> YCC_SWAP_W<'a, O> {
 #[doc = "Field `RGB_CFG` reader - RGB Pixel Mapping Configuration"]
 pub type RGB_CFG_R = crate::FieldReader<u8, RGB_CFGSELECT_A>;
 #[doc = "RGB Pixel Mapping Configuration\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum RGB_CFGSELECT_A {
     #[doc = "0: Byte 0 R/G(MSB)Byte 1 G(LSB)/BByte 2 R/G(MSB)Byte 3 G(LSB)/B"]

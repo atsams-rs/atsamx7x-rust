@@ -39,7 +39,7 @@ pub type SCFG = crate::Reg<scfg::SCFG_SPEC>;
 #[doc = "Slave Configuration Register 0"]
 pub mod scfg;
 #[doc = "Priority Register A for Slave 0"]
-pub use matrix_pr::MATRIX_PR;
+pub use self::matrix_pr::MATRIX_PR;
 #[doc = r"Cluster"]
 #[doc = "Priority Register A for Slave 0"]
 pub mod matrix_pr;

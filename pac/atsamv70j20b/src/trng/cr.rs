@@ -22,7 +22,7 @@ impl From<crate::W<CR_SPEC>> for W {
 #[doc = "Field `ENABLE` writer - Enables the TRNG to Provide Random Values"]
 pub type ENABLE_W<'a, const O: u8> = crate::BitWriter<'a, u32, CR_SPEC, bool, O>;
 #[doc = "Security Key\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u32)]
 pub enum KEYSELECT_AW {
     #[doc = "5393991: Writing any other value in this field aborts the write operation."]

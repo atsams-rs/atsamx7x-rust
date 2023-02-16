@@ -22,7 +22,7 @@ impl From<crate::W<CMDR_SPEC>> for W {
 #[doc = "Field `CMDNB` writer - Command Number"]
 pub type CMDNB_W<'a, const O: u8> = crate::FieldWriter<'a, u32, CMDR_SPEC, u8, u8, 6, O>;
 #[doc = "Response Type\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum RSPTYPSELECT_AW {
     #[doc = "0: No response"]
@@ -66,7 +66,7 @@ impl<'a, const O: u8> RSPTYP_W<'a, O> {
     }
 }
 #[doc = "Special Command\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum SPCMDSELECT_AW {
     #[doc = "0: Not a special CMD."]
@@ -138,7 +138,7 @@ impl<'a, const O: u8> SPCMD_W<'a, O> {
     }
 }
 #[doc = "Open Drain Command\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum OPDCMDSELECT_AW {
     #[doc = "0: Push pull command."]
     PUSHPULL = 0,
@@ -166,7 +166,7 @@ impl<'a, const O: u8> OPDCMD_W<'a, O> {
     }
 }
 #[doc = "Max Latency for Command to Response\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum MAXLATSELECT_AW {
     #[doc = "0: 5-cycle max latency."]
     _5 = 0,
@@ -194,7 +194,7 @@ impl<'a, const O: u8> MAXLAT_W<'a, O> {
     }
 }
 #[doc = "Transfer Command\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TRCMDSELECT_AW {
     #[doc = "0: No data transfer"]
@@ -231,7 +231,7 @@ impl<'a, const O: u8> TRCMD_W<'a, O> {
     }
 }
 #[doc = "Transfer Direction\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TRDIRSELECT_AW {
     #[doc = "0: Write."]
     WRITE = 0,
@@ -259,7 +259,7 @@ impl<'a, const O: u8> TRDIR_W<'a, O> {
     }
 }
 #[doc = "Transfer Type\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TRTYPSELECT_AW {
     #[doc = "0: MMC/SD Card Single Block"]
@@ -310,7 +310,7 @@ impl<'a, const O: u8> TRTYP_W<'a, O> {
     }
 }
 #[doc = "SDIO Special Command\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum IOSPCMDSELECT_AW {
     #[doc = "0: Not an SDIO Special Command"]
@@ -347,7 +347,7 @@ impl<'a, const O: u8> IOSPCMD_W<'a, O> {
     }
 }
 #[doc = "ATA with Command Completion Signal\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ATACSSELECT_AW {
     #[doc = "0: Normal operation mode."]
     NORMAL = 0,

@@ -37,7 +37,7 @@ impl From<crate::W<MR_SPEC>> for W {
 #[doc = "Field `MODE` reader - Inter-IC Sound Controller Mode"]
 pub type MODE_R = crate::BitReader<MODESELECT_A>;
 #[doc = "Inter-IC Sound Controller Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum MODESELECT_A {
     #[doc = "0: I2SC_CK and I2SC_WS pin inputs used as bit clock and word select/frame synchronization."]
     SLAVE = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> MODE_W<'a, O> {
 #[doc = "Field `DATALENGTH` reader - Data Word Length"]
 pub type DATALENGTH_R = crate::FieldReader<u8, DATALENGTHSELECT_A>;
 #[doc = "Data Word Length\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum DATALENGTHSELECT_A {
     #[doc = "0: Data length is set to 32 bits"]
@@ -246,7 +246,7 @@ pub type IMCKDIV_W<'a, const O: u8> = crate::FieldWriter<'a, u32, MR_SPEC, u8, u
 #[doc = "Field `IMCKFS` reader - Master Clock to fs Ratio"]
 pub type IMCKFS_R = crate::FieldReader<u8, IMCKFSSELECT_A>;
 #[doc = "Master Clock to fs Ratio\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum IMCKFSSELECT_A {
     #[doc = "0: Sample frequency ratio set to 32"]

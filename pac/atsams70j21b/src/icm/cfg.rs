@@ -65,7 +65,7 @@ pub type UIHASH_W<'a, const O: u8> = crate::BitWriter<'a, u32, CFG_SPEC, bool, O
 #[doc = "Field `UALGO` reader - User SHA Algorithm"]
 pub type UALGO_R = crate::FieldReader<u8, UALGOSELECT_A>;
 #[doc = "User SHA Algorithm\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum UALGOSELECT_A {
     #[doc = "0: SHA1 algorithm processed"]

@@ -1,7 +1,7 @@
 [package]
 name = "atsams70n21b"
 description = "Peripheral access API for the ATSAMS70N21B MCU from Microchip (generated using svd2rust)"
-version = "0.25.0"
+version = "0.26.0"
 license = "MIT OR Apache-2.0"
 authors = ["Michal Fita <michal.fita@gmail.com>", "Viktor Sonesten <viktor.sonesten@grepit.se>"]
 categories = ["no-std", "embedded", "hardware-support"]
@@ -12,12 +12,12 @@ edition = "2021"
 rust-version = "1.63.0"
 
 [dependencies]
-cortex-m = "0.7"
+cortex-m = "0.7.3"
 vcell = "0.1.2"
 
 [dependencies.cortex-m-rt]
 optional = true
-version = "0.7"
+version = "0.7.3"
 
 [features]
 rt = ["cortex-m-rt/device"]

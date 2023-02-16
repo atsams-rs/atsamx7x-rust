@@ -45,7 +45,7 @@ pub type GTAGEN_W<'a, const O: u8> = crate::BitWriter<'a, u32, MR_SPEC, bool, O>
 #[doc = "Field `DUALBUFF` reader - Dual Input Buffer"]
 pub type DUALBUFF_R = crate::BitReader<DUALBUFFSELECT_A>;
 #[doc = "Dual Input Buffer\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum DUALBUFFSELECT_A {
     #[doc = "0: AES_IDATARx cannot be written during processing of previous block."]
     INACTIVE = 0,
@@ -99,7 +99,7 @@ pub type PROCDLY_W<'a, const O: u8> = crate::FieldWriter<'a, u32, MR_SPEC, u8, u
 #[doc = "Field `SMOD` reader - Start Mode"]
 pub type SMOD_R = crate::FieldReader<u8, SMODSELECT_A>;
 #[doc = "Start Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum SMODSELECT_A {
     #[doc = "0: Manual Mode"]
@@ -164,7 +164,7 @@ impl<'a, const O: u8> SMOD_W<'a, O> {
 #[doc = "Field `KEYSIZE` reader - Key Size"]
 pub type KEYSIZE_R = crate::FieldReader<u8, KEYSIZESELECT_A>;
 #[doc = "Key Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum KEYSIZESELECT_A {
     #[doc = "0: AES Key Size is 128 bits"]
@@ -230,7 +230,7 @@ impl<'a, const O: u8> KEYSIZE_W<'a, O> {
 #[doc = "Field `OPMOD` reader - Operating Mode"]
 pub type OPMOD_R = crate::FieldReader<u8, OPMODSELECT_A>;
 #[doc = "Operating Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum OPMODSELECT_A {
     #[doc = "0: ECB: Electronic Code Book mode"]
@@ -338,7 +338,7 @@ pub type LOD_W<'a, const O: u8> = crate::BitWriter<'a, u32, MR_SPEC, bool, O>;
 #[doc = "Field `CFBS` reader - Cipher Feedback Data Size"]
 pub type CFBS_R = crate::FieldReader<u8, CFBSSELECT_A>;
 #[doc = "Cipher Feedback Data Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CFBSSELECT_A {
     #[doc = "0: 128-bit"]
@@ -429,7 +429,7 @@ impl<'a, const O: u8> CFBS_W<'a, O> {
 #[doc = "Field `CKEY` reader - Countermeasure Key"]
 pub type CKEY_R = crate::FieldReader<u8, CKEYSELECT_A>;
 #[doc = "Countermeasure Key\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CKEYSELECT_A {
     #[doc = "14: This field must be written with 0xE to allow CMTYPx bit configuration changes. Any other values will abort the write operation in CMTYPx bits.Always reads as 0."]

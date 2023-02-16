@@ -37,7 +37,7 @@ impl From<crate::W<CKGR_PLLAR_SPEC>> for W {
 #[doc = "Field `DIVA` reader - PLLA Front End Divider"]
 pub type DIVA_R = crate::FieldReader<u8, DIVASELECT_A>;
 #[doc = "PLLA Front End Divider\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum DIVASELECT_A {
     #[doc = "0: Divider output is 0 and PLLA is disabled."]

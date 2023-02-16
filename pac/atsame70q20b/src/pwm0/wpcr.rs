@@ -20,7 +20,7 @@ impl From<crate::W<WPCR_SPEC>> for W {
     }
 }
 #[doc = "Write Protection Command\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum WPCMDSELECT_AW {
     #[doc = "0: Disables the software write protection of the register groups of which the bit WPRGx is at '1'."]
@@ -69,7 +69,7 @@ pub type WPRG4_W<'a, const O: u8> = crate::BitWriter<'a, u32, WPCR_SPEC, bool, O
 #[doc = "Field `WPRG5` writer - Write Protection Register Group 5"]
 pub type WPRG5_W<'a, const O: u8> = crate::BitWriter<'a, u32, WPCR_SPEC, bool, O>;
 #[doc = "Write Protection Key\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u32)]
 pub enum WPKEYSELECT_AW {
     #[doc = "5265229: Writing any other value in this field aborts the write operation of the WPCMD field.Always reads as 0"]

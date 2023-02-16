@@ -37,7 +37,7 @@ impl From<crate::W<CC_SPEC>> for W {
 #[doc = "Field `TYPE` reader - Channel x Transfer Type"]
 pub type TYPE_R = crate::BitReader<TYPESELECT_A>;
 #[doc = "Channel x Transfer Type\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum TYPESELECT_A {
     #[doc = "0: Self-triggered mode (memory-to-memory transfer)."]
     MEM_TRAN = 0,
@@ -87,7 +87,7 @@ impl<'a, const O: u8> TYPE_W<'a, O> {
 #[doc = "Field `MBSIZE` reader - Channel x Memory Burst Size"]
 pub type MBSIZE_R = crate::FieldReader<u8, MBSIZESELECT_A>;
 #[doc = "Channel x Memory Burst Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum MBSIZESELECT_A {
     #[doc = "0: The memory burst size is set to one."]
@@ -166,7 +166,7 @@ impl<'a, const O: u8> MBSIZE_W<'a, O> {
 #[doc = "Field `DSYNC` reader - Channel x Synchronization"]
 pub type DSYNC_R = crate::BitReader<DSYNCSELECT_A>;
 #[doc = "Channel x Synchronization\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum DSYNCSELECT_A {
     #[doc = "0: Peripheral-to-memory transfer."]
     PER2MEM = 0,
@@ -216,7 +216,7 @@ impl<'a, const O: u8> DSYNC_W<'a, O> {
 #[doc = "Field `SWREQ` reader - Channel x Software Request Trigger"]
 pub type SWREQ_R = crate::BitReader<SWREQSELECT_A>;
 #[doc = "Channel x Software Request Trigger\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum SWREQSELECT_A {
     #[doc = "0: Hardware request line is connected to the peripheral request line."]
     HWR_CONNECTED = 0,
@@ -266,7 +266,7 @@ impl<'a, const O: u8> SWREQ_W<'a, O> {
 #[doc = "Field `MEMSET` reader - Channel x Fill Block of memory"]
 pub type MEMSET_R = crate::BitReader<MEMSETSELECT_A>;
 #[doc = "Channel x Fill Block of memory\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum MEMSETSELECT_A {
     #[doc = "0: Memset is not activated."]
     NORMAL_MODE = 0,
@@ -316,7 +316,7 @@ impl<'a, const O: u8> MEMSET_W<'a, O> {
 #[doc = "Field `CSIZE` reader - Channel x Chunk Size"]
 pub type CSIZE_R = crate::FieldReader<u8, CSIZESELECT_A>;
 #[doc = "Channel x Chunk Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CSIZESELECT_A {
     #[doc = "0: 1 data transferred"]
@@ -407,7 +407,7 @@ impl<'a, const O: u8> CSIZE_W<'a, O> {
 #[doc = "Field `DWIDTH` reader - Channel x Data Width"]
 pub type DWIDTH_R = crate::FieldReader<u8, DWIDTHSELECT_A>;
 #[doc = "Channel x Data Width\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum DWIDTHSELECT_A {
     #[doc = "0: The data size is set to 8 bits"]
@@ -472,7 +472,7 @@ impl<'a, const O: u8> DWIDTH_W<'a, O> {
 #[doc = "Field `SIF` reader - Channel x Source Interface Identifier"]
 pub type SIF_R = crate::BitReader<SIFSELECT_A>;
 #[doc = "Channel x Source Interface Identifier\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum SIFSELECT_A {
     #[doc = "0: The data is read through the system bus interface 0."]
     AHB_IF0 = 0,
@@ -522,7 +522,7 @@ impl<'a, const O: u8> SIF_W<'a, O> {
 #[doc = "Field `DIF` reader - Channel x Destination Interface Identifier"]
 pub type DIF_R = crate::BitReader<DIFSELECT_A>;
 #[doc = "Channel x Destination Interface Identifier\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum DIFSELECT_A {
     #[doc = "0: The data is written through the system bus interface 0."]
     AHB_IF0 = 0,
@@ -572,7 +572,7 @@ impl<'a, const O: u8> DIF_W<'a, O> {
 #[doc = "Field `SAM` reader - Channel x Source Addressing Mode"]
 pub type SAM_R = crate::FieldReader<u8, SAMSELECT_A>;
 #[doc = "Channel x Source Addressing Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum SAMSELECT_A {
     #[doc = "0: The address remains unchanged."]
@@ -650,7 +650,7 @@ impl<'a, const O: u8> SAM_W<'a, O> {
 #[doc = "Field `DAM` reader - Channel x Destination Addressing Mode"]
 pub type DAM_R = crate::FieldReader<u8, DAMSELECT_A>;
 #[doc = "Channel x Destination Addressing Mode\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum DAMSELECT_A {
     #[doc = "0: The address remains unchanged."]
@@ -728,7 +728,7 @@ impl<'a, const O: u8> DAM_W<'a, O> {
 #[doc = "Field `INITD` reader - Channel Initialization Terminated (this bit is read-only)"]
 pub type INITD_R = crate::BitReader<INITDSELECT_A>;
 #[doc = "Channel Initialization Terminated (this bit is read-only)\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum INITDSELECT_A {
     #[doc = "0: Channel initialization is in progress."]
     IN_PROGRESS = 0,
@@ -778,7 +778,7 @@ impl<'a, const O: u8> INITD_W<'a, O> {
 #[doc = "Field `RDIP` reader - Read in Progress (this bit is read-only)"]
 pub type RDIP_R = crate::BitReader<RDIPSELECT_A>;
 #[doc = "Read in Progress (this bit is read-only)\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum RDIPSELECT_A {
     #[doc = "0: No active read transaction on the bus."]
     DONE = 0,
@@ -828,7 +828,7 @@ impl<'a, const O: u8> RDIP_W<'a, O> {
 #[doc = "Field `WRIP` reader - Write in Progress (this bit is read-only)"]
 pub type WRIP_R = crate::BitReader<WRIPSELECT_A>;
 #[doc = "Write in Progress (this bit is read-only)\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum WRIPSELECT_A {
     #[doc = "0: No active write transaction on the bus."]
     DONE = 0,
@@ -878,7 +878,7 @@ impl<'a, const O: u8> WRIP_W<'a, O> {
 #[doc = "Field `PERID` reader - Channel x Peripheral Hardware Request Line Identifier"]
 pub type PERID_R = crate::FieldReader<u8, PERIDSELECT_A>;
 #[doc = "Channel x Peripheral Hardware Request Line Identifier\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum PERIDSELECT_A {
     #[doc = "0: HSMCI"]

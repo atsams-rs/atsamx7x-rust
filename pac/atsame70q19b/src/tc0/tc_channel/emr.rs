@@ -37,7 +37,7 @@ impl From<crate::W<EMR_SPEC>> for W {
 #[doc = "Field `TRIGSRCA` reader - Trigger Source for Input A"]
 pub type TRIGSRCA_R = crate::FieldReader<u8, TRIGSRCASELECT_A>;
 #[doc = "Trigger Source for Input A\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TRIGSRCASELECT_A {
     #[doc = "0: The trigger/capture input A is driven by external pin TIOAx"]
@@ -90,7 +90,7 @@ impl<'a, const O: u8> TRIGSRCA_W<'a, O> {
 #[doc = "Field `TRIGSRCB` reader - Trigger Source for Input B"]
 pub type TRIGSRCB_R = crate::FieldReader<u8, TRIGSRCBSELECT_A>;
 #[doc = "Trigger Source for Input B\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TRIGSRCBSELECT_A {
     #[doc = "0: The trigger/capture input B is driven by external pin TIOBx"]

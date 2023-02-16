@@ -57,7 +57,7 @@ pub type FSLEN_W<'a, const O: u8> = crate::FieldWriter<'a, u32, TFMR_SPEC, u8, u
 #[doc = "Field `FSOS` reader - Transmit Frame Sync Output Selection"]
 pub type FSOS_R = crate::FieldReader<u8, FSOSSELECT_A>;
 #[doc = "Transmit Frame Sync Output Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum FSOSSELECT_A {
     #[doc = "0: None, TF pin is an input"]
@@ -165,7 +165,7 @@ pub type FSDEN_W<'a, const O: u8> = crate::BitWriter<'a, u32, TFMR_SPEC, bool, O
 #[doc = "Field `FSEDGE` reader - Frame Sync Edge Detection"]
 pub type FSEDGE_R = crate::BitReader<FSEDGESELECT_A>;
 #[doc = "Frame Sync Edge Detection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum FSEDGESELECT_A {
     #[doc = "0: Positive Edge Detection"]
     POSITIVE = 0,

@@ -37,7 +37,7 @@ impl From<crate::W<CKTRIM_SPEC>> for W {
 #[doc = "Field `FREQ` reader - UTMI Reference Clock Frequency"]
 pub type FREQ_R = crate::FieldReader<u8, FREQSELECT_A>;
 #[doc = "UTMI Reference Clock Frequency\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum FREQSELECT_A {
     #[doc = "0: 12 MHz reference clock"]

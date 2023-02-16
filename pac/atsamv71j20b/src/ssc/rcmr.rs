@@ -37,7 +37,7 @@ impl From<crate::W<RCMR_SPEC>> for W {
 #[doc = "Field `CKS` reader - Receive Clock Selection"]
 pub type CKS_R = crate::FieldReader<u8, CKSSELECT_A>;
 #[doc = "Receive Clock Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CKSSELECT_A {
     #[doc = "0: Divided Clock"]
@@ -102,7 +102,7 @@ impl<'a, const O: u8> CKS_W<'a, O> {
 #[doc = "Field `CKO` reader - Receive Clock Output Mode Selection"]
 pub type CKO_R = crate::FieldReader<u8, CKOSELECT_A>;
 #[doc = "Receive Clock Output Mode Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CKOSELECT_A {
     #[doc = "0: None, RK pin is an input"]
@@ -171,7 +171,7 @@ pub type CKI_W<'a, const O: u8> = crate::BitWriter<'a, u32, RCMR_SPEC, bool, O>;
 #[doc = "Field `CKG` reader - Receive Clock Gating Selection"]
 pub type CKG_R = crate::FieldReader<u8, CKGSELECT_A>;
 #[doc = "Receive Clock Gating Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum CKGSELECT_A {
     #[doc = "0: None"]
@@ -236,7 +236,7 @@ impl<'a, const O: u8> CKG_W<'a, O> {
 #[doc = "Field `START` reader - Receive Start Selection"]
 pub type START_R = crate::FieldReader<u8, STARTSELECT_A>;
 #[doc = "Receive Start Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum STARTSELECT_A {
     #[doc = "0: Continuous, as soon as the receiver is enabled, and immediately after the end of transfer of the previous data."]

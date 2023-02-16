@@ -53,7 +53,7 @@ pub type MOSCRCEN_W<'a, const O: u8> = crate::BitWriter<'a, u32, CKGR_MOR_SPEC, 
 #[doc = "Field `MOSCRCF` reader - Main RC Oscillator Frequency Selection"]
 pub type MOSCRCF_R = crate::FieldReader<u8, MOSCRCFSELECT_A>;
 #[doc = "Main RC Oscillator Frequency Selection\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum MOSCRCFSELECT_A {
     #[doc = "0: The RC oscillator frequency is at 4 MHz"]
@@ -123,7 +123,7 @@ pub type MOSCXTST_W<'a, const O: u8> = crate::FieldWriter<'a, u32, CKGR_MOR_SPEC
 #[doc = "Field `KEY` reader - Write Access Password"]
 pub type KEY_R = crate::FieldReader<u8, KEYSELECT_A>;
 #[doc = "Write Access Password\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum KEYSELECT_A {
     #[doc = "55: Writing any other value in this field aborts the write operation.Always reads as 0."]

@@ -41,7 +41,7 @@ pub type SLOT_CYCLE_W<'a, const O: u8> = crate::FieldWriter<'a, u32, SCFG_SPEC, 
 #[doc = "Field `DEFMSTR_TYPE` reader - Default Master Type"]
 pub type DEFMSTR_TYPE_R = crate::FieldReader<u8, DEFMSTR_TYPESELECT_A>;
 #[doc = "Default Master Type\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum DEFMSTR_TYPESELECT_A {
     #[doc = "0: No Default Master-At the end of the current slave access, if no other master request is pending, the slave is disconnected from all masters.This results in a one clock cycle latency for the first access of a burst transfer or for a single access."]

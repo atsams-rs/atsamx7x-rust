@@ -37,7 +37,7 @@ impl From<crate::W<TXESC_SPEC>> for W {
 #[doc = "Field `TBDS` reader - Tx Buffer Data Field Size"]
 pub type TBDS_R = crate::FieldReader<u8, TBDSSELECT_A>;
 #[doc = "Tx Buffer Data Field Size\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
 pub enum TBDSSELECT_A {
     #[doc = "0: 8-byte data field"]
