@@ -353,3 +353,59 @@ impl<M: TwiMeta> blocking::i2c::WriteRead for Twi<M> {
         Ok(())
     }
 }
+
+#[derive(PartialEq)]
+enum TransactionalState {
+    Reading,
+    Writing,
+    Uninitialized,
+}
+
+impl<M: TwiMeta> blocking::i2c::Transactional for Twi<M> {
+    type Error = TwiError;
+
+    fn exec<'a>(
+        &mut self,
+        address: u8,
+        operations: &mut [blocking::i2c::Operation<'a>],
+    ) -> Result<(), Self::Error> {
+        let mut state = TransactionalState::Uninitialized;
+
+        for operation in operations {
+            match operation {
+                blocking::i2c::Operation::Read(buffer) => {
+                    // If not already reading setup for read.
+                    if state != TransactionalState::Reading {
+                        self.setup_transaction(address, TwiAction::Read);
+                        self.start_transaction();
+                        state = TransactionalState::Reading;
+                    }
+
+                    self.read(buffer)?;
+                }
+                blocking::i2c::Operation::Write(buffer) => {
+                    // If not already writing setup for write.
+                    if state != TransactionalState::Writing {
+                        self.setup_transaction(address, TwiAction::Write);
+                        state = TransactionalState::Writing;
+                    }
+
+                    self.write(buffer)?;
+                }
+            }
+        }
+
+        // end transaction
+        match state {
+            TransactionalState::Reading => {
+                self.finalize_transaction(TwiAction::Read)?;
+            }
+            TransactionalState::Writing => {
+                self.finalize_transaction(TwiAction::Write)?;
+            }
+            TransactionalState::Uninitialized => (), // Since no operation was done do not finalize transaction.
+        }
+
+        Ok(())
+    }
+}
