@@ -1,4 +1,4 @@
-/*! 
+/*!
 Flash controller configuration
 ---
 
@@ -6,7 +6,7 @@ The Enhanced Embedded Flash Controller peripheral (EFC) or (EEFC) provides the i
 
 Two functions of the EFC are exposed in this HAL, the ability to set wait states, and the ability to reconfigure the flash memory.
 
-The wait states need to be reconfigured to allow for correct operation at higher clock frequencies and is normally handled by the [`Clock`] module.
+The wait states need to be reconfigured to allow for correct operation at higher clock frequencies and is normally handled by the [clocks](crate::clocks) module.
 
 
 */
@@ -26,9 +26,9 @@ pub enum VddioLevel {
     V1,
 }
 
-/// Set of [`Token`]s for device Flash Memory.
+/// Set of [`Sector`]s for device Flash Memory.
 #[allow(missing_docs)]
-pub struct Tokens {
+pub struct Sectors {
     pub sector0: Sector<0>,
     pub sector1: Sector<1>,
     pub sector2: Sector<2>,
@@ -59,9 +59,9 @@ pub struct Tokens {
     pub sector15: Sector<15>,
 }
 
-impl Tokens {
+impl Sectors {
     /// Create the set of all Flash Sector [`Token`]s.
-    pub fn new(_efc: EFC) -> Self {
+    fn new() -> Self {
         Self {
             sector0: Sector::new(),
             sector1: Sector::new(),
@@ -90,7 +90,7 @@ impl Tokens {
             #[cfg(feature = "flash-2M")]
             sector14: Sector::new(),
             #[cfg(feature = "flash-2M")]
-            sector15: Sector::new(),
+            sector15: Sector::new()
         }
     }
 }
@@ -155,7 +155,9 @@ impl<const N: u8> Sector<N> {
     }
 
     /// Erase the entire sector.
-    /// Safety: Erasing Flash is fundamentally unsafe.
+    /// # Safety
+    ///
+    /// Do not erase a flash sector where you are exectuing code.
     pub unsafe fn erase_sector(&self) -> Result<(), Error> {
         if self.efc().eefc_fsr.read().frdy().bit_is_clear() {
             return Err(Error::FlashBusyError);
@@ -180,22 +182,21 @@ impl<const N: u8> Sector<N> {
     }
 
     /// Write page to flash memory.
-    /// Safety: Writing to Flash is fundamentally unsafe.
-    pub unsafe fn write_page(&self, page: u16, data: &[usize]) -> Result<(), Error> {
-        if page > 255 {
-            return Err(Error::SectorRangeError);
-        }
+    /// # Safety
+    ///
+    /// Do not erase a flash sector where you are exectuing code.
+    pub unsafe fn write_page(&self, page: u8, data: &[usize; 128]) -> Result<(), Error> {
         if self.efc().eefc_fsr.read().frdy().bit_is_clear() {
             return Err(Error::FlashBusyError);
         }
         self.addr()
-            .offset((page * 512) as isize)
+            .offset(((page as u16) * 512) as isize)
             .copy_from(data.as_ptr(), 128);
 
         self.efc().eefc_fcr.write(|w| {
             w.fkey().passwd();
             w.fcmd().wp();
-            w.farg().bits(256_u16 * (N as u16) + page);
+            w.farg().bits(256_u16 * (N as u16) + (page as u16));
             w
         });
         loop {
@@ -212,7 +213,9 @@ impl<const N: u8> Sector<N> {
     }
 
     /// Write single 32-bit word to flash memory.
-    /// Safety: Writing to Flash is fundamentally unsafe.
+    /// # Safety
+    ///
+    /// Do not write to a flash sector where you are executing code.
     pub unsafe fn write_word(&self, word: usize, offset: u16) -> Result<(), Error> {
         if offset > 32767 {
             return Err(Error::SectorRangeError);
@@ -224,7 +227,7 @@ impl<const N: u8> Sector<N> {
         self.efc().eefc_fcr.write(|w| {
             w.fkey().passwd();
             w.fcmd().wp();
-            w.farg().bits(256_u16 * (N as u16) + (offset/128));
+            w.farg().bits(256_u16 * (N as u16) + (offset / 128));
             w
         });
         loop {
@@ -243,12 +246,13 @@ impl<const N: u8> Sector<N> {
     fn new() -> Self {
         Self {}
     }
+
 }
 
-unsafe trait RegisterAccess<const N: u8> {
+trait RegisterAccess<const N: u8> {
     #[inline(always)]
     fn addr(&self) -> *mut usize {
-        unsafe { (0x400000 + (N as usize) * 0x20000) as *mut usize }
+        (0x400000 + (N as usize) * 0x20000) as *mut usize
     }
 
     fn efc(&self) -> &efc::RegisterBlock {
@@ -256,24 +260,31 @@ unsafe trait RegisterAccess<const N: u8> {
     }
 }
 
-unsafe impl<const N: u8> RegisterAccess<N> for Sector<N> {}
+impl<const N: u8> RegisterAccess<N> for Sector<N> {}
 /// [`EFC`] abstraction.
 pub struct Efc {
     pub(crate) periph: EFC,
     vddio: VddioLevel,
+    /// struct representing the flash memory sectors.
+    pub sectors: Sectors,
 }
 
 impl Efc {
     /// Creates a new [`Efc`], the behavior of which depends on the
     /// voltage, [`VddioLevel`], that drives the MCU.
-    pub fn new(periph: EFC, vddio: VddioLevel) -> (Self) {
+    pub fn new(periph: EFC, vddio: VddioLevel) -> Self {
         periph.eefc_wpmr.modify(|_r, w| {
             w.wpkey().passwd();
             w.wpen().clear_bit();
             w
         });
+        let sectors = Sectors::new();
 
-        Self { periph, vddio }
+        Self {
+            periph,
+            vddio,
+            sectors,
+        }
     }
 
     /// Calculates and sets the lowest possible number of flash wait
@@ -352,3 +363,4 @@ impl FlashWaitStates {
         }
     }
 }
+

@@ -63,7 +63,7 @@ mod app {
     }
 
     #[idle(local = [led])]
-    fn idle(ctx: idle::Context)-> ! {
+    fn idle(ctx: idle::Context) -> ! {
         rprintln!("Idle");
         ctx.local.led.toggle().unwrap();
         loop {

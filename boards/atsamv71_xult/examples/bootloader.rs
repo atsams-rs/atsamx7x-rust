@@ -154,18 +154,34 @@ fn main() -> ! {
         0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
     ];
     let efc = pac::Peripherals::take().unwrap().EFC;
-    let flash = Tokens::new(efc);
-    let mut sector1 = flash.sector1;
+    let flash_sectors = Efc::new(efc, VddioLevel::V3).sectors;
+    let sector1 = flash_sectors.sector1;
     unsafe {
-        sector1.erase_sector();
-        sector1.write_page(0, &BLINKY_ARRAY[0..128]).unwrap();
-        sector1.write_page(1, &BLINKY_ARRAY[128..256]).unwrap();
-        sector1.write_page(2, &BLINKY_ARRAY[256..384]).unwrap();
-        sector1.write_page(3, &BLINKY_ARRAY[384..512]).unwrap();
-        sector1.write_page(4, &BLINKY_ARRAY[512..640]).unwrap();
-        sector1.write_page(5, &BLINKY_ARRAY[640..768]).unwrap();
-        sector1.write_page(6, &BLINKY_ARRAY[768..896]).unwrap();
-        sector1.write_page(7, &BLINKY_ARRAY[896..1024]).unwrap();
+        sector1.erase_sector().unwrap();
+        sector1
+            .write_page(0, &BLINKY_ARRAY[0..128].try_into().unwrap())
+            .unwrap();
+        sector1
+            .write_page(1, &BLINKY_ARRAY[128..256].try_into().unwrap())
+            .unwrap();
+        sector1
+            .write_page(2, &BLINKY_ARRAY[256..384].try_into().unwrap())
+            .unwrap();
+        sector1
+            .write_page(3, &BLINKY_ARRAY[384..512].try_into().unwrap())
+            .unwrap();
+        sector1
+            .write_page(4, &BLINKY_ARRAY[512..640].try_into().unwrap())
+            .unwrap();
+        sector1
+            .write_page(5, &BLINKY_ARRAY[640..768].try_into().unwrap())
+            .unwrap();
+        sector1
+            .write_page(6, &BLINKY_ARRAY[768..896].try_into().unwrap())
+            .unwrap();
+        sector1
+            .write_page(7, &BLINKY_ARRAY[896..1024].try_into().unwrap())
+            .unwrap();
 
         bootload(0x0420000 as *const u32);
     }

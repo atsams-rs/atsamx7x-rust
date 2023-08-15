@@ -9,8 +9,6 @@ mod app {
     use atsamx7x_hal as hal;
     use hal::efc::*;
     use rtt_target::{rprintln, rtt_init_print};
-    use core::ptr;
-
 
     #[shared]
     struct Shared {}
@@ -31,6 +29,11 @@ mod app {
         for i in 0..32768 {
             rprintln!("Word 0x{:x}: 0x{:x}", i, sector0.read_word(i).unwrap());
         }
+        // let sector1 = flash_tokens.sector1;
+        // rprintln!("Reading Flash Sector 1...");
+        // for i in 0..32768 {
+        //     rprintln!("Word 0x{:x}: 0x{:x}", i, sector1.read_word(i).unwrap());
+        // }
 
         let dead_beef: [usize; 128] = [0xdeadbeef; 128];
         let sector8 = flash_sectors.sector8;
@@ -58,7 +61,6 @@ mod app {
         }
         unsafe { sector8.write_word(0xbeefbeef, 10).unwrap() };
         rprintln!("0x{:x}", sector8.read_word(10).unwrap());
-
 
         (Shared {}, Local {}, init::Monotonics())
     }
