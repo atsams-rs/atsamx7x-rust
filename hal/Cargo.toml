@@ -39,6 +39,7 @@ void = { version = "1", default-features = false }
 strum = { version = "0.24.1", default-features = false, features = ["derive"]}
 cfg-if = "1"
 mcan-core = { version = "0.2", optional = true }
+embedded-storage = "0.3"
 
 atsame70j19b = { version = "0.25.0", path = "../pac/atsame70j19b", optional = true }
 atsame70j20b = { version = "0.25.0", path = "../pac/atsame70j20b", optional = true }

@@ -3,13 +3,14 @@
 use atsamx7x_hal as hal;
 use cortex_m::asm::bootload;
 use cortex_m_rt::entry;
+use embedded_storage::nor_flash::NorFlash;
 use hal::efc::*;
 use hal::pac;
 use panic_halt as _;
 
 #[entry]
 fn main() -> ! {
-    const BLINKY_ARRAY: [usize; 1024] = [
+    const BLINKY_ARRAY: [u32; 1024] = [
         0x20440000, 0x420169, 0x4204e1, 0x4209f3, 0x4204e1, 0x4204e1, 0x4204e1, 0x0, 0x0, 0x0, 0x0,
         0x4204e1, 0x4204e1, 0x0, 0x4204e1, 0x4204e1, 0x4204e1, 0x4204e1, 0x4204e1, 0x4204e1,
         0x4204e1, 0x4204e1, 0x4204e1, 0x4204e1, 0x4204e1, 0x0, 0x4204e1, 0x4204e1, 0x4204e1,
@@ -153,36 +154,16 @@ fn main() -> ! {
         0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
         0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
     ];
+    // transmute into u8 array
+    let blinky_array: [u8; 4096] = unsafe { core::mem::transmute(BLINKY_ARRAY) };
     let efc = pac::Peripherals::take().unwrap().EFC;
-    let flash_sectors = Efc::new(efc, VddioLevel::V3).sectors;
-    let sector1 = flash_sectors.sector1;
-    unsafe {
-        sector1.erase_sector().unwrap();
-        sector1
-            .write_page(0, &BLINKY_ARRAY[0..128].try_into().unwrap())
-            .unwrap();
-        sector1
-            .write_page(1, &BLINKY_ARRAY[128..256].try_into().unwrap())
-            .unwrap();
-        sector1
-            .write_page(2, &BLINKY_ARRAY[256..384].try_into().unwrap())
-            .unwrap();
-        sector1
-            .write_page(3, &BLINKY_ARRAY[384..512].try_into().unwrap())
-            .unwrap();
-        sector1
-            .write_page(4, &BLINKY_ARRAY[512..640].try_into().unwrap())
-            .unwrap();
-        sector1
-            .write_page(5, &BLINKY_ARRAY[640..768].try_into().unwrap())
-            .unwrap();
-        sector1
-            .write_page(6, &BLINKY_ARRAY[768..896].try_into().unwrap())
-            .unwrap();
-        sector1
-            .write_page(7, &BLINKY_ARRAY[896..1024].try_into().unwrap())
-            .unwrap();
+    let mut efc = Efc::new(efc, VddioLevel::V3);
 
+    efc.erase(SECTOR_SIZE as u32, 2 * SECTOR_SIZE as u32)
+        .unwrap();
+    efc.write(SECTOR_SIZE as u32, &blinky_array).unwrap();
+
+    unsafe {
         bootload(0x0420000 as *const u32);
     }
 }

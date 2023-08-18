@@ -13,7 +13,8 @@ The wait states need to be reconfigured to allow for correct operation at higher
 
 use crate::clocks::{ClockError, Megahertz};
 use crate::pac::{efc, EFC};
-use core::ptr;
+use core::slice;
+use embedded_storage::nor_flash::*;
 
 /// The voltage which drives the MCU.
 ///
@@ -26,82 +27,53 @@ pub enum VddioLevel {
     V1,
 }
 
-/// Set of [`Sector`]s for device Flash Memory.
-#[allow(missing_docs)]
-pub struct Sectors {
-    pub sector0: Sector<0>,
-    pub sector1: Sector<1>,
-    pub sector2: Sector<2>,
-    pub sector3: Sector<3>,
-    #[cfg(not(feature = "flash-512K"))]
-    pub sector4: Sector<4>,
-    #[cfg(not(feature = "flash-512K"))]
-    pub sector5: Sector<5>,
-    #[cfg(not(feature = "flash-512K"))]
-    pub sector6: Sector<6>,
-    #[cfg(not(feature = "flash-512K"))]
-    pub sector7: Sector<7>,
-    #[cfg(feature = "flash-2M")]
-    pub sector8: Sector<8>,
-    #[cfg(feature = "flash-2M")]
-    pub sector9: Sector<9>,
-    #[cfg(feature = "flash-2M")]
-    pub sector10: Sector<10>,
-    #[cfg(feature = "flash-2M")]
-    pub sector11: Sector<11>,
-    #[cfg(feature = "flash-2M")]
-    pub sector12: Sector<12>,
-    #[cfg(feature = "flash-2M")]
-    pub sector13: Sector<13>,
-    #[cfg(feature = "flash-2M")]
-    pub sector14: Sector<14>,
-    #[cfg(feature = "flash-2M")]
-    pub sector15: Sector<15>,
+/// The Base Address of the Flash Memory.
+pub const BASE_ADDRESS: u32 = 0x00400000;
+///The Capacity in bytes of the Flash Memory.
+#[cfg(feature = "flash-2M")]
+pub const CAPACITY: usize = 0x00200000;
+#[cfg(feature = "flash-1M")]
+pub const CAPACITY: usize = 0x00100000;
+#[cfg(feature = "flash-512K")]
+pub const CAPACITY: usize = 0x00080000;
+/// The Size in bytes of a page in the Flash Memory.
+pub const PAGE_SIZE: usize = 512;
+/// The Size in bytes of a sector in the Flash Memory.
+pub const SECTOR_SIZE: usize = 0x00020000;
+
+/// An iterator over the Flash Sectors.
+struct SectorIterator {
+    index: u8,
+    number_of_sectors: u8,
 }
 
-impl Sectors {
-    /// Create the set of all Flash Sector [`Token`]s.
-    fn new() -> Self {
-        Self {
-            sector0: Sector::new(),
-            sector1: Sector::new(),
-            sector2: Sector::new(),
-            sector3: Sector::new(),
-            #[cfg(not(feature = "flash-512K"))]
-            sector4: Sector::new(),
-            #[cfg(not(feature = "flash-512K"))]
-            sector5: Sector::new(),
-            #[cfg(not(feature = "flash-512K"))]
-            sector6: Sector::new(),
-            #[cfg(not(feature = "flash-512K"))]
-            sector7: Sector::new(),
-            #[cfg(feature = "flash-2M")]
-            sector8: Sector::new(),
-            #[cfg(feature = "flash-2M")]
-            sector9: Sector::new(),
-            #[cfg(feature = "flash-2M")]
-            sector10: Sector::new(),
-            #[cfg(feature = "flash-2M")]
-            sector11: Sector::new(),
-            #[cfg(feature = "flash-2M")]
-            sector12: Sector::new(),
-            #[cfg(feature = "flash-2M")]
-            sector13: Sector::new(),
-            #[cfg(feature = "flash-2M")]
-            sector14: Sector::new(),
-            #[cfg(feature = "flash-2M")]
-            sector15: Sector::new()
+/// A struct representing a Sector in Flash Memory.
+#[derive(Clone, Copy)]
+struct Sector {
+    n: u8,
+}
+
+impl Iterator for SectorIterator {
+    type Item = Sector;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.index += 1;
+
+        if self.index < self.number_of_sectors {
+            Some(Sector { n: self.index })
+        } else {
+            None
         }
     }
 }
 
-/// Struct representing a sector of Flash Memory
-pub struct Sector<const N: u8> {}
-/// Error Enum, Big WIP on this one.
+/// Flash Memory Read/Write/Erase Errors.
 #[derive(Debug, Copy, Clone)]
 pub enum Error {
-    /// Access Outside Of the Flash Sector
-    SectorRangeError,
+    /// The arguments are not properly aligned.
+    NotAligned,
+    /// The arguments are out of bounds.
+    OutOfBounds,
     /// Attempted to execute a command when eefc is busy
     FlashBusyError,
     /// An invalid Command and/or a bad keyword was/were written in EEFC_FMR
@@ -119,6 +91,18 @@ pub enum Error {
     UniqueEccErrorMsb,
     /// UniqueEccErrorLsb
     UniqueEccErrorLsb,
+    /// OtherError
+    OtherError,
+}
+
+impl NorFlashError for Error {
+    fn kind(&self) -> NorFlashErrorKind {
+        match self {
+            Error::NotAligned => NorFlashErrorKind::NotAligned,
+            Error::OutOfBounds => NorFlashErrorKind::OutOfBounds,
+            _ => NorFlashErrorKind::Other,
+        }
+    }
 }
 
 impl From<u32> for Error {
@@ -143,29 +127,26 @@ impl From<u32> for Error {
     }
 }
 
-/// Token Representing a sector in flash memory
-impl<const N: u8> Sector<N> {
-    /// Read a single 32 bit word from a flash sector.
-    pub fn read_word(&self, offset: usize) -> Result<usize, Error> {
-        // Check that offset is still within range of the sector
-        if offset > 32767 {
-            return Err(Error::SectorRangeError);
+impl From<NorFlashErrorKind> for Error {
+    fn from(e: NorFlashErrorKind) -> Error {
+        match e {
+            NorFlashErrorKind::NotAligned => Error::NotAligned,
+            NorFlashErrorKind::OutOfBounds => Error::OutOfBounds,
+            _ => Error::OtherError,
         }
-        Ok(unsafe { ptr::read_volatile(self.addr().offset(offset.try_into().unwrap())) })
     }
+}
 
+impl Sector {
     /// Erase the entire sector.
-    /// # Safety
-    ///
-    /// Do not erase a flash sector where you are exectuing code.
-    pub unsafe fn erase_sector(&self) -> Result<(), Error> {
+    fn erase_sector(&self) -> Result<(), Error> {
         if self.efc().eefc_fsr.read().frdy().bit_is_clear() {
             return Err(Error::FlashBusyError);
         }
         self.efc().eefc_fcr.write(|w| {
             w.fkey().passwd();
             w.fcmd().es();
-            w.farg().bits((256_u16 * (N as u16)) as u16);
+            unsafe { w.farg().bits((256_u16 * (self.n as u16)) as u16) };
             w
         });
         loop {
@@ -182,21 +163,23 @@ impl<const N: u8> Sector<N> {
     }
 
     /// Write page to flash memory.
-    /// # Safety
-    ///
-    /// Do not erase a flash sector where you are exectuing code.
-    pub unsafe fn write_page(&self, page: u8, data: &[usize; 128]) -> Result<(), Error> {
+    fn write_page(&self, page: u8, data: &[u8]) -> Result<(), Error> {
+        if data.len() != PAGE_SIZE {
+            return Err(Error::NotAligned);
+        }
         if self.efc().eefc_fsr.read().frdy().bit_is_clear() {
             return Err(Error::FlashBusyError);
         }
-        self.addr()
-            .offset(((page as u16) * 512) as isize)
-            .copy_from(data.as_ptr(), 128);
+        unsafe {
+            self.addr()
+                .add((page as usize) * PAGE_SIZE)
+                .copy_from(data.as_ptr(), PAGE_SIZE)
+        };
 
         self.efc().eefc_fcr.write(|w| {
             w.fkey().passwd();
             w.fcmd().wp();
-            w.farg().bits(256_u16 * (N as u16) + (page as u16));
+            unsafe { w.farg().bits(256_u16 * (self.n as u16) + (page as u16)) };
             w
         });
         loop {
@@ -212,61 +195,30 @@ impl<const N: u8> Sector<N> {
         }
     }
 
-    /// Write single 32-bit word to flash memory.
-    /// # Safety
-    ///
-    /// Do not write to a flash sector where you are executing code.
-    pub unsafe fn write_word(&self, word: usize, offset: u16) -> Result<(), Error> {
-        if offset > 32767 {
-            return Err(Error::SectorRangeError);
-        }
-        if self.efc().eefc_fsr.read().frdy().bit_is_clear() {
-            return Err(Error::FlashBusyError);
-        }
-        self.addr().offset(offset as isize).write_volatile(word);
-        self.efc().eefc_fcr.write(|w| {
-            w.fkey().passwd();
-            w.fcmd().wp();
-            w.farg().bits(256_u16 * (N as u16) + (offset / 128));
-            w
-        });
-        loop {
-            let status = self.efc().eefc_fsr.read();
-            // Wait until frdy is set
-            if status.bits() == 0x00000001 {
-                return Ok(());
-            }
-            // If an error is detected, return
-            else if status.bits() != 0x00000000 {
-                return Err(status.bits().into());
-            }
-        }
+    #[inline(always)]
+    fn addr(&self) -> *mut u8 {
+        (BASE_ADDRESS as usize + (self.n as usize) * SECTOR_SIZE) as *mut u8
     }
 
-    fn new() -> Self {
-        Self {}
-    }
 
+    #[inline(always)]
+    fn contains(&self, offset: u32) -> bool {
+        offset >= SECTOR_SIZE as u32 * self.n as u32
+            && offset < SECTOR_SIZE as u32 * (self.n as u32 + 1)
+    }
 }
 
-trait RegisterAccess<const N: u8> {
-    #[inline(always)]
-    fn addr(&self) -> *mut usize {
-        (0x400000 + (N as usize) * 0x20000) as *mut usize
-    }
-
+trait RegisterAccess {
     fn efc(&self) -> &efc::RegisterBlock {
         unsafe { &*EFC::ptr() }
     }
 }
 
-impl<const N: u8> RegisterAccess<N> for Sector<N> {}
+impl RegisterAccess for Sector {}
 /// [`EFC`] abstraction.
 pub struct Efc {
     pub(crate) periph: EFC,
     vddio: VddioLevel,
-    /// struct representing the flash memory sectors.
-    pub sectors: Sectors,
 }
 
 impl Efc {
@@ -278,13 +230,8 @@ impl Efc {
             w.wpen().clear_bit();
             w
         });
-        let sectors = Sectors::new();
 
-        Self {
-            periph,
-            vddio,
-            sectors,
-        }
+        Self { periph, vddio }
     }
 
     /// Calculates and sets the lowest possible number of flash wait
@@ -299,6 +246,95 @@ impl Efc {
             .eefc_fmr
             .modify(|_r, w| unsafe { w.fws().bits(fws as u8) });
 
+        Ok(())
+    }
+}
+
+trait Flash {
+    type SectorIterator;
+    fn len(&self) -> usize {
+        CAPACITY
+    }
+    fn address(&self) -> u32 {
+        BASE_ADDRESS
+    }
+    fn sectors() -> SectorIterator {
+        SectorIterator {
+            index: 0,
+            number_of_sectors: (CAPACITY / SECTOR_SIZE) as u8,
+        }
+    }
+}
+
+impl Flash for Efc {
+    type SectorIterator = SectorIterator;
+}
+
+impl ErrorType for Efc {
+    type Error = Error;
+}
+
+impl ReadNorFlash for Efc {
+    const READ_SIZE: usize = 1;
+
+    fn read(&mut self, offset: u32, bytes: &mut [u8]) -> Result<(), Self::Error> {
+        check_read(self, offset, bytes.len())?;
+        let offset = offset as usize;
+        let ptr = self.address() as *const _;
+        let capacity = self.capacity();
+        let flash_slice = unsafe { slice::from_raw_parts(ptr, capacity) };
+        bytes.copy_from_slice(&flash_slice[offset..offset + bytes.len()]);
+        Ok(())
+    }
+
+    fn capacity(&self) -> usize {
+        self.len()
+    }
+}
+
+impl NorFlash for Efc {
+    const WRITE_SIZE: usize = PAGE_SIZE;
+    // NOTE: This number is the sector size, there is an option to erase by page as well, but the
+    // minimum/maximum erase size for that varies throughout the flash memory.
+    const ERASE_SIZE: usize = SECTOR_SIZE;
+
+    fn erase(&mut self, offset: u32, to: u32) -> Result<(), Self::Error> {
+        check_erase(self, offset, to)?;
+        let mut offset = offset;
+        for sector in Self::sectors() {
+            if sector.contains(offset) {
+                sector.erase_sector()?;
+                offset += Self::ERASE_SIZE as u32;
+            }
+            if offset >= to {
+                break;
+            }
+        }
+        Ok(())
+    }
+
+    fn write(&mut self, offset: u32, bytes: &[u8]) -> Result<(), Self::Error> {
+        check_write(self, offset, bytes.len())?;
+        let mut offset = offset;
+        let mut bytes_written = 0;
+        for sector in Self::sectors() {
+            while sector.contains(offset) {
+                let sector_offset = sector.n as usize * SECTOR_SIZE;
+                let page = ((offset as usize - sector_offset) / Self::WRITE_SIZE) as u8;
+                sector.write_page(
+                    page,
+                    &bytes[bytes_written..(bytes_written + Self::WRITE_SIZE)],
+                )?;
+                bytes_written += Self::WRITE_SIZE;
+                offset += Self::WRITE_SIZE as u32;
+                if bytes_written >= bytes.len() {
+                    break;
+                }
+            }
+            if bytes_written >= bytes.len() {
+                break;
+            }
+        }
         Ok(())
     }
 }

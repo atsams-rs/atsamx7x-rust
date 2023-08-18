@@ -7,6 +7,8 @@ use panic_rtt_target as _;
 #[rtic::app(device = hal::pac, peripherals = true, dispatchers = [UART0])]
 mod app {
     use atsamx7x_hal as hal;
+    use embedded_storage::nor_flash::NorFlash;
+    use embedded_storage::nor_flash::ReadNorFlash;
     use hal::efc::*;
     use rtt_target::{rprintln, rtt_init_print};
 
@@ -20,47 +22,42 @@ mod app {
     fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
         rtt_init_print!();
         let efc = ctx.device.EFC;
-        let wdt = ctx.device.WDT;
-        wdt.mr.modify(|_, w| w.wddis().set_bit());
         rprintln!("0x{:x}", efc.eefc_fsr.read().bits());
         rprintln!("0x{:x}", efc.eefc_fmr.read().bits());
-        let flash_sectors = Efc::new(efc, VddioLevel::V3).sectors;
-        let sector0 = flash_sectors.sector0;
+        let mut efc = Efc::new(efc, VddioLevel::V3);
+        let wdt = ctx.device.WDT;
+        wdt.mr.modify(|_, w| w.wddis().set_bit());
+        let mut a: [u8; 4] = [0; 4];
         for i in 0..32768 {
-            rprintln!("Word 0x{:x}: 0x{:x}", i, sector0.read_word(i).unwrap());
+            efc.read(i * 4, &mut a).unwrap();
+            let a_int: u32 = u32::from_be_bytes(a);
+            rprintln!("Word 0x{:x}: 0x{:x}", i, a_int);
         }
-        // let sector1 = flash_tokens.sector1;
-        // rprintln!("Reading Flash Sector 1...");
-        // for i in 0..32768 {
-        //     rprintln!("Word 0x{:x}: 0x{:x}", i, sector1.read_word(i).unwrap());
-        // }
 
-        let dead_beef: [usize; 128] = [0xdeadbeef; 128];
-        let sector8 = flash_sectors.sector8;
+        let array: [u8; 512] = [0xad; 512];
         for _j in 0..10 {
-            unsafe { sector8.write_page(0, &dead_beef).unwrap() };
-            unsafe { sector8.write_page(1, &dead_beef).unwrap() };
-            unsafe { sector8.write_page(2, &dead_beef).unwrap() };
-            unsafe { sector8.write_page(3, &dead_beef).unwrap() };
+            efc.write(SECTOR_SIZE as u32 * 8, &array).unwrap();
+            efc.write(SECTOR_SIZE as u32 * 8 + PAGE_SIZE as u32, &array)
+                .unwrap();
+            efc.write(SECTOR_SIZE as u32 * 8 + 2 * PAGE_SIZE as u32, &array)
+                .unwrap();
+            efc.write(SECTOR_SIZE as u32 * 8 + 3 * PAGE_SIZE as u32, &array)
+                .unwrap();
             for i in 8..12 {
-                rprintln!("Word 0x{:x}: 0x{:x}", i, sector8.read_word(i).unwrap());
+                efc.read(SECTOR_SIZE as u32 * 8 + i * 4, &mut a).unwrap();
+                let a_int: u32 = u32::from_be_bytes(a);
+                rprintln!("Word 0x{:x}: 0x{:x}", i, a_int);
             }
             rprintln!("Erasing Flash Sector...");
-            unsafe { sector8.erase_sector().unwrap() };
+            efc.erase(SECTOR_SIZE as u32 * 8, SECTOR_SIZE as u32 * 9)
+                .unwrap();
             rprintln!("Flash Sector Erased");
             for i in 8..12 {
-                rprintln!("Word 0x{:x}: 0x{:x}", i, sector8.read_word(i).unwrap());
+                efc.read(SECTOR_SIZE as u32 * 8 + i * 4, &mut a).unwrap();
+                let a_int: u32 = u32::from_be_bytes(a);
+                rprintln!("Word 0x{:x}: 0x{:x}", i, a_int);
             }
         }
-        unsafe { sector8.write_page(0, &dead_beef).unwrap() };
-        unsafe { sector8.write_page(1, &dead_beef).unwrap() };
-        unsafe { sector8.write_page(2, &dead_beef).unwrap() };
-        unsafe { sector8.write_page(3, &dead_beef).unwrap() };
-        for i in 8..12 {
-            rprintln!("Word 0x{:x}: 0x{:x}", i, sector8.read_word(i).unwrap());
-        }
-        unsafe { sector8.write_word(0xbeefbeef, 10).unwrap() };
-        rprintln!("0x{:x}", sector8.read_word(10).unwrap());
 
         (Shared {}, Local {}, init::Monotonics())
     }

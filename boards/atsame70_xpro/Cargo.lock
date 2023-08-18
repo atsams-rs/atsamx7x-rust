@@ -27,6 +27,7 @@ dependencies = [
  "atsamx7x-hal",
  "cortex-m",
  "cortex-m-rtic",
+ "embedded-storage",
  "heapless",
  "panic-halt",
  "panic-rtt-target",
@@ -52,7 +53,9 @@ dependencies = [
  "cfg-if",
  "cortex-m",
  "embedded-hal",
+ "embedded-storage",
  "fugit",
+ "mcan-core",
  "nb 1.0.0",
  "paste",
  "rtic-monotonic",
@@ -195,6 +198,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "embedded-storage"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "156d7a2fdd98ebbf9ae579cbceca3058cff946e13f8e17b90e3511db0508c723"
+
+[[package]]
 name = "fugit"
 version = "0.3.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -270,6 +279,15 @@ checksum = "435011366fe56583b16cf956f9df0095b405b82d76425bc8981c0e22e60ec4df"
 dependencies = [
  "autocfg",
  "scopeguard",
+]
+
+[[package]]
+name = "mcan-core"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8b3dee4ff5269e2465cc856d37103cce916c1ef73b4377f006c963872e69f7ca"
+dependencies = [
+ "fugit",
 ]
 
 [[package]]
