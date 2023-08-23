@@ -31,39 +31,71 @@ pub enum VddioLevel {
 pub const BASE_ADDRESS: u32 = 0x00400000;
 ///The Capacity in bytes of the Flash Memory.
 #[cfg(feature = "flash-2M")]
-pub const CAPACITY: usize = 0x00200000;
+pub const CAPACITY: u32 = 0x00200000;
+///The Capacity in bytes of the Flash Memory.
 #[cfg(feature = "flash-1M")]
-pub const CAPACITY: usize = 0x00100000;
+pub const CAPACITY: u32 = 0x00100000;
+///The Capacity in bytes of the Flash Memory.
 #[cfg(feature = "flash-512K")]
-pub const CAPACITY: usize = 0x00080000;
+pub const CAPACITY: u32 = 0x00080000;
 /// The Size in bytes of a page in the Flash Memory.
-pub const PAGE_SIZE: usize = 512;
+pub const PAGE_SIZE: u32 = 512;
 /// The Size in bytes of a sector in the Flash Memory.
-pub const SECTOR_SIZE: usize = 0x00020000;
+pub const SECTOR_SIZE: u32 = 0x00020000;
 
 /// An iterator over the Flash Sectors.
 struct SectorIterator {
-    index: u8,
-    number_of_sectors: u8,
+    start_offset: u32,
+    end_offset: u32,
 }
 
 /// A struct representing a Sector in Flash Memory.
 #[derive(Clone, Copy)]
 struct Sector {
-    n: u8,
+    offset: u32,
 }
 
 impl Iterator for SectorIterator {
     type Item = Sector;
 
     fn next(&mut self) -> Option<Self::Item> {
-        self.index += 1;
-
-        if self.index < self.number_of_sectors {
-            Some(Sector { n: self.index })
-        } else {
-            None
+        if self.start_offset >= self.end_offset {
+            return None;
         }
+        let sector = Sector {
+            offset: self.start_offset,
+        };
+        self.start_offset += SECTOR_SIZE;
+
+        Some(sector)
+    }
+}
+
+/// A struct representing a Page in Flash memory
+#[derive(Clone, Copy)]
+struct Page {
+    offset: u32,
+}
+
+/// An iterator over the Flash Pages.
+struct PageIterator {
+    start_offset: u32,
+    end_offset: u32,
+}
+
+impl Iterator for PageIterator {
+    type Item = Page;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.start_offset >= self.end_offset {
+            return None;
+        }
+        let page = Page {
+            offset: self.start_offset,
+        };
+        self.start_offset += PAGE_SIZE;
+
+        Some(page)
     }
 }
 
@@ -146,7 +178,7 @@ impl Sector {
         self.efc().eefc_fcr.write(|w| {
             w.fkey().passwd();
             w.fcmd().es();
-            unsafe { w.farg().bits((256_u16 * (self.n as u16)) as u16) };
+            unsafe { w.farg().bits(self.page_number()) };
             w
         });
         loop {
@@ -162,24 +194,37 @@ impl Sector {
         }
     }
 
+    // #[inline(always)] fn addr(&self) -> *mut u8 {
+    //     (BASE_ADDRESS + self.offset) as *mut u8
+    // }
+
+    #[inline(always)]
+    fn page_number(&self) -> u16 {
+        (self.offset / PAGE_SIZE) as u16
+    }
+
+    // #[inline(always)]
+    // fn contains(&self, offset: u32) -> bool {
+    //     offset >= self.offset
+    //         && offset < self.offset + SECTOR_SIZE
+    // }
+}
+
+impl Page {
     /// Write page to flash memory.
-    fn write_page(&self, page: u8, data: &[u8]) -> Result<(), Error> {
-        if data.len() != PAGE_SIZE {
+    fn write_page(&self, data: &[u8]) -> Result<(), Error> {
+        if data.len() != PAGE_SIZE as usize {
             return Err(Error::NotAligned);
         }
         if self.efc().eefc_fsr.read().frdy().bit_is_clear() {
             return Err(Error::FlashBusyError);
         }
-        unsafe {
-            self.addr()
-                .add((page as usize) * PAGE_SIZE)
-                .copy_from(data.as_ptr(), PAGE_SIZE)
-        };
+        unsafe { self.addr().copy_from(data.as_ptr(), PAGE_SIZE as usize) };
 
         self.efc().eefc_fcr.write(|w| {
             w.fkey().passwd();
             w.fcmd().wp();
-            unsafe { w.farg().bits(256_u16 * (self.n as u16) + (page as u16)) };
+            unsafe { w.farg().bits(self.page_number()) };
             w
         });
         loop {
@@ -197,15 +242,20 @@ impl Sector {
 
     #[inline(always)]
     fn addr(&self) -> *mut u8 {
-        (BASE_ADDRESS as usize + (self.n as usize) * SECTOR_SIZE) as *mut u8
+        (BASE_ADDRESS + self.offset) as *mut u8
     }
 
 
     #[inline(always)]
-    fn contains(&self, offset: u32) -> bool {
-        offset >= SECTOR_SIZE as u32 * self.n as u32
-            && offset < SECTOR_SIZE as u32 * (self.n as u32 + 1)
+    fn page_number(&self) -> u16 {
+        (self.offset / PAGE_SIZE) as u16
     }
+
+    // #[inline(always)]
+    // fn contains(&self, offset: u32) -> bool {
+    //     offset >= self.offset
+    //         && offset < self.offset + PAGE_SIZE as u32
+    // }
 }
 
 trait RegisterAccess {
@@ -215,6 +265,7 @@ trait RegisterAccess {
 }
 
 impl RegisterAccess for Sector {}
+impl RegisterAccess for Page {}
 /// [`EFC`] abstraction.
 pub struct Efc {
     pub(crate) periph: EFC,
@@ -252,22 +303,34 @@ impl Efc {
 
 trait Flash {
     type SectorIterator;
-    fn len(&self) -> usize {
+    type PageIterator;
+
+    fn len(&self) -> u32 {
         CAPACITY
     }
+
     fn address(&self) -> u32 {
         BASE_ADDRESS
     }
-    fn sectors() -> SectorIterator {
+
+    fn sectors(start_offset: u32, end_offset: u32) -> SectorIterator {
         SectorIterator {
-            index: 0,
-            number_of_sectors: (CAPACITY / SECTOR_SIZE) as u8,
+            start_offset,
+            end_offset,
+        }
+    }
+
+    fn pages(start_offset: u32, end_offset: u32) -> PageIterator {
+        PageIterator {
+            start_offset,
+            end_offset,
         }
     }
 }
 
 impl Flash for Efc {
     type SectorIterator = SectorIterator;
+    type PageIterator = PageIterator;
 }
 
 impl ErrorType for Efc {
@@ -288,52 +351,30 @@ impl ReadNorFlash for Efc {
     }
 
     fn capacity(&self) -> usize {
-        self.len()
+        self.len() as usize
     }
 }
 
 impl NorFlash for Efc {
-    const WRITE_SIZE: usize = PAGE_SIZE;
+    const WRITE_SIZE: usize = PAGE_SIZE as usize;
     // NOTE: This number is the sector size, there is an option to erase by page as well, but the
     // minimum/maximum erase size for that varies throughout the flash memory.
-    const ERASE_SIZE: usize = SECTOR_SIZE;
+    const ERASE_SIZE: usize = SECTOR_SIZE as usize;
 
     fn erase(&mut self, offset: u32, to: u32) -> Result<(), Self::Error> {
         check_erase(self, offset, to)?;
-        let mut offset = offset;
-        for sector in Self::sectors() {
-            if sector.contains(offset) {
-                sector.erase_sector()?;
-                offset += Self::ERASE_SIZE as u32;
-            }
-            if offset >= to {
-                break;
-            }
+        for sector in Self::sectors(offset, to) {
+            sector.erase_sector()?;
         }
         Ok(())
     }
 
     fn write(&mut self, offset: u32, bytes: &[u8]) -> Result<(), Self::Error> {
         check_write(self, offset, bytes.len())?;
-        let mut offset = offset;
         let mut bytes_written = 0;
-        for sector in Self::sectors() {
-            while sector.contains(offset) {
-                let sector_offset = sector.n as usize * SECTOR_SIZE;
-                let page = ((offset as usize - sector_offset) / Self::WRITE_SIZE) as u8;
-                sector.write_page(
-                    page,
-                    &bytes[bytes_written..(bytes_written + Self::WRITE_SIZE)],
-                )?;
-                bytes_written += Self::WRITE_SIZE;
-                offset += Self::WRITE_SIZE as u32;
-                if bytes_written >= bytes.len() {
-                    break;
-                }
-            }
-            if bytes_written >= bytes.len() {
-                break;
-            }
+        for page in Self::pages(offset, offset + bytes.len() as u32) {
+            page.write_page(&bytes[bytes_written..(bytes_written + Self::WRITE_SIZE)])?;
+            bytes_written += Self::WRITE_SIZE;
         }
         Ok(())
     }
