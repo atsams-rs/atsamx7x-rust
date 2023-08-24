@@ -59,7 +59,6 @@ mod app {
             }
         }
 
-
         (Shared {}, Local {}, init::Monotonics())
     }
 }

@@ -245,7 +245,6 @@ impl Page {
         (BASE_ADDRESS + self.offset) as *mut u8
     }
 
-
     #[inline(always)]
     fn page_number(&self) -> u16 {
         (self.offset / PAGE_SIZE) as u16
@@ -440,4 +439,3 @@ impl FlashWaitStates {
         }
     }
 }
-
