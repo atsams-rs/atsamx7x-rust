@@ -9,7 +9,7 @@ use panic_rtt_target as _;
 mod app {
     use atsamx7x_hal as hal;
     use hal::clocks::*;
-    use hal::efc::{Efc, VddioLevel};
+    use hal::efc::*;
     use hal::ehal::digital::v2::ToggleableOutputPin;
     use hal::ehal::timer::CountDown;
     use hal::pio::*;
