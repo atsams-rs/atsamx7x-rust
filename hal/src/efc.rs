@@ -3,12 +3,37 @@ Flash controller configuration
 ---
 
 The Enhanced Embedded Flash Controller peripheral (EFC) or (EEFC) provides the interface of the Flash block with the 32-bit internal bus.
-
 Two functions of the EFC are exposed in this HAL, the ability to set wait states, and the ability to reconfigure the flash memory.
-
 The wait states need to be reconfigured to allow for correct operation at higher clock frequencies and is normally handled by the [clocks](crate::clocks) module.
 
+The flash memory can be modified using the commands in Table 22-1.
+Out of these commands only the Write Page and Erase Sector commands are currently supported by the HAL.
+Write Page writes a page of 512 bytes, Erase Sector erases a sector a sector of 128KB.
 
+That is, your writes need to be 512 byte aligned, because pages are 512 byte aligned, and your erases need to be 128KB aligned, because sectors are 128KB aligned.
+# Example usage
+
+```no_run
+# use atsamx7x_hal as hal;
+use embedded_storage::nor_flash::NorFlash;
+use embedded_storage::nor_flash::ReadNorFlash;
+# use hal::efc::*;
+
+let efc = ctx.device.EFC;
+let mut efc = Efc::new(efc, VddioLevel::V3);
+
+let mut a: [u8; 128] = [0; 128];
+// Read the first 128 bytes from the flash memory
+efc.read(0, &mut a).unwrap();
+
+let b: [u8; 512] = [0x00; 512];
+// Write 0x00 to the first page of the second sector
+efc.write(SECTOR_SIZE, &b).unwrap();
+
+// erase the third sector
+efc.erase(2*SECTOR_SIZE, SECTOR_SIZE*3).unwrap();
+
+```
 */
 
 use crate::clocks::{ClockError, Megahertz};
