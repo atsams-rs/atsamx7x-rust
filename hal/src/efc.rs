@@ -18,9 +18,9 @@ That is, your writes need to be 512 byte aligned, because pages are 512 byte ali
 use embedded_storage::nor_flash::NorFlash;
 use embedded_storage::nor_flash::ReadNorFlash;
 # use hal::efc::*;
+# let pac = hal::pac::Peripherals::take().unwrap();
 
-let efc = ctx.device.EFC;
-let mut efc = Efc::new(efc, VddioLevel::V3);
+let mut efc = Efc::new(pac.EFC, VddioLevel::V3);
 
 let mut a: [u8; 128] = [0; 128];
 // Read the first 128 bytes from the flash memory
