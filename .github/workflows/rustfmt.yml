@@ -14,6 +14,8 @@ jobs:
         run: rustup override set $MSRV
       - name: Install Rust (thumbv7em)
         run: rustup target add thumbv7em-none-eabihf
+      - name: Install Rustfmt
+        run: rustup component add rustfmt
       - run: |
           set -xeu
           cargo fmt --package atsamx7x-hal -- --check

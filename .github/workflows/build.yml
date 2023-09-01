@@ -83,6 +83,8 @@ jobs:
         run: rustup override set $MSRV
       - name: Install Rust (thumbv7em)
         run: rustup target add thumbv7em-none-eabihf
+      - name: Install Clippy
+        run: rustup component add clippy
       - name: Lint HAL
         run: cargo clippy --package atsamx7x-hal --no-deps --features samv71q21b,unproven,reconfigurable-system-pins -- --deny warnings
 
@@ -99,6 +101,8 @@ jobs:
         run: rustup override set $MSRV
       - name: Install Rust (thumbv7em)
         run: rustup target add thumbv7em-none-eabihf
+      - name: Install Clippy
+        run: rustup component add clippy
       - name: Lint boards/${{ matrix.board }}/examples/*
         run: |
           cd boards/${{ matrix.board }}
