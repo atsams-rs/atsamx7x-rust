@@ -3,14 +3,17 @@ on: [push, pull_request]
 
 env:
   CARGO_TERM_COLOR: always
+  MSRV: 1.63.0
 
 jobs:
   format:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Specify toolchain
+        run: rustup override set $MSRV
       - name: Install Rust (thumbv7em)
-        run: rustup show
+        run: rustup target add thumbv7em-none-eabihf
       - run: |
           set -xeu
           cargo fmt --package atsamx7x-hal -- --check
