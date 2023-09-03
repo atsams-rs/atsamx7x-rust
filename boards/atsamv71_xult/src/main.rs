@@ -17,6 +17,7 @@ mod app {
     #[init]
     fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
         cortex_m::asm::bkpt();
+        rtt_target::rtt_init!();
 
         // Disable the watchdog.
         hal::watchdog::Watchdog::new(ctx.device.WDT).disable();
