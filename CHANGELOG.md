@@ -11,8 +11,10 @@
 ### Changed
 
 ### Removed
+- Huge generated source code for PACs removed, new location for them [`atsamx7x-pac`](/atsams-rs/atsamx7x-pac) (user side generated)
 
 ### Fixed
+- Examples now build and link again
 
 ## [v0.4.2] 2022-11-06
 
