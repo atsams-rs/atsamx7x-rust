@@ -9,6 +9,7 @@
 - Implementation of blocking::i2c::Transactional trait from [embedded-hal](https://crates.io/crates/embedded-hal) for TWI device.
 
 ### Changed
+- Remove `rust-toolchain.toml` and control MSRV from .github/workflow/ files instead.
 
 ### Removed
 

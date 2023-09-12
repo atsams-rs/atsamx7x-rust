@@ -4,6 +4,7 @@ on: [push, pull_request]
 env:
   RUSTDOCFLAGS: -D warnings
   RUSTFLAGS: -D warnings
+  MSRV: 1.63.0
 
 jobs:
   setup:
@@ -31,8 +32,10 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
+      - name: Specify toolchain
+        run: rustup override set $MSRV
       - name: Install Rust (thumbv7em)
-        run: rustup show
+        run: rustup target add thumbv7em-none-eabihf
       - name: Build HAL for ${{ matrix.pac }}
         run: cargo check --package atsamx7x-hal --features ${{ matrix.pac }},unproven
 
@@ -45,8 +48,10 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
+      - name: Specify toolchain
+        run: rustup override set $MSRV
       - name: Install Rust (thumbv7em)
-        run: rustup show
+        run: rustup target add thumbv7em-none-eabihf
       - name: Build HAL for ${{ matrix.features }}
         run: cargo check --package atsamx7x-hal --features ${{ matrix.features }},samv71q21b,unproven
 
@@ -59,8 +64,10 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
+      - name: Specify toolchain
+        run: rustup override set $MSRV
       - name: Install Rust (thumbv7em)
-        run: rustup show
+        run: rustup target add thumbv7em-none-eabihf
       - name: Build boards/${{ matrix.board }}/examples/*
         run: |
           cd boards/${{ matrix.board }}
@@ -72,8 +79,12 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
+      - name: Specify toolchain
+        run: rustup override set $MSRV
       - name: Install Rust (thumbv7em)
-        run: rustup show
+        run: rustup target add thumbv7em-none-eabihf
+      - name: Install Clippy
+        run: rustup component add clippy
       - name: Lint HAL
         run: cargo clippy --package atsamx7x-hal --no-deps --features samv71q21b,unproven,reconfigurable-system-pins -- --deny warnings
 
@@ -86,8 +97,12 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
+      - name: Specify toolchain
+        run: rustup override set $MSRV
       - name: Install Rust (thumbv7em)
-        run: rustup show
+        run: rustup target add thumbv7em-none-eabihf
+      - name: Install Clippy
+        run: rustup component add clippy
       - name: Lint boards/${{ matrix.board }}/examples/*
         run: |
           cd boards/${{ matrix.board }}
@@ -99,8 +114,10 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
+      - name: Specify toolchain
+        run: rustup override set $MSRV
       - name: Install Rust (thumbv7em)
-        run: rustup show
+        run: rustup target add thumbv7em-none-eabihf
       - name: Build HAL documentation
         run: cargo doc --package atsamx7x-hal --no-deps --features samv71q21b,unproven,reconfigurable-system-pins
       - name: Build HAL doc tests
