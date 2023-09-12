@@ -106,6 +106,8 @@ dependencies = [
 [[package]]
 name = "atsamv71q21b"
 version = "0.28.0-alpha2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "edeb597c22549267726d27c9f03d92cdc6298ba8f838c616ce926333141e4f5a"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",

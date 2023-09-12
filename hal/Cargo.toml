@@ -40,39 +40,74 @@ void = { version = "1", default-features = false }
 strum = { version = "0.24.1", default-features = false, features = ["derive"]}
 cfg-if = "1"
 mcan-core = { version = "0.2", optional = true }
-atsame70j19b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsame70j19b", optional = true }
-atsame70j20b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsame70j20b", optional = true }
-atsame70j21b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsame70j21b", optional = true }
-atsame70n19b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsame70n19b", optional = true }
-atsame70n20b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsame70n20b", optional = true }
-atsame70n21b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsame70n21b", optional = true }
-atsame70q19b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsame70q19b", optional = true }
-atsame70q20b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsame70q20b", optional = true }
-atsame70q21b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsame70q21b", optional = true }
-atsams70j19b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsams70j19b", optional = true }
-atsams70j20b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsams70j20b", optional = true }
-atsams70j21b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsams70j21b", optional = true }
-atsams70n19b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsams70n19b", optional = true }
-atsams70n20b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsams70n20b", optional = true }
-atsams70n21b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsams70n21b", optional = true }
-atsams70q19b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsams70q19b", optional = true }
-atsams70q20b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsams70q20b", optional = true }
-atsams70q21b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsams70q21b", optional = true }
-atsamv70j19b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsamv70j19b", optional = true }
-atsamv70j20b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsamv70j20b", optional = true }
-atsamv70n19b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsamv70n19b", optional = true }
-atsamv70n20b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsamv70n20b", optional = true }
-atsamv70q19b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsamv70q19b", optional = true }
-atsamv70q20b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsamv70q20b", optional = true }
-atsamv71j19b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsamv71j19b", optional = true }
-atsamv71j20b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsamv71j20b", optional = true }
-atsamv71j21b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsamv71j21b", optional = true }
-atsamv71n19b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsamv71n19b", optional = true }
-atsamv71n20b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsamv71n20b", optional = true }
-atsamv71n21b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsamv71n21b", optional = true }
-atsamv71q19b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsamv71q19b", optional = true }
-atsamv71q20b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsamv71q20b", optional = true }
-atsamv71q21b = { version = "0.28.0-alpha2", path = "../../atsamx7x-pac/pac/atsamv71q21b", optional = true }
+atsame70j19b = { version = "0.28.0-alpha2", optional = true }
+atsame70j20b = { version = "0.28.0-alpha2", optional = true }
+atsame70j21b = { version = "0.28.0-alpha2", optional = true }
+atsame70n19b = { version = "0.28.0-alpha2", optional = true }
+atsame70n20b = { version = "0.28.0-alpha2", optional = true }
+atsame70n21b = { version = "0.28.0-alpha2", optional = true }
+atsame70q19b = { version = "0.28.0-alpha2", optional = true }
+atsame70q20b = { version = "0.28.0-alpha2", optional = true }
+atsame70q21b = { version = "0.28.0-alpha2", optional = true }
+atsams70j19b = { version = "0.28.0-alpha2", optional = true }
+atsams70j20b = { version = "0.28.0-alpha2", optional = true }
+atsams70j21b = { version = "0.28.0-alpha2", optional = true }
+atsams70n19b = { version = "0.28.0-alpha2", optional = true }
+atsams70n20b = { version = "0.28.0-alpha2", optional = true }
+atsams70n21b = { version = "0.28.0-alpha2", optional = true }
+atsams70q19b = { version = "0.28.0-alpha2", optional = true }
+atsams70q20b = { version = "0.28.0-alpha2", optional = true }
+atsams70q21b = { version = "0.28.0-alpha2", optional = true }
+atsamv70j19b = { version = "0.28.0-alpha2", optional = true }
+atsamv70j20b = { version = "0.28.0-alpha2", optional = true }
+atsamv70n19b = { version = "0.28.0-alpha2", optional = true }
+atsamv70n20b = { version = "0.28.0-alpha2", optional = true }
+atsamv70q19b = { version = "0.28.0-alpha2", optional = true }
+atsamv70q20b = { version = "0.28.0-alpha2", optional = true }
+atsamv71j19b = { version = "0.28.0-alpha2", optional = true }
+atsamv71j20b = { version = "0.28.0-alpha2", optional = true }
+atsamv71j21b = { version = "0.28.0-alpha2", optional = true }
+atsamv71n19b = { version = "0.28.0-alpha2", optional = true }
+atsamv71n20b = { version = "0.28.0-alpha2", optional = true }
+atsamv71n21b = { version = "0.28.0-alpha2", optional = true }
+atsamv71q19b = { version = "0.28.0-alpha2", optional = true }
+atsamv71q20b = { version = "0.28.0-alpha2", optional = true }
+atsamv71q21b = { version = "0.28.0-alpha2", optional = true }
+
+[patch.crates-io]
+atsame70j19b = { path = "../../atsamx7x-pac/pac/atsame70j19b" }
+atsame70j20b = { path = "../../atsamx7x-pac/pac/atsame70j20b" }
+atsame70j21b = { path = "../../atsamx7x-pac/pac/atsame70j21b" }
+atsame70n19b = { path = "../../atsamx7x-pac/pac/atsame70n19b" }
+atsame70n20b = { path = "../../atsamx7x-pac/pac/atsame70n20b" }
+atsame70n21b = { path = "../../atsamx7x-pac/pac/atsame70n21b" }
+atsame70q19b = { path = "../../atsamx7x-pac/pac/atsame70q19b" }
+atsame70q20b = { path = "../../atsamx7x-pac/pac/atsame70q20b" }
+atsame70q21b = { path = "../../atsamx7x-pac/pac/atsame70q21b" }
+atsams70j19b = { path = "../../atsamx7x-pac/pac/atsams70j19b" }
+atsams70j20b = { path = "../../atsamx7x-pac/pac/atsams70j20b" }
+atsams70j21b = { path = "../../atsamx7x-pac/pac/atsams70j21b" }
+atsams70n19b = { path = "../../atsamx7x-pac/pac/atsams70n19b" }
+atsams70n20b = { path = "../../atsamx7x-pac/pac/atsams70n20b" }
+atsams70n21b = { path = "../../atsamx7x-pac/pac/atsams70n21b" }
+atsams70q19b = { path = "../../atsamx7x-pac/pac/atsams70q19b" }
+atsams70q20b = { path = "../../atsamx7x-pac/pac/atsams70q20b" }
+atsams70q21b = { path = "../../atsamx7x-pac/pac/atsams70q21b" }
+atsamv70j19b = { path = "../../atsamx7x-pac/pac/atsamv70j19b" }
+atsamv70j20b = { path = "../../atsamx7x-pac/pac/atsamv70j20b" }
+atsamv70n19b = { path = "../../atsamx7x-pac/pac/atsamv70n19b" }
+atsamv70n20b = { path = "../../atsamx7x-pac/pac/atsamv70n20b" }
+atsamv70q19b = { path = "../../atsamx7x-pac/pac/atsamv70q19b" }
+atsamv70q20b = { path = "../../atsamx7x-pac/pac/atsamv70q20b" }
+atsamv71j19b = { path = "../../atsamx7x-pac/pac/atsamv71j19b" }
+atsamv71j20b = { path = "../../atsamx7x-pac/pac/atsamv71j20b" }
+atsamv71j21b = { path = "../../atsamx7x-pac/pac/atsamv71j21b" }
+atsamv71n19b = { path = "../../atsamx7x-pac/pac/atsamv71n19b" }
+atsamv71n20b = { path = "../../atsamx7x-pac/pac/atsamv71n20b" }
+atsamv71n21b = { path = "../../atsamx7x-pac/pac/atsamv71n21b" }
+atsamv71q19b = { path = "../../atsamx7x-pac/pac/atsamv71q19b" }
+atsamv71q20b = { path = "../../atsamx7x-pac/pac/atsamv71q20b" }
+atsamv71q21b = { path = "../../atsamx7x-pac/pac/atsamv71q21b" }
 
 [features]
 # Internal-only feature flags; do not set directly.
