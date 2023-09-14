@@ -20,15 +20,11 @@ impl ExtBpsU32 for u32 {
 }
 
 pub mod uart;
-pub use uart::*;
 
 pub mod usart;
-pub use usart::*;
 
 pub mod twi;
 pub use twi::*;
 
 #[cfg(not(feature = "pins-64"))]
 pub mod spi;
-#[cfg(not(feature = "pins-64"))]
-pub use spi::*;
