@@ -109,7 +109,7 @@ impl<M: TwiMeta> Twi<M> {
         // Try to find a valid clock configuration. From §43.8.5 we
         // have
         //
-        //    DIV * 2^CKDIV = (f_pid / f_twi) - 3
+        //    DIV * 2^CKDIV = (f_pid / f_twi / 2) - 3
         //
         // where DIV = CHDIV = CLDIV.
         //
@@ -117,7 +117,7 @@ impl<M: TwiMeta> Twi<M> {
         // first valid permutation of (CKIV, DIV), unless options are
         // exhausted.
         let calc_div = |ckdiv| {
-            (clk.freq() / conf.freq)
+            (clk.freq() / conf.freq / 2)
                 .checked_sub(3)
                 .map(|v| v / 2u32.pow(ckdiv))
         };
@@ -232,6 +232,9 @@ impl<M: TwiMeta> Twi<M> {
 pub struct I2cConfiguration {
     /// The frequency of the I²C communication. The periods of high
     /// and low clock cycles are equal.
+    ///
+    /// NOTE: freq is an estimate where the rise time is assumed to be negligible, which is only
+    /// valid for lower frequencies.
     pub freq: Hertz,
 }
 

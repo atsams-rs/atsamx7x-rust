@@ -14,6 +14,7 @@
 ### Removed
 
 ### Fixed
+- TWIHS: Fix issue with clock frequency calculation.
 
 ## [v0.4.2] 2022-11-06
 
