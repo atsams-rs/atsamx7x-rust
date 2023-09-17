@@ -4,8 +4,7 @@
 
 ### Added
 
-- [Integration](https://crates.io/crates/mcan-core) with the
-[`mcan`](https://crates.io/crates/mcan) crate.
+- [Integration](https://crates.io/crates/mcan-core) with the [`mcan`](https://crates.io/crates/mcan) crate.
 - Implementation of blocking::i2c::Transactional trait from [embedded-hal](https://crates.io/crates/embedded-hal) for TWI device.
 
 ### Changed
@@ -14,6 +13,7 @@
 ### Removed
 
 ### Fixed
+- [#62] Remove ambiguous reexports from `src/serial/mod.rs`.
 
 ## [v0.4.2] 2022-11-06
 
