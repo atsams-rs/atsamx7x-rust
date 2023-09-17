@@ -39,6 +39,24 @@ jobs:
       - name: Build HAL for ${{ matrix.pac }}
         run: cargo check --package atsamx7x-hal --features ${{ matrix.pac }},unproven
 
+  build-latest:
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pac: ${{ fromJson(needs.setup.outputs.pac_matrix) }}
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - name: Update toolchain
+        run: rustup update
+      - name: Specify toolchain
+        run: rustup override set stable
+      - name: Install Rust (thumbv7em)
+        run: rustup target add thumbv7em-none-eabihf
+      - name: Build HAL for ${{ matrix.pac }}
+        run: cargo check --package atsamx7x-hal --features ${{ matrix.pac }},unproven
+
   build-features:
     needs: setup
     runs-on: ubuntu-latest
