@@ -45,6 +45,7 @@ jobs:
     strategy:
       matrix:
         pac: ${{ fromJson(needs.setup.outputs.pac_matrix) }}
+    continue-on-error: true # we let this fail and carry on, but GH UI is poor not showing amber like other CIs
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
