@@ -10,6 +10,7 @@
 
 ### Changed
 - Remove `rust-toolchain.toml` and control MSRV from .github/workflow/ files instead.
+- Update `cortex-m-rt` version in examples to `0.7.3`.
 
 ### Removed
 
