@@ -9,12 +9,14 @@
 - Implementation of blocking::i2c::Transactional trait from [embedded-hal](https://crates.io/crates/embedded-hal) for TWI device.
 
 ### Changed
+- Remove `rust-toolchain.toml` and control MSRV from .github/workflow/ files instead.
 
 ### Removed
 - Huge generated source code for PACs removed, new location for them [`atsamx7x-pac`](/atsams-rs/atsamx7x-pac) (user side generated)
 
 ### Fixed
 - Examples now build and link again
+- TWIHS: Fix issue with clock frequency calculation.
 
 ## [v0.4.2] 2022-11-06
 
