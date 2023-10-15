@@ -23,6 +23,7 @@ pub(in crate::pio) trait RegisterInterface {
             DynPinMode::Reset => unimplemented!(),
             DynPinMode::Peripheral(a) => self.as_peripheral(a),
             DynPinMode::Output => self.as_output(),
+            DynPinMode::OpenDrain => self.as_opendrain(),
             DynPinMode::Input => self.as_input(),
         }
     }
@@ -65,6 +66,18 @@ pub(in crate::pio) trait RegisterInterface {
 
         // enable pin output
         self.reg().oer.write(|w| unsafe { w.bits(self.mask()) });
+    }
+
+    #[inline]
+    fn as_opendrain(&mut self) {
+        // take pin from peripheral
+        self.reg().per.write(|w| unsafe { w.bits(self.mask()) });
+
+        // Enable multidrive
+        self.reg().mder.write(|w| unsafe { w.bits(self.mask()) });
+
+        // disable pin output, driver should not be connected
+        self.reg().odr.write(|w| unsafe { w.bits(self.mask()) });
     }
 
     #[inline]
