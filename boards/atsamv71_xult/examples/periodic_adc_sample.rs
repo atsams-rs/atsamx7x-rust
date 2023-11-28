@@ -25,7 +25,7 @@ mod app {
     #[local]
     struct Local {
         afec: Afec<Afec0>,
-        pin: Pin<PA17, Input>,
+        pin: Pin<PA19, Input>,
     }
 
     #[init]
@@ -65,7 +65,7 @@ mod app {
         );
 
         let afec = Afec::new_afec0(ctx.device.AFEC0, &mut mck).unwrap();
-        let pin = banka.pa17.into_input(PullDir::PullUp);
+        let pin = banka.pa19.into_input(PullDir::PullUp);
 
         adc_sample::spawn().unwrap();
 
@@ -77,7 +77,7 @@ mod app {
         let adc_sample::LocalResources { afec, pin } = ctx.local;
 
         let v: f32 = afec.read(pin).unwrap();
-        rprintln!("PA17 (channel 6) = {:.2}V", v);
+        rprintln!("PA19 (channel 6) = {:.2}V", v);
 
         adc_sample::spawn_after(1.secs()).unwrap();
     }

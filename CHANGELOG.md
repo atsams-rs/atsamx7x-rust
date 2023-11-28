@@ -10,6 +10,7 @@
 ### Changed
 - Remove `rust-toolchain.toml` and control MSRV from .github/workflow/ files instead.
 - Update `cortex-m-rt` version in examples to `0.7.3`.
+- Switched from AFE0_AD6 to  AFE0_AD8 for the atsamv71_xult board ADC example code.
 
 ### Removed
 
