@@ -1,6 +1,6 @@
 [package]
 name = "atsamv71_xult"
-version = "0.4.2"
+version = "0.4.3-alpha1"
 edition = "2021"
 authors = [
     "Viktor Sonesten <viktor.sonesten@grepit.se>"
@@ -21,7 +21,7 @@ mcan = "0.2"
 typenum = "1"
 
 [dependencies.atsamx7x-hal]
-version = "0.4.2"
+version = "0.4.3-alpha1"
 path = "../../hal"
 features = ["samv71q21b-rt", "unproven"]
 

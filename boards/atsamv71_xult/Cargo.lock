@@ -89,7 +89,7 @@ dependencies = [
 
 [[package]]
 name = "atsamv71_xult"
-version = "0.4.2"
+version = "0.4.3-alpha1"
 dependencies = [
  "atsamx7x-hal",
  "cortex-m",
@@ -105,9 +105,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv71q21b"
-version = "0.28.0-alpha2"
+version = "0.29.0-alpha1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "edeb597c22549267726d27c9f03d92cdc6298ba8f838c616ce926333141e4f5a"
+checksum = "5a9ae83afc6e088da6a77c63871ab75467bdd242816f2b3262e47f51061622dd"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -120,7 +120,7 @@ dependencies = [
 
 [[package]]
 name = "atsamx7x-hal"
-version = "0.4.2"
+version = "0.4.3-alpha1"
 dependencies = [
  "atsamv71q21b",
  "bit-iter",

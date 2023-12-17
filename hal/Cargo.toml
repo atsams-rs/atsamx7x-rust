@@ -1,6 +1,6 @@
 [package]
 name = "atsamx7x-hal"
-version = "0.4.2"
+version = "0.4.3-alpha1"
 # in no particular order
 authors = [
         "Michal Fita <michal.fita@gmail.com>",
