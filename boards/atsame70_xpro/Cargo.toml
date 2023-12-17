@@ -8,7 +8,7 @@ authors = [
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-cortex-m-rtic = "1.0"
+cortex-m-rtic = "1.1.4"
 cortex-m = "0.7"
 panic-halt = "0.2"
 panic-rtt-target = { version = "0.1.2", features = ["cortex-m"] }

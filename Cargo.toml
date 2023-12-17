@@ -1,7 +1,7 @@
 [workspace]
+resolver = "2"
 members = [
     "hal",
-    "pac/*",
 ]
 
 exclude = [

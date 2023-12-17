@@ -246,9 +246,9 @@ unsafe trait RegisterAccess<M: TcMeta, I: ChannelId> {
     fn channel(&self) -> &ChannelRegisterBlock {
         let tc = self.reg();
         match I::DYN {
-            DynChannelId::Ch0 => &tc.tc_channel0,
-            DynChannelId::Ch1 => &tc.tc_channel1,
-            DynChannelId::Ch2 => &tc.tc_channel2,
+            DynChannelId::Ch0 => &tc.tc_channel[0],
+            DynChannelId::Ch1 => &tc.tc_channel[1],
+            DynChannelId::Ch2 => &tc.tc_channel[2],
         }
     }
 }

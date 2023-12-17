@@ -13,8 +13,10 @@
 - Switched from AFE0_AD6 to  AFE0_AD8 for the atsamv71_xult board ADC example code.
 
 ### Removed
+- Huge generated source code for PACs removed, new location for them [`atsamx7x-pac`](/atsams-rs/atsamx7x-pac) (user side generated)
 
 ### Fixed
+- Examples now build and link again
 - [#62] Remove ambiguous reexports from `src/serial/mod.rs`.
 - TWIHS: Fix issue with clock frequency calculation.
 
