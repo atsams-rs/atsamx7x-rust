@@ -14,7 +14,7 @@ use crate::ehal::{self, blocking};
 pub enum UartError {
     /// A frame's stop bit was read as zero.
     Framing,
-    /// Parity check of the recived frame failed.
+    /// Parity check of the received frame failed.
     Parity,
     /// A word was received before the previous word was read.
     Overrun,

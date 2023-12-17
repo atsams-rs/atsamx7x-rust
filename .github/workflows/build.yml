@@ -8,6 +8,7 @@ env:
 
 jobs:
   setup:
+    if: github.event.pull_request.head.repo.full_name != github.repository
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
@@ -24,6 +25,7 @@ jobs:
       feature_matrix: ${{ steps.features.outputs.feature_matrix }}
 
   build:
+    if: github.event.pull_request.head.repo.full_name != github.repository
     needs: setup
     runs-on: ubuntu-latest
     strategy:
@@ -39,7 +41,28 @@ jobs:
       - name: Build HAL for ${{ matrix.pac }}
         run: cargo check --package atsamx7x-hal --features ${{ matrix.pac }},unproven
 
+  build-latest:
+    if: github.event.pull_request.head.repo.full_name != github.repository
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pac: ${{ fromJson(needs.setup.outputs.pac_matrix) }}
+    continue-on-error: true # we let this fail and carry on, but GH UI is poor not showing amber like other CIs
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - name: Update toolchain
+        run: rustup update
+      - name: Specify toolchain
+        run: rustup override set stable
+      - name: Install Rust (thumbv7em)
+        run: rustup target add thumbv7em-none-eabihf
+      - name: Build HAL for ${{ matrix.pac }}
+        run: cargo check --package atsamx7x-hal --features ${{ matrix.pac }},unproven
+
   build-features:
+    if: github.event.pull_request.head.repo.full_name != github.repository
     needs: setup
     runs-on: ubuntu-latest
     strategy:
@@ -56,6 +79,7 @@ jobs:
         run: cargo check --package atsamx7x-hal --features ${{ matrix.features }},samv71q21b,unproven
 
   board-examples:
+    if: github.event.pull_request.head.repo.full_name != github.repository
     needs: setup
     runs-on: ubuntu-latest
     strategy:
@@ -74,6 +98,7 @@ jobs:
           cargo check --examples
 
   clippy-hal:
+    if: github.event.pull_request.head.repo.full_name != github.repository
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -89,6 +114,7 @@ jobs:
         run: cargo clippy --package atsamx7x-hal --no-deps --features samv71q21b,unproven,reconfigurable-system-pins -- --deny warnings
 
   clippy-examples:
+    if: github.event.pull_request.head.repo.full_name != github.repository
     needs: [setup, build, board-examples]
     runs-on: ubuntu-latest
     strategy:
@@ -109,6 +135,7 @@ jobs:
           cargo clippy --examples --no-deps -- --deny warnings
 
   docs:
+    if: github.event.pull_request.head.repo.full_name != github.repository
     needs: build
     runs-on: ubuntu-latest
     steps:

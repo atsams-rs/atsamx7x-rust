@@ -4,18 +4,20 @@
 
 ### Added
 
-- [Integration](https://crates.io/crates/mcan-core) with the
-[`mcan`](https://crates.io/crates/mcan) crate.
+- [Integration](https://crates.io/crates/mcan-core) with the [`mcan`](https://crates.io/crates/mcan) crate.
 - Implementation of blocking::i2c::Transactional trait from [embedded-hal](https://crates.io/crates/embedded-hal) for TWI device.
 
 ### Changed
 - Remove `rust-toolchain.toml` and control MSRV from .github/workflow/ files instead.
+- Update `cortex-m-rt` version in examples to `0.7.3`.
+- Switched from AFE0_AD6 to  AFE0_AD8 for the atsamv71_xult board ADC example code.
 
 ### Removed
 - Huge generated source code for PACs removed, new location for them [`atsamx7x-pac`](/atsams-rs/atsamx7x-pac) (user side generated)
 
 ### Fixed
 - Examples now build and link again
+- [#62] Remove ambiguous reexports from `src/serial/mod.rs`.
 - TWIHS: Fix issue with clock frequency calculation.
 
 ## [v0.4.2] 2022-11-06
