@@ -19,6 +19,7 @@
 - Examples now build and link again
 - [#62] Remove ambiguous reexports from `src/serial/mod.rs`.
 - TWIHS: Fix issue with clock frequency calculation.
+- Fix CI
 
 ## [v0.4.2] 2022-11-06
 
