@@ -221,11 +221,7 @@ impl Inner {
     #[inline(always)]
     fn write_fifo(&self, ep: usize, buf: &[u8]) {
         unsafe {
-            core::ptr::copy_nonoverlapping(
-                buf.as_ptr(),
-                self.fifo_addr(ep) as *mut u8,
-                buf.len(),
-            );
+            core::ptr::copy_nonoverlapping(buf.as_ptr(), self.fifo_addr(ep) as *mut u8, buf.len());
         }
     }
 

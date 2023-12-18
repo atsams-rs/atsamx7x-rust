@@ -211,12 +211,11 @@ impl SpiConfiguration {
 }
 
 /// Generates a default [`Spi`] configuration: test mode inactive.
-impl Default for SpiConfiguration{
+impl Default for SpiConfiguration {
     fn default() -> Self {
         SpiConfiguration { test_mode: false }
     }
 }
-
 
 /// SPI peripheral abstraction.
 pub struct Spi<M: SpiMeta> {
@@ -642,10 +641,7 @@ impl<'spi, M: SpiMeta> blocking::spi::Transactional<u8> for Client<'spi, M> {
 
     /// Execute the provided transactions, deasserting the select line
     /// after the last transmitted word.
-    fn exec(
-        &mut self,
-        operations: &mut [blocking::spi::Operation<u8>],
-    ) -> Result<(), Self::Error> {
+    fn exec(&mut self, operations: &mut [blocking::spi::Operation<u8>]) -> Result<(), Self::Error> {
         use blocking::spi::Operation;
 
         let len = operations.len();
