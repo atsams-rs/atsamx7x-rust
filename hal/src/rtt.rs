@@ -23,7 +23,7 @@ via [`Rtt::new_8192Hz`].
 # use hal::rtt::*;
 # use hal::fugit::RateExtU32;
 # use rtic_monotonic::*;
-# let pac = hal::pac::Peripherals::take().unwrap();
+# let pac = unsafe{hal::pac::Peripherals::steal()};
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 
 let mono: Mono<100> = Rtt::new(pac.RTT, &slck, 100.Hz()).unwrap().into_monotonic();
@@ -37,7 +37,7 @@ or
 # use hal::rtt::*;
 # use hal::fugit::RateExtU32;
 # use rtic_monotonic::Monotonic;
-# let pac = hal::pac::Peripherals::take().unwrap();
+# let pac = unsafe{hal::pac::Peripherals::steal()};
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 
 use hal::ehal::{blocking::delay::DelayMs, timer::{CountDown, Cancel}};
@@ -83,7 +83,7 @@ pub enum RttError {
     /// # use hal::efc::*;
     /// # use hal::rtt::*;
     /// # use hal::fugit::RateExtU32;
-    /// # let pac = hal::pac::Peripherals::take().unwrap();
+    /// # let pac = unsafe{hal::pac::Peripherals::steal()};
     /// # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
     /// let rtt: Rtt<100> = Rtt::new(pac.RTT, &slck, 100.Hz()).unwrap();
     /// ```

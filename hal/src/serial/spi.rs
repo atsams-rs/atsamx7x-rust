@@ -23,7 +23,7 @@ Interrupt event management is handled by the [`event system`](crate::generics::e
 # use hal::serial::spi::*;
 # use hal::serial::ExtBpsU32;
 # use hal::fugit::ExtU32;
-# let pac = hal::pac::Peripherals::take().unwrap();
+# let pac = unsafe{hal::pac::Peripherals::steal()};
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 
 let bankd = BankD::new(pac.PIOD, &mut mck, &slck, BankConfiguration::default());
@@ -203,17 +203,20 @@ pub struct SpiConfiguration {
 }
 
 impl SpiConfiguration {
-    /// Generates a default [`Spi`] configuration: test mode inactive.
-    pub fn default() -> Self {
-        SpiConfiguration { test_mode: false }
-    }
-
     /// [`SpiConfiguration::test_mode`] override.
     pub fn test_mode(mut self, bit: bool) -> Self {
         self.test_mode = bit;
         self
     }
 }
+
+/// Generates a default [`Spi`] configuration: test mode inactive.
+impl Default for SpiConfiguration{
+    fn default() -> Self {
+        SpiConfiguration { test_mode: false }
+    }
+}
+
 
 /// SPI peripheral abstraction.
 pub struct Spi<M: SpiMeta> {
@@ -639,9 +642,9 @@ impl<'spi, M: SpiMeta> blocking::spi::Transactional<u8> for Client<'spi, M> {
 
     /// Execute the provided transactions, deasserting the select line
     /// after the last transmitted word.
-    fn exec<'a>(
+    fn exec(
         &mut self,
-        operations: &mut [blocking::spi::Operation<'a, u8>],
+        operations: &mut [blocking::spi::Operation<u8>],
     ) -> Result<(), Self::Error> {
         use blocking::spi::Operation;
 

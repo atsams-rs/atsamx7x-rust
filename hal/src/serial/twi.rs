@@ -20,7 +20,7 @@ implemented.
 # use hal::efc::*;
 # use hal::serial::twi::*;
 # use hal::fugit::RateExtU32;
-# let pac = hal::pac::Peripherals::take().unwrap();
+# let pac = unsafe{hal::pac::Peripherals::steal()};
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 let banka = BankA::new(pac.PIOA, &mut mck, &slck, BankConfiguration::default());
 
@@ -367,10 +367,10 @@ enum TransactionalState {
 impl<M: TwiMeta> blocking::i2c::Transactional for Twi<M> {
     type Error = TwiError;
 
-    fn exec<'a>(
+    fn exec(
         &mut self,
         address: u8,
-        operations: &mut [blocking::i2c::Operation<'a>],
+        operations: &mut [blocking::i2c::Operation],
     ) -> Result<(), Self::Error> {
         let mut state = TransactionalState::Uninitialized;
 

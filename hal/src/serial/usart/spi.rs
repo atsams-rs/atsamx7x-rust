@@ -227,9 +227,9 @@ impl<M: UsartMeta, R: SpiRole> ehal::spi::FullDuplex<u8> for Spi<M, R> {
 impl<M: UsartMeta, R: SpiRole> blocking::spi::Transactional<u8> for Spi<M, R> {
     type Error = SpiError;
 
-    fn exec<'a>(
+    fn exec(
         &mut self,
-        operations: &mut [blocking::spi::Operation<'a, u8>],
+        operations: &mut [blocking::spi::Operation<u8>],
     ) -> Result<(), Self::Error> {
         use blocking::spi::Operation;
 
