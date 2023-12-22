@@ -17,7 +17,7 @@ Refer to §51 for a full description of the PWM peripheral.
 # use hal::efc::*;
 # use hal::pwm::*;
 # use hal::fugit::RateExtU32;
-# let pac = hal::pac::Peripherals::take().unwrap();
+# let pac = unsafe{hal::pac::Peripherals::steal()};
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 use hal::ehal::PwmPin;
 
