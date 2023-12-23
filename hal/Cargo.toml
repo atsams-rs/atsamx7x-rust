@@ -33,7 +33,7 @@ embedded-hal = { version = "0.2.7" }
 nb = "1"
 fugit = "0.3.6"
 paste = "1"
-usb-device = "0.2.9"
+usb-device = "0.3.1"
 bit-iter = "1"
 rtic-monotonic = "1"
 void = { version = "1", default-features = false }

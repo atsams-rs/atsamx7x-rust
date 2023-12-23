@@ -85,7 +85,7 @@ struct EPConfig {
     max_packet_size: u16,
 }
 
-impl EPConfig {
+impl EPConfig { 
     fn new(ep_type: EndpointType, dir: UsbDirection, max_packet_size: u16) -> Self {
         Self {
             ep_type,
@@ -260,7 +260,7 @@ impl Inner {
                 // single-bank endpoint
                 w.epbk()._1_bank();
 
-                w.eptype().bits(conf.ep_type as u8);
+                w.eptype().bits(conf.ep_type.to_bm_attributes());
                 w.alloc().set_bit();
 
                 w

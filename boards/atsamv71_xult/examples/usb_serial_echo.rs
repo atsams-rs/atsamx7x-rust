@@ -55,11 +55,12 @@ mod app {
             ctx.local.usb_alloc.as_ref().unwrap(),
             UsbVidPid(0xdead, 0xbeef),
         )
-        .manufacturer("ATSAMx7x HAL Contributors")
-        .product("Serial port echo")
-        .serial_number("N/A")
+        .strings(&[StringDescriptors::new(LangID::EN)
+            .manufacturer("ATSAMx7x HAL Contributors")
+            .product("Serial port echo")
+            .serial_number("N/A")]).unwrap()
         .device_class(USB_CLASS_CDC)
-        .max_packet_size_0(64) // makes control transfers 8x faster
+        .max_packet_size_0(64).unwrap() // makes control transfers 8x faster
         .build();
 
         rprintln!(" done");
