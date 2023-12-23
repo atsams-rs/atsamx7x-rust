@@ -58,9 +58,11 @@ mod app {
         .strings(&[StringDescriptors::new(LangID::EN)
             .manufacturer("ATSAMx7x HAL Contributors")
             .product("Serial port echo")
-            .serial_number("N/A")]).unwrap()
+            .serial_number("N/A")])
+        .unwrap()
         .device_class(USB_CLASS_CDC)
-        .max_packet_size_0(64).unwrap() // makes control transfers 8x faster
+        .max_packet_size_0(64)
+        .unwrap() // makes control transfers 8x faster
         .build();
 
         rprintln!(" done");
