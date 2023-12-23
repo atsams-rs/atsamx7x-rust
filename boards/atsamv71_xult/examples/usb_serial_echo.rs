@@ -61,8 +61,8 @@ mod app {
             .serial_number("N/A")])
         .unwrap()
         .device_class(USB_CLASS_CDC)
-        .max_packet_size_0(64)
-        .unwrap() // makes control transfers 8x faster
+        .max_packet_size_0(64) // makes control transfers 8x faster
+        .unwrap()
         .build();
 
         rprintln!(" done");
