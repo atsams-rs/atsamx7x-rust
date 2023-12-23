@@ -46,10 +46,13 @@ use usb_device::prelude::*;
 
 let usb_alloc = Usb::new(pac.USBHS, &mut mck, &upllck).into_usb_allocator();
 let mut usb_dev = UsbDeviceBuilder::new(&usb_alloc, UsbVidPid(0x16c0, 0x27dd))
-    .manufacturer("Fake company")
-    .product("Serial port")
-    .serial_number("TEST")
+    .strings(&[StringDescriptors::new(LangID::EN)
+        .manufacturer("Fake company")
+        .product("Serial port")
+    .serial_number("TEST")])
+    .unwrap()
     .max_packet_size_0(64) // makes control transfers 8x faster
+    .unwrap()
     .build();
 
 loop {
