@@ -23,7 +23,7 @@ typenum = "1"
 [dependencies.atsamx7x-hal]
 version = "0.4.3-alpha3"
 path = "../../hal"
-features = ["samv71q21b-rt", "unproven"]
+features = ["samv71q21b", "rt", "unproven"]
 
 [profile.dev]
 debug = true
