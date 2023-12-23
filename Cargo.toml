@@ -10,36 +10,40 @@ exclude = [
 ]
 
 [patch.crates-io]
-atsame70j19b = { path = "../atsamx7x-pac/pac/atsame70j19b" }
-atsame70j20b = { path = "../atsamx7x-pac/pac/atsame70j20b" }
-atsame70j21b = { path = "../atsamx7x-pac/pac/atsame70j21b" }
-atsame70n19b = { path = "../atsamx7x-pac/pac/atsame70n19b" }
-atsame70n20b = { path = "../atsamx7x-pac/pac/atsame70n20b" }
-atsame70n21b = { path = "../atsamx7x-pac/pac/atsame70n21b" }
-atsame70q19b = { path = "../atsamx7x-pac/pac/atsame70q19b" }
-atsame70q20b = { path = "../atsamx7x-pac/pac/atsame70q20b" }
-atsame70q21b = { path = "../atsamx7x-pac/pac/atsame70q21b" }
-atsams70j19b = { path = "../atsamx7x-pac/pac/atsams70j19b" }
-atsams70j20b = { path = "../atsamx7x-pac/pac/atsams70j20b" }
-atsams70j21b = { path = "../atsamx7x-pac/pac/atsams70j21b" }
-atsams70n19b = { path = "../atsamx7x-pac/pac/atsams70n19b" }
-atsams70n20b = { path = "../atsamx7x-pac/pac/atsams70n20b" }
-atsams70n21b = { path = "../atsamx7x-pac/pac/atsams70n21b" }
-atsams70q19b = { path = "../atsamx7x-pac/pac/atsams70q19b" }
-atsams70q20b = { path = "../atsamx7x-pac/pac/atsams70q20b" }
-atsams70q21b = { path = "../atsamx7x-pac/pac/atsams70q21b" }
-atsamv70j19b = { path = "../atsamx7x-pac/pac/atsamv70j19b" }
-atsamv70j20b = { path = "../atsamx7x-pac/pac/atsamv70j20b" }
-atsamv70n19b = { path = "../atsamx7x-pac/pac/atsamv70n19b" }
-atsamv70n20b = { path = "../atsamx7x-pac/pac/atsamv70n20b" }
-atsamv70q19b = { path = "../atsamx7x-pac/pac/atsamv70q19b" }
-atsamv70q20b = { path = "../atsamx7x-pac/pac/atsamv70q20b" }
-atsamv71j19b = { path = "../atsamx7x-pac/pac/atsamv71j19b" }
-atsamv71j20b = { path = "../atsamx7x-pac/pac/atsamv71j20b" }
-atsamv71j21b = { path = "../atsamx7x-pac/pac/atsamv71j21b" }
-atsamv71n19b = { path = "../atsamx7x-pac/pac/atsamv71n19b" }
-atsamv71n20b = { path = "../atsamx7x-pac/pac/atsamv71n20b" }
-atsamv71n21b = { path = "../atsamx7x-pac/pac/atsamv71n21b" }
-atsamv71q19b = { path = "../atsamx7x-pac/pac/atsamv71q19b" }
-atsamv71q20b = { path = "../atsamx7x-pac/pac/atsamv71q20b" }
-atsamv71q21b = { path = "../atsamx7x-pac/pac/atsamv71q21b" }
+# In the end it doesn't work as I supposed based on `Cargo.toml` from other
+# projects. First, it works only at workspace level; second, it's not optional
+# in the sense of probing for existence. We shall consider documenting use of
+# https://doc.rust-lang.org/cargo/reference/overriding-dependencies.html#paths-overrides
+# atsame70j19b = { path = "../atsamx7x-pac/pac/atsame70j19b" }
+# atsame70j20b = { path = "../atsamx7x-pac/pac/atsame70j20b" }
+# atsame70j21b = { path = "../atsamx7x-pac/pac/atsame70j21b" }
+# atsame70n19b = { path = "../atsamx7x-pac/pac/atsame70n19b" }
+# atsame70n20b = { path = "../atsamx7x-pac/pac/atsame70n20b" }
+# atsame70n21b = { path = "../atsamx7x-pac/pac/atsame70n21b" }
+# atsame70q19b = { path = "../atsamx7x-pac/pac/atsame70q19b" }
+# atsame70q20b = { path = "../atsamx7x-pac/pac/atsame70q20b" }
+# atsame70q21b = { path = "../atsamx7x-pac/pac/atsame70q21b" }
+# atsams70j19b = { path = "../atsamx7x-pac/pac/atsams70j19b" }
+# atsams70j20b = { path = "../atsamx7x-pac/pac/atsams70j20b" }
+# atsams70j21b = { path = "../atsamx7x-pac/pac/atsams70j21b" }
+# atsams70n19b = { path = "../atsamx7x-pac/pac/atsams70n19b" }
+# atsams70n20b = { path = "../atsamx7x-pac/pac/atsams70n20b" }
+# atsams70n21b = { path = "../atsamx7x-pac/pac/atsams70n21b" }
+# atsams70q19b = { path = "../atsamx7x-pac/pac/atsams70q19b" }
+# atsams70q20b = { path = "../atsamx7x-pac/pac/atsams70q20b" }
+# atsams70q21b = { path = "../atsamx7x-pac/pac/atsams70q21b" }
+# atsamv70j19b = { path = "../atsamx7x-pac/pac/atsamv70j19b" }
+# atsamv70j20b = { path = "../atsamx7x-pac/pac/atsamv70j20b" }
+# atsamv70n19b = { path = "../atsamx7x-pac/pac/atsamv70n19b" }
+# atsamv70n20b = { path = "../atsamx7x-pac/pac/atsamv70n20b" }
+# atsamv70q19b = { path = "../atsamx7x-pac/pac/atsamv70q19b" }
+# atsamv70q20b = { path = "../atsamx7x-pac/pac/atsamv70q20b" }
+# atsamv71j19b = { path = "../atsamx7x-pac/pac/atsamv71j19b" }
+# atsamv71j20b = { path = "../atsamx7x-pac/pac/atsamv71j20b" }
+# atsamv71j21b = { path = "../atsamx7x-pac/pac/atsamv71j21b" }
+# atsamv71n19b = { path = "../atsamx7x-pac/pac/atsamv71n19b" }
+# atsamv71n20b = { path = "../atsamx7x-pac/pac/atsamv71n20b" }
+# atsamv71n21b = { path = "../atsamx7x-pac/pac/atsamv71n21b" }
+# atsamv71q19b = { path = "../atsamx7x-pac/pac/atsamv71q19b" }
+# atsamv71q20b = { path = "../atsamx7x-pac/pac/atsamv71q20b" }
+# atsamv71q21b = { path = "../atsamx7x-pac/pac/atsamv71q21b" }
