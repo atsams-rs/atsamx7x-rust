@@ -32,7 +32,7 @@ Mode support depends on what [`Pin`]s that are available for the
 # use hal::serial::usart::*;
 # use hal::serial::ExtBpsU32;
 # use hal::fugit::{ExtU32, RateExtU32};
-# let pac = unsafe{hal::pac::Peripherals::steal()};
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 use hal::generics::events::EventHandler;
 use hal::ehal::serial::{Read, Write};

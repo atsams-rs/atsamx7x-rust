@@ -42,7 +42,7 @@ impl<B: PinBank> BankInterrupts<B> {
     /// # use hal::pio::*;
     /// # use hal::clocks::*;
     /// # use hal::efc::*;
-    /// # let pac = unsafe{hal::pac::Peripherals::steal()};
+    /// # let pac = hal::pac::Peripherals::take().unwrap();
     /// # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
     /// let mut banka = BankA::new(pac.PIOA, &mut mck, &slck, BankConfiguration::default());
     /// for pin in banka.interrupts.iter() {

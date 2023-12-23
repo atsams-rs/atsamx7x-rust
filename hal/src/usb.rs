@@ -16,7 +16,7 @@ extensively tested, and should be considered unstable at the moment.
 # use hal::efc::*;
 # use hal::usb::*;
 # use hal::fugit::RateExtU32;
-# let pac = unsafe{hal::pac::Peripherals::steal()};
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let clocks = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into());
 # let slck = clocks.slck.configure_external_normal();
 # let mainck = clocks

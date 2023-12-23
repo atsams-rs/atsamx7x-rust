@@ -22,7 +22,7 @@ Refer to §50 for a full description on the capabilities offered by a [`Tc`].
 # use hal::efc::*;
 # use hal::tc::*;
 # use hal::fugit::ExtU32;
-# let pac = unsafe{hal::pac::Peripherals::steal()};
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 let banka = hal::pio::BankA::new(
     pac.PIOA,
@@ -54,7 +54,7 @@ counter.sample_freq(100.millis());
 # use hal::clocks::*;
 # use hal::efc::*;
 # use hal::tc::*;
-# let pac = unsafe{hal::pac::Peripherals::steal()};
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 let tc = Tc::new_tc0(pac.TC0, &mut mck);
 let driver = tc
@@ -80,7 +80,7 @@ let mono: Monotonic<Tc0, Ch1, Channel<Tc0, Ch0, Generate<HostClock, 12_000_000>>
 # use hal::clocks::*;
 # use hal::efc::*;
 # use hal::tc::*;
-# let pac = unsafe{hal::pac::Peripherals::steal()};
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 let tc = Tc::new_tc0(pac.TC0, &mut mck);
 let driver = tc
@@ -410,7 +410,7 @@ pub enum TcError {
     /// # use hal::clocks::*;
     /// # use hal::efc::*;
     /// # use hal::tc::*;
-    /// # let pac = unsafe{hal::pac::Peripherals::steal()};
+    /// # let pac = hal::pac::Peripherals::take().unwrap();
     /// # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
     /// let tc = Tc::new_tc0(pac.TC0, &mut mck);
     /// let ch = tc.channel_0.generate::<15_000_000>(&mck).unwrap();
