@@ -85,7 +85,7 @@ struct EPConfig {
     max_packet_size: u16,
 }
 
-impl EPConfig { 
+impl EPConfig {
     fn new(ep_type: EndpointType, dir: UsbDirection, max_packet_size: u16) -> Self {
         Self {
             ep_type,
