@@ -238,7 +238,7 @@ pub enum ClockError {
     InvalidHccFreq(Megahertz),
 
     /// The V70/V71 must be driven with VDDIO = 3.3V, typical.
-    #[cfg(any(feature = "v70", feature = "v71"))]
+    #[cfg(any(feature = "__v70", feature = "__v71"))]
     InvalidVddioLevel,
 }
 

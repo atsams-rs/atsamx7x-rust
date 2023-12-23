@@ -64,6 +64,8 @@ use crate::clocks::{HostClock, PeripheralIdentifier, UpllClock};
 use crate::pac::{usbhs::RegisterBlock, USBHS};
 
 use core::cell::UnsafeCell;
+use core::option::Option;
+use core::result::Result::{Err, Ok};
 
 use cortex_m::interrupt::{self, Mutex};
 use usb_device::bus::{PollResult, UsbBusAllocator};

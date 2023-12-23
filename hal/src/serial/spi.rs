@@ -63,7 +63,7 @@ use super::Bps;
 use crate::clocks::{Clock, HostClock, PeripheralIdentifier};
 use crate::ehal::blocking;
 use crate::fugit::{ExtU32, NanosDurationU32 as NanosDuration};
-#[cfg(feature = "pins-144")]
+#[cfg(feature = "__pins-144")]
 use crate::pac::SPI1;
 use crate::pac::{spi0::tdr::PCSSELECT_AW as HwChipSelect, spi0::RegisterBlock, SPI0};
 use crate::{ehal, nb};
@@ -578,7 +578,7 @@ impl_spi!(
         ],
     },
 
-    #[cfg(feature = "pins-144")]
+    #[cfg(feature = "__pins-144")]
     Spi1: {
         MISO: [ Pin<PC26, PeripheralC> ],
         MOSI: [ Pin<PC27, PeripheralC> ],

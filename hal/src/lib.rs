@@ -171,27 +171,27 @@ pub use atsamv71q21 as pac;
 #[cfg(feature = "samv71q21b")]
 pub use atsamv71q21b as pac;
 
-#[cfg(feature = "device-selected")]
+#[cfg(feature = "__device-selected")]
 pub mod afec;
-#[cfg(all(feature = "device-selected", feature = "can"))]
+#[cfg(all(feature = "__device-selected", feature = "can"))]
 pub mod can;
-#[cfg(feature = "device-selected")]
+#[cfg(feature = "__device-selected")]
 pub mod clocks;
-#[cfg(feature = "device-selected")]
+#[cfg(feature = "__device-selected")]
 pub mod efc;
-#[cfg(feature = "device-selected")]
+#[cfg(feature = "__device-selected")]
 pub mod generics;
-#[cfg(feature = "device-selected")]
+#[cfg(feature = "__device-selected")]
 pub mod pio;
-#[cfg(feature = "device-selected")]
+#[cfg(feature = "__device-selected")]
 pub mod pwm;
-#[cfg(feature = "device-selected")]
+#[cfg(feature = "__device-selected")]
 pub mod rtt;
-#[cfg(feature = "device-selected")]
+#[cfg(feature = "__device-selected")]
 pub mod serial;
-#[cfg(feature = "device-selected")]
+#[cfg(feature = "__device-selected")]
 pub mod tc;
-#[cfg(feature = "device-selected")]
+#[cfg(feature = "__device-selected")]
 pub mod usb;
-#[cfg(feature = "device-selected")]
+#[cfg(feature = "__device-selected")]
 pub mod watchdog;
