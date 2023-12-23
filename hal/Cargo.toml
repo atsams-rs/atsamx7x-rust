@@ -1,6 +1,6 @@
 [package]
 name = "atsamx7x-hal"
-version = "0.4.3-alpha1"
+version = "0.4.3-alpha3"
 # in no particular order
 authors = [
         "Michal Fita <michal.fita@gmail.com>",
@@ -40,39 +40,39 @@ void = { version = "1", default-features = false }
 strum = { version = "0.24.1", default-features = false, features = ["derive"]}
 cfg-if = "1"
 mcan-core = { version = "0.2", optional = true }
-atsame70j19b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsame70j20b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsame70j21b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsame70n19b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsame70n20b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsame70n21b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsame70q19b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsame70q20b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsame70q21b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsams70j19b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsams70j20b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsams70j21b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsams70n19b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsams70n20b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsams70n21b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsams70q19b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsams70q20b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsams70q21b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsamv70j19b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsamv70j20b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsamv70n19b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsamv70n20b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsamv70q19b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsamv70q20b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsamv71j19b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsamv71j20b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsamv71j21b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsamv71n19b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsamv71n20b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsamv71n21b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsamv71q19b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsamv71q20b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
-atsamv71q21b = { version = "0.29.0-alpha3", optional = true, features = ["critical-section"]}
+atsame70j19b = { version = "0.29.0-alpha3", optional = true }
+atsame70j20b = { version = "0.29.0-alpha3", optional = true }
+atsame70j21b = { version = "0.29.0-alpha3", optional = true }
+atsame70n19b = { version = "0.29.0-alpha3", optional = true }
+atsame70n20b = { version = "0.29.0-alpha3", optional = true }
+atsame70n21b = { version = "0.29.0-alpha3", optional = true }
+atsame70q19b = { version = "0.29.0-alpha3", optional = true }
+atsame70q20b = { version = "0.29.0-alpha3", optional = true }
+atsame70q21b = { version = "0.29.0-alpha3", optional = true }
+atsams70j19b = { version = "0.29.0-alpha3", optional = true }
+atsams70j20b = { version = "0.29.0-alpha3", optional = true }
+atsams70j21b = { version = "0.29.0-alpha3", optional = true }
+atsams70n19b = { version = "0.29.0-alpha3", optional = true }
+atsams70n20b = { version = "0.29.0-alpha3", optional = true }
+atsams70n21b = { version = "0.29.0-alpha3", optional = true }
+atsams70q19b = { version = "0.29.0-alpha3", optional = true }
+atsams70q20b = { version = "0.29.0-alpha3", optional = true }
+atsams70q21b = { version = "0.29.0-alpha3", optional = true }
+atsamv70j19b = { version = "0.29.0-alpha3", optional = true }
+atsamv70j20b = { version = "0.29.0-alpha3", optional = true }
+atsamv70n19b = { version = "0.29.0-alpha3", optional = true }
+atsamv70n20b = { version = "0.29.0-alpha3", optional = true }
+atsamv70q19b = { version = "0.29.0-alpha3", optional = true }
+atsamv70q20b = { version = "0.29.0-alpha3", optional = true }
+atsamv71j19b = { version = "0.29.0-alpha3", optional = true }
+atsamv71j20b = { version = "0.29.0-alpha3", optional = true }
+atsamv71j21b = { version = "0.29.0-alpha3", optional = true }
+atsamv71n19b = { version = "0.29.0-alpha3", optional = true }
+atsamv71n20b = { version = "0.29.0-alpha3", optional = true }
+atsamv71n21b = { version = "0.29.0-alpha3", optional = true }
+atsamv71q19b = { version = "0.29.0-alpha3", optional = true }
+atsamv71q20b = { version = "0.29.0-alpha3", optional = true }
+atsamv71q21b = { version = "0.29.0-alpha3", optional = true }
 
 [patch.crates-io]
 atsame70j19b = { path = "../../atsamx7x-pac/pac/atsame70j19b" }
@@ -179,6 +179,25 @@ rt = ["atsame70j19b?/rt", "atsame70j20b?/rt", "atsame70j21b?/rt",
       "atsamv71j19b?/rt", "atsamv71j20b?/rt", "atsamv71j21b?/rt",
       "atsamv71n19b?/rt", "atsamv71n20b?/rt", "atsamv71n21b?/rt",
       "atsamv71q19b?/rt", "atsamv71q20b?/rt", "atsamv71q21b?/rt"]
+
+critical-section = [
+      "atsame70j19b?/critical-section", "atsame70j20b?/critical-section",
+      "atsame70j21b?/critical-section", "atsame70n19b?/critical-section",
+      "atsame70n20b?/critical-section", "atsame70n21b?/critical-section",
+      "atsame70q19b?/critical-section", "atsame70q20b?/critical-section",
+      "atsame70q21b?/critical-section", "atsams70j19b?/critical-section",
+      "atsams70j20b?/critical-section", "atsams70j21b?/critical-section",
+      "atsams70n19b?/critical-section", "atsams70n20b?/critical-section",
+      "atsams70n21b?/critical-section", "atsams70q19b?/critical-section",
+      "atsams70q20b?/critical-section", "atsams70q21b?/critical-section",
+      "atsamv70j19b?/critical-section", "atsamv70j20b?/critical-section",
+      "atsamv70n19b?/critical-section", "atsamv70n20b?/critical-section",
+      "atsamv70q19b?/critical-section", "atsamv70q20b?/critical-section",
+      "atsamv71j19b?/critical-section", "atsamv71j20b?/critical-section",
+      "atsamv71j21b?/critical-section", "atsamv71n19b?/critical-section",
+      "atsamv71n20b?/critical-section", "atsamv71n21b?/critical-section",
+      "atsamv71q19b?/critical-section", "atsamv71q20b?/critical-section",
+      "atsamv71q21b?/critical-section"]
 
 
 [package.metadata.docs.rs]
