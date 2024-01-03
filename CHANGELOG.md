@@ -12,7 +12,7 @@
 - Remove `rust-toolchain.toml` and control MSRV from `.github/workflow/` files instead.
 - Update `cortex-m-rt` version in examples to `0.7.3`.
 - Switched from AFE0_AD6 to  AFE0_AD8 for the atsamv71_xult board ADC example code.
-- The `rt` separated to don't act as part of chip selection feature anymore.
+- The `rt` separated to not act as part of chip selection feature any more.
 
 ### Removed
 - Huge generated source code for PACs removed, new location for them [`atsamx7x-pac`](/atsams-rs/atsamx7x-pac) (user side generated)
@@ -82,7 +82,7 @@
 - `pwm` module: allows frequencies and duty-rates to be independently set for each `pwm::Channel`, with help from `ehal::PwmPin`.
 - `hal/rust-toolchain.toml` that pins `rustc` (and relevant components/targets) to MSRV 1.63.0.
 - Crate feature: `reconfigurable-system-pins`; see below.
-- CI job that enforces `CHANGELOG.md` additions, unless the MR is labeled `skip-changelog`.
+- CI job that enforces `CHANGELOG.md` additions, unless the MR is labelled `skip-changelog`.
 
 ### Removed
 - `serial::Uart::UartError::BaudRateNotInRange` error.
