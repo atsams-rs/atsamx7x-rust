@@ -17,7 +17,7 @@ Refer to §51 for a full description of the PWM peripheral.
 # use hal::efc::*;
 # use hal::pwm::*;
 # use hal::fugit::RateExtU32;
-# let pac = unsafe{hal::pac::Peripherals::steal()};
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 use hal::ehal::PwmPin;
 
@@ -441,23 +441,23 @@ impl_pwm!(
         Ch0: {
             // PWMC0_PWMH0
             H: [
-                #[cfg(not(feature = "pins-64"))]
+                #[cfg(not(feature = "__pins-64"))]
                 Pin<PA0, PeripheralA>,
                 Pin<PA11, PeripheralB>,
-                #[cfg(not(feature = "pins-64"))]
+                #[cfg(not(feature = "__pins-64"))]
                 Pin<PA23, PeripheralB>,
                 Pin<PB0, PeripheralA>,
-                #[cfg(feature = "pins-144")]
+                #[cfg(feature = "__pins-144")]
                 Pin<PC0, PeripheralB>,
                 Pin<PD11, PeripheralB>,
-                #[cfg(not(feature = "pins-64"))]
+                #[cfg(not(feature = "__pins-64"))]
                 Pin<PD20, PeripheralB>,
             ],
             // PWMC0_PWML0
             L: [
-                #[cfg(not(feature = "pins-64"))]
+                #[cfg(not(feature = "__pins-64"))]
                 Pin<PA1, PeripheralA>,
-                #[cfg(not(feature = "pins-64"))]
+                #[cfg(not(feature = "__pins-64"))]
                 Pin<PA19, PeripheralB>,
                 #[cfg(feature = "reconfigurable-system-pins")]
                 Pin<PB5, PeripheralB>,
@@ -476,7 +476,7 @@ impl_pwm!(
         Ch1: {
             // PWMC0_PWMH1
             H: [
-                #[cfg(not(feature = "pins-64"))]
+                #[cfg(not(feature = "__pins-64"))]
                 Pin<PA2, PeripheralA>,
                 Pin<PA12, PeripheralB>,
                 Pin<PA24, PeripheralB>,
@@ -485,15 +485,15 @@ impl_pwm!(
             ],
             // PWMC0_PWML1
             L: [
-                #[cfg(not(feature = "pins-64"))]
+                #[cfg(not(feature = "__pins-64"))]
                 Pin<PA20, PeripheralB>,
-                #[cfg(not(feature = "pins-64"))]
+                #[cfg(not(feature = "__pins-64"))]
                 Pin<PA30, PeripheralA>,
                 #[cfg(feature = "reconfigurable-system-pins")]
                 Pin<PB12, PeripheralA>,
-                #[cfg(feature = "pins-144")]
+                #[cfg(feature = "__pins-144")]
                 Pin<PC1, PeripheralB>,
-                #[cfg(feature = "pins-144")]
+                #[cfg(feature = "__pins-144")]
                 Pin<PC18, PeripheralB>,
                 Pin<PD25, PeripheralB>,
             ],
@@ -510,22 +510,22 @@ impl_pwm!(
             // PWMC0_PWMH2
             H: [
                 Pin<PA13, PeripheralB>,
-                #[cfg(not(feature = "pins-64"))]
+                #[cfg(not(feature = "__pins-64"))]
                 Pin<PA25, PeripheralB>,
                 #[cfg(feature = "reconfigurable-system-pins")]
                 Pin<PB4, PeripheralB>,
-                #[cfg(feature = "pins-144")]
+                #[cfg(feature = "__pins-144")]
                 Pin<PC19, PeripheralB>,
                 Pin<PD22, PeripheralB>,
             ],
             // PWMC0_PWML2
             L: [
-                #[cfg(not(feature = "pins-64"))]
+                #[cfg(not(feature = "__pins-64"))]
                 Pin<PA16, PeripheralC>,
                 Pin<PA13, PeripheralA>,
-                #[cfg(feature = "pins-144")]
+                #[cfg(feature = "__pins-144")]
                 Pin<PC2, PeripheralB>,
-                #[cfg(feature = "pins-144")]
+                #[cfg(feature = "__pins-144")]
                 Pin<PC20, PeripheralB>,
                 Pin<PD26, PeripheralB>,
             ],
@@ -541,26 +541,26 @@ impl_pwm!(
             H: [
                 Pin<PA7, PeripheralB>,
                 Pin<PA14, PeripheralB>,
-                #[cfg(not(feature = "pins-64"))]
+                #[cfg(not(feature = "__pins-64"))]
                 Pin<PA17, PeripheralC>,
-                #[cfg(feature = "pins-144")]
+                #[cfg(feature = "__pins-144")]
                 Pin<PC13, PeripheralB>,
-                #[cfg(feature = "pins-144")]
+                #[cfg(feature = "__pins-144")]
                 Pin<PC21, PeripheralB>,
-                #[cfg(feature = "pins-144")]
+                #[cfg(feature = "__pins-144")]
                 Pin<PD23, PeripheralB>,
             ],
             // PWMC0_PWML3
             L: [
-                #[cfg(not(feature = "pins-64"))]
+                #[cfg(not(feature = "__pins-64"))]
                 Pin<PA15, PeripheralC>,
-                #[cfg(feature = "pins-144")]
+                #[cfg(feature = "__pins-144")]
                 Pin<PC3, PeripheralB>,
-                #[cfg(feature = "pins-144")]
+                #[cfg(feature = "__pins-144")]
                 Pin<PC15, PeripheralB>,
-                #[cfg(feature = "pins-144")]
+                #[cfg(feature = "__pins-144")]
                 Pin<PC22, PeripheralB>,
-                #[cfg(not(feature = "pins-64"))]
+                #[cfg(not(feature = "__pins-64"))]
                 Pin<PD27, PeripheralB>,
             ],
             // PWMC0_PWMEXTRG3
@@ -614,13 +614,13 @@ impl_pwm!(
         Ch2: {
             // PWMC1_PWMH2
             H: [
-                #[cfg(not(feature = "pins-64"))]
+                #[cfg(not(feature = "__pins-64"))]
                 Pin<PA31, PeripheralD>,
                 Pin<PD5, PeripheralB>,
             ],
             // PWMC1_PWML2
             L: [
-                #[cfg(not(feature = "pins-64"))]
+                #[cfg(not(feature = "__pins-64"))]
                 Pin<PA23, PeripheralD>,
                 Pin<PD4, PeripheralB>,
             ],

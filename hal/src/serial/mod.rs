@@ -26,5 +26,5 @@ pub mod usart;
 pub mod twi;
 pub use twi::*;
 
-#[cfg(not(feature = "pins-64"))]
+#[cfg(not(feature = "__pins-64"))]
 pub mod spi;

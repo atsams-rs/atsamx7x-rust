@@ -20,7 +20,7 @@ implemented.
 # use hal::efc::*;
 # use hal::serial::twi::*;
 # use hal::fugit::RateExtU32;
-# let pac = unsafe{hal::pac::Peripherals::steal()};
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 let banka = BankA::new(pac.PIOA, &mut mck, &slck, BankConfiguration::default());
 
@@ -47,7 +47,7 @@ use crate::ehal::blocking;
 use crate::generics;
 #[cfg(feature = "reconfigurable-system-pins")]
 use crate::pac::TWIHS1;
-#[cfg(not(feature = "pins-64"))]
+#[cfg(not(feature = "__pins-64"))]
 use crate::pac::TWIHS2;
 use crate::pac::{
     twihs0::{sr::R as StatusRegister, RegisterBlock},
@@ -301,7 +301,7 @@ impl_twi!(
         DATA: Pin<PB4, PeripheralA>,
         CLOCK: Pin<PB5, PeripheralA>,
     },
-    #[cfg(not(feature = "pins-64"))]
+    #[cfg(not(feature = "__pins-64"))]
     TwiHS2: {
         DATA: Pin<PD27, PeripheralC>,
         CLOCK: Pin<PD28, PeripheralC>,

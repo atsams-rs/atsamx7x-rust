@@ -22,7 +22,7 @@ Refer to §50 for a full description on the capabilities offered by a [`Tc`].
 # use hal::efc::*;
 # use hal::tc::*;
 # use hal::fugit::ExtU32;
-# let pac = unsafe{hal::pac::Peripherals::steal()};
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 let banka = hal::pio::BankA::new(
     pac.PIOA,
@@ -54,7 +54,7 @@ counter.sample_freq(100.millis());
 # use hal::clocks::*;
 # use hal::efc::*;
 # use hal::tc::*;
-# let pac = unsafe{hal::pac::Peripherals::steal()};
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 let tc = Tc::new_tc0(pac.TC0, &mut mck);
 let driver = tc
@@ -80,7 +80,7 @@ let mono: Monotonic<Tc0, Ch1, Channel<Tc0, Ch0, Generate<HostClock, 12_000_000>>
 # use hal::clocks::*;
 # use hal::efc::*;
 # use hal::tc::*;
-# let pac = unsafe{hal::pac::Peripherals::steal()};
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 let tc = Tc::new_tc0(pac.TC0, &mut mck);
 let driver = tc
@@ -410,7 +410,7 @@ pub enum TcError {
     /// # use hal::clocks::*;
     /// # use hal::efc::*;
     /// # use hal::tc::*;
-    /// # let pac = unsafe{hal::pac::Peripherals::steal()};
+    /// # let pac = hal::pac::Peripherals::take().unwrap();
     /// # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
     /// let tc = Tc::new_tc0(pac.TC0, &mut mck);
     /// let ch = tc.channel_0.generate::<15_000_000>(&mck).unwrap();
@@ -705,127 +705,127 @@ impl_tc!(
     Tc0: {
         Ch0: {
             // TIOA0
-            #[cfg(not(feature = "pins-64"))]
+            #[cfg(not(feature = "__pins-64"))]
             TIOA: Pin<PA0, PeripheralB>,
             // TIOB0
-            #[cfg(not(feature = "pins-64"))]
+            #[cfg(not(feature = "__pins-64"))]
             TIOB: Pin<PA1, PeripheralB>,
             // TCLK0
             TCLK: Pin<PA4, PeripheralB>,
         },
         Ch1: {
             // TIOA1
-            #[cfg(not(feature = "pins-64"))]
+            #[cfg(not(feature = "__pins-64"))]
             TIOA: Pin<PA15, PeripheralB>,
             // TIOB1
-            #[cfg(not(feature = "pins-64"))]
+            #[cfg(not(feature = "__pins-64"))]
             TIOB: Pin<PA16, PeripheralB>,
             // TCLK1
-            #[cfg(not(feature = "pins-64"))]
+            #[cfg(not(feature = "__pins-64"))]
             TCLK: Pin<PA28, PeripheralB>,
         },
         Ch2: {
             // TIOA2
-            #[cfg(not(feature = "pins-64"))]
+            #[cfg(not(feature = "__pins-64"))]
             TIOA: Pin<PA26, PeripheralB>,
             // TIOB2
             TIOB: Pin<PA27, PeripheralB>,
             // TCLK2
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TCLK: Pin<PA29, PeripheralB>,
         },
     },
     Tc1: {
         Ch0: {
             // TIOA3
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TIOA: Pin<PC23, PeripheralB>,
             // TIOB3
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TIOB: Pin<PC24, PeripheralB>,
             // TCLK3
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TCLK: Pin<PC25, PeripheralB>,
         },
         Ch1: {
             // TIOA4
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TIOA: Pin<PC26, PeripheralB>,
             // TIOB4
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TIOB: Pin<PC27, PeripheralB>,
             // TCLK4
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TCLK: Pin<PC28, PeripheralB>,
         },
         Ch2: {
             // TIOA5
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TIOA: Pin<PC29, PeripheralB>,
             // TIOB5
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TIOB: Pin<PC30, PeripheralB>,
             // TCLK5
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TCLK: Pin<PC31, PeripheralB>,
         },
     },
     Tc2: {
         Ch0: {
             // TIOA6
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TIOA: Pin<PC5, PeripheralB>,
             // TIOB6
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TIOB: Pin<PC6, PeripheralB>,
             // TCLK6
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TCLK: Pin<PC7, PeripheralB>,
         },
         Ch1: {
             // TIOA7
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TIOA: Pin<PC8, PeripheralB>,
             // TIOB7
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TIOB: Pin<PC9, PeripheralB>,
             // TCLK7
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TCLK: Pin<PC10, PeripheralB>,
         },
         Ch2: {
             // TIOA8
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TIOA: Pin<PC11, PeripheralB>,
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             // TIOB8
             TIOB: Pin<PC12, PeripheralB>,
             // TCLK8
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TCLK: Pin<PC14, PeripheralB>,
         },
     },
     Tc3: {
         Ch0: {
             // TIOA9
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TIOA: Pin<PE0, PeripheralB>,
             // TIOB9
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TIOB: Pin<PE1, PeripheralB>,
             // TCLK9
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TCLK: Pin<PE2, PeripheralB>,
         },
         Ch1: {
             // TIOA10
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TIOA: Pin<PE3, PeripheralB>,
             // TIOB10
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TIOB: Pin<PE4, PeripheralB>,
             // TCLK10
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             TCLK: Pin<PE5, PeripheralB>,
         },
         Ch2: {

@@ -6,21 +6,24 @@
 
 - [Integration](https://crates.io/crates/mcan-core) with the [`mcan`](https://crates.io/crates/mcan) crate.
 - Implementation of blocking::i2c::Transactional trait from [embedded-hal](https://crates.io/crates/embedded-hal) for TWI device.
+- Support for `critical-section` feature, falling down to PAC optional dependency.
 
 ### Changed
-- Remove `rust-toolchain.toml` and control MSRV from .github/workflow/ files instead.
+- Remove `rust-toolchain.toml` and control MSRV from `.github/workflow/` files instead.
 - Update `cortex-m-rt` version in examples to `0.7.3`.
 - Switched from AFE0_AD6 to  AFE0_AD8 for the atsamv71_xult board ADC example code.
+- The `rt` separated to not act as part of chip selection feature any more.
 
 ### Removed
 - Huge generated source code for PACs removed, new location for them [`atsamx7x-pac`](/atsams-rs/atsamx7x-pac) (user side generated)
 
 ### Fixed
-- Examples now build and link again
-- Examples now build again again
+- Examples now build and link again.
+- Examples now build again again.
 - [#62] Remove ambiguous reexports from `src/serial/mod.rs`.
 - TWIHS: Fix issue with clock frequency calculation.
-- Fix CI: source of PACs matrix + clippy satisfaction
+- Fix CI: source of PACs matrix + clippy satisfaction.
+- Fixes doctest use of `take()` which now require `critical-section`.
 
 ## [v0.4.2] 2022-11-06
 
@@ -79,7 +82,7 @@
 - `pwm` module: allows frequencies and duty-rates to be independently set for each `pwm::Channel`, with help from `ehal::PwmPin`.
 - `hal/rust-toolchain.toml` that pins `rustc` (and relevant components/targets) to MSRV 1.63.0.
 - Crate feature: `reconfigurable-system-pins`; see below.
-- CI job that enforces `CHANGELOG.md` additions, unless the MR is labeled `skip-changelog`.
+- CI job that enforces `CHANGELOG.md` additions, unless the MR is labelled `skip-changelog`.
 
 ### Removed
 - `serial::Uart::UartError::BaudRateNotInRange` error.

@@ -32,7 +32,7 @@ Mode support depends on what [`Pin`]s that are available for the
 # use hal::serial::usart::*;
 # use hal::serial::ExtBpsU32;
 # use hal::fugit::{ExtU32, RateExtU32};
-# let pac = unsafe{hal::pac::Peripherals::steal()};
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 use hal::generics::events::EventHandler;
 use hal::ehal::serial::{Read, Write};
@@ -89,7 +89,7 @@ use crate::clocks::{Clock, Hertz, HostClock, Pck, Pck4, PeripheralIdentifier};
 use crate::generics::{self, Token};
 #[cfg(feature = "reconfigurable-system-pins")]
 use crate::pac::USART1;
-#[cfg(not(feature = "pins-64"))]
+#[cfg(not(feature = "__pins-64"))]
 use crate::pac::USART2;
 use crate::pac::{
     usart0::us_mr_usart_mode::CHMODESELECT_A as HwChannelMode,
@@ -617,7 +617,7 @@ The [pins]("[<$Usart Pins>]") specified determine what [`UsartMode`]s are valid 
 impl_usart!(
     Usart0: {
         SCK: [
-            #[cfg(not(feature = "pins-64"))]
+            #[cfg(not(feature = "__pins-64"))]
             Pin<PB13,PeripheralC>
         ],
         RX: [ Pin<PB0,PeripheralC> ],
@@ -634,7 +634,7 @@ impl_usart!(
     #[cfg(feature = "reconfigurable-system-pins")]
     Usart1: {
         SCK: [
-            #[cfg(not(feature = "pins-64"))]
+            #[cfg(not(feature = "__pins-64"))]
             Pin<PA23,PeripheralA>
         ],
         RX: [ Pin<PA21,PeripheralA> ],
@@ -646,12 +646,12 @@ impl_usart!(
         // DCD: [ Pin<PA26,PeripheralA> ],
         // DTR: [ Pin<PA27,PeripheralA> ],
         CTS: [
-            #[cfg(not(feature = "pins-64"))]
+            #[cfg(not(feature = "__pins-64"))]
             Pin<PA25,PeripheralA>
         ],
         RTS: [ Pin<PA24,PeripheralA> ],
     },
-    #[cfg(not(feature = "pins-64"))]
+    #[cfg(not(feature = "__pins-64"))]
     Usart2: {
         SCK: [ Pin<PD17,PeripheralB> ],
         RX: [ Pin<PD15, PeripheralB> ],
@@ -668,7 +668,7 @@ impl_usart!(
 );
 
 cfg_if::cfg_if! {
-    if #[cfg(all(feature = "usart-spi-host-without-select", not(feature = "pins-64")))] {
+    if #[cfg(all(feature = "usart-spi-host-without-select", not(feature = "__pins-64")))] {
         impl_pins!(
             Usart0: {
                 (/* TX */ Pin<PB1, PeripheralC>, /* RX */ Pin<PB0, PeripheralC>, /* SCK */ Pin<PB13, PeripheralC>): {

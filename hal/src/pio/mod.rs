@@ -86,7 +86,7 @@ The below example configures [`Pin<PA11, Input>`] to trigger on
 # use hal::pio::*;
 # use hal::clocks::*;
 # use hal::efc::*;
-# let pac = unsafe{hal::pac::Peripherals::steal()};
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 
 let banka = BankA::new(
@@ -129,7 +129,7 @@ use crate::pac::{
     PIOB,
     PIOD,
 };
-#[cfg(feature = "pins-144")]
+#[cfg(feature = "__pins-144")]
 use crate::pac::{PIOC, PIOE};
 
 pub mod pin;

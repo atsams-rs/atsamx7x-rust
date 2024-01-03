@@ -28,7 +28,7 @@ For example, if we want to configure the [`MainClock`]:
 use atsamx7x_hal as hal;
 use hal::fugit::RateExtU32;
 
-let pac = unsafe{hal::pac::Peripherals::steal()};
+let pac = hal::pac::Peripherals::take().unwrap();
 let clocks = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into());
 let mainck = clocks
     .mainck
@@ -72,7 +72,7 @@ use hal::efc::{Efc, VddioLevel};
 use hal::fugit::RateExtU32;
 
 // configure the clock hierarchy
-let pac = unsafe{hal::pac::Peripherals::steal()};
+let pac = hal::pac::Peripherals::take().unwrap();
 let clocks = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into());
 let slck = clocks.slck.configure_external_normal();
 let mainck = clocks
@@ -238,7 +238,7 @@ pub enum ClockError {
     InvalidHccFreq(Megahertz),
 
     /// The V70/V71 must be driven with VDDIO = 3.3V, typical.
-    #[cfg(any(feature = "v70", feature = "v71"))]
+    #[cfg(any(feature = "__v70", feature = "__v71"))]
     InvalidVddioLevel,
 }
 

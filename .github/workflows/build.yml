@@ -18,7 +18,7 @@ jobs:
       - id: boards
         run: echo "::set-output name=board_matrix::$(ls ./boards --indicator-style=none | jq -ncR '[inputs]')"
       - id: features
-        run: echo "::set-output name=feature_matrix::[\"reconfigurable-system-pins\",\"usart-spi-host-without-select\"]"
+        run: echo "::set-output name=feature_matrix::[\"reconfigurable-system-pins\",\"usart-spi-host-without-select\",\"rt\",\"critical-section\"]"
     outputs:
       pac_matrix: ${{ steps.pacs.outputs.pac_matrix }}
       board_matrix: ${{ steps.boards.outputs.board_matrix }}
@@ -39,7 +39,7 @@ jobs:
       - name: Install Rust (thumbv7em)
         run: rustup target add thumbv7em-none-eabihf
       - name: Build HAL for ${{ matrix.pac }}
-        run: cargo check --package atsamx7x-hal --features ${{ matrix.pac }},unproven
+        run: cargo check --package atsamx7x-hal --features ${{ matrix.pac }},unproven,rt,critical-section
 
   build-latest:
     if: github.event.pull_request.head.repo.full_name != github.repository
@@ -59,7 +59,7 @@ jobs:
       - name: Install Rust (thumbv7em)
         run: rustup target add thumbv7em-none-eabihf
       - name: Build HAL for ${{ matrix.pac }}
-        run: cargo check --package atsamx7x-hal --features ${{ matrix.pac }},unproven
+        run: cargo check --package atsamx7x-hal --features ${{ matrix.pac }},unproven,rt,critical-section
 
   build-features:
     if: github.event.pull_request.head.repo.full_name != github.repository
@@ -111,7 +111,7 @@ jobs:
       - name: Install Clippy
         run: rustup component add clippy
       - name: Lint HAL
-        run: cargo clippy --package atsamx7x-hal --no-deps --features samv71q21b,unproven,reconfigurable-system-pins -- --deny warnings
+        run: cargo clippy --package atsamx7x-hal --no-deps --features samv71q21b,unproven,reconfigurable-system-pins,rt -- --deny warnings
 
   clippy-examples:
     if: github.event.pull_request.head.repo.full_name != github.repository
@@ -146,8 +146,6 @@ jobs:
       - name: Install Rust (thumbv7em)
         run: rustup target add thumbv7em-none-eabihf
       - name: Build HAL documentation
-        run: cargo doc --package atsamx7x-hal --no-deps --features samv71q21b,unproven,reconfigurable-system-pins
+        run: cargo doc --package atsamx7x-hal --no-deps --features samv71q21b,unproven,reconfigurable-system-pins,rt,critical-section
       - name: Build HAL doc tests
-        run: cargo test --package atsamx7x-hal --doc --features samv71q21b,unproven --target x86_64-unknown-linux-gnu
-
-
+        run: cargo test --package atsamx7x-hal --doc --features samv71q21b,unproven,rt,critical-section --target x86_64-unknown-linux-gnu

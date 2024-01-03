@@ -20,7 +20,7 @@ This implementation presumes that VREFP is 3.3V.
 # use hal::efc::*;
 # use hal::afec::*;
 # use hal::fugit::RateExtU32;
-# let pac = unsafe{ hal::pac::Peripherals::steal() };
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let (slck, mut mck) = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into()).por_state(&mut Efc::new(pac.EFC, VddioLevel::V3));
 
 let banka = BankA::new(pac.PIOA, &mut mck, &slck, BankConfiguration::default());
@@ -76,49 +76,49 @@ impl_channel_pins!(
     Afec0 {
         // Channel 11 is dedicated to the temperature sensor.
 
-        #[cfg(not(feature = "pins-64"))]
+        #[cfg(not(feature = "__pins-64"))]
         (PA17, 6),
-        #[cfg(not(feature = "pins-64"))]
+        #[cfg(not(feature = "__pins-64"))]
         (PA18, 7),
-        #[cfg(not(feature = "pins-64"))]
+        #[cfg(not(feature = "__pins-64"))]
         (PA19, 8),
-        #[cfg(not(feature = "pins-64"))]
+        #[cfg(not(feature = "__pins-64"))]
         (PA20, 9),
         (PA21, 1),
         (PB0, 10),
         (PB2, 5),
         (PB3, 2),
-        #[cfg(not(feature = "pins-64"))]
+        #[cfg(not(feature = "__pins-64"))]
         (PD30, 0),
-        #[cfg(feature = "pins-144")]
+        #[cfg(feature = "__pins-144")]
         (PE4, 4),
-        #[cfg(feature = "pins-144")]
+        #[cfg(feature = "__pins-144")]
         (PE5, 3),
     }
 
     Afec1 {
         (PB1, 0),
-        #[cfg(feature = "pins-144")]
+        #[cfg(feature = "__pins-144")]
         (PC0, 9),
-        #[cfg(feature = "pins-144")]
+        #[cfg(feature = "__pins-144")]
         (PC12, 3),
-        #[cfg(feature = "pins-144")]
+        #[cfg(feature = "__pins-144")]
         (PC13, 1),
-        #[cfg(feature = "pins-144")]
+        #[cfg(feature = "__pins-144")]
         (PC15, 2),
-        #[cfg(feature = "pins-144")]
+        #[cfg(feature = "__pins-144")]
         (PC26, 7),
-        #[cfg(feature = "pins-144")]
+        #[cfg(feature = "__pins-144")]
         (PC27, 8),
-        #[cfg(feature = "pins-144")]
+        #[cfg(feature = "__pins-144")]
         (PC29, 4),
-        #[cfg(feature = "pins-144")]
+        #[cfg(feature = "__pins-144")]
         (PC30, 5),
-        #[cfg(feature = "pins-144")]
+        #[cfg(feature = "__pins-144")]
         (PC31, 6),
-        #[cfg(feature = "pins-144")]
+        #[cfg(feature = "__pins-144")]
         (PE0, 11),
-        #[cfg(feature = "pins-144")]
+        #[cfg(feature = "__pins-144")]
         (PE3, 10),
     }
 );

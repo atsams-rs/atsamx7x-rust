@@ -66,7 +66,7 @@ enum FlashWaitStates {
 
 impl FlashWaitStates {
     pub fn calculate(freq: Megahertz, vddio: &VddioLevel) -> Result<Self, ClockError> {
-        #[cfg(any(feature = "v70", feature = "v71"))]
+        #[cfg(any(feature = "__v70", feature = "__v71"))]
         if vddio == &VddioLevel::V1 {
             // V70/V71 must be driven with VDDIO = 3.3V, typical
             return Err(ClockError::InvalidVddioLevel);

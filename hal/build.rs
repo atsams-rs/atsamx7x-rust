@@ -11,7 +11,11 @@ fn main() -> Result<(), &'static str> {
         .is_ok()
     }
 
-    if !feat("device-selected") || ["e70", "s70", "v70", "v71"].iter().all(|&f| !feat(f)) {
+    if !feat("__device-selected")
+        || ["__e70", "__s70", "__v70", "__v71"]
+            .iter()
+            .all(|&f| !feat(f))
+    {
         return Err(
             "The HAL is built for a specific target device selected using a feature, but no such a feature was selected."
         );

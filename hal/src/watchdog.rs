@@ -1,6 +1,7 @@
 //! Watchdog timer configuration.
 use crate::{generics, pac::WDT};
 
+use core::convert::From;
 use core::marker::PhantomData;
 
 /// The state of the [`Watchdog`].

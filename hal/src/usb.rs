@@ -16,7 +16,7 @@ extensively tested, and should be considered unstable at the moment.
 # use hal::efc::*;
 # use hal::usb::*;
 # use hal::fugit::RateExtU32;
-# let pac = unsafe{hal::pac::Peripherals::steal()};
+# let pac = hal::pac::Peripherals::take().unwrap();
 # let clocks = Tokens::new((pac.PMC, pac.SUPC, pac.UTMI), &pac.WDT.into());
 # let slck = clocks.slck.configure_external_normal();
 # let mainck = clocks
@@ -46,10 +46,13 @@ use usb_device::prelude::*;
 
 let usb_alloc = Usb::new(pac.USBHS, &mut mck, &upllck).into_usb_allocator();
 let mut usb_dev = UsbDeviceBuilder::new(&usb_alloc, UsbVidPid(0x16c0, 0x27dd))
-    .manufacturer("Fake company")
-    .product("Serial port")
-    .serial_number("TEST")
+    .strings(&[StringDescriptors::new(LangID::EN)
+        .manufacturer("Fake company")
+        .product("Serial port")
+    .serial_number("TEST")])
+    .unwrap()
     .max_packet_size_0(64) // makes control transfers 8x faster
+    .unwrap()
     .build();
 
 loop {
@@ -64,6 +67,8 @@ use crate::clocks::{HostClock, PeripheralIdentifier, UpllClock};
 use crate::pac::{usbhs::RegisterBlock, USBHS};
 
 use core::cell::UnsafeCell;
+use core::option::Option;
+use core::result::Result::{Err, Ok};
 
 use cortex_m::interrupt::{self, Mutex};
 use usb_device::bus::{PollResult, UsbBusAllocator};
@@ -258,7 +263,7 @@ impl Inner {
                 // single-bank endpoint
                 w.epbk()._1_bank();
 
-                w.eptype().bits(conf.ep_type as u8);
+                w.eptype().bits(conf.ep_type.to_bm_attributes());
                 w.alloc().set_bit();
 
                 w
