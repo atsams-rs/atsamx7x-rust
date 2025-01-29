@@ -7,6 +7,7 @@
 - [Integration](https://crates.io/crates/mcan-core) with the [`mcan`](https://crates.io/crates/mcan) crate.
 - Implementation of blocking::i2c::Transactional trait from [embedded-hal](https://crates.io/crates/embedded-hal) for TWI device.
 - Support for `critical-section` feature, falling down to PAC optional dependency.
+- Add `rust-analyzer.json` used by Neovim plugin `rustaceanvim` to `.gitignore`.
 
 ### Changed
 - Remove `rust-toolchain.toml` and control MSRV from `.github/workflow/` files instead.
