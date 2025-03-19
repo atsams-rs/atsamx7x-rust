@@ -89,7 +89,7 @@ dependencies = [
 
 [[package]]
 name = "atsame70_xpro"
-version = "0.4.3-alpha1"
+version = "0.4.5"
 dependencies = [
  "atsamx7x-hal",
  "cortex-m",
@@ -103,9 +103,9 @@ dependencies = [
 
 [[package]]
 name = "atsame70j19b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f59b792fc5029f0646d51945594f68601df1a9756253421422672945a8d9943d"
+checksum = "bce1ebf5540a6ce15eda9dca418074644ed690a631e7bdb1146b72dceee65969"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -118,9 +118,9 @@ dependencies = [
 
 [[package]]
 name = "atsame70j20b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ad07c279b3928c99186fd0cc1c9e39cbdb33dbddf5b0e26d3d83dd0486a2e66e"
+checksum = "d724319998047d75853574de4424ddfb8a2cf7ce90f4d796d577841dd1cc5af0"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -133,9 +133,9 @@ dependencies = [
 
 [[package]]
 name = "atsame70j21b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2c0a9865d1a0288c9afc1c5b8120397c99b27ee2b197afdd3bd93a75f8aa9a2c"
+checksum = "f5f0657f59bc016d7f61a9053d68547f0c773fe0ae0c18a98f5a2b331f4c4355"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -148,9 +148,9 @@ dependencies = [
 
 [[package]]
 name = "atsame70n19b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5921d155748b89dd1229ad5060bfac5a8edd09e4c6212765f838987877f4a2ee"
+checksum = "ccc5389f2ace0fcd8d5331fecd76a69a26ef724ba70097181c4226870472a94e"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -163,9 +163,9 @@ dependencies = [
 
 [[package]]
 name = "atsame70n20b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "69e9515be929a88112811d46e5b4a997397e13fd1bc3af32317a2977f1ec2ddd"
+checksum = "24e5e1e25470f70cd2cc0c7aab29e62ff943ab699bf64357d887362347251d26"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -178,9 +178,9 @@ dependencies = [
 
 [[package]]
 name = "atsame70n21b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "33f359bd6149c3d7f4fb76d89562b30bd588ad335716cb260ff41ed2e3d203c1"
+checksum = "a3e183b2c1ce214a19995f004a754db882dc05ce4b378169aab4718527d35129"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -193,9 +193,9 @@ dependencies = [
 
 [[package]]
 name = "atsame70q19b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3dcbba1aed7a1db050c165a39ebf9e61d7d83cc8f884e3e9527f396920bc24d0"
+checksum = "3b2774eddcab1ccda143f2bfe8bfb4ac96e85b7bcf06ffe3e40a469c83ebe9cc"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -208,9 +208,9 @@ dependencies = [
 
 [[package]]
 name = "atsame70q20b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "181b3917fdbdc4650f8bff281a4d3f3b639f365549317d7d52f5b1f9675ccd52"
+checksum = "a90ea5c16fdd245a6eae8d732f7ae372e651f8fe511b5185fe99a179f5212d99"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -223,9 +223,9 @@ dependencies = [
 
 [[package]]
 name = "atsame70q21b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9ec88ab8a5e0336ec6d9c45295fa0c843fe609211753c26a0904a5abaa66d406"
+checksum = "a52ca7273f34fc60606f042d503d0ff168e13cc1a900d62974e07f40bd3754c1"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -238,9 +238,9 @@ dependencies = [
 
 [[package]]
 name = "atsams70j19b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "08bd21f78548bce21f946df44dfa5092649394207168eae1322d8564cb47211b"
+checksum = "a7ea8491505e7e7cbfd79d1426d1f1e01ec2954c3011f1a0bdf321ae37992a79"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -253,9 +253,9 @@ dependencies = [
 
 [[package]]
 name = "atsams70j20b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0a842e106ba4e543cc6befb1f2a5ab43be788679ae549111405715fcf86a86f8"
+checksum = "f6e5cc1ae074a1386f4a95f2ad8fbe59c6518398669f3f9ef6e77b761d0f0a5c"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -268,9 +268,9 @@ dependencies = [
 
 [[package]]
 name = "atsams70j21b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b34fc1317a00bf230b98b3431032723d442a402d0a396f271bb7edd498524383"
+checksum = "f547122751ec45cbb6c8e72f4d9d714fbaf0c2a09df1883d9e40a8332844d5e3"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -283,9 +283,9 @@ dependencies = [
 
 [[package]]
 name = "atsams70n19b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3a0ba05baf0a7199fd71fb292f6998a720a69c2a732d50b741d4612ae8bff261"
+checksum = "43fb3d52e7305dfd811e1c41a5f598f6e892d5a0f2b0fae4bfa19fa3ba3588f2"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -298,9 +298,9 @@ dependencies = [
 
 [[package]]
 name = "atsams70n20b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5b96ea1fcf1acc169085b045e642118fd41c4256a9108f0b21209d0ef8c9261c"
+checksum = "bbc143c181c972d192961057ff17e08f17fbfef1bf88695c51232dd0553b492a"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -313,9 +313,9 @@ dependencies = [
 
 [[package]]
 name = "atsams70n21b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f657ff8db7ceaed8fc68407b0f9a18b547569297cb59bb255048eb766fc70107"
+checksum = "f1bda6dc40df410f8cfb274a8dd9af3b12293a4d4da7fbbd342b1b16f450c1e8"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -328,9 +328,9 @@ dependencies = [
 
 [[package]]
 name = "atsams70q19b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5327d54bf890efb9a1ba49a6ec959ca04f9f62e071e56e92181f0cac4a6420b7"
+checksum = "903c9b3d2a0e6120f5e436c933707e70830ea3886ab6e89b7a497cfb73ba4dd5"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -343,9 +343,9 @@ dependencies = [
 
 [[package]]
 name = "atsams70q20b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b5a36082caa069b65f2dc07110c4a0f643f57dcb3849769ebf12c806780d9e33"
+checksum = "cc8bbe8b14b0f99295b28c7282721ec5ef8ee924c0d442d97fb02244cc9a3c74"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -358,9 +358,9 @@ dependencies = [
 
 [[package]]
 name = "atsams70q21b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e4d1ddafb14bdc446ec2abc0a525caa24f344dfa3ee735096de14beae2da0f16"
+checksum = "570c4cf6ae13e831c30f580b2cdd3be9983a32e7ad54db3a007a92a7a343e810"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -373,9 +373,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv70j19b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "37e7a56cfe0ad63e1aa21f7d55470ffb89f7b050027d561c8e6cf40aa3ff84b4"
+checksum = "f11e7c094af1f66be41ce4c513ebd35963eceaebaeca63fc45e9a66f0f15253b"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -388,9 +388,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv70j20b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "66bdc44e938d3f0897230667e2154aa053d2aefb8ceecb1188a5defc57e3c080"
+checksum = "00965452203909bfe921d8ab80144a264a69886c8301c6e093cafbdf2a9fae1a"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -403,9 +403,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv70n19b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1e9a2c575f8a47d091682ad503b86fa3ba44d59b4a9d4afce258b28e35942c1f"
+checksum = "f6020dc5f696f7c40f1bda62b9531ce9a7ceab09d6044e05c309761dffd878c7"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -418,9 +418,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv70n20b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c967624fd921a2144cb04043b873fb4cabbd9fce5c79ca8cf757d2d7930a01fd"
+checksum = "b543a617ca9ca70c6fe499326a1e9ba3da2dfbdff47fa0e9be312794d832745b"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -433,9 +433,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv70q19b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "99d665f962c2e8b29cc874f4a97f9f9dd6e7512b6a623b8cbfcd4c286c1cd7cb"
+checksum = "848fdbb5c2acb72f37910338948a31a3ba88e73335d6768c9643a9079a2cd138"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -448,9 +448,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv70q20b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0ef1adc1925558fdd6d9a4f678f9165ea4b962abc928648e51ec189c457bf4a0"
+checksum = "056bd49c065c770fc5ade9b1a8f220e32fb65898b6da2873d1c2e3ff3b9ae648"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -463,9 +463,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv71j19b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4a5afdafae5e1d5ad66e50a70ee346058e3ba7cfb72d8eb6f6729dbd7f816694"
+checksum = "051583b283c7202af093388ca7cf8155d4d7f048bcced0a4b9604d88af68cde9"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -478,9 +478,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv71j20b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4588b8c979c378b4d0f1eb3d37729a6cee4979652136d49cf4db92ebb60ed591"
+checksum = "8b8535558198f7f86c4f6391c90af07df3e7703931e11e72640bcfc20a35c7a2"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -493,9 +493,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv71j21b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cc4038a6114b0bb6dd41b9d1feec63dd1e55455019e336f3dc624805251f414c"
+checksum = "25ce1e931cbbabfee277e352944f108ada9312f91c60b1dfb1b57a909acedfe9"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -508,9 +508,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv71n19b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5b7efb2028637208bea0d98152c83215e2f8fe8ae0b1af69bbd5c92f5b3b3911"
+checksum = "1b6f4cbf805800849dd7a19ce2304d03af140f00bb141217e4243505f8b290bf"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -523,9 +523,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv71n20b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fdb4c881959cce3d8050139ad960ae91431fb9596a79a4a28fe7c3830371c745"
+checksum = "4a6857b6aed1a1ebc552b938e5e54846f58ec684574e498636c5ae4a012f76af"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -538,9 +538,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv71n21b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1ea446ec36857849f81367a01eb362f4cfc6dad8973445029dbaf99bad65bcbe"
+checksum = "2a10a8e0193556ac9edb60181381d24d3ed599cb3f7f89a93cdd82853ff82051"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -553,9 +553,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv71q19b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f84deff4deb0b32697422b65d581b0a388ef212c11607c169e1cf04a5ecb3fce"
+checksum = "b770e67d4385c1ca52ddb10394b2c27128e0df4f0128db540bce1a5cb91c4072"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -568,9 +568,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv71q20b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6351ec583cc689b79e27e2cedad9bbe0a308d4064b57cae2ab5176aa9a8f4469"
+checksum = "22297cce1928378cefb86966a3a83ffd47f8d0f310ac9e45ee2eb4e377fcce72"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -583,9 +583,9 @@ dependencies = [
 
 [[package]]
 name = "atsamv71q21b"
-version = "0.29.0-alpha3"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "de4dff2ff428ab3913ce5a2f54cbc2357600957f0b11f857d240b61d66f41aff"
+checksum = "fe0d9104044ddcb9d05c07555af98b8b3179681d6e239abd90b6adf4a4e6082d"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -598,7 +598,7 @@ dependencies = [
 
 [[package]]
 name = "atsamx7x-hal"
-version = "0.4.3-alpha3"
+version = "0.4.5"
 dependencies = [
  "atsame70j19b",
  "atsame70j20b",
@@ -645,17 +645,6 @@ dependencies = [
  "strum",
  "usb-device",
  "void",
-]
-
-[[package]]
-name = "atty"
-version = "0.2.14"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d9b39be18770d11421cdb1b9947a45dd3f37e93092cbf377614828a319d5fee8"
-dependencies = [
- "hermit-abi 0.1.19",
- "libc",
- "winapi",
 ]
 
 [[package]]
@@ -931,22 +920,9 @@ dependencies = [
 
 [[package]]
 name = "env_logger"
-version = "0.9.3"
+version = "0.10.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a12e6657c4c97ebab115a42dcee77225f7f482cdd841cf7088c657a42e9e00e7"
-dependencies = [
- "atty",
- "humantime",
- "log",
- "regex",
- "termcolor",
-]
-
-[[package]]
-name = "env_logger"
-version = "0.10.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "85cdab6a89accf66733ad5a1693a4dcced6aeff64602b634530dd73c1f3ee9f0"
+checksum = "4cd405aab171cb85d6735e5c8d9db038c17d3ca007a4d2c25f337935c3d90580"
 dependencies = [
  "humantime",
  "is-terminal",
@@ -990,12 +966,12 @@ checksum = "3f9eec918d3f24069decb9af1554cad7c880e2da24a9afd88aca000531ab82c1"
 
 [[package]]
 name = "form"
-version = "0.11.0"
+version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7cf0f791bf56f483754cb7ef69b88d95a0df7b378ab3324b8a08259a6e7da37e"
+checksum = "c6722a93a9407a430eda85fe2d0a1351136f69efd1aabf54a6c3c9ad2c1cd756"
 dependencies = [
  "anyhow",
- "env_logger 0.9.3",
+ "env_logger",
  "getopts",
  "log",
  "proc-macro2",
@@ -1063,18 +1039,9 @@ dependencies = [
 
 [[package]]
 name = "heck"
-version = "0.4.1"
+version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "95505c38b4572b2d910cecb0281560f54b440a19336cbbcb27bf6ce6adc6f5a8"
-
-[[package]]
-name = "hermit-abi"
-version = "0.1.19"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "62b467343b94ba476dcb2500d242dadbb39557df889310ac77c5d99100aaac33"
-dependencies = [
- "libc",
-]
+checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
 
 [[package]]
 name = "hermit-abi"
@@ -1151,7 +1118,7 @@ version = "0.4.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cb0889898416213fab133e1d33a0e5858a48177452750691bde3666d0fdbaf8b"
 dependencies = [
- "hermit-abi 0.3.2",
+ "hermit-abi",
  "rustix",
  "windows-sys",
 ]
@@ -1347,12 +1314,9 @@ checksum = "c08c74e62047bb2de4ff487b251e4a92e24f48745648451635cec7d591162d9f"
 
 [[package]]
 name = "roxmltree"
-version = "0.14.1"
+version = "0.20.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "921904a62e410e37e215c40381b7117f830d9d89ba60ab5236170541dd25646b"
-dependencies = [
- "xmlparser",
-]
+checksum = "6c20b6793b5c2fa6553b250154b78d6d0db37e72700ae35fad9387a46f487c97"
 
 [[package]]
 name = "rtic-core"
@@ -1534,31 +1498,31 @@ checksum = "73473c0e59e6d5812c5dfe2a064a6444949f089e20eec9a2e5506596494e4623"
 
 [[package]]
 name = "strum"
-version = "0.24.1"
+version = "0.26.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "063e6045c0e62079840579a7e47a355ae92f60eb74daaf156fb1e84ba164e63f"
+checksum = "8fec0f0aef304996cf250b31b5a10dee7980c85da9d759361292b8bca5a18f06"
 dependencies = [
  "strum_macros",
 ]
 
 [[package]]
 name = "strum_macros"
-version = "0.24.3"
+version = "0.26.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1e385be0d24f186b4ce2f9982191e7101bb737312ad61c1f2f984f34bcf85d59"
+checksum = "4c6bee85a5a24955dc440386795aa378cd9cf82acd5f764469152d2270e581be"
 dependencies = [
  "heck",
  "proc-macro2",
  "quote",
  "rustversion",
- "syn 1.0.109",
+ "syn 2.0.16",
 ]
 
 [[package]]
 name = "svd-parser"
-version = "0.14.1"
+version = "0.14.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3e93e3a9aafae32a19b9c07470b628d2dd71192a34e01147852a54087bf41694"
+checksum = "a41fe17e46dee363a7d3b20e878bbf6d6b4e839ae010ff07ef0e05d41d201811"
 dependencies = [
  "anyhow",
  "roxmltree",
@@ -1568,9 +1532,9 @@ dependencies = [
 
 [[package]]
 name = "svd-rs"
-version = "0.14.2"
+version = "0.14.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d08273bc4ca66b632299903960efa8a306aac61dc6381bcf07450c20b1a5443c"
+checksum = "c9b88ee2e82f09623ff76965587dc15a2e7150a3126854899c86e94dab777458"
 dependencies = [
  "once_cell",
  "regex",
@@ -1580,13 +1544,13 @@ dependencies = [
 
 [[package]]
 name = "svd2rust"
-version = "0.29.0"
+version = "0.30.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fa74088ddea858d2715bf812b0a6347a1340a13e1b91803376967a9dc84602f8"
+checksum = "e4eefe0f23836b687cbbccdf2d21ec9a4c7c590adbeae6cd45662b6a146932ba"
 dependencies = [
  "anyhow",
  "clap",
- "env_logger 0.10.0",
+ "env_logger",
  "html-escape",
  "inflections",
  "irx-config",
@@ -1599,7 +1563,7 @@ dependencies = [
  "serde_yaml",
  "svd-parser",
  "svd-rs",
- "syn 1.0.109",
+ "syn 2.0.16",
  "thiserror",
 ]
 
@@ -1878,9 +1842,3 @@ checksum = "d09770118a7eb1ccaf4a594a221334119a44a814fcb0d31c5b85e83e97227a97"
 dependencies = [
  "memchr",
 ]
-
-[[package]]
-name = "xmlparser"
-version = "0.13.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4d25c75bf9ea12c4040a97f829154768bbbce366287e2dc044af160cd79a13fd"
