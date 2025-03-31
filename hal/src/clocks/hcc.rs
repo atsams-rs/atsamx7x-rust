@@ -128,24 +128,24 @@ impl HostClockController {
         let source = SRC::HCC_CSS;
         match source {
             HCC_CSS::PLLA_CLK | HCC_CSS::UPLL_CLK => {
-                self.pmc().mckr.modify(|_, w| w.pres().variant(pres.into()));
-                while self.pmc().sr.read().mckrdy().bit_is_clear() {}
+                self.pmc().mckr().modify(|_, w| w.pres().variant(pres.into()));
+                while self.pmc().sr().read().mckrdy().bit_is_clear() {}
 
-                self.pmc().mckr.modify(|_, w| w.mdiv().variant(div.into()));
-                while self.pmc().sr.read().mckrdy().bit_is_clear() {}
+                self.pmc().mckr().modify(|_, w| w.mdiv().variant(div.into()));
+                while self.pmc().sr().read().mckrdy().bit_is_clear() {}
 
-                self.pmc().mckr.modify(|_, w| w.css().variant(source));
-                while self.pmc().sr.read().mckrdy().bit_is_clear() {}
+                self.pmc().mckr().modify(|_, w| w.css().variant(source));
+                while self.pmc().sr().read().mckrdy().bit_is_clear() {}
             }
             HCC_CSS::MAIN_CLK | HCC_CSS::SLOW_CLK => {
-                self.pmc().mckr.modify(|_, w| w.css().variant(source));
-                while self.pmc().sr.read().mckrdy().bit_is_clear() {}
+                self.pmc().mckr().modify(|_, w| w.css().variant(source));
+                while self.pmc().sr().read().mckrdy().bit_is_clear() {}
 
-                self.pmc().mckr.modify(|_, w| w.pres().variant(pres.into()));
-                while self.pmc().sr.read().mckrdy().bit_is_clear() {}
+                self.pmc().mckr().modify(|_, w| w.pres().variant(pres.into()));
+                while self.pmc().sr().read().mckrdy().bit_is_clear() {}
 
-                self.pmc().mckr.modify(|_, w| w.mdiv().variant(div.into()));
-                while self.pmc().sr.read().mckrdy().bit_is_clear() {}
+                self.pmc().mckr().modify(|_, w| w.mdiv().variant(div.into()));
+                while self.pmc().sr().read().mckrdy().bit_is_clear() {}
             }
         }
 
@@ -169,13 +169,13 @@ impl HostClock {
         match pid as u32 {
             7..=31 => {
                 let mask = 1 << pid as u32;
-                self.pmc().pcer0.write(|w| unsafe { w.bits(mask) });
-                while self.pmc().pcsr0.read().bits() & mask == 0 {}
+                self.pmc().pcer0().write(|w| unsafe { w.bits(mask) });
+                while self.pmc().pcsr0().read().bits() & mask == 0 {}
             }
             32..=62 => {
                 let mask = 1 << (pid as u32 - 32);
-                self.pmc().pcer1.write(|w| unsafe { w.bits(mask) });
-                while self.pmc().pcsr1.read().bits() & mask == 0 {}
+                self.pmc().pcer1().write(|w| unsafe { w.bits(mask) });
+                while self.pmc().pcsr1().read().bits() & mask == 0 {}
             }
             _ => unimplemented!(),
         }

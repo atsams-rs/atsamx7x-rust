@@ -203,7 +203,7 @@ impl<A: AfecMeta> Afec<A> {
             .find(|p| calc_afec_freq(*p) < AFEC_MAX_FREQ_MHZ)
             .ok_or(AfecError::ImpossibleFreq)?;
 
-        self.reg().mr.modify(|_, w| {
+        self.reg().mr().modify(|_, w| {
             w.one().set_bit();
 
             // use default conversion order of channels (0..=1, in
@@ -237,7 +237,7 @@ impl<A: AfecMeta> Afec<A> {
             w
         });
 
-        self.reg().emr.modify(|_, w| {
+        self.reg().emr().modify(|_, w| {
             w.signmode().all_unsigned();
             w.stm().clear_bit();
             w.tag().clear_bit();
@@ -246,17 +246,17 @@ impl<A: AfecMeta> Afec<A> {
         });
 
         // Configure all channels for single-ended mode.
-        self.reg().diffr.write(|w| unsafe { w.bits(0x0) });
+        self.reg().diffr().write(|w| unsafe { w.bits(0x0) });
 
         // Configure all channels for single sample-and-hold mode
-        self.reg().shmr.write(|w| unsafe { w.bits(0x0) });
+        self.reg().shmr().write(|w| unsafe { w.bits(0x0) });
 
         // Configure all channels for a gain of 1
-        self.reg().cgr.modify(|_, w| unsafe { w.bits(0x0) });
+        self.reg().cgr().modify(|_, w| unsafe { w.bits(0x0) });
 
         // Enable programmable gain amplifiers (PGAs; required prior
         // to any conversion)
-        self.reg().acr.modify(|_, w| {
+        self.reg().acr().modify(|_, w| {
             // C.f. §58.8.5
             if calc_afec_freq(pres) < AFEC_MAX_FREQ_MHZ / 2 {
                 unsafe {
@@ -273,23 +273,23 @@ impl<A: AfecMeta> Afec<A> {
             w
         });
 
-        self.reg().ier.write(|w| unsafe { w.bits(u32::MAX) });
+        self.reg().ier().write(|w| unsafe { w.bits(u32::MAX) });
 
         Ok(())
     }
 
     fn sample(&mut self, ch: Channel) -> Voltage {
         // start the conversion
-        self.reg().cr.write(|w| w.start().set_bit());
+        self.reg().cr().write(|w| w.start().set_bit());
 
         // Common mask for enabled channels (CHSR; §52.7.8) and status
         // bits (ISR; §52.7.13).
         const CHANNELS_MASK: u32 = 0xfff;
 
         // wait until all enabled channels have been sampled
-        let enabled_mask = self.reg().chsr.read().bits() & CHANNELS_MASK;
+        let enabled_mask = self.reg().chsr().read().bits() & CHANNELS_MASK;
         loop {
-            let isr = self.reg().isr.read();
+            let isr = self.reg().isr().read();
             // We disregard the COMPE (comparison error) and GOVRE
             // (general overflow error) flags because we are not use a
             // comparison trigger, and read our data from CDR instead
@@ -305,8 +305,8 @@ impl<A: AfecMeta> Afec<A> {
         let mut samples: [Option<Sample>; NUM_CHANNELS] = [None; NUM_CHANNELS];
         for ch in 0..(NUM_CHANNELS as u8) {
             samples[ch as usize] = if enabled_mask & (1 << ch) != 0 {
-                self.reg().cselr.write(|w| unsafe { w.csel().bits(ch) });
-                let code = self.reg().cdr.read().data().bits();
+                self.reg().cselr().write(|w| unsafe { w.csel().bits(ch) });
+                let code = self.reg().cdr().read().data().bits();
 
                 Some(Sample {
                     channel: ch,
@@ -316,7 +316,7 @@ impl<A: AfecMeta> Afec<A> {
                 None
             }
         }
-        assert_eq!(self.reg().isr.read().bits() & CHANNELS_MASK, 0);
+        assert_eq!(self.reg().isr().read().bits() & CHANNELS_MASK, 0);
 
         samples[ch as usize].unwrap().voltage
     }
@@ -339,23 +339,23 @@ impl<A: AfecMeta> Afec<A> {
     #[inline]
     fn reset(&mut self) {
         // Simulate a hardware reset for the AFEC
-        self.reg().cr.write(|w| w.swrst().set_bit());
+        self.reg().cr().write(|w| w.swrst().set_bit());
 
         // Reset configuration
-        self.reg().mr.reset();
+        self.reg().mr().reset();
     }
 
     #[inline]
     fn enable_channel(&mut self, ch: Channel) {
         // Disable all channels except ch
-        self.reg().chdr.write(|w| unsafe { w.bits(0xffff) });
-        self.reg().cher.write(|w| unsafe { w.bits(1 << ch) });
+        self.reg().chdr().write(|w| unsafe { w.bits(0xffff) });
+        self.reg().cher().write(|w| unsafe { w.bits(1 << ch) });
 
         // set a no-compensation channel offset
         const DAC_NO_COMPENSATION: u16 = 512;
-        self.reg().cselr.write(|w| unsafe { w.csel().bits(ch) });
+        self.reg().cselr().write(|w| unsafe { w.csel().bits(ch) });
         self.reg()
-            .cocr
+            .cocr()
             .write(|w| unsafe { w.aoff().bits(DAC_NO_COMPENSATION) });
     }
 }

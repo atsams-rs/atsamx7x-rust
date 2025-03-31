@@ -29,7 +29,7 @@ impl<S: MainClockSource> Clock for MainClock<S> {
 impl Token<MainClock<InternalRC>> {
     /// Configure [`MainClock`] for the [`InternalRC`] source.
     pub fn configure_internal(self, freq: InternalRcFreq) -> MainClock<InternalRC> {
-        self.pmc().ckgr_mor.modify(|_, w| {
+        self.pmc().ckgr_mor().modify(|_, w| {
             w.key().passwd();
             w.moscsel().clear_bit();
             w.moscrcen().set_bit();
@@ -41,7 +41,7 @@ impl Token<MainClock<InternalRC>> {
         // first table, second row)
 
         // Wait until clock is stable.
-        while self.pmc().sr.read().moscrcs().bit_is_clear() {}
+        while self.pmc().sr().read().moscrcs().bit_is_clear() {}
 
         let freq = Megahertz::from_raw(match freq {
             InternalRcFreq::_4_MHZ => 4,
@@ -68,7 +68,7 @@ impl Token<MainClock<InternalRC>> {
 
         // Enable the external oscillator and wait for it to
         // stabilize.
-        self.pmc().ckgr_mor.modify(|_, w| {
+        self.pmc().ckgr_mor().modify(|_, w| {
             w.key().passwd();
             w.moscxten().set_bit();
             unsafe {
@@ -76,15 +76,15 @@ impl Token<MainClock<InternalRC>> {
             }
             w
         });
-        while self.pmc().sr.read().moscxts().bit_is_clear() {}
+        while self.pmc().sr().read().moscxts().bit_is_clear() {}
 
         // Switch over to the main oscillator.
-        self.pmc().ckgr_mor.modify(|_, w| {
+        self.pmc().ckgr_mor().modify(|_, w| {
             w.key().passwd();
             w.moscsel().set_bit();
             w
         });
-        while self.pmc().sr.read().moscsels().bit_is_clear() {}
+        while self.pmc().sr().read().moscsels().bit_is_clear() {}
 
         // TODO check MAINCK frequency (§31.17; step 5).
 
@@ -105,7 +105,7 @@ impl Token<MainClock<InternalRC>> {
         }
 
         // Bypass the main crystal oscillator and disable it.
-        self.pmc().ckgr_mor.modify(|_, w| {
+        self.pmc().ckgr_mor().modify(|_, w| {
             w.key().passwd();
             w.moscxtby().set_bit();
             w.moscxten().clear_bit();
@@ -116,15 +116,15 @@ impl Token<MainClock<InternalRC>> {
         });
 
         // Wait until oscillator is stable.
-        while self.pmc().sr.read().moscxts().bit_is_clear() {}
+        while self.pmc().sr().read().moscxts().bit_is_clear() {}
 
         // Switch over to the external clock.
-        self.pmc().ckgr_mor.modify(|_, w| {
+        self.pmc().ckgr_mor().modify(|_, w| {
             w.key().passwd();
             w.moscsel().set_bit();
             w
         });
-        while self.pmc().sr.read().moscsels().bit_is_clear() {}
+        while self.pmc().sr().read().moscsels().bit_is_clear() {}
 
         Ok(MainClock {
             freq,

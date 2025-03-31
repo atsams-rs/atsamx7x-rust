@@ -40,7 +40,7 @@ pub(in crate::pio) trait RegisterInterface {
 
         // configure function, preserving other pin bits
         for (i, bit) in (0..=1).zip([sr0, sr1]) {
-            self.reg().abcdsr[i].modify(|r, w| unsafe {
+            self.reg().abcdsr(i).modify(|r, w| unsafe {
                 w.bits(match bit {
                     true => r.bits() | 1 << idx,
                     false => r.bits() & !(1 << idx),
@@ -49,43 +49,43 @@ pub(in crate::pio) trait RegisterInterface {
         }
 
         // give pin to peripheral
-        self.reg().pdr.write(|w| unsafe { w.bits(self.mask()) });
+        self.reg().pdr().write(|w| unsafe { w.bits(self.mask()) });
 
         // disable multidrive
-        self.reg().mddr.write(|w| unsafe { w.bits(self.mask()) });
+        self.reg().mddr().write(|w| unsafe { w.bits(self.mask()) });
     }
 
     #[inline]
     fn as_output(&mut self) {
         // take pin from peripheral
-        self.reg().per.write(|w| unsafe { w.bits(self.mask()) });
+        self.reg().per().write(|w| unsafe { w.bits(self.mask()) });
 
         // disable multidrive
-        self.reg().mddr.write(|w| unsafe { w.bits(self.mask()) });
+        self.reg().mddr().write(|w| unsafe { w.bits(self.mask()) });
 
         // enable pin output
-        self.reg().oer.write(|w| unsafe { w.bits(self.mask()) });
+        self.reg().oer().write(|w| unsafe { w.bits(self.mask()) });
     }
 
     #[inline]
     fn as_input(&mut self) {
         // take pin from peripheral
-        self.reg().per.write(|w| unsafe { w.bits(self.mask()) });
+        self.reg().per().write(|w| unsafe { w.bits(self.mask()) });
 
         // disable multidrive
-        self.reg().mddr.write(|w| unsafe { w.bits(self.mask()) });
+        self.reg().mddr().write(|w| unsafe { w.bits(self.mask()) });
 
         // disable pin output: pin is a pure input
-        self.reg().odr.write(|w| unsafe { w.bits(self.mask()) });
+        self.reg().odr().write(|w| unsafe { w.bits(self.mask()) });
     }
 
     /// Write the logic level of an output pin
     #[inline]
     fn write_pin(&mut self, bit: bool) {
         if bit {
-            self.reg().sodr.write(|w| unsafe { w.bits(self.mask()) });
+            self.reg().sodr().write(|w| unsafe { w.bits(self.mask()) });
         } else {
-            self.reg().codr.write(|w| unsafe { w.bits(self.mask()) });
+            self.reg().codr().write(|w| unsafe { w.bits(self.mask()) });
         }
     }
 
@@ -94,7 +94,7 @@ pub(in crate::pio) trait RegisterInterface {
     /// Returns `true` if the pin is driven high.
     #[inline]
     fn read_out_pin(&self) -> bool {
-        self.reg().odsr.read().bits() & self.mask() != 0
+        self.reg().odsr().read().bits() & self.mask() != 0
     }
 
     /// Read the logic level of an input pin.
@@ -102,7 +102,7 @@ pub(in crate::pio) trait RegisterInterface {
     /// Returns `true` if the pin is at level 1 (high).
     #[inline]
     fn read_in_pin(&self) -> bool {
-        self.reg().pdsr.read().bits() & self.mask() != 0
+        self.reg().pdsr().read().bits() & self.mask() != 0
     }
 
     /// Toggle the logic level of an output pin.
@@ -116,16 +116,16 @@ pub(in crate::pio) trait RegisterInterface {
         // Refer to §32.5.1
         let pull_up = |b: bool| {
             if b {
-                self.reg().puer.write(|w| unsafe { w.bits(self.mask()) });
+                self.reg().puer().write(|w| unsafe { w.bits(self.mask()) });
             } else {
-                self.reg().pudr.write(|w| unsafe { w.bits(self.mask()) });
+                self.reg().pudr().write(|w| unsafe { w.bits(self.mask()) });
             }
         };
         let pull_down = |b: bool| {
             if b {
-                self.reg().ppder.write(|w| unsafe { w.bits(self.mask()) });
+                self.reg().ppder().write(|w| unsafe { w.bits(self.mask()) });
             } else {
-                self.reg().ppddr.write(|w| unsafe { w.bits(self.mask()) });
+                self.reg().ppddr().write(|w| unsafe { w.bits(self.mask()) });
             }
         };
 
@@ -156,64 +156,64 @@ pub(in crate::pio) trait RegisterInterface {
             // XXX The peripheral clock is not disabled because it
             // could be used by another pin in this bank. This clock
             // dependency is currently not tracked. Refer to #11.
-            self.reg().idr.write(|w| unsafe { w.bits(self.mask()) });
+            self.reg().idr().write(|w| unsafe { w.bits(self.mask()) });
             return;
         }
 
         // Configure the event detector tree seen in §32.5.10, Figure
         // 32-6.
         if cfg == Some(InterruptType::AnyEdge) {
-            self.reg().aimdr.write(|w| unsafe { w.bits(self.mask()) });
+            self.reg().aimdr().write(|w| unsafe { w.bits(self.mask()) });
         } else {
-            self.reg().aimer.write(|w| unsafe { w.bits(self.mask()) });
+            self.reg().aimer().write(|w| unsafe { w.bits(self.mask()) });
         }
         match cfg {
             Some(InterruptType::RisingEdge) => {
-                self.reg().esr.write(|w| unsafe { w.bits(self.mask()) });
-                self.reg().rehlsr.write(|w| unsafe { w.bits(self.mask()) });
+                self.reg().esr().write(|w| unsafe { w.bits(self.mask()) });
+                self.reg().rehlsr().write(|w| unsafe { w.bits(self.mask()) });
             }
             Some(InterruptType::FallingEdge) => {
-                self.reg().esr.write(|w| unsafe { w.bits(self.mask()) });
-                self.reg().fellsr.write(|w| unsafe { w.bits(self.mask()) });
+                self.reg().esr().write(|w| unsafe { w.bits(self.mask()) });
+                self.reg().fellsr().write(|w| unsafe { w.bits(self.mask()) });
             }
             Some(InterruptType::LowLevel) => {
-                self.reg().lsr.write(|w| unsafe { w.bits(self.mask()) });
-                self.reg().fellsr.write(|w| unsafe { w.bits(self.mask()) });
+                self.reg().lsr().write(|w| unsafe { w.bits(self.mask()) });
+                self.reg().fellsr().write(|w| unsafe { w.bits(self.mask()) });
             }
             Some(InterruptType::HighLevel) => {
-                self.reg().lsr.write(|w| unsafe { w.bits(self.mask()) });
-                self.reg().rehlsr.write(|w| unsafe { w.bits(self.mask()) });
+                self.reg().lsr().write(|w| unsafe { w.bits(self.mask()) });
+                self.reg().rehlsr().write(|w| unsafe { w.bits(self.mask()) });
             }
             _ => (),
         }
 
-        self.reg().ier.write(|w| unsafe { w.bits(self.mask()) });
+        self.reg().ier().write(|w| unsafe { w.bits(self.mask()) });
     }
 
     fn set_filter(&mut self, cfg: Option<InputFilter>) {
         if cfg.is_none() {
             // disable the input filter
-            self.reg().ifdr.write(|w| unsafe { w.bits(self.mask()) });
+            self.reg().ifdr().write(|w| unsafe { w.bits(self.mask()) });
         } else {
             // enable the input filter
-            self.reg().ifer.write(|w| unsafe { w.bits(self.mask()) });
+            self.reg().ifer().write(|w| unsafe { w.bits(self.mask()) });
         }
 
         match cfg {
             Some(InputFilter::Glitch) => {
                 // enable glitch filter, using the peripheral clock
-                self.reg().ifscdr.write(|w| unsafe { w.bits(self.mask()) });
+                self.reg().ifscdr().write(|w| unsafe { w.bits(self.mask()) });
             }
             Some(InputFilter::Debounce) => {
                 // enable debounce filter, using the divided slow clock
-                self.reg().ifscer.write(|w| unsafe { w.bits(self.mask()) });
+                self.reg().ifscer().write(|w| unsafe { w.bits(self.mask()) });
             }
             _ => (),
         }
     }
 
     fn set_schmitt(&mut self, cfg: bool) {
-        self.reg().schmitt.modify(|r, w| unsafe {
+        self.reg().schmitt().modify(|r, w| unsafe {
             // register is r/w: set/clear only the bit for this pin.
             if cfg {
                 // enable trigger by clearing the bit

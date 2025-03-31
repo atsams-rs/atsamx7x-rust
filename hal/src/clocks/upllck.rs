@@ -24,15 +24,15 @@ impl Token<UpllClock> {
         };
 
         // Configure the UTMI PLL clock and wait for lock.
-        self.utmi().cktrim.modify(|_, w| w.freq().variant(freq));
-        self.pmc().ckgr_uckr.modify(|_, w| {
+        self.utmi().cktrim().modify(|_, w| w.freq().variant(freq));
+        self.pmc().ckgr_uckr().modify(|_, w| {
             w.upllen().set_bit();
             unsafe {
                 w.upllcount().bits(COMMON_WAIT_UNTIL_STABLE_62_MILLISECS);
             }
             w
         });
-        while self.pmc().sr.read().locku().bit_is_clear() {}
+        while self.pmc().sr().read().locku().bit_is_clear() {}
 
         Ok(UpllClock)
     }
@@ -42,7 +42,7 @@ impl Token<UpllDivClock> {
     /// Configures UPLLCKDIV
     pub fn configure(self, source: &impl UpllDivSource, div: UpllDivider) -> UpllDivClock {
         self.pmc()
-            .mckr
+            .mckr()
             .modify(|_, w| w.uplldiv2().bit(div == UpllDivider::Div2));
 
         UpllDivClock {

@@ -161,7 +161,7 @@ macro_rules! impl_read {
                     //     return Err(nb::Error::Other(UartError::Framing));
                     // }
 
-                    Ok(self.reg().us_rhr.read().rxchr().bits() as u8)
+                    Ok(self.reg().us_rhr().read().rxchr().bits() as u8)
                 }
             }
 
@@ -197,7 +197,7 @@ macro_rules! impl_write {
                     }
 
                     self.reg()
-                        .us_thr
+                        .us_thr()
                         .write(|w| unsafe { w.txchr().bits(byte as u16) });
                     Ok(())
                 }

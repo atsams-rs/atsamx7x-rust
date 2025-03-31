@@ -206,7 +206,7 @@ impl<M: UsartMeta, R: SpiRole> ehal::spi::FullDuplex<u8> for Spi<M, R> {
         //     return Err(nb::Error::Other(SpiError::Underrun));
         // }
 
-        Ok(self.reg().us_rhr.read().rxchr().bits() as u8)
+        Ok(self.reg().us_rhr().read().rxchr().bits() as u8)
     }
 
     fn send(&mut self, word: u8) -> nb::Result<(), Self::Error> {
@@ -218,7 +218,7 @@ impl<M: UsartMeta, R: SpiRole> ehal::spi::FullDuplex<u8> for Spi<M, R> {
         }
 
         self.reg()
-            .us_thr
+            .us_thr()
             .write(|w| unsafe { w.txchr().bits(word as u16) });
         Ok(())
     }

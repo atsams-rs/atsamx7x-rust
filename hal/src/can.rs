@@ -43,7 +43,7 @@ impl CanMeta for Can0 {
     const PID: PeripheralIdentifier = PeripheralIdentifier::MCAN0;
     type REG = crate::pac::MCAN0;
     fn eligible_message_ram_start(matrix: &crate::pac::MATRIX) -> usize {
-        (matrix.ccfg_can0.read().can0dmaba().bits() as usize) << 16
+        (matrix.ccfg_can0().read().can0dmaba().bits() as usize) << 16
     }
 }
 
@@ -62,7 +62,7 @@ impl CanMeta for Can1 {
     const PID: PeripheralIdentifier = PeripheralIdentifier::MCAN1;
     type REG = crate::pac::MCAN1;
     fn eligible_message_ram_start(matrix: &crate::pac::MATRIX) -> usize {
-        (matrix.ccfg_sysio.read().can1dmaba().bits() as usize) << 16
+        (matrix.ccfg_sysio().read().can1dmaba().bits() as usize) << 16
     }
 }
 
