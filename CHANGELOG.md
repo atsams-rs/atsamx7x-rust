@@ -9,7 +9,10 @@
 - Update `cortex-m` version in examples to `0.7.7`.
 - MSRV bump to 1.74.0.
 
-## [v0.4.5] 2025-03-19
+### Removed
+- Remove support for sample variants (w/o letter 'B' in chip model) as SVDs for them are no longer supported by Microchip.
+
+## v0.4.5 2025-03-19
 
 ### Added
 
@@ -146,7 +149,8 @@
 * hal: Just very simple stuff added
 * automation script in Python
 
-[Unreleased]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.4.2...HEAD
+[Unreleased]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.4.6...HEAD
+[v0.4.6]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.4.2...v0.4.6
 [v0.4.2]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.4.1...v0.4.2
 [v0.4.1]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.4.0...v0.4.1
 [v0.4.0]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.3.0...v0.4.0
