@@ -132,7 +132,7 @@ impl<M: PwmMeta, I: ChannelId> Channel<M, I> {
 
     #[inline(always)]
     fn reg(&self) -> &ChannelRegister {
-        &<Self as RegisterAccess<M>>::reg(self).pwm_ch_num(I::DYN)
+        <Self as RegisterAccess<M>>::reg(self).pwm_ch_num(I::DYN)
     }
 
     /// Returns `true` if the [`Channel`] is enabled and is currently
