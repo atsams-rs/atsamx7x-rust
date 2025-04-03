@@ -61,7 +61,7 @@ impl generics::Sealed for Output {}
 
 /// Type-level enum for alternate peripheral function configurations
 pub trait PeripheralConfig: generics::Sealed {
-    /// Corresponding [`DynPeripheral`](super::DynPeripheral)
+    /// Corresponding [`DynPeripheral`]
     const DYN: DynPeripheral;
 }
 
