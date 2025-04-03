@@ -172,6 +172,7 @@ struct Sample {
 const NUM_CHANNELS: usize = 12;
 
 /// Iterator of [`Sample`]s for enabled and measured channels, from [`Afec::sample`].
+#[allow(dead_code)]
 struct Samples([Option<Sample>; NUM_CHANNELS]);
 impl Iterator for Samples {
     type Item = Sample;
