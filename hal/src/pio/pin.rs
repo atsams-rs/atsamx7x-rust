@@ -176,7 +176,7 @@ where
                 unsafe {
                     let matrix = &*MATRIX;
                     let mask = 1 << pin;
-                    matrix.ccfg_sysio.modify(|_, w| w.bits(mask));
+                    matrix.ccfg_sysio().modify(|_, w| w.bits(mask));
                 }
             }
         }
