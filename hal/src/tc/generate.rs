@@ -84,7 +84,10 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32>
             w
         });
         // disable any IRQs
-        driver.channel().idr().write(|w| unsafe { w.bits(u32::MAX) });
+        driver
+            .channel()
+            .idr()
+            .write(|w| unsafe { w.bits(u32::MAX) });
 
         driver.enable();
 

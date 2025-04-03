@@ -270,22 +270,31 @@ impl Inner {
             });
 
             // setup RSTDTS, STALLRQC
-            self.reg().deveptier_ctrl_mode(ep).write(|w| w.rstdts().set_bit());
-            self.reg().deveptidr_ctrl_mode(ep).write(|w| w.stallrqc().set_bit());
+            self.reg()
+                .deveptier_ctrl_mode(ep)
+                .write(|w| w.rstdts().set_bit());
+            self.reg()
+                .deveptidr_ctrl_mode(ep)
+                .write(|w| w.stallrqc().set_bit());
 
             if ep != 0 {
                 // Configure endpoint direction.
-                self.reg().deveptcfg(ep)
+                self.reg()
+                    .deveptcfg(ep)
                     .modify(|_, w| w.epdir().bit(conf.ep_dir == UsbDirection::In));
             }
 
             // Check if endpoint configuration was successful
-            if self.reg().deveptisr_ctrl_mode(ep)
+            if self
+                .reg()
+                .deveptisr_ctrl_mode(ep)
                 .read()
                 .cfgok()
                 .bit_is_set()
             {
-                self.reg().deveptier_ctrl_mode(ep).write(|w| w.rxstpes().set_bit());
+                self.reg()
+                    .deveptier_ctrl_mode(ep)
+                    .write(|w| w.rxstpes().set_bit());
                 self.enable_endpoint_interrupt(ep);
             } else {
                 todo!("endpoint configuration failed");
@@ -475,18 +484,28 @@ impl Inner {
 
         if ep == 0 {
             // clear TXINI to send the package
-            self.reg().devepticr_ctrl_mode(0).write(|w| w.txinic().set_bit());
+            self.reg()
+                .devepticr_ctrl_mode(0)
+                .write(|w| w.txinic().set_bit());
             // enable TXINI interrupt
-            self.reg().deveptier_ctrl_mode(0).write(|w| w.txines().set_bit());
+            self.reg()
+                .deveptier_ctrl_mode(0)
+                .write(|w| w.txines().set_bit());
             // enable RXOUTI interrupt
-            self.reg().deveptier_ctrl_mode(0).write(|w| w.rxoutes().set_bit());
+            self.reg()
+                .deveptier_ctrl_mode(0)
+                .write(|w| w.rxoutes().set_bit());
         } else {
             // Clear the FIFO control send the package.
-            self.reg().deveptidr_ctrl_mode(ep).write(|w| w.fifoconc().set_bit());
+            self.reg()
+                .deveptidr_ctrl_mode(ep)
+                .write(|w| w.fifoconc().set_bit());
 
             // clear TXINI to send the package
             // XXX required?
-            self.reg().devepticr_ctrl_mode(ep).write(|w| w.txinic().set_bit());
+            self.reg()
+                .devepticr_ctrl_mode(ep)
+                .write(|w| w.txinic().set_bit());
         }
 
         // assume all fit in one transfer
@@ -506,18 +525,26 @@ impl Inner {
             // control endpoints
 
             // Clear RXSTPI interrupt, and make FIFO available
-            self.reg().devepticr_ctrl_mode(0).write(|w| w.rxstpic().set_bit());
+            self.reg()
+                .devepticr_ctrl_mode(0)
+                .write(|w| w.rxstpic().set_bit());
 
             // Clear RXOUTI
-            self.reg().devepticr_ctrl_mode(0).write(|w| w.rxoutic().set_bit());
+            self.reg()
+                .devepticr_ctrl_mode(0)
+                .write(|w| w.rxoutic().set_bit());
         } else {
             // Other Endpoints
 
             // Clear the FIFO control flag to receive more data.
-            self.reg().deveptidr_ctrl_mode(ep).write(|w| w.fifoconc().set_bit());
+            self.reg()
+                .deveptidr_ctrl_mode(ep)
+                .write(|w| w.fifoconc().set_bit());
 
             // Clear RXOUTI
-            self.reg().devepticr_ctrl_mode(ep).write(|w| w.rxoutic().set_bit());
+            self.reg()
+                .devepticr_ctrl_mode(ep)
+                .write(|w| w.rxoutic().set_bit());
         }
 
         Ok(len)

@@ -128,10 +128,14 @@ impl HostClockController {
         let source = SRC::HCC_CSS;
         match source {
             HCC_CSS::PLLA_CLK | HCC_CSS::UPLL_CLK => {
-                self.pmc().mckr().modify(|_, w| w.pres().variant(pres.into()));
+                self.pmc()
+                    .mckr()
+                    .modify(|_, w| w.pres().variant(pres.into()));
                 while self.pmc().sr().read().mckrdy().bit_is_clear() {}
 
-                self.pmc().mckr().modify(|_, w| w.mdiv().variant(div.into()));
+                self.pmc()
+                    .mckr()
+                    .modify(|_, w| w.mdiv().variant(div.into()));
                 while self.pmc().sr().read().mckrdy().bit_is_clear() {}
 
                 self.pmc().mckr().modify(|_, w| w.css().variant(source));
@@ -141,10 +145,14 @@ impl HostClockController {
                 self.pmc().mckr().modify(|_, w| w.css().variant(source));
                 while self.pmc().sr().read().mckrdy().bit_is_clear() {}
 
-                self.pmc().mckr().modify(|_, w| w.pres().variant(pres.into()));
+                self.pmc()
+                    .mckr()
+                    .modify(|_, w| w.pres().variant(pres.into()));
                 while self.pmc().sr().read().mckrdy().bit_is_clear() {}
 
-                self.pmc().mckr().modify(|_, w| w.mdiv().variant(div.into()));
+                self.pmc()
+                    .mckr()
+                    .modify(|_, w| w.mdiv().variant(div.into()));
                 while self.pmc().sr().read().mckrdy().bit_is_clear() {}
             }
         }

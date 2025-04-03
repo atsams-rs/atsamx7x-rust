@@ -170,7 +170,9 @@ impl<M: TwiMeta> Twi<M> {
     /// Write `buffer` onto the bus.
     fn write(&mut self, buffer: &[u8]) -> Result<(), TwiError> {
         for byte in buffer {
-            self.reg().thr().write(|w| unsafe { w.txdata().bits(*byte) });
+            self.reg()
+                .thr()
+                .write(|w| unsafe { w.txdata().bits(*byte) });
             while self.poll_status(|sr: &StatusRegister| sr.txrdy().bit_is_clear())? {}
         }
 

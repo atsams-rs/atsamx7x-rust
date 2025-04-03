@@ -170,19 +170,27 @@ pub(in crate::pio) trait RegisterInterface {
         match cfg {
             Some(InterruptType::RisingEdge) => {
                 self.reg().esr().write(|w| unsafe { w.bits(self.mask()) });
-                self.reg().rehlsr().write(|w| unsafe { w.bits(self.mask()) });
+                self.reg()
+                    .rehlsr()
+                    .write(|w| unsafe { w.bits(self.mask()) });
             }
             Some(InterruptType::FallingEdge) => {
                 self.reg().esr().write(|w| unsafe { w.bits(self.mask()) });
-                self.reg().fellsr().write(|w| unsafe { w.bits(self.mask()) });
+                self.reg()
+                    .fellsr()
+                    .write(|w| unsafe { w.bits(self.mask()) });
             }
             Some(InterruptType::LowLevel) => {
                 self.reg().lsr().write(|w| unsafe { w.bits(self.mask()) });
-                self.reg().fellsr().write(|w| unsafe { w.bits(self.mask()) });
+                self.reg()
+                    .fellsr()
+                    .write(|w| unsafe { w.bits(self.mask()) });
             }
             Some(InterruptType::HighLevel) => {
                 self.reg().lsr().write(|w| unsafe { w.bits(self.mask()) });
-                self.reg().rehlsr().write(|w| unsafe { w.bits(self.mask()) });
+                self.reg()
+                    .rehlsr()
+                    .write(|w| unsafe { w.bits(self.mask()) });
             }
             _ => (),
         }
@@ -202,11 +210,15 @@ pub(in crate::pio) trait RegisterInterface {
         match cfg {
             Some(InputFilter::Glitch) => {
                 // enable glitch filter, using the peripheral clock
-                self.reg().ifscdr().write(|w| unsafe { w.bits(self.mask()) });
+                self.reg()
+                    .ifscdr()
+                    .write(|w| unsafe { w.bits(self.mask()) });
             }
             Some(InputFilter::Debounce) => {
                 // enable debounce filter, using the divided slow clock
-                self.reg().ifscer().write(|w| unsafe { w.bits(self.mask()) });
+                self.reg()
+                    .ifscer()
+                    .write(|w| unsafe { w.bits(self.mask()) });
             }
             _ => (),
         }
