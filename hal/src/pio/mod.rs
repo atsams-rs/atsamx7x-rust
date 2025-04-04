@@ -129,7 +129,7 @@ use crate::pac::{
     PIOB,
     PIOD,
 };
-#[cfg(feature = "pins-144")]
+#[cfg(feature = "__pins-144")]
 use crate::pac::{PIOC, PIOE};
 
 pub mod pin;

@@ -1,5 +1,6 @@
 # IDE/Editors specific stuff and junk
 .vscode/
+rust-analyzer.json
 
 # Build artifacts
 target/

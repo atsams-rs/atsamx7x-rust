@@ -72,8 +72,8 @@ use crate::fugit::HertzU32 as Hertz;
 use crate::pac::uart0::mr::{CHMODESELECT_A as ChannelModeInner, PARSELECT_A as ParityModeInner};
 use crate::pac::{uart0::RegisterBlock, UART0, UART1, UART2};
 #[cfg(all(
-    any(feature = "e70", feature = "s70", feature = "v71"),
-    any(feature = "pins-100", feature = "pins-144")
+    any(feature = "__e70", feature = "__s70", feature = "__v71"),
+    any(feature = "__pins-100", feature = "__pins-144")
 ))]
 use crate::pac::{UART3, UART4};
 use crate::serial::Bps;
@@ -511,7 +511,7 @@ impl_uart!(
         RX: [ Pin<PA5, PeripheralC> ],
         TX: [
             Pin<PA4, PeripheralC>,
-            #[cfg(feature = "pins-144")]
+            #[cfg(feature = "__pins-144")]
             Pin<PA6, PeripheralC>,
             Pin<PD26, PeripheralD>,
         ],
@@ -521,16 +521,16 @@ impl_uart!(
         TX: [ Pin<PD26, PeripheralC>, ],
     },
     #[cfg(all(
-        any(feature = "e70", feature = "s70", feature = "v71"),
-        any(feature = "pins-100", feature = "pins-144")
+        any(feature = "__e70", feature = "__s70", feature = "__v71"),
+        any(feature = "__pins-100", feature = "__pins-144")
     ))]
     Uart3: {
         RX: [ Pin<PD28, PeripheralA> ],
         TX: [ Pin<PD30, PeripheralA>, Pin<PD31, PeripheralB>, ],
     },
     #[cfg(all(
-        any(feature = "e70", feature = "s70", feature = "v71"),
-        any(feature = "pins-100", feature = "pins-144")
+        any(feature = "__e70", feature = "__s70", feature = "__v71"),
+        any(feature = "__pins-100", feature = "__pins-144")
     ))]
     Uart4: {
         RX: [ Pin<PD18, PeripheralC> ],

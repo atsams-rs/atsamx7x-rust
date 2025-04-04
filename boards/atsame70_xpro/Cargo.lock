@@ -102,10 +102,490 @@ dependencies = [
 ]
 
 [[package]]
-name = "atsame70q21b"
-version = "0.29.0-alpha1"
+name = "atsame70j19b"
+version = "0.29.0-alpha3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2a680e943bf86da4f8bea77ce8681101e15e5265eb95a162cf0b5fa80ee0c7c2"
+checksum = "f59b792fc5029f0646d51945594f68601df1a9756253421422672945a8d9943d"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70j20b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ad07c279b3928c99186fd0cc1c9e39cbdb33dbddf5b0e26d3d83dd0486a2e66e"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70j21b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2c0a9865d1a0288c9afc1c5b8120397c99b27ee2b197afdd3bd93a75f8aa9a2c"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70n19b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5921d155748b89dd1229ad5060bfac5a8edd09e4c6212765f838987877f4a2ee"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70n20b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "69e9515be929a88112811d46e5b4a997397e13fd1bc3af32317a2977f1ec2ddd"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70n21b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "33f359bd6149c3d7f4fb76d89562b30bd588ad335716cb260ff41ed2e3d203c1"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70q19b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3dcbba1aed7a1db050c165a39ebf9e61d7d83cc8f884e3e9527f396920bc24d0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70q20b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "181b3917fdbdc4650f8bff281a4d3f3b639f365549317d7d52f5b1f9675ccd52"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsame70q21b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9ec88ab8a5e0336ec6d9c45295fa0c843fe609211753c26a0904a5abaa66d406"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsams70j19b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "08bd21f78548bce21f946df44dfa5092649394207168eae1322d8564cb47211b"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsams70j20b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0a842e106ba4e543cc6befb1f2a5ab43be788679ae549111405715fcf86a86f8"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsams70j21b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b34fc1317a00bf230b98b3431032723d442a402d0a396f271bb7edd498524383"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsams70n19b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3a0ba05baf0a7199fd71fb292f6998a720a69c2a732d50b741d4612ae8bff261"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsams70n20b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5b96ea1fcf1acc169085b045e642118fd41c4256a9108f0b21209d0ef8c9261c"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsams70n21b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f657ff8db7ceaed8fc68407b0f9a18b547569297cb59bb255048eb766fc70107"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsams70q19b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5327d54bf890efb9a1ba49a6ec959ca04f9f62e071e56e92181f0cac4a6420b7"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsams70q20b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b5a36082caa069b65f2dc07110c4a0f643f57dcb3849769ebf12c806780d9e33"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsams70q21b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e4d1ddafb14bdc446ec2abc0a525caa24f344dfa3ee735096de14beae2da0f16"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70j19b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "37e7a56cfe0ad63e1aa21f7d55470ffb89f7b050027d561c8e6cf40aa3ff84b4"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70j20b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "66bdc44e938d3f0897230667e2154aa053d2aefb8ceecb1188a5defc57e3c080"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70n19b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1e9a2c575f8a47d091682ad503b86fa3ba44d59b4a9d4afce258b28e35942c1f"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70n20b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c967624fd921a2144cb04043b873fb4cabbd9fce5c79ca8cf757d2d7930a01fd"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70q19b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "99d665f962c2e8b29cc874f4a97f9f9dd6e7512b6a623b8cbfcd4c286c1cd7cb"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv70q20b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0ef1adc1925558fdd6d9a4f678f9165ea4b962abc928648e51ec189c457bf4a0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv71j19b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4a5afdafae5e1d5ad66e50a70ee346058e3ba7cfb72d8eb6f6729dbd7f816694"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv71j20b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4588b8c979c378b4d0f1eb3d37729a6cee4979652136d49cf4db92ebb60ed591"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv71j21b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cc4038a6114b0bb6dd41b9d1feec63dd1e55455019e336f3dc624805251f414c"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv71n19b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5b7efb2028637208bea0d98152c83215e2f8fe8ae0b1af69bbd5c92f5b3b3911"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv71n20b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fdb4c881959cce3d8050139ad960ae91431fb9596a79a4a28fe7c3830371c745"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv71n21b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1ea446ec36857849f81367a01eb362f4cfc6dad8973445029dbaf99bad65bcbe"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv71q19b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f84deff4deb0b32697422b65d581b0a388ef212c11607c169e1cf04a5ecb3fce"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv71q20b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6351ec583cc689b79e27e2cedad9bbe0a308d4064b57cae2ab5176aa9a8f4469"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "derive_more",
+ "form",
+ "regex",
+ "svd2rust",
+ "vcell",
+]
+
+[[package]]
+name = "atsamv71q21b"
+version = "0.29.0-alpha3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "de4dff2ff428ab3913ce5a2f54cbc2357600957f0b11f857d240b61d66f41aff"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -118,9 +598,41 @@ dependencies = [
 
 [[package]]
 name = "atsamx7x-hal"
-version = "0.4.3-alpha1"
+version = "0.4.3-alpha3"
 dependencies = [
+ "atsame70j19b",
+ "atsame70j20b",
+ "atsame70j21b",
+ "atsame70n19b",
+ "atsame70n20b",
+ "atsame70n21b",
+ "atsame70q19b",
+ "atsame70q20b",
  "atsame70q21b",
+ "atsams70j19b",
+ "atsams70j20b",
+ "atsams70j21b",
+ "atsams70n19b",
+ "atsams70n20b",
+ "atsams70n21b",
+ "atsams70q19b",
+ "atsams70q20b",
+ "atsams70q21b",
+ "atsamv70j19b",
+ "atsamv70j20b",
+ "atsamv70n19b",
+ "atsamv70n20b",
+ "atsamv70q19b",
+ "atsamv70q20b",
+ "atsamv71j19b",
+ "atsamv71j20b",
+ "atsamv71j21b",
+ "atsamv71n19b",
+ "atsamv71n20b",
+ "atsamv71n21b",
+ "atsamv71q19b",
+ "atsamv71q20b",
+ "atsamv71q21b",
  "bit-iter",
  "cfg-if",
  "cortex-m",
@@ -478,9 +990,9 @@ checksum = "3f9eec918d3f24069decb9af1554cad7c880e2da24a9afd88aca000531ab82c1"
 
 [[package]]
 name = "form"
-version = "0.10.0"
+version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "abb9c0c76c3c54b6044333d77168a230b24bcf9d1a19c773cd95e8a6aa147750"
+checksum = "7cf0f791bf56f483754cb7ef69b88d95a0df7b378ab3324b8a08259a6e7da37e"
 dependencies = [
  "anyhow",
  "env_logger 0.9.3",
@@ -569,6 +1081,15 @@ name = "hermit-abi"
 version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "443144c8cdadd93ebf52ddb4056d257f5b52c04d3c804e657d19eb73fc33668b"
+
+[[package]]
+name = "html-escape"
+version = "0.2.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6d1ad449764d627e22bfd7cd5e8868264fc9236e07c752972b4080cd351cb476"
+dependencies = [
+ "utf8-width",
+]
 
 [[package]]
 name = "humantime"
@@ -680,9 +1201,9 @@ dependencies = [
 
 [[package]]
 name = "memchr"
-version = "2.5.0"
+version = "2.6.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2dffe52ecf27772e601905b7522cb4ef790d2cc203488bbd0e2fe85fcb74566d"
+checksum = "f665ee40bc4a3c5590afb1e9677db74a508659dfd71e126420da8274909a0167"
 
 [[package]]
 name = "nb"
@@ -698,6 +1219,26 @@ name = "nb"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8d5439c4ad607c3c23abf66de8c8bf57ba8adcd1f129e699851a6e43935d339d"
+
+[[package]]
+name = "num_enum"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7a015b430d3c108a207fd776d2e2196aaf8b1cf8cf93253e3a097ff3085076a1"
+dependencies = [
+ "num_enum_derive",
+]
+
+[[package]]
+name = "num_enum_derive"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "96667db765a921f7b295ffee8b60472b686a51d4f21c2ee4ffdb94c7013b65a6"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.16",
+]
 
 [[package]]
 name = "once_cell"
@@ -726,6 +1267,12 @@ name = "paste"
 version = "1.0.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9f746c4065a8fa3fe23974dd82f15431cc8d40779821001404d10d2e79ca7d79"
+
+[[package]]
+name = "portable-atomic"
+version = "1.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7170ef9988bc169ba16dd36a7fa041e5c4cbeb6a35b76d4c03daded371eae7c0"
 
 [[package]]
 name = "proc-macro-error"
@@ -771,9 +1318,9 @@ dependencies = [
 
 [[package]]
 name = "regex"
-version = "1.9.3"
+version = "1.10.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "81bc1d4caf89fac26a70747fe603c130093b53c773888797a6329091246d651a"
+checksum = "380b951a9c5e80ddfd6136919eef32310721aa4aacd4889a8d39124b026ab343"
 dependencies = [
  "aho-corasick",
  "memchr",
@@ -783,9 +1330,9 @@ dependencies = [
 
 [[package]]
 name = "regex-automata"
-version = "0.3.6"
+version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fed1ceff11a1dddaee50c9dc8e4938bd106e9d89ae372f192311e7da498e3b69"
+checksum = "5f804c7828047e88b2d32e2d7fe5a105da8ee3264f01902f796c8e067dc2483f"
 dependencies = [
  "aho-corasick",
  "memchr",
@@ -794,9 +1341,9 @@ dependencies = [
 
 [[package]]
 name = "regex-syntax"
-version = "0.7.4"
+version = "0.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e5ea92a5b6195c6ef2a0295ea818b312502c6fc94dde986c5553242e18fd4ce2"
+checksum = "c08c74e62047bb2de4ff487b251e4a92e24f48745648451635cec7d591162d9f"
 
 [[package]]
 name = "roxmltree"
@@ -1033,13 +1580,14 @@ dependencies = [
 
 [[package]]
 name = "svd2rust"
-version = "0.28.0"
+version = "0.29.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "208592cbbe3726e9cafa9a802b9de2a7e959118fdb8b73ef90309f6b4d9cb86f"
+checksum = "fa74088ddea858d2715bf812b0a6347a1340a13e1b91803376967a9dc84602f8"
 dependencies = [
  "anyhow",
  "clap",
  "env_logger 0.10.0",
+ "html-escape",
  "inflections",
  "irx-config",
  "log",
@@ -1166,20 +1714,31 @@ checksum = "f28467d3e1d3c6586d8f25fa243f544f5800fec42d97032474e17222c2b75cfa"
 
 [[package]]
 name = "usb-device"
-version = "0.2.9"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1f6cc3adc849b5292b4075fc0d5fdcf2f24866e88e336dd27a8943090a520508"
+checksum = "e73e438f527e567fb3982f2370967821fab4f5aea84c42e218a211dd2002b6a2"
+dependencies = [
+ "heapless",
+ "num_enum",
+ "portable-atomic",
+]
 
 [[package]]
 name = "usbd-serial"
-version = "0.1.1"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "db75519b86287f12dcf0d171c7cf4ecc839149fe9f3b720ac4cfce52959e1dfe"
+checksum = "c73af5da56a26abc61a77a93afe3993e1dd643c73e61b09669bda81068cbb1bf"
 dependencies = [
  "embedded-hal",
- "nb 0.1.3",
+ "nb 1.1.0",
  "usb-device",
 ]
+
+[[package]]
+name = "utf8-width"
+version = "0.1.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "86bd8d4e895da8537e5315b8254664e6b769c4ff3db18321b297a1e7004392e3"
 
 [[package]]
 name = "utf8parse"

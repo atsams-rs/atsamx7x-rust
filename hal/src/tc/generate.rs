@@ -144,7 +144,7 @@ where
         // integer.
         //
         // Safe: driver was consumed in Channel::chain.
-        let mut driver = unsafe { Channel::<M, J, _>::new::<Generate<C, DRIVER_FREQ_HZ>>() };
+        let mut driver = unsafe { Channel::<M, J, _>::new() };
         // The 16-bit counter is incremented only at each positive
         // input clock edge. When chaining channels, this then results
         // in a static /2 prescaler. Refer to §50.6.2.

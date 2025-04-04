@@ -150,7 +150,7 @@ pub(in crate::pio) trait RegisterInterface {
     }
 
     fn set_interrupt(&mut self, cfg: Option<InterruptType>) {
-        if cfg == None {
+        if cfg.is_none() {
             // Disable pin interrupt
             //
             // XXX The peripheral clock is not disabled because it
@@ -191,7 +191,7 @@ pub(in crate::pio) trait RegisterInterface {
     }
 
     fn set_filter(&mut self, cfg: Option<InputFilter>) {
-        if cfg == None {
+        if cfg.is_none() {
             // disable the input filter
             self.reg().ifdr.write(|w| unsafe { w.bits(self.mask()) });
         } else {

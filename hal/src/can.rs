@@ -54,10 +54,10 @@ unsafe impl mcan_core::CanId for Can0 {
 }
 
 /// Identity type for `MCAN1`
-#[cfg(any(feature = "pins-100", feature = "pins-144"))]
+#[cfg(any(feature = "__pins-100", feature = "__pins-144"))]
 pub enum Can1 {}
 
-#[cfg(any(feature = "pins-100", feature = "pins-144"))]
+#[cfg(any(feature = "__pins-100", feature = "__pins-144"))]
 impl CanMeta for Can1 {
     const PID: PeripheralIdentifier = PeripheralIdentifier::MCAN1;
     type REG = crate::pac::MCAN1;
@@ -66,10 +66,10 @@ impl CanMeta for Can1 {
     }
 }
 
-#[cfg(any(feature = "pins-100", feature = "pins-144"))]
+#[cfg(any(feature = "__pins-100", feature = "__pins-144"))]
 impl generics::Sealed for Can1 {}
 
-#[cfg(any(feature = "pins-100", feature = "pins-144"))]
+#[cfg(any(feature = "__pins-100", feature = "__pins-144"))]
 unsafe impl mcan_core::CanId for Can1 {
     const ADDRESS: *const () = <Self as CanMeta>::REG::PTR as _;
 }
@@ -159,22 +159,22 @@ impl TxPin for Pin<PB2, PeripheralA> {
     type ValidFor = Can0;
 }
 
-#[cfg(feature = "pins-144")]
+#[cfg(feature = "__pins-144")]
 impl RxPin for Pin<PC12, PeripheralC> {
     type ValidFor = Can1;
 }
 
-#[cfg(feature = "pins-100")]
+#[cfg(feature = "__pins-100")]
 impl RxPin for Pin<PD28, PeripheralB> {
     type ValidFor = Can1;
 }
 
-#[cfg(feature = "pins-144")]
+#[cfg(feature = "__pins-144")]
 impl TxPin for Pin<PC14, PeripheralC> {
     type ValidFor = Can1;
 }
 
-#[cfg(any(feature = "pins-100", feature = "pins-144"))]
+#[cfg(any(feature = "__pins-100", feature = "__pins-144"))]
 impl TxPin for Pin<PD12, PeripheralB> {
     type ValidFor = Can1;
 }

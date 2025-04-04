@@ -46,10 +46,13 @@ use usb_device::prelude::*;
 
 let usb_alloc = Usb::new(pac.USBHS, &mut mck, &upllck).into_usb_allocator();
 let mut usb_dev = UsbDeviceBuilder::new(&usb_alloc, UsbVidPid(0x16c0, 0x27dd))
-    .manufacturer("Fake company")
-    .product("Serial port")
-    .serial_number("TEST")
+    .strings(&[StringDescriptors::new(LangID::EN)
+        .manufacturer("Fake company")
+        .product("Serial port")
+    .serial_number("TEST")])
+    .unwrap()
     .max_packet_size_0(64) // makes control transfers 8x faster
+    .unwrap()
     .build();
 
 loop {
@@ -64,6 +67,8 @@ use crate::clocks::{HostClock, PeripheralIdentifier, UpllClock};
 use crate::pac::{usbhs::RegisterBlock, USBHS};
 
 use core::cell::UnsafeCell;
+use core::option::Option;
+use core::result::Result::{Err, Ok};
 
 use cortex_m::interrupt::{self, Mutex};
 use usb_device::bus::{PollResult, UsbBusAllocator};
@@ -108,7 +113,7 @@ impl Endpoints {
     fn find_free_endpoint(&self) -> UsbResult<usize> {
         // start with 1 because 0 is reserved for Control
         for idx in 1..NUM_ENDPOINTS {
-            if self.ep_config[idx] == None {
+            if self.ep_config[idx].is_none() {
                 return Ok(idx);
             }
         }
@@ -124,7 +129,7 @@ impl Endpoints {
         max_packet_size: u16,
         _interval: u8,
     ) -> UsbResult<EndpointAddress> {
-        if idx != 0 && self.ep_config[idx] != None {
+        if idx != 0 && self.ep_config[idx].is_some() {
             return Err(UsbError::EndpointOverflow);
         }
 
@@ -221,11 +226,7 @@ impl Inner {
     #[inline(always)]
     fn write_fifo(&self, ep: usize, buf: &[u8]) {
         unsafe {
-            core::ptr::copy_nonoverlapping(
-                buf.as_ptr() as *const u8,
-                self.fifo_addr(ep) as *mut u8,
-                buf.len(),
-            );
+            core::ptr::copy_nonoverlapping(buf.as_ptr(), self.fifo_addr(ep) as *mut u8, buf.len());
         }
     }
 
@@ -235,7 +236,7 @@ impl Inner {
         unsafe {
             core::ptr::copy_nonoverlapping(
                 self.fifo_addr(ep) as *const u8,
-                buf.as_mut_ptr() as *mut u8,
+                buf.as_mut_ptr(),
                 buf.len(),
             );
         }
@@ -262,7 +263,7 @@ impl Inner {
                 // single-bank endpoint
                 w.epbk()._1_bank();
 
-                w.eptype().bits(conf.ep_type as u8);
+                w.eptype().bits(conf.ep_type.to_bm_attributes());
                 w.alloc().set_bit();
 
                 w
@@ -431,7 +432,7 @@ impl Inner {
         const DEVISR_PEPS_MASK: u32 = 0x3ff000;
         const DEVISR_PEPS_OFFSET: u8 = 12;
         for ep in BitIter::from((dev_isr.bits() & DEVISR_PEPS_MASK) >> DEVISR_PEPS_OFFSET) {
-            let sr = self.reg().deveptisr_ctrl_mode()[ep as usize].read();
+            let sr = self.reg().deveptisr_ctrl_mode()[ep].read();
 
             // SETUP packet?
             if sr.rxstpi().bit_is_set() {

@@ -14,6 +14,7 @@ mod app {
     use hal::ehal::digital::v2::ToggleableOutputPin;
     use hal::pio::*;
     use hal::rtt::*;
+    use rtt_target::rtt_init_print;
 
     #[shared]
     struct Shared {}
@@ -26,6 +27,7 @@ mod app {
 
     #[init]
     fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
+        rtt_init_print!();
         let clocks = Tokens::new(
             (ctx.device.PMC, ctx.device.SUPC, ctx.device.UTMI),
             &ctx.device.WDT.into(),

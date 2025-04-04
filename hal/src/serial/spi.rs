@@ -63,7 +63,7 @@ use super::Bps;
 use crate::clocks::{Clock, HostClock, PeripheralIdentifier};
 use crate::ehal::blocking;
 use crate::fugit::{ExtU32, NanosDurationU32 as NanosDuration};
-#[cfg(feature = "pins-144")]
+#[cfg(feature = "__pins-144")]
 use crate::pac::SPI1;
 use crate::pac::{spi0::tdr::PCSSELECT_AW as HwChipSelect, spi0::RegisterBlock, SPI0};
 use crate::{ehal, nb};
@@ -203,15 +203,17 @@ pub struct SpiConfiguration {
 }
 
 impl SpiConfiguration {
-    /// Generates a default [`Spi`] configuration: test mode inactive.
-    pub fn default() -> Self {
-        SpiConfiguration { test_mode: false }
-    }
-
     /// [`SpiConfiguration::test_mode`] override.
     pub fn test_mode(mut self, bit: bool) -> Self {
         self.test_mode = bit;
         self
+    }
+}
+
+/// Generates a default [`Spi`] configuration: test mode inactive.
+impl Default for SpiConfiguration {
+    fn default() -> Self {
+        SpiConfiguration { test_mode: false }
     }
 }
 
@@ -576,7 +578,7 @@ impl_spi!(
         ],
     },
 
-    #[cfg(feature = "pins-144")]
+    #[cfg(feature = "__pins-144")]
     Spi1: {
         MISO: [ Pin<PC26, PeripheralC> ],
         MOSI: [ Pin<PC27, PeripheralC> ],
@@ -639,10 +641,7 @@ impl<'spi, M: SpiMeta> blocking::spi::Transactional<u8> for Client<'spi, M> {
 
     /// Execute the provided transactions, deasserting the select line
     /// after the last transmitted word.
-    fn exec<'a>(
-        &mut self,
-        operations: &mut [blocking::spi::Operation<'a, u8>],
-    ) -> Result<(), Self::Error> {
+    fn exec(&mut self, operations: &mut [blocking::spi::Operation<u8>]) -> Result<(), Self::Error> {
         use blocking::spi::Operation;
 
         let len = operations.len();
