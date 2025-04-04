@@ -246,9 +246,9 @@ unsafe trait RegisterAccess<M: TcMeta, I: ChannelId> {
     fn channel(&self) -> &ChannelRegisterBlock {
         let tc = self.reg();
         match I::DYN {
-            DynChannelId::Ch0 => &tc.tc_channel[0],
-            DynChannelId::Ch1 => &tc.tc_channel[1],
-            DynChannelId::Ch2 => &tc.tc_channel[2],
+            DynChannelId::Ch0 => tc.tc_channel(0),
+            DynChannelId::Ch1 => tc.tc_channel(1),
+            DynChannelId::Ch2 => tc.tc_channel(2),
         }
     }
 }
@@ -264,7 +264,7 @@ trait SyncChannels<M: TcMeta> {
     /// Modifies the hardware state of all [`Channel`]s.
     #[inline(always)]
     unsafe fn sync_start_channels() {
-        { &*M::REG }.bcr.write(|w| w.sync().set_bit());
+        { &*M::REG }.bcr().write(|w| w.sync().set_bit());
     }
 }
 
@@ -470,12 +470,12 @@ impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
 
     /// Disable the [`Channel`]'s input clock.
     fn disable(&mut self) {
-        self.channel().ccr.write(|w| w.clkdis().set_bit());
+        self.channel().ccr().write(|w| w.clkdis().set_bit());
     }
 
     /// Enable the [`Channel`]'s input clock.
     fn enable(&mut self) {
-        self.channel().ccr.write(|w| {
+        self.channel().ccr().write(|w| {
             w.clkdis().clear_bit();
             w.clken().set_bit();
 
@@ -485,7 +485,7 @@ impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
 
     /// Reset the [`Channel`]s counter and start its input clock.
     fn reset_enable(&mut self) {
-        self.channel().ccr.write(|w| {
+        self.channel().ccr().write(|w| {
             w.clkdis().clear_bit();
             w.clken().set_bit();
             w.swtrg().set_bit();
@@ -499,15 +499,15 @@ impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
         match val {
             CompareRegister::Ra(v) => self
                 .channel()
-                .ra
+                .ra()
                 .write(|w| unsafe { w.ra().bits(v.into()) }),
             CompareRegister::Rb(v) => self
                 .channel()
-                .rb
+                .rb()
                 .write(|w| unsafe { w.rb().bits(v.into()) }),
             CompareRegister::Rc(v) => self
                 .channel()
-                .rc
+                .rc()
                 .write(|w| unsafe { w.rc().bits(v.into()) }),
         };
     }
@@ -530,7 +530,7 @@ impl<M: TcMeta, I: ChannelId, S: ChannelState> Channel<M, I, S> {
 
     #[inline(always)]
     fn read_status(&mut self) -> StatusRegister {
-        self.channel().sr.read()
+        self.channel().sr().read()
     }
 }
 

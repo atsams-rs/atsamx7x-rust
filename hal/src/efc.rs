@@ -24,7 +24,7 @@ impl Efc {
     /// Creates a new [`Efc`], the behavior of which depends on the
     /// voltage, [`VddioLevel`], that drives the MCU.
     pub fn new(periph: EFC, vddio: VddioLevel) -> Self {
-        periph.eefc_wpmr.modify(|_r, w| {
+        periph.eefc_wpmr().modify(|_r, w| {
             w.wpkey().passwd();
             w.wpen().clear_bit();
             w
@@ -42,7 +42,7 @@ impl Efc {
         let fws = FlashWaitStates::calculate(freq, &self.vddio)?;
 
         self.periph
-            .eefc_fmr
+            .eefc_fmr()
             .modify(|_r, w| unsafe { w.fws().bits(fws as u8) });
 
         Ok(())

@@ -27,7 +27,7 @@ impl Token<PllaClock> {
         // TODO: Ensure valid requested output frequency.
 
         // Configure PLLA and wait for lock.
-        self.pmc().ckgr_pllar.modify(|_, w| {
+        self.pmc().ckgr_pllar().modify(|_, w| {
             w.one().set_bit();
             unsafe {
                 w.mula().bits(mult as u16 - 1); // HW adds 1
@@ -35,7 +35,7 @@ impl Token<PllaClock> {
             }
             w
         });
-        while self.pmc().sr.read().locka().bit_is_clear() {}
+        while self.pmc().sr().read().locka().bit_is_clear() {}
 
         Ok(PllaClock {
             freq: (source.freq().convert() / div as u32) * mult as u32,

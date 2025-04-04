@@ -35,7 +35,7 @@ impl Watchdog<Reset> {
 
     /// Disables the watchdog completely.
     pub fn disable(self) -> Watchdog<Disabled> {
-        self.watchdog.mr.write(|w| w.wddis().set_bit());
+        self.watchdog.mr().write(|w| w.wddis().set_bit());
         Watchdog {
             watchdog: self.watchdog,
             state: PhantomData,

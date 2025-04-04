@@ -61,7 +61,7 @@ impl generics::Sealed for Output {}
 
 /// Type-level enum for alternate peripheral function configurations
 pub trait PeripheralConfig: generics::Sealed {
-    /// Corresponding [`DynPeripheral`](super::DynPeripheral)
+    /// Corresponding [`DynPeripheral`]
     const DYN: DynPeripheral;
 }
 
@@ -176,7 +176,7 @@ where
                 unsafe {
                     let matrix = &*MATRIX;
                     let mask = 1 << pin;
-                    matrix.ccfg_sysio.modify(|_, w| w.bits(mask));
+                    matrix.ccfg_sysio().modify(|_, w| w.bits(mask));
                 }
             }
         }

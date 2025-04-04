@@ -5,5 +5,3 @@ rust-analyzer.json
 # Build artifacts
 target/
 **/*.rs.bk
-/boards/atsamv71-xult/logs/
-Cargo.lock

@@ -406,7 +406,7 @@ impl<M: UsartMeta> Usart<M> {
         });
 
         let pres = unsafe { mode.configure(self) };
-        self.reg().us_brgr.write(|w| unsafe { w.cd().bits(pres) });
+        self.reg().us_brgr().write(|w| unsafe { w.cd().bits(pres) });
 
         self.clear_errors();
         self.enable();

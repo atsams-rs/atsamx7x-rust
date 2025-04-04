@@ -26,7 +26,7 @@ impl<I: PckId> Token<Pck<I>> {
         }
         let p: u8 = (pres - 1).try_into().unwrap();
 
-        self.pmc().pck[I::ID as usize].write(|w| unsafe {
+        self.pmc().pck(I::ID as usize).write(|w| unsafe {
             w.pres().bits(p);
             w.css().bits(SRC::PCK_CSS as u8)
         });
@@ -36,8 +36,8 @@ impl<I: PckId> Token<Pck<I>> {
         const PCK_REG_OFFSET: u8 = 8;
         let mask = 1 << (I::ID + PCK_REG_OFFSET);
 
-        self.pmc().scer.write(|w| unsafe { w.bits(mask) });
-        while (self.pmc().scsr.read().bits() & mask) == 0 {}
+        self.pmc().scer().write(|w| unsafe { w.bits(mask) });
+        while (self.pmc().scsr().read().bits() & mask) == 0 {}
         Ok(Pck {
             id: PhantomData,
             freq: source.freq() / (pres as u32),

@@ -25,7 +25,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32>
         }
 
         // Connect driver TIOA output to self's input
-        self.reg().bmr.modify(|_, w| {
+        self.reg().bmr().modify(|_, w| {
             let tcxcs = I::DYN.external_feedback_field(&J::DYN);
             match I::DYN {
                 DynChannelId::Ch0 => unsafe { w.tc0xc0s().bits(tcxcs) },
@@ -84,7 +84,10 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32>
             w
         });
         // disable any IRQs
-        driver.channel().idr.write(|w| unsafe { w.bits(u32::MAX) });
+        driver
+            .channel()
+            .idr()
+            .write(|w| unsafe { w.bits(u32::MAX) });
 
         driver.enable();
 
@@ -218,8 +221,8 @@ where
         });
 
         // Enable interrupt on RC compare match
-        self.channel().idr.write(|w| unsafe { w.bits(u32::MAX) });
-        self.channel().ier.write(|w| w.cpcs().set_bit());
+        self.channel().idr().write(|w| unsafe { w.bits(u32::MAX) });
+        self.channel().ier().write(|w| w.cpcs().set_bit());
 
         Ok(Monotonic {
             channel: Channel::transform(self),
@@ -355,7 +358,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> rtic_monotoni
     #[inline(always)]
     fn now(&mut self) -> Self::Instant {
         Self::Instant::from_ticks(
-            ((self.msb as u32) << u16::BITS) | self.channel.channel().cv.read().cv().bits(),
+            ((self.msb as u32) << u16::BITS) | self.channel.channel().cv().read().cv().bits(),
         )
     }
 
@@ -396,7 +399,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> rtic_monotoni
                 // TODO null clock drift by compensating RC value?
                 // Refer to
                 // <https://git.grepit.se/embedded-rust/atsamx7x-hal/-/issues/39>.
-                self.channel.channel().ccr.write(|w| w.swtrg().set_bit());
+                self.channel.channel().ccr().write(|w| w.swtrg().set_bit());
             }
         }
     }

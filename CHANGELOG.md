@@ -2,6 +2,18 @@
 
 ## [Unreleased]
 
+## [v0.4.6] 2025-03-31
+
+### Changed
+- All the fixes for new PACs populated.
+- Update `cortex-m` version in examples to `0.7.7`.
+- MSRV bump to 1.74.0.
+
+### Removed
+- Remove support for sample variants (w/o letter 'B' in chip model) as SVDs for them are no longer supported by Microchip.
+
+## v0.4.5 2025-03-19
+
 ### Added
 
 - [Integration](https://crates.io/crates/mcan-core) with the [`mcan`](https://crates.io/crates/mcan) crate.
@@ -14,6 +26,7 @@
 - Update `cortex-m-rt` version in examples to `0.7.3`.
 - Switched from AFE0_AD6 to  AFE0_AD8 for the atsamv71_xult board ADC example code.
 - The `rt` separated to not act as part of chip selection feature any more.
+- Bump PACs to v0.33.5
 
 ### Removed
 - Huge generated source code for PACs removed, new location for them [`atsamx7x-pac`](/atsams-rs/atsamx7x-pac) (user side generated)
@@ -136,7 +149,8 @@
 * hal: Just very simple stuff added
 * automation script in Python
 
-[Unreleased]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.4.2...HEAD
+[Unreleased]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.4.6...HEAD
+[v0.4.6]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.4.2...v0.4.6
 [v0.4.2]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.4.1...v0.4.2
 [v0.4.1]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.4.0...v0.4.1
 [v0.4.0]: https://github.com/atsams-rs/atsamx7x-rust/compare/v0.3.0...v0.4.0

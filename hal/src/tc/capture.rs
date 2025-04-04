@@ -55,8 +55,8 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> Counter<M, I,
         }
 
         // Both edges have been sampled: calculate measured frequency.
-        let ra = self.channel.channel().ra.read().ra().bits();
-        let rb = self.channel.channel().rb.read().rb().bits();
+        let ra = self.channel.channel().ra().read().ra().bits();
+        let rb = self.channel.channel().rb().read().rb().bits();
 
         // Read-back the sampling ratio
         let ratio = self
@@ -222,7 +222,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32>
         });
 
         // disable all interrupts
-        self.channel().idr.write(|w| unsafe { w.bits(u32::MAX) });
+        self.channel().idr().write(|w| unsafe { w.bits(u32::MAX) });
 
         Counter { channel: self }
     }
