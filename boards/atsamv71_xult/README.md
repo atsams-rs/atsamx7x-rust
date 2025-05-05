@@ -5,7 +5,12 @@ The examples are written in [RTIC](https://rtic.rs).
 
 ## Prerequisites
 * Install the cross-compilation toolchain: `rustup target add thumbv7em-none-eabihf`.
-* Install [cargo-embed](https://github.com/probe-rs/cargo-embed): `cargo install cargo-embed`.
+* Install [probe-rs](https://probe.rs/) (formerly cargo-embed):
+  
+  On Windows `irm https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.ps1 | iex`
+  
+  On Linux `curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.sh | sh`
+
 
 ## Flashing an example
 First, the General-Purpose Non-Volatile-Memory (GPNVM) boot bit must be set in order to map the flashed firmware to address `0x0`;
