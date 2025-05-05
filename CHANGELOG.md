@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Unreleased]
+- Fixed documentation in boards\atsamv71_xult to refer to probe-rs instead of cargo-embed
 
 ## [v0.4.6] 2025-03-31
 
