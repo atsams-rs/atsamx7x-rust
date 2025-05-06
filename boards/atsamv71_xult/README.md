@@ -5,7 +5,7 @@ The examples are written in [RTIC](https://rtic.rs).
 
 ## Prerequisites
 * Install the cross-compilation toolchain: `rustup target add thumbv7em-none-eabihf`.
-* Install [probe-rs](https://probe.rs/) (formerly cargo-embed):
+* Install [`probe-rs`](https://probe.rs/) (formerly `cargo-embed`):
   
   On Windows `irm https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.ps1 | iex`
   
