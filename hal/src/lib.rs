@@ -8,7 +8,7 @@ B-revision is supported.
 
 Where able, hardware state is tracked by the type system and does not incur run-time overhead.
 
-Examples for most implemented peripherals [can be found in the git repository, under `boards/`](https://git.grepit.se/embedded-rust/atsamx7x-hal/-/tree/master/boards).
+Examples for most implemented peripherals [can be found in the git repository, under `boards/`](https://github.com/atsams-rs/atsamx7x-rust/tree/development/boards).
 
 # Getting Started
 
