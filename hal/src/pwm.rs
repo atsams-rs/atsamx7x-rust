@@ -50,14 +50,15 @@ ch.set_freq(2.kHz());
 use core::marker::PhantomData;
 
 use crate::clocks::{Clock, HostClock, PeripheralIdentifier};
-use crate::ehal::PwmPin;
 use crate::fugit::HertzU32 as Hertz;
+use crate::legacy_ehal::PwmPin;
 use crate::pac::{
     pwm0::{RegisterBlock, PWM_CH_NUM as ChannelRegister},
     PWM0, PWM1,
 };
 use crate::{generics, pio::*};
 
+use crate::ehal::pwm::{self, ErrorKind, ErrorType, SetDutyCycle};
 use paste::paste;
 
 /// Possible [`Pwm`]/[`Channel`] errors.
@@ -65,6 +66,16 @@ use paste::paste;
 pub enum PwmError {
     /// [`Percentage`] float outside of the `0.0..=1.0` range.
     InvalidPercentage,
+    /// `duty` integer value hither than max (embedded-ha1 1.0)
+    InvalidDutyCycle,
+}
+
+impl pwm::Error for PwmError {
+    fn kind(&self) -> pwm::ErrorKind {
+        match self {
+            PwmError::InvalidPercentage | PwmError::InvalidDutyCycle => ErrorKind::Other, // TODO: embassy-rp does just that, but why?
+        }
+    }
 }
 
 /// Hardware metadata for a PWM.
@@ -212,7 +223,7 @@ impl<M: PwmMeta, I: ChannelId> Channel<M, I> {
         };
     }
 
-    /// Apply a wanted [`Channel`] dury rate in hardware. `max`
+    /// Apply a wanted [`Channel`] duty rate in hardware. `max`
     /// denotes the new maximum value when it cannot be queried in
     /// hardware yet.
     fn apply_duty(&mut self, duty: Percentage, max: Option<u32>) {
@@ -711,5 +722,42 @@ impl<M: PwmMeta, I: ChannelId> PwmPin for Channel<M, I> {
     /// glitch-free.
     fn set_duty(&mut self, duty: Self::Duty) {
         self.apply_duty(duty, None);
+    }
+}
+
+impl<M: PwmMeta, I: ChannelId> ErrorType for Channel<M, I> {
+    type Error = PwmError;
+}
+
+impl<M: PwmMeta, I: ChannelId> SetDutyCycle for Channel<M, I> {
+    fn max_duty_cycle(&self) -> u16 {
+        // TODO: we need to be smarter with scaling
+        let max = self.reg().cprd().read().cprd().bits();
+        let shift = max.leading_zeros().saturating_sub(16);
+        (self.reg().cprd().read().cprd().bits() >> shift & 0xFFFF) as u16 // ? what if frequency changes
+    }
+
+    fn set_duty_cycle(&mut self, duty: u16) -> Result<(), Self::Error> {
+        if duty == 0 {
+            self.disable(); // ??? think thrice: what about reenabling it?
+            core::result::Result::Ok(())
+        } else {
+            let max = self.reg().cprd().read().cprd().bits();
+            let shift = max.leading_zeros().saturating_sub(16);
+            if duty > (max >> (shift & 0xFFFF)) as u16 {
+                return core::result::Result::Err(Self::Error::InvalidDutyCycle);
+            }
+            // TODO: that's copy&paste from `self.apply_duty()`, consider commonalization
+            if self.is_enabled() {
+                self.reg()
+                    .cdtyupd()
+                    .write(|w| unsafe { w.cdtyupd().bits((duty as u32) << shift) });
+            } else {
+                self.reg()
+                    .cdty()
+                    .modify(|_, w| unsafe { w.cdty().bits((duty as u32) << shift) });
+            }
+            core::result::Result::Ok(())
+        }
     }
 }

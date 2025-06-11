@@ -61,15 +61,15 @@ client.write(b"Hello").unwrap();
 
 use super::Bps;
 use crate::clocks::{Clock, HostClock, PeripheralIdentifier};
-use crate::ehal::blocking;
 use crate::fugit::{ExtU32, NanosDurationU32 as NanosDuration};
+use crate::legacy_ehal::blocking; // TODO:: implement embedded_hal 1.0 traits
 #[cfg(feature = "__pins-144")]
 use crate::pac::SPI1;
 use crate::pac::{spi0::tdr::PCSSELECT_A as HwChipSelect, spi0::RegisterBlock, SPI0};
-use crate::{ehal, nb};
 use crate::{generics, pio::*};
+use crate::{legacy_ehal, nb};
 use core::marker::PhantomData;
-use ehal::spi::Mode;
+use legacy_ehal::spi::Mode;
 use strum::FromRepr;
 
 use paste::*;
@@ -349,7 +349,7 @@ impl<M: SpiMeta> Spi<M> {
             // use 8b words
             w.bits_()._8_bit();
 
-            use ehal::spi::{Phase, Polarity};
+            use legacy_ehal::spi::{Phase, Polarity};
             match conf.mode.polarity {
                 Polarity::IdleLow => w.cpol().idle_low(),
                 Polarity::IdleHigh => w.cpol().idle_high(),
@@ -392,7 +392,7 @@ impl<'spi, M: SpiMeta> Client<'spi, M> {
     }
 
     fn write_inner(&mut self, words: &[u8], use_lastxfer: bool) -> Result<(), SpiError> {
-        use ehal::spi::FullDuplex;
+        use legacy_ehal::spi::FullDuplex;
 
         let len = words.len();
         for (i, word) in words.iter().enumerate() {
@@ -411,7 +411,7 @@ impl<'spi, M: SpiMeta> Client<'spi, M> {
         words: &'w mut [u8],
         use_lastxfer: bool,
     ) -> Result<&'w [u8], SpiError> {
-        use ehal::spi::FullDuplex;
+        use legacy_ehal::spi::FullDuplex;
 
         let len = words.len();
         for (i, word) in words.iter_mut().enumerate() {
@@ -595,7 +595,7 @@ impl_spi!(
     },
 );
 
-impl<'spi, M: SpiMeta> ehal::spi::FullDuplex<u8> for Client<'spi, M> {
+impl<'spi, M: SpiMeta> legacy_ehal::spi::FullDuplex<u8> for Client<'spi, M> {
     type Error = SpiError;
 
     fn read(&mut self) -> nb::Result<u8, Self::Error> {

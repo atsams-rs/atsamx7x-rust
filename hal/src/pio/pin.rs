@@ -3,9 +3,9 @@
 use core::convert::Infallible;
 use core::marker::PhantomData;
 
-use crate::ehal::digital::v2::OutputPin;
+use crate::legacy_ehal::digital::v2::OutputPin; // TODO: implement embedded_hal v1.0
 #[cfg(feature = "unproven")]
-use crate::ehal::digital::v2::{InputPin, StatefulOutputPin, ToggleableOutputPin};
+use crate::legacy_ehal::digital::v2::{InputPin, StatefulOutputPin, ToggleableOutputPin};
 
 use paste::paste;
 

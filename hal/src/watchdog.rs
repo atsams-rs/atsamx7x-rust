@@ -49,7 +49,7 @@ impl From<WDT> for Watchdog<Disabled> {
     }
 }
 
-impl crate::ehal::watchdog::Watchdog for Watchdog<Disabled> {
+impl crate::legacy_ehal::watchdog::Watchdog for Watchdog<Disabled> {
     /// Stub implementation. Does nothing and immediately returns.
     fn feed(&mut self) {}
 }

@@ -316,7 +316,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> timer::Cancel
     }
 }
 
-impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> delay::DelayUs<u32>
+impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> legacy_delay::DelayUs<u32>
     for Timer<M, I, C, FREQ_HZ>
 {
     fn delay_us(&mut self, us: u32) {
@@ -327,7 +327,7 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> delay::DelayU
     }
 }
 
-impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> delay::DelayMs<u32>
+impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> legacy_delay::DelayMs<u32>
     for Timer<M, I, C, FREQ_HZ>
 {
     fn delay_ms(&mut self, ms: u32) {
@@ -336,6 +336,21 @@ impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> delay::DelayM
         self.start(MillisDuration::from_ticks(ms).convert());
         nb::block!(self.wait()).unwrap()
     }
+}
+
+impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> delay::DelayNs
+    for Timer<M, I, C, FREQ_HZ>
+{
+    fn delay_ns(&mut self, ns: u32) {
+        use timer::CountDown;
+
+        self.start(NanosDuration::from_ticks(ns).convert());
+        nb::block!(self.wait()).unwrap()
+    }
+
+    // TODO: embedded_hal 1.0 has trait methods for longer periods (us, ms), with own recalculation
+    //       of units to ns; our precision depends on clock frequency, so using `fugit` is probably
+    //       less risky
 }
 
 impl<M: TcMeta, I: ChannelId, C: ChannelClock, const FREQ_HZ: u32> rtic_monotonic::Monotonic

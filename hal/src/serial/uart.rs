@@ -67,8 +67,8 @@ assert_eq!(uart.read().unwrap(), 0xff);
 */
 
 use crate::clocks::{Clock, HostClock, Pck, Pck4, PeripheralClock, PeripheralIdentifier};
-use crate::ehal::{self, blocking};
 use crate::fugit::HertzU32 as Hertz;
+use crate::legacy_ehal::{self, blocking}; // TODO: embedded-hal 1.0 doesn't have traits for U(S)ART
 use crate::pac::uart0::mr::{CHMODESELECT_A as ChannelModeInner, PARSELECT_A as ParityModeInner};
 use crate::pac::{uart0::RegisterBlock, UART0, UART1, UART2};
 #[cfg(all(
@@ -552,7 +552,7 @@ pub enum UartReadError {
 macro_rules! impl_read {
     ($($T:ty,)+) => {
         $(
-            impl<M: UartMeta> ehal::serial::Read<u8> for $T {
+            impl<M: UartMeta> legacy_ehal::serial::Read<u8> for $T {
                 type Error = UartReadError;
 
                 /// Reads a single word from the [`Uart`] peripheral.
@@ -609,7 +609,7 @@ macro_rules! impl_read {
 macro_rules! impl_write {
     ($($T:ty,)+) => {
         $(
-            impl<M: UartMeta> ehal::serial::Write<u8> for $T {
+            impl<M: UartMeta> legacy_ehal::serial::Write<u8> for $T {
                 type Error = ();
 
                 /// Writes a single word to the [`Uart`] peripheral.

@@ -7,7 +7,7 @@ Universal asynchronous receiver-transmitter (UART) mode.
 */
 
 use super::*;
-use crate::ehal::{self, blocking};
+use crate::legacy_ehal::{self, blocking}; // TODO: add embedded-hal v1.0
 
 /// Possible [Uart] errors
 #[derive(Debug, Eq, PartialEq)]
@@ -129,7 +129,7 @@ macro_rules! impl_common {
 macro_rules! impl_read {
     ($($T:ty,)+) => {
         $(
-            impl<M: UsartMeta> ehal::serial::Read<u8> for $T {
+            impl<M: UsartMeta> legacy_ehal::serial::Read<u8> for $T {
                 type Error = UartError;
 
                 /// Reads a single word from the [`Usart`] peripheral.
@@ -179,7 +179,7 @@ macro_rules! impl_read {
 macro_rules! impl_write {
     ($($T:ty,)+) => {
         $(
-            impl<M: UsartMeta> ehal::serial::Write<u8> for $T {
+            impl<M: UsartMeta> legacy_ehal::serial::Write<u8> for $T {
                 type Error = UartError;
 
                 /// Writes a single word to the [`Usart`] peripheral.

@@ -33,7 +33,7 @@ let voltage: f32 = afec.read(&mut pin).unwrap();
 */
 
 use crate::clocks::{Clock, HostClock, PeripheralIdentifier};
-use crate::ehal::adc;
+use crate::legacy_ehal::adc;
 use crate::pac::{afec0::RegisterBlock, AFEC0, AFEC1};
 use crate::{generics, pio::*};
 

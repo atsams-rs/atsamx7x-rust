@@ -25,15 +25,18 @@ keywords = [
 repository = "https://github.com/atsams-rs/atsamx7x-rust"
 readme = "README.md"
 edition = "2021"
-rust-version = "1.70"
+rust-version = "1.75"
 
 [dependencies]
 cortex-m = { version = "0.7" }
-embedded-hal = { version = "0.2.7" }
+embedded-hal-02 = { package = "embedded-hal", version = "0.2.7", features = ["unproven"] }
+embedded-hal-1 = { package = "embedded-hal", version = "1.0" }
+embedded-hal-async = { version = "1.0" }
+embedded-hal-nb = { version = "1.0" }
 nb = "1"
-fugit = "0.3.6"
+fugit = "0.3.7"
 paste = "1"
-usb-device = "0.3.1"
+usb-device = "0.3.2"
 bit-iter = "1"
 rtic-monotonic = "1"
 void = { version = "1", default-features = false }
@@ -92,7 +95,7 @@ __device-selected = []
 
 # External feature flags; part of the interface.
 can = ["mcan-core"]
-unproven = ["embedded-hal/unproven"]
+unproven = ["embedded-hal-02/unproven"]
 usart-spi-host-without-select = []
 reconfigurable-system-pins = []
 
