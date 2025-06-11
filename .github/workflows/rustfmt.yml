@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 env:
   CARGO_TERM_COLOR: always
-  MSRV: 1.63.0
+  MSRV: 1.75.0
 
 jobs:
   format:

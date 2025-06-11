@@ -25,7 +25,7 @@ keywords = [
 repository = "https://github.com/atsams-rs/atsamx7x-rust"
 readme = "README.md"
 edition = "2021"
-rust-version = "1.70"
+rust-version = "1.75"
 
 [dependencies]
 cortex-m = { version = "0.7" }
