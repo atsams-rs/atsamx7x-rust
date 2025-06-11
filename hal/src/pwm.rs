@@ -50,8 +50,8 @@ ch.set_freq(2.kHz());
 use core::marker::PhantomData;
 
 use crate::clocks::{Clock, HostClock, PeripheralIdentifier};
-use crate::legacy_ehal::PwmPin;
 use crate::fugit::HertzU32 as Hertz;
+use crate::legacy_ehal::PwmPin;
 use crate::pac::{
     pwm0::{RegisterBlock, PWM_CH_NUM as ChannelRegister},
     PWM0, PWM1,
@@ -730,7 +730,8 @@ impl<M: PwmMeta, I: ChannelId> ErrorType for Channel<M, I> {
 }
 
 impl<M: PwmMeta, I: ChannelId> SetDutyCycle for Channel<M, I> {
-    fn max_duty_cycle(&self) -> u16 { // TODO: we need to be smarter with scaling
+    fn max_duty_cycle(&self) -> u16 {
+        // TODO: we need to be smarter with scaling
         let max = self.reg().cprd().read().cprd().bits();
         let shift = max.leading_zeros().saturating_sub(16);
         (self.reg().cprd().read().cprd().bits() >> shift & 0xFFFF) as u16 // ? what if frequency changes
@@ -744,13 +745,13 @@ impl<M: PwmMeta, I: ChannelId> SetDutyCycle for Channel<M, I> {
             let max = self.reg().cprd().read().cprd().bits();
             let shift = max.leading_zeros().saturating_sub(16);
             if duty > (max >> (shift & 0xFFFF)) as u16 {
-                return core::result::Result::Err(Self::Error::InvalidDutyCycle)
+                return core::result::Result::Err(Self::Error::InvalidDutyCycle);
             }
             // TODO: that's copy&paste from `self.apply_duty()`, consider commonalization
             if self.is_enabled() {
-            self.reg()
-                .cdtyupd()
-                .write(|w| unsafe { w.cdtyupd().bits((duty as u32) << shift) });
+                self.reg()
+                    .cdtyupd()
+                    .write(|w| unsafe { w.cdtyupd().bits((duty as u32) << shift) });
             } else {
                 self.reg()
                     .cdty()

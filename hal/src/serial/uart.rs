@@ -67,8 +67,8 @@ assert_eq!(uart.read().unwrap(), 0xff);
 */
 
 use crate::clocks::{Clock, HostClock, Pck, Pck4, PeripheralClock, PeripheralIdentifier};
-use crate::legacy_ehal::{self, blocking}; // TODO: embedded-hal 1.0 doesn't have traits for U(S)ART
 use crate::fugit::HertzU32 as Hertz;
+use crate::legacy_ehal::{self, blocking}; // TODO: embedded-hal 1.0 doesn't have traits for U(S)ART
 use crate::pac::uart0::mr::{CHMODESELECT_A as ChannelModeInner, PARSELECT_A as ParityModeInner};
 use crate::pac::{uart0::RegisterBlock, UART0, UART1, UART2};
 #[cfg(all(

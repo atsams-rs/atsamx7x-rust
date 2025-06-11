@@ -54,13 +54,14 @@ timer.disable();
 */
 
 use crate::clocks::{Clock, SlowClock, SlowClockSource};
-use crate::legacy_ehal::{blocking::delay as legacy_delay, timer};
 use crate::ehal::delay;
 use crate::generics::CountDownError;
+use crate::legacy_ehal::{blocking::delay as legacy_delay, timer};
 use crate::pac::{rtt::sr::R as StatusRegister, RTT};
 pub use fugit::{ExtU32, RateExtU32};
 use fugit::{
-    HertzU32 as Hertz, MicrosDurationU32 as MicrosDuration, MillisDurationU32 as MillisDuration, NanosDurationU32 as NanosDuration, TimerDurationU32 as Duration, TimerInstantU32 as Instant
+    HertzU32 as Hertz, MicrosDurationU32 as MicrosDuration, MillisDurationU32 as MillisDuration,
+    NanosDurationU32 as NanosDuration, TimerDurationU32 as Duration, TimerInstantU32 as Instant,
 };
 use rtic_monotonic::Monotonic;
 
@@ -378,7 +379,7 @@ impl<const FREQ_HZ: u32> legacy_delay::DelayMs<u32> for Timer<FREQ_HZ> {
 
 impl<const FREQ_HZ: u32> delay::DelayNs for Timer<FREQ_HZ> {
     fn delay_ns(&mut self, ns: u32) {
-         use timer::CountDown;
+        use timer::CountDown;
 
         self.start(NanosDuration::from_ticks(ns).convert());
         nb::block!(self.wait()).unwrap()

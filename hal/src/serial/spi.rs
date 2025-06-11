@@ -61,13 +61,13 @@ client.write(b"Hello").unwrap();
 
 use super::Bps;
 use crate::clocks::{Clock, HostClock, PeripheralIdentifier};
-use crate::legacy_ehal::blocking; // TODO:: implement embedded_hal 1.0 traits
 use crate::fugit::{ExtU32, NanosDurationU32 as NanosDuration};
+use crate::legacy_ehal::blocking; // TODO:: implement embedded_hal 1.0 traits
 #[cfg(feature = "__pins-144")]
 use crate::pac::SPI1;
 use crate::pac::{spi0::tdr::PCSSELECT_A as HwChipSelect, spi0::RegisterBlock, SPI0};
-use crate::{legacy_ehal, nb};
 use crate::{generics, pio::*};
+use crate::{legacy_ehal, nb};
 use core::marker::PhantomData;
 use legacy_ehal::spi::Mode;
 use strum::FromRepr;

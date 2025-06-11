@@ -187,16 +187,15 @@ interrupt:
 */
 
 use crate::clocks::{Clock, Hertz, HostClock, PeripheralIdentifier};
-use crate::legacy_ehal::blocking::delay as legacy_delay;
 use crate::ehal::delay;
-use crate::legacy_ehal::timer;
 pub use crate::fugit::{ExtU32, RateExtU32};
 use crate::fugit::{
     MicrosDurationU32 as MicrosDuration, MillisDurationU32 as MillisDuration,
-    NanosDurationU32 as NanosDuration,
-    TimerDurationU32 as Duration, TimerInstantU32 as Instant,
+    NanosDurationU32 as NanosDuration, TimerDurationU32 as Duration, TimerInstantU32 as Instant,
 };
 use crate::generics::{self, CountDownError};
+use crate::legacy_ehal::blocking::delay as legacy_delay;
+use crate::legacy_ehal::timer;
 use crate::pac::tc0::{
     tc_channel::{
         cmr_capture_mode::{LDRASELECT_A, LDRBSELECT_A, SBSMPLRSELECT_A},
