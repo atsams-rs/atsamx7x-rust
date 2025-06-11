@@ -43,7 +43,7 @@ twi.write_read(0x0, &[0b1000_0000], &mut buffer).unwrap();
 */
 
 use crate::clocks::{Clock, Hertz, HostClock, PeripheralIdentifier};
-use crate::ehal::blocking;
+use crate::legacy_ehal::blocking; // TODO: address I²C from embedded-hal 1.0
 use crate::generics;
 #[cfg(feature = "reconfigurable-system-pins")]
 use crate::pac::TWIHS1;

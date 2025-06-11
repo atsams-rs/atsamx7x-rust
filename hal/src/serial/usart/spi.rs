@@ -7,8 +7,8 @@ If SPI without a select pin is required, build the HAL with `features
 = [.., "usart-spi-host-without-select"]`.
 */
 use super::*;
-pub use crate::ehal::spi::*;
-use crate::ehal::{self, blocking};
+pub use crate::legacy_ehal::spi::*;
+use crate::legacy_ehal::{self, blocking}; // TODO: add embedded_hal v1.0
 
 /// Possible [`Spi`]  errors.
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
@@ -186,7 +186,7 @@ impl<M: UsartMeta, R: SpiRole> Spi<M, R> {
     }
 }
 
-impl<M: UsartMeta, R: SpiRole> ehal::spi::FullDuplex<u8> for Spi<M, R> {
+impl<M: UsartMeta, R: SpiRole> legacy_ehal::spi::FullDuplex<u8> for Spi<M, R> {
     type Error = SpiError;
 
     fn read(&mut self) -> nb::Result<u8, Self::Error> {

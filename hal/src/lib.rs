@@ -12,7 +12,7 @@ Examples for most implemented peripherals [can be found in the git repository, u
 
 # Getting Started
 
-After system start, the device's wathdog is active, and will trigger a
+After system start, the device's watchdog is active, and will trigger a
 system reset after about ~15 seconds. Additionally, before any work
 can be done, the clock hierarchy must be configured, because it is
 upstream of all other peripherals. Refer to [`clocks`].
@@ -34,7 +34,8 @@ The datasheet (DS60001527F) is available via [Microchip](https://ww1.microchip.c
 #![deny(rustdoc::invalid_rust_codeblocks)]
 #![deny(rustdoc::bare_urls)]
 
-pub use embedded_hal as ehal;
+pub use embedded_hal_1 as ehal;
+pub use embedded_hal_02 as legacy_ehal;
 pub use fugit;
 pub use nb;
 
