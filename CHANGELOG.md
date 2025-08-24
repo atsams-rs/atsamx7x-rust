@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+- `usb_serial_echo` example will use LangID::EN_US .
+
 ## [v0.4.6] 2025-03-31
 
 ### Changed
