@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+### Fixed
+- Host Clock Controller needs to also use the divisor when dividing the clock down to MCK.
+    
+### Changed
+- Minor comment updates.
+
 ## [v0.4.6] 2025-03-31
 
 ### Changed
