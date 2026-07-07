@@ -2,8 +2,15 @@
 
 ## [Unreleased]
 
+
 ### Added
 - Added `build.rs` to check if memory.x changed
+
+### Changed
+- `pio::bank::BankInterruptsIter::next`: increase performance by extracting irq index via Rust built-ins.
+
+### Fixed
+- Fixed an elided lifetime warning in spi.rs
 
 ## [v0.4.6] 2025-03-31
 

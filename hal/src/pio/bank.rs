@@ -80,7 +80,6 @@ impl<B: PinBank> BankInterrupts<B> {
 pub struct BankInterruptsIter<B: PinBank> {
     bank: PhantomData<B>,
     irq: u32,
-    idx: u8,
 }
 
 impl<B: PinBank> BankInterruptsIter<B> {
@@ -89,7 +88,6 @@ impl<B: PinBank> BankInterruptsIter<B> {
         Self {
             bank: PhantomData,
             irq,
-            idx: 0,
         }
     }
 }
@@ -103,25 +101,17 @@ impl<B: PinBank> Iterator for BankInterruptsIter<B> {
 
     /// Returns the next pin number in this [`PinBank`] that had a
     /// pending interrupt.
+    #[inline]
     fn next(&mut self) -> Option<Self::Item> {
-        match self.idx {
-            32.. => {
-                // We have iterated over all pins: nothing more to do.
-                None
-            }
-            idx if self.irq & (1 << idx) != 0 => {
-                // Pin number `idx` had a pending interrupt.
-                let pin = self.idx;
-                self.idx += 1;
-                Some(pin)
-            }
-            _ => {
-                // Pin number `idx` did not have a pending interrupt:
-                // advance to the next pin.
-                self.idx += 1;
-                self.next()
-            }
+        if self.irq == 0 {
+            return None;
         }
+
+        // Extract index of pending irq and clear bit.
+        let bit_index = self.irq.trailing_zeros() as u8;
+        self.irq &= self.irq - 1;
+
+        Some(bit_index)
     }
 }
 
