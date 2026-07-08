@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+- Updated Cargo.lock to current version.
+- Updated Cargo.lock w/ source & checksum fields.
+
 ## [v0.4.6] 2025-03-31
 
 ### Changed
