@@ -55,7 +55,7 @@ mod app {
             ctx.local.usb_alloc.as_ref().unwrap(),
             UsbVidPid(0xdead, 0xbeef),
         )
-        .strings(&[StringDescriptors::new(LangID::EN)
+        .strings(&[StringDescriptors::default()
             .manufacturer("ATSAMx7x HAL Contributors")
             .product("Serial port echo")
             .serial_number("N/A")])
