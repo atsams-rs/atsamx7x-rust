@@ -1,9 +1,15 @@
 # Changelog
 
 ## [Unreleased]
+    
+### Changed
+- Minor comment updates.
 
 ### Added
 - Added `build.rs` to check if memory.x changed
+
+### Fixed
+- Host Clock Controller needs to also use the divisor when dividing the clock down to MCK.
 
 ## [v0.4.6] 2025-03-31
 

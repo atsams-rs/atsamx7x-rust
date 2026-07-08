@@ -121,7 +121,7 @@ impl HostClockController {
     ) -> Result<(ProcessorClock, HostClock), ClockError> {
         // Ensure we use the correct amount of wait states for flash
         // access for the new HCLK frequency.
-        efc.set_wait_states(source.freq().convert() / (pres as u32))?;
+        efc.set_wait_states(source.freq().convert() / (pres as u32) / (div as u32))?;
 
         let freq = source.freq();
 

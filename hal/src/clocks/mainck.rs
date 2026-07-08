@@ -67,7 +67,7 @@ impl Token<MainClock<InternalRC>> {
         }
 
         // Enable the external oscillator and wait for it to
-        // stabilize.
+        // stabilize. (§31.17; step 2)
         self.pmc().ckgr_mor().modify(|_, w| {
             w.key().passwd();
             w.moscxten().set_bit();
@@ -78,7 +78,7 @@ impl Token<MainClock<InternalRC>> {
         });
         while self.pmc().sr().read().moscxts().bit_is_clear() {}
 
-        // Switch over to the main oscillator.
+        // Switch over to the main oscillator. (§31.17; step 3 & 4)
         self.pmc().ckgr_mor().modify(|_, w| {
             w.key().passwd();
             w.moscsel().set_bit();
