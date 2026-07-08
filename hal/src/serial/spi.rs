@@ -547,7 +547,7 @@ macro_rules! impl_spi {
                         /// [`SpiError::UnconfiguredClient`] unless
                         /// [`Spi::setup_client`] has been called with
                         /// the same `S`.
-                        pub fn select<S: [<$Spi NpCsPin>]>(&mut self, _client: &S) -> Result<Client<$Spi>, SpiError> {
+                        pub fn select<S: [<$Spi NpCsPin>]>(&mut self, _client: &S) -> Result<Client<'_, $Spi>, SpiError> {
                             self.select_inner(S::CS)
                         }
 
