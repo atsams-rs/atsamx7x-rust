@@ -82,6 +82,8 @@ checksum = "7c02d123df017efcdfbd739ef81735b36c5ba83ec3c59c80a9d7ecc718f92e50"
 [[package]]
 name = "atsame70j19b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "58e8a599f71ddec79e7edb2d010b0e05a08e6bd43b4122730acff8de76683e34"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -96,6 +98,8 @@ dependencies = [
 [[package]]
 name = "atsame70j20b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "458fa1558cdc886c2b37abd8976ea5fdfa2e44467dd6641672e47696e8f6f05b"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -110,6 +114,8 @@ dependencies = [
 [[package]]
 name = "atsame70j21b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0f75f7480515ef08716411417bf37d28e6363366f32bba9ace6066d6fa9f66b8"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -124,6 +130,8 @@ dependencies = [
 [[package]]
 name = "atsame70n19b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8fc354c638e60c3a4ec3c8f8c43e0ecc6eabfc90e11b9e80fb434fc04bd7a3e2"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -138,6 +146,8 @@ dependencies = [
 [[package]]
 name = "atsame70n20b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "667bdc0c41b4e08466e8af50349271e07d5e71f7c0e6b4ee3dfb7fa975495318"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -152,6 +162,8 @@ dependencies = [
 [[package]]
 name = "atsame70n21b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8d2bb60ea1f60a57cb8f2225b27af54f6f44059a006a68522b275cf23a871368"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -166,6 +178,8 @@ dependencies = [
 [[package]]
 name = "atsame70q19b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "87b7b0d6c3b3dd0efb7d1c60f34e45fb2d20d780545ad9a43d308ba2c8f38862"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -180,6 +194,8 @@ dependencies = [
 [[package]]
 name = "atsame70q20b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9720c0a312c1c232448d6ebe493c12ed32462d2ea4395a2976c723b5a31ad943"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -194,6 +210,8 @@ dependencies = [
 [[package]]
 name = "atsame70q21b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0932a7af865cd7293fe060d17994ba17aee264e0c116ad5dc670f8b2385dd349"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -208,6 +226,8 @@ dependencies = [
 [[package]]
 name = "atsams70j19b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b12403665479ae1bc24e795381dfa69f1cb743568ae4dcd698507b93979e4734"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -222,6 +242,8 @@ dependencies = [
 [[package]]
 name = "atsams70j20b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "efb2f49d372f4909cc61f61a228c9bdbaa69f01baae3f256afb1c73e28edc915"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -236,6 +258,8 @@ dependencies = [
 [[package]]
 name = "atsams70j21b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "88ee6c8686f884d7de1760faa77f737413cb4eae42aeacb66578da214085051b"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -250,6 +274,8 @@ dependencies = [
 [[package]]
 name = "atsams70n19b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8afd6ff4f139fb360010f4fdbe70c7ca64372723dce98ca456eb26b70b9959dc"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -264,6 +290,8 @@ dependencies = [
 [[package]]
 name = "atsams70n20b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f1e5e3351d3b70422536d3ad1fc894166a09c7cc3b13880dc556908f0f5bae39"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -278,6 +306,8 @@ dependencies = [
 [[package]]
 name = "atsams70n21b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dc34dcb3ad47e3cdd495352e0966e91531e576e6b421a464c0e9c9ae324919eb"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -292,6 +322,8 @@ dependencies = [
 [[package]]
 name = "atsams70q19b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0987d19ca3b0cfdc11a739135727dd2da65b8aef0210a8170ef8820282f92a41"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -306,6 +338,8 @@ dependencies = [
 [[package]]
 name = "atsams70q20b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3c862fecd99f69fc52c28eae67d2b86d9f9ebca02ea2be8c1d728c5792fb8975"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -320,6 +354,8 @@ dependencies = [
 [[package]]
 name = "atsams70q21b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c61ec12cbddcb81de7a38fcbe3400786a17ba5fce36c18a455aa1adb61d25e4c"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -334,6 +370,8 @@ dependencies = [
 [[package]]
 name = "atsamv70j19b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "47d25fd446b91c39274fa5c662b9065f628cacc8b21a7beffc5e5dd410555ae8"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -348,6 +386,8 @@ dependencies = [
 [[package]]
 name = "atsamv70j20b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "498f9ac08aedafbf3119e7ebc2832d74b7278eadcc3bef492736e3e61c08e52e"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -362,6 +402,8 @@ dependencies = [
 [[package]]
 name = "atsamv70n19b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "53511ff4fa5fe5990089f1fff33475109a2ae2d89838e6d73102969a98ae0839"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -376,6 +418,8 @@ dependencies = [
 [[package]]
 name = "atsamv70n20b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d48320508d9ddabb5f36a7740c2cbc5fa27917836e7f7d1711e7d27a235211bc"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -390,6 +434,8 @@ dependencies = [
 [[package]]
 name = "atsamv70q19b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "511f9206a64ab6a3c98d10a33ff66e270faa05d689ab9508096a146744406e10"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -404,6 +450,8 @@ dependencies = [
 [[package]]
 name = "atsamv70q20b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e5be03e051c467cbeeb6b9a2747589bc885664861fad0d64b85b8b78614f6d00"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -418,6 +466,8 @@ dependencies = [
 [[package]]
 name = "atsamv71j19b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9027fc05be21e4d6447ab0ffe91d8ee77e2a702c4d19007eb6c3f4559fcfe027"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -432,6 +482,8 @@ dependencies = [
 [[package]]
 name = "atsamv71j20b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d566de3aa98821ab0d0ddfa7453d3d4c57bc5459e38a5a1a645740663399e86e"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -446,6 +498,8 @@ dependencies = [
 [[package]]
 name = "atsamv71j21b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "63eba7b050b03e5c0d364e0cd8df17a342dfe052717f511ec1dfeb9edddffff3"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -460,6 +514,8 @@ dependencies = [
 [[package]]
 name = "atsamv71n19b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8ba321bba0e258d0b17fc9029c872ea2b3066638ec7b396dcf0b6e60896cab63"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -474,6 +530,8 @@ dependencies = [
 [[package]]
 name = "atsamv71n20b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "58a97108655f381451b285c29ed84d383ef149671fd6b52ab9eb38adb01555a4"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -488,6 +546,8 @@ dependencies = [
 [[package]]
 name = "atsamv71n21b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8080e329cee141f7b9356e6280d1ee6ca364e10d6d5be5e4c3ae9213a6f88b22"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -502,6 +562,8 @@ dependencies = [
 [[package]]
 name = "atsamv71q19b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4545e4a46a48942e807371ca72f24445c377cfc80f52d0aefb3858510b8db7d5"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -516,6 +578,8 @@ dependencies = [
 [[package]]
 name = "atsamv71q20b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "76de47f3da044dfaaf296cbb3ae80fb771795e6244c0ec02a651b5df0ab4568c"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -530,6 +594,8 @@ dependencies = [
 [[package]]
 name = "atsamv71q21b"
 version = "0.33.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7049ea51bcdb1bfe77d5265cadee978f733c7b91a4648bf9f2bbc8ee463a0bc7"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
