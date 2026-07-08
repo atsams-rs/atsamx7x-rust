@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+- Added `build.rs` to check if memory.x changed
+
 ## [v0.4.6] 2025-03-31
 
 ### Changed
