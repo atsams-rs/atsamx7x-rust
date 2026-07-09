@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Unreleased]
+- Fixed documentation in `boards/atsamv71_xult` to refer to `probe-rs` instead of `cargo-embed`
 
 ### Added
 - Added `build.rs` to check if memory.x changed
