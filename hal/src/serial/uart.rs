@@ -295,24 +295,40 @@ impl<M> generics::Sealed for Uart<M> where M: UartMeta {}
 #[derive(Clone, Copy, FromRepr)]
 #[repr(u32)]
 pub enum Event {
+    /// Receiver Ready.
+    ///
     /// A new word has been received.
     RxReady = 1 << 0,
+
+    /// Transmitter Ready.
+    ///
     /// The next word can be sent.
     TxReady = 1 << 1,
-    /// All previous words have been serialized.
-    TxEmpty = 1 << 9,
-    /// Rx buffer overrun error.
+
+    /// RX buffer overrun error.
     ///
     /// Cleared by calling [`clear_errors`](Uart::clear_errors)
     Ovre = 1 << 5,
+
     /// Framing error.
     ///
     /// Cleared by calling [`clear_errors`](Uart::clear_errors)
     Frame = 1 << 6,
+
     /// Parity error.
     ///
     /// Cleared by calling [`clear_errors`](Uart::clear_errors)
     Pare = 1 << 7,
+
+    /// Transmitter Empty.
+    ///
+    /// All previous words have been serialized.
+    TxEmpty = 1 << 9,
+
+    /// Comparison Match.
+    ///
+    /// Cleared by calling [`clear_errors`](Uart::clear_errors)
+    Cmp = 1 << 15,
 }
 
 impl<M: UartMeta> Uart<M> {
@@ -402,6 +418,30 @@ impl<M: UartMeta> Uart<M> {
     pub fn split(self) -> (Tx<M>, Rx<M>) {
         (self.tx, self.rx)
     }
+
+    /// Comparsion mode needed to start reception. 
+    #[inline]
+    pub fn enable_cmp(&mut self, value: u8) {
+        self.reg()
+            .cmpr()
+            .modify(|_, w| w.cmpmode().bit(value != 0));
+    }
+
+    /// Set VAL1 reg. comparison value for received characters.
+    #[inline]
+    pub fn set_val1(&mut self, value: u8) {
+        self.reg()
+            .cmpr()
+            .modify(|_, w| unsafe { w.val1().bits(value) });
+    }
+
+    /// Set VAL2 reg. comparison value for received characters.
+    #[inline]
+    pub fn set_val2(&mut self, value: u8) {
+        self.reg()
+            .cmpr()
+            .modify(|_, w| unsafe { w.val2().bits(value) });
+    }
 }
 
 impl TryFrom<u32> for Event {
@@ -422,9 +462,10 @@ impl<M: UartMeta> crate::generics::events::EventHandler for Uart<M> {
             Event::TxReady => w.txrdy().set_bit(),
             Event::RxReady => w.rxrdy().set_bit(),
             Event::TxEmpty => w.txempty().set_bit(),
-            Event::Ovre => w.ovre().set_bit(),
-            Event::Frame => w.frame().set_bit(),
-            Event::Pare => w.pare().set_bit(),
+            Event::Ovre    => w.ovre().set_bit(),
+            Event::Frame   => w.frame().set_bit(),
+            Event::Pare    => w.pare().set_bit(),
+            Event::Cmp     => w.cmp().set_bit(),
         });
     }
 
@@ -433,9 +474,10 @@ impl<M: UartMeta> crate::generics::events::EventHandler for Uart<M> {
             Event::TxReady => w.txrdy().set_bit(),
             Event::RxReady => w.rxrdy().set_bit(),
             Event::TxEmpty => w.txempty().set_bit(),
-            Event::Ovre => w.ovre().set_bit(),
-            Event::Frame => w.frame().set_bit(),
-            Event::Pare => w.pare().set_bit(),
+            Event::Ovre    => w.ovre().set_bit(),
+            Event::Frame   => w.frame().set_bit(),
+            Event::Pare    => w.pare().set_bit(),
+            Event::Cmp     => w.cmp().set_bit(),
         });
     }
 
