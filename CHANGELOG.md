@@ -5,6 +5,9 @@
 ### Added
 - Added `build.rs` to check if memory.x changed
 
+### Fixed
+- PllaClock was not setting the freq. correctly.
+
 ## [v0.4.6] 2025-03-31
 
 ### Changed
