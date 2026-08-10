@@ -18,9 +18,10 @@ impl Token<PllaClock> {
         source: &impl PllaSource,
         PllaConfig { div, mult }: PllaConfig,
     ) -> Result<PllaClock, ClockError> {
-        if !(2..=63).contains(&mult) {
+        if !(2..=62).contains(&mult) {
             return Err(ClockError::InvalidPllaCk);
         }
+        // Datasheet error, sec 31.17 (step 6) & 31.20.10 differ.
         if div == 0 || div > 127 {
             return Err(ClockError::InvalidPllaCk);
         }
@@ -38,7 +39,8 @@ impl Token<PllaClock> {
         while self.pmc().sr().read().locka().bit_is_clear() {}
 
         Ok(PllaClock {
-            freq: (source.freq().convert() / div as u32) * mult as u32,
+            // Per datasheet sec. 31.20.10, chip adds 1 to the multiplier.
+            freq: (source.freq().convert() / div as u32) * (mult + 1) as u32,
         })
     }
 }
